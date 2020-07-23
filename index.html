@@ -47,16 +47,13 @@
       }
 
       body {
-        background: #aaaaaa;
         min-height: 100vh;
+
+        animation: bg-blink 1s ease-in-out 0s infinite alternate both;
 
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-
-      body.blink {
-        animation: bg-blink 1s ease-in-out 0s infinite alternate both;
       }
 
       body > h1 {
@@ -64,20 +61,19 @@
         text-shadow: 1px 1px 3px #333333, -1px -1px 3px #666666;
 
         font-size: 1rem;
+
+        user-select: none;
       }
     </style>
   </head>
-  <body class="blink">
+  <body>
     <script type="text/javascript">
+      // show text on 2nd round (2s * 2 = 4000ms)
       setTimeout(() => {
-        // stop blinking
-        document.body.classList.remove('blink');
-
-        // show text
         var textNode = document.createElement('H1');
         textNode.innerText = '开发中……';
         document.body.appendChild(textNode);
-      }, 3000);
+      }, 4000);
     </script>
   </body>
 </html>
