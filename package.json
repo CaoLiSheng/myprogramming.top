@@ -2,7 +2,7 @@
   "name": "yxblog",
   "version": "1.0.0",
   "description": "YX's BLOG SITE",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "npm run gen && npm run pub",
     "gen": "rm -rf build && webpack --config=cfg/webpack/gen.js",
