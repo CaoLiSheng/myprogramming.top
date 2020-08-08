@@ -30,11 +30,14 @@ class InnerSnapList extends Component<RouteComponentProps & I_PAGE_CTX_DATA> {
   };
 
   public render() {
-    let pager: PAGE_INFO | undefined;
-
     const pagerKey: string = PATH_PAGER_MAP[this.props.match.path];
-    if (!pagerKey || !(pager = this.props.page?.[pagerKey])) {
+    if (!pagerKey) {
       return <h1>粗错啦，无效的分页关键字！</h1>;
+    }
+
+    let pager: PAGE_INFO | undefined;
+    if (!(pager = this.props.page?.[pagerKey])) {
+      return null;
     }
 
     return (
