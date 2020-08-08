@@ -1,0 +1,20 @@
+.canlendar.wrapper {
+  text-align: center;
+
+  h1 {
+    width: 100%;
+    font-size: 0.4rem;
+    border-bottom: solid 0.01rem #2175bc;
+  }
+
+  .links {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    font-size: 0.24rem;
+
+    a ~ a {
+      margin-left: 2em;
+    }
+  }
+}

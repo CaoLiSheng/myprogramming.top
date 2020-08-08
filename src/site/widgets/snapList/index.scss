@@ -1,0 +1,50 @@
+ul.snap-list {
+  list-style: none;
+  margin: 0 auto;
+  min-width: 200px;
+  max-width: 980px;
+  width: 100%;
+
+  a {
+    display: block;
+    width: 100%;
+    padding: 0.1rem 0;
+
+    & ~ a {
+      border-top: dashed 0.01rem #888888;
+    }
+
+    li {
+      width: 100%;
+      position: relative;
+
+      @keyframes tweaking {
+        0% {
+          background: #aaaaaa;
+        }
+
+        100% {
+          background: #cccccc;
+        }
+      }
+
+      &:hover::after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.3;
+        animation: tweaking 300ms ease-in-out 0s infinite alternate both;
+      }
+
+      iframe {
+        width: 100%;
+        height: 600px;
+        display: block;
+        pointer-events: none;
+      }
+    }
+  }
+}

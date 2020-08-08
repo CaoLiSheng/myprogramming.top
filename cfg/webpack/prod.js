@@ -8,6 +8,11 @@ module.exports = merge(base, {
   mode: 'production',
   output: {
     path: path.join(process.cwd(), 'public'),
+    publicPath: './',
   },
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      __posts_pdir__: JSON.stringify('./'),
+    }),
+  ],
 });

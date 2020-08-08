@@ -11,5 +11,9 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     plugins: [new TsconfigPathsPlugin()],
   },
-  plugins: [new ForkTsCheckerWebpackPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [
+    new ForkTsCheckerWebpackPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({ __posts_dir__: JSON.stringify('posts') }),
+  ],
 };

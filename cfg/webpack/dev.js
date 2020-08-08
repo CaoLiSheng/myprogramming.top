@@ -18,6 +18,12 @@ module.exports = merge(base, {
   },
   output: {
     path: path.join(process.cwd(), 'dist'),
+    publicPath: '/',
   },
-  plugins: [new wba.BundleAnalyzerPlugin()],
+  plugins: [
+    new wba.BundleAnalyzerPlugin(),
+    new webpack.DefinePlugin({
+      __posts_pdir__: JSON.stringify('http://localhost:5000/'),
+    }),
+  ],
 });

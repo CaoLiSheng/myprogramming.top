@@ -1,18 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const base = require('./base.babel');
-const template = path.join(__dirname, 'src', 'site', 'index.html');
+const template = path.join(process.cwd(), 'src', 'site', 'index.html');
 
 module.exports = merge(base, {
+  target: 'web',
   entry: {
     app: 'src/site/index',
   },
   output: {
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
-    publicPath: '/',
   },
   module: {
     rules: [
@@ -44,7 +45,7 @@ module.exports = merge(base, {
       },
       {
         test: /(\.s?css$|\/css\?.*)/,
-        include: [path.join(__dirname, 'src')],
+        include: [path.join(process.cwd(), 'src')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {

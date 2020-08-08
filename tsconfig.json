@@ -2,8 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@tpl/*": [
+        "src/tpl/*"
+      ],
       "@common/*": [
         "src/common/*"
+      ],
+      "@images/*": [
+        "src/images/*"
+      ],
+      "@ctxs/*": [
+        "src/site/ctxs/*"
+      ],
+      "@widgets/*": [
+        "src/site/widgets/*"
       ]
     },
     "outDir": "dist",
@@ -12,6 +24,9 @@
     "lib": [
       "es6",
       "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "sourceMap": true,
     "allowJs": true,

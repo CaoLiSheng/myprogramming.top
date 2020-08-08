@@ -5,6 +5,7 @@ const { merge } = require('webpack-merge');
 const base = require('./base.babel');
 
 module.exports = merge(base, {
+  target: 'node',
   mode: 'production',
   entry: {
     gen: 'src/gen/index',

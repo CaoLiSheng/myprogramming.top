@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2020年后半年提升计划</title>
+    <link rel="stylesheet" href="./retro.css" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        width: 100%;
+        margin: 1rem auto;
+        padding: 45px;
+      }
+
+      .markdown-body:not(.snapshot) {
+        border-radius: 6px;
+        border: solid 1px gray;
+        box-shadow: 0 0 5px 0 gray;
+      }
+
+      @media (max-width: 767px) {
+        .markdown-body {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="markdown-body snapshot">
+      <h1>2020年后半年提升计划</h1>
+      <ul>
+<li>读书（包括代码整洁、3D 渲染、UI 设计、架构师考试教程）</li>
+<li>自研类 Hexo 博客</li>
+<li>学习 Blender</li>
+<li>研究 CKEditor</li>
+<li>编写 Blender 插件</li>
+</ul>
+    </article>
+    <script>
+      if (location.hash !== '#snapshot') {
+        const articleRoot = document.querySelector(
+          'article.markdown-body.snapshot'
+        );
+        if (articleRoot) articleRoot.classList.remove('snapshot');
+      }
+    </script>
+  </body>
+</html>

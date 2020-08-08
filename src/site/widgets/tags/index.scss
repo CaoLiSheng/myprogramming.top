@@ -1,0 +1,54 @@
+.tags.wrapper {
+  .search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      display: block;
+      margin: 0.1rem 0.1rem;
+      height: 0.5rem;
+      width: 21em;
+      font-size: 0.24rem;
+      line-height: 0.5rem;
+      outline: none;
+      padding: 0 0.3em;
+      color: #333333;
+      border: solid 0.01rem #2175bc;
+      border-radius: 0.05rem;
+      box-shadow: inset 0 0 0.05rem 0 #106090;
+    }
+
+    button {
+      appearance: none;
+      background-color: #2175bc;
+      color: whitesmoke;
+      padding: 0 0.3em;
+      height: 0.5rem;
+      font-size: 0.24rem;
+      line-height: 0.5rem;
+      border-radius: 0.05rem;
+      outline: none;
+
+      &:hover {
+        background-color: #106090;
+      }
+
+      &:active {
+        font-size: 0.22rem;
+      }
+    }
+  }
+
+  .search-results {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    font-size: 0.24rem;
+
+    a ~ a {
+      margin-left: 2em;
+    }
+  }
+}

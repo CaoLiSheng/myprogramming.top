@@ -1,0 +1,27 @@
+<!doctype html><html lang="cn-zh"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>又心真人的博客</title><script>!(function () {
+        var html = document.documentElement;
+        var setFontSize = function () {
+          var width = html.offsetWidth;
+          if (width <= 750) {
+            html.style.fontSize = width / 7.5 + 'px';
+          } else {
+            html.style.fontSize = 100 + 'px';
+          }
+        };
+        var timer;
+        var setDelay = function () {
+          return clearTimeout(timer), (timer = setTimeout(setFontSize, 150));
+        };
+        window.addEventListener('pageshow', function (evt) {
+          return evt.persisted && setDelay();
+        });
+        window.addEventListener('resize', setDelay);
+        setFontSize();
+      })();</script><style>*,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-sizing: border-box;
+      }</style></head><body><div id="main"></div><script src="./moment.06e47a2f9d6f5338c516.js"></script><script src="./react.06e47a2f9d6f5338c516.js"></script><script src="./vendors.06e47a2f9d6f5338c516.js"></script><script src="./app.06e47a2f9d6f5338c516.js"></script></body></html>
