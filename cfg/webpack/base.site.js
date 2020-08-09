@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const {
+  merge
+} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const base = require('./base.babel');
@@ -16,41 +18,14 @@ module.exports = merge(base, {
     chunkFilename: '[name].[hash].js',
   },
   module: {
-    rules: [
-      {
-        test: /\.(j|t)s(x)?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            babelrc: false,
-            presets: [
-              [
-                '@babel/preset-env',
-                { targets: { browsers: 'last 2 versions' } },
-              ],
-              '@babel/preset-typescript',
-              '@babel/preset-react',
-            ],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { legacy: true }],
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
-              '@babel/plugin-proposal-optional-chaining',
-              '@babel/plugin-transform-runtime',
-              'react-hot-loader/babel',
-            ],
-          },
-        },
-      },
-      {
+    rules: [{
         test: /(\.s?css$|\/css\?.*)/,
         include: [path.join(process.cwd(), 'src')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif)$/,
-        loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]',
+        loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
       },
     ],
   },
@@ -99,6 +74,7 @@ module.exports = merge(base, {
     },
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new HtmlWebpackPlugin({
       template,
       filename: './index.html',

@@ -100,20 +100,20 @@ posts
     if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
 
     fs.createFileSync(outFilePath);
-    let htmlContent;
     fs.writeFileSync(
       outFilePath,
-      (htmlContent = tplContent
+      tplContent
         .replace('<title />', title)
         .replace('<stylesheet />', './' + styles[stylesheet].desc)
         .replace('<body_title />', title)
+        .replace('<body_padding_0 />', stylesheet === 'github' ? 'padding: 45px' : '')
+        .replace('<body_padding_1 />', stylesheet === 'github' ? 'padding: 15px' : '')
         // .replace('%body_date%', date)
         // .replace(/%year%/g, `${meta.date.year()}`)
         // .replace(/%month%/g, `${meta.date.month() + 1}`)
         // .replace(/%date%/g, `${meta.date.date()}`)
-        .replace('<body />', body))
+        .replace('<body />', body)
     );
-    console.log(htmlContent);
   });
 console.log('All HTML Generated');
 

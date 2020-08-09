@@ -2,6 +2,7 @@ node_modules
 build
 dist
 
-log.txt
 yarn-error.log
+log.txt
+
 .DS_Store
