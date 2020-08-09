@@ -4,11 +4,11 @@
   "description": "YX's BLOG SITE",
   "main": "build/index.js",
   "scripts": {
-    "test": "npm run gen && npm run pub",
     "gen": "rm -rf build && webpack --config=cfg/webpack/gen.js",
     "pub": "node ./build/gen.prod.js > log.txt",
+    "build": "npm run gen && npm run pub",
     "dev": "concurrently --handle-input 'nodemon --exec \"node ./build/gen.prod.js > log.txt\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/dev.js'",
-    "prod": "rm -rf public && git checkout -- public/posts && webpack --config=cfg/webpack/prod.js"
+    "prod": "rm -rf public && webpack --config=cfg/webpack/prod.js && npm run build"
   },
   "repository": {
     "type": "git",
