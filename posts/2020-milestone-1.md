@@ -36,6 +36,6 @@ concurrently --handle-input 'nodemon --exec \"node ./build/gen.prod.js > log.txt
 
 如上所示，`concurrently`命令非常直观的接收若干个字符串参数，每一个都说是并行的一个程序，`--handle-input`参数让我可以在任何时间改变任何一个程序的状态。简单说，我同时运行了一个markdown转html程序、一个访问这些html文件的简单http服务器以及骨架网站的开发状态服务器。
 
-其中，`nodemon`的作用是后台监听进程，与`concurrently`配合可以在任何时间通过`concurrently --handle-input`生成最新html文件。
+其中，`nodemon`的作用是启动后台监听进程，与`concurrently`配合可以在任何时间通过`concurrently --handle-input`生成最新html文件。
 
 ## 未完待续……
