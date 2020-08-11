@@ -10,7 +10,9 @@ export class Post extends Component<RouteComponentProps<{ name: string }>> {
     return (
       <iframe
         className="detail"
-        src={`${__posts_root__}${this.props.match.params.name}.html`}
+        src={`${__posts_root__}${
+          this.props.match.params.name
+        }.html?var=${Date.now()}`}
       />
     );
   }

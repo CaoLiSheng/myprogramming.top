@@ -19,7 +19,7 @@ class InnerSnapList extends Component<RouteComponentProps & I_PAGE_CTX_DATA> {
       <Link key={name} to={`/post/${name}`}>
         <li>
           <iframe
-            src={`${__posts_root__}${name}.html#snapshot`}
+            src={`${__posts_root__}${name}.html?var=${Date.now()}#snapshot`}
             referrerPolicy="origin"
             scrolling="no"
             style={{ overflow: 'hidden' }}
