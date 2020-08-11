@@ -64,11 +64,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "fs-extra": "^9.0.1",
-    "github-markdown-css": "^4.0.0",
-    "html2canvas": "^1.0.0-rc.5",
-    "markdown-air": "^0.0.4",
-    "markdown-retro": "^0.0.1",
-    "markdown-splendor": "^1.0.1",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

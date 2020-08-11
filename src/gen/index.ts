@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import showdown from 'showdown';
 
-import styles from '@tpl/styles';
+import styles, { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
 declare var __posts_dir__: string;
@@ -106,8 +106,8 @@ posts
         .replace('<title />', title)
         .replace('<stylesheet />', './' + styles[stylesheet].desc)
         .replace('<body_title />', title)
-        .replace('<body_padding_0 />', stylesheet === 'github' ? 'padding: 45px;' : '')
-        .replace('<body_padding_1 />', stylesheet === 'github' ? 'padding: 15px;' : '')
+        .replace('<body_padding_0 />', getBodyPadding0(stylesheet))
+        .replace('<body_padding_1 />', getBodyPadding1(stylesheet))
         // .replace('%body_date%', date)
         // .replace(/%year%/g, `${meta.date.year()}`)
         // .replace(/%month%/g, `${meta.date.month() + 1}`)
