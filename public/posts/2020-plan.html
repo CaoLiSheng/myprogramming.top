@@ -10,6 +10,29 @@
     <title>2020年后半年提升计划</title>
     <link rel="stylesheet" href="./air.css" />
     <style>
+      /*Scroll bar nav*/
+      ::-webkit-scrollbar {
+        width: 3pt;
+        height: 3pt;
+      }
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #ddd;
+        border-radius: 9pt;
+      }
+      /* Corner */
+      ::-webkit-scrollbar-corner {
+        background: #ddd;
+      }
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 9pt;
+      }
+      ::-webkit-scrollbar-thumb:window-inactive {
+        background: #aaa;
+      }
+
       body {
         display: flex;
         flex-direction: row;
@@ -34,8 +57,13 @@
 
       @media (max-width: 767px) {
         .markdown-body {
+          width: 100%;
           
         }
+      }
+
+      .markdown-body pre {
+        overflow: auto;
       }
     </style>
   </head>
@@ -51,12 +79,11 @@
 </ul>
     </article>
     <script>
+      var articleRoot;
       if (location.hash !== '#snapshot') {
-        const articleRoot = document.querySelector(
-          'article.markdown-body.snapshot'
-        );
-        if (articleRoot) articleRoot.classList.remove('snapshot');
+        articleRoot = document.querySelector('article.markdown-body.snapshot');
       }
+      if (articleRoot) articleRoot.classList.remove('snapshot');
     </script>
   </body>
 </html>

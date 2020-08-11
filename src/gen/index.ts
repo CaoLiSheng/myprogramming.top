@@ -7,6 +7,14 @@ import { DB } from '@common/db';
 
 declare var __posts_dir__: string;
 
+function isDir(file: string): boolean {
+  return fs.statSync(path.join(inDir, file)).isDirectory();
+}
+
+function isFile(file: string): boolean {
+  return fs.statSync(path.join(inDir, file)).isFile();
+}
+
 // Construct Converter
 const converter = new showdown.Converter();
 
@@ -24,12 +32,10 @@ fs.emptyDirSync(outDir);
 const dbData = new DB();
 
 // Copy CSS Assets
-Object.keys(styles).forEach((stylesheet) =>
-  fs.copySync(
-    path.join(process.cwd(), ...styles[stylesheet].src),
-    path.join(outDir, styles[stylesheet].desc)
-  )
-);
+Object.keys(styles).forEach((stylesheet) => {
+  const { src, desc } = styles[stylesheet];
+  fs.copySync(path.join(process.cwd(), ...src), path.join(outDir, desc));
+});
 console.log('CSS Assets Copied');
 
 // Load Template
@@ -43,7 +49,7 @@ console.log(posts);
 
 // Copy Assets
 posts
-  .filter((file: string) => fs.statSync(path.join(inDir, file)).isDirectory())
+  .filter((file: string) => isDir(file))
   .forEach((dir: string) =>
     fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
       recursive: true,
@@ -53,10 +59,7 @@ console.log('All Assets Copied');
 
 // Generate HTML
 posts
-  .filter(
-    (file: string) =>
-      fs.statSync(path.join(inDir, file)).isFile() && file.endsWith('.md')
-  )
+  .filter((file: string) => isFile(file) && file.endsWith('.md'))
   .forEach((fileName: string) => {
     const fileContent = fs.readFileSync(path.join(inDir, fileName), {
       encoding: 'UTF-8',
@@ -66,7 +69,7 @@ posts
       /^---\nstyle: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
     );
 
-    if (!matches) return;
+    if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
     const [stylesheet, title, date, tags, content] = matches.slice(1);
     const tagsRe = /- (.*?)\n/g;
@@ -106,12 +109,8 @@ posts
         .replace('<title />', title)
         .replace('<stylesheet />', './' + styles[stylesheet].desc)
         .replace('<body_title />', title)
-        .replace('<body_padding_0 />', getBodyPadding0(stylesheet))
-        .replace('<body_padding_1 />', getBodyPadding1(stylesheet))
-        // .replace('%body_date%', date)
-        // .replace(/%year%/g, `${meta.date.year()}`)
-        // .replace(/%month%/g, `${meta.date.month() + 1}`)
-        // .replace(/%date%/g, `${meta.date.date()}`)
+        .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
+        .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
         .replace('<body />', body)
     );
   });

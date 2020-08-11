@@ -3,6 +3,10 @@ export default {
     src: ['src', 'tpl', 'style-source', 'github.css'],
     desc: 'github.css',
   },
+  github2: {
+    src: ['src', 'tpl', 'style-source', 'github2.css'],
+    desc: 'github2.css',
+  },
   splendor: {
     src: ['src', 'tpl', 'style-source', 'splendor.css'],
     desc: 'splendor.css',
@@ -22,6 +26,22 @@ export default {
   amblin: {
     src: ['src', 'tpl', 'style-source', 'amblin.css'],
     desc: 'amblin.css',
+  },
+  antique: {
+    src: ['src', 'tpl', 'style-source', 'antique.css'],
+    desc: 'antique.css',
+  },
+  citizen: {
+    src: ['src', 'tpl', 'style-source', 'citizen.css'],
+    desc: 'citizen.css',
+  },
+  lopash: {
+    src: ['src', 'tpl', 'style-source', 'lopash.css'],
+    desc: 'lopash.css',
+  },
+  ulysses: {
+    src: ['src', 'tpl', 'style-source', 'ulysses.css'],
+    desc: 'ulysses.css',
   },
   apollo: {
     src: ['src', 'tpl', 'style-source', 'apollo.css'],
@@ -77,7 +97,7 @@ export default {
   },
 };
 
-const hasPaddingSheets: string[] = [
+const hasWidePaddingSheets: string[] = [
   'github',
   'modest',
   'apollo',
@@ -94,10 +114,16 @@ const hasPaddingSheets: string[] = [
   'xiaolai',
 ];
 
+const hasThinPaddingSheets: string[] = ['erye', 'ulysses'];
+
 export const getBodyPadding0 = (stylesheet: string): string => {
-  return hasPaddingSheets.includes(stylesheet) ? 'padding: 45px;' : '';
+  if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 45px;';
+  if (hasThinPaddingSheets.includes(stylesheet)) return 'padding: 25px;';
+  return '';
 };
 
 export const getBodyPadding1 = (stylesheet: string): string => {
-  return hasPaddingSheets.includes(stylesheet) ? 'padding: 15px;' : '';
+  if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 15px;';
+  if (hasThinPaddingSheets.includes(stylesheet)) return 'padding: 10px;';
+  return '';
 };
