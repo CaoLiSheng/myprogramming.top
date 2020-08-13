@@ -4,14 +4,19 @@ import Moment from 'moment';
 
 import { Popup } from '@widgets/popup';
 
-import { Schema } from '@common/index';
-import { DB_CTX } from '@ctxs/index';
+import { Schema, EmptySchema } from '@common/index';
+import { injectDBCtx, I_DB_CTX } from '@ctxs/index';
 
 import './index.scss';
 import { TagsIcon } from '@images/index';
 
-export default class extends Component<RouteComponentProps<{ name: string }>> {
-  private renderCurCategory = ({ db }: { db: Schema }) => {
+@injectDBCtx()
+export default class extends Component<
+  RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
+> {
+  private renderCurCategory = (
+    { db }: { db: Schema } = { db: EmptySchema }
+  ) => {
     const postName = this.props.match.params.name;
     if (!postName || !db.metas[postName]) return null;
 
@@ -58,6 +63,6 @@ export default class extends Component<RouteComponentProps<{ name: string }>> {
   };
 
   render() {
-    return <DB_CTX.Consumer>{this.renderCurCategory}</DB_CTX.Consumer>;
+    return this.renderCurCategory(this.props.db);
   }
 }

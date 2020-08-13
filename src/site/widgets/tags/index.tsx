@@ -4,19 +4,22 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import { SnapList } from '@widgets/snapList';
 
 import {
-  injectPageOps,
   injectDBCtx,
-  I_PAGE_CTX_OPS,
   PATH_PAGER_MAP,
+  injectPageCtx,
+  I_DB_CTX,
+  I_PAGE_CTX,
 } from '@ctxs/index';
-import { Schema } from '@common/index';
 
 import './index.scss';
 
-@injectPageOps()
 @injectDBCtx()
+@injectPageCtx()
 export class Tags extends Component<
-  RouteComponentProps<{ tags: string }> & I_PAGE_CTX_OPS & Schema,
+  RouteComponentProps<{ tags: string }> & {
+    db: I_DB_CTX;
+    page: I_PAGE_CTX;
+  },
   { queryedTags: string[] }
 > {
   state = { queryedTags: [] };
@@ -27,12 +30,12 @@ export class Tags extends Component<
     const pagerKey: string = PATH_PAGER_MAP[this.props.match.path];
     if (!pagerKey) throw new Error('粗错啦，无效的分页关键字！');
 
-    let queryedTags = Object.keys(this.props.tagCategories);
+    let queryedTags = Object.keys(this.props.db.db.tagCategories);
     let selectedTags: string[] = [];
     if (this.props.match.params.tags !== '*') {
       selectedTags = this.props.match.params.tags.split('|');
       queryedTags = Object.keys(
-        this.props.tagCategories
+        this.props.db.db.tagCategories
       ).filter((tag: string) =>
         selectedTags.some((sTag: string) => tag.includes(sTag))
       );
@@ -41,7 +44,7 @@ export class Tags extends Component<
     this.setState({ queryedTags });
 
     const selectedPosts = selectedTags
-      .map((fTag: string) => this.props.tagCategories[fTag] || [])
+      .map((fTag: string) => this.props.db.db.tagCategories[fTag] || [])
       .reduce(
         (p: string[], v: string[]) => [
           ...p,
@@ -50,7 +53,7 @@ export class Tags extends Component<
         []
       );
 
-    this.props.update?.(pagerKey, selectedPosts);
+    this.props.page.update(pagerKey, selectedPosts);
   };
 
   onSearch = () =>
@@ -71,11 +74,14 @@ export class Tags extends Component<
   }
 
   componentDidUpdate(
-    prevProps: RouteComponentProps<{ tags: string }> & I_PAGE_CTX_OPS & Schema
+    prevProps: RouteComponentProps<{ tags: string }> & {
+      db: I_DB_CTX;
+      page: I_PAGE_CTX;
+    }
   ) {
     if (
       prevProps.match.params.tags === this.props.match.params.tags &&
-      prevProps.tagCategories === this.props.tagCategories
+      prevProps.db.db.tagCategories === this.props.db.db.tagCategories
     )
       return;
 
@@ -97,7 +103,9 @@ export class Tags extends Component<
           </div>
           <div className="search-results">
             {this.state.queryedTags.map((tag: string) => (
-              <Link to={`/tags/${tag}`}>{tag}</Link>
+              <Link key={tag} to={`/tags/${tag}`}>
+                {tag}
+              </Link>
             ))}
           </div>
         </div>

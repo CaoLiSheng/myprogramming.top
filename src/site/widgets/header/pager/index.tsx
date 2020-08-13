@@ -5,17 +5,16 @@ import classNames from 'classnames';
 import {
   PATH_PAGER_MAP,
   PAGE_INFO,
-  injectPageData,
-  I_PAGE_CTX_DATA,
-  UsePageDataOps,
+  injectPageCtx,
+  I_PAGE_CTX,
 } from '@ctxs/index';
 
 import './index.scss';
 import { LeftIcon } from '@images/index';
 
-@injectPageData()
+@injectPageCtx()
 export default class Pager extends Component<
-  RouteComponentProps & I_PAGE_CTX_DATA,
+  RouteComponentProps & { page?: I_PAGE_CTX },
   { inputValue: string; curPage: number }
 > {
   state = { inputValue: '', curPage: 0 };
@@ -24,7 +23,7 @@ export default class Pager extends Component<
     let pager: PAGE_INFO | undefined;
 
     const pagerKey: string = PATH_PAGER_MAP[this.props.match.path];
-    if (!pagerKey || !(pager = this.props.page?.[pagerKey])) {
+    if (!pagerKey || !(pager = this.props.page?.page[pagerKey])) {
       return null;
     }
 
@@ -32,7 +31,10 @@ export default class Pager extends Component<
   };
 
   change = (change: (cur: number) => void, cur: number) => {
-    this.setState({ inputValue: `${cur}`, curPage: cur }, () => change(cur));
+    this.setState(
+      { inputValue: `${cur}`, curPage: cur },
+      () => change && change(cur)
+    );
   };
 
   onChange = (
@@ -52,11 +54,11 @@ export default class Pager extends Component<
         inputValue: normal ? `${cur}` : '',
         curPage: normal ? cur : curPage,
       }),
-      () => normal && change(cur)
+      () => normal && change && change(cur)
     );
   };
 
-  componentDidUpdate(prevProps: RouteComponentProps & I_PAGE_CTX_DATA) {
+  componentDidUpdate(prevProps: RouteComponentProps & { page?: I_PAGE_CTX }) {
     if (prevProps.match.url !== this.props.match.url) {
       this.setState({ inputValue: '', curPage: 0 });
     }
@@ -76,55 +78,49 @@ export default class Pager extends Component<
   }
 
   render() {
+    const res = this.getPager();
+    if (!res) return null;
+    const { pager, pagerKey } = res;
+    const changeFn = this.props.page?.change.bind(this, pagerKey);
+
+    const cur = this.state.curPage;
+
     return (
-      <UsePageDataOps>
-        {({ change }) => {
-          const res = this.getPager();
-          if (!res) return null;
-          const { pager, pagerKey } = res;
-          const changeFn = change.bind(this, pagerKey);
-
-          const cur = this.state.curPage;
-
-          return (
-            <Fragment>
-              <li>
-                <a
-                  className={classNames('icon', {
-                    disabled: cur === pager.max,
-                  })}
-                  style={{
-                    transformOrigin: '50% 50% 0',
-                    transform: 'scaleX(-1)',
-                  }}
-                  onClick={this.change.bind(
-                    this,
-                    changeFn,
-                    Math.min(pager.max, cur + 1)
-                  )}
-                >
-                  <LeftIcon />
-                </a>
-              </li>
-              {this.renderInput(pager, changeFn)}
-              <li>
-                <a
-                  className={classNames('icon', {
-                    disabled: cur === pager.min,
-                  })}
-                  onClick={this.change.bind(
-                    this,
-                    changeFn,
-                    Math.max(pager.min, cur - 1)
-                  )}
-                >
-                  <LeftIcon />
-                </a>
-              </li>
-            </Fragment>
-          );
-        }}
-      </UsePageDataOps>
+      <Fragment>
+        <li>
+          <a
+            className={classNames('icon', {
+              disabled: cur === pager.max,
+            })}
+            style={{
+              transformOrigin: '50% 50% 0',
+              transform: 'scaleX(-1)',
+            }}
+            onClick={this.change.bind(
+              this,
+              changeFn,
+              Math.min(pager.max, cur + 1)
+            )}
+          >
+            <LeftIcon />
+          </a>
+        </li>
+        {this.renderInput(pager, changeFn)}
+        <li>
+          <a
+            className={classNames('icon', {
+              disabled: cur === pager.min,
+            })}
+            onClick={this.change.bind(
+              this,
+              changeFn,
+              Math.max(pager.min, cur - 1)
+            )}
+          >
+            <LeftIcon />
+          </a>
+        </li>
+      </Fragment>
     );
   }
 }

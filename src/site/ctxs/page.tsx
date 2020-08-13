@@ -4,6 +4,12 @@ import { HOCDecrator } from '@common/index';
 
 export const PAGE_SIZE = 6;
 
+export const PATH_PAGER_MAP = {
+  '/': 'homepage',
+  '/tags/:tags': 'tagspage',
+  '/canlendar/:year/:month/:date': 'datepage',
+};
+
 export interface PAGE_INFO {
   cur: number;
   min: number;
@@ -15,74 +21,44 @@ export interface PAGE_SCHEMA {
   [key: string]: PAGE_INFO;
 }
 
-export interface I_PAGE_CTX_DATA {
-  page?: PAGE_SCHEMA;
+export interface I_PAGE_CTX {
+  page: PAGE_SCHEMA;
+  change: (_: string, __: number) => void;
+  update: (_: string, __: string[]) => void;
 }
 
-export const { Provider: SetPageData, Consumer: GetPageData } = createContext({
+export const { Provider: SetPage, Consumer: GetPage } = createContext({
   page: {},
-});
-
-export function injectPageData(): HOCDecrator<I_PAGE_CTX_DATA> {
-  return <P extends I_PAGE_CTX_DATA>(WrappedComponent: ComponentType<P>) =>
-    class extends React.Component<P> {
-      public render() {
-        return (
-          <GetPageData>
-            {({ page }) => <WrappedComponent {...this.props} page={page} />}
-          </GetPageData>
-        );
-      }
-    };
-}
-
-export interface I_PAGE_CTX_OPS {
-  change?: (_: string, __: number) => void;
-  update?: (_: string, __: string[]) => void;
-}
-
-export const {
-  Provider: SetupPageDataOps,
-  Consumer: UsePageDataOps,
-} = createContext({
   change: (_: string, __: number) => {},
   update: (_: string, __: string[]) => {},
 });
 
-export function injectPageOps(): HOCDecrator<I_PAGE_CTX_OPS> {
-  return <P extends I_PAGE_CTX_OPS>(WrappedComponent: ComponentType<P>) =>
-    class extends Component<P> {
+export function injectPageCtx(): HOCDecrator<{ page?: I_PAGE_CTX }> {
+  return <P extends { page?: I_PAGE_CTX }>(
+    WrappedComponent: ComponentType<P>
+  ) =>
+    class extends React.Component<P> {
       public render() {
         return (
-          <UsePageDataOps>
-            {({ change, update }) => (
-              <WrappedComponent
-                {...this.props}
-                change={change}
-                update={update}
-              />
+          <GetPage>
+            {(page: I_PAGE_CTX) => (
+              <WrappedComponent {...this.props} page={page} />
             )}
-          </UsePageDataOps>
+          </GetPage>
         );
       }
     };
 }
 
-export const PATH_PAGER_MAP = {
-  '/': 'homepage',
-  '/tags/:tags': 'tagspage',
-  '/canlendar/:year/:month/:date': 'datepage',
-};
-
-export function withPageCtxProvider(): HOCDecrator<object> {
-  return <P extends object>(WrappedComponent: ComponentType<P>) =>
-    class extends Component<P, { page: PAGE_SCHEMA }> {
-      state = { page: {} };
-
+export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
+  return <P extends { page?: I_PAGE_CTX }>(
+    WrappedComponent: ComponentType<P>
+  ) =>
+    class extends Component<P, I_PAGE_CTX> {
       changePage = (key: string, cur: number) =>
         this.setState(({ page }) => {
-          const info = page[key] || {};
-          return { page: { ...page, [key]: { ...info, cur } } };
+          const info = page?.[key] || { min: 0, max: 0, data: [] };
+          return { page: { ...(page || {}), [key]: { ...info, cur } } };
         });
 
       updatePage = (key: string, data: string[]) =>
@@ -98,18 +74,13 @@ export function withPageCtxProvider(): HOCDecrator<object> {
           },
         }));
 
+      state = { page: {}, change: this.changePage, update: this.updatePage };
+
       public render() {
         return (
-          <SetPageData value={this.state}>
-            <SetupPageDataOps
-              value={{
-                change: this.changePage,
-                update: this.updatePage,
-              }}
-            >
-              <WrappedComponent {...this.props} />
-            </SetupPageDataOps>
-          </SetPageData>
+          <SetPage value={this.state}>
+            <WrappedComponent {...this.props} page={this.state} />
+          </SetPage>
         );
       }
     };

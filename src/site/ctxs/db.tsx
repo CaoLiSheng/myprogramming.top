@@ -2,16 +2,38 @@ import React, { createContext, ComponentType, Component } from 'react';
 
 import { EmptySchema, Schema, HOCDecrator } from '@common/index';
 
-export const DB_CTX = createContext({ db: EmptySchema });
+export interface I_DB_CTX {
+  db: Schema;
+  load: (db: Schema) => void;
+}
 
-export function injectDBCtx(): HOCDecrator<Schema> {
-  return <P extends Schema>(WrappedComponent: ComponentType<P>) =>
+export const { Provider: SetDB, Consumer: GetDB } = createContext({});
+
+export function injectDBCtx(): HOCDecrator<{ db?: I_DB_CTX }> {
+  return <P extends { db?: I_DB_CTX }>(WrappedComponent: ComponentType<P>) =>
     class extends Component<P> {
       public render() {
         return (
-          <DB_CTX.Consumer>
-            {({ db }) => <WrappedComponent {...this.props} {...db} />}
-          </DB_CTX.Consumer>
+          <GetDB>
+            {(ctx: I_DB_CTX) => <WrappedComponent {...this.props} db={ctx} />}
+          </GetDB>
+        );
+      }
+    };
+}
+
+export function withDBCtxProvider(): HOCDecrator<{ db?: I_DB_CTX }> {
+  return <P extends { db?: I_DB_CTX }>(WrappedComponent: ComponentType<P>) =>
+    class extends Component<P, I_DB_CTX> {
+      load = (db: Schema) => this.setState({ db });
+
+      state = { db: EmptySchema, load: this.load };
+
+      public render() {
+        return (
+          <SetDB value={this.state}>
+            <WrappedComponent {...this.props} db={this.state} />
+          </SetDB>
         );
       }
     };

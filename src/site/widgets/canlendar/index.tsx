@@ -4,21 +4,23 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import { SnapList } from '@widgets/index';
 
 import {
-  injectPageOps,
   injectDBCtx,
-  I_PAGE_CTX_OPS,
   PATH_PAGER_MAP,
+  injectPageCtx,
+  I_DB_CTX,
+  I_PAGE_CTX,
 } from '@ctxs/index';
 import { Schema, RNK } from '@common/index';
 
 import './index.scss';
 
-@injectPageOps()
 @injectDBCtx()
+@injectPageCtx()
 export class Canlendar extends Component<
-  RouteComponentProps<{ year: string; month: string; date: string }> &
-    I_PAGE_CTX_OPS &
-    Schema
+  RouteComponentProps<{ year: string; month: string; date: string }> & {
+    db: I_DB_CTX;
+    page: I_PAGE_CTX;
+  }
 > {
   reduceRNK = (rnk: RNK | string[]): string[] => {
     if (Array.isArray(rnk)) return rnk;
@@ -38,7 +40,7 @@ export class Canlendar extends Component<
     const pagerKey: string = PATH_PAGER_MAP[this.props.match.path];
     if (!pagerKey) throw new Error('粗错啦，无效的分页关键字！');
 
-    let rnk: RNK = this.props.dateCategories;
+    let rnk: RNK = this.props.db.db.dateCategories || {};
     if (this.props.match.params.year !== '*') {
       rnk = rnk[this.props.match.params.year] || {};
     }
@@ -49,7 +51,7 @@ export class Canlendar extends Component<
       rnk = rnk[this.props.match.params.date] || {};
     }
 
-    this.props.update?.(pagerKey, this.reduceRNK(rnk));
+    this.props.page.update(pagerKey, this.reduceRNK(rnk));
   };
 
   componentDidMount() {
@@ -61,15 +63,16 @@ export class Canlendar extends Component<
       year: string;
       month: string;
       date: string;
-    }> &
-      I_PAGE_CTX_OPS &
-      Schema
+    }> & {
+      db: I_DB_CTX;
+      page: I_PAGE_CTX;
+    }
   ) {
     if (
       prevProps.match.params.year === this.props.match.params.year &&
       prevProps.match.params.month === this.props.match.params.month &&
       prevProps.match.params.date === this.props.match.params.date &&
-      prevProps.tagCategories === this.props.tagCategories
+      prevProps.db.db.dateCategories === this.props.db.db.dateCategories
     )
       return;
 
@@ -77,21 +80,23 @@ export class Canlendar extends Component<
   }
 
   renderLinks() {
-    if (!this.props.dateCategories) return null;
+    if (!this.props.db.db.dateCategories) return null;
 
     if (this.props.match.params.year === '*') {
       return (
         <div className="links">
-          {Object.keys(this.props.dateCategories || {}).map((year: string) => (
-            <Link key={year} to={`/canlendar/${year}/*/*`}>
-              {year}年
-            </Link>
-          ))}
+          {Object.keys(this.props.db.db.dateCategories || {}).map(
+            (year: string) => (
+              <Link key={year} to={`/canlendar/${year}/*/*`}>
+                {year}年
+              </Link>
+            )
+          )}
         </div>
       );
     }
     const year = this.props.match.params.year;
-    const monthObj = this.props.dateCategories[year] || {};
+    const monthObj = this.props.db.db.dateCategories[year] || {};
 
     if (this.props.match.params.month === '*') {
       return (

@@ -3,17 +3,19 @@ import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { __posts_root__ } from '@common/index';
 import {
-  injectPageData,
   PAGE_SIZE,
   PATH_PAGER_MAP,
   PAGE_INFO,
-  I_PAGE_CTX_DATA,
+  injectPageCtx,
+  I_PAGE_CTX,
 } from '@ctxs/index';
 
 import './index.scss';
 
-@injectPageData()
-class InnerSnapList extends Component<RouteComponentProps & I_PAGE_CTX_DATA> {
+@injectPageCtx()
+class InnerSnapList extends Component<
+  RouteComponentProps & { page?: I_PAGE_CTX }
+> {
   private renderPostSnap = (name: string) => {
     return (
       <Link key={name} to={`/post/${name}`}>
@@ -36,7 +38,7 @@ class InnerSnapList extends Component<RouteComponentProps & I_PAGE_CTX_DATA> {
     }
 
     let pager: PAGE_INFO | undefined;
-    if (!(pager = this.props.page?.[pagerKey])) {
+    if (!(pager = this.props.page?.page[pagerKey])) {
       return null;
     }
 
