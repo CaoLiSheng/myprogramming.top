@@ -1,5 +1,5 @@
 ---
-style: github2
+style: list-writing
 title: 2020年里程碑 - 1
 date: 2020-08-09 16:14:00
 tags:
@@ -10,7 +10,7 @@ tags:
 
 ## 前言
 
-> 这几天一直在等通知，所以暂时不能离开昆明回老家。边写代码、边暗黑 3 过了两周，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，也顺便总结一下。
+> 这几天一直在等取房本通知，所以暂时不能离开昆明回老家。边写代码、边玩《暗黑 3》过了两周，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，也顺便总结一下。
 
 ## 第一部分
 
@@ -173,4 +173,56 @@ fs.writeFileSync(
 </article>
 ```
 
-## 未完待续……
+## 第四部分
+
+那么最后总结下骨架网站研发中用到的技术栈`react + typescript`、`react-router`，并没有采用`redux全家桶`，而是使用 v16 自带的`createContext` API。`HTML5+CSS3`就像是与身俱来的技能一样，总能船到桥头自然直。`typescript`在今年是爆发的一年，或者说普及的一年；虽然我现在自由职业了，但是也要跟上时代的步伐。说来也有趣，最初是通过`AngularJS`接触的，当时并没有太多的关注；如果不是这次写装饰器卡住了，还真的完全小看了它。
+
+我对`createContext` API 的使用方式是这样的。如下方代码所示，用到高阶组件的概念给用到上下文的组件注入数据或者操作（对于改变上下文的操作要特别注意其调用的时机，防止死循环）。`HOCDecrator`是`typescript`语法中装饰器的一种情况，这种操作多少算是取巧的做法（在下方第二段代码中）。
+
+```typescript
+import React, { createContext, ComponentType, Component } from 'react';
+
+export interface I_CTX {}
+
+const { Provider, Consumer } = createContext({});
+
+export function inject(): HOCDecrator<{ ctx?: I_CTX }> {
+  return <P extends { ctx?: I_CTX }>(WrapperedComponent: ComponentType<P>) =>
+    class extends Component<P> {
+      public render() {
+        return (
+          <Consumer>
+            {(ctx: I_CTX) => <WrappedComponent {...this.props} ctx={ctx} />}
+          </Consumer>
+        );
+      }
+    };
+}
+
+export function withProvider(): HOCDecrator<{ ctx?: I_CTX }> {
+  return <P extends { ctx?: I_CTX }>(WrapperedComponent: ComponentType<P>) =>
+    class extends Component<P, I_CTX> {
+      state = {};
+
+      public render() {
+        return (
+          <Provider value={this.state}>
+            <WrappedComponent {...this.props} ctx={this.state} />
+          </Provider>
+        );
+      }
+    };
+}
+```
+
+```typescript
+export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
+  Component: React.ComponentType<Props>
+) => void;
+```
+
+有一次刷新文章详情页的时候，发现文章地址竟然被请求了三次。经过一番思考，发觉是`Provider`太多了。所以，在用到`Provider`的组件里，仅仅是骨架代码，`shouldComponentUpdate`总返回`false`，相应数据变化的组件都利用`Consumer`注入。
+
+## 结语
+
+> 每年都不好过啊，2016 年留观、2017 年住院被暴力、2018 年住院、2019 年住院、2020 年在公司被暴力。心累呀～其中发生在夏天的包括 2016、2019、2020 年，春天的包括 2017 年，冬天的包括 2018 年。感觉从 2013 年走出大学校门就挺悲催的，2013 年公交车上遇真·精神病，2014 年还好（考研复习不给力，但是技术稳步前进），2015 年爆发成工作狂（结果年底跪了）。这么看来，毕业之后的 7 年，大致分为两个阶段：1）努力求而求不得；2）处弱势还被暴力。感叹：患上了一种与世界为敌的病！～

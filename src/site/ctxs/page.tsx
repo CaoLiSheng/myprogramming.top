@@ -27,11 +27,7 @@ export interface I_PAGE_CTX {
   update: (_: string, __: string[]) => void;
 }
 
-export const { Provider: SetPage, Consumer: GetPage } = createContext({
-  page: {},
-  change: (_: string, __: number) => {},
-  update: (_: string, __: string[]) => {},
-});
+export const { Provider: SetPage, Consumer: GetPage } = createContext({});
 
 export function injectPageCtx(): HOCDecrator<{ page?: I_PAGE_CTX }> {
   return <P extends { page?: I_PAGE_CTX }>(

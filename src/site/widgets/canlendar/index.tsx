@@ -10,7 +10,7 @@ import {
   I_DB_CTX,
   I_PAGE_CTX,
 } from '@ctxs/index';
-import { Schema, RNK } from '@common/index';
+import { RNK, distinctReduce, dateSortDesc } from '@common/index';
 
 import './index.scss';
 
@@ -27,13 +27,7 @@ export class Canlendar extends Component<
 
     return Object.keys(rnk)
       .map((key: string) => this.reduceRNK(rnk[key]))
-      .reduce(
-        (p: string[], v: string[]) => [
-          ...p,
-          ...v.filter((np: string) => p.every((pp: string) => np !== pp)),
-        ],
-        []
-      );
+      .reduce(distinctReduce, []);
   };
 
   update = () => {
@@ -51,7 +45,10 @@ export class Canlendar extends Component<
       rnk = rnk[this.props.match.params.date] || {};
     }
 
-    this.props.page.update(pagerKey, this.reduceRNK(rnk));
+    this.props.page.update(
+      pagerKey,
+      dateSortDesc(this.reduceRNK(rnk), this.props.db.db.metas)
+    );
   };
 
   componentDidMount() {

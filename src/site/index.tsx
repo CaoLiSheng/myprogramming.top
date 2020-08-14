@@ -2,7 +2,7 @@ import React, { Component, ErrorInfo } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';
 
-import { __posts_db__, Schema, EmptySchema } from '@common/index';
+import { __posts_db__, Schema } from '@common/index';
 import {
   withPageCtxProvider,
   withDBCtxProvider,

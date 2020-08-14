@@ -12,6 +12,7 @@ import {
 } from '@ctxs/index';
 
 import './index.scss';
+import { distinctReduce, dateSortDesc } from '@common/index';
 
 @injectDBCtx()
 @injectPageCtx()
@@ -45,15 +46,12 @@ export class Tags extends Component<
 
     const selectedPosts = selectedTags
       .map((fTag: string) => this.props.db.db.tagCategories[fTag] || [])
-      .reduce(
-        (p: string[], v: string[]) => [
-          ...p,
-          ...v.filter((np: string) => p.every((pp: string) => np !== pp)),
-        ],
-        []
-      );
+      .reduce(distinctReduce, []);
 
-    this.props.page.update(pagerKey, selectedPosts);
+    this.props.page.update(
+      pagerKey,
+      dateSortDesc(selectedPosts, this.props.db.db.metas)
+    );
   };
 
   onSearch = () =>
