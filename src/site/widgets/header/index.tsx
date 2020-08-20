@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import { Link, Switch, Route } from 'react-router-dom';
 
 import Category from './category';
 import Pager from './pager';
 
 import './index.scss';
+import { CategoryIcon } from '@images/index';
 
-export class Header extends Component {
+export class Header extends Component<{}, { categoryExpanded: boolean }> {
+  state = { categoryExpanded: false };
+
   render() {
     return (
       <div className="title-bar">
@@ -22,7 +26,7 @@ export class Header extends Component {
               <Link to="/tags/*">标签</Link>
             </li>
           </ul>
-          <ul className="right">
+          <ul className="right mobile-compatible">
             <Switch>
               <Route path="/post/:name" component={Category} />
               <Route
@@ -31,6 +35,41 @@ export class Header extends Component {
                 component={Pager}
               />
             </Switch>
+          </ul>
+          <ul className="left mobile-compatible mobile-only">
+            <li>
+              <a
+                className="icon"
+                onClick={() =>
+                  this.setState(({ categoryExpanded }) => ({
+                    categoryExpanded: !categoryExpanded,
+                  }))
+                }
+              >
+                <CategoryIcon closing={this.state.categoryExpanded} />
+              </a>
+            </li>
+            <li
+              className={classNames('categories', {
+                show: this.state.categoryExpanded,
+              })}
+            >
+              <Link to="/">首页</Link>
+            </li>
+            <li
+              className={classNames('categories', {
+                show: this.state.categoryExpanded,
+              })}
+            >
+              <Link to="/canlendar/*/*/*">日历</Link>
+            </li>
+            <li
+              className={classNames('categories', {
+                show: this.state.categoryExpanded,
+              })}
+            >
+              <Link to="/tags/*">标签</Link>
+            </li>
           </ul>
         </nav>
       </div>

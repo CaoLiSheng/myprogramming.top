@@ -101,6 +101,10 @@
       &.right > li {
         float: right;
       }
+
+      &.mobile-compatible {
+        display: none;
+      }
     }
   }
 }
@@ -122,5 +126,42 @@ ol.tags {
     color: gray;
     text-shadow: 1px 1px 3px wheat;
     font-family: 'Courier New', Courier, monospace;
+  }
+}
+
+@media (max-width: 750px) {
+  .title-bar nav ul:not(.mobile-compatible) {
+    display: none;
+  }
+
+  .title-bar nav ul.mobile-compatible {
+    display: block;
+
+    &.mobile-only {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      background-color: #2175bc;
+      width: 6em;
+    }
+
+    li {
+      height: 0.5rem;
+
+      img {
+        margin: 0.1rem;
+        height: 0.3rem;
+      }
+
+      &.categories {
+        display: none;
+
+        &.show {
+          display: block;
+        }
+      }
+    }
   }
 }
