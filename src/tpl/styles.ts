@@ -114,7 +114,7 @@ const hasWidePaddingSheets: string[] = [
   'xiaolai',
 ];
 
-const hasThinPaddingSheets: string[] = ['erye', 'ulysses'];
+const hasThinPaddingSheets: string[] = ['erye', 'ulysses', 'splendor'];
 
 export const getBodyPadding0 = (stylesheet: string): string => {
   if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 45px;';
