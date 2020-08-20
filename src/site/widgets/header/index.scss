@@ -142,21 +142,20 @@ ol.tags {
     flex-wrap: nowrap;
     background-color: #2175bc;
     width: 6em;
-  }
+    li {
+      height: 0.5rem;
 
-  li {
-    height: 0.5rem;
+      img {
+        margin: 0.1rem;
+        height: 0.3rem;
+      }
 
-    img {
-      margin: 0.1rem;
-      height: 0.3rem;
-    }
+      &.categories {
+        display: none;
 
-    &.categories {
-      display: none;
-
-      &.show {
-        display: block;
+        &.show {
+          display: block;
+        }
       }
     }
   }
