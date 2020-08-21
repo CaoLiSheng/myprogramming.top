@@ -7,12 +7,51 @@
 ## 架构
 
 1. Markdown 转 HTML 技术 + 网页静态化技术 + 伪数据库 + 模版
+
 2. 文章内容涵盖
+
    1. 项目本身
    2. 计算机科学
    3. Blender3D 与 VR
    4. 一些私人的、不公开的内容
+
 3. 文章画风选择太多，一时区分不出来
+
+   1. Git
+
+      1. github
+      2. github2
+
+   2. Category 1
+
+      3. splendor
+      4. air
+      5. retro
+      6. modest
+
+   3. Category 2
+
+      7. amblin
+      8. antique
+      9. citizen
+      10. lopash
+      11. ulysses
+
+   4. Category 3
+
+      12. apollo
+      13. erye
+      14. infoq
+      15. less
+      16. list-writing
+      17. ocean
+      18. sanyuesha
+      19. simple
+      20. style
+      21. typing
+      22. wecatch
+      23. wecatch-code
+      24. xiaolai
 
 ## 安装教程
 
