@@ -11,6 +11,19 @@ import { CategoryIcon } from '@images/index';
 export class Header extends Component<{}, { categoryExpanded: boolean }> {
   state = { categoryExpanded: false };
 
+  private onExpand = () => {
+    this.setState(
+      ({ categoryExpanded }) => ({ categoryExpanded: !categoryExpanded }),
+      () =>
+        this.state.categoryExpanded &&
+        document.body.addEventListener(
+          'click',
+          () => setTimeout(() => this.setState({ categoryExpanded: false }), 0),
+          { once: true }
+        )
+    );
+  };
+
   render() {
     return (
       <div className="title-bar">
@@ -38,14 +51,7 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
           </ul>
           <ul className="left mobile-compatible mobile-only">
             <li>
-              <a
-                className="icon"
-                onClick={() =>
-                  this.setState(({ categoryExpanded }) => ({
-                    categoryExpanded: !categoryExpanded,
-                  }))
-                }
-              >
+              <a className="icon" onClick={this.onExpand}>
                 <CategoryIcon closing={this.state.categoryExpanded} />
               </a>
             </li>
