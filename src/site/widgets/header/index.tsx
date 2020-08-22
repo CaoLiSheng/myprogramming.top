@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, RefObject } from 'react';
 import classNames from 'classnames';
 import { Link, Switch, Route } from 'react-router-dom';
 
@@ -8,24 +8,26 @@ import Pager from './pager';
 import './index.scss';
 import { CategoryIcon } from '@images/index';
 
+const clickIn = (
+  target: HTMLElement | null,
+  wrapper: HTMLElement | null
+): boolean => {
+  if (!target || !wrapper) return false;
+  if (target === wrapper) return true;
+  return clickIn(target.parentElement, wrapper);
+};
+
 export class Header extends Component<{}, { categoryExpanded: boolean }> {
   state = { categoryExpanded: false };
 
-  private onExpand = () => {
-    this.setState(
-      ({ categoryExpanded }) => ({
-        categoryExpanded: !categoryExpanded,
-      }),
-      () =>
-        this.state.categoryExpanded &&
-        document.body.addEventListener(
-          'click',
-          () => {
-            setTimeout(() => this.setState({ categoryExpanded: false }), 0);
-          },
-          { once: true }
-        )
-    );
+  private toggleElem: RefObject<HTMLAnchorElement> = createRef<
+    HTMLAnchorElement
+  >();
+
+  private toClose = (event: MouseEvent) => {
+    if (!clickIn(event.target as HTMLElement, this.toggleElem.current)) {
+      this.setState({ categoryExpanded: false });
+    }
   };
 
   private receiveMessage = (event: MessageEvent) => {
@@ -34,12 +36,19 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
     }
   };
 
+  private onExpand = () =>
+    this.setState(({ categoryExpanded }) => ({
+      categoryExpanded: !categoryExpanded,
+    }));
+
   componentDidMount() {
     window.top.addEventListener('message', this.receiveMessage, false);
+    document.body.addEventListener('click', this.toClose);
   }
 
   componentWillUnmount() {
     window.top.removeEventListener('message', this.receiveMessage);
+    document.body.removeEventListener('click', this.toClose);
   }
 
   render() {
@@ -69,7 +78,7 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
           </ul>
           <ul className="left mobile-compatible mobile-only">
             <li>
-              <a className="icon" onClick={this.onExpand}>
+              <a className="icon" ref={this.toggleElem} onClick={this.onExpand}>
                 <CategoryIcon closing={this.state.categoryExpanded} />
               </a>
             </li>
