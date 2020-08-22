@@ -39,7 +39,12 @@ Object.keys(styles).forEach((stylesheet) => {
 console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(process.cwd(), 'src', 'tpl', 'basic', 'page.html');
+const tplPath = path.join(
+  process.cwd(),
+  'src',
+  'tpl',
+  process.env.TPL as string
+);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 

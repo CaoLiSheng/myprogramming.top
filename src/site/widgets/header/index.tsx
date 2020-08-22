@@ -13,16 +13,34 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
 
   private onExpand = () => {
     this.setState(
-      ({ categoryExpanded }) => ({ categoryExpanded: !categoryExpanded }),
+      ({ categoryExpanded }) => ({
+        categoryExpanded: !categoryExpanded,
+      }),
       () =>
         this.state.categoryExpanded &&
         document.body.addEventListener(
           'click',
-          () => setTimeout(() => this.setState({ categoryExpanded: false }), 0),
+          () => {
+            setTimeout(() => this.setState({ categoryExpanded: false }), 0);
+          },
           { once: true }
         )
     );
   };
+
+  private receiveMessage = (event: MessageEvent) => {
+    if (event.data === 'iframe.detail clicked') {
+      this.setState({ categoryExpanded: false });
+    }
+  };
+
+  componentDidMount() {
+    window.top.addEventListener('message', this.receiveMessage, false);
+  }
+
+  componentWillUnmount() {
+    window.top.removeEventListener('message', this.receiveMessage);
+  }
 
   render() {
     return (

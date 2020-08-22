@@ -1,12 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const {
-  merge
-} = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge');
 
 const base = require('./base.babel');
-const template = path.join(process.cwd(), 'src', 'site', 'index.html');
 
 module.exports = merge(base, {
   target: 'web',
@@ -18,7 +14,8 @@ module.exports = merge(base, {
     chunkFilename: '[name].[hash].js',
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /(\.s?css$|\/css\?.*)/,
         include: [path.join(process.cwd(), 'src')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -73,21 +70,5 @@ module.exports = merge(base, {
       },
     },
   },
-  plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new HtmlWebpackPlugin({
-      template,
-      filename: './index.html',
-      title: '又心真人的博客',
-      chunks: [
-        'react',
-        'semantic-ui',
-        'semantic-css',
-        'moment',
-        'lodash',
-        'vendors',
-        'app',
-      ],
-    }),
-  ],
+  plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
 });

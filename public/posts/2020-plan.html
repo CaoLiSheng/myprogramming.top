@@ -95,6 +95,13 @@
         articleRoot = document.querySelector('article.markdown-body.snapshot');
       }
       if (articleRoot) articleRoot.classList.remove('snapshot');
+
+      document.body.addEventListener('click', () => {
+        window.top.postMessage(
+          'iframe.detail clicked',
+          'http://yx1991.gitee.io'
+        );
+      });
     </script>
   </body>
 </html>
