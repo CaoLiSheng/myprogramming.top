@@ -10,7 +10,7 @@ tags:
 
 ## 前言
 
-> 这几天一直在等取房本通知，所以暂时不能离开昆明回老家。边写代码、边玩《暗黑 3》过了两周，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，也顺便总结一下。
+> 这几天一直在等通知去公证处取房本，所以暂时不能离开昆明。边写代码、边玩《暗黑 3》过了两周，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，也顺便总结一下这个项目。
 
 ## 第一部分
 
@@ -223,6 +223,44 @@ export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
 
 有一次刷新文章详情页的时候，发现文章地址竟然被请求了三次。经过一番思考，发觉是`Provider`太多了。所以，在用到`Provider`的组件里，仅仅是骨架代码，`shouldComponentUpdate`总返回`false`，相应数据变化的组件都利用`Consumer`注入。
 
+## 第五部分
+
+这一部分是后补的内容，总结开发手机版时的相关内容。目前，手机版与 PC 版的差别不大，仅体现在左上角部分做的一个抽屉。UI 的切换使用 CSS 媒体查询，如下。
+
+```css
+.title-bar nav ul.mobile-only {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .title-bar nav ul:not(.mobile-compatible) {
+    display: none;
+  }
+
+  .title-bar nav ul.mobile-only {
+    display: flex;
+  }
+}
+
+// .mobile-only 就是抽屉部分
+// .mobile-compatible 就是手机版和PC版都有的部分
+```
+
+抽屉有一个特点就是，打开后无论接下来点哪里，都会收起。我将抽屉打开后点击的区域分为三类，触发打开的区域（仅切换了图标）、其它区域但不是 `iframe`，`iframe`（这个其实是本站特有，在文章详情页）。
+
+对于情况一，这个区域的逻辑永远是 `toggle`。对于情况二，可以在 `body` 上监听 `click` 事件、并判断没有落入情况一所在区域，总是收起抽屉即可。对于情况三，逻辑同样是收起抽屉，只是实现起来需要用到 `postMessage` API。
+
+```typescript
+document.body.addEventListener('click', () => {
+  window.top.postMessage('iframe.detail clicked', 'http://yx1991.gitee.io');
+});
+
+window.top.addEventListener(
+  'message',
+  (event: MessageEvent) => 'iframe.detail clicked' === event.data && close() // 收起抽屉
+);
+```
+
 ## 结语
 
-> 每年都不好过啊，2016 年留观、2017 年住院被暴力、2018 年住院、2019 年住院、2020 年在公司被暴力。心累呀～其中发生在夏天的包括 2016、2019、2020 年，春天的包括 2017 年，冬天的包括 2018 年。感觉从 2013 年走出大学校门就挺悲催的，2013 年公交车上遇真·精神病，2014 年还好（考研复习不给力，但是技术稳步前进），2015 年爆发成工作狂（结果年底跪了）。这么看来，毕业之后的 7 年，大致分为两个阶段：1）努力求而求不得；2）处弱势还被暴力。感叹：患上了一种与世界为敌的病！～
+> 接下来要抓紧时间去完成剩余的[计划](http://yx1991.gitee.io/blog#/post/2020-plan)咯!

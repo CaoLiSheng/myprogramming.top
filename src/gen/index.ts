@@ -6,6 +6,7 @@ import styles, { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
 declare var __posts_dir__: string;
+declare var __tpl_path__: string;
 
 function isDir(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isDirectory();
@@ -39,12 +40,7 @@ Object.keys(styles).forEach((stylesheet) => {
 console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(
-  process.cwd(),
-  'src',
-  'tpl',
-  process.env.TPL as string
-);
+const tplPath = path.join(process.cwd(), 'src', 'tpl', __tpl_path__);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
