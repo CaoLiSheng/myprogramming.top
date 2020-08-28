@@ -7,7 +7,7 @@
     "gen": "webpack --config=cfg/webpack/gen.js",
     "pub": "node ./build/gen.prod.js > log.txt",
     "build": "rm -rf build && cross-env TPL=basic/page.html npm run gen && npm run pub",
-    "dev": "concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/dev.js'",
+    "dev": "npm run build && concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/dev.js'",
     "prod": "rm -rf build public && webpack --config=cfg/webpack/prod.js && cross-env TPL=basic/page.prod.html npm run gen && npm run pub"
   },
   "repository": {

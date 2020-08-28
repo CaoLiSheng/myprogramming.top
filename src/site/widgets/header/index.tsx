@@ -9,12 +9,16 @@ import './index.scss';
 import { CategoryIcon } from '@images/index';
 
 const clickIn = (
-  target: HTMLElement | null,
+  target: HTMLElement | null | undefined,
   wrapper: HTMLElement | null
 ): boolean => {
-  if (!target || !wrapper) return false;
-  if (target === wrapper) return true;
-  return clickIn(target.parentElement, wrapper);
+  if (!wrapper) return false;
+
+  while (!!target) {
+    if (target === wrapper) return true;
+    target = target?.parentElement;
+  }
+  return false;
 };
 
 export class Header extends Component<{}, { categoryExpanded: boolean }> {
