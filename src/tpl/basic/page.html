@@ -88,9 +88,17 @@
         );
       });
 
-      document
-        .querySelectorAll('a')
-        .forEach((elem) => elem.setAttribute('target', '_blank'));
+      document.querySelectorAll('a').forEach((anchor) => {
+        anchor.setAttribute('target', '_blank');
+
+        const originalHref = anchor.getAttribute('href');
+        if (originalHref.startsWith('#/post/')) {
+          anchor.setAttribute(
+            'href',
+            `http://dev.myprogramming.top:3000/${originalHref}`
+          );
+        }
+      });
     </script>
   </body>
 </html>

@@ -263,4 +263,4 @@ window.top.addEventListener(
 
 ## 结语
 
-> 接下来要抓紧时间去完成剩余的[计划](http://yx1991.gitee.io/blog/#/post/2020-plan)咯!
+> 接下来要抓紧时间去完成剩余的[计划](#/post/2020-plan)咯!

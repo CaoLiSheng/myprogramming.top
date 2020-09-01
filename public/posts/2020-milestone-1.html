@@ -286,7 +286,7 @@ window.top.addEventListener(
 </code></pre>
 <h2 id="-6">结语</h2>
 <blockquote>
-  <p>接下来要抓紧时间去完成剩余的<a href="http://yx1991.gitee.io/blog/#/post/2020-plan">计划</a>咯!</p>
+  <p>接下来要抓紧时间去完成剩余的<a href="#/post/2020-plan">计划</a>咯!</p>
 </blockquote>
     </article>
     <script>
@@ -303,9 +303,17 @@ window.top.addEventListener(
         );
       });
 
-      document
-        .querySelectorAll('a')
-        .forEach((elem) => elem.setAttribute('target', '_blank'));
+      document.querySelectorAll('a').forEach((anchor) => {
+        anchor.setAttribute('target', '_blank');
+
+        const originalHref = anchor.getAttribute('href');
+        if (originalHref.startsWith('#/post/')) {
+          anchor.setAttribute(
+            'href',
+            `http://yx1991.gitee.io/blog/${originalHref}`
+          );
+        }
+      });
     </script>
   </body>
 </html>

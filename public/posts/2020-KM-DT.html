@@ -111,9 +111,17 @@
         );
       });
 
-      document
-        .querySelectorAll('a')
-        .forEach((elem) => elem.setAttribute('target', '_blank'));
+      document.querySelectorAll('a').forEach((anchor) => {
+        anchor.setAttribute('target', '_blank');
+
+        const originalHref = anchor.getAttribute('href');
+        if (originalHref.startsWith('#/post/')) {
+          anchor.setAttribute(
+            'href',
+            `http://yx1991.gitee.io/blog/${originalHref}`
+          );
+        }
+      });
     </script>
   </body>
 </html>
