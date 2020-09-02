@@ -43,13 +43,11 @@ Object.keys(styles).forEach((stylesheet) => {
 console.log('CSS Assets Copied');
 
 // Load Template
-fs.copySync(
-  path.join('build', 'template.prod.js'),
-  path.join(outDir, 'template.prod.js')
-);
-
 const tplPath = path.join(process.cwd(), 'src', 'template', __tpl_path__);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
+
+const tplScriptPath = path.join('build', 'template.prod.js');
+const tplScriptContent = fs.readFileSync(tplScriptPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
 // Read Source Dir
@@ -121,6 +119,7 @@ posts
         .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
         .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
         .replace('<body />', body)
+        .replace('/* template.prod.js */', tplScriptContent)
     );
   });
 console.log('All HTML Generated');
