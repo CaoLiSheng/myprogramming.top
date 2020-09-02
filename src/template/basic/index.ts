@@ -20,8 +20,11 @@ if (window['templateConfigs']) {
 
     // support opening relative URLs
     const originalHref = anchor.getAttribute('href');
-    if (originalHref?.startsWith('/')) {
-      anchor.setAttribute('href', `${__site_root__}${originalHref}`);
+    if (originalHref?.startsWith('post:')) {
+      anchor.setAttribute(
+        'href',
+        `${__site_root__}/#/${originalHref.replace(':', '/')}`
+      );
     }
   });
 }
