@@ -116,7 +116,7 @@ posts
       outFilePath,
       tplContent
         .replace('<title />', title)
-        .replace('<stylesheet />', './' + styles[stylesheet].desc)
+        .replace('<stylesheet />', styles[stylesheet].desc)
         .replace('<body_title />', title)
         .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
         .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
