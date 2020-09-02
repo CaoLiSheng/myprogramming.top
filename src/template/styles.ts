@@ -1,98 +1,98 @@
 export default {
   github: {
-    src: ['src', 'tpl', 'style-source', 'github.css'],
+    src: 'github.css',
     desc: 'github.css',
   },
   github2: {
-    src: ['src', 'tpl', 'style-source', 'github2.css'],
+    src: 'github2.css',
     desc: 'github2.css',
   },
   splendor: {
-    src: ['src', 'tpl', 'style-source', 'splendor.css'],
+    src: 'splendor.css',
     desc: 'splendor.css',
   },
   air: {
-    src: ['src', 'tpl', 'style-source', 'air.css'],
+    src: 'air.css',
     desc: 'air.css',
   },
   retro: {
-    src: ['src', 'tpl', 'style-source', 'retro.css'],
+    src: 'retro.css',
     desc: 'retro.css',
   },
   modest: {
-    src: ['src', 'tpl', 'style-source', 'modest.css'],
+    src: 'modest.css',
     desc: 'modest.css',
   },
   amblin: {
-    src: ['src', 'tpl', 'style-source', 'amblin.css'],
+    src: 'amblin.css',
     desc: 'amblin.css',
   },
   antique: {
-    src: ['src', 'tpl', 'style-source', 'antique.css'],
+    src: 'antique.css',
     desc: 'antique.css',
   },
   citizen: {
-    src: ['src', 'tpl', 'style-source', 'citizen.css'],
+    src: 'citizen.css',
     desc: 'citizen.css',
   },
   lopash: {
-    src: ['src', 'tpl', 'style-source', 'lopash.css'],
+    src: 'lopash.css',
     desc: 'lopash.css',
   },
   ulysses: {
-    src: ['src', 'tpl', 'style-source', 'ulysses.css'],
+    src: 'ulysses.css',
     desc: 'ulysses.css',
   },
   apollo: {
-    src: ['src', 'tpl', 'style-source', 'apollo.css'],
+    src: 'apollo.css',
     desc: 'apollo.css',
   },
   erye: {
-    src: ['src', 'tpl', 'style-source', 'erye.css'],
+    src: 'erye.css',
     desc: 'erye.css',
   },
   infoq: {
-    src: ['src', 'tpl', 'style-source', 'infoq.css'],
+    src: 'infoq.css',
     desc: 'infoq.css',
   },
   less: {
-    src: ['src', 'tpl', 'style-source', 'less.css'],
+    src: 'less.css',
     desc: 'less.css',
   },
   'list-writing': {
-    src: ['src', 'tpl', 'style-source', 'list-writing.css'],
+    src: 'list-writing.css',
     desc: 'list-writing.css',
   },
   ocean: {
-    src: ['src', 'tpl', 'style-source', 'ocean.css'],
+    src: 'ocean.css',
     desc: 'ocean.css',
   },
   sanyuesha: {
-    src: ['src', 'tpl', 'style-source', 'sanyuesha.css'],
+    src: 'sanyuesha.css',
     desc: 'sanyuesha.css',
   },
   simple: {
-    src: ['src', 'tpl', 'style-source', 'simple.css'],
+    src: 'simple.css',
     desc: 'simple.css',
   },
   style: {
-    src: ['src', 'tpl', 'style-source', 'style.css'],
+    src: 'style.css',
     desc: 'style.css',
   },
   typing: {
-    src: ['src', 'tpl', 'style-source', 'typing.css'],
+    src: 'typing.css',
     desc: 'typing.css',
   },
   wecatch: {
-    src: ['src', 'tpl', 'style-source', 'wecatch.css'],
+    src: 'wecatch.css',
     desc: 'wecatch.css',
   },
   'wecatch-code': {
-    src: ['src', 'tpl', 'style-source', 'wecatch-code.css'],
+    src: 'wecatch-code.css',
     desc: 'wecatch-code.css',
   },
   xiaolai: {
-    src: ['src', 'tpl', 'style-source', 'xiaolai.css'],
+    src: 'xiaolai.css',
     desc: 'xiaolai.css',
   },
 };

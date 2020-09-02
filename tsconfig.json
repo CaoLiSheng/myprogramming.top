@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@tpl/*": [
-        "src/tpl/*"
+        "src/template/*"
       ],
       "@common/*": [
         "src/common/*"

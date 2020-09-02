@@ -35,12 +35,20 @@ const dbData = new DB();
 // Copy CSS Assets
 Object.keys(styles).forEach((stylesheet) => {
   const { src, desc } = styles[stylesheet];
-  fs.copySync(path.join(process.cwd(), ...src), path.join(outDir, desc));
+  fs.copySync(
+    path.join(process.cwd(), 'src', 'template', 'style-source', src),
+    path.join(outDir, desc)
+  );
 });
 console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(process.cwd(), 'src', 'tpl', __tpl_path__);
+fs.copySync(
+  path.join('build', 'template.prod.js'),
+  path.join(outDir, 'template.prod.js')
+);
+
+const tplPath = path.join(process.cwd(), 'src', 'template', __tpl_path__);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 

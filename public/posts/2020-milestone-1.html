@@ -286,34 +286,16 @@ window.top.addEventListener(
 </code></pre>
 <h2 id="-6">结语</h2>
 <blockquote>
-  <p>接下来要抓紧时间去完成剩余的<a href="#/post/2020-plan">计划</a>咯!</p>
+  <p>接下来要抓紧时间去完成剩余的<a href="/#/post/2020-plan">计划</a>咯!</p>
 </blockquote>
     </article>
     <script>
-      var articleRoot;
-      if (location.hash !== '#snapshot') {
-        articleRoot = document.querySelector('article.markdown-body.snapshot');
-      }
-      if (articleRoot) articleRoot.classList.remove('snapshot');
-
-      document.body.addEventListener('click', () => {
-        window.top.postMessage(
-          'iframe.detail clicked',
-          'http://yx1991.gitee.io'
-        );
-      });
-
-      document.querySelectorAll('a').forEach((anchor) => {
-        anchor.setAttribute('target', '_blank');
-
-        const originalHref = anchor.getAttribute('href');
-        if (originalHref.startsWith('#/post/')) {
-          anchor.setAttribute(
-            'href',
-            `http://yx1991.gitee.io/blog/${originalHref}`
-          );
-        }
-      });
+      // define variables
+      window.templateConfigs = {
+        __origin__: 'http://yx1991.gitee.io',
+        __site_root__: 'http://yx1991.gitee.io/blog',
+      };
     </script>
+    <script src="/posts/template.prod.js"></script>
   </body>
 </html>
