@@ -8,7 +8,7 @@ module.exports = merge(base, {
   target: 'node',
   mode: 'production',
   entry: {
-    gen: 'src/gen/index',
+    generator: 'src/generator/index',
   },
   output: {
     path: path.join(process.cwd(), 'build'),

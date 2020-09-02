@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
+// const wba = require('webpack-bundle-analyzer');
 
 const base = require('./base.babel');
 
@@ -70,5 +71,8 @@ module.exports = merge(base, {
       },
     },
   },
-  plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+  plugins: [
+    // new wba.BundleAnalyzerPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  ],
 });
