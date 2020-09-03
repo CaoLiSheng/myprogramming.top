@@ -25,6 +25,7 @@ if (window['templateConfigs']) {
         'href',
         `${__site_root__}/#/${originalHref.replace(':', '/')}`
       );
+      anchor.setAttribute('target', '_top');
     }
   });
 }
