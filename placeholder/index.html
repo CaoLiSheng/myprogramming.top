@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>又心真人的博客</title>
+    <script>
+      !(function () {
+        var html = document.documentElement;
+        var setFontSize = function () {
+          var width = html.offsetWidth;
+          if (width <= 750) {
+            html.style.fontSize = width / 7.5 + 'px';
+          } else {
+            html.style.fontSize = 100 + 'px';
+          }
+        };
+        var timer;
+        var setDelay = function () {
+          return clearTimeout(timer), (timer = setTimeout(setFontSize, 150));
+        };
+        window.addEventListener('pageshow', function (evt) {
+          return evt.persisted && setDelay();
+        });
+        window.addEventListener('resize', setDelay);
+        setFontSize();
+      })();
+    </script>
+    <style>
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-sizing: border-box;
+      }
+
+      @keyframes bg-blink {
+        0% {
+          background: #aaaaaa;
+        }
+
+        100% {
+          background: #cccccc;
+        }
+      }
+
+      body {
+        min-height: 100vh;
+
+        animation: bg-blink 1s ease-in-out 0s infinite alternate both;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      body > h1 {
+        color: #eeeeee;
+        text-shadow: 1px 1px 3px #333333, -1px -1px 3px #666666;
+
+        font-size: 1rem;
+
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // show text on 2nd round (2s * 2 = 4000ms)
+      setTimeout(() => {
+        var textNode = document.createElement('H1');
+        textNode.innerText = '开发中……';
+        document.body.appendChild(textNode);
+      }, 4000);
+    </script>
+  </body>
+</html>

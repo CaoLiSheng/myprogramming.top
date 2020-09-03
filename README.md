@@ -1,37 +1,75 @@
-# blog
+# BLOG
 
-#### 介绍
-自2016年开始，一直想做的一件事。期间经历了米格轮、在线简历、码云的Pages……这一次，要做自己的BLOG！
+## 介绍
 
-#### 软件架构
-软件架构说明
+自 2016 年开始，一直想做的一件事。期间经历了米格轮、在线简历、码云 Pages……这一次，终于要把之前的积累综合起来做一个 BLOG 站点！
 
+## 架构
 
-#### 安装教程
+1. Markdown 转 HTML 技术 + 网页静态化技术 + 伪数据库 + 模版
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+2. 文章内容涵盖
 
-#### 使用说明
+   1. 项目本身
+   2. 计算机科学
+   3. Blender3D 与 VR
+   4. 一些私人的、不公开的内容
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+3. 文章画风选择太多，一时区分不出来
 
-#### 参与贡献
+   1. Git
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+      1. github
+      2. github2
 
+   2. Category 1
 
-#### 码云特技
+      3. splendor
+      4. air
+      5. retro
+      6. modest
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+   3. Category 2
+
+      7. amblin
+      8. antique
+      9. citizen
+      10. lopash
+      11. ulysses
+
+   4. Category 3
+
+      12. apollo
+      13. erye
+      14. infoq
+      15. less
+      16. list-writing
+      17. ocean
+      18. sanyuesha
+      19. simple
+      20. style
+      21. typing
+      22. wecatch
+      23. wecatch-code
+      24. xiaolai
+
+## 安装教程
+
+### Gitee Pages
+
+## BLOG 地址
+
+### [http://yx1991.gitee.io/blog](http://yx1991.gitee.io/blog)
+
+## 参与贡献
+
+### 谢绝
+
+## 码云特技
+
+1. 使用 Readme_XXX.md 来支持不同的语言，例如 Readme_en.md, Readme_zh.md
+2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
+3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
+4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
+5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
+6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

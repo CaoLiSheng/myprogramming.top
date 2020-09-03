@@ -1,0 +1,10 @@
+node_modules
+build
+dist
+
+package-lock.json
+yarn.lock
+yarn-error.log
+log.txt
+
+.DS_Store
