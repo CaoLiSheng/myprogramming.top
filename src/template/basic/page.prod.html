@@ -23,25 +23,20 @@
         width: 3pt;
         height: 3pt;
       }
-
       ::-webkit-scrollbar-track {
         background: #ddd;
         border-radius: 9pt;
       }
-
       ::-webkit-scrollbar-corner {
         background: #ddd;
       }
-
       ::-webkit-scrollbar-thumb {
         background: #999;
         border-radius: 9pt;
       }
-
       ::-webkit-scrollbar-thumb:window-inactive {
         background: #aaa;
       }
-
       body {
         display: flex;
         flex-direction: row;
@@ -50,33 +45,28 @@
         border: none;
         padding: 0;
       }
-
       .markdown-body {
         box-sizing: border-box;
+        margin: 1rem auto;
         min-width: 200px;
         max-width: 980px;
         width: 100%;
-        margin: 1rem auto;
         /* body_padding_0 */
       }
-
       .markdown-body:not(.snapshot) {
         border-radius: 6px;
         border: solid 1px gray;
         box-shadow: 0 0 5px 0 gray;
       }
-
       @media (max-width: 750px) {
         .markdown-body {
-          width: 100%;
+          margin: 1rem;
           /* body_padding_1 */
         }
       }
-
       .markdown-body pre {
         overflow: auto;
       }
-
       .markdown-body figcaption {
         text-align: center;
       }

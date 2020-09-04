@@ -3,11 +3,11 @@ if (window['templateConfigs']) {
   const { __origin__, __site_root__ } = window['templateConfigs'];
 
   // support snaplist mode
-  var articleRoot;
   if (location.hash !== '#snapshot') {
-    articleRoot = document.querySelector('article.markdown-body.snapshot');
+    document
+      .querySelector('article.markdown-body.snapshot')
+      ?.classList.remove('snapshot');
   }
-  if (articleRoot) articleRoot.classList.remove('snapshot');
 
   // support closing categories on mobile site
   document.body.addEventListener('click', () => {
@@ -15,7 +15,7 @@ if (window['templateConfigs']) {
   });
 
   document.querySelectorAll('a').forEach((anchor) => {
-    // support opening relative URLs
+    // support opening mine own post URLs
     const originalHref = anchor.getAttribute('href');
     if (originalHref?.startsWith('post:')) {
       anchor.setAttribute(
