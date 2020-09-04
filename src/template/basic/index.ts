@@ -15,9 +15,6 @@ if (window['templateConfigs']) {
   });
 
   document.querySelectorAll('a').forEach((anchor) => {
-    // support opening page at new tab
-    anchor.setAttribute('target', '_blank');
-
     // support opening relative URLs
     const originalHref = anchor.getAttribute('href');
     if (originalHref?.startsWith('post:')) {

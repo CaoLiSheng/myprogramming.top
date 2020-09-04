@@ -19,25 +19,25 @@
     </script>
     <link rel="stylesheet" href="modest.css" />
     <style>
-      /*Scroll bar nav*/
       ::-webkit-scrollbar {
         width: 3pt;
         height: 3pt;
       }
-      /* Track */
+
       ::-webkit-scrollbar-track {
         background: #ddd;
         border-radius: 9pt;
       }
-      /* Corner */
+
       ::-webkit-scrollbar-corner {
         background: #ddd;
       }
-      /* Handle */
+
       ::-webkit-scrollbar-thumb {
         background: #999;
         border-radius: 9pt;
       }
+
       ::-webkit-scrollbar-thumb:window-inactive {
         background: #aaa;
       }
@@ -77,8 +77,8 @@
         overflow: auto;
       }
 
-      .markdown-body img {
-        max-width: 100%;
+      .markdown-body figcaption {
+        text-align: center;
       }
     </style>
   </head>
@@ -102,13 +102,12 @@
 <p>我回忆起小时候，我相信心理作用会让很多人病情加重、甚至没病疑病。小时候，我有时候会把自己想象成一个机器人，机械且高效地完成作业。就像 <em>坂崎良</em> 双手会发波一样，我相信我也有着一种 <em>心想事成</em> 的潜力。我有时用它减轻身体上的疼痛，有时用来回复自己浪费掉的精力。总之，是时候返璞归真，拼一把了！我要改写自己身上的魔咒，用时间和努力，而并不仅仅是个新的<strong>心理暗示</strong>。</p>
     </article>
     <script>
-      // define variables
       window.templateConfigs = {
         __origin__: 'http://yx1991.gitee.io',
         __site_root__: 'http://yx1991.gitee.io/blog',
       };
 
-      !function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="/",r(r.s="./src/template/basic/index.ts")}({"./src/template/basic/index.ts":function(t,e){if(window.templateConfigs){var r,n=window.templateConfigs,o=n.__origin__,i=n.__site_root__;"#snapshot"!==location.hash&&(r=document.querySelector("article.markdown-body.snapshot")),r&&r.classList.remove("snapshot"),document.body.addEventListener("click",(function(){window.top.postMessage("iframe.detail clicked",o)})),document.querySelectorAll("a").forEach((function(t){t.setAttribute("target","_blank");var e=t.getAttribute("href");(null==e?void 0:e.startsWith("post:"))&&(t.setAttribute("href","".concat(i,"/#/").concat(e.replace(":","/"))),t.setAttribute("target","_top"))}))}}});
+      !function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s="./src/template/basic/index.ts")}({"./src/template/basic/index.ts":function(e,t){if(window.templateConfigs){var n,r=window.templateConfigs,o=r.__origin__,i=r.__site_root__;"#snapshot"!==location.hash&&(n=document.querySelector("article.markdown-body.snapshot")),n&&n.classList.remove("snapshot"),document.body.addEventListener("click",(function(){window.top.postMessage("iframe.detail clicked",o)})),document.querySelectorAll("a").forEach((function(e){var t=e.getAttribute("href");(null==t?void 0:t.startsWith("post:"))&&(e.setAttribute("href","".concat(i,"/#/").concat(t.replace(":","/"))),e.setAttribute("target","_top"))}))}}});
     </script>
   </body>
 </html>

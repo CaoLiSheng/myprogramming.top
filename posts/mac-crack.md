@@ -17,13 +17,14 @@ nslookup name [server]
 
 ```
 
-![已恢复](mac-crack/recovered.png)
+![已恢复](mac-crack/recovered.png '已经恢复正常的解析结果' =100%xauto)
 
 ---
 
-以下照片中正确的解析都是连手机热点时的返回数据：
+以下照片中`118.107.13.135`就是出问题的 DNS 所指向的错误 IP 地址：
 
-![错误中1](mac-crack/aterror1.jpeg)
-![错误中2](mac-crack/aterror2.jpeg)
-![错误中3](mac-crack/aterror3.jpeg)
-![错误中4](mac-crack/aterror4.jpeg)
+![错误中](mac-crack/aterror2.jpeg '连手机热点是没有解析到这个错误 IP 地址的' =100%xauto)
+
+![错误中](mac-crack/aterror3.jpeg '这时使用的是阿里 DNS，必应中国似乎在这里幸免于难' =100%xauto)
+
+![错误中](mac-crack/aterror4.jpeg '正常的搜狗解析和错误的搜狗解析' =100%xauto)

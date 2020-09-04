@@ -17,7 +17,25 @@ function isFile(file: string): boolean {
 }
 
 // Construct Converter
-const converter = new showdown.Converter();
+const converter = new showdown.Converter({
+  extensions: [
+    {
+      type: 'lang',
+      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)x(.*?)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
+    },
+  ],
+  // metadata: true, // 解析不了yaml数组
+  parseImgDimensions: true,
+  openLinksInNewWindow: true,
+});
 
 const inDir = path.join(process.cwd(), 'posts');
 console.log('inDir', inDir);
@@ -88,6 +106,9 @@ posts
       }
     }
     const body = converter.makeHtml(content);
+
+    // converter.makeHtml(fileContent);
+    // console.log(converter.getMetadata());
 
     console.log(
       [
