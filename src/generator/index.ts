@@ -35,6 +35,7 @@ const converter = new showdown.Converter({
   // metadata: true, // 解析不了yaml数组
   parseImgDimensions: true,
   openLinksInNewWindow: true,
+  tables: true,
 });
 
 const inDir = path.join(process.cwd(), 'posts');
