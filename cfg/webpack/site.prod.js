@@ -59,7 +59,7 @@ module.exports = merge(base, {
       __posts_pdir__: JSON.stringify('./'),
     }),
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src', 'site', 'index.prod.html'),
+      template: path.join(process.cwd(), 'src', 'www', 'index.prod.html'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: [

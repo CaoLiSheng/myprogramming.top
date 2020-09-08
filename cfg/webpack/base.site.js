@@ -8,7 +8,7 @@ const base = require('./base.babel');
 module.exports = merge(base, {
   target: 'web',
   entry: {
-    app: 'src/site/index',
+    app: 'src/www/index',
   },
   output: {
     filename: '[name].[hash].js',

@@ -8,28 +8,23 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2020年里程碑 - 1</title>
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement('script');
-        hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
     <link rel="stylesheet" href="list-writing.css" />
     <style>
+      /*Scroll bar nav*/
       ::-webkit-scrollbar {
         width: 3pt;
         height: 3pt;
       }
+      /* Track */
       ::-webkit-scrollbar-track {
         background: #ddd;
         border-radius: 9pt;
       }
+      /* Corner */
       ::-webkit-scrollbar-corner {
         background: #ddd;
       }
+      /* Handle */
       ::-webkit-scrollbar-thumb {
         background: #999;
         border-radius: 9pt;
@@ -37,6 +32,7 @@
       ::-webkit-scrollbar-thumb:window-inactive {
         background: #aaa;
       }
+
       body {
         display: flex;
         flex-direction: row;
@@ -45,6 +41,7 @@
         border: none;
         padding: 0;
       }
+
       .markdown-body {
         box-sizing: border-box;
         margin: 1rem auto;
@@ -53,20 +50,24 @@
         width: 100%;
         padding: 45px;
       }
+
       .markdown-body:not(.snapshot) {
         border-radius: 6px;
         border: solid 1px gray;
         box-shadow: 0 0 5px 0 gray;
       }
+
       @media (max-width: 750px) {
         .markdown-body {
           margin: 1rem;
           padding: 15px;
         }
       }
+
       .markdown-body pre {
         overflow: auto;
       }
+
       .markdown-body figcaption {
         text-align: center;
       }
@@ -284,9 +285,10 @@ window.top.addEventListener(
 </blockquote>
     </article>
     <script>
+      // define variables
       window.templateConfigs = {
-        __origin__: 'http://yx1991.gitee.io',
-        __site_root__: 'http://yx1991.gitee.io/blog',
+        __origin__: 'http://dev.myprogramming.top:3000',
+        __site_root__: 'http://dev.myprogramming.top:3000',
       };
 
       !function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s="./src/template/basic/index.ts")}({"./src/template/basic/index.ts":function(e,t){if(window.templateConfigs){var n,r=window.templateConfigs,o=r.__origin__,i=r.__site_root__;if("#snapshot"!==location.hash)null===(n=document.querySelector("article.markdown-body.snapshot"))||void 0===n||n.classList.remove("snapshot");document.body.addEventListener("click",(function(){window.top.postMessage("iframe.detail clicked",o)})),document.querySelectorAll("a").forEach((function(e){var t=e.getAttribute("href");(null==t?void 0:t.startsWith("post:"))&&(e.setAttribute("href","".concat(i,"/#/").concat(t.replace(":","/"))),e.setAttribute("target","_top"))}))}}});

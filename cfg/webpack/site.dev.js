@@ -68,10 +68,10 @@ module.exports = merge(base, {
   plugins: [
     new wba.BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      __posts_pdir__: JSON.stringify('http://localhost:5000/'),
+      __posts_pdir__: JSON.stringify('http://localhost:5555/'),
     }),
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src', 'site', 'index.html'),
+      template: path.join(process.cwd(), 'src', 'www', 'index.html'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: [

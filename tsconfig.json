@@ -12,10 +12,10 @@
         "src/images/*"
       ],
       "@ctxs/*": [
-        "src/site/ctxs/*"
+        "src/www/ctxs/*"
       ],
       "@widgets/*": [
-        "src/site/widgets/*"
+        "src/www/widgets/*"
       ]
     },
     "outDir": "dist",

@@ -92,7 +92,7 @@ export class Tags extends Component<
         <div className="tags wrapper">
           <div className="search-bar">
             <input
-              type="text"
+              type="search"
               placeholder={this.props.match.params.tags}
               ref={this.inputRef}
               onKeyDown={this.onSearchKeyDown}
