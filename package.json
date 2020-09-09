@@ -5,11 +5,14 @@
   "main": "build/index.js",
   "scripts": {
     "test": "webpack -h",
-    "pub": "node ./build/generator.prod.js > log.txt",
-    "gen": "webpack -p --devtool=false --config=cfg/webpack/generator.js",
-    "build": "rm -rf build && cross-env TPL=basic/page.html OUT=build/posts npm run gen && npm run pub",
-    "prod": "rm -rf build public && webpack --config=cfg/webpack/site.prod.js && cross-env TPL=basic/page.prod.html OUT=public/posts npm run gen && npm run pub",
-    "dev": "npm run build && concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'"
+    "prod:0": "webpack --config=cfg/webpack/site.prod.js",
+    "prod:1": "webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt",
+    "prod": "rm -rf build/prod public && npm run prod:0 && npm run prod:1",
+    "dev:pre": "webpack -p --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
+    "dev:0": "nodemon --exec 'node ./build/dev/generator.min.js > log.txt'",
+    "dev:1": "serve -C -l 5555 ./build/posts/",
+    "dev:2": "webpack-dev-server --config=cfg/webpack/site.dev.js",
+    "dev": "rm -rf build/dev && npm run dev:pre && concurrently --handle-input 'npm run dev:0' 'npm run dev:1' 'npm run dev:2'"
   },
   "repository": {
     "type": "git",

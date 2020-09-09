@@ -7,6 +7,7 @@ import { DB } from '@common/db';
 
 declare var __out_path__: string;
 declare var __tpl_path__: string;
+declare var __tpl_script_path__: string;
 
 function isDir(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isDirectory();
@@ -62,10 +63,10 @@ Object.keys(styles).forEach((stylesheet) => {
 console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(process.cwd(), 'src', 'template', __tpl_path__);
+const tplPath = path.join(process.cwd(), __tpl_path__);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
-const tplScriptPath = path.join('build', 'template.prod.js');
+const tplScriptPath = path.join(process.cwd(), __tpl_script_path__);
 const tplScriptContent = fs.readFileSync(tplScriptPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
@@ -141,7 +142,7 @@ posts
         .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
         .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
         .replace('<body />', body)
-        .replace('/* template.prod.js */', tplScriptContent)
+        .replace('/* template.min.js */', tplScriptContent)
     );
   });
 console.log('All HTML Generated');

@@ -31,16 +31,22 @@ export class Tags extends Component<
     const pagerKey: string = PATH_PAGER_MAP[this.props.match.path];
     if (!pagerKey) throw new Error('粗错啦，无效的分页关键字！');
 
-    let queryedTags = Object.keys(this.props.db.db.tagCategories);
-    let selectedTags: string[] = [];
-    if (this.props.match.params.tags !== '*') {
-      selectedTags = this.props.match.params.tags.split('|');
-      queryedTags = Object.keys(
-        this.props.db.db.tagCategories
-      ).filter((tag: string) =>
-        selectedTags.some((sTag: string) => tag.includes(sTag))
-      );
+    if (this.props.match.params.tags === '*') {
+      this.setState({
+        queryedTags: Object.keys(this.props.db.db.tagCategories),
+      });
+
+      this.props.page.update(pagerKey, this.props.db.db.sortedPosts);
+
+      return;
     }
+
+    const selectedTags = this.props.match.params.tags.split('|');
+    const queryedTags = Object.keys(
+      this.props.db.db.tagCategories
+    ).filter((tag: string) =>
+      selectedTags.some((sTag: string) => tag.includes(sTag))
+    );
 
     this.setState({ queryedTags });
 

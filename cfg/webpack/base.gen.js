@@ -12,8 +12,7 @@ module.exports = merge(base, {
     template: 'src/template/basic/index',
   },
   output: {
-    path: path.join(process.cwd(), 'build'),
-    filename: '[name].prod.js',
+    filename: '[name].min.js',
     publicPath: '/',
   },
   module: {
@@ -44,10 +43,4 @@ module.exports = merge(base, {
       },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      __tpl_path__: JSON.stringify(process.env.TPL),
-      __out_path__: JSON.stringify(process.env.OUT),
-    }),
-  ],
 });
