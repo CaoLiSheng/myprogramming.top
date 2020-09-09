@@ -2,6 +2,11 @@
 if (window['templateConfigs']) {
   const { __origin__, __site_root__ } = window['templateConfigs'];
 
+  // 重定向生成的HTML页面到骨架网站
+  if (window.top === window) {
+    location.href = `${__site_root__}/#/post${location.pathname}`;
+  }
+
   // support snaplist mode
   if (location.hash !== '#snapshot') {
     document
