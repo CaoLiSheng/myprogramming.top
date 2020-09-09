@@ -5,7 +5,7 @@ import showdown from 'showdown';
 import styles, { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
-declare var __posts_dir__: string;
+declare var __out_path__: string;
 declare var __tpl_path__: string;
 
 function isDir(file: string): boolean {
@@ -41,7 +41,7 @@ const converter = new showdown.Converter({
 const inDir = path.join(process.cwd(), 'posts');
 console.log('inDir', inDir);
 
-const outDir = path.join(process.cwd(), 'public', __posts_dir__);
+const outDir = path.join(process.cwd(), __out_path__);
 console.log('outDir', outDir);
 
 // Clean Out Dir

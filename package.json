@@ -5,11 +5,11 @@
   "main": "build/index.js",
   "scripts": {
     "test": "webpack -h",
-    "gen": "webpack -p --devtool=false --config=cfg/webpack/generator.js",
     "pub": "node ./build/generator.prod.js > log.txt",
-    "build": "rm -rf build && cross-env TPL=basic/page.html npm run gen && npm run pub",
-    "dev": "npm run build && concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C -l 5555 ./public/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'",
-    "prod": "rm -rf build public && webpack --config=cfg/webpack/site.prod.js && cross-env TPL=basic/page.prod.html npm run gen && npm run pub"
+    "gen": "webpack -p --devtool=false --config=cfg/webpack/generator.js",
+    "build": "rm -rf build && cross-env TPL=basic/page.html OUT=build/posts npm run gen && npm run pub",
+    "prod": "rm -rf build public && webpack --config=cfg/webpack/site.prod.js && cross-env TPL=basic/page.prod.html OUT=public/posts npm run gen && npm run pub",
+    "dev": "npm run build && concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'"
   },
   "repository": {
     "type": "git",

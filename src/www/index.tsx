@@ -2,7 +2,7 @@ import React, { Component, ErrorInfo } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';
 
-import { __posts_db__, Schema } from '@common/index';
+import { __dirs__, Schema } from '@common/index';
 import {
   withPageCtxProvider,
   withDBCtxProvider,
@@ -33,7 +33,10 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
   }
 
   async componentDidMount() {
-    const resp = await fetch(__posts_db__, { method: 'GET', mode: 'cors' });
+    const resp = await fetch(__dirs__.__posts_db__, {
+      method: 'GET',
+      mode: 'cors',
+    });
     const db: Schema = await resp.json();
 
     this.props.db?.load(db);

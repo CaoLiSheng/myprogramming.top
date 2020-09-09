@@ -454,6 +454,9 @@ dt {
 pre,
 code,
 tt {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
   color: #8b8074;
   font-family: Inconsolata, Menlo, Monaco, monospace;
   /*font-size: 14px;*/
@@ -490,7 +493,9 @@ code {
 }
 
 pre code {
+  padding: 0;
   border: none;
+  background: transparent;
 }
 
 @media screen {

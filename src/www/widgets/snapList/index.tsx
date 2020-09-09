@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { __posts_root__ } from '@common/index';
+import { __dirs__ } from '@common/index';
 import {
   PAGE_SIZE,
   PATH_PAGER_MAP,
@@ -21,8 +21,11 @@ class InnerSnapList extends Component<
       <Link key={name} to={`/post/${name}`}>
         <li>
           <iframe
-            src={`${__posts_root__}${name}.html?var=${Date.now()}#snapshot`}
+            src={`${
+              __dirs__.__posts_root__
+            }${name}.html?var=${Date.now()}#snapshot`}
             referrerPolicy="origin"
+            seamless
             scrolling="no"
             style={{ overflow: 'hidden' }}
           />

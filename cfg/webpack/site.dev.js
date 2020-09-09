@@ -68,7 +68,7 @@ module.exports = merge(base, {
   plugins: [
     new wba.BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      __posts_pdir__: JSON.stringify('http://localhost:5555/'),
+      __posts_root__: JSON.stringify('http://localhost:5555/'),
     }),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'src', 'www', 'index.html'),

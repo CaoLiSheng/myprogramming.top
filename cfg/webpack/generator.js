@@ -47,6 +47,7 @@ module.exports = merge(base, {
   plugins: [
     new webpack.DefinePlugin({
       __tpl_path__: JSON.stringify(process.env.TPL),
+      __out_path__: JSON.stringify(process.env.OUT),
     }),
   ],
 });
