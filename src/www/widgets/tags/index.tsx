@@ -41,7 +41,10 @@ export class Tags extends Component<
       return;
     }
 
-    const selectedTags = this.props.match.params.tags.split('|');
+    const selectedTags = this.props.match.params.tags
+      .split(',')
+      .map((t: string) => t.split('，'))
+      .reduce(distinctReduce, []);
     const queryedTags = Object.keys(
       this.props.db.db.tagCategories
     ).filter((tag: string) =>

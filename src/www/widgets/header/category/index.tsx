@@ -29,7 +29,7 @@ export default class extends Component<
             position={['bottom', 'right']}
             Trigger={
               <li>
-                <Link className="icon" to={`/tags/${tags.join('|')}`}>
+                <Link className="icon" to={`/tags/${tags.join(',')}`}>
                   <TagsIcon />
                 </Link>
               </li>
