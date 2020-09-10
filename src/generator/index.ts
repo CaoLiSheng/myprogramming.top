@@ -5,6 +5,7 @@ import showdown from 'showdown';
 import { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
+declare var __production__: boolean;
 declare var __out_path__: string;
 declare var __tpl_path__: string;
 declare var __tpl_script_path__: string;
@@ -73,10 +74,12 @@ function getCSS(stylesheet: string): string {
     'style-source',
     `${stylesheet}.css`
   );
-  cssCache[stylesheet] = fs
-    .readFileSync(cssPath, { encoding: 'UTF-8' })
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/\n.*?(\S)/g, '$1');
+  cssCache[stylesheet] = fs.readFileSync(cssPath, { encoding: 'UTF-8' });
+  if (__production__) {
+    cssCache[stylesheet] = cssCache[stylesheet]
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n.*?(\S)/g, '$1');
+  }
   return cssCache[stylesheet];
 }
 

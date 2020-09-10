@@ -13,6 +13,7 @@ module.exports = merge(base, {
       __tpl_script_path__: JSON.stringify('build/dev/template.min.js'),
       __tpl_path__: JSON.stringify('src/template/basic/page.html'),
       __out_path__: JSON.stringify('build/posts'),
+      __production__: false,
     }),
   ],
 });
