@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import showdown from 'showdown';
 
-import styles, { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
+import { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
 declare var __out_path__: string;
@@ -52,15 +52,33 @@ fs.emptyDirSync(outDir);
 // DB
 const dbData = new DB();
 
-// Copy CSS Assets
-Object.keys(styles).forEach((stylesheet) => {
-  const { src, desc } = styles[stylesheet];
-  fs.copySync(
-    path.join(process.cwd(), 'src', 'template', 'style-source', src),
-    path.join(outDir, desc)
+// Deprecated: Copy CSS Assets
+// Object.keys(styles).forEach((stylesheet) => {
+//   const { src, desc } = styles[stylesheet];
+//   fs.copySync(
+//     path.join(process.cwd(), 'src', 'template', 'style-source', src),
+//     path.join(outDir, desc)
+//   );
+// });
+// console.log('CSS Assets Copied');
+// CSS Assets Cache
+const cssCache: { [key: string]: string } = {};
+function getCSS(stylesheet: string): string {
+  if (cssCache[stylesheet]) return cssCache[stylesheet];
+
+  const cssPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+    `${stylesheet}.css`
   );
-});
-console.log('CSS Assets Copied');
+  cssCache[stylesheet] = fs
+    .readFileSync(cssPath, { encoding: 'UTF-8' })
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\n.*?(\S)/g, '$1');
+  return cssCache[stylesheet];
+}
 
 // Load Template
 const tplPath = path.join(process.cwd(), __tpl_path__);
@@ -137,7 +155,7 @@ posts
       outFilePath,
       tplContent
         .replace('<title />', title)
-        .replace('<stylesheet />', styles[stylesheet].desc)
+        .replace('/* stylesheet */', getCSS(stylesheet))
         .replace('<body_title />', title)
         .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
         .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
