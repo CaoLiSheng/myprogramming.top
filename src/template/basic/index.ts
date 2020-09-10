@@ -7,6 +7,16 @@ if (window['templateConfigs']) {
     location.href = `${__site_root__}/#/post${location.pathname}`;
   }
 
+  // 防盗链
+  window.addEventListener('message', (e) => {
+    if (e.data === 'show-time') {
+      document
+        .querySelector('article.markdown-body.hidden')
+        ?.classList.remove('hidden');
+    }
+  });
+  window.top.postMessage('is-it-time-to-show', __origin__);
+
   // support snaplist mode
   if (location.hash !== '#snapshot') {
     document
