@@ -43,4 +43,5 @@ module.exports = merge(base, {
       },
     ],
   },
+  plugins: [new webpack.DefinePlugin({})],
 });

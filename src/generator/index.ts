@@ -89,6 +89,15 @@ const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 const tplScriptPath = path.join(process.cwd(), __tpl_script_path__);
 const tplScriptContent = fs.readFileSync(tplScriptPath, { encoding: 'UTF-8' });
+
+const tplCSSPath = path.join(
+  process.cwd(),
+  'src',
+  'template',
+  'basic',
+  'index.css'
+);
+const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
 // Read Source Dir
@@ -152,16 +161,24 @@ posts
     const outFilePath = path.join(outDir, name + '.html');
 
     if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
-
     fs.createFileSync(outFilePath);
+
+    let cssStyles = tplCSSContent
+      .replace('/* base_stylesheet */', getCSS(stylesheet))
+      .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
+      .replace('/* body_padding_1 */', getBodyPadding1(stylesheet));
+    if (__production__) {
+      cssStyles = cssStyles
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/\n.*?(\S)/g, '$1');
+    }
+
     fs.writeFileSync(
       outFilePath,
       tplContent
         .replace('<title />', title)
-        .replace('/* stylesheet */', getCSS(stylesheet))
+        .replace('/* stylesheet */', cssStyles)
         .replace('<body_title />', title)
-        .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
-        .replace('/* body_padding_1 */', getBodyPadding1(stylesheet))
         .replace('<body />', body)
         .replace('/* template.min.js */', tplScriptContent)
     );
