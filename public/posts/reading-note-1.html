@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>读书笔记之《HTML and CSS Design and Build Websites》</title>
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <link rel="stylesheet" href="antique.css" />
+    <style>
+      ::-webkit-scrollbar {
+        width: 3pt;
+        height: 3pt;
+      }
+      ::-webkit-scrollbar-track {
+        background: #ddd;
+        border-radius: 9pt;
+      }
+      ::-webkit-scrollbar-corner {
+        background: #ddd;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 9pt;
+      }
+      ::-webkit-scrollbar-thumb:window-inactive {
+        background: #aaa;
+      }
+      body {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        border: none;
+        padding: 0;
+      }
+      .markdown-body {
+        box-sizing: border-box;
+        margin: 1rem auto;
+        min-width: 200px;
+        max-width: 980px;
+        width: 100%;
+        
+      }
+      .markdown-body:not(.snapshot) {
+        border-radius: 6px;
+        border: solid 1px gray;
+        box-shadow: 0 0 5px 0 gray;
+      }
+      .markdown-body.hidden {
+        display: none;
+      }
+      @media (max-width: 750px) {
+        .markdown-body {
+          margin: 1rem;
+          
+        }
+      }
+      .markdown-body pre {
+        overflow: auto;
+      }
+      .markdown-body figcaption {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="markdown-body snapshot">
+      <h1>读书笔记之《HTML and CSS Design and Build Websites》</h1>
+      <h2 id="">结构篇</h2>
+<h3 id="-1">文本</h3>
+<p>不熟悉的控制文本的标签，有些是语义性质的，有些是样式性质的。</p>
+<ul>
+<li>sup,sub</li>
+<li>strong,em</li>
+<li>blockquote</li>
+<li>abbr,cite,dfn</li>
+<li>address</li>
+<li>ins,del,s</li>
+</ul>
+<h3 id="-2">列表</h3>
+<p>dl,dt,dd</p>
+<h3 id="-3">链接</h3>
+<ul>
+<li>相对路径和绝对路径</li>
+<li>受到 <code>mailto:</code> 的启发，在这个博客里使用 <code>post:</code> 做站内文章间跳转</li>
+</ul>
+<pre><code class="typescript language-typescript">const originalHref = anchor.getAttribute('href');
+if (originalHref?.startsWith('post:')) {
+  anchor.setAttribute(
+    'href',
+    `${__site_root__}/#/${originalHref.replace(':', '/')}`
+  );
+  anchor.setAttribute('target', '_top');
+}
+</code></pre>
+<h3 id="-4">图片</h3>
+<p>在选择图片时，相机拍出的实景往往是色彩丰富的，这类图片最好采用 JPEG 格式存储。</p>
+<p>为了给图片加上标题，并采用规范的 <code>HTML5</code> 标签 <code>figure</code> ，还写了两个 <code>showdown</code> 插件。</p>
+<pre><code class="typescript language-typescript">{
+  type: 'lang',
+  regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+  replace:
+    '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
+},
+{
+  type: 'lang',
+  regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)x(.*?)\)/g,
+  replace:
+    '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" width="$4" height="$5" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
+}
+</code></pre>
+<h3 id="-5">表格</h3>
+<p><code>tbody</code> 和 <code>tfoot</code> 也只是为了给表格加样式时方便。</p>
+<h3 id="-6">表单</h3>
+<p>表单的目的仅仅是收集用户数据，表单校验的 APIs 需要熟悉一下。</p>
+<pre><code class="css language-css">#datetime:invalid {
+  border: solid 1px red;
+}
+#datetime:valid {
+  border: solid 1px blue;
+}
+</code></pre>
+<pre><code class="typescript language-typescript">var theForm = document.forms['the-form'];
+if (theForm) {
+  var datetime = document.getElementById('datetime');
+  datetime.addEventListener('invalid', (e) =&gt; {
+    // 自定义错误提示文字
+    datetime.setCustomValidity('至少写一个字吧');
+  });
+  datetime.addEventListener('input', (e) =&gt; {
+    datetime.setCustomValidity(
+      datetime.validity.valueMissing ? '至少写一个字吧' : ''
+    );
+    theForm.reportValidity();
+  });
+  theForm.checkValidity();
+
+  theForm.addEventListener('submit', (e) =&gt; {
+    e.preventDefault();
+
+    // 手动触发校验
+    theForm.checkValidity();
+
+    var data = new FormData(theForm);
+    data.delete('x');
+    data.delete('y');
+    data.forEach((v, k) =&gt; {
+      if (v instanceof File &amp;&amp; v.size &lt;= 0) return;
+      if (v === '') return;
+      console.log(k, v);
+    });
+  });
+}
+</code></pre>
+<p><code>label</code> 是为了给有障碍的人士准备的，有两种写法：</p>
+<ul>
+<li>包裹住控件</li>
+<li>for="控件 id"</li>
+</ul>
+<p><code>label</code> 还可以让点击在自己上的事件作用于与它关联的控件。</p>
+<h3 id="-7">其它标签</h3>
+<p><code>div</code> 和 <code>span</code> 竟然是哥俩，<code>span</code> 在 <code>inline</code> 元素中的地位就如同 <code>div</code> 在 <code>block</code> 元素中的地位。</p>
+<h3 id="flashvideoaudio">Flash Video Audio</h3>
+<p><code>HTML5</code> 中的 <code>video</code> 和 <code>audio</code> 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容，<code>flash 播放器</code> 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 <code>flash 播放器</code> ）。</p>
+<h2 id="css">CSS 篇</h2>
+<h3 id="-8">…</h3>
+    </article>
+    <script>
+      window.templateConfigs = {
+        __origin__: 'http://yx1991.gitee.io',
+        __site_root__: 'http://yx1991.gitee.io/blog',
+      };
+
+      !function(t){var e={};function o(n){if(e[n])return e[n].exports;var r=e[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.m=t,o.c=e,o.d=function(t,e,n){o.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)o.d(n,r,function(e){return t[e]}.bind(null,r));return n},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,"a",e),e},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o.p="/",o(o.s="./src/template/basic/index.ts")}({"./src/template/basic/index.ts":function(t,e){if(window.templateConfigs){var o,n=window.templateConfigs,r=n.__origin__,i=n.__site_root__;if(window.top===window&&(location.href="".concat(i,"/#/post").concat(location.pathname)),window.addEventListener("message",(function(t){var e;"show-time"===t.data&&(null===(e=document.querySelector("article.markdown-body.hidden"))||void 0===e||e.classList.remove("hidden"))})),window.top.postMessage("is-it-time-to-show",r),"#snapshot"!==location.hash)null===(o=document.querySelector("article.markdown-body.snapshot"))||void 0===o||o.classList.remove("snapshot");document.body.addEventListener("click",(function(){window.top.postMessage("iframe.detail clicked",r)})),document.querySelectorAll("a").forEach((function(t){var e=t.getAttribute("href");(null==e?void 0:e.startsWith("post:"))&&(t.setAttribute("href","".concat(i,"/#/").concat(e.replace(":","/"))),t.setAttribute("target","_top"))}))}}});
+    </script>
+  </body>
+</html>
