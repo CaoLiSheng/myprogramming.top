@@ -1,20 +1,21 @@
-const hasWidePaddingSheets: string[] = [
-  'github-simple',
-  'github-border',
-  'modest',
-  'antique',
-];
+export interface StyleSheet {
+  padding: { pc: string; mobile: string };
+}
 
-const hasThinPaddingSheets: string[] = ['retro', 'splendor', 'citizen'];
+const NullPadding = { padding: { pc: '', mobile: '' } };
+const WidePadding = { padding: { pc: '45px', mobile: '25px' } };
+const ThinPadding = { padding: { pc: '25px', mobile: '10px' } };
 
-export const getBodyPadding0 = (stylesheet: string): string => {
-  if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 45px;';
-  if (hasThinPaddingSheets.includes(stylesheet)) return 'padding: 25px;';
-  return '';
+const styles: { [key: string]: StyleSheet } = {
+  air: NullPadding,
+  antique: WidePadding,
+  citizen: ThinPadding,
+  'github-border': WidePadding,
+  'github-colors': WidePadding,
+  lopash: NullPadding,
+  modest: WidePadding,
+  retro: ThinPadding,
+  splendor: ThinPadding,
 };
 
-export const getBodyPadding1 = (stylesheet: string): string => {
-  if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 15px;';
-  if (hasThinPaddingSheets.includes(stylesheet)) return 'padding: 10px;';
-  return '';
-};
+export default styles;

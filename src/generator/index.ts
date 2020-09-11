@@ -1,8 +1,9 @@
 import path from 'path';
 import fs from 'fs-extra';
 import showdown from 'showdown';
+import md5 from 'md5';
 
-import { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
+import Sheets from '@tpl/styles';
 import { DB } from '@common/db';
 
 declare var __out_path__: string;
@@ -85,13 +86,13 @@ const tplCSSPath = path.join(
 const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
-// CSS Assets Utilities
-const CSSCache: {
+// CSS Assets Maps
+const CSSMaps: {
   [key: string]: string;
 } = {};
 
 function fetchCSS(base: string): string {
-  if (CSSCache[base]) return CSSCache[base];
+  if (CSSMaps[base]) return CSSMaps[base];
 
   const baseCSSPath = path.join(
     process.cwd(),
@@ -110,12 +111,18 @@ function fetchCSS(base: string): string {
   const cssContent = cssMinify(
     tplCSSContent
       .replace('/* base_stylesheet */', baseCSSContent)
-      .replace('/* body_padding_0 */', getBodyPadding0(base))
-      .replace('/* body_padding_1 */', getBodyPadding1(base))
+      .replace('/* body_padding_0 */', Sheets[base].padding.pc)
+      .replace('/* body_padding_1 */', Sheets[base].padding.mobile)
   );
 
-  CSSCache[base] = cssContent;
-  return CSSCache[base];
+  CSSMaps[base] = `${base}.${md5(cssContent)}.css`;
+
+  const outFilePath = path.join(outDir, CSSMaps[base]);
+  if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
+  fs.createFileSync(outFilePath);
+  fs.writeFileSync(outFilePath, cssContent);
+
+  return CSSMaps[base];
 }
 
 function cssMinify(css: string): string {
@@ -212,8 +219,8 @@ posts
       outFilePath,
       tplContent
         .replace('<title />', title)
-        .replace('/* stylesheet */', fetchCSS(stylesheet))
         .replace('<hm_baidu />', hmBaidu())
+        .replace('/* stylesheet */', fetchCSS(stylesheet))
         .replace('<body_title />', title)
         .replace('<body />', body)
         .replace('/* template.min.js */', tplScriptContent)
