@@ -62,26 +62,6 @@ const dbData = new DB();
 //   );
 // });
 // console.log('CSS Assets Copied');
-// CSS Assets Cache
-const cssCache: { [key: string]: string } = {};
-function getCSS(stylesheet: string): string {
-  if (cssCache[stylesheet]) return cssCache[stylesheet];
-
-  const cssPath = path.join(
-    process.cwd(),
-    'src',
-    'template',
-    'style-source',
-    `${stylesheet}.css`
-  );
-  cssCache[stylesheet] = fs.readFileSync(cssPath, { encoding: 'UTF-8' });
-  if (__production__) {
-    cssCache[stylesheet] = cssCache[stylesheet]
-      .replace(/\/\*[\s\S]*?\*\//g, '')
-      .replace(/\n.*?(\S)/g, '$1');
-  }
-  return cssCache[stylesheet];
-}
 
 // Load Template
 const tplPath = path.join(process.cwd(), __tpl_path__);
@@ -99,6 +79,49 @@ const tplCSSPath = path.join(
 );
 const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
+
+// CSS Assets Utilities
+const CSSCache: {
+  [key: string]: string;
+} = {};
+
+function fetchCSS(base: string): string {
+  if (CSSCache[base]) return CSSCache[base];
+
+  const baseCSSPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+    `${base}.css`
+  );
+
+  const baseCSSContent = cssMinify(
+    fs.readFileSync(baseCSSPath, {
+      encoding: 'UTF-8',
+    })
+  );
+
+  const cssContent = cssMinify(
+    tplCSSContent
+      .replace('/* base_stylesheet */', baseCSSContent)
+      .replace('/* body_padding_0 */', getBodyPadding0(base))
+      .replace('/* body_padding_1 */', getBodyPadding1(base))
+  );
+
+  CSSCache[base] = cssContent;
+  return CSSCache[base];
+}
+
+function cssMinify(css: string): string {
+  if (__production__) {
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n+.*?(\S)/g, '$1')
+      .trim();
+  }
+  return css;
+}
 
 // Read Source Dir
 const posts = fs.readdirSync(inDir);
@@ -163,21 +186,11 @@ posts
     if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
     fs.createFileSync(outFilePath);
 
-    let cssStyles = tplCSSContent
-      .replace('/* base_stylesheet */', getCSS(stylesheet))
-      .replace('/* body_padding_0 */', getBodyPadding0(stylesheet))
-      .replace('/* body_padding_1 */', getBodyPadding1(stylesheet));
-    if (__production__) {
-      cssStyles = cssStyles
-        .replace(/\/\*[\s\S]*?\*\//g, '')
-        .replace(/\n.*?(\S)/g, '$1');
-    }
-
     fs.writeFileSync(
       outFilePath,
       tplContent
         .replace('<title />', title)
-        .replace('/* stylesheet */', cssStyles)
+        .replace('/* stylesheet */', fetchCSS(stylesheet))
         .replace('<body_title />', title)
         .replace('<body />', body)
         .replace('/* template.min.js */', tplScriptContent)

@@ -22,18 +22,15 @@
       1. github-colors
       2. github-border
 
-   2. Category 1
+   2. Categories
 
       3. splendor // 新闻（技术无关）
-      4. air // 计划
+      4. air // 计划（任务）
       5. retro // 黑科技
       6. modest // 感想
-
-   3. Category 2
-
       7. antique // 笔记
       8. citizen // 新闻（技术相关）
-      9. lopash // 书架
+      9. lopash // 书架（表格）
 
 ## 安装教程
 

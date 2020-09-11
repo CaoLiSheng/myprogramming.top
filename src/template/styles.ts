@@ -5,7 +5,7 @@ const hasWidePaddingSheets: string[] = [
   'antique',
 ];
 
-const hasThinPaddingSheets: string[] = ['splendor', 'citizen'];
+const hasThinPaddingSheets: string[] = ['retro', 'splendor', 'citizen'];
 
 export const getBodyPadding0 = (stylesheet: string): string => {
   if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 45px;';
