@@ -202,6 +202,7 @@ Description:  An "antiqued" theme with off-white background and serif typography
   padding: 0 0.2em;
 }
 .markdown-body pre {
+  border: solid 1px #a7a099;
   background: #f2ede8;
   padding: 4px;
 }

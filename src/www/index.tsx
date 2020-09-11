@@ -32,8 +32,14 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
   state = { hasError: false };
 
   private receiveMessage = (event: MessageEvent) => {
-    if (event.data === 'is-it-time-to-show') {
-      flyWindow(event.source)?.postMessage('show-time', '*');
+    if (
+      typeof event.data === 'string' &&
+      event.data.startsWith('is-it-time-to-show')
+    ) {
+      flyWindow(event.source)?.postMessage(
+        `show-time ${event.data.split(' ')[1]}`,
+        '*'
+      );
     }
   };
 
