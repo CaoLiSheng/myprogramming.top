@@ -17,41 +17,23 @@
 
 3. 文章画风选择太多，一时区分不出来
 
-   1. Git
+   1. Github // 技术
 
-      1. github
-      2. github2
+      1. github-colors
+      2. github-border
 
    2. Category 1
 
-      3. splendor
-      4. air
-      5. retro
-      6. modest
+      3. splendor // 新闻（技术无关）
+      4. air // 计划
+      5. retro // 黑科技
+      6. modest // 感想
 
    3. Category 2
 
-      7. amblin
-      8. antique
-      9. citizen
-      10. lopash
-      11. ulysses
-
-   4. Category 3
-
-      12. apollo
-      13. erye
-      14. infoq
-      15. less
-      16. list-writing
-      17. ocean
-      18. sanyuesha
-      19. simple
-      20. style
-      21. typing
-      22. wecatch
-      23. wecatch-code
-      24. xiaolai
+      7. antique // 笔记
+      8. citizen // 新闻（技术相关）
+      9. lopash // 书架
 
 ## 安装教程
 

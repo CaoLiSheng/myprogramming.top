@@ -1,5 +1,5 @@
 ---
-style: github
+style: github-colors
 title: 尝试给博客浮层加毛玻璃背景效果
 date: 2020-07-31 12:52:00
 tags:

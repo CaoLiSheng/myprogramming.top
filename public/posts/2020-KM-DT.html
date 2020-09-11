@@ -28,12 +28,16 @@ img,canvas,iframe,video,svg,select,textarea {max-width: 100%;}@import url('http:
 ::-webkit-scrollbar-track {background: #ddd;border-radius: 9pt;}
 ::-webkit-scrollbar-corner {background: #ddd;}
 ::-webkit-scrollbar-thumb {background: #999;border-radius: 9pt;}::-webkit-scrollbar-thumb:window-inactive {background: #aaa;}
+
 body {display: flex;flex-direction: row;justify-content: center;align-items: flex-start;border: none;padding: 0;}
 .markdown-body {box-sizing: border-box;margin: 1rem auto;min-width: 200px;max-width: 980px;width: 100%;padding: 45px;}
 .markdown-body:not(.snapshot) {border-radius: 6px;border: solid 1px gray;box-shadow: 0 0 5px 0 gray;}
 .markdown-body.hidden {display: none;}
 @media (max-width: 750px) {.markdown-body {margin: 1rem;padding: 15px;}}
+
+.markdown-body ul,.markdown-body ol,.markdown-body dl {list-style-position: inside;}
 .markdown-body pre {overflow: auto;}
+.markdown-body pre code {padding: 0;border: none;background: transparent;}
 .markdown-body figcaption {text-align: center;}
 
     </style>

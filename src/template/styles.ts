@@ -1,26 +1,11 @@
 const hasWidePaddingSheets: string[] = [
-  'github',
+  'github-simple',
+  'github-border',
   'modest',
-  'apollo',
-  'infoq',
-  'less',
-  'list-writing',
-  'ocean',
-  'sanyuesha',
-  'simple',
-  'style',
-  'typing',
-  'wecatch',
-  'wecatch-code',
-  'xiaolai',
+  'antique',
 ];
 
-const hasThinPaddingSheets: string[] = [
-  'erye',
-  'ulysses',
-  'splendor',
-  'citizen',
-];
+const hasThinPaddingSheets: string[] = ['splendor', 'citizen'];
 
 export const getBodyPadding0 = (stylesheet: string): string => {
   if (hasWidePaddingSheets.includes(stylesheet)) return 'padding: 45px;';

@@ -1,5 +1,5 @@
 ---
-style: list-writing
+style: github-border
 title: 2020年里程碑 - 1
 date: 2020-08-09 16:14:00
 tags:

@@ -23,6 +23,7 @@
   background: #aaa;
 }
 
+/* 以下：摆放文章主体 */
 body {
   display: flex;
   flex-direction: row;
@@ -58,8 +59,21 @@ body {
   }
 }
 
+/* 以下：全局正规化 */
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl {
+  list-style-position: inside;
+}
+
 .markdown-body pre {
   overflow: auto;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 .markdown-body figcaption {

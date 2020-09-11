@@ -29,6 +29,7 @@ body {background: #faf8f5;color: rgba(0, 0, 0, 0.9);font-family: Varela, sans-se
 ::-webkit-scrollbar-track {background: #ddd;border-radius: 9pt;}
 ::-webkit-scrollbar-corner {background: #ddd;}
 ::-webkit-scrollbar-thumb {background: #999;border-radius: 9pt;}::-webkit-scrollbar-thumb:window-inactive {background: #aaa;}
+
 body {display: flex;flex-direction: row;justify-content: center;align-items: flex-start;border: none;padding: 0;}
 .markdown-body {box-sizing: border-box;margin: 1rem auto;min-width: 200px;max-width: 980px;width: 100%;
   }
@@ -36,7 +37,10 @@ body {display: flex;flex-direction: row;justify-content: center;align-items: fle
 .markdown-body.hidden {display: none;}
 @media (max-width: 750px) {.markdown-body {margin: 1rem;
     }}
+
+.markdown-body ul,.markdown-body ol,.markdown-body dl {list-style-position: inside;}
 .markdown-body pre {overflow: auto;}
+.markdown-body pre code {padding: 0;border: none;background: transparent;}
 .markdown-body figcaption {text-align: center;}
 
     </style>
