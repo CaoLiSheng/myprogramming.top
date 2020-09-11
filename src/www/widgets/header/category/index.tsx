@@ -37,7 +37,7 @@ export default class extends Component<
             Popper={
               <ol className="tags">
                 {tags.map((tag: string) => (
-                  <li key={tag}>{tag}</li>
+                  <li key={tag}>#{tag}#</li>
                 ))}
               </ol>
             }

@@ -110,26 +110,6 @@
   }
 }
 
-ol.tags {
-  list-style-position: inside;
-  background-color: whitesmoke;
-  background-image: url(~@images/bg.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 0.05rem;
-  margin: 0.1rem 0;
-  padding: 0.05rem 0.15rem;
-
-  li {
-    font-size: 0.16rem;
-    line-height: 0.3rem;
-    color: gray;
-    text-shadow: 1px 1px 3px wheat;
-    font-family: 'Courier New', Courier, monospace;
-  }
-}
-
 @media (max-width: 750px) {
   .title-bar nav ul:not(.mobile-compatible) {
     display: none;
