@@ -3,10 +3,12 @@ style: antique
 title: 读书笔记之《HTML and CSS Design and Build Websites》
 date: 2020-09-10 15:28:00
 tags:
-  - 提升计划
-  - 读书笔记
-  - 读书
-  - 笔记
+
+  + 提升计划
+  + 读书笔记
+  + 读书
+  + 笔记
+
 ---
 
 ## 结构篇
@@ -15,12 +17,12 @@ tags:
 
 不熟悉的控制文本的标签，有些是语义性质的，有些是样式性质的。
 
-- sup,sub
-- strong,em
-- blockquote
-- abbr,cite,dfn
-- address
-- ins,del,s
+* sup, sub
+* strong, em
+* blockquote
+* abbr, cite, dfn
+* address
+* ins, del, s
 
 ### 列表
 
@@ -28,15 +30,15 @@ tags:
 
 ### 链接
 
-- 相对路径和绝对路径
-- 受到 `mailto:` 的启发，在这个博客里使用 `post:` 做站内文章间跳转
+* 相对路径和绝对路径
+* 受到 `mailto:` 的启发，在这个博客里使用 `post:` 做站内文章间跳转
 
-```typescript
+``` typescript
 const originalHref = anchor.getAttribute('href');
 if (originalHref?.startsWith('post:')) {
   anchor.setAttribute(
     'href',
-    `${__site_root__}/#/${originalHref.replace(':', '/')}`
+ `${__site_root__}/#/${originalHref.replace(':', '/')}`
   );
   anchor.setAttribute('target', '_top');
 }
@@ -48,7 +50,7 @@ if (originalHref?.startsWith('post:')) {
 
 为了给图片加上标题，并采用规范的 `HTML5` 标签 `figure` ，还写了两个 `showdown` 插件。
 
-```typescript
+``` typescript
 {
   type: 'lang',
   regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
@@ -71,16 +73,17 @@ if (originalHref?.startsWith('post:')) {
 
 表单的目的仅仅是收集用户数据，表单校验的 APIs 需要熟悉一下。
 
-```css
+``` css
 #datetime:invalid {
-  border: solid 1px red;
+    border: solid 1px red;
 }
+
 #datetime:valid {
-  border: solid 1px blue;
+    border: solid 1px blue;
 }
 ```
 
-```typescript
+``` typescript
 var theForm = document.forms['the-form'];
 if (theForm) {
   var datetime = document.getElementById('datetime');
@@ -116,26 +119,26 @@ if (theForm) {
 
 `label` 是为了给有障碍的人士准备的，有两种写法：
 
-- 包裹住控件
-- for="控件 id"
+* 包裹住控件
+* for="控件 id"
 
 `label` 还可以让点击在自己上的事件作用于与它关联的控件。
 
 ### 其它标签
 
-`div` 和 `span` 竟然是哥俩，`span` 在 `inline` 元素中的地位就如同 `div` 在 `block` 元素中的地位。
+`div` 和 `span` 竟然是哥俩， `span` 在 `inline` 元素中的地位就如同 `div` 在 `block` 元素中的地位。
 
 ### Flash Video Audio
 
-`HTML5` 中的 `video` 和 `audio` 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容，`flash 播放器` 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 `flash 播放器` ）。
+`HTML5` 中的 `video` 和 `audio` 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容， `flash 播放器` 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 `flash 播放器` ）。
 
 ## CSS 篇
 
 ### 规则和选择器
 
-- 盒子
-  - 宽、高、边框、背景、位置、阴影
-- 文字
-  - 字体、字号、颜色、粗细、大小写、阴影
-- 特殊元素
-  - 列表、表单、表格
+* 盒子
+    - 宽、高、边框、背景、位置、阴影
+* 文字
+    - 字体、字号、颜色、粗细、大小写、阴影
+* 特殊元素
+    - 列表、表单、表格

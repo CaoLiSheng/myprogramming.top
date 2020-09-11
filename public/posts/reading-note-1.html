@@ -29,12 +29,12 @@
 <h3 id="-1">文本</h3>
 <p>不熟悉的控制文本的标签，有些是语义性质的，有些是样式性质的。</p>
 <ul>
-<li>sup,sub</li>
-<li>strong,em</li>
+<li>sup, sub</li>
+<li>strong, em</li>
 <li>blockquote</li>
-<li>abbr,cite,dfn</li>
+<li>abbr, cite, dfn</li>
 <li>address</li>
-<li>ins,del,s</li>
+<li>ins, del, s</li>
 </ul>
 <h3 id="-2">列表</h3>
 <p>一直没用过的 <code>&lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt;</code></p>
@@ -47,7 +47,7 @@
 if (originalHref?.startsWith('post:')) {
   anchor.setAttribute(
     'href',
-    `${__site_root__}/#/${originalHref.replace(':', '/')}`
+ `${__site_root__}/#/${originalHref.replace(':', '/')}`
   );
   anchor.setAttribute('target', '_top');
 }
@@ -73,10 +73,11 @@ if (originalHref?.startsWith('post:')) {
 <h3 id="-6">表单</h3>
 <p>表单的目的仅仅是收集用户数据，表单校验的 APIs 需要熟悉一下。</p>
 <pre><code class="css language-css">#datetime:invalid {
-  border: solid 1px red;
+    border: solid 1px red;
 }
+
 #datetime:valid {
-  border: solid 1px blue;
+    border: solid 1px blue;
 }
 </code></pre>
 <pre><code class="typescript language-typescript">var theForm = document.forms['the-form'];
@@ -118,18 +119,18 @@ if (theForm) {
 </ul>
 <p><code>label</code> 还可以让点击在自己上的事件作用于与它关联的控件。</p>
 <h3 id="-7">其它标签</h3>
-<p><code>div</code> 和 <code>span</code> 竟然是哥俩，<code>span</code> 在 <code>inline</code> 元素中的地位就如同 <code>div</code> 在 <code>block</code> 元素中的地位。</p>
+<p><code>div</code> 和 <code>span</code> 竟然是哥俩， <code>span</code> 在 <code>inline</code> 元素中的地位就如同 <code>div</code> 在 <code>block</code> 元素中的地位。</p>
 <h3 id="flashvideoaudio">Flash Video Audio</h3>
-<p><code>HTML5</code> 中的 <code>video</code> 和 <code>audio</code> 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容，<code>flash 播放器</code> 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 <code>flash 播放器</code> ）。</p>
+<p><code>HTML5</code> 中的 <code>video</code> 和 <code>audio</code> 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容， <code>flash 播放器</code> 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 <code>flash 播放器</code> ）。</p>
 <h2 id="css">CSS 篇</h2>
 <h3 id="-8">规则和选择器</h3>
 <ul>
-<li>盒子</li>
-<li>宽、高、边框、背景、位置、阴影</li>
-<li>文字</li>
-<li>字体、字号、颜色、粗细、大小写、阴影</li>
-<li>特殊元素</li>
-<li>列表、表单、表格</li>
+<li>盒子<ul>
+<li>宽、高、边框、背景、位置、阴影</li></ul></li>
+<li>文字<ul>
+<li>字体、字号、颜色、粗细、大小写、阴影</li></ul></li>
+<li>特殊元素<ul>
+<li>列表、表单、表格</li></ul></li>
 </ul>
     </article>
     <script type="application/javascript" src="template.96d55636097b3dbf9d02.js"></script>

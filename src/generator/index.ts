@@ -46,9 +46,9 @@ console.log('inDir', inDir);
 const outDir = path.join(process.cwd(), __out_path__);
 console.log('outDir', outDir);
 
-// Clean Out Dir
-fs.mkdirSync(outDir, { recursive: true });
+// Clean & Make Out Dir
 fs.emptyDirSync(outDir);
+fs.mkdirSync(outDir, { recursive: true });
 
 // DB
 const dbData = new DB();
@@ -183,7 +183,7 @@ posts
     if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
     const [stylesheet, title, date, tags, content] = matches.slice(1);
-    const tagsRe = /- (.*?)\n/g;
+    const tagsRe = /\+ (.*?)\n/g;
     const parsedTags = [];
     if (tags) {
       let tempTag;
