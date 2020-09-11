@@ -11,9 +11,10 @@ module.exports = merge(base, {
   plugins: [
     new webpack.DefinePlugin({
       __tpl_script_path__: JSON.stringify('build/dev/template.min.js'),
-      __tpl_path__: JSON.stringify('src/template/basic/page.html'),
       __out_path__: JSON.stringify('build/posts'),
       __production__: false,
+      __origin__: JSON.stringify('http://dev.myprogramming.top:3000'),
+      __site_root__: JSON.stringify('http://dev.myprogramming.top:3000'),
     }),
   ],
 });

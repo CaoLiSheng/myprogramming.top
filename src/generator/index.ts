@@ -5,9 +5,8 @@ import showdown from 'showdown';
 import { getBodyPadding0, getBodyPadding1 } from '@tpl/styles';
 import { DB } from '@common/db';
 
-declare var __production__: boolean;
 declare var __out_path__: string;
-declare var __tpl_path__: string;
+declare var __production__: boolean;
 declare var __tpl_script_path__: string;
 
 function isDir(file: string): boolean {
@@ -64,7 +63,13 @@ const dbData = new DB();
 // console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(process.cwd(), __tpl_path__);
+const tplPath = path.join(
+  process.cwd(),
+  'src',
+  'template',
+  'basic',
+  'index.html'
+);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 const tplScriptPath = path.join(process.cwd(), __tpl_script_path__);
@@ -121,6 +126,23 @@ function cssMinify(css: string): string {
       .trim();
   }
   return css;
+}
+
+// hm baidu
+function hmBaidu(): string {
+  return __production__
+    ? `
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  `
+    : '';
 }
 
 // Read Source Dir
@@ -191,6 +213,7 @@ posts
       tplContent
         .replace('<title />', title)
         .replace('/* stylesheet */', fetchCSS(stylesheet))
+        .replace('<hm_baidu />', hmBaidu())
         .replace('<body_title />', title)
         .replace('<body />', body)
         .replace('/* template.min.js */', tplScriptContent)
