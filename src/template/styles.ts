@@ -3,8 +3,12 @@ export interface StyleSheet {
 }
 
 const NullPadding = { padding: { pc: '', mobile: '' } };
-const WidePadding = { padding: { pc: '45px', mobile: '25px' } };
-const ThinPadding = { padding: { pc: '25px', mobile: '10px' } };
+const WidePadding = {
+  padding: { pc: 'padding: 45px;', mobile: 'padding: 25px;' },
+};
+const ThinPadding = {
+  padding: { pc: 'padding: 25px;', mobile: 'padding: 10px;' },
+};
 
 const styles: { [key: string]: StyleSheet } = {
   air: NullPadding,

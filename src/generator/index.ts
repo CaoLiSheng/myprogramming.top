@@ -75,6 +75,8 @@ const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 const tplScriptPath = path.join(process.cwd(), __tpl_script_path__);
 const tplScriptContent = fs.readFileSync(tplScriptPath, { encoding: 'UTF-8' });
+const tplScriptName = `template.${md5(tplScriptContent).substring(0, 20)}.js`;
+fs.copySync(tplScriptPath, path.join(outDir, tplScriptName));
 
 const tplCSSPath = path.join(
   process.cwd(),
@@ -111,11 +113,11 @@ function fetchCSS(base: string): string {
   const cssContent = cssMinify(
     tplCSSContent
       .replace('/* base_stylesheet */', baseCSSContent)
-      .replace('/* body_padding_0 */', Sheets[base].padding.pc)
-      .replace('/* body_padding_1 */', Sheets[base].padding.mobile)
+      .replace('/* body_padding_pc */', Sheets[base].padding.pc)
+      .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
   );
 
-  CSSMaps[base] = `${base}.${md5(cssContent)}.css`;
+  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css`;
 
   const outFilePath = path.join(outDir, CSSMaps[base]);
   if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
@@ -223,7 +225,7 @@ posts
         .replace('/* stylesheet */', fetchCSS(stylesheet))
         .replace('<body_title />', title)
         .replace('<body />', body)
-        .replace('/* template.min.js */', tplScriptContent)
+        .replace('/* javascript */', tplScriptName)
     );
   });
 console.log('All HTML Generated');

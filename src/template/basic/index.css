@@ -39,7 +39,7 @@ body {
   min-width: 200px;
   max-width: 980px;
   width: 100%;
-  /* body_padding_0 */
+  /* body_padding_pc */
 }
 
 .markdown-body:not(.snapshot) {
@@ -55,7 +55,7 @@ body {
 @media (max-width: 750px) {
   .markdown-body {
     margin: 1rem;
-    /* body_padding_1 */
+    /* body_padding_mobile */
   }
 }
 
