@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family: 'Long Cang', -apple-system-font, 'Hiragino Sans GB',
+    'Microsoft YaHei', Helvetica, sans-serif;
+  font-weight: 300;
+}
+
 #main {
   padding-top: 0.5rem;
 

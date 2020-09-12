@@ -132,6 +132,65 @@ if (theForm) {
 <li>特殊元素<ul>
 <li>列表、表单、表格</li></ul></li>
 </ul>
+<p><code>CSS</code> 中的 <code>C</code> 非常重要：1）!important；2）选择器更详细；3）同样详细的话后面出现的。这里详细的定义指该选择器选中的元素越少越详细（数一数、比一比）。</p>
+<p><code>CSS 文件</code> 最好与 <code>HTML 文件</code> 分离开，不论是书写时还是线上时。首先，书写时分离可以改一处影响整个网站；另外，线上分离的好处是第二次加载同一个 <code>CSS 文件</code> 时可以有效利用缓存机制。同样的道理应用于 <code>JS 文件</code> 。为此，我改进了我的 <code>markdown -&gt; html</code> 的逻辑。之前，所有收集到的 <code>css 文件</code> 不管有没有用到都先拷贝到发布文件夹， <code>html 文件</code> 中包含一条引用和 <code>&lt;style&gt;...&lt;/style&gt;</code> 两部分。改进后，利用懒加载的方式，动态拼接用到的 <code>css</code> ，并且对线上版做文件最小化处理。</p>
+<pre><code class="typescript language-typescript">const CSSMaps: {
+  [key: string]: string;
+} = {};
+
+function fetchCSS(base: string): string {
+  if (CSSMaps[base]) return CSSMaps[base];
+
+  const baseCSSPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+ `${base}.css`
+  );
+
+  const baseCSSContent = cssMinify(
+    fs.readFileSync(baseCSSPath, {
+      encoding: 'UTF-8',
+    })
+  );
+
+  const cssContent = cssMinify(
+    tplCSSContent
+      .replace('/* base_stylesheet */', baseCSSContent)
+      .replace('/* body_padding_pc */', Sheets[base].padding.pc)
+      .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
+  );
+
+  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css` ;
+
+  const outFilePath = path.join(outDir, CSSMaps[base]);
+  if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
+  fs.createFileSync(outFilePath);
+  fs.writeFileSync(outFilePath, cssContent);
+
+  return CSSMaps[base];
+}
+
+function cssMinify(css: string): string {
+  if (__production__) {
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n+.*?(\S)/g, '$1')
+      .trim();
+  }
+  return css;
+}
+</code></pre>
+<h3 id="-9">颜色</h3>
+<p><code>HSL</code> 分别指色相、饱和度和亮度。色相指色相环上的颜色，饱和度决定其鲜艳程度，而调节一整张照片的亮度可以帮助突出照片的主体。</p>
+<p>常用的文字与背景的对比度搭配：</p>
+<ul>
+<li>darkgray text / white bg</li>
+<li>off-white text / black bg</li>
+</ul>
+<h2 id="-10">后记</h2>
+<p>说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。</p>
     </article>
     <script type="application/javascript" src="template.96d55636097b3dbf9d02.js"></script>
   </body>

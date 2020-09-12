@@ -23,8 +23,8 @@ export interface PAGE_SCHEMA {
 
 export interface I_PAGE_CTX {
   page: PAGE_SCHEMA;
-  change: (_: string, __: number) => void;
-  update: (_: string, __: string[]) => void;
+  change: (key: string, value: number) => void;
+  update: (key: string, value: string[]) => void;
 }
 
 export const { Provider: SetPage, Consumer: GetPage } = createContext({});

@@ -10,7 +10,7 @@ import {
   I_PAGE_CTX,
 } from '@ctxs/index';
 
-import { SnapList, Post, Header, Tags, Canlendar } from '@widgets/index';
+import { Home, Post, Header, Tags, Canlendar } from '@widgets/index';
 
 import './index.scss';
 // import CategoryEntrySVG from '@images/category-icon.svg';
@@ -78,7 +78,7 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/" component={SnapList} />
+          <Route exact path="/" component={Home} />
           <Route path="/post/:name" component={Post} />
           <Route path="/tags/:tags" component={Tags} />
           <Route path="/canlendar/:year/:month/:date" component={Canlendar} />

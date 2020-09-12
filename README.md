@@ -38,7 +38,7 @@
 
 ## BLOG 地址
 
-### [http://yx1991.gitee.io/blog](http://yx1991.gitee.io/blog)
+### [https://yx1991.gitee.io/blog](https://yx1991.gitee.io/blog)
 
 ## 参与贡献
 

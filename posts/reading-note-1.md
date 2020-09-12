@@ -142,3 +142,70 @@ if (theForm) {
     - 字体、字号、颜色、粗细、大小写、阴影
 * 特殊元素
     - 列表、表单、表格
+
+`CSS` 中的 `C` 非常重要：1）!important；2）选择器更详细；3）同样详细的话后面出现的。这里详细的定义指该选择器选中的元素越少越详细（数一数、比一比）。
+
+`CSS 文件` 最好与 `HTML 文件` 分离开，不论是书写时还是线上时。首先，书写时分离可以改一处影响整个网站；另外，线上分离的好处是第二次加载同一个 `CSS 文件` 时可以有效利用缓存机制。同样的道理应用于 `JS 文件` 。为此，我改进了我的 `markdown -> html` 的逻辑。之前，所有收集到的 `css 文件` 不管有没有用到都先拷贝到发布文件夹， `html 文件` 中包含一条引用和 `<style>...</style>` 两部分。改进后，利用懒加载的方式，动态拼接用到的 `css` ，并且对线上版做文件最小化处理。
+
+``` typescript
+const CSSMaps: {
+  [key: string]: string;
+} = {};
+
+function fetchCSS(base: string): string {
+  if (CSSMaps[base]) return CSSMaps[base];
+
+  const baseCSSPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+ `${base}.css`
+  );
+
+  const baseCSSContent = cssMinify(
+    fs.readFileSync(baseCSSPath, {
+      encoding: 'UTF-8',
+    })
+  );
+
+  const cssContent = cssMinify(
+    tplCSSContent
+      .replace('/* base_stylesheet */', baseCSSContent)
+      .replace('/* body_padding_pc */', Sheets[base].padding.pc)
+      .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
+  );
+
+  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css` ;
+
+  const outFilePath = path.join(outDir, CSSMaps[base]);
+  if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
+  fs.createFileSync(outFilePath);
+  fs.writeFileSync(outFilePath, cssContent);
+
+  return CSSMaps[base];
+}
+
+function cssMinify(css: string): string {
+  if (__production__) {
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n+.*?(\S)/g, '$1')
+      .trim();
+  }
+  return css;
+}
+```
+
+### 颜色
+
+`HSL` 分别指色相、饱和度和亮度。色相指色相环上的颜色，饱和度决定其鲜艳程度，而调节一整张照片的亮度可以帮助突出照片的主体。
+
+常用的文字与背景的对比度搭配：
+
+* darkgray text / white bg
+* off-white text / black bg
+
+## 后记
+
+说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。

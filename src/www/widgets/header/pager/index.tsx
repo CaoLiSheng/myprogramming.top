@@ -42,9 +42,10 @@ export default class Pager extends Component<
     change: (cur: number) => void,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    console.log(event.target.value);
     let cur = parseInt(event.target.value);
     const normal = !isNaN(cur);
-
+    console.log(normal);
     if (normal) {
       cur = Math.max(pager.min, Math.min(pager.max, cur));
     }
@@ -68,7 +69,7 @@ export default class Pager extends Component<
     return (
       <li>
         <input
-          type="number"
+          type="text"
           placeholder={`${pager.min} - ${pager.max}`}
           onChange={this.onChange.bind(this, pager, change)}
           value={this.state.inputValue}
