@@ -227,7 +227,11 @@ function cssMinify(css: string): string {
 | pseudo-element | 像是多出来一个元素                |
 |   pseudo-class | 像是在 classlist 上多出一个 class |
 
-一个顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
+伪类优先级顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
+
+### 盒子
+
+
 
 ## 后记
 
