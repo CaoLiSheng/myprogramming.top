@@ -3,12 +3,10 @@ style: antique
 title: 读书笔记之《HTML and CSS Design and Build Websites》
 date: 2020-09-10 15:28:00
 tags:
-
-  + 提升计划
-  + 读书笔记
-  + 读书
-  + 笔记
-
+  - 提升计划
+  - 读书笔记
+  - 读书
+  - 笔记
 ---
 
 ## 结构篇
@@ -17,12 +15,12 @@ tags:
 
 不熟悉的控制文本的标签，有些是语义性质的，有些是样式性质的。
 
-* sup, sub
-* strong, em
-* blockquote
-* abbr, cite, dfn
-* address
-* ins, del, s
+- sup, sub
+- strong, em
+- blockquote
+- abbr, cite, dfn
+- address
+- ins, del, s
 
 ### 列表
 
@@ -30,15 +28,15 @@ tags:
 
 ### 链接
 
-* 相对路径和绝对路径
-* 受到 `mailto:` 的启发，在这个博客里使用 `post:` 做站内文章间跳转
+- 相对路径和绝对路径
+- 受到 `mailto:` 的启发，在这个博客里使用 `post:` 做站内文章间跳转
 
-``` typescript
+```typescript
 const originalHref = anchor.getAttribute('href');
 if (originalHref?.startsWith('post:')) {
   anchor.setAttribute(
     'href',
- `${__site_root__}/#/${originalHref.replace(':', '/')}`
+    `${__site_root__}/#/${originalHref.replace(':', '/')}`
   );
   anchor.setAttribute('target', '_top');
 }
@@ -50,7 +48,7 @@ if (originalHref?.startsWith('post:')) {
 
 为了给图片加上标题，并采用规范的 `HTML5` 标签 `figure` ，还写了两个 `showdown` 插件。
 
-``` typescript
+```typescript
 {
   type: 'lang',
   regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
@@ -73,17 +71,17 @@ if (originalHref?.startsWith('post:')) {
 
 表单的目的仅仅是收集用户数据，表单校验的 APIs 需要熟悉一下。
 
-``` css
+```css
 #datetime:invalid {
-    border: solid 1px red;
+  border: solid 1px red;
 }
 
 #datetime:valid {
-    border: solid 1px blue;
+  border: solid 1px blue;
 }
 ```
 
-``` typescript
+```typescript
 var theForm = document.forms['the-form'];
 if (theForm) {
   var datetime = document.getElementById('datetime');
@@ -119,8 +117,8 @@ if (theForm) {
 
 `label` 是为了给有障碍的人士准备的，有两种写法：
 
-* 包裹住控件
-* for="控件 id"
+- 包裹住控件
+- for="控件 id"
 
 `label` 还可以让点击在自己上的事件作用于与它关联的控件。
 
@@ -136,18 +134,18 @@ if (theForm) {
 
 ### 规则和选择器
 
-* 盒子
-    - 宽、高、边框、背景、位置、阴影
-* 文字
-    - 字体、字号、颜色、粗细、大小写、阴影
-* 特殊元素
-    - 列表、表单、表格
+- 盒子
+  - 宽、高、边框、背景、位置、阴影
+- 文字
+  - 字体、字号、颜色、粗细、大小写、阴影
+- 特殊元素
+  - 列表、表单、表格
 
 `CSS` 中的 `C` 非常重要：1）!important；2）选择器更详细；3）同样详细的话后面出现的。这里详细的定义指该选择器选中的元素越少越详细（数一数、比一比）。
 
 `CSS 文件` 最好与 `HTML 文件` 分离开，不论是书写时还是线上时。首先，书写时分离可以改一处影响整个网站；另外，线上分离的好处是第二次加载同一个 `CSS 文件` 时可以有效利用缓存机制。同样的道理应用于 `JS 文件` 。为此，我改进了我的 `markdown -> html` 的逻辑。之前，所有收集到的 `css 文件` 不管有没有用到都先拷贝到发布文件夹， `html 文件` 中包含一条引用和 `<style>...</style>` 两部分。改进后，利用懒加载的方式，动态拼接用到的 `css` ，并且对线上版做文件最小化处理。
 
-``` typescript
+```typescript
 const CSSMaps: {
   [key: string]: string;
 } = {};
@@ -160,7 +158,7 @@ function fetchCSS(base: string): string {
     'src',
     'template',
     'style-source',
- `${base}.css`
+    `${base}.css`
   );
 
   const baseCSSContent = cssMinify(
@@ -176,7 +174,7 @@ function fetchCSS(base: string): string {
       .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
   );
 
-  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css` ;
+  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css`;
 
   const outFilePath = path.join(outDir, CSSMaps[base]);
   if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
@@ -203,8 +201,33 @@ function cssMinify(css: string): string {
 
 常用的文字与背景的对比度搭配：
 
-* darkgray text / white bg
-* off-white text / black bg
+- darkgray text / white bg
+- off-white text / black bg
+
+### 文字
+
+文字类型：
+
+- serif，字母末端有额外细节
+- sans-serif，字母末端无额外细节
+- monospace，等宽字
+- cursive，连笔字
+- fantasy，多用于标题，不适合大段的文字
+
+`googlefont` 是个好东西，可以使用用户电脑上没有的字体渲染网页，就是网站现在使用的字体所使用的服务。但是，服务里的字体数量还是有限的，有一种在特定情况下可以绕过这层限制的方法：首先需要的文字数量要少，然后制作成 `图片`。
+
+| font-weight | font-style | text-transform | text-decoration |
+| :---------: | :--------: | :------------: | :-------------: |
+|    粗体     |    斜体    |     大小写     |     下划线      |
+
+表格中的这几个属性，对我来说，十分容易记混淆。
+
+|           名称 | 定义                              |
+| -------------: | :-------------------------------- |
+| pseudo-element | 像是多出来一个元素                |
+|   pseudo-class | 像是在 classlist 上多出一个 class |
+
+一个顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
 
 ## 后记
 

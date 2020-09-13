@@ -35,8 +35,9 @@ const converter = new showdown.Converter({
     },
   ],
   // metadata: true, // 解析不了yaml数组
-  parseImgDimensions: true,
+  disableForced4SpacesIndentedSublists: true,
   openLinksInNewWindow: true,
+  parseImgDimensions: true,
   tables: true,
 });
 
@@ -183,7 +184,7 @@ posts
     if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
     const [stylesheet, title, date, tags, content] = matches.slice(1);
-    const tagsRe = /\+ (.*?)\n/g;
+    const tagsRe = /- (.*?)\n/g;
     const parsedTags = [];
     if (tags) {
       let tempTag;

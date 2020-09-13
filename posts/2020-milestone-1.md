@@ -3,11 +3,9 @@ style: github-border
 title: 2020年里程碑 - 1
 date: 2020-08-09 16:14:00
 tags:
-
-  + 里程碑
-  + 提升计划
-  + 2020
-
+  - 里程碑
+  - 提升计划
+  - 2020
 ---
 
 ## 前言
@@ -32,7 +30,7 @@ tags:
 
 由于项目的特殊性，开发时要启动多个进程（其实，很多这样的情况）。我在 2019 年的时候，是使用 tmux 方案，即写一段 `shell` 脚本，启动 tmux 进程、切分终端、在对应终端启动特定进程。今年发现了一个新方法：
 
-``` shell
+```shell
 concurrently --handle-input 'nodemon --exec \"node ./build/gen.prod.js > log.txt\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/dev.js'
 ```
 
@@ -44,7 +42,7 @@ concurrently --handle-input 'nodemon --exec \"node ./build/gen.prod.js > log.txt
 
 那么接下来总结由 markdown 转化为 html 部分。主要由三部分组成：一小段 NodeJS 程序、一个模版、一些 CSS 样式表。程序部分仅使用到 `fs-extra` 、 `moment` 、 `showdown` 三个外部包。首先，创建或者清空输出文件夹。
 
-``` javascript
+```javascript
 import fs from 'fs-extra';
 
 ...
@@ -59,7 +57,7 @@ fs.emptyDirSync(outDir);
 
 所以，拷贝 CSS 样式表文件与拷贝资源文件，一气呵成。
 
-``` typescript
+```typescript
 import styles from '@tpl/styles';
 
 ...
@@ -83,7 +81,7 @@ export default {
 
 接着，定义数据库结构。
 
-``` typescript
+```typescript
 // recursive numberic key object
 export interface RNK {
   [key: number]: RNK | string[];
@@ -104,7 +102,7 @@ export interface Schema {
 
 最后，解析 markdown 文件并生成数据库文件和 html 文件，大致上就是这么三个步骤。解析的手段主要是正则表达式，写入数据库需要用到 `moment` 包，生成 html 由 `showdown` 全权负责。这里面最省事的就是生成 html。
 
-``` typescript
+```typescript
 import showdown from 'showdown';
 
 // Construct Converter
@@ -117,7 +115,7 @@ const body = converter.makeHtml(content);
 
 对头部的解析需要两组正则表达式（hhh 反正我是没有一次搞定）。
 
-``` text
+```text
 头部大致长以下这个样子：
 ---
 style: amblin
@@ -132,19 +130,19 @@ tags:
 ---
 ```
 
-``` typescript
+```typescript
 const matches = fileContent.match(
   /^---\nstyle: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
 );
 
-if (!matches) throw new Error( `文章[ ${fileName} ]头部信息解析出现错误！` );
+if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
 const [stylesheet, title, date, tags, content] = matches.slice(1);
 ```
 
 如上代码所示，stylesheet 的值就是之前提到的样式表名称，必须是存在的名称，否则没有华丽的样式可言。tags 就是初步解析出来的标签相关部分，需要进一步使用第二个正则表达式进行处理。
 
-``` typescript
+```typescript
 const tagsRe = /- (.*?)\n/g;
 const parsedTags = [];
 if (tags) {
@@ -157,7 +155,7 @@ if (tags) {
 
 按照模版生成 html 文件仅需要几处字符串替换即可，我思考了很久也没有找到合适的模版关键字语法。这里就是耦合比较重的地方了。如下，大部分情况使用单标签方式，CSS 中使用区间注解方式，主要目的是为了让编辑器 lint 顺利通过（hhh 反正我就是不喜欢 JSP）。
 
-``` typescript
+```typescript
 fs.writeFileSync(
   outFilePath,
   tplContent
@@ -172,13 +170,13 @@ fs.writeFileSync(
 
 模版也起着关键作用，首先说明在生成 html 文件这个过程中发挥的作用，在之后还有别的作用。自定义的网页标题、样式、文章标题并且把文章内容和标题组合放到一个区域下进行管理，并且可以对不同样式表中可能存在的 bug 进行统一的修复。
 
-``` html
+```html
 <article class="markdown-body">
-    <h1>
-        <body_title />
-    </h1>
+  <h1>
+    <body_title />
+  </h1>
 
-    <body />
+  <body />
 </article>
 ```
 
@@ -188,7 +186,7 @@ fs.writeFileSync(
 
 我对 `createContext` API 的使用方式是这样的。如下方代码所示，用到高阶组件的概念给用到上下文的组件注入数据或者操作（对于改变上下文的操作要特别注意其调用的时机，防止死循环）。 `HOCDecrator` 是 `typescript` 语法中装饰器的一种情况，这种操作多少算是取巧的做法（在下方第二段代码中）。
 
-``` typescript
+```typescript
 import React, { createContext, ComponentType, Component } from 'react';
 
 export interface I_CTX {}
@@ -224,7 +222,7 @@ export function withProvider(): HOCDecrator<{ ctx?: I_CTX }> {
 }
 ```
 
-``` typescript
+```typescript
 export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
   Component: React.ComponentType<Props>
 ) => void;
@@ -236,19 +234,19 @@ export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
 
 这一部分是后补的内容，总结开发手机版时的相关内容。目前，手机版与 PC 版的差别不大，仅体现在左上角部分做的一个抽屉。UI 的切换使用 CSS 媒体查询，如下。
 
-``` css
+```css
 .title-bar nav ul.mobile-only {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 750px) {
-    .title-bar nav ul:not(.mobile-compatible) {
-        display: none;
-    }
+  .title-bar nav ul:not(.mobile-compatible) {
+    display: none;
+  }
 
-    .title-bar nav ul.mobile-only {
-        display: flex;
-    }
+  .title-bar nav ul.mobile-only {
+    display: flex;
+  }
 }
 
 // .mobile-only 就是抽屉部分
@@ -259,7 +257,7 @@ export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
 
 对于情况一，这个区域的逻辑永远是 `toggle` 。对于情况二，可以在 `body` 上监听 `click` 事件、并判断没有落入情况一所在区域，总是收起抽屉即可。对于情况三，逻辑同样是收起抽屉，只是实现起来需要用到 `postMessage` API。
 
-``` typescript
+```typescript
 document.body.addEventListener('click', () => {
   window.top.postMessage('iframe.detail clicked', 'http://yx1991.gitee.io');
 });
