@@ -20,6 +20,10 @@ body {
 #main {
   padding-top: 0.5rem;
 
+  &.blurred {
+    filter: blur(3px);
+  }
+
   h1.failure {
     margin-top: calc(50vh - 0.5em);
     text-align: center;

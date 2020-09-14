@@ -51,10 +51,19 @@
     margin-top: 0.3rem;
 
     font-size: 0.24rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
 
     a {
+      padding: 0 0.1rem;
+      border: solid 0.01rem black;
+      border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+      box-shadow: 0.02rem 0.02rem 0.05rem darkcyan;
       text-decoration: none;
       line-height: 1.5em;
+      margin: 0.1rem 1em;
 
       &::before,
       &::after {
@@ -63,10 +72,13 @@
 
       &:hover {
         text-shadow: 0 0 0.05rem #666666;
+        background-color: darkcyan;
+        color: whitesmoke;
       }
 
-      & + a {
-        margin-left: 2em;
+      &:active {
+        background-color: darkblue;
+        color: wheat;
       }
     }
   }

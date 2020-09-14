@@ -229,9 +229,17 @@ function cssMinify(css: string): string {
 
 伪类优先级顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
 
+为 `搜索引擎` 的优化：利用 `text-indent: -9999px;background: url(logo.png);` 这样的技术，达到既显示华丽的图片、又提供爬虫可识别的文字内容。
+
 ### 盒子
 
+著名的 `margin坍缩`，如果要防止这一行为影响界面，就在外面再套一层盒子吧。
 
+椭圆形、不规则形边框：在本站的 `标签搜索页` 有使用。
+
+为 `搜索引擎` 的优化：利用 `display: none;` 达到搜索引擎可见而用户不可见的效果；**_本站的防盗链机制也利用了这个技术_**。
+
+### List Table Form
 
 ## 后记
 

@@ -9,7 +9,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>读书笔记之《HTML and CSS Design and Build Websites》</title>
-    <link rel="stylesheet" type="text/css" href="antique.d17657902ae61ec08180.css" />
+    <link rel="stylesheet" type="text/css" href="antique.35e3f42cf062420c4361.css" />
     
 <script>
   var _hmt = _hmt || [];
@@ -236,8 +236,14 @@ function cssMinify(css: string): string {
 </tr>
 </tbody>
 </table>
-<p>一个顺序：<code>:link</code>，<code>:visited</code>，<code>:hover</code>，<code>:focus</code>，<code>:active</code>；后者优先级更高。</p>
-<h2 id="-11">后记</h2>
+<p>伪类优先级顺序：<code>:link</code>，<code>:visited</code>，<code>:hover</code>，<code>:focus</code>，<code>:active</code>；后者优先级更高。</p>
+<p>为 <code>搜索引擎</code> 的优化：利用 <code>text-indent: -9999px;background: url(logo.png);</code> 这样的技术，达到既显示华丽的图片、又提供爬虫可识别的文字内容。</p>
+<h3 id="-11">盒子</h3>
+<p>著名的 <code>margin坍缩</code>，如果要防止这一行为影响界面，就在外面再套一层盒子吧。</p>
+<p>椭圆形、不规则形边框：在本站的 <code>标签搜索页</code> 有使用。</p>
+<p>为 <code>搜索引擎</code> 的优化：利用 <code>display: none;</code> 达到搜索引擎可见而用户不可见的效果；<strong><em>本站的防盗链机制也利用了这个技术</em></strong>。</p>
+<h3 id="listtableform">List Table Form</h3>
+<h2 id="-12">后记</h2>
 <ol>
 <li>说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。</li>
 <li>另外，虽然这本书是本入门书，但是我如果不是做了几年前端开发的话，肯定是不会把书读薄的。觉得自己不够勤奋、智商不够，接下来的计划中遇到科研级别的问题要如何是好呢。</li>
