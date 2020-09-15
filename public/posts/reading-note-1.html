@@ -243,7 +243,27 @@ function cssMinify(css: string): string {
 <p>椭圆形、不规则形边框：在本站的 <code>标签搜索页</code> 有使用。</p>
 <p>为 <code>搜索引擎</code> 的优化：利用 <code>display: none;</code> 达到搜索引擎可见而用户不可见的效果；<strong><em>本站的防盗链机制也利用了这个技术</em></strong>。</p>
 <h3 id="listtableform">List Table Form</h3>
-<h2 id="-12">后记</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">border-collapse's value</th>
+<th style="text-align:left;">effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">collapse</td>
+<td style="text-align:left;">border-spacing and empty-cells will be ignored</td>
+</tr>
+<tr>
+<td style="text-align:right;">seperate</td>
+<td style="text-align:left;">border-spacing and empty-cells will be obeyed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-12">布局</h3>
+<p>虽然现在 <code>float</code> 属性比较少见，但是有个使用 <code>float</code> 带来的问题还是挺有意思的，即：对于一个 <code>containing box</code> 来说，内部元素都是浮动的，其高度就会为 0。解决的办法是 <code>overflow: auto;width:xxx;</code>。</p>
+<h2 id="-13">后记</h2>
 <ol>
 <li>说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。</li>
 <li>另外，虽然这本书是本入门书，但是我如果不是做了几年前端开发的话，肯定是不会把书读薄的。觉得自己不够勤奋、智商不够，接下来的计划中遇到科研级别的问题要如何是好呢。</li>

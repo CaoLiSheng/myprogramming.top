@@ -241,6 +241,15 @@ function cssMinify(css: string): string {
 
 ### List Table Form
 
+| border-collapse's value | effect                                         |
+| ----------------------: | :--------------------------------------------- |
+|                collapse | border-spacing and empty-cells will be ignored |
+|                seperate | border-spacing and empty-cells will be obeyed  |
+
+### 布局
+
+虽然现在 `float` 属性比较少见，但是有个使用 `float` 带来的问题还是挺有意思的，即：对于一个 `containing box` 来说，内部元素都是浮动的，其高度就会为 0。解决的办法是 `overflow: auto;width:xxx;`。
+
 ## 后记
 
 1. 说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。

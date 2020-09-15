@@ -38,7 +38,7 @@ module.exports = merge(base, {
       automaticNameDelimiter: '~',
       cacheGroups: {
         vendor1: {
-          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-dom|react-router|react-router-dom)[\\/]/,
           name: 'react',
           chunks: 'all',
         },
