@@ -44,7 +44,7 @@ export default class extends Component<
           />
         )}
         <li className="inline">
-          <span>最后更新于：</span>
+          {/* <span>最后更新于：</span> */}
           <Link to={`/canlendar/${date.year()}/*/*`}>{date.year()}</Link>
           <span>年</span>
           <Link to={`/canlendar/${date.year()}/${date.month() + 1}/*`}>

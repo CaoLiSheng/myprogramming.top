@@ -45,3 +45,9 @@ body {
     align-items: center;
   }
 }
+
+@media (max-width: 750px) {
+  #main .wrapper {
+    margin-top: 0.4rem;
+  }
+}

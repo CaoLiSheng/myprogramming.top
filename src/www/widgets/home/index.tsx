@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { SnapList } from '@widgets/snapList';
@@ -9,6 +9,8 @@ import {
   I_DB_CTX,
   I_PAGE_CTX,
 } from '@ctxs/index';
+
+import './index.scss';
 
 @injectDBCtx()
 @injectPageCtx()
@@ -26,6 +28,11 @@ export class Home extends Component<
   }
 
   public render() {
-    return <SnapList />;
+    return (
+      <Fragment>
+        <div className="home wrapper" />
+        <SnapList />
+      </Fragment>
+    );
   }
 }
