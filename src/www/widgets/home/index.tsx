@@ -30,7 +30,7 @@ export class Home extends Component<
   public render() {
     return (
       <Fragment>
-        <div className="home wrapper" />
+        <div className="home hidden wrapper" />
         <SnapList />
       </Fragment>
     );

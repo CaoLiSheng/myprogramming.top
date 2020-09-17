@@ -8,3 +8,7 @@ yarn-error.log
 log.txt
 
 .DS_Store
+
+posts/yulib.resource
+posts/yulib.config
+posts/README.md

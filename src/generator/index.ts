@@ -29,7 +29,7 @@ const converter = new showdown.Converter({
     },
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)x(.*?)\)/g,
+      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)-(.*?)\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
     },
@@ -161,7 +161,7 @@ console.log(posts);
 
 // Copy Assets
 posts
-  .filter((file: string) => isDir(file))
+  .filter((file: string) => !file.startsWith('yulib') && isDir(file))
   .forEach((dir: string) =>
     fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
       recursive: true,
@@ -171,7 +171,10 @@ console.log('All Assets Copied');
 
 // Generate HTML
 posts
-  .filter((file: string) => isFile(file) && file.endsWith('.md'))
+  .filter(
+    (file: string) =>
+      file !== 'README.md' && file.endsWith('.md') && isFile(file)
+  )
   .forEach((fileName: string) => {
     const fileContent = fs.readFileSync(path.join(inDir, fileName), {
       encoding: 'UTF-8',

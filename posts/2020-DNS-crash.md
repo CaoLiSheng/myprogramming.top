@@ -17,14 +17,14 @@ nslookup name [server]
 
 ```
 
-![已恢复](2020-DNS-crash/recovered.png '已经恢复正常的解析结果' =100%xauto)
+![已恢复](2020-DNS-crash/recovered.png '已经恢复正常的解析结果' =100%-auto)
 
 ---
 
 以下照片中 `118.107.13.135` 就是出问题的 DNS 所指向的错误 IP 地址：
 
-![错误中](2020-DNS-crash/aterror2.jpeg '连手机热点是没有解析到这个错误 IP 地址的' =100%xauto)
+![错误中](2020-DNS-crash/aterror2.jpeg '连手机热点是没有解析到这个错误 IP 地址的' =100%-auto)
 
-![错误中](2020-DNS-crash/aterror3.jpeg '这时使用的是阿里 DNS，必应中国似乎在这里幸免于难' =100%xauto)
+![错误中](2020-DNS-crash/aterror3.jpeg '这时使用的是阿里 DNS，必应中国似乎在这里幸免于难' =100%-auto)
 
-![错误中](2020-DNS-crash/aterror4.jpeg '正常的搜狗解析和错误的搜狗解析' =100%xauto)
+![错误中](2020-DNS-crash/aterror4.jpeg '正常的搜狗解析和错误的搜狗解析' =100%-auto)
