@@ -18,17 +18,7 @@ ul.snap-list {
       width: 100%;
       position: relative;
 
-      @keyframes tweaking {
-        0% {
-          background: #aaaaaa;
-        }
-
-        100% {
-          background: #cccccc;
-        }
-      }
-
-      &:hover::after {
+      &::after {
         content: ' ';
         position: absolute;
         top: 0;
@@ -36,6 +26,23 @@ ul.snap-list {
         bottom: 0;
         left: 0;
         opacity: 0.3;
+        animation: none;
+        visibility: hidden;
+      }
+
+      @keyframes tweaking {
+        0% {
+          background: #89aeff;
+        }
+
+        100% {
+          background: #2b7bf1;
+        }
+      }
+
+      &:hover::after {
+        content: ' ';
+        visibility: visible;
         animation: tweaking 300ms ease-in-out 0s infinite alternate both;
       }
 

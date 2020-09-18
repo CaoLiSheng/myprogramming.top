@@ -18,7 +18,6 @@ const styles: { [key: string]: StyleSheet } = {
   'github-colors': WidePadding,
   lopash: NullPadding,
   modest: WidePadding,
-  retro: ThinPadding,
   splendor: ThinPadding,
 };
 

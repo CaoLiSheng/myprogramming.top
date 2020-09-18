@@ -19,9 +19,7 @@ window.top.postMessage(`is-it-time-to-show ${token}`, __origin__);
 
 // support snaplist mode
 if (location.hash !== '#snapshot') {
-  document
-    .querySelector('article.markdown-body.snapshot')
-    ?.classList.remove('snapshot');
+  document.body.classList.remove('snapshot');
 }
 
 // support closing categories on mobile site
