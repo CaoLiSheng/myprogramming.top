@@ -51,7 +51,7 @@ body:not(.snapshot) {
 }
 
 body:not(.snapshot) > .markdown-body {
-  background: #fff;
+  background: #dfdfdfdf;
   border-radius: 6px;
   border: solid 1px gray;
   box-shadow: 0 0 5px 0 gray;
