@@ -5,17 +5,17 @@
   "main": "build/index.js",
   "scripts": {
     "test": "webpack -h",
+    "prod": "npm run prod:0 && npm run prod:1",
     "pack:prod": "webpack -p --devtool=false --config=cfg/webpack/gen.prod.js",
     "gen:prod": "node ./build/prod/generator.min.js > log.txt",
     "prod:0": "rm -rf public && webpack -p --devtool=false --config=cfg/webpack/site.prod.js",
     "prod:1": "rm -rf build/prod && npm run pack:prod && npm run gen:prod",
-    "prod": "npm run prod:0 && npm run prod:1",
     "pack:dev": "webpack -p --devtool=false --config=cfg/webpack/gen.dev.js",
     "gen:dev": "node ./build/dev/generator.min.js > log.txt",
-    "dev:pre": "rm -rf build/dev && npm run pack:dev && npm run gen:dev",
     "dev:0": "nodemon --exec 'node ./build/dev/generator.min.js > log.txt'",
     "dev:1": "serve -C -l 5555 ./build/posts/",
     "dev:2": "webpack-dev-server -p --devtool=false --config=cfg/webpack/site.dev.js",
+    "dev:pre": "rm -rf build/dev && npm run pack:dev && npm run gen:dev",
     "dev": "npm run dev:pre && concurrently --handle-input 'npm run dev:0' 'npm run dev:1' 'npm run dev:2'"
   },
   "repository": {
