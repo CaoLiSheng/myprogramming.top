@@ -9,7 +9,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>读书笔记之《HTML and CSS Design and Build Websites》</title>
-    <link rel="stylesheet" type="text/css" href="antique.2f1ad3bb45c458a61dbb.css" />
+    <link rel="stylesheet" type="text/css" href="antique.f8f4bfb1c5ea58240f7c.css" />
     
 <script>
   var _hmt = _hmt || [];
@@ -264,7 +264,18 @@ function cssMinify(css: string): string {
 <h3 id="-12">布局</h3>
 <p>虽然现在 <code>float</code> 属性比较少见，但是有个使用 <code>float</code> 带来的问题还是挺有意思的，即：对于一个 <code>containing box</code> 来说，内部元素都是浮动的，其高度就会为 0。解决的办法是 <code>overflow: auto;width:xxx;</code>。</p>
 <h3 id="-13">图像</h3>
-<h2 id="-14">后记</h2>
+<h3 id="html5">HTML5 布局</h3>
+<p>下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容IE9之前浏览器，还要兼容到IE6。</p>
+<pre><code class="html language-html">&lt;!--[if lt IE 9]&gt;
+&lt;script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+</code></pre>
+<pre><code class="css language-css">header, section, footer, aside, nav, article, figure {
+  display: block;
+}
+</code></pre>
+<h2 id="-14">流程、设计、最佳实践</h2>
+<h2 id="-15">后记</h2>
 <ol>
 <li>说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。</li>
 <li>另外，虽然这本书是本入门书，但是我如果不是做了几年前端开发的话，肯定是不会把书读薄的。觉得自己不够勤奋、智商不够，接下来的计划中遇到科研级别的问题要如何是好呢。</li>

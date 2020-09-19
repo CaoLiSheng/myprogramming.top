@@ -9,6 +9,6 @@ log.txt
 
 .DS_Store
 
-posts/yulib.resource
 posts/yulib.config
+posts/**.resource
 posts/README.md

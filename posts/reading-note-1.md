@@ -252,6 +252,24 @@ function cssMinify(css: string): string {
 
 ### 图像
 
+### HTML5 布局
+
+下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容IE9之前浏览器，还要兼容到IE6。
+
+```html
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+```
+
+```css
+header, section, footer, aside, nav, article, figure {
+  display: block;
+}
+```
+
+## 流程、设计、最佳实践
+
 
 
 ## 后记

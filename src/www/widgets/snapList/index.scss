@@ -8,10 +8,10 @@ ul.snap-list {
   a {
     display: block;
     width: 100%;
-    padding: 0.1rem 0;
+    border: dashed 0.01rem #888888;
 
-    & ~ a {
-      border-top: dashed 0.01rem #888888;
+    & + a {
+      border-top: none;
     }
 
     li {

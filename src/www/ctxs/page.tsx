@@ -58,17 +58,20 @@ export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
         });
 
       updatePage = (key: string, data: string[]) =>
-        this.setState(({ page }) => ({
-          page: {
-            ...page,
-            [key]: {
-              cur: 0,
-              min: 0,
-              max: Math.max(0, Math.ceil(data.length / PAGE_SIZE) - 1),
-              data,
+        this.setState(
+          ({ page }) => ({
+            page: {
+              ...page,
+              [key]: {
+                cur: 0,
+                min: 0,
+                max: Math.max(0, Math.ceil(data.length / PAGE_SIZE) - 1),
+                data,
+              },
             },
-          },
-        }));
+          }),
+          () => window.scrollTo(0, 0)
+        );
 
       state = { page: {}, change: this.changePage, update: this.updatePage };
 

@@ -161,7 +161,7 @@ console.log(posts);
 
 // Copy Assets
 posts
-  .filter((file: string) => !file.startsWith('yulib') && isDir(file))
+  .filter((file: string) => !file.endsWith('.resource') && isDir(file))
   .forEach((dir: string) =>
     fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
       recursive: true,
@@ -171,10 +171,7 @@ console.log('All Assets Copied');
 
 // Generate HTML
 posts
-  .filter(
-    (file: string) =>
-      file !== 'README.md' && file.endsWith('.md') && isFile(file)
-  )
+  .filter((file: string) => file.endsWith('.md') && isFile(file))
   .forEach((fileName: string) => {
     const fileContent = fs.readFileSync(path.join(inDir, fileName), {
       encoding: 'UTF-8',
