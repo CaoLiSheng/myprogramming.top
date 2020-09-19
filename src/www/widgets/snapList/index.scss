@@ -1,6 +1,6 @@
 ul.snap-list {
   list-style: none;
-  margin: 0 auto;
+  margin: 0.2rem auto;
   min-width: 200px;
   max-width: 980px;
   width: 100%;
@@ -8,7 +8,21 @@ ul.snap-list {
   a {
     display: block;
     width: 100%;
+    background-color: white;
+    box-shadow: 0 0 5px 0 gray;
     border: dashed 0.01rem #888888;
+
+    &:first-child,
+    &:first-child iframe {
+      border-top-left-radius: 0.1rem;
+      border-top-right-radius: 0.1rem;
+    }
+
+    &:last-child,
+    &:last-child iframe {
+      border-bottom-left-radius: 0.1rem;
+      border-bottom-right-radius: 0.1rem;
+    }
 
     & + a {
       border-top: none;

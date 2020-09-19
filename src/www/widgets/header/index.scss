@@ -147,8 +147,9 @@
         align-items: flex-start;
         flex-wrap: nowrap;
         background-color: #2175bc;
-        width: 6em;
+        width: 5em;
         li {
+          width: 100%;
           height: 0.8rem;
 
           &.categories {
@@ -156,6 +157,10 @@
 
             &.show {
               display: block;
+            }
+
+            a {
+              line-height: 0.8rem;
             }
           }
         }
