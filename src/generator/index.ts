@@ -36,7 +36,7 @@ const converter = new showdown.Converter({
   ],
   // metadata: true, // 解析不了yaml数组
   disableForced4SpacesIndentedSublists: true,
-  openLinksInNewWindow: true,
+  // openLinksInNewWindow: true,
   parseImgDimensions: true,
   tables: true,
 });

@@ -11,6 +11,7 @@ module.exports = merge(base, {
   devServer: {
     port: 3000,
     host: 'dev.myprogramming.top',
+    disableHostCheck: true,
   },
   resolve: {
     alias: {

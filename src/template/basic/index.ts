@@ -27,14 +27,15 @@ document.body.addEventListener('click', () => {
   window.top.postMessage('iframe.detail clicked', __origin__);
 });
 
-document.querySelectorAll('a').forEach((anchor) => {
+document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
   // support opening mine own post URLs
-  const originalHref = anchor.getAttribute('href');
-  if (originalHref?.startsWith('post:')) {
-    anchor.setAttribute(
-      'href',
-      `${__site_root__}/#/${originalHref.replace(':', '/')}`
-    );
-    anchor.setAttribute('target', '_top');
+  let href: string | null = anchor.getAttribute('href');
+  if (href?.startsWith('post:')) {
+    href = `${__site_root__}/#/${href.replace(':', '/')}`;
   }
+
+  anchor.addEventListener('click', (ev: MouseEvent) => {
+    ev.preventDefault();
+    window.top.postMessage(`please-open-in-new-tab ${href}`, __origin__);
+  });
 });

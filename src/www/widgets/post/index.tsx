@@ -10,7 +10,7 @@ export class Post extends Component<RouteComponentProps<{ name: string }>> {
     return (
       <iframe
         className="detail"
-        sandbox="allow-modals allow-popups allow-scripts allow-top-navigation"
+        // sandbox="allow-modals allow-popups allow-scripts allow-top-navigation"
         src={`${__dirs__.__posts_root__}${
           this.props.match.params.name
         }.html?var=${Date.now()}`}
