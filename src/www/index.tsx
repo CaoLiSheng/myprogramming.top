@@ -14,6 +14,7 @@ import { Home, Post, Header, Tags, Canlendar } from '@widgets/index';
 
 import './index.scss';
 // import CategoryEntrySVG from '@images/category-icon.svg';
+import ClickWAV from '@audios/click.wav';
 
 interface AppStates {
   hasError: boolean;
@@ -95,3 +96,13 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
 }
 
 render(<App />, document.getElementById('main'));
+
+document.body.addEventListener('click', () => {
+  let player = document.getElementById('click-wav');
+  if (!player) {
+    player = document.createElement('audio');
+    document.body.appendChild(player);
+    player.setAttribute('src', ClickWAV);
+  }
+  (player as HTMLAudioElement).play();
+});

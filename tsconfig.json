@@ -11,6 +11,9 @@
       "@images/*": [
         "src/images/*"
       ],
+      "@audios/*": [
+        "src/audios/*"
+      ],
       "@ctxs/*": [
         "src/www/ctxs/*"
       ],

@@ -22,7 +22,7 @@ module.exports = merge(base, {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif)$/,
+        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav)$/,
         loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
       },
     ],
