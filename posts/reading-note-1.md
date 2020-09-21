@@ -282,6 +282,18 @@ figure {
 4. What：调研网站需要提供哪些信息以让用户达到目的（自建站以来我的提升经历，当然也是基于我之前的人生经历）
 5. How OFTEN：更新频率（而言，取决于我的学习效率）
 6. Site Map：这里我用思维导图表达一下。![Site Map 1](reading-note-1/site-map-1.png 'Site Map 1') [XMind 创作文件](reading-note-1/site-map-1.xmind 'site-map-1.xmind')
+7. Wireframe：确定功能性需求
+8. Visual Design：首要目的是为了沟通，主要工具是视觉树结构，主要做以下三件事情
+  1. 确定内容
+  2. 排列优先级
+  3. 组织架构
+9. （Bonus）导航栏设计指南
+  1. 简单
+  2. 明了
+  3. 有选择性
+  4. 最好指示出当前页所在的位置
+  5. 按钮大小要易于交互
+  6. 如果有多级导航栏，要保持一致性
 
 ## 后记
 

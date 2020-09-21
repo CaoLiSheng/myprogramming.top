@@ -12,6 +12,10 @@
   border: none;
   background: transparent;
 }
+
+.markdown-body a[download] {
+  text-decoration: underline;
+}
 /* 以上：全局预设 */
 
 /* base_stylesheet */
@@ -25,7 +29,6 @@
 
 .markdown-body figure {
   width: 100%;
-  overflow-x: auto;
   text-align: center;
 }
 

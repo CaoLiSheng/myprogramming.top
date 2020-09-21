@@ -95,7 +95,15 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
           <Route path="/tags/:tags" component={Tags} />
           <Route path="/canlendar/:year/:month/:date" component={Canlendar} />
         </Switch>
-        <Header />
+        <Route
+          path={[
+            '/canlendar/:year/:month/:date',
+            '/tags/:tags',
+            '/post/:name',
+            '/',
+          ]}
+          component={Header}
+        />
         {/* <Overlay
               icon={CategoryEntrySVG}
               positionStyleObj={{ right: '0.1rem', bottom: '0.1rem' }}

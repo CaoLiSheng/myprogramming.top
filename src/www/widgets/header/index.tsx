@@ -1,6 +1,6 @@
 import React, { Component, createRef, RefObject } from 'react';
+import { Link, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import classNames from 'classnames';
-import { Link, Switch, Route } from 'react-router-dom';
 
 import Category from './category';
 import Pager from './pager';
@@ -21,7 +21,10 @@ const clickIn = (
   return false;
 };
 
-export class Header extends Component<{}, { categoryExpanded: boolean }> {
+export class Header extends Component<
+  RouteComponentProps<{}>,
+  { categoryExpanded: boolean }
+> {
   state = { categoryExpanded: false };
 
   private toggleElem: RefObject<HTMLAnchorElement> = createRef<
@@ -56,18 +59,41 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
   }
 
   render() {
+    console.log('this.props.match.path', this.props.match.path);
     return (
       <div className="title-bar">
         <nav>
           <ul className="left">
             <li>
-              <Link to="/">首页</Link>
+              <Link
+                to="/"
+                className={classNames({
+                  ctx: this.props.match.path === '/',
+                })}
+              >
+                首页
+              </Link>
             </li>
             <li>
-              <Link to="/canlendar/*/*/*">日历</Link>
+              <Link
+                to="/canlendar/*/*/*"
+                className={classNames({
+                  ctx:
+                    this.props.match.path === '/canlendar/:year/:month/:date',
+                })}
+              >
+                日历
+              </Link>
             </li>
             <li>
-              <Link to="/tags/*">标签</Link>
+              <Link
+                to="/tags/*"
+                className={classNames({
+                  ctx: this.props.match.path === '/tags/:tags',
+                })}
+              >
+                标签
+              </Link>
             </li>
           </ul>
           <ul className="right mobile-compatible">
@@ -91,21 +117,43 @@ export class Header extends Component<{}, { categoryExpanded: boolean }> {
                 show: this.state.categoryExpanded,
               })}
             >
-              <Link to="/">首页</Link>
+              <Link
+                to="/"
+                className={classNames({
+                  ctx: this.props.match.path === '/',
+                })}
+              >
+                首页
+              </Link>
             </li>
             <li
               className={classNames('categories', {
                 show: this.state.categoryExpanded,
               })}
             >
-              <Link to="/canlendar/*/*/*">日历</Link>
+              <Link
+                to="/canlendar/*/*/*"
+                className={classNames({
+                  ctx:
+                    this.props.match.path === '/canlendar/:year/:month/:date',
+                })}
+              >
+                日历
+              </Link>
             </li>
             <li
               className={classNames('categories', {
                 show: this.state.categoryExpanded,
               })}
             >
-              <Link to="/tags/*">标签</Link>
+              <Link
+                to="/tags/*"
+                className={classNames({
+                  ctx: this.props.match.path === '/tags/:tags',
+                })}
+              >
+                标签
+              </Link>
             </li>
           </ul>
         </nav>
