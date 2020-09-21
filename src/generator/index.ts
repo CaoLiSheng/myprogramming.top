@@ -36,7 +36,7 @@ const converter = new showdown.Converter({
     {
       type: 'lang',
       regex: /\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
-      replace: '<a href="$2" download="$3">$1</a>',
+      replace: '<a href="$2" download="$3">「右键-打开链接」下载：$1</a>',
     },
   ],
   // metadata: true, // 解析不了yaml数组
