@@ -9,5 +9,5 @@ tags:
 
 |              开始于 |                  书名                  |     作者      | 完成于 |
 | ------------------: | :------------------------------------: | :-----------: | :----- |
-| 2020 年 08 月 28 日 | HTML and CSS Design and Build Websites |  Jon Duckett  | -      |
+| 2020 年 08 月 28 日 | HTML and CSS Design and Build Websites |  Jon Duckett  | 2020 年 09 月 21 日      |
 | 2020 年 09 月 01 日 |               Algorithms               | Jeff Erickson | -      |
