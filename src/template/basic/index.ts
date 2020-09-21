@@ -30,7 +30,7 @@ document.body.addEventListener('click', () => {
 document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
   // support opening download urls
   if (anchor.getAttribute('download')) {
-    anchor.setAttribute('target', '_top');
+    anchor.setAttribute('target', '_blank');
     return;
   }
 
