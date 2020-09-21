@@ -254,16 +254,22 @@ function cssMinify(css: string): string {
 
 ### HTML5 布局
 
-下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容IE9之前浏览器，还要兼容到IE6。
+下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容 IE9 之前浏览器，还要兼容到 IE6。
 
 ```html
 <!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 ```
 
 ```css
-header, section, footer, aside, nav, article, figure {
+header,
+section,
+footer,
+aside,
+nav,
+article,
+figure {
   display: block;
 }
 ```
@@ -275,6 +281,7 @@ header, section, footer, aside, nav, article, figure {
 3. What：调研用户通过本站所能达到的目的（认可我的能力，然后给一份高薪；朋友间交流心得）
 4. What：调研网站需要提供哪些信息以让用户达到目的（自建站以来我的提升经历，当然也是基于我之前的人生经历）
 5. How OFTEN：更新频率（就本站而言，取决于我的学习效率）
+6. Site Map：这里我用思维导图表达一下。![Site Map 1](reading-note-1/site-map-1.png 'Site Map 1') [点击下载 XMind 创作文件](reading-note-1/site-map-1.xmind 'site-map-1.xmind')
 
 ## 后记
 

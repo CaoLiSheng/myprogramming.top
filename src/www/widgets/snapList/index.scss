@@ -33,30 +33,33 @@ ul.snap-list {
       position: relative;
 
       &::after {
-        content: ' ';
+        content: '';
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        opacity: 0.3;
         animation: none;
-        visibility: hidden;
+        background-image: linear-gradient(
+          transparent,
+          transparent 80%,
+          #ffffff99 80%,
+          #efefef 100%
+        );
       }
 
       @keyframes tweaking {
         0% {
-          background: #89aeff;
+          background-color: #89aeff50;
         }
 
         100% {
-          background: #2b7bf1;
+          background-color: #2b7bf150;
         }
       }
 
       &:hover::after {
-        content: ' ';
-        visibility: visible;
+        background-image: none;
         animation: tweaking 300ms ease-in-out 0s infinite alternate both;
       }
 

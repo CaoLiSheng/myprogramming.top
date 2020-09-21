@@ -33,6 +33,11 @@ const converter = new showdown.Converter({
       replace:
         '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
     },
+    {
+      type: 'lang',
+      regex: /\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      replace: '<a href="$2" download="$3">$1</a>',
+    },
   ],
   // metadata: true, // 解析不了yaml数组
   disableForced4SpacesIndentedSublists: true,

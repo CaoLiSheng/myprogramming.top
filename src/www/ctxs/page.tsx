@@ -52,10 +52,13 @@ export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
   ) =>
     class extends Component<P, I_PAGE_CTX> {
       changePage = (key: string, cur: number) =>
-        this.setState(({ page }) => {
-          const info = page?.[key] || { min: 0, max: 0, data: [] };
-          return { page: { ...(page || {}), [key]: { ...info, cur } } };
-        });
+        this.setState(
+          ({ page }) => {
+            const info = page?.[key] || { min: 0, max: 0, data: [] };
+            return { page: { ...(page || {}), [key]: { ...info, cur } } };
+          },
+          () => window.scrollTo(0, 0)
+        );
 
       updatePage = (key: string, data: string[]) =>
         this.setState(

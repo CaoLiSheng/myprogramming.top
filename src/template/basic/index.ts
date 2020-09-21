@@ -28,7 +28,13 @@ document.body.addEventListener('click', () => {
 });
 
 document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
-  // support opening mine own post URLs
+  // support opening download urls
+  if (anchor.getAttribute('download')) {
+    anchor.setAttribute('target', '_top');
+    return;
+  }
+
+  // support opening urls in new tab
   let href: string | null = anchor.getAttribute('href');
   if (href?.startsWith('post:')) {
     href = `${__site_root__}/#/${href.replace(':', '/')}`;

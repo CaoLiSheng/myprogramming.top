@@ -9,7 +9,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>读书笔记之《HTML and CSS Design and Build Websites》</title>
-    <link rel="stylesheet" type="text/css" href="antique.f8f4bfb1c5ea58240f7c.css" />
+    <link rel="stylesheet" type="text/css" href="antique.e5a1314fd9c152590c90.css" />
     
 <script>
   var _hmt = _hmt || [];
@@ -265,12 +265,18 @@ function cssMinify(css: string): string {
 <p>虽然现在 <code>float</code> 属性比较少见，但是有个使用 <code>float</code> 带来的问题还是挺有意思的，即：对于一个 <code>containing box</code> 来说，内部元素都是浮动的，其高度就会为 0。解决的办法是 <code>overflow: auto;width:xxx;</code>。</p>
 <h3 id="-13">图像</h3>
 <h3 id="html5">HTML5 布局</h3>
-<p>下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容IE9之前浏览器，还要兼容到IE6。</p>
+<p>下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容 IE9 之前浏览器，还要兼容到 IE6。</p>
 <pre><code class="html language-html">&lt;!--[if lt IE 9]&gt;
-&lt;script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;
+  &lt;script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"&gt;&lt;/script&gt;
 &lt;![endif]--&gt;
 </code></pre>
-<pre><code class="css language-css">header, section, footer, aside, nav, article, figure {
+<pre><code class="css language-css">header,
+section,
+footer,
+aside,
+nav,
+article,
+figure {
   display: block;
 }
 </code></pre>
@@ -281,6 +287,7 @@ function cssMinify(css: string): string {
 <li>What：调研用户通过本站所能达到的目的（认可我的能力，然后给一份高薪；朋友间交流心得）</li>
 <li>What：调研网站需要提供哪些信息以让用户达到目的（自建站以来我的提升经历，当然也是基于我之前的人生经历）</li>
 <li>How OFTEN：更新频率（就本站而言，取决于我的学习效率）</li>
+<li>Site Map：这里我用思维导图表达一下。<figure><img alt="Site Map 1" src="reading-note-1/site-map-1.png" title="Site Map 1" /><figcaption>Site Map 1</figcaption></figure> <a href="reading-note-1/site-map-1.xmind" download="site-map-1.xmind">点击下载 XMind 创作文件</a></li>
 </ol>
 <h2 id="-15">后记</h2>
 <ol>
@@ -288,6 +295,6 @@ function cssMinify(css: string): string {
 <li>另外，虽然这本书是本入门书，但是我如果不是做了几年前端开发的话，肯定是不会把书读薄的。觉得自己不够勤奋、智商不够，接下来的计划中遇到科研级别的问题要如何是好呢。</li>
 </ol>
     </article>
-    <script type="application/javascript" src="template.c618b90419eff56fa3c8.js"></script>
+    <script type="application/javascript" src="template.b67b145ec98cc710146b.js"></script>
   </body>
 </html>

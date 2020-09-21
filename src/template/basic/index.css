@@ -1,29 +1,41 @@
+/* 以下：全局预设 */
+.markdown-body figure {
+  margin: unset;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+/* 以上：全局预设 */
+
 /* base_stylesheet */
 
-/*Scroll bar nav*/
-::-webkit-scrollbar {
-  width: 3pt;
-  height: 3pt;
-}
-/* Track */
-::-webkit-scrollbar-track {
-  background: #ddd;
-  border-radius: 9pt;
-}
-/* Corner */
-::-webkit-scrollbar-corner {
-  background: #ddd;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 9pt;
-}
-::-webkit-scrollbar-thumb:window-inactive {
-  background: #aaa;
+/* 以下：全局正规化 */
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl {
+  list-style-position: inside;
 }
 
-/* 以下：摆放文章主体 */
+.markdown-body figure {
+  width: 100%;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.markdown-body figure > figcaption {
+  position: static;
+  background: transparent;
+}
+/* 以上：全局正规化 */
+
+/* 以下：正规化文章主体块 */
 body {
   display: flex;
   flex-direction: row;
@@ -67,32 +79,27 @@ body:not(.snapshot) > .markdown-body {
     /* body_padding_mobile */
   }
 }
+/* 以上：正规化文章主体块 */
 
-/* 以下：全局正规化 */
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body dl {
-  list-style-position: inside;
+/*Scroll bar nav*/
+::-webkit-scrollbar {
+  width: 3pt;
+  height: 3pt;
 }
-
-.markdown-body pre {
-  overflow: auto;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 9pt;
 }
-
-.markdown-body pre code {
-  padding: 0;
-  border: none;
-  background: transparent;
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: #ddd;
 }
-
-.markdown-body figure {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  text-align: center;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 9pt;
 }
-
-.markdown-body figure figcaption {
-  position: static;
-  background: transparent;
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #aaa;
 }
