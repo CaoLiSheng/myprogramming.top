@@ -1,4 +1,5 @@
 ---
+no-receive-emails
 style: lopash
 title: 2020年8月之后的读书列表
 date: 2020-09-06 16:22:00

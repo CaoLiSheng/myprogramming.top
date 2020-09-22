@@ -16,6 +16,21 @@
 .markdown-body a[download] {
   text-decoration: underline;
 }
+
+.markdown-body a[href^='mailto:'] {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  font-weight: bolder;
+  background-color: green;
+  color: azure;
+  transition: background-color 300ms, color 1s;
+}
+
+.markdown-body a[href^='mailto:']:hover {
+  background-color: whitesmoke;
+  color: teal;
+}
 /* 以上：全局预设 */
 
 /* base_stylesheet */

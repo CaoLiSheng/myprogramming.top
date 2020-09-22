@@ -23,6 +23,12 @@ const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
+      regex: /!\[(.*?)\]\(:?([\S]+)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
+    },
+    {
+      type: 'lang',
       regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
@@ -176,19 +182,31 @@ console.log('All Assets Copied');
 
 // Generate HTML
 posts
-  .filter((file: string) => file.endsWith('.md') && isFile(file))
+  .filter(
+    (file: string) =>
+      (__production__ ? !file.startsWith('draft.') : true) &&
+      file.endsWith('.md') &&
+      isFile(file)
+  )
   .forEach((fileName: string) => {
     const fileContent = fs.readFileSync(path.join(inDir, fileName), {
       encoding: 'UTF-8',
     });
 
     const matches = fileContent.match(
-      /^---\nstyle: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
+      /^---\n(no-receive-emails\n)?style: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
     );
 
     if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
-    const [stylesheet, title, date, tags, content] = matches.slice(1);
+    const [
+      noReceiveEmails,
+      stylesheet,
+      title,
+      date,
+      tags,
+      content,
+    ] = matches.slice(1);
     const tagsRe = /- (.*?)\n/g;
     const parsedTags = [];
     if (tags) {
@@ -206,6 +224,7 @@ posts
       [
         fileName,
         fileContent,
+        noReceiveEmails,
         stylesheet,
         title,
         date,
@@ -229,8 +248,18 @@ posts
         .replace('<title />', title)
         .replace('<hm_baidu />', hmBaidu())
         .replace('/* stylesheet */', fetchCSS(stylesheet))
-        .replace('<body_title />', title)
-        .replace('<body />', body)
+        .replace(
+          '<body_title />',
+          __production__
+            ? title
+            : `${fileName.startsWith('draft.') ? '「草稿」' : ''}${title}`
+        )
+        .replace(
+          '<body />',
+          noReceiveEmails
+            ? body
+            : `${body}<br /><hr /><br /><a href="mailto:954382491@qq.com?subject=评价「${title}」">给我发邮件~评价~一下吧</a><br /><br />`
+        )
         .replace('/* javascript */', tplScriptName)
     );
   });
