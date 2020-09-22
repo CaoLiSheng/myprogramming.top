@@ -45,3 +45,19 @@ document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
     window.top.postMessage(`please-open-in-new-tab ${href}`, __origin__);
   });
 });
+
+// support table on mobile
+const thData: (string | null)[] = [];
+document
+  .querySelectorAll(`table > thead > tr > th`)
+  .forEach((elem: Element, i: number) => (thData[i] = elem.textContent));
+
+document.querySelectorAll(`table > tbody > tr`).forEach((tRow: Element) => {
+  const children = tRow.children;
+  for (let i = 0; i < children.length; i++) {
+    children[i].setAttribute('style', `text-align:left;`);
+    if (!!thData[i]) {
+      children[i].setAttribute('data-th', thData[i] as string);
+    }
+  }
+});

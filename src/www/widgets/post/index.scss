@@ -3,3 +3,9 @@ iframe.detail {
   width: 100vw;
   height: calc(100vh - 0.5rem);
 }
+
+@media (max-width: 750px) {
+  iframe.detail {
+    height: calc(100vh - 0.8rem);
+  }
+}
