@@ -10,12 +10,24 @@ declare var __out_path__: string;
 declare var __production__: boolean;
 declare var __tpl_script_path__: string;
 
+// global utils
 function isDir(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isDirectory();
 }
 
 function isFile(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isFile();
+}
+
+function minify(content: string): string {
+  // console.log(content);
+  if (__production__) {
+    return content
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n\s*?(\S)/g, ' $1')
+      .trim();
+  }
+  return content;
 }
 
 // Construct Converter
@@ -116,13 +128,11 @@ function fetchCSS(base: string): string {
     `${base}.css`
   );
 
-  const baseCSSContent = cssMinify(
-    fs.readFileSync(baseCSSPath, {
-      encoding: 'UTF-8',
-    })
-  );
+  const baseCSSContent = fs.readFileSync(baseCSSPath, {
+    encoding: 'UTF-8',
+  });
 
-  const cssContent = cssMinify(
+  const cssContent = minify(
     tplCSSContent
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
@@ -137,33 +147,6 @@ function fetchCSS(base: string): string {
   fs.writeFileSync(outFilePath, cssContent);
 
   return CSSMaps[base];
-}
-
-function cssMinify(css: string): string {
-  if (__production__) {
-    return css
-      .replace(/\/\*[\s\S]*?\*\//g, '')
-      .replace(/\n+.*?(\S)/g, '$1')
-      .trim();
-  }
-  return css;
-}
-
-// hm baidu
-function hmBaidu(): string {
-  return __production__
-    ? `
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-</script>
-  `
-    : '';
 }
 
 // Read Source Dir
@@ -244,25 +227,53 @@ posts
 
     fs.writeFileSync(
       outFilePath,
-      tplContent
-        .replace('<title />', title)
-        .replace('<hm_baidu />', hmBaidu())
-        .replace('/* stylesheet */', fetchCSS(stylesheet))
-        .replace(
-          '<body_title />',
-          __production__
-            ? title
-            : `${fileName.startsWith('draft.') ? '「草稿」' : ''}${title}`
-        )
-        .replace(
-          '<body />',
-          noReceiveEmails
-            ? body
-            : `${body}<br /><hr /><br /><a href="mailto:954382491@qq.com?subject=评价「${title}」">给我发邮件~评价~一下吧</a><br /><br />`
-        )
-        .replace('/* javascript */', tplScriptName)
+      minify(
+        tplContent
+          .replace('<title />', title)
+          .replace('<hm_baidu />', hmBaidu())
+          .replace('/* stylesheet */', fetchCSS(stylesheet))
+          .replace(
+            '<body_title />',
+            __production__
+              ? title
+              : `${fileName.startsWith('draft.') ? '「草稿」' : ''}${title}`
+          )
+          .replace(
+            '<body />',
+            noReceiveEmails ? body : `${body}${emailLink(title)}`
+          )
+          .replace('/* javascript */', tplScriptName)
+      )
     );
   });
+
+// hm baidu
+function hmBaidu(): string {
+  return __production__
+    ? `
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+  `
+    : '';
+}
+
+// email link
+function emailLink(title: string): string {
+  return `
+<br /><br />
+<hr />
+<br />
+<a href="mailto:954382491@qq.com?subject=评价「${title}」">发邮件~来评价~一下吧</a>
+<br /><br />
+  `;
+}
 console.log('All HTML Generated');
 
 const dbPath = path.join(outDir, 'db.json');
