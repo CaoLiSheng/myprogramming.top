@@ -216,16 +216,16 @@ function cssMinify(css: string): string {
 
 `googlefont` 是个好东西，可以使用用户电脑上没有的字体渲染网页，就是网站现在使用的字体所使用的服务。但是，服务里的字体数量还是有限的，有一种在特定情况下可以绕过这层限制的方法：首先需要的文字数量要少，然后制作成 `图片`。
 
-| font-weight | font-style | text-transform | text-decoration |
-| :---------: | :--------: | :------------: | :-------------: |
-|    粗体     |    斜体    |     大小写     |     下划线      |
+| font-weight	| font-style| text-transform| text-decoration	|
+| :---------:	| :--------:| :------------:| :-------------:	|
+|    粗体		|    斜体	|     大小写	|     下划线		|
 
 表格中的这几个属性，对我来说，十分容易记混淆。
 
-|           名称 | 定义                              |
-| -------------: | :-------------------------------- |
-| pseudo-element | 像是多出来一个元素                |
-|   pseudo-class | 像是在 classlist 上多出一个 class |
+|           名称 | 定义								|
+| -------------:| :--------------------------------	|
+| pseudo-element| 像是多出来一个元素				|
+|   pseudo-class| 像是在 classlist 上多出一个 class	|
 
 伪类优先级顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
 
