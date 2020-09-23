@@ -8,7 +8,7 @@ const base = require('./base.babel');
 module.exports = merge(base, {
   target: 'web',
   entry: {
-    app: 'src/site/index',
+    app: 'src/www/index',
   },
   output: {
     filename: '[name].[hash].js',
@@ -22,7 +22,7 @@ module.exports = merge(base, {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif)$/,
+        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav)$/,
         loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
       },
     ],
@@ -38,7 +38,7 @@ module.exports = merge(base, {
       automaticNameDelimiter: '~',
       cacheGroups: {
         vendor1: {
-          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-dom|react-router|react-router-dom)[\\/]/,
           name: 'react',
           chunks: 'all',
         },

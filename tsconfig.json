@@ -11,11 +11,14 @@
       "@images/*": [
         "src/images/*"
       ],
+      "@audios/*": [
+        "src/audios/*"
+      ],
       "@ctxs/*": [
-        "src/site/ctxs/*"
+        "src/www/ctxs/*"
       ],
       "@widgets/*": [
-        "src/site/widgets/*"
+        "src/www/widgets/*"
       ]
     },
     "outDir": "dist",

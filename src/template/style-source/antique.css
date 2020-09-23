@@ -8,7 +8,8 @@ Author:  Brett Terpstra
 Description:  An "antiqued" theme with off-white background and serif typography
 */
 .markdown-body {
-  font-family: Palatino, Georgia, 'Times New Roman', serif;
+  font-family: Palatino, Georgia, 'Times New Roman', -apple-system-font,
+    'PingFang SC', 'Microsoft YaHei', serif;
   font-weight: normal;
   font-size: 0.8764em;
   line-height: 1.5em;
@@ -130,18 +131,18 @@ Description:  An "antiqued" theme with off-white background and serif typography
   text-align: center;
 }
 .markdown-body h1:before {
-  content: '\0360';
+  content: '\21B7';
   position: relative;
-  left: -30px;
-  top: 0.4em;
+  left: -0.5em;
+  /* top: 0.4em; */
   color: #837e70;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
 .markdown-body h1:after {
-  content: '\0360';
+  content: '\21B5';
   position: relative;
-  right: -30px;
-  top: 0.4em;
+  right: -0.2em;
+  top: -0.3em;
   color: #837e70;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
@@ -199,8 +200,10 @@ Description:  An "antiqued" theme with off-white background and serif typography
   background: #f2ede8;
   border: solid 1px #a7a099;
   font-size: 0.95em;
+  padding: 0 0.2em;
 }
 .markdown-body pre {
+  border: solid 1px #a7a099;
   background: #f2ede8;
   padding: 4px;
 }

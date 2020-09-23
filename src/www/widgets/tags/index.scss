@@ -1,0 +1,116 @@
+.tags.wrapper {
+  .search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      margin: 0.1rem;
+      height: 0.5rem;
+      width: 21em;
+      font-family: inherit;
+      font-size: 0.24rem;
+      line-height: 0.3rem;
+      outline: none;
+      padding: 0.1rem 0.3em;
+      color: #333333;
+      border-radius: 0.1rem;
+      border: solid 0.02rem #2175bc;
+      box-shadow: inset 0 0 0.03rem 0 #106090;
+    }
+
+    button {
+      appearance: none;
+      background-color: #2175bc;
+      color: whitesmoke;
+      padding: 0 0.3em;
+      height: 0.5rem;
+      font-family: inherit;
+      font-size: 0.24rem;
+      line-height: 0.5rem;
+      border-radius: 0.05rem;
+      border: solid 0.02rem #106090;
+      outline: none;
+
+      &:hover {
+        background-color: #106090;
+      }
+
+      &:active {
+        font-size: 0.22rem;
+      }
+    }
+  }
+
+  .search-results {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    font-size: 0.24rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    a {
+      padding: 0 0.1rem;
+      border: solid 0.01rem black;
+      border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+      box-shadow: 0.02rem 0.02rem 0.05rem darkcyan;
+      text-decoration: none;
+      line-height: 1.5em;
+      margin: 0.1rem 1em;
+
+      &::before,
+      &::after {
+        content: '#';
+      }
+
+      &:hover {
+        text-shadow: 0 0 0.05rem #666666;
+        background-color: darkcyan;
+        color: whitesmoke;
+      }
+
+      &:active {
+        background-color: darkblue;
+        color: wheat;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .tags.wrapper {
+    .search-bar {
+      width: 100%;
+
+      input {
+        height: 0.6rem;
+        width: 80%;
+        max-width: 21em;
+        font-size: 0.32rem;
+        line-height: 0.4rem;
+        padding: 0.1rem 0.3em;
+      }
+
+      button {
+        height: 0.6rem;
+        font-size: 0.32rem;
+        line-height: 0.6rem;
+
+        &:active {
+          font-size: 0.28rem;
+        }
+      }
+    }
+
+    .search-results {
+      font-size: 0.3rem;
+    }
+  }
+}

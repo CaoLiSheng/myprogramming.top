@@ -5,11 +5,9 @@
   "main": "build/index.js",
   "scripts": {
     "test": "webpack -h",
-    "gen": "webpack -p --devtool=false --config=cfg/webpack/generator.js",
-    "pub": "node ./build/generator.prod.js > log.txt",
-    "build": "rm -rf build && cross-env TPL=basic/page.html npm run gen && npm run pub",
-    "dev": "npm run build && concurrently --handle-input 'nodemon --exec \"npm run pub\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'",
-    "prod": "rm -rf build public && webpack --config=cfg/webpack/site.prod.js && cross-env TPL=basic/page.prod.html npm run gen && npm run pub"
+    "dev:pre": "rm -rf build/dev && webpack -p --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
+    "dev": "npm run dev:pre && concurrently --handle-input 'nodemon --exec \"node ./build/dev/generator.min.js > log.txt\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server -p --devtool=false --config=cfg/webpack/site.dev.js'",
+    "prod": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt"
   },
   "repository": {
     "type": "git",
@@ -34,6 +32,7 @@
     "@types/classnames": "^2.2.10",
     "@types/fs-extra": "^9.0.1",
     "@types/html2canvas": "^0.0.35",
+    "@types/md5": "^2.2.0",
     "@types/node": "^12.12.0",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
@@ -48,6 +47,7 @@
     "file-loader": "^6.0.0",
     "fork-ts-checker-webpack-plugin": "^5.0.9",
     "html-webpack-plugin": "^4.3.0",
+    "md5": "^2.3.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
     "react-hot-loader": "^4.12.21",

@@ -1,6 +1,9 @@
 {
   "watch": [
-    "posts/"
+    "posts/",
+    "src/template/basic/index.html",
+    "src/template/basic/index.css",
+    "src/template/style-source/"
   ],
   "ext": "*"
 }

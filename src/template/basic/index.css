@@ -1,0 +1,145 @@
+/* 以下：全局预设 */
+.markdown-body figure {
+  margin: unset;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.markdown-body a[download] {
+  text-decoration: underline;
+}
+
+.markdown-body a[href^='mailto:'] {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  font-weight: bolder;
+  background-color: green;
+  color: azure;
+  transition: background-color 300ms, color 1s;
+}
+
+.markdown-body a[href^='mailto:']:hover {
+  background-color: whitesmoke;
+  color: teal;
+}
+/* 以上：全局预设 */
+
+/* base_stylesheet */
+
+/* 以下：全局正规化 */
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl {
+  list-style-position: inside;
+}
+
+.markdown-body figure {
+  width: 100%;
+  text-align: center;
+}
+
+.markdown-body figure > figcaption {
+  position: static;
+  background: transparent;
+}
+
+@media only screen and (max-width: 750px) {
+  .markdown-body td,
+  .markdown-body th {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 18px 8px 0 !important;
+  }
+
+  .markdown-body thead th:not(.main) {
+    display: none;
+  }
+
+  .markdown-body td[data-th]:before {
+    content: attr(data-th);
+    text-align: left;
+    flex-basis: 5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+/* 以上：全局正规化 */
+
+/* 以下：正规化文章主体块 */
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  border: none;
+  background-color: white;
+}
+
+body:not(.snapshot) {
+  background-image: url(images/bg.jpg);
+  background-position: top center;
+  background-size: 100vw 100vh;
+  background-repeat: repeat-y;
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  margin: 1rem auto;
+  min-width: 200px;
+  max-width: 980px;
+  width: 100%;
+  /* body_padding_pc */
+}
+
+body:not(.snapshot) > .markdown-body {
+  background: white;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  border: solid 1px gray;
+  box-shadow: 0 0 5px 0 gray;
+}
+
+.markdown-body.hidden {
+  display: none;
+}
+
+@media (max-width: 750px) {
+  .markdown-body {
+    margin: 1rem;
+    /* body_padding_mobile */
+  }
+}
+/* 以上：正规化文章主体块 */
+
+/*Scroll bar nav*/
+::-webkit-scrollbar {
+  width: 3pt;
+  height: 3pt;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 9pt;
+}
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: #ddd;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 9pt;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #aaa;
+}

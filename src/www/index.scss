@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family: 'Long Cang', -apple-system-font, 'Hiragino Sans GB',
+    'Microsoft YaHei', Helvetica, sans-serif;
+  font-weight: 300;
+
+  background-image: url(~@images/bg-page.jpg);
+  background-position: top center;
+  background-size: 100vw 100vh;
+  background-repeat: repeat-y;
+}
+
+#main {
+  padding-top: 0.5rem;
+
+  &.blurred {
+    filter: blur(3px);
+  }
+
+  h1.failure {
+    margin-top: calc(50vh - 0.5em);
+    text-align: center;
+  }
+
+  .wrapper {
+    min-width: 200px;
+    max-width: 980px;
+    width: 100%;
+    padding: 0.45rem;
+    margin: 0.1rem auto;
+    border-radius: 0.1rem;
+    border: solid 1px gray;
+    background-color: white;
+    box-shadow: 0 0 5px 0 gray;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &.hidden {
+      visibility: hidden;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  #main {
+    padding-top: 0.8rem;
+  }
+}
