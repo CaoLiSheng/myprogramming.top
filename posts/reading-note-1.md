@@ -188,7 +188,7 @@ function cssMinify(css: string): string {
   if (__production__) {
     return css
       .replace(/\/\*[\s\S]*?\*\//g, '')
-      .replace(/\n+.*?(\S)/g, '$1')
+      .replace(/\n\s*?(\S)/g, ' $1')
       .trim();
   }
   return css;

@@ -43,18 +43,18 @@ ul.snap-list {
         background-image: linear-gradient(
           transparent,
           transparent 80%,
-          #ffffff99 80%,
+          rgba(#ffffff, 0.6) 80%,
           #efefef 100%
         );
       }
 
       @keyframes tweaking {
         0% {
-          background-color: #89aeff50;
+          background-color: rgba(#89aeff, 0.4);
         }
 
         100% {
-          background-color: #2b7bf150;
+          background-color: rgba(#2b7bf1, 0.4);
         }
       }
 
