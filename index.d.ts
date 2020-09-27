@@ -1,10 +1,8 @@
-// declare global {
 interface StringFilterFn {
-	fn: (file: string) => boolean;
+	fn(file: string): boolean;
 	expect: boolean;
 }
 
 interface String {
 	filter(...fns: StringFilterFn[]): boolean;
 }
-// }
