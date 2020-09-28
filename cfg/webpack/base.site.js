@@ -8,7 +8,7 @@ const base = require('./base.babel');
 module.exports = merge(base, {
   target: 'web',
   entry: {
-    app: 'src/www/index',
+    app: 'src/www/app',
   },
   output: {
     filename: '[name].[hash].js',
@@ -29,43 +29,38 @@ module.exports = merge(base, {
   },
   optimization: {
     splitChunks: {
+      name: false,
       chunks: 'initial',
-      minSize: 80000,
+      minSize: 30000,
       maxSize: 0,
       minChunks: 1,
-      maxAsyncRequests: 7,
-      maxInitialRequests: 7,
+      maxAsyncRequests: 10,
+      maxInitialRequests: 10,
       automaticNameDelimiter: '~',
       cacheGroups: {
         vendor1: {
-          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-dom|react-router|react-router-dom)[\\/]/,
-          name: 'react',
+          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-router|react-dom|react-router-dom)[\\/]/,
           chunks: 'all',
         },
         vendor2: {
           test: /[\\/]node_modules[\\/]semantic-ui/,
-          name: 'semantic-ui',
           chunks: 'all',
         },
         vendor3: {
           test: /[\\/]src[\\/]common[\\/]semantic[\\/]/,
-          name: 'semantic-css',
           chunks: 'all',
         },
         vendor4: {
           test: /[\\/]node_modules[\\/]moment[\\/]/,
-          name: 'moment',
           chunks: 'all',
         },
         vendor5: {
           test: /[\\/]node_modules[\\/]lodash(-es)?[\\/]/,
-          name: 'lodash',
           chunks: 'all',
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          minChunks: 1,
           priority: -10,
         },
       },

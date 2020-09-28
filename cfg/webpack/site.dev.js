@@ -12,6 +12,7 @@ module.exports = merge(base, {
     port: 3000,
     host: 'dev.myprogramming.top',
     disableHostCheck: true,
+    compress: true,
   },
   resolve: {
     alias: {
@@ -75,15 +76,7 @@ module.exports = merge(base, {
       template: path.join(process.cwd(), 'src', 'www', 'index.html'),
       filename: './index.html',
       title: '又心真人的博客',
-      chunks: [
-        'react',
-        'semantic-ui',
-        'semantic-css',
-        'moment',
-        'lodash',
-        'vendors',
-        'app',
-      ],
+      chunks: ['app'],
     }),
   ],
 });

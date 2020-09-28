@@ -21,10 +21,11 @@ const clickIn = (
   return false;
 };
 
-export class Header extends Component<
-  RouteComponentProps<{}>,
-  { categoryExpanded: boolean }
-> {
+interface HeaderStates {
+  categoryExpanded: boolean;
+}
+
+export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
   state = { categoryExpanded: false };
 
   private toggleElem: RefObject<HTMLAnchorElement> = createRef<
@@ -58,8 +59,17 @@ export class Header extends Component<
     document.body.removeEventListener('click', this.toClose);
   }
 
+  shouldComponentUpdate(
+    nextProps: RouteComponentProps<{}>,
+    nextStates: HeaderStates
+  ) {
+    return (
+      nextProps.match.path !== this.props.match.path ||
+      nextStates.categoryExpanded !== this.state.categoryExpanded
+    );
+  }
+
   render() {
-    console.log('this.props.match.path', this.props.match.path);
     return (
       <div className="title-bar">
         <nav>

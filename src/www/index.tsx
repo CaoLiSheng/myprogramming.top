@@ -1,6 +1,3 @@
-import './rem';
-import './audio';
-
 import React, { Component, ErrorInfo } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';

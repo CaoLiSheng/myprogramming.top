@@ -62,15 +62,7 @@ module.exports = merge(base, {
       template: path.join(process.cwd(), 'src', 'www', 'index.prod.html'),
       filename: './index.html',
       title: '又心真人的博客',
-      chunks: [
-        'react',
-        'semantic-ui',
-        'semantic-css',
-        'moment',
-        'lodash',
-        'vendors',
-        'app',
-      ],
+      chunks: ['app'],
     }),
   ],
 });
