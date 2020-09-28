@@ -31,7 +31,10 @@ function isPrivate(file: string): boolean {
   return __production__ && file.startsWith('private.');
 }
 
-String.prototype.filter = function(this: string, ...fns: StringFilterFn[]): boolean {
+String.prototype.filter = function (
+  this: string,
+  ...fns: StringFilterFn[]
+): boolean {
   for (let i = 0; i < fns.length; i++) {
     if (fns[i].expect !== fns[i].fn(this)) return false;
   }
@@ -39,14 +42,21 @@ String.prototype.filter = function(this: string, ...fns: StringFilterFn[]): bool
 };
 
 function isAsset(file: string): boolean {
-  return file.filter({ fn: isPrivate, expect: false }, { fn: isDir, expect: true });
+  return file.filter(
+    { fn: isPrivate, expect: false },
+    { fn: isDir, expect: true }
+  );
 }
 
 function isPost(file: string): boolean {
-  return file.filter({ fn: isPrivate, expect: false }, { fn: isDraft, expect: false }, { fn: isMarkdown, expect: true });
+  return file.filter(
+    { fn: isPrivate, expect: false },
+    { fn: isDraft, expect: false },
+    { fn: isMarkdown, expect: true }
+  );
 }
 
-function minify(content: string): string {
+function cssMinify(content: string): string {
   // console.log(content);
   if (__production__) {
     return content
@@ -57,35 +67,86 @@ function minify(content: string): string {
   return content;
 }
 
+function extractBlocks(content: string, re: RegExp): string[] {
+  const blocks: string[] = [];
+  let temp: RegExpExecArray | null;
+  while ((temp = re.exec(content))) {
+    blocks.push(temp[0]);
+  }
+  return blocks;
+}
+
+function mergeBlocks(content: string, re: RegExp, blocks: string[]): string {
+  const otherBlocks: string[] = content.split(re);
+  const ret: string[] = [];
+  for (let i = 0; i < blocks.length; i++) {
+    ret.push(otherBlocks[i], blocks[i]);
+  }
+  ret.push(otherBlocks[blocks.length]);
+  return ret.join('');
+}
+
+function htmlBlocksChain(content: string, reS: RegExp[]): string {
+  const blocksChain: string[][] = [];
+  for (let i = 0; i < reS.length; i++) {
+    blocksChain.push(extractBlocks(content, reS[i]));
+  }
+
+  let tempRet: string = content
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\n\s*?(\S)/g, '$1')
+    .trim();
+
+  for (let i = 0; i < reS.length; i++) {
+    tempRet = mergeBlocks(tempRet, reS[i], blocksChain[i]);
+  }
+
+  return tempRet;
+}
+
+function htmlMinify(content: string): string {
+  // console.log(content);
+  if (__production__) {
+    return htmlBlocksChain(content, [
+      /<pre[\s\S]+?<\/pre>/g,
+      /<textarea[\s\S]+?<\/textarea>/g,
+    ]);
+  }
+  return content;
+}
+
 // Construct Converter
 const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
       regex: /!\[(.*?)\]\(:?([\S]+)\)/g,
-      replace: '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>'
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
     },
     {
       type: 'lang',
       regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
-      replace: '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>'
+      replace:
+        '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
     },
     {
       type: 'lang',
       regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)-(.*?)\)/g,
-      replace: '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>'
+      replace:
+        '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
     },
     {
       type: 'lang',
       regex: /\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
-      replace: '<a href="$2" download="$3">点击下载「$1」</a>'
-    }
+      replace: '<a href="$2" download="$3">点击下载「$1」</a>',
+    },
   ],
   // metadata: true, // 解析不了yaml数组
   disableForced4SpacesIndentedSublists: true,
   // openLinksInNewWindow: true,
   parseImgDimensions: true,
-  tables: true
+  tables: true,
 });
 
 const inDir = path.join(process.cwd(), 'posts');
@@ -112,7 +173,13 @@ const dbData = new DB();
 // console.log('CSS Assets Copied');
 
 // Load Template
-const tplPath = path.join(process.cwd(), 'src', 'template', 'basic', 'index.html');
+const tplPath = path.join(
+  process.cwd(),
+  'src',
+  'template',
+  'basic',
+  'index.html'
+);
 const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 const tplScriptPath = path.join(process.cwd(), __tpl_script_path__);
@@ -120,7 +187,13 @@ const tplScriptContent = fs.readFileSync(tplScriptPath, { encoding: 'UTF-8' });
 const tplScriptName = `template.${md5(tplScriptContent).substring(0, 20)}.js`;
 fs.copySync(tplScriptPath, path.join(outDir, tplScriptName));
 
-const tplCSSPath = path.join(process.cwd(), 'src', 'template', 'basic', 'index.css');
+const tplCSSPath = path.join(
+  process.cwd(),
+  'src',
+  'template',
+  'basic',
+  'index.css'
+);
 const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 console.log('Template Loaded');
 
@@ -132,13 +205,19 @@ const CSSMaps: {
 function fetchCSS(base: string): string {
   if (CSSMaps[base]) return CSSMaps[base];
 
-  const baseCSSPath = path.join(process.cwd(), 'src', 'template', 'style-source', `${base}.css`);
+  const baseCSSPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+    `${base}.css`
+  );
 
   const baseCSSContent = fs.readFileSync(baseCSSPath, {
-    encoding: 'UTF-8'
+    encoding: 'UTF-8',
   });
 
-  const cssContent = minify(
+  const cssContent = cssMinify(
     tplCSSContent
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
@@ -164,7 +243,7 @@ const assets = sources.filter((file: string) => isAsset(file));
 console.log('Assets:', assets);
 assets.forEach((dir: string) =>
   fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
-    recursive: true
+    recursive: true,
   })
 );
 console.log('All Assets Copied');
@@ -174,14 +253,23 @@ const posts = sources.filter((file: string) => isPost(file));
 console.log('Posts:', posts);
 posts.forEach((fileName: string) => {
   const fileContent = fs.readFileSync(path.join(inDir, fileName), {
-    encoding: 'UTF-8'
+    encoding: 'UTF-8',
   });
 
-  const matches = fileContent.match(/^---\n(no-receive-emails\n)?style: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/);
+  const matches = fileContent.match(
+    /^---\n(no-receive-emails\n)?style: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
+  );
 
   if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
 
-  const [noReceiveEmails, stylesheet, title, date, tags, content] = matches.slice(1);
+  const [
+    noReceiveEmails,
+    stylesheet,
+    title,
+    date,
+    tags,
+    content,
+  ] = matches.slice(1);
   const tagsRe = /- (.*?)\n/g;
   const parsedTags = [];
   if (tags) {
@@ -195,7 +283,19 @@ posts.forEach((fileName: string) => {
   // converter.makeHtml(fileContent);
   // console.log(converter.getMetadata());
 
-  console.log([fileName, fileContent, noReceiveEmails, stylesheet, title, date, tags, parsedTags, body].join('\n\n'));
+  console.log(
+    [
+      fileName,
+      fileContent,
+      noReceiveEmails,
+      stylesheet,
+      title,
+      date,
+      tags,
+      parsedTags,
+      body,
+    ].join('\n\n')
+  );
 
   const name = fileName.substring(0, fileName.length - '.md'.length);
   dbData.add({ name, date, tags: parsedTags });
@@ -207,13 +307,16 @@ posts.forEach((fileName: string) => {
 
   fs.writeFileSync(
     outFilePath,
-    minify(
+    htmlMinify(
       tplContent
         .replace('<title />', title)
         .replace('<hm_baidu />', hmBaidu())
         .replace('/* stylesheet */', fetchCSS(stylesheet))
         .replace('<body_title />', `${preTitle(fileName)}${title}`)
-        .replace('<body />', `${body}${emailLink(fileName, noReceiveEmails, title)}`)
+        .replace(
+          '<body />',
+          `${body}${emailLink(fileName, noReceiveEmails, title)}`
+        )
         .replace('/* javascript */', tplScriptName)
     )
   );
@@ -244,7 +347,11 @@ function hmBaidu(): string {
 }
 
 // email link
-function emailLink(fileName: string, noReceiveEmails: string, title: string): string {
+function emailLink(
+  fileName: string,
+  noReceiveEmails: string,
+  title: string
+): string {
   if (noReceiveEmails || fileName.startsWith('private.')) return '';
 
   return `
