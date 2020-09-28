@@ -56,7 +56,7 @@ function isPost(file: string): boolean {
   );
 }
 
-function cssMinify(content: string): string {
+function minify(content: string): string {
   // console.log(content);
   if (__production__) {
     return content
@@ -92,10 +92,7 @@ function htmlBlocksChain(content: string, reS: RegExp[]): string {
     blocksChain.push(extractBlocks(content, reS[i]));
   }
 
-  let tempRet: string = content
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/\n\s*?(\S)/g, '$1')
-    .trim();
+  let tempRet: string = minify(content);
 
   for (let i = 0; i < reS.length; i++) {
     tempRet = mergeBlocks(tempRet, reS[i], blocksChain[i]);
@@ -217,7 +214,7 @@ function fetchCSS(base: string): string {
     encoding: 'UTF-8',
   });
 
-  const cssContent = cssMinify(
+  const cssContent = minify(
     tplCSSContent
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
