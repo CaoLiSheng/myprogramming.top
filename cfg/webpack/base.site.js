@@ -29,41 +29,13 @@ module.exports = merge(base, {
   },
   optimization: {
     splitChunks: {
-      name: false,
-      chunks: 'initial',
-      minSize: 30000,
-      maxSize: 0,
+      chunks: 'async',
+      minSize: 0,
+      maxSize: 100000,
       minChunks: 1,
       maxAsyncRequests: 10,
       maxInitialRequests: 10,
       automaticNameDelimiter: '~',
-      cacheGroups: {
-        vendor1: {
-          test: /[\\/]node_modules[\\/](.*?[\\/])*?(react|react-router|react-dom|react-router-dom)[\\/]/,
-          chunks: 'all',
-        },
-        vendor2: {
-          test: /[\\/]node_modules[\\/]semantic-ui/,
-          chunks: 'all',
-        },
-        vendor3: {
-          test: /[\\/]src[\\/]common[\\/]semantic[\\/]/,
-          chunks: 'all',
-        },
-        vendor4: {
-          test: /[\\/]node_modules[\\/]moment[\\/]/,
-          chunks: 'all',
-        },
-        vendor5: {
-          test: /[\\/]node_modules[\\/]lodash(-es)?[\\/]/,
-          chunks: 'all',
-        },
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          priority: -10,
-        },
-      },
     },
   },
   plugins: [

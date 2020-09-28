@@ -1,6 +1,5 @@
 import React, { Component, ErrorInfo } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import { render } from 'react-dom';
 
 import { __dirs__, Schema } from '@common/index';
 import {
@@ -113,4 +112,6 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
   }
 }
 
-render(<App />, document.getElementById('main'));
+import('react-dom').then(({ render }) =>
+  render(<App />, document.getElementById('main'))
+);
