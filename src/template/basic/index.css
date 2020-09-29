@@ -36,6 +36,22 @@
 /* base_stylesheet */
 
 /* 以下：全局正规化 */
+@font-face {
+  font-family: 'FiraCode';
+  src: url('fonts/FiraCode-Light.woff2') format('woff2'),
+    url('fonts/FiraCode-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'CascadiaCodePL';
+  src: url('fonts/CascadiaCodePL.woff2') format('woff2');
+}
+
+.markdown-body code {
+  font-family: CascadiaCodePL, FiraCode, Courier, -apple-system-font,
+    'Hiragino Sans GB', 'Microsoft YaHei', monospace;
+}
+
 .markdown-body ul,
 .markdown-body ol,
 .markdown-body dl {
