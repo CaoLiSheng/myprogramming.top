@@ -254,13 +254,13 @@ export function htmlMinify(content: string): string {
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)'\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(.*?)'\)/g,
       replace:
         '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
     },
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)' =(\S*?)-(\S*?)\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(.*?)' =(\S*?)-(\S*?)\)/g,
       replace:
         '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" width="$4" height="$5" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
     },
@@ -278,7 +278,7 @@ export function htmlMinify(content: string): string {
     },
     {
       type: 'lang',
-      regex: /\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      regex: /\[(\S*?)\]\(:?(\S*?) '(.*?)'\)/g,
       replace: '&lt;a href="$2" download="$3"&gt;点击下载「$1」&lt;/a&gt;',
     },
   ],
@@ -307,4 +307,4 @@ window.addEventListener('beforeunload', () =&gt; {
   document.body.removeEventListener('mousedown', playAudio);
   document.body.removeEventListener('touchstart', playAudio);
 });
-</code></pre> <h2 id="-7">未来规划部分</h2> <p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p> <h2 id="-8">结语</h2> <blockquote> <p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p> </blockquote> <h2 id="-9">同系列文章</h2> <ul> <li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li> </ul> <br /><br /> <hr /> <br /> <a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a> <br /><br /> </article> <script type="application/javascript" src="template.14843c712a29842e8f9b.js"></script> </body> </html>
+</code></pre> <h2 id="-7">未来规划部分</h2> <p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p> <h2 id="-8">结语</h2> <blockquote> <p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p> </blockquote> <h2 id="-9">同系列文章</h2> <ul> <li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li> </ul> <br /><br /> <hr /> <br /> <a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a> <br /><br /> </article> <script type="application/javascript" src="template.4a5b716819717ca45d45.js"></script> </body> </html>
