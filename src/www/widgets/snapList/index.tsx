@@ -24,7 +24,7 @@ class InnerSnapList extends Component<
             src={`${
               __dirs__.__posts_root__
             }${name}.html?var=${Date.now()}#snapshot`}
-            referrerPolicy="origin"
+            sandbox="allow-same-origin allow-scripts allow-top-navigation allow-downloads"
             seamless
             scrolling="no"
             style={{ overflow: 'hidden' }}
