@@ -273,4 +273,4 @@ window.top.addEventListener(
 
 ## 同系列文章
 
-- [「里程碑-2020-1.1」博客 V1.1](post:2020-milestone-1.1)
+- [「里程碑-2020-1.1」博客 V1.1](post:2020-milestone-1-1)

@@ -4,27 +4,27 @@ export const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?([\S]+)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) =(.*?)-(.*?)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$1" width="$3" height="$4" /><figcaption>$1</figcaption></figure>',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)'\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
     },
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)-(.*?)\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)' =(\S*?)-(\S*?)\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S*?) =(\S*?)-(\S*?)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" width="$3" height="$4" /><figcaption>$1</figcaption></figure>',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S+?)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
     },
     {
       type: 'lang',

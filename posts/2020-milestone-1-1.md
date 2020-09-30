@@ -15,7 +15,7 @@ tags:
 
 ## 配置文件部分
 
-![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1.1/webpack.cfg.png =512px-auto)
+![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1-1/webpack.cfg.png =512px-auto)
 
 ### 变量说明
 
@@ -354,27 +354,27 @@ export const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?([\S]+)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) =(.*?)-(.*?)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$1" width="$3" height="$4" /><figcaption>$1</figcaption></figure>',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)'\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
     },
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)-(.*?)\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)' =(\S*?)-(\S*?)\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S*?) =(\S*?)-(\S*?)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" width="$3" height="$4" /><figcaption>$1</figcaption></figure>',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S+?)\)/g,
+      replace:
+        '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
     },
     {
       type: 'lang',
@@ -394,7 +394,7 @@ export const converter = new showdown.Converter({
 
 首先，回顾一下网站地图：
 
-![本站地图](2020-milestone-1.1/site-map.png)
+![本站地图](2020-milestone-1-1/site-map.png)
 
 最大的改动就是引入了代码切分技术。其次加了一个鼠标按下音效。
 

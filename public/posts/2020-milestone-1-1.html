@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html lang="cn-zh"> <head> <meta charset="UTF-8" /> <meta http-equiv="pragma" content="no-cache" /> <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>「里程碑-2020-1.1」博客 V1.1</title> <script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script> <link rel="stylesheet" type="text/css" href="github-border.0d4a244536cfbe794c80.css" /> </head> <body class="snapshot"> <article class="markdown-body hidden"> <h1>「里程碑-2020-1.1」博客 V1.1</h1> <h2 id="">前言</h2> <blockquote> <p>距离上一次的 V1.0 快两个月了，期间修复了些 bugs，也加了些新功能。文章段落划分基本按照 V1.0 那样，记录以下，生活更美好！</p> </blockquote> <h2 id="-1">配置文件部分</h2> <figure><img alt="webpack配置文件继承结构以及需要定义的变量" src="2020-milestone-1.1/webpack.cfg.png" title="webpack配置文件继承结构以及需要定义的变量" width="512px" height="auto" /><figcaption>webpack配置文件继承结构以及需要定义的变量</figcaption></figure> <h3 id="-2">变量说明</h3> <table> <thead> <tr> <th style="text-align:left;">变量名</th> <th style="text-align:left;">作用</th> </tr> </thead> <tbody> <tr> <td style="text-align:left;">posts root</td> <td style="text-align:left;">博客网站定位博文数据库</td> </tr> <tr> <td style="text-align:left;">tpl script path</td> <td style="text-align:left;">提供给博文生成器定位博文网页脚本文件的路径</td> </tr> <tr> <td style="text-align:left;">out path</td> <td style="text-align:left;">提供给博文生成器生成的数据库位置</td> </tr> <tr> <td style="text-align:left;">production</td> <td style="text-align:left;">提供给博文生成器是否为生产模式，影响生成的 HTML/CSS 文件是否去掉多余的换行和空格</td> </tr> <tr> <td style="text-align:left;">origin</td> <td style="text-align:left;">postMessage 需要</td> </tr> <tr> <td style="text-align:left;">site root</td> <td style="text-align:left;">站内跳转需要</td> </tr> </tbody> </table> <h3 id="-3">站点脚本代码切分（提高脚本并行下载数量、降低页面加载时间、提高性能）</h3> <pre><code class="typescript language-typescript">// webpack 配置
+<!DOCTYPE html> <html lang="cn-zh"> <head> <meta charset="UTF-8" /> <meta http-equiv="pragma" content="no-cache" /> <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>「里程碑-2020-1.1」博客 V1.1</title> <script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script> <link rel="stylesheet" type="text/css" href="github-border.0d4a244536cfbe794c80.css" /> </head> <body class="snapshot"> <article class="markdown-body hidden"> <h1>「里程碑-2020-1.1」博客 V1.1</h1> <h2 id="">前言</h2> <blockquote> <p>距离上一次的 V1.0 快两个月了，期间修复了些 bugs，也加了些新功能。文章段落划分基本按照 V1.0 那样，记录以下，生活更美好！</p> </blockquote> <h2 id="-1">配置文件部分</h2> <figure><img alt="webpack配置文件继承结构以及需要定义的变量" src="2020-milestone-1-1/webpack.cfg.png" title="webpack配置文件继承结构以及需要定义的变量" width="512px" height="auto" /><figcaption>webpack配置文件继承结构以及需要定义的变量</figcaption></figure> <h3 id="-2">变量说明</h3> <table> <thead> <tr> <th style="text-align:left;">变量名</th> <th style="text-align:left;">作用</th> </tr> </thead> <tbody> <tr> <td style="text-align:left;">posts root</td> <td style="text-align:left;">博客网站定位博文数据库</td> </tr> <tr> <td style="text-align:left;">tpl script path</td> <td style="text-align:left;">提供给博文生成器定位博文网页脚本文件的路径</td> </tr> <tr> <td style="text-align:left;">out path</td> <td style="text-align:left;">提供给博文生成器生成的数据库位置</td> </tr> <tr> <td style="text-align:left;">production</td> <td style="text-align:left;">提供给博文生成器是否为生产模式，影响生成的 HTML/CSS 文件是否去掉多余的换行和空格</td> </tr> <tr> <td style="text-align:left;">origin</td> <td style="text-align:left;">postMessage 需要</td> </tr> <tr> <td style="text-align:left;">site root</td> <td style="text-align:left;">站内跳转需要</td> </tr> </tbody> </table> <h3 id="-3">站点脚本代码切分（提高脚本并行下载数量、降低页面加载时间、提高性能）</h3> <pre><code class="typescript language-typescript">// webpack 配置
 {
   entry: {
     app: 'src/www/app',
@@ -254,27 +254,27 @@ export function htmlMinify(content: string): string {
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?([\S]+)\)/g,
-      replace:
-        '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$1" /&gt;&lt;figcaption&gt;$1&lt;/figcaption&gt;&lt;/figure&gt;',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) =(.*?)-(.*?)\)/g,
-      replace:
-        '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$1" width="$3" height="$4" /&gt;&lt;figcaption&gt;$1&lt;/figcaption&gt;&lt;/figure&gt;',
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)'\)/g,
       replace:
         '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
     },
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)-(.*?)\)/g,
+      regex: /!\[(\S*?)\]\(:?(\S*?) '(\S*?)' =(\S*?)-(\S*?)\)/g,
       replace:
         '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$3" width="$4" height="$5" /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S*?) =(\S*?)-(\S*?)\)/g,
+      replace:
+        '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$1" width="$3" height="$4" /&gt;&lt;figcaption&gt;$1&lt;/figcaption&gt;&lt;/figure&gt;',
+    },
+    {
+      type: 'lang',
+      regex: /!\[(\S*?)\]\(:?(\S+?)\)/g,
+      replace:
+        '&lt;figure&gt;&lt;img alt="$1" src="$2" title="$1" /&gt;&lt;figcaption&gt;$1&lt;/figcaption&gt;&lt;/figure&gt;',
     },
     {
       type: 'lang',
@@ -288,7 +288,7 @@ export function htmlMinify(content: string): string {
   parseImgDimensions: true,
   tables: true,
 });
-</code></pre> <h2 id="-6">博客网站部分</h2> <p>首先，回顾一下网站地图：</p> <figure><img alt="本站地图" src="2020-milestone-1.1/site-map.png" title="本站地图" /><figcaption>本站地图</figcaption></figure> <p>最大的改动就是引入了代码切分技术。其次加了一个鼠标按下音效。</p> <pre><code class="typescript language-typescript">import ClickWAV from './click.wav';
+</code></pre> <h2 id="-6">博客网站部分</h2> <p>首先，回顾一下网站地图：</p> <figure><img alt="本站地图" src="2020-milestone-1-1/site-map.png" title="本站地图" /><figcaption>本站地图</figcaption></figure> <p>最大的改动就是引入了代码切分技术。其次加了一个鼠标按下音效。</p> <pre><code class="typescript language-typescript">import ClickWAV from './click.wav';
 
 const playAudio = () =&gt; {
   let player = document.getElementById('click-wav');
@@ -307,4 +307,4 @@ window.addEventListener('beforeunload', () =&gt; {
   document.body.removeEventListener('mousedown', playAudio);
   document.body.removeEventListener('touchstart', playAudio);
 });
-</code></pre> <h2 id="-7">未来规划部分</h2> <p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p> <h2 id="-8">结语</h2> <blockquote> <p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p> </blockquote> <h2 id="-9">同系列文章</h2> <ul> <li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li> </ul> <br /><br /> <hr /> <br /> <a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a> <br /><br /> </article> <script type="application/javascript" src="template.7f220933dbbe780cf4d2.js"></script> </body> </html>
+</code></pre> <h2 id="-7">未来规划部分</h2> <p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p> <h2 id="-8">结语</h2> <blockquote> <p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p> </blockquote> <h2 id="-9">同系列文章</h2> <ul> <li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li> </ul> <br /><br /> <hr /> <br /> <a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a> <br /><br /> </article> <script type="application/javascript" src="template.14843c712a29842e8f9b.js"></script> </body> </html>
