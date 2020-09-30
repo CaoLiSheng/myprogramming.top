@@ -197,3 +197,25 @@ li {
 p {
   color: #777;
 }
+
+code {
+  position: relative;
+  cursor: default;
+}
+
+code::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 0.3em;
+  opacity: 1;
+  background-color: goldenrod;
+  transition: height 100ms ease-in-out;
+}
+
+code:hover::after {
+  height: 100%;
+  opacity: 0.6;
+}

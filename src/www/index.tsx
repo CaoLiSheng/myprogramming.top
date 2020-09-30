@@ -116,5 +116,10 @@ import('react-dom').then(({ render }) =>
   render(<App />, document.getElementById('main'))
 );
 
+// (async () => {
+//   const { render } = await import('react-dom');
+//   render(<App />, document.getElementById('main'));
+// })();
+
 // import { render } from 'react-dom';
 // render(<App />, document.getElementById('main'));

@@ -124,7 +124,7 @@ preWrite(path.join(outDir, name + '.html')).writeFileSync(
       )
   )
 );
-</code></pre> <h3 id="html">使用 HTML 模版</h3> <p>在上一节的代码片段中可以看到，HTML 模版中使用双大括号语法表示需要替换的变量。这里没有任何变量或者表达式的使用，仅替换为一段字符串。其中有几个特殊的函数，让模版替换过程变得有一点使用变量的意思。</p> <pre><code class="typescript language-typescript">// preTitle：开发模式下看到的文章会多一些，包括为完成的草稿和个人隐私文章
+</code></pre> <h3 id="html">使用 HTML 模版</h3> <p>在上一节的代码片段中可以看到，HTML 模版中使用双大括号语法表示需要替换的变量。这里没有任何变量或者表达式的使用，仅替换为一段字符串。其中有几个特殊的函数，让模版替换过程变得有一点使用变量的意思。</p> <pre><code class="typescript language-typescript">// preTitle：开发模式下看到的文章会多一些，包括未完成的草稿和个人隐私文章
 export function preTitle(fileName: string): string {
   if (fileName.startsWith('private.')) return '「隐私」';
   if (fileName.startsWith('draft.')) return '「草稿」';
