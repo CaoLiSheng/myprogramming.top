@@ -18,7 +18,6 @@ module.exports = merge(base, {
       }
       return '[name].[hash].js';
     },
-    publicPath: '/',
   },
   module: {
     rules: [

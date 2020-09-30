@@ -7,6 +7,7 @@ const base = require('./base.gen');
 module.exports = merge(base, {
   output: {
     path: path.join(process.cwd(), 'build', 'dev'),
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({
