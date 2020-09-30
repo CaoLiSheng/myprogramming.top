@@ -11,5 +11,13 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     plugins: [new TsconfigPathsPlugin()],
   },
+  module: {
+    rules: [
+      {
+        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav)$/,
+        loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
+      },
+    ],
+  },
   plugins: [new ForkTsCheckerWebpackPlugin(), new webpack.NamedModulesPlugin()],
 };

@@ -32,7 +32,7 @@ tags:
 
 > 这里不是原文，大意是：每个州的议员数量与州人口有关，不能超过每 3 万一个，同时每个州至少一名议员……
 
-这里有两个算法，以及相关的 4 个问题，最后是我的个人提供的解答。
+这里有两个算法，以及相关的 4 个问题，最后是我个人提供的解答。
 
 1. Huntington-Hill method（method of equal proportions）
 
@@ -54,7 +54,7 @@ ApportionCongress(Pop[1 .. n],R):
   return Rep[1 .. n]
 ```
 
-2. Huntington-Hill method（method of equal proportions）
+2. Huntington-Hill Guess
 
 ```python
 HHGuess(Pop[1 .. n],R, D):
@@ -71,6 +71,6 @@ HHGuess(Pop[1 .. n],R, D):
 
 以下是问题以及我提供的个人解答（P 为总人口数）：
 
-1. Show that「标准的 D=P/R 不一定得到正确解」。
+1. 针对算法 2， Show that「标准的 D=P/R 不一定得到正确解」。
 
 思路：首先什么是正确解，即 HHGuess 返回值不等于 R；其次这里不需要证明，只需举出一个例子就行。那么可以捏造一个极端的例子：n 个州，只有一个州具有 N 个人口，其它州人口数都为 0；这时 `D=N/R`，`reps=(n-1)+N/D=R+n-1`；可见这样 `reps!=R`，完成！

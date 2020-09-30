@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
-import { __dirs__ } from '@common/index';
+import { __dirs__ } from '@www/utils/dir';
 import {
   PAGE_SIZE,
   PATH_PAGER_MAP,

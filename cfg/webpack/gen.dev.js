@@ -10,7 +10,7 @@ module.exports = merge(base, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __tpl_script_path__: JSON.stringify('build/dev/template.min.js'),
+      __tpl_assets_dir__: JSON.stringify('build/dev'),
       __out_path__: JSON.stringify('build/posts'),
       __production__: false,
       __origin__: JSON.stringify('http://dev.myprogramming.top:3000'),

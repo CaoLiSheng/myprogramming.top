@@ -1,8 +1,9 @@
 ---
 style: github-border
-title: 2020年里程碑 - 1
+title: 「里程碑-2020-1」博客 V1.0
 date: 2020-08-09 16:14:00
 tags:
+  - 博客
   - 里程碑
   - 提升计划
   - 2020
@@ -10,7 +11,7 @@ tags:
 
 ## 前言
 
-> 这几天一直在等通知去公证处取房本，所以暂时不能离开昆明。边写代码、边玩《暗黑 3》过了两周，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，也顺便总结一下这个项目。
+> 这几天一直在等通知去公证处取房本，所以暂时不能离开昆明。边写代码、边玩《暗黑 3》，花了两周时间，终于完成了类似 Hexo 的博客工具开发。现在在这里树立一个里程碑，总结一下这几天做的事情。
 
 ## 第一部分
 
@@ -18,11 +19,11 @@ tags:
 
 使用 `babel-loader` 把最新规范下的模块化代码转化为 es5 规范输出，这里有三份配置。
 
-1. 处理 markdown 文章的 NodeJS 程序
-2. 骨架网站的开发版配置，就是多了 react-hot-reload
-3. 骨架网站的线上版配置
+1. 处理 markdown 生成博文的 NodeJS 程序
+2. 博客网站的开发版配置，就是多了 react-hot-reload
+3. 博客网站的线上版配置
 
-提到**骨架网站**，我实在想不出什么名字来命名，就是 Hexo 里的主题。而我感觉文章像血肉，而这个主题像骨架，整体来看就是我的博客。骨架网站中另需处理 CSS3 样式和各类资源文件，所以需要 `style-loader` 、 `css-loader` 、 `sass-loader` 、 `url-loader` 这四个加载器。
+博客网站中另需处理 CSS3 样式和各类资源文件，所以需要 `style-loader` 、 `css-loader` 、 `sass-loader` 、 `url-loader` 这四个加载器。
 
 > 这里就不得不提到**url-loader**和**file-loader**了。对于图片来说，前者默认将文件转化成 Base64 格式写在最后的打包后模块中。可以通过参数设置，按照文件大小分别处理，小于 limit 参数的同上处理；而反之，其行为与后者相同，即把资源文件放到最终打包的目标资源文件夹中。
 
@@ -34,7 +35,7 @@ tags:
 concurrently --handle-input 'nodemon --exec \"node ./build/gen.prod.js > log.txt\"' 'serve -C ./public/' 'webpack-dev-server --config=cfg/webpack/dev.js'
 ```
 
-如上所示， `concurrently` 命令非常直观的接收若干个字符串参数，每一个都说是并行的一个程序， `--handle-input` 参数让我可以在任何时间改变任何一个程序的状态。简单说，我同时运行了一个 markdown 转 html 程序、一个访问这些 html 文件的简单 http 服务器以及骨架网站的开发状态服务器。
+如上所示， `concurrently` 命令非常直观的接收若干个字符串参数，每一个都说是并行的一个程序； `--handle-input` 参数让我可以在任何时间改变任何一个程序的状态。简单说，我同时运行了一个 markdown 转 html 程序、一个访问这些 html 文件的简单 http 服务器以及博客网站的开发状态服务器。
 
 其中， `nodemon` 的作用是启动后台监听进程，与 `concurrently` 配合可以在任何时间通过 `concurrently --handle-input` 生成最新 html 文件。
 
@@ -47,9 +48,7 @@ import fs from 'fs-extra';
 
 ...
 
-fs.mkdirSync(outDir, {
-    recursive: true
-});
+fs.mkdirSync(outDir, { recursive: true });
 fs.emptyDirSync(outDir);
 ```
 
@@ -182,7 +181,7 @@ fs.writeFileSync(
 
 ## 第四部分
 
-那么最后总结下骨架网站研发中用到的技术栈 `react + typescript` 、 `react-router` ，并没有采用 `redux全家桶` ，而是使用 v16 自带的 `createContext` API。 `HTML5+CSS3` 就像是与身俱来的技能一样，总能船到桥头自然直。 `typescript` 在今年是爆发的一年，或者说普及的一年；虽然我现在自由职业了，但是也要跟上时代的步伐。说来也有趣，最初是通过 `AngularJS` 接触的，当时并没有太多的关注；如果不是这次写装饰器卡住了，还真的完全小看了它。
+那么最后总结下博客网站研发中用到的技术栈 `react + typescript` 、 `react-router` ，并没有采用 `redux全家桶` ，而是使用 v16 自带的 `createContext` API。 `HTML5+CSS3` 就像是与身俱来的技能一样，总能船到桥头自然直。 `typescript` 在今年是爆发的一年，或者说普及的一年；虽然我现在自由职业了，但是也要跟上时代的步伐。说来也有趣，最初是通过 `AngularJS` 接触的，当时并没有太多的关注；如果不是这次写装饰器卡住了，还真的完全小看了它。
 
 我对 `createContext` API 的使用方式是这样的。如下方代码所示，用到高阶组件的概念给用到上下文的组件注入数据或者操作（对于改变上下文的操作要特别注意其调用的时机，防止死循环）。 `HOCDecrator` 是 `typescript` 语法中装饰器的一种情况，这种操作多少算是取巧的做法（在下方第二段代码中）。
 
@@ -271,3 +270,7 @@ window.top.addEventListener(
 ## 结语
 
 > 接下来要抓紧时间去完成剩余的[计划](post:2020-plan)咯!
+
+## 同系列文章
+
+- [「里程碑-2020-1.1」博客 V1.1](post:2020-milestone-1.1)

@@ -14,6 +14,9 @@
       "@audios/*": [
         "src/audios/*"
       ],
+      "@www/*": [
+        "src/www/*"
+      ],
       "@ctxs/*": [
         "src/www/ctxs/*"
       ],

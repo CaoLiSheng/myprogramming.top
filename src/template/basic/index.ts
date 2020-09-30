@@ -1,3 +1,5 @@
+import '@audios/click';
+
 declare var __origin__: string;
 declare var __site_root__: string;
 

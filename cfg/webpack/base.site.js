@@ -21,10 +21,6 @@ module.exports = merge(base, {
         include: [path.join(process.cwd(), 'src')],
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav)$/,
-        loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
-      },
     ],
   },
   optimization: {

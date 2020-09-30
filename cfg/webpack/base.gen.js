@@ -12,7 +12,12 @@ module.exports = merge(base, {
     template: 'src/template/basic/index',
   },
   output: {
-    filename: '[name].min.js',
+    filename: (chunkData) => {
+      if ('generator' === chunkData.chunk.name) {
+        return '[name].min.js';
+      }
+      return '[name].[hash].js';
+    },
     publicPath: '/',
   },
   module: {

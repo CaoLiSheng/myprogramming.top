@@ -1,15 +1,15 @@
 import React, { Component, ErrorInfo } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-import { __dirs__, Schema } from '@common/index';
 import {
   withPageCtxProvider,
   withDBCtxProvider,
   I_DB_CTX,
   I_PAGE_CTX,
 } from '@ctxs/index';
-
 import { Home, Post, Header, Tags, Canlendar } from '@widgets/index';
+import { Schema } from '@common/index';
+import { __dirs__ } from './utils/dir';
 
 import './index.scss';
 // import CategoryEntrySVG from '@images/category-icon.svg';
@@ -115,3 +115,6 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
 import('react-dom').then(({ render }) =>
   render(<App />, document.getElementById('main'))
 );
+
+// import { render } from 'react-dom';
+// render(<App />, document.getElementById('main'));
