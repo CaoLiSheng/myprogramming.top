@@ -3,8 +3,6 @@ style: antique
 title: 读书笔记之《HTML and CSS Design and Build Websites》
 date: 2020-09-10 15:28:00
 tags:
-  - 提升计划
-  - 读书笔记
   - 读书
   - 笔记
 ---
@@ -216,16 +214,16 @@ function cssMinify(css: string): string {
 
 `googlefont` 是个好东西，可以使用用户电脑上没有的字体渲染网页，就是网站现在使用的字体所使用的服务。但是，服务里的字体数量还是有限的，有一种在特定情况下可以绕过这层限制的方法：首先需要的文字数量要少，然后制作成 `图片`。
 
-| font-weight	| font-style| text-transform| text-decoration	|
-| :---------:	| :--------:| :------------:| :-------------:	|
-|    粗体		|    斜体	|     大小写	|     下划线		|
+| font-weight | font-style | text-transform | text-decoration |
+| :---------: | :--------: | :------------: | :-------------: |
+|    粗体     |    斜体    |     大小写     |     下划线      |
 
 表格中的这几个属性，对我来说，十分容易记混淆。
 
-|           名称 | 定义								|
-| -------------:| :--------------------------------	|
-| pseudo-element| 像是多出来一个元素				|
-|   pseudo-class| 像是在 classlist 上多出一个 class	|
+|           名称 | 定义                              |
+| -------------: | :-------------------------------- |
+| pseudo-element | 像是多出来一个元素                |
+|   pseudo-class | 像是在 classlist 上多出一个 class |
 
 伪类优先级顺序：`:link`，`:visited`，`:hover`，`:focus`，`:active`；后者优先级更高。
 
@@ -284,16 +282,16 @@ figure {
 6. Site Map：这里我用思维导图表达一下。![Site Map 1](reading-note-1/site-map-1.png 'Site Map 1') [XMind 创作文件](reading-note-1/site-map-1.xmind 'site-map-1.xmind')
 7. Wireframe：确定功能性需求
 8. Visual Design：首要目的是为了沟通，主要工具是视觉树结构，主要做以下三件事情
-  1. 确定内容
-  2. 排列优先级
-  3. 组织架构
-9. （Bonus）导航栏设计指南
-  1. 简单
-  2. 明了
-  3. 有选择性
-  4. 最好指示出当前页所在的位置
-  5. 按钮大小要易于交互
-  6. 如果有多级导航栏，要保持一致性
+9. 确定内容
+10. 排列优先级
+11. 组织架构
+12. （Bonus）导航栏设计指南
+13. 简单
+14. 明了
+15. 有选择性
+16. 最好指示出当前页所在的位置
+17. 按钮大小要易于交互
+18. 如果有多级导航栏，要保持一致性
 
 ### 搜索关键字
 
