@@ -21,11 +21,11 @@ function isMarkdown(file: string): boolean {
 }
 
 function notDraft(file: string): boolean {
-  return !__production__ || !file.startsWith('draft.');
+  return !__production__ || !file.startsWith('draft-');
 }
 
 function notPrivate(file: string): boolean {
-  return !__production__ || !file.startsWith('private.');
+  return !__production__ || !file.startsWith('private-');
 }
 
 String.prototype.filter = function (
