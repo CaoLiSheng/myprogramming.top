@@ -51,7 +51,7 @@
 
 @media only screen and (max-width: 750px) {
   .markdown-body div.comments {
-    margin-bottom: 3em;
+    margin-bottom: 5em;
   }
 
   .markdown-body div.comments h6.tip {
