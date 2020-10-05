@@ -44,7 +44,7 @@ ApportionCongress(Pop[1 .. n],R):
     Rep[s] <- 1
     Insert(PQ, s, Pop[i]/sqrt(2))
 
-  // Allocate the remaining n 􀀀 R representatives
+  // Allocate the remaining n-R representatives
   for i <- 1 to n-R
     s <- ExtractMax(PQ)
     Rep[s] <- Rep[s] + 1
@@ -57,7 +57,7 @@ ApportionCongress(Pop[1 .. n],R):
 2. Huntington-Hill Guess
 
 ```python
-HHGuess(Pop[1 .. n],R, D):
+HHGuess(Pop[1 .. n],D):
   reps <- 0
   for i <- 1 to n
     q <- Pop[i]/D
@@ -83,15 +83,15 @@ HHGuess(Pop[1 .. n],R, D):
 
 思路：首先，认识清楚两个算法的特点。
 
-算法 1 中的优先级队列最初的优先级是按照人口数从大到小排列的。观察 `priority <- Pop[s]/sqrt(Rep[s]*(Rep[s]+1))`，发现优先级实际上反映一种期望，当前州人口数与议员数的比值，即每多少个人口产生一个议员席位。算法执行的过程实际上是在不断地缩小各个州之间的这种期望。
+算法 1 中的优先级队列最初的优先级是按照人口数从大到小排列的。观察 `priority <- Pop[s]/sqrt(Rep[s]*(Rep[s]+1))`，发现随着算法的执行，各州的优先级越来越接近。
 
-算法 2 正是猜测算法 1 运行结束时的期望，一个统一的、接近的期望。其结果 `Rep[1 .. n]` 中，人口数相邻的两个州的议员数量至多是相等的，否则人口多的州将获得更多议员。
+算法 2 正是要找到算法 1 中最终归一的优先级。
 
-~~「呃，还是想不通」~~
+回过头来看题目，算法 1 中的 `R` 参数来自算法 2 的结果 `reps`。这说明 `Rep[i]>=floor(Pop[i]/D)`；要想 `Rep[i]==floor(Pop[i]/D)`， 要么，`Pop[i]` 被 `D` 整除，要么`q * q < floor(q) * ceil(q)`。假如，各州人口数都被 `D` 整除，那么当算法 1 中给某个州分配到整出结果的议员数量时，优先级将绝对不可能比其它任何一个州高；也就是说，在这种情况下算法 1 和算法 2 的分配结果完全相同。假如，只有一个州人口数没有被 `D` 整除，那么这个州的优先级显然是最高的，而决定它有没有多分配一个议员的条件是算法 2 的计算结果。假如，只有两个州人口数没有被 `D` 整除，分配最后一个议员席位时，`P1=Pop1/sqrt(p1_1*(p1_1+1)),P2=Pop2/sqrt(p1_2*(p1_2+1));q1=Pop1/D,q2=Pop2/D;p2_1=q1<sqrt(floor(q1)*ceil(q1)?floor(q1):ceil(q1),p2_2=q2<sqrt(floor(q2)*ceil(q2)?floor(q2):ceil(q2)`，若 `P1>P2`，则 `p1_1+1==p2_1,p1_2==p2_2`，反之亦然；同理，若`P1<P2`，则 `p1_1==p2_1,p1_2+1==p2_2`。由于各州间的人口数总是可以两两比较的，所以得证。
 
 4. 证明：有可能并不存在正确的 `D`。即，存在一组 `Pop[1 .. n]`，`n <= R <= P`，对于所有的 `D > 0` 的数字，都不能通过算法 2 得到正确的 `reps=R`。
 
-~~「呃，没思路」~~
+~~「呃，没思路，题目就莫名其妙，难道前面几问都是逗我呢！？！」~~
 
 > 为了全局，暂时放过这一块，哈哼！
 
