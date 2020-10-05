@@ -98,8 +98,8 @@ export const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 // preTitle
 export function preTitle(fileName: string): string {
-  if (fileName.startsWith('private.')) return '「隐私」';
-  if (fileName.startsWith('draft.')) return '「草稿」';
+  if (fileName.startsWith('private-')) return '「隐私」';
+  if (fileName.startsWith('draft-')) return '「草稿」';
   return '';
 }
 

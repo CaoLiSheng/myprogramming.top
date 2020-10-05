@@ -51,7 +51,7 @@ export function htmlMinify(content: string): string {
     return htmlBlocksChain(content, [
       /<pre[\s\S]+?<\/pre>/g,
       /<textarea[\s\S]+?<\/textarea>/g,
-    ]);
+    ]).replace(/>\s+</g, '><');
   }
   return content;
 }

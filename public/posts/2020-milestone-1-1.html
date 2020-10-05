@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html lang="cn-zh"> <head> <meta charset="UTF-8" /> <meta http-equiv="pragma" content="no-cache" /> <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>「里程碑-2020-1.1」博客 V1.1</title> <script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script> <link rel="stylesheet" type="text/css" href="github-border.0d4a244536cfbe794c80.css" /> </head> <body class="snapshot"> <article class="markdown-body hidden"> <h1>「里程碑-2020-1.1」博客 V1.1</h1> <h2 id="">前言</h2> <blockquote> <p>距离上一次的 V1.0 快两个月了，期间修复了些 bugs，也加了些新功能。文章段落划分基本按照 V1.0 那样，记录以下，生活更美好！</p> </blockquote> <h2 id="-1">配置文件部分</h2> <figure><img alt="webpack配置文件继承结构以及需要定义的变量" src="2020-milestone-1-1/webpack.cfg.png" title="webpack配置文件继承结构以及需要定义的变量" width="512px" height="auto" /><figcaption>webpack配置文件继承结构以及需要定义的变量</figcaption></figure> <h3 id="-2">变量说明</h3> <table> <thead> <tr> <th style="text-align:left;">变量名</th> <th style="text-align:left;">作用</th> </tr> </thead> <tbody> <tr> <td style="text-align:left;">posts root</td> <td style="text-align:left;">博客网站定位博文数据库</td> </tr> <tr> <td style="text-align:left;">tpl script path</td> <td style="text-align:left;">提供给博文生成器定位博文网页脚本文件的路径</td> </tr> <tr> <td style="text-align:left;">out path</td> <td style="text-align:left;">提供给博文生成器生成的数据库位置</td> </tr> <tr> <td style="text-align:left;">production</td> <td style="text-align:left;">提供给博文生成器是否为生产模式，影响生成的 HTML/CSS 文件是否去掉多余的换行和空格</td> </tr> <tr> <td style="text-align:left;">origin</td> <td style="text-align:left;">postMessage 需要</td> </tr> <tr> <td style="text-align:left;">site root</td> <td style="text-align:left;">站内跳转需要</td> </tr> </tbody> </table> <h3 id="-3">站点脚本代码切分（提高脚本并行下载数量、降低页面加载时间、提高性能）</h3> <pre><code class="typescript language-typescript">// webpack 配置
+<!DOCTYPE html><html lang="cn-zh"><head><meta charset="UTF-8" /><meta http-equiv="pragma" content="no-cache" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>「里程碑-2020-1.1」博客 V1.1</title><script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script><link rel="stylesheet" type="text/css" href="github-border.0d4a244536cfbe794c80.css" /></head><body class="snapshot"><article class="markdown-body hidden"><h1>「里程碑-2020-1.1」博客 V1.1</h1><h2 id="">前言</h2><blockquote><p>距离上一次的 V1.0 快两个月了，期间修复了些 bugs，也加了些新功能。文章段落划分基本按照 V1.0 那样，记录以下，生活更美好！</p></blockquote><h2 id="-1">配置文件部分</h2><figure><img alt="webpack配置文件继承结构以及需要定义的变量" src="2020-milestone-1-1/webpack.cfg.png" title="webpack配置文件继承结构以及需要定义的变量" width="512px" height="auto" /><figcaption>webpack配置文件继承结构以及需要定义的变量</figcaption></figure><h3 id="-2">变量说明</h3><table><thead><tr><th style="text-align:left;">变量名</th><th style="text-align:left;">作用</th></tr></thead><tbody><tr><td style="text-align:left;">posts root</td><td style="text-align:left;">博客网站定位博文数据库</td></tr><tr><td style="text-align:left;">tpl script path</td><td style="text-align:left;">提供给博文生成器定位博文网页脚本文件的路径</td></tr><tr><td style="text-align:left;">out path</td><td style="text-align:left;">提供给博文生成器生成的数据库位置</td></tr><tr><td style="text-align:left;">production</td><td style="text-align:left;">提供给博文生成器是否为生产模式，影响生成的 HTML/CSS 文件是否去掉多余的换行和空格</td></tr><tr><td style="text-align:left;">origin</td><td style="text-align:left;">postMessage 需要</td></tr><tr><td style="text-align:left;">site root</td><td style="text-align:left;">站内跳转需要</td></tr></tbody></table><h3 id="-3">站点脚本代码切分（提高脚本并行下载数量、降低页面加载时间、提高性能）</h3><pre><code class="typescript language-typescript">// webpack 配置
 {
   entry: {
     app: 'src/www/app',
@@ -35,7 +35,7 @@ import('./index');
 import('react-dom').then(({ render }) =&gt;
   render(&lt;App /&gt;, document.getElementById('main'))
 );
-</code></pre> <pre><code class="shell language-shell">// 优化前
+</code></pre><pre><code class="shell language-shell">// 优化前
 274K  9 30 11:10 app.f629bf8dd3ae91057b3c.js
 670B  9 30 11:10 index.html
 
@@ -48,7 +48,7 @@ import('react-dom').then(({ render }) =&gt;
  59K  9 30 11:15 6.adf85dd9d16e2e91e1e6.js
 2.8K  9 30 11:15 app~f71cff67.adf85dd9d16e2e91e1e6.js
 679B  9 30 11:15 index.html
-</code></pre> <h2 id="-4">启动命令规划部分</h2> <p>最近，发现好多 IDE 都有运行项目里 <code>npm script</code> 的功能，而为了避免选择列表太长，所以，并没有抽离公共脚本，做到脚本数量最小。</p> <pre><code class="javascript language-javascript">{
+</code></pre><h2 id="-4">启动命令规划部分</h2><p>最近，发现好多 IDE 都有运行项目里 <code>npm script</code> 的功能，而为了避免选择列表太长，所以，并没有抽离公共脚本，做到脚本数量最小。</p><pre><code class="javascript language-javascript">{
   "scripts": {
     "help": "webpack -h",
     "build": "rm -rf build/dev &amp;&amp; webpack -p --devtool=false --config=cfg/webpack/gen.dev.js &amp;&amp; node ./build/dev/generator.min.js &gt; log.txt",
@@ -56,7 +56,7 @@ import('react-dom').then(({ render }) =&gt;
     "public": "rm -rf public build/prod &amp;&amp; webpack -p --devtool=false --config=cfg/webpack/site.prod.js &amp;&amp; webpack -p --devtool=false --config=cfg/webpack/gen.prod.js &amp;&amp; node ./build/prod/generator.min.js &gt; log.txt"
   },
 }
-</code></pre> <p>可以看到，<code>generator.min.js</code> 已然区分 <code>开发模式</code> 和 <code>发布模式</code> ；再也不用担心，由于发布了一下，开发模式就要重启一次了。</p> <h2 id="-5">博文生成器部分</h2> <p>首先，回顾一下大致流程：</p> <ol> <li>创建数据库</li> <li>识别输入文件夹、准备输出文件夹</li> <li>读取输入文件夹并区分资源文件（夹）和 markdown 文章文件</li> <li>拷贝资源文件（夹）到输出目录，并且带上 <code>template.min.js</code> 脚本文件</li> <li>生成 HTML 文件<ul> <li>识别文章 metadata</li> <li>转化文章内容为 html 文本</li> <li>替换文章模版数据</li></ul></li> <li>记录数据，导出 JSON 格式的数据库文件</li> </ol> <h3 id="string">给 <code>string</code> 加过滤器函数</h3> <pre><code class="typescript language-typescript">// 根目录下 index.d.ts
+</code></pre><p>可以看到，<code>generator.min.js</code> 已然区分 <code>开发模式</code> 和 <code>发布模式</code> ；再也不用担心，由于发布了一下，开发模式就要重启一次了。</p><h2 id="-5">博文生成器部分</h2><p>首先，回顾一下大致流程：</p><ol><li>创建数据库</li><li>识别输入文件夹、准备输出文件夹</li><li>读取输入文件夹并区分资源文件（夹）和 markdown 文章文件</li><li>拷贝资源文件（夹）到输出目录，并且带上 <code>template.min.js</code> 脚本文件</li><li>生成 HTML 文件<ul><li>识别文章 metadata</li><li>转化文章内容为 html 文本</li><li>替换文章模版数据</li></ul></li><li>记录数据，导出 JSON 格式的数据库文件</li></ol><h3 id="string">给 <code>string</code> 加过滤器函数</h3><pre><code class="typescript language-typescript">// 根目录下 index.d.ts
 interface String {
     filter(...fns: (fn(file: string) =&gt; boolean)[]): boolean;
 }
@@ -82,7 +82,7 @@ export function isAsset(file: string): boolean {
 export function isPost(file: string): boolean {
   return file.filter(notPrivate, notDraft, isMarkdown, isFile);
 }
-</code></pre> <h3 id="prewrite">preWrite</h3> <pre><code class="typescript language-typescript">// 采用链式调用和门面模式思想
+</code></pre><h3 id="prewrite">preWrite</h3><pre><code class="typescript language-typescript">// 采用链式调用和门面模式思想
 // pre write: do some cleaning
 type WriteFileOptions =
   | string
@@ -124,7 +124,7 @@ preWrite(path.join(outDir, name + '.html')).writeFileSync(
       )
   )
 );
-</code></pre> <h3 id="html">使用 HTML 模版</h3> <p>在上一节的代码片段中可以看到，HTML 模版中使用双大括号语法表示需要替换的变量。这里没有任何变量或者表达式的使用，仅替换为一段字符串。其中有几个特殊的函数，让模版替换过程变得有一点使用变量的意思。</p> <pre><code class="typescript language-typescript">// preTitle：开发模式下看到的文章会多一些，包括未完成的草稿和个人隐私文章
+</code></pre><h3 id="html">使用 HTML 模版</h3><p>在上一节的代码片段中可以看到，HTML 模版中使用双大括号语法表示需要替换的变量。这里没有任何变量或者表达式的使用，仅替换为一段字符串。其中有几个特殊的函数，让模版替换过程变得有一点使用变量的意思。</p><pre><code class="typescript language-typescript">// preTitle：开发模式下看到的文章会多一些，包括未完成的草稿和个人隐私文章
 export function preTitle(fileName: string): string {
   if (fileName.startsWith('private.')) return '「隐私」';
   if (fileName.startsWith('draft.')) return '「草稿」';
@@ -164,7 +164,7 @@ export function emailLink(
 &lt;br /&gt;&lt;br /&gt;
   `;
 }
-</code></pre> <h3 id="css">使用 CSS 模版</h3> <p>CSS 模版中定义了两段 CSS 代码，中间是嵌入 CSS 主题内容的记号（单行注释）。前面一段叫做「全局预设」，后面的一段叫做「全局设定」。所以，可以理解为一篇文章由三段 CSS 按顺序定义（尽量不写!important）。在模版文件中的任意位置，都可以插入其它任何记号。目前在使用的有两个，见下方代码：</p> <pre><code class="typescript language-typescript">const CSSMaps: {
+</code></pre><h3 id="css">使用 CSS 模版</h3><p>CSS 模版中定义了两段 CSS 代码，中间是嵌入 CSS 主题内容的记号（单行注释）。前面一段叫做「全局预设」，后面的一段叫做「全局设定」。所以，可以理解为一篇文章由三段 CSS 按顺序定义（尽量不写!important）。在模版文件中的任意位置，都可以插入其它任何记号。目前在使用的有两个，见下方代码：</p><pre><code class="typescript language-typescript">const CSSMaps: {
   [key: string]: string;
 } = {};
 
@@ -196,7 +196,7 @@ export function fetchCSS(base: string): string {
 
   return CSSMaps[base];
 }
-</code></pre> <h3 id="minify">minify</h3> <pre><code class="typescript language-typescript">// 改进了正则表达式
+</code></pre><h3 id="minify">minify</h3><pre><code class="typescript language-typescript">// 改进了正则表达式
 export function minify(content: string): string {
   if (__production__) {
     return content
@@ -206,7 +206,7 @@ export function minify(content: string): string {
   }
   return content;
 }
-</code></pre> <p>期间有个失误，这段代码上线一段时间后，才发现 pre 标签里的内容也被去掉了换行。这是个 bug，随即有了下面的 <code>htmlMinify</code>：</p> <pre><code class="typescript language-typescript">// 先提取出pre/textarea标签，然后split原内容，最后merge；就像洗扑克牌一样
+</code></pre><p>期间有个失误，这段代码上线一段时间后，才发现 pre 标签里的内容也被去掉了换行。这是个 bug，随即有了下面的 <code>htmlMinify</code>：</p><pre><code class="typescript language-typescript">// 先提取出pre/textarea标签，然后split原内容，最后merge；就像洗扑克牌一样
 function extractBlocks(content: string, re: RegExp): string[] {
   const blocks: string[] = [];
   let temp: RegExpExecArray | null;
@@ -250,7 +250,7 @@ export function htmlMinify(content: string): string {
   }
   return content;
 }
-</code></pre> <h3 id="showdown">showdown 插件</h3> <p>围绕图片和下载链接，定义了两个插件。另外，有个关于嵌套列表的设置，也是纠结了一阵子才找到正确配置项的。</p> <pre><code class="typescript language-typescript">export const converter = new showdown.Converter({
+</code></pre><h3 id="showdown">showdown 插件</h3><p>围绕图片和下载链接，定义了两个插件。另外，有个关于嵌套列表的设置，也是纠结了一阵子才找到正确配置项的。</p><pre><code class="typescript language-typescript">export const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
@@ -288,7 +288,7 @@ export function htmlMinify(content: string): string {
   parseImgDimensions: true,
   tables: true,
 });
-</code></pre> <h2 id="-6">博客网站部分</h2> <p>首先，回顾一下网站地图：</p> <figure><img alt="本站地图" src="2020-milestone-1-1/site-map.png" title="本站地图" /><figcaption>本站地图</figcaption></figure> <p>最大的改动就是引入了代码切分技术。其次加了一个鼠标按下音效。</p> <pre><code class="typescript language-typescript">import ClickWAV from './click.wav';
+</code></pre><h2 id="-6">博客网站部分</h2><p>首先，回顾一下网站地图：</p><figure><img alt="本站地图" src="2020-milestone-1-1/site-map.png" title="本站地图" /><figcaption>本站地图</figcaption></figure><p>最大的改动就是引入了代码切分技术。其次加了一个鼠标按下音效。</p><pre><code class="typescript language-typescript">import ClickWAV from './click.wav';
 
 const playAudio = () =&gt; {
   let player = document.getElementById('click-wav');
@@ -307,4 +307,4 @@ window.addEventListener('beforeunload', () =&gt; {
   document.body.removeEventListener('mousedown', playAudio);
   document.body.removeEventListener('touchstart', playAudio);
 });
-</code></pre> <h2 id="-7">未来规划部分</h2> <p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p> <h2 id="-8">结语</h2> <blockquote> <p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p> </blockquote> <h2 id="-9">同系列文章</h2> <ul> <li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li> </ul> <br /><br /> <hr /> <br /> <a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a> <br /><br /> </article> <script type="application/javascript" src="template.f33c6bb0b3d7a0ecd202.js"></script> </body> </html>
+</code></pre><h2 id="-7">未来规划部分</h2><p>由于 Vue 在国内实在太火了，所以打算未来用 Vue3 做一个全新的改版。界面类似 RSS 软件，最左边竖着排列几个好看的图标；接着放二级控制界面；接着是文章视图。总体来说，更适合宽屏显示。</p><h2 id="-8">结语</h2><blockquote><p>依然要严格按照<a href="post:2020-plan">计划</a>行事哦!</p></blockquote><h2 id="-9">同系列文章</h2><ul><li><a href="post:2020-milestone-1">「里程碑-2020-1」博客 V1.0</a></li></ul><br /><br /><hr /><br /><a href="mailto:954382491@qq.com?subject=评价「「里程碑-2020-1.1」博客 V1.1」">发邮件~来评价~一下吧</a><br /><br /></article><script type="application/javascript" src="template.67b38a9e1ac274241790.js"></script></body></html>
