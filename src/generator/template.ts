@@ -126,13 +126,16 @@ export function emailLink(
   noReceiveEmails: string,
   title: string
 ): string {
-  if (noReceiveEmails || fileName.startsWith('private.')) return '';
+  if (noReceiveEmails || fileName.startsWith('private-')) return '';
 
   return `
 <br /><br />
 <hr />
 <br />
+<div class="comments">
 <a href="mailto:954382491@qq.com?subject=评价「${title}」">发邮件~来评价~一下吧</a>
-<br /><br />
+<h6 class="tip">请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6>
+</div>
+<br />
   `;
 }

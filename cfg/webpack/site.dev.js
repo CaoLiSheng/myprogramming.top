@@ -10,9 +10,8 @@ module.exports = merge(base, {
   mode: 'development',
   devServer: {
     port: 3000,
-    host: 'dev.myprogramming.top',
+    host: '0.0.0.0',
     disableHostCheck: true,
-    compress: true,
   },
   resolve: {
     alias: {
@@ -70,7 +69,7 @@ module.exports = merge(base, {
   plugins: [
     new wba.BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      __posts_root__: JSON.stringify('http://localhost:5555/'),
+      __posts_root__: JSON.stringify('http://dev.myprogramming.top:5555/'),
     }),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'src', 'www', 'index.html'),

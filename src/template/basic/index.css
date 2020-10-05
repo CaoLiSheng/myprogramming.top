@@ -17,7 +17,24 @@
   text-decoration: underline;
 }
 
-.markdown-body a[href^='mailto:'] {
+.markdown-body div.comments {
+  position: relative;
+}
+
+.markdown-body div.comments h6.tip {
+  opacity: 0;
+  cursor: default;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.markdown-body div.comments:hover h6.tip {
+  opacity: 0.5;
+}
+
+.markdown-body div.comments a[href^='mailto:'] {
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 10rem;
@@ -27,9 +44,19 @@
   transition: background-color 300ms, color 1s;
 }
 
-.markdown-body a[href^='mailto:']:hover {
+.markdown-body div.comments a[href^='mailto:']:hover {
   background-color: whitesmoke;
   color: teal;
+}
+
+@media only screen and (max-width: 750px) {
+  .markdown-body div.comments {
+    margin-bottom: 3em;
+  }
+
+  .markdown-body div.comments h6.tip {
+    opacity: 0.5;
+  }
 }
 /* 以上：全局预设 */
 

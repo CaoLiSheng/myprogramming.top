@@ -36,8 +36,15 @@ document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
     return;
   }
 
-  // support opening urls in new tab
   let href: string | null = anchor.getAttribute('href');
+  // support mail & tel
+  // if (href?.startsWith('mailto:') || href?.startsWith('tel:')) {
+  // anchor.setAttribute('data-rel', 'external');
+  // anchor.setAttribute('target', '_blank');
+  // anchor.addEventListener('click', () => window.open(href as string));
+  // }
+
+  // support opening insite posts
   if (href?.startsWith('post:')) {
     href = `${__site_root__}/#/${href.replace(':', '/')}`;
   }
