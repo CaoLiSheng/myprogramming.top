@@ -68,15 +68,16 @@
 }
 
 @media only screen and (max-width: 750px) {
-  .markdown-body td,
-  .markdown-body th {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 18px 8px 0 !important;
-  }
-
   .markdown-body thead th:not(.main) {
     display: none;
+  }
+
+  .markdown-body td,
+  .markdown-body th {
+    text-align: left !important;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 8px 8px !important;
   }
 
   .markdown-body td[data-th]:before {
@@ -85,6 +86,10 @@
     flex-basis: 5em;
     flex-shrink: 0;
     flex-grow: 0;
+  }
+
+  .markdown-body td:first-child {
+    border-bottom: solid 1px #ddd;
   }
 }
 /* 以上：全局正规化 */
@@ -128,7 +133,7 @@ body:not(.snapshot) > .markdown-body {
   display: none;
 }
 
-@media (max-width: 750px) {
+@media screen and (max-width: 750px) {
   .markdown-body {
     margin: 1rem;
     /* body_padding_mobile */
