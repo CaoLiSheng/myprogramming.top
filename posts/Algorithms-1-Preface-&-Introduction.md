@@ -81,7 +81,19 @@ HHGuess(Pop[1 .. n],D):
 
 3. 证明：假如算法 2 计算得到正确的 `reps==R`，那么 `Rep[1 .. n]`与算法 1 在相同参数下的计算结果相同。
 
-思路：算法 1 中的 `R` 参数来自算法 2 的结果 `reps`，说明 `floor(Pop[i]/D)<=Rep[i]<=ceil(Pop[i]/D)`；且算法 1 中的 `P` 低于算法 2 中的 `D` 时将不再分配议员，反之后续会弹出优先队列分配议员，这是因为算法 2 中的 `D` 实际上是题目中议员数不得超过 `D` 人一个。接下来考虑，算法 1 中 `Rep[i]=floor(Pop[i]/D)` 时 `P=Pop[i]/sqrt(Rep[i]*(Rep[i]+1))=Pop[i]/sqrt(floor(Pop[i]/D)*ceil(Pop[i]/D))`；当 `q=Pop[i]/D;q*q<floor(q)*ceil(q)` 时，`P<Pop[i]/q;P<D`，不再分配议员 `Rep[i]=floor(Pop[i]/D)`，两个算法中结果相同；当 `q=Pop[i]/D;q*q>floor(q)*ceil(q)` 时，`P>Pop[i]/q;P>D`，会再分配一个议员 `Rep[i]=floor(Pop[i]/D)+1=ceil(Pop[i]/D)`，两个算法中结果相同。当然，考虑某些特殊情况（`Pop[i]<D`）和边界值（`Pop[i] 被 D 整除`）结果也是相同的。
+思路：算法 1 中的 `R` 参数来自算法 2 的结果 `reps`，说明 `floor(Pop[i]/D)<=Rep[i]<=ceil(Pop[i]/D)`；
+
+且算法 1 中的 `P` 低于算法 2 中的 `D` 时将不再分配议员，反之后续会弹出优先队列分配议员，这是因为算法 2 中的 `D` 实际上是题目中议员数不得超过 `D` 人一个。
+
+接下来考虑，算法 1 中 `Rep[i]=floor(Pop[i]/D)` 时
+
+`P=Pop[i]/sqrt(Rep[i]*(Rep[i]+1))=Pop[i]/sqrt(floor(Pop[i]/D)*ceil(Pop[i]/D))`；
+
+当 `q=Pop[i]/D;q*q<floor(q)*ceil(q)` 时，`P<Pop[i]/q;P<D`，不再分配议员 `Rep[i]=floor(Pop[i]/D)`，两个算法中结果相同；
+
+当 `q=Pop[i]/D;q*q>floor(q)*ceil(q)` 时，`P>Pop[i]/q;P>D`，会再分配一个议员 `Rep[i]=floor(Pop[i]/D)+1=ceil(Pop[i]/D)`，两个算法中结果相同。
+
+当然，考虑某些特殊情况（`Pop[i]<D`）和边界值（`Pop[i] 被 D 整除`）结果也是相同的。
 
 4. 证明：有可能并不存在正确的 `D`。即，存在一组 `Pop[1 .. n]`，`n <= R <= P`，对于所有的 `D > 0` 的数字，都不能通过算法 2 得到正确的 `reps=R`。
 
