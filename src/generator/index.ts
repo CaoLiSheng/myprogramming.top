@@ -7,6 +7,7 @@ import {
   copyTemplateAssets,
   fetchCSS,
   preTitle,
+  dateTag,
   emailLink,
   hmBaidu,
 } from './template';
@@ -98,6 +99,7 @@ posts.forEach((fileName: string) => {
         .replace('{{javascript}}', tplScriptPath)
         .replace('{{stylesheet}}', fetchCSS(stylesheet))
         .replace('{{body_title}}', `${preTitle(fileName)}${title}`)
+        .replace('{{datetime}}', `${dateTag(date)}`)
         .replace(
           '{{body}}',
           `${body}${emailLink(fileName, noReceiveEmails, title)}`
