@@ -105,7 +105,7 @@ export function preTitle(fileName: string): string {
 
 // dateTag
 export function dateTag(date: string): string {
-  return `<code>最后更新时间 -> ${date}</code>`;
+  return `<code> ~~ 更新时间 -> ${date}</code>`;
 }
 
 // hm baidu
