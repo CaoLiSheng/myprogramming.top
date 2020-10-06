@@ -37,15 +37,21 @@
 .markdown-body div.comments a[href^='mailto:'] {
   text-decoration: none;
   padding: 0.5rem 1rem;
-  border-radius: 10rem;
+  text-align: center;
+  display: block;
   font-weight: bolder;
   background-color: green;
+  background: linear-gradient(to bottom, whitesmoke, whitesmoke 50%, green);
+  background-position: 0 100%;
+  background-size: 100% 200%;
   color: azure;
-  transition: background-color 300ms, color 1s;
+  text-shadow: 0 0 2px darkcyan;
+  transition: background-color 300ms, background-position 300ms, color 1s;
 }
 
 .markdown-body div.comments a[href^='mailto:']:hover {
   background-color: whitesmoke;
+  background-position: 0 0;
   color: teal;
 }
 
