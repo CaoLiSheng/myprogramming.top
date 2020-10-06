@@ -1,9 +1,9 @@
 ul.snap-list {
   list-style: none;
   margin: 0.2rem auto;
-  min-width: 200px;
-  max-width: 980px;
-  width: 100%;
+  max-width: 10rem;
+  min-width: 7rem;
+  width: calc(100% - 0.2rem);
 
   a {
     display: block;
@@ -11,15 +11,14 @@ ul.snap-list {
     background-color: white;
     box-shadow: 0 0 5px 0 gray;
     border: dashed 0.01rem #888888;
+    overflow: hidden;
 
-    &:first-child,
-    &:first-child iframe {
+    &:first-child {
       border-top-left-radius: 0.1rem;
       border-top-right-radius: 0.1rem;
     }
 
-    &:last-child,
-    &:last-child iframe {
+    &:last-child {
       border-bottom-left-radius: 0.1rem;
       border-bottom-right-radius: 0.1rem;
     }
@@ -65,10 +64,16 @@ ul.snap-list {
 
       iframe {
         width: 100%;
-        height: 600px;
+        height: 6rem;
         display: block;
         pointer-events: none;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  ul.snap-list > a > li > iframe {
+    height: 9rem;
   }
 }

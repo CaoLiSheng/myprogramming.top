@@ -160,7 +160,7 @@ body:not(.snapshot) > .markdown-body {
 
 @media screen and (max-width: 750px) {
   .markdown-body {
-    margin: 1rem;
+    margin: 5px;
     /* body_padding_mobile */
   }
 }
