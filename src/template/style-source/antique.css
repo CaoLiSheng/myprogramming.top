@@ -130,14 +130,13 @@ Description:  An "antiqued" theme with off-white background and serif typography
 .markdown-body h1 {
   text-align: center;
 }
-.markdown-body h1:before {
+/* .markdown-body h1:before {
   content: '\21B7';
   position: relative;
   left: -0.5em;
-  /* top: 0.4em; */
   color: #837e70;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
-}
+} */
 .markdown-body h1:after {
   content: '\21B5';
   position: relative;
