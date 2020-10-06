@@ -140,9 +140,9 @@ body:not(.snapshot) {
 .markdown-body {
   box-sizing: border-box;
   margin: 1rem auto;
+  max-width: 1000px;
   min-width: 200px;
-  max-width: 980px;
-  width: 100%;
+  width: calc(100% - 2rem);
   /* body_padding_pc */
 }
 
@@ -160,7 +160,8 @@ body:not(.snapshot) > .markdown-body {
 
 @media screen and (max-width: 750px) {
   .markdown-body {
-    margin: 5px;
+    margin: 5px auto;
+    width: calc(100% - 10px);
     /* body_padding_mobile */
   }
 }
