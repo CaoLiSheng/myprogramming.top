@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const wba = require('webpack-bundle-analyzer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const base = require('./base.site');
 
@@ -70,12 +69,6 @@ module.exports = merge(base, {
     new wba.BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       __posts_root__: JSON.stringify('http://dev.myprogramming.top:5555/'),
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src', 'www', 'index.html'),
-      filename: './index.html',
-      title: '又心真人的博客',
-      chunks: ['app'],
     }),
   ],
 });

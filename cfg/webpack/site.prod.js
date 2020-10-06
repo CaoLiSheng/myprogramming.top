@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const base = require('./base.site');
 
@@ -57,12 +56,6 @@ module.exports = merge(base, {
   plugins: [
     new webpack.DefinePlugin({
       __posts_root__: JSON.stringify('./posts/'),
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src', 'www', 'index.prod.html'),
-      filename: './index.html',
-      title: '又心真人的博客',
-      chunks: ['app'],
     }),
   ],
 });
