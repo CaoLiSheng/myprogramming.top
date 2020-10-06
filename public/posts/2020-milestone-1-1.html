@@ -246,7 +246,7 @@ export function htmlMinify(content: string): string {
     return htmlBlocksChain(content, [
       /&lt;pre[\s\S]+?&lt;\/pre&gt;/g,
       /&lt;textarea[\s\S]+?&lt;\/textarea&gt;/g,
-    ]);
+    ]).replace(/&gt;\s+&lt;/g, '&gt;&lt;');
   }
   return content;
 }
@@ -294,8 +294,9 @@ const playAudio = () =&gt; {
   let player = document.getElementById('click-wav');
   if (!player) {
     player = document.createElement('audio');
-    document.body.appendChild(player);
     player.setAttribute('src', ClickWAV);
+    player.id = 'click-wav';
+    document.body.appendChild(player);
   }
   (player as HTMLAudioElement).play();
 };
