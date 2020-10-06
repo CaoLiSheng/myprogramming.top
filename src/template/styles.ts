@@ -11,7 +11,7 @@ const ThinPadding = {
 };
 
 const styles: { [key: string]: StyleSheet } = {
-  air: NullPadding,
+  air: ThinPadding,
   antique: WidePadding,
   citizen: ThinPadding,
   'github-border': WidePadding,

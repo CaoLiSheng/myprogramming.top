@@ -79,12 +79,6 @@
     'Hiragino Sans GB', 'Microsoft YaHei', monospace;
 }
 
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body dl {
-  list-style-position: inside;
-}
-
 .markdown-body figure {
   width: 100%;
 }

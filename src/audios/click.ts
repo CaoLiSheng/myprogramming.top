@@ -4,8 +4,9 @@ const playAudio = () => {
   let player = document.getElementById('click-wav');
   if (!player) {
     player = document.createElement('audio');
-    document.body.appendChild(player);
     player.setAttribute('src', ClickWAV);
+    player.id = 'click-wav';
+    document.body.appendChild(player);
   }
   (player as HTMLAudioElement).play();
 };
