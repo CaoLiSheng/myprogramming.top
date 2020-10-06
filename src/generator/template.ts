@@ -12,7 +12,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import md5 from 'md5';
 
-import Sheets from '@tpl/styles';
+import Sheets, { notCompetibleForReceivingEmails } from '@tpl/styles';
 
 import { outDir, preWrite } from './file';
 import { minify } from './minify';
@@ -129,9 +129,15 @@ export function hmBaidu(): string {
 export function emailLink(
   fileName: string,
   noReceiveEmails: string,
+  style: string,
   title: string
 ): string {
-  if (noReceiveEmails || fileName.startsWith('private-')) return '';
+  if (
+    noReceiveEmails ||
+    fileName.startsWith('private-') ||
+    notCompetibleForReceivingEmails(style)
+  )
+    return '';
 
   return `
 <br /><br />

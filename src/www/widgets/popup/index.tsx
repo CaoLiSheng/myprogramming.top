@@ -5,11 +5,78 @@ import React, {
   Fragment,
   createRef,
 } from 'react';
+import { createPortal } from 'react-dom';
+import classNames from 'classnames';
 
 import './index.scss';
 
+const popupsContainer: HTMLDivElement = document.getElementById(
+  'popups-container'
+) as HTMLDivElement;
+
+interface HTMLElementOffset {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
+const getOffset = (ele?: HTMLElement | null): HTMLElementOffset => {
+  if (!ele) return { top: 0, left: 0, width: 0, height: 0 };
+
+  const offset = {
+    top: 0,
+    left: 0,
+    width: ele.offsetWidth,
+    height: ele.offsetHeight,
+  };
+
+  while (ele.offsetParent) {
+    offset.top += ele.offsetTop;
+
+    offset.left += ele.offsetLeft;
+
+    if (ele.offsetParent instanceof HTMLElement) {
+      ele = ele.offsetParent;
+    } else {
+      return offset;
+    }
+  }
+
+  return offset;
+};
+
+const posVertical = (vMode: string, offset: HTMLElementOffset, style = {}) => {
+  switch (vMode) {
+    case 'bottom':
+      style['top'] = offset.top + offset.height;
+      break;
+  }
+  return style;
+};
+
+const posHorizontal = (
+  hMode: string,
+  offset: HTMLElementOffset,
+  style = {}
+) => {
+  switch (hMode) {
+    case 'right':
+      style['right'] = window.innerWidth - offset.left - offset.width;
+      break;
+  }
+  return style;
+};
+
+type pos = 'bottom' | 'right' | 'top' | 'left';
+
+const position = (modes: pos[], offset: HTMLElementOffset) => {
+  const style = posVertical(modes[0], offset);
+  return posHorizontal(modes[1], offset, style);
+};
+
 interface PopupProps {
-  position: ('bottom' | 'right' | 'top' | 'left')[];
+  position: pos[];
   Trigger: ReactElement;
   Popper: ReactElement;
 }
@@ -21,43 +88,42 @@ interface PopupStates {
 export class Popup extends Component<PopupProps, PopupStates> {
   state = { open: false };
 
-  private triggerRef = createRef<HTMLElement>();
-
-  private posStep1(style = {}) {
-    switch (this.props.position[0]) {
-      case 'bottom':
-        style['top'] =
-          (this.triggerRef.current?.offsetTop || 0) +
-          (this.triggerRef.current?.offsetHeight || 0);
-        break;
-    }
-    return style;
+  constructor(props: PopupProps) {
+    super(props);
+    this.el = document.createElement('div');
   }
 
-  private posStep2(style = {}) {
-    switch (this.props.position[1]) {
-      case 'right':
-        style['right'] =
-          window.innerWidth -
-          (this.triggerRef.current?.offsetLeft || 0) -
-          (this.triggerRef.current?.offsetWidth || 0);
-        break;
-    }
-    return style;
+  private el: HTMLDivElement;
+  private triggerRef = createRef<HTMLElement>();
+
+  componentDidMount() {
+    popupsContainer.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    popupsContainer.removeChild(this.el);
   }
 
   private renderPopper() {
     const { Popper } = this.props;
+    const { open } = this.state;
 
-    return cloneElement(Popper, {
-      className: `popper ${Popper.props.className}`,
-      style: this.posStep2(this.posStep1()),
-    });
+    return createPortal(
+      <div
+        className={classNames('popup', { open })}
+        style={position(
+          this.props.position,
+          getOffset(this.triggerRef.current)
+        )}
+      >
+        {Popper}
+      </div>,
+      this.el
+    );
   }
 
   render() {
     const { Trigger } = this.props;
-    const { open } = this.state;
 
     return (
       <Fragment>
@@ -66,7 +132,7 @@ export class Popup extends Component<PopupProps, PopupStates> {
           onMouseEnter: () => this.setState({ open: true }),
           onMouseLeave: () => this.setState({ open: false }),
         })}
-        {open && this.renderPopper()}
+        {this.renderPopper()}
       </Fragment>
     );
   }

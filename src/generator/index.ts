@@ -102,7 +102,7 @@ posts.forEach((fileName: string) => {
         .replace('{{datetime}}', `${dateTag(date)}`)
         .replace(
           '{{body}}',
-          `${body}${emailLink(fileName, noReceiveEmails, title)}`
+          `${body}${emailLink(fileName, noReceiveEmails, stylesheet, title)}`
         )
     )
   );

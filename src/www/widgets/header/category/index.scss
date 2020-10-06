@@ -1,3 +1,23 @@
+.title-bar nav {
+  div.inline {
+    padding: 0 0.1rem;
+
+    a,
+    span {
+      display: inline;
+      padding: 0.05rem;
+    }
+
+    a {
+      color: rgb(255, 219, 152);
+    }
+
+    span {
+      color: whitesmoke;
+    }
+  }
+}
+
 ol.tags {
   list-style-position: inside;
   background-color: whitesmoke;

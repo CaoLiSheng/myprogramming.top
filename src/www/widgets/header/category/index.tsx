@@ -28,11 +28,9 @@ export default class extends Component<
           <Popup
             position={['bottom', 'right']}
             Trigger={
-              <li>
-                <Link className="icon" to={`/tags/${tags.join(',')}`}>
-                  <TagsIcon />
-                </Link>
-              </li>
+              <Link className="icon" to={`/tags/${tags.join(',')}`}>
+                <TagsIcon />
+              </Link>
             }
             Popper={
               <ol className="tags">
@@ -43,7 +41,7 @@ export default class extends Component<
             }
           />
         )}
-        <li className="inline">
+        <div className="inline">
           {/* <span>最后更新于：</span> */}
           <Link to={`/canlendar/${date.year()}/*/*`}>{date.year()}</Link>
           <span>年</span>
@@ -57,7 +55,7 @@ export default class extends Component<
             {date.date()}
           </Link>
           <span>日</span>
-        </li>
+        </div>
       </Fragment>
     );
   };

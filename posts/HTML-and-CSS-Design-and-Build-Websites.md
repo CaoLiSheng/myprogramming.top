@@ -214,9 +214,12 @@ function cssMinify(css: string): string {
 
 `googlefont` 是个好东西，可以使用用户电脑上没有的字体渲染网页，就是网站现在使用的字体所使用的服务。但是，服务里的字体数量还是有限的，有一种在特定情况下可以绕过这层限制的方法：首先需要的文字数量要少，然后制作成 `图片`。
 
-| font-weight | font-style | text-transform | text-decoration |
-| :---------: | :--------: | :------------: | :-------------: |
-|    粗体     |    斜体    |     大小写     |     下划线      |
+|          属性名 | 作用   |
+| --------------: | :----- |
+|     font-weight | 粗体   |
+|      font-style | 斜体   |
+|  text-transform | 大小写 |
+| text-decoration | 下划线 |
 
 表格中的这几个属性，对我来说，十分容易记混淆。
 

@@ -1,4 +1,4 @@
-import React, { Component, createRef, RefObject } from 'react';
+import React, { Component, createRef, ReactElement, RefObject } from 'react';
 import { Link, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -33,7 +33,11 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
   >();
 
   private toClose = (event: MouseEvent) => {
-    if (!clickIn(event.target as HTMLElement, this.toggleElem.current)) {
+    const clickedIn = clickIn(
+      event.target as HTMLElement,
+      this.toggleElem.current
+    );
+    if (!clickedIn) {
       this.setState({ categoryExpanded: false });
     }
   };
@@ -69,103 +73,70 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
     );
   }
 
+  renderLink(ctx: string, name: string, to?: string) {
+    return (
+      <Link
+        to={to || ctx}
+        className={classNames({
+          ctx: this.props.match.path === ctx,
+        })}
+      >
+        {name}
+      </Link>
+    );
+  }
+
+  renderMobileLink(link: ReactElement) {
+    return (
+      <li
+        className={classNames('slot', {
+          show: this.state.categoryExpanded,
+        })}
+      >
+        {link}
+      </li>
+    );
+  }
+
   render() {
+    const homeLink = this.renderLink('/', '首页');
+    const canlendarLink = this.renderLink(
+      '/canlendar/:year/:month/:date',
+      '日历',
+      '/canlendar/*/*/*'
+    );
+    const tagsLink = this.renderLink('/tags/:tags', '标签', '/tags/*');
+
     return (
       <div className="title-bar">
         <nav>
-          <ul className="left">
-            <li>
-              <Link
-                to="/"
-                className={classNames({
-                  ctx: this.props.match.path === '/',
-                })}
-              >
-                首页
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/canlendar/*/*/*"
-                className={classNames({
-                  ctx:
-                    this.props.match.path === '/canlendar/:year/:month/:date',
-                })}
-              >
-                日历
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/tags/*"
-                className={classNames({
-                  ctx: this.props.match.path === '/tags/:tags',
-                })}
-              >
-                标签
-              </Link>
-            </li>
-          </ul>
-          <ul className="right mobile-compatible">
-            <Switch>
-              <Route path="/post/:name" component={Category} />
-              <Route
-                exact
-                path={['/', '/tags/:tags', '/canlendar/:year/:month/:date']}
-                component={Pager}
-              />
-            </Switch>
-          </ul>
-          <ul className="left mobile-compatible mobile-only">
-            <li>
-              <a className="icon" ref={this.toggleElem} onClick={this.onExpand}>
-                <CategoryIcon closing={this.state.categoryExpanded} />
-              </a>
-            </li>
-            <li
-              className={classNames('categories', {
-                show: this.state.categoryExpanded,
-              })}
-            >
-              <Link
-                to="/"
-                className={classNames({
-                  ctx: this.props.match.path === '/',
-                })}
-              >
-                首页
-              </Link>
-            </li>
-            <li
-              className={classNames('categories', {
-                show: this.state.categoryExpanded,
-              })}
-            >
-              <Link
-                to="/canlendar/*/*/*"
-                className={classNames({
-                  ctx:
-                    this.props.match.path === '/canlendar/:year/:month/:date',
-                })}
-              >
-                日历
-              </Link>
-            </li>
-            <li
-              className={classNames('categories', {
-                show: this.state.categoryExpanded,
-              })}
-            >
-              <Link
-                to="/tags/*"
-                className={classNames({
-                  ctx: this.props.match.path === '/tags/:tags',
-                })}
-              >
-                标签
-              </Link>
-            </li>
-          </ul>
+          <Switch>
+            <Route path="/post/:name" component={Category} />
+            <Route
+              exact
+              path={['/', '/tags/:tags', '/canlendar/:year/:month/:date']}
+              component={Pager}
+            />
+          </Switch>
+          <div className="main">
+            <div className="pc">{homeLink}</div>
+            <div className="pc">{canlendarLink}</div>
+            <div className="pc">{tagsLink}</div>
+            <ul className="mobile">
+              <li>
+                <a
+                  className="icon"
+                  ref={this.toggleElem}
+                  onClick={this.onExpand}
+                >
+                  <CategoryIcon closing={this.state.categoryExpanded} />
+                </a>
+              </li>
+              {this.renderMobileLink(homeLink)}
+              {this.renderMobileLink(canlendarLink)}
+              {this.renderMobileLink(tagsLink)}
+            </ul>
+          </div>
         </nav>
       </div>
     );

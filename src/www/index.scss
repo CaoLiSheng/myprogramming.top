@@ -35,11 +35,11 @@ body {
   }
 
   .wrapper {
-    min-width: 200px;
-    max-width: 980px;
-    width: 100%;
+    min-width: 2rem;
+    max-width: 10rem;
+    width: calc(100% - 0.4rem);
     padding: 0.45rem;
-    margin: 0.1rem auto;
+    margin: 0.2rem auto;
     border-radius: 0.1rem;
     border: solid 1px gray;
     background-color: white;

@@ -67,14 +67,12 @@ export default class Pager extends Component<
 
   renderInput(pager: PAGE_INFO, change: (cur: number) => void) {
     return (
-      <li>
-        <input
-          type="text"
-          placeholder={`${pager.min} - ${pager.max}`}
-          onChange={this.onChange.bind(this, pager, change)}
-          value={this.state.inputValue}
-        />
-      </li>
+      <input
+        type="text"
+        placeholder={`${pager.min} - ${pager.max}`}
+        onChange={this.onChange.bind(this, pager, change)}
+        value={this.state.inputValue}
+      />
     );
   }
 
@@ -88,39 +86,35 @@ export default class Pager extends Component<
 
     return (
       <Fragment>
-        <li>
-          <a
-            className={classNames('icon', {
-              disabled: cur === pager.max,
-            })}
-            style={{
-              transformOrigin: '50% 50% 0',
-              transform: 'scaleX(-1)',
-            }}
-            onClick={this.change.bind(
-              this,
-              changeFn,
-              Math.min(pager.max, cur + 1)
-            )}
-          >
-            <LeftIcon />
-          </a>
-        </li>
+        <a
+          className={classNames('icon', {
+            disabled: cur === pager.max,
+          })}
+          style={{
+            transformOrigin: '50% 50% 0',
+            transform: 'scaleX(-1)',
+          }}
+          onClick={this.change.bind(
+            this,
+            changeFn,
+            Math.min(pager.max, cur + 1)
+          )}
+        >
+          <LeftIcon />
+        </a>
         {this.renderInput(pager, changeFn)}
-        <li>
-          <a
-            className={classNames('icon', {
-              disabled: cur === pager.min,
-            })}
-            onClick={this.change.bind(
-              this,
-              changeFn,
-              Math.max(pager.min, cur - 1)
-            )}
-          >
-            <LeftIcon />
-          </a>
-        </li>
+        <a
+          className={classNames('icon', {
+            disabled: cur === pager.min,
+          })}
+          onClick={this.change.bind(
+            this,
+            changeFn,
+            Math.max(pager.min, cur - 1)
+          )}
+        >
+          <LeftIcon />
+        </a>
       </Fragment>
     );
   }

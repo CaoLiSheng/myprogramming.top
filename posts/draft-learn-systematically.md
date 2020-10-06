@@ -1,6 +1,6 @@
 ---
-style: lopash
-title: 系统地学习
+style: splendor
+title: 系统地学习路线图
 date: 2020-09-24 13:07:00
 tags:
   - 学习

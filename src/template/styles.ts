@@ -12,13 +12,21 @@ const ThinPadding = {
 
 const styles: { [key: string]: StyleSheet } = {
   air: ThinPadding,
-  antique: WidePadding,
   citizen: ThinPadding,
+  modest: WidePadding,
+  antique: WidePadding,
   'github-border': WidePadding,
   'github-colors': WidePadding,
   lopash: NullPadding,
-  modest: WidePadding,
-  splendor: ThinPadding,
+  splendor: NullPadding,
 };
 
 export default styles;
+
+const stylesWhichIsNotCompetibleForReceivingEmails = ['splendor'];
+
+export function notCompetibleForReceivingEmails(style: string): boolean {
+  return stylesWhichIsNotCompetibleForReceivingEmails.some(
+    (s: string) => s === style
+  );
+}

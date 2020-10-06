@@ -10,26 +10,26 @@
 
 2. 文章内容涵盖
 
-   1. 项目本身
+   1. 正在做的软件项目
    2. 计算机科学
    3. Blender3D 与 VR
-   4. 一些私人的、不公开的内容
+   4. 一些私人的、不公开的内容（仅在本地运行方式中可见）
 
 3. 文章画风选择太多，一时区分不出来
 
    1. Github // 技术
 
-      1. github-colors // 传统
-      2. github-border // 时尚
+      1. github-colors // 搬运并总结 _ 知识 _
+      2. github-border // 创造并分享 _ 知识 _
 
    2. Categories
 
-      3. splendor // 新闻（技术无关）
-      4. air // 计划（任务）
-      5. lopash // 书架（表格）/ 酝酿中的
-      6. modest // 感想
-      7. antique // 笔记
-      8. citizen // 新闻（技术相关）
+      3. air // 计划（任务）
+      4. lopash // 书架（表格）
+      5. modest // 感想
+      6. antique // 笔记
+      7. citizen // 新闻（技术相关）
+      8. splendor // 新闻（技术无关）/ 技术图集（如路线图、思维导图、流程图）
 
 ## 安装教程
 
