@@ -56,20 +56,24 @@ document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
 });
 
 // support table on mobile
-const thData: string[] = [];
-document
-  .querySelectorAll(`table > thead > tr > th`)
-  .forEach((elem: Element, i: number) => {
-    if (i === 0) {
-      elem.classList.add('main');
-    } else {
-      thData[i] = elem.textContent ? (elem.textContent as string) : '';
+function extendTable(table: HTMLTableElement) {
+  const thData: string[] = [];
+  table
+    .querySelectorAll('thead > tr > th')
+    .forEach((elem: Element, i: number) => {
+      if (i === 0) {
+        elem.classList.add('main');
+      } else {
+        thData[i] = elem.textContent ? (elem.textContent as string) : '';
+      }
+    });
+
+  table.querySelectorAll('tbody > tr').forEach((tRow: Element) => {
+    const children = tRow.children;
+    for (let i = 1; i < children.length; i++) {
+      children[i].setAttribute('data-th', thData[i]);
     }
   });
+}
 
-document.querySelectorAll(`table > tbody > tr`).forEach((tRow: Element) => {
-  const children = tRow.children;
-  for (let i = 1; i < children.length; i++) {
-    children[i].setAttribute('data-th', thData[i]);
-  }
-});
+document.querySelectorAll('.markdown-body table').forEach(extendTable);

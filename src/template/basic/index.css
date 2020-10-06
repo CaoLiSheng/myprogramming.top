@@ -83,6 +83,29 @@
   text-align: right;
 }
 
+.markdown-body h6.date-tag code {
+  position: relative;
+  cursor: default;
+}
+
+.markdown-body h6.date-tag code::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 0.3em;
+  opacity: 1;
+  pointer-events: none;
+  background-color: blueviolet;
+  transition: height 100ms ease-in-out;
+}
+
+.markdown-body h6.date-tag code:hover::after {
+  height: 100%;
+  opacity: 0.6;
+}
+
 .markdown-body figure {
   width: 100%;
 }
@@ -93,6 +116,10 @@
 }
 
 @media only screen and (max-width: 750px) {
+  .markdown-body table {
+    width: 100%;
+  }
+
   .markdown-body thead th:not(.main) {
     display: none;
   }
