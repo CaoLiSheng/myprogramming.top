@@ -46,7 +46,7 @@
   background-size: 100% 200%;
   color: azure;
   text-shadow: 0 0 2px darkcyan;
-  transition: background-color 300ms, background-position 300ms, color 1s;
+  transition: background-color 300ms, background-position 100ms, color 1s;
 }
 
 .markdown-body div.comments a[href^='mailto:']:hover {

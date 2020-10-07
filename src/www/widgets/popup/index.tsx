@@ -46,33 +46,80 @@ const getOffset = (ele?: HTMLElement | null): HTMLElementOffset => {
   return offset;
 };
 
-const posVertical = (vMode: string, offset: HTMLElementOffset, style = {}) => {
-  switch (vMode) {
-    case 'bottom':
-      style['top'] = offset.top + offset.height;
-      break;
-  }
-  return style;
-};
-
-const posHorizontal = (
-  hMode: string,
+const posMainAxis = (
+  mainAxis: string,
   offset: HTMLElementOffset,
   style = {}
 ) => {
-  switch (hMode) {
+  switch (mainAxis) {
+    case 'top':
+      style['bottom'] = offset.top;
+      break;
     case 'right':
-      style['right'] = window.innerWidth - offset.left - offset.width;
+      style['left'] = offset.left + offset.width;
+      break;
+    case 'bottom':
+      style['top'] = offset.top + offset.height;
+      break;
+    case 'left':
+      style['right'] = window.innerWidth - offset.left;
       break;
   }
   return style;
 };
 
-type pos = 'bottom' | 'right' | 'top' | 'left';
+const posCrossAxis = (
+  crossAxis: string,
+  offset: HTMLElementOffset,
+  style = {}
+) => {
+  if (crossAxis === 'center') return style;
+
+  switch (crossAxis) {
+    case 'top':
+      style['top'] = offset.top;
+      break;
+    case 'right':
+      style['right'] = window.innerWidth - offset.left - offset.width;
+      break;
+    case 'bottom':
+      style['bottom'] = window.innerHeight - offset.top - offset.height;
+      break;
+    case 'left':
+      style['left'] = offset.left;
+      break;
+  }
+  return style;
+};
+
+type pos = 'bottom' | 'right' | 'top' | 'left' | 'center';
+
+const posCenter = (modes: pos[], offset: HTMLElementOffset, style = {}) => {
+  const [mainAxis, crossAxis] = modes;
+  if (crossAxis !== 'center') return style;
+
+  switch (mainAxis) {
+    case 'left':
+    case 'right':
+      style['top'] = offset.top + offset.height / 2;
+      style['transform'] = 'translateY(-50%)';
+      break;
+    case 'top':
+    case 'bottom':
+      style['left'] = offset.left + offset.width / 2;
+      style['transform'] = 'translateX(-50%)';
+      break;
+  }
+  return style;
+};
 
 const position = (modes: pos[], offset: HTMLElementOffset) => {
-  const style = posVertical(modes[0], offset);
-  return posHorizontal(modes[1], offset, style);
+  let style = {};
+  style = posMainAxis(modes[0], offset, style);
+  style = posCrossAxis(modes[1], offset, style);
+  style = posCenter(modes, offset, style);
+  console.log(offset, style);
+  return style;
 };
 
 interface PopupProps {
