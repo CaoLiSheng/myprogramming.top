@@ -12,7 +12,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import md5 from 'md5';
 
-import Sheets, { notCompetibleForReceivingEmails } from '@tpl/styles';
+import Sheets from '@tpl/styles';
 
 import { outDir, preWrite } from './file';
 import { minify } from './minify';
@@ -96,10 +96,12 @@ const tplPath = path.join(
 );
 export const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
-// preTitle
-export function preTitle(fileName: string): string {
-  if (fileName.startsWith('private-')) return '「隐私」';
-  if (fileName.startsWith('draft-')) return '「草稿」';
+// titleTag
+export function titleTag(fileName: string): string {
+  if (fileName.startsWith('private-'))
+    return '<blockquote><code>-> 隐私 <-</code></blockquote>';
+  if (fileName.startsWith('draft-'))
+    return '<blockquote><code>-> 草稿 <-</code></blockquote>';
   return '';
 }
 
@@ -134,8 +136,8 @@ export function emailLink(
 ): string {
   if (
     noReceiveEmails ||
-    fileName.startsWith('private-') ||
-    notCompetibleForReceivingEmails(style)
+    fileName.startsWith('private-') // ||
+    // notCompetibleForReceivingEmails(style)
   )
     return '';
 

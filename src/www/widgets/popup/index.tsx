@@ -46,12 +46,8 @@ const getOffset = (ele?: HTMLElement | null): HTMLElementOffset => {
   return offset;
 };
 
-const posMainAxis = (
-  mainAxis: string,
-  offset: HTMLElementOffset,
-  style = {}
-) => {
-  switch (mainAxis) {
+const posMain = (main: string, offset: HTMLElementOffset, style = {}) => {
+  switch (main) {
     case 'top':
       style['bottom'] = offset.top;
       break;
@@ -68,14 +64,10 @@ const posMainAxis = (
   return style;
 };
 
-const posCrossAxis = (
-  crossAxis: string,
-  offset: HTMLElementOffset,
-  style = {}
-) => {
-  if (crossAxis === 'center') return style;
+const posCross = (cross: string, offset: HTMLElementOffset, style = {}) => {
+  if (cross === 'center') return style;
 
-  switch (crossAxis) {
+  switch (cross) {
     case 'top':
       style['top'] = offset.top;
       break;
@@ -92,9 +84,7 @@ const posCrossAxis = (
   return style;
 };
 
-type pos = 'bottom' | 'right' | 'top' | 'left' | 'center';
-
-const posCenter = (modes: pos[], offset: HTMLElementOffset, style = {}) => {
+const posCenter = (modes: string[], offset: HTMLElementOffset, style = {}) => {
   const [mainAxis, crossAxis] = modes;
   if (crossAxis !== 'center') return style;
 
@@ -113,17 +103,37 @@ const posCenter = (modes: pos[], offset: HTMLElementOffset, style = {}) => {
   return style;
 };
 
-const position = (modes: pos[], offset: HTMLElementOffset) => {
+const posImpl = (modes: string[], offset: HTMLElementOffset) => {
   let style = {};
-  style = posMainAxis(modes[0], offset, style);
-  style = posCrossAxis(modes[1], offset, style);
+  style = posMain(modes[0], offset, style);
+  style = posCross(modes[1], offset, style);
   style = posCenter(modes, offset, style);
   console.log(offset, style);
   return style;
 };
 
+type pos =
+  | 'bottom'
+  | 'right'
+  | 'top'
+  | 'left'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'right-top'
+  | 'right-bottom'
+  | 'top-left'
+  | 'top-right'
+  | 'left-top'
+  | 'left-bottom';
+
+const position = (pos: pos, offset: HTMLElementOffset) => {
+  const modes = pos.split('-');
+  modes[1] = modes[1] || 'center';
+  return posImpl(modes, offset);
+};
+
 interface PopupProps {
-  position: pos[];
+  position: pos;
   Trigger: ReactElement;
   Popper: ReactElement;
 }

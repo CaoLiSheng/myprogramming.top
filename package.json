@@ -5,8 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "help": "webpack -h",
-    "build": "rm -rf build/dev build/posts && webpack -p --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
-    "start": "npm run build && concurrently --handle-input 'nodemon --exec \"rm -rf build/posts && node ./build/dev/generator.min.js > log.txt\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'",
+    "build": "rm -rf build/dev && webpack --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
+    "start": "npm run build && concurrently --handle-input 'nodemon --exec \"node ./build/dev/generator.min.js > log.txt\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.dev.js'",
     "public": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt"
   },
   "repository": {

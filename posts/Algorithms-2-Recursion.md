@@ -9,6 +9,31 @@ tags:
 
 > Recursion
 
+## Reduction（降低复杂度技术）
+
+例如，`Congressional Apportionment 问题` 中 `ApportionCongress` 算法将问题转化为对 `优先队列` 的 `插入` 和 `弹出最大优先项` 的操作。`优先队列` 对 `ApportionCongress` 算法来说是个黑箱，后者无需关心前者的正确性，然而选择合适的实现会影响算法的运行效率，这正是算法分析中的 `Why` 和 `How Fast`。
+
+## Recursion（递归，一种特殊的 Reduction）
+
+1. 如果，能直接得到解，则直接解（Base Case）
+2. 否则，将问题拆分为一个或多个更简单的相同的问题（Reduction）
+
+## Pattern（Divide & Conquer）
+
+1. Divide：把给定的一个规模较大问题分解为一个或多个规模较小的相同问题
+2. Delegate：指定每个小问题调用递归方式求解
+3. Combine：将每个小问题的解整合起来作为给定问题的解
+
+## Recursion Trees
+
+递归式 `T(n)=rT(n/c)+f(n)` 的递归树结构可以描述为：共 `L=log(c)(n)` 层，第 `l` 层 `pow(r, l)` 个节点，用时 `T'(l)=pow(r, l)*f(n/pow(c, l))`，总用时 `T(n)=T'(0)+T'(1)+ .. +T'(L)`。
+
+计算总用时，有三种特殊情况：
+
+1. `T'(l)` 随着 `l` 从 `0` 到 `L` 呈 `指数级减小`，则 `T(n)=O(T'(0))=O(f(n))`
+2. `T'(l)` 随着 `l` 从 `0` 到 `L` 呈 `指数级相等`，则 `T(n)=O(f(n)*L)=O(f(n)*log(c)(n))`
+3. `T'(l)` 随着 `l` 从 `0` 到 `L` 呈 `指数级增加`，则 `T(n)=O(T'(L))=O(pow(r, log(c)(n))*f(n0))=O(pow(n, log(c)(r)))`
+
 ## 同一本书的文章集
 
 1. [Preface-&-Introduction](post:Algorithms-1-Preface-&-Introduction)

@@ -6,7 +6,7 @@ import {
   tplScriptPath,
   copyTemplateAssets,
   fetchCSS,
-  preTitle,
+  titleTag,
   dateTag,
   emailLink,
   hmBaidu,
@@ -20,8 +20,8 @@ import { DB } from '@common/db';
 const dbData = new DB();
 
 // Clean & Make Out Dir
-fs.emptyDirSync(outDir);
 fs.mkdirSync(outDir, { recursive: true });
+fs.emptyDirSync(outDir);
 console.log('inDir', inDir, '\noutDir', outDir, '\nready...');
 
 // Read Source Dir
@@ -95,13 +95,14 @@ posts.forEach((fileName: string) => {
     htmlMinify(
       tplContent
         .replace('{{title}}', title)
-        .replace('{{hm_baidu}}', hmBaidu())
+        .replace('{{article_title}}', title)
         .replace('{{javascript}}', tplScriptPath)
+        .replace('{{hm_baidu}}', hmBaidu())
         .replace('{{stylesheet}}', fetchCSS(stylesheet))
-        .replace('{{body_title}}', `${preTitle(fileName)}${title}`)
-        .replace('{{datetime}}', `${dateTag(date)}`)
+        .replace('{{title_tag}}', titleTag(fileName))
+        .replace('{{date_tag}}', dateTag(date))
         .replace(
-          '{{body}}',
+          '{{article_body}}',
           `${body}${emailLink(fileName, noReceiveEmails, stylesheet, title)}`
         )
     )

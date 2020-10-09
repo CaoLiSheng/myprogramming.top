@@ -26,7 +26,7 @@ export default class extends Component<
       <Fragment>
         {!!tags.length && (
           <Popup
-            position={['bottom', 'right']}
+            position="bottom-right"
             Trigger={
               <Link className="icon" to={`/tags/${tags.join(',')}`}>
                 <TagsIcon />

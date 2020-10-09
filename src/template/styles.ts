@@ -2,7 +2,7 @@ export interface StyleSheet {
   padding: { pc: string; mobile: string };
 }
 
-const NullPadding = { padding: { pc: '', mobile: '' } };
+const NullPadding = { padding: { pc: 'padding: 0;', mobile: 'padding: 0;' } };
 const WidePadding = {
   padding: { pc: 'padding: 45px;', mobile: 'padding: 25px;' },
 };
@@ -23,7 +23,7 @@ const styles: { [key: string]: StyleSheet } = {
 
 export default styles;
 
-const stylesWhichIsNotCompetibleForReceivingEmails = ['splendor'];
+const stylesWhichIsNotCompetibleForReceivingEmails: string[] = [];
 
 export function notCompetibleForReceivingEmails(style: string): boolean {
   return stylesWhichIsNotCompetibleForReceivingEmails.some(
