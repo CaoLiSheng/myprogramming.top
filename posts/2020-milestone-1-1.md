@@ -15,7 +15,7 @@ tags:
 
 ## 配置文件部分
 
-![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1-1/webpack.cfg.png =512px-auto)
+![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1-1/webpack.cfg.png =512px-)
 
 ### 变量说明
 
@@ -354,32 +354,48 @@ export const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S*?) '(.*?)'\)/g,
+      regex: /!\[(.*?)\]\((\S+?) '(.*?)'\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$3" /><figcaption>$3</figcaption></figure>',
     },
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S*?) '(.*?)' =(\S*?)-(\S*?)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$3" width="$4" height="$5" /><figcaption>$3</figcaption></figure>',
+      regex: /!\[(.*?)\]\((\S+?) '(.*?)' =(\S*?)-(\S*?)\)/g,
+      replace: (
+        _: string,
+        $1: string,
+        $2: string,
+        $3: string,
+        $4: string,
+        $5: string
+      ) =>
+        `<figure><img alt="${$1}" src="${$2}" title="${$3}" width="${
+          $4 || 'auto'
+        }" height="${$5 || 'auto'}" /><figcaption>${$3}</figcaption></figure>`,
     },
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S*?) =(\S*?)-(\S*?)\)/g,
-      replace:
-        '<figure><img alt="$1" src="$2" title="$1" width="$3" height="$4" /><figcaption>$1</figcaption></figure>',
+      regex: /!\[(.*?)\]\((\S+?) =(\S*?)-(\S*?)\)/g,
+      replace: (_: string, $1: string, $2: string, $3: string, $4: string) =>
+        `<figure><img alt="${$1}" src="${$2}" title="${$1}" width="${
+          $3 || 'auto'
+        }" height="${$4 || 'auto'}" /><figcaption>${$1}</figcaption></figure>`,
     },
     {
       type: 'lang',
-      regex: /!\[(\S*?)\]\(:?(\S+?)\)/g,
+      regex: /!\[(.*?)\]\((\S+?)\)/g,
       replace:
         '<figure><img alt="$1" src="$2" title="$1" /><figcaption>$1</figcaption></figure>',
     },
     {
       type: 'lang',
-      regex: /\[(\S*?)\]\(:?(\S*?) '(.*?)'\)/g,
+      regex: /\[(.*?)\]\((\S+?) '(.*?)'\)/g,
       replace: '<a href="$2" download="$3">点击下载「$1」</a>',
+    },
+    {
+      type: 'lang',
+      regex: /~~(.+?)~~/g,
+      replace: '<s>$1</s>',
     },
   ],
   // metadata: true, // 解析不了yaml数组
