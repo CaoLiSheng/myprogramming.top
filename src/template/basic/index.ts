@@ -3,77 +3,119 @@ import '@audios/click';
 declare var __origin__: string;
 declare var __site_root__: string;
 
-// 重定向生成的HTML页面到骨架网站
-if (window.top === window) {
-  location.href = `${__site_root__}/#/post${location.pathname}`;
+// 重定向生成的HTML页面到网站
+function checkIfNakedStatus() {
+  if (window.top === window) {
+    location.href = `${__site_root__}/#/post${location.pathname}`;
+  }
 }
+checkIfNakedStatus();
+
+// support snaplist mode
+function checkIfSanpshotMode() {
+  if (location.hash !== '#snapshot') {
+    document.body.classList.remove('snapshot');
+  }
+}
+checkIfSanpshotMode();
+
+// support closing categories on mobile site
+function postClickedMessage() {
+  window.top.postMessage('iframe.detail clicked', __origin__);
+}
+document.body.addEventListener('click', postClickedMessage);
 
 // 防盗链
 const token = Date.now();
-window.addEventListener('message', (e) => {
+function checkIfLightUpValid(e: MessageEvent) {
   if (e.data === `show-time ${token}`) {
     document
       .querySelector('article.markdown-body.hidden')
       ?.classList.remove('hidden');
   }
-});
+}
+window.addEventListener('message', checkIfLightUpValid);
 window.top.postMessage(`is-it-time-to-show ${token}`, __origin__);
 
-// support snaplist mode
-if (location.hash !== '#snapshot') {
-  document.body.classList.remove('snapshot');
-}
-
-// support closing categories on mobile site
-document.body.addEventListener('click', () => {
-  window.top.postMessage('iframe.detail clicked', __origin__);
-});
-
-document.querySelectorAll('a').forEach((anchor: HTMLAnchorElement) => {
-  // support opening download urls
+// support opening download urls
+function extendDownloadLink(anchor: HTMLAnchorElement): boolean {
   if (anchor.getAttribute('download')) {
     anchor.setAttribute('target', '_top');
-    return;
+    return false;
   }
+  return true;
+}
 
-  let href: string | null = anchor.getAttribute('href');
-  // support mail & tel
-  // if (href?.startsWith('mailto:') || href?.startsWith('tel:')) {
-  // anchor.setAttribute('data-rel', 'external');
-  // anchor.setAttribute('target', '_blank');
-  // anchor.addEventListener('click', () => window.open(href as string));
-  // }
-
-  // support opening insite posts
-  if (href?.startsWith('post:')) {
-    href = `${__site_root__}/#/${href.replace(':', '/')}`;
+// support scrolling to the-very-top
+function scrollToTop(ev: MouseEvent) {
+  ev.preventDefault();
+  window.scrollTo(0, 0);
+}
+function extendBackToTop(anchor: HTMLAnchorElement, href?: string | null) {
+  if (href === 'scroll-to-the-very-top') {
+    anchor.addEventListener('click', scrollToTop);
+    return false;
   }
+  return true;
+}
 
-  anchor.addEventListener('click', (ev: MouseEvent) => {
-    ev.preventDefault();
-    window.top.postMessage(`please-open-in-new-tab ${href}`, __origin__);
-  });
-});
+// support opening in new tab
+function openInNewTab(href: string | null | undefined, ev: MouseEvent) {
+  ev.preventDefault();
+  window.top.postMessage(
+    `please-open-in-new-tab ${
+      href?.startsWith('post:')
+        ? `${__site_root__}/#/${href.replace(':', '/')}`
+        : href
+    }`,
+    __origin__
+  );
+}
+function extendOpenInNewTab(anchor: HTMLAnchorElement, href?: string | null) {
+  anchor.addEventListener('click', openInNewTab.bind(anchor, href));
+  return false;
+}
+
+// Anchor扩展的抽象，返回true表示继续执行下一个扩展，false表示立即停止对当前Anchor进行扩展
+type extender = (anchor: HTMLAnchorElement, href?: string | null) => boolean;
+
+const anchorExtenders: extender[] = [
+  extendDownloadLink,
+  extendBackToTop,
+  extendOpenInNewTab,
+];
+function extendAnchor(anchor: HTMLAnchorElement) {
+  const href: string | null = anchor.getAttribute('href');
+
+  for (
+    let i = 0, ctn = anchorExtenders[i](anchor, href);
+    ctn && i < anchorExtenders.length;
+    i++, ctn = anchorExtenders[i](anchor, href)
+  ) {}
+}
+
+document.querySelectorAll('a').forEach(extendAnchor);
 
 // support table on mobile
+function collectThData(thData: string[], elem: Element, i: number) {
+  if (i === 0) {
+    elem.classList.add('main');
+  } else {
+    thData[i] = elem.textContent ? (elem.textContent as string) : '';
+  }
+}
+function bindThData(thData: string, tRow: Element) {
+  const children = tRow.children;
+  for (let i = 1; i < children.length; i++) {
+    children[i].setAttribute('data-th', thData[i]);
+  }
+}
 function extendTable(table: HTMLTableElement) {
   const thData: string[] = [];
   table
     .querySelectorAll('thead > tr > th')
-    .forEach((elem: Element, i: number) => {
-      if (i === 0) {
-        elem.classList.add('main');
-      } else {
-        thData[i] = elem.textContent ? (elem.textContent as string) : '';
-      }
-    });
-
-  table.querySelectorAll('tbody > tr').forEach((tRow: Element) => {
-    const children = tRow.children;
-    for (let i = 1; i < children.length; i++) {
-      children[i].setAttribute('data-th', thData[i]);
-    }
-  });
+    .forEach(collectThData.bind(null, thData));
+  table.querySelectorAll('tbody > tr').forEach(bindThData.bind(null, thData));
 }
 
 document.querySelectorAll('.markdown-body table').forEach(extendTable);

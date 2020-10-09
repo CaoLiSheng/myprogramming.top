@@ -103,4 +103,6 @@ HHGuess(Pop[1 .. n],D):
 
 ## 同一本书的文章集
 
+1. [回到开头](scroll-to-the-very-top)
 2. [Recursion](post:Algorithms-2-Recursion)
+3. [Backtracking](post:Algorithms-3-Backtracking)

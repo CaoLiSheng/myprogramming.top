@@ -108,7 +108,6 @@ const posImpl = (modes: string[], offset: HTMLElementOffset) => {
   style = posMain(modes[0], offset, style);
   style = posCross(modes[1], offset, style);
   style = posCenter(modes, offset, style);
-  console.log(offset, style);
   return style;
 };
 

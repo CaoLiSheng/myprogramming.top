@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》2
-date: 2020-10-08 09:00:00
+date: 2020-10-09 15:56:00
 tags:
   - 读书
   - 笔记
@@ -18,11 +18,11 @@ tags:
 1. 如果，能直接得到解，则直接解（Base Case）
 2. 否则，将问题拆分为一个或多个更简单的相同的问题（Reduction）
 
-## Pattern（Divide & Conquer）
+## Pattern（Divide-And-Conquer）
 
-1. Divide：把给定的一个规模较大问题分解为一个或多个规模较小的相同问题
-2. Delegate：指定每个小问题调用递归方式求解
-3. Combine：将每个小问题的解整合起来作为给定问题的解
+1. **Divide**：把给定的一个规模较大问题分解为一个或多个规模较小的相同问题
+2. **Delegate**：指定每个小问题调用递归方式求解
+3. **Combine**：将每个小问题的解整合起来作为给定问题的解
 
 ## Recursion Trees
 
@@ -34,6 +34,41 @@ tags:
 2. `T'(l)` 随着 `l` 从 `0` 到 `L` 呈 `指数级相等`，则 `T(n)=O(f(n)*L)=O(f(n)*log(c)(n))`
 3. `T'(l)` 随着 `l` 从 `0` 到 `L` 呈 `指数级增加`，则 `T(n)=O(T'(L))=O(pow(r, log(c)(n))*f(n0))=O(pow(n, log(c)(r)))`
 
+## Domain Transformations
+
+**作用**：移除求解递归式时的 `floors`、`ceilings` 以及`低阶项`。
+
+以 `MergeSort` 为例 `T(n) = T(floor(n/2)) + T(ceil(n/2)) + n`。
+
+1. 由于目标是计算 `T(n)=O(·)`，即 `上界`，所以可以适当放大一下：`T(n) <= 2T(ceil(n/2)) + n <= 2T(n/2+1) + n`
+
+2. 定义一个函数 `S(n)=T(n+𝛼)`，寻找常量 `𝛼` 使得 `S(n) <= 2S(n/2) + O(n)`
+
+```python
+S(n) = T(n+𝛼)
+    <= 2T(n/2+𝛼/2+1) + n+𝛼
+     = 2S(n/2-𝛼/2+1) + n+𝛼
+```
+
+指定 `𝛼=2`，则 `S(n)<=2S(n/2)+n+2=2S(n/2) + O(n)`，满足预期
+
+3. 通过 `递归树方法` 可以得出 `S(n)<=O(n*log(n))`，则 `T(n)=S(n-2)<=O((n-2)*log(n-2))=O(n*log(n))`，满足预期
+
+## 书中的典型案例
+
+- 汉诺塔
+- 归并排序
+- 快速排序
+- 快速选择第 k 小元素
+- `T(n)<O(pow(n, 2))` 的乘法
+- 计算指数
+
+## 书中习题
+
+（陆续完善……）
+
 ## 同一本书的文章集
 
 1. [Preface-&-Introduction](post:Algorithms-1-Preface-&-Introduction)
+2. [回到开头](scroll-to-the-very-top)
+3. [Backtracking](post:Algorithms-3-Backtracking)

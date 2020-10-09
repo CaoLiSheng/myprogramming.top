@@ -169,6 +169,10 @@ body {
   background-color: white;
 }
 
+body.snapshot {
+  margin: 0;
+}
+
 body:not(.snapshot) {
   background-image: url(images/bg.jpg);
   background-position: top center;
@@ -178,14 +182,19 @@ body:not(.snapshot) {
 
 .markdown-body {
   box-sizing: border-box;
-  margin: 1rem auto;
   max-width: 1000px;
   min-width: 200px;
-  width: calc(100% - 2rem);
   /* body_padding_pc */
 }
 
+body.snapshot > .markdown-body {
+  margin: 0;
+  width: 100%;
+}
+
 body:not(.snapshot) > .markdown-body {
+  margin: 1rem auto;
+  width: calc(100% - 2rem);
   background: white;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 6px;
@@ -199,9 +208,13 @@ body:not(.snapshot) > .markdown-body {
 
 @media screen and (max-width: 750px) {
   .markdown-body {
+    box-sizing: border-box;
+    /* body_padding_mobile */
+  }
+
+  body:not(.snapshot) > .markdown-body {
     margin: 5px auto;
     width: calc(100% - 10px);
-    /* body_padding_mobile */
   }
 }
 /* 以上：正规化文章主体块 */

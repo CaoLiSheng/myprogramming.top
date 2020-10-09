@@ -2,23 +2,20 @@ export interface StyleSheet {
   padding: { pc: string; mobile: string };
 }
 
-const NullPadding = { padding: { pc: 'padding: 0;', mobile: 'padding: 0;' } };
-const WidePadding = {
-  padding: { pc: 'padding: 45px;', mobile: 'padding: 25px;' },
-};
-const ThinPadding = {
-  padding: { pc: 'padding: 25px;', mobile: 'padding: 10px;' },
+const UnsetPadding = { padding: { pc: '', mobile: '' } };
+const PostfixPadding = {
+  padding: { pc: 'padding: 20px;', mobile: 'padding: 10px;' },
 };
 
 const styles: { [key: string]: StyleSheet } = {
-  air: ThinPadding,
-  citizen: ThinPadding,
-  modest: WidePadding,
-  antique: WidePadding,
-  'github-border': WidePadding,
-  'github-colors': WidePadding,
-  lopash: NullPadding,
-  splendor: NullPadding,
+  air: UnsetPadding,
+  lopash: UnsetPadding,
+  citizen: UnsetPadding,
+  antique: UnsetPadding,
+  splendor: UnsetPadding,
+  'github-border': UnsetPadding,
+  'github-colors': UnsetPadding,
+  modest: PostfixPadding,
 };
 
 export default styles;
