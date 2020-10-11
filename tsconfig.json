@@ -17,11 +17,11 @@
       "@www/*": [
         "src/www/*"
       ],
-      "@ctxs/*": [
-        "src/www/ctxs/*"
+      "@rCtxs/*": [
+        "src/www/react/ctxs/*"
       ],
-      "@widgets/*": [
-        "src/www/widgets/*"
+      "@rWidgets/*": [
+        "src/www/react/widgets/*"
       ]
     },
     "outDir": "dist",

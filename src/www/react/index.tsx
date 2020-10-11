@@ -6,10 +6,10 @@ import {
   withDBCtxProvider,
   I_DB_CTX,
   I_PAGE_CTX,
-} from '@ctxs/index';
-import { Home, Post, Header, Tags, Canlendar } from '@widgets/index';
+} from '@rCtxs/index';
+import { Home, Post, Header, Tags, Canlendar } from '@rWidgets/index';
 import { Schema } from '@common/index';
-import { __dirs__ } from './utils/dir';
+import { __dirs__ } from '@www/utils/dir';
 
 import './index.scss';
 // import CategoryEntrySVG from '@images/category-icon.svg';

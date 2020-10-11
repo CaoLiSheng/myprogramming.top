@@ -1,6 +1,6 @@
 import '@audios/click';
-import './utils/favicon';
-import './utils/rem';
+import '@www/utils/favicon';
+import '@www/utils/rem';
 
 import('./index');
 // import './index';

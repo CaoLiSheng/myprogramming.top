@@ -1,7 +1,7 @@
 import React, { Component, Fragment, createRef } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 
-import { SnapList } from '@widgets/snapList';
+import { SnapList } from '@rWidgets/snapList';
 
 import {
   injectDBCtx,
@@ -9,7 +9,7 @@ import {
   injectPageCtx,
   I_DB_CTX,
   I_PAGE_CTX,
-} from '@ctxs/index';
+} from '@rCtxs/index';
 
 import './index.scss';
 import { distinctReduce, dateSortDesc } from '@common/index';

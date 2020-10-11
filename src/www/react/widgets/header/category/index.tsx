@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import Moment from 'moment';
 
-import { Popup } from '@widgets/popup';
+import { Popup } from '@rWidgets/popup';
 
 import { Schema, EmptySchema } from '@common/index';
-import { injectDBCtx, I_DB_CTX } from '@ctxs/index';
+import { injectDBCtx, I_DB_CTX } from '@rCtxs/index';
 
 import './index.scss';
 import { TagsIcon } from '@images/index';

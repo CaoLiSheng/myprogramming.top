@@ -1,25 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const wba = require('webpack-bundle-analyzer');
 
-const base = require('./base.site');
+const base = require('./base.site.react');
 
 module.exports = merge(base, {
-  mode: 'development',
-  devServer: {
-    port: 3000,
-    host: '0.0.0.0',
-    disableHostCheck: true,
-  },
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+  mode: 'production',
   output: {
-    path: path.join(process.cwd(), 'dist'),
-    publicPath: '/',
+    path: path.join(process.cwd(), 'public'),
+    publicPath: './',
   },
   module: {
     rules: [
@@ -58,7 +47,6 @@ module.exports = merge(base, {
               ],
               '@babel/plugin-proposal-optional-chaining',
               '@babel/plugin-transform-runtime',
-              'react-hot-loader/babel',
             ],
           },
         },
@@ -66,9 +54,8 @@ module.exports = merge(base, {
     ],
   },
   plugins: [
-    new wba.BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
-      __posts_root__: JSON.stringify('http://dev.myprogramming.top:5555/'),
+      __posts_root__: JSON.stringify('./posts/'),
     }),
   ],
 });

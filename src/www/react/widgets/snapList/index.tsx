@@ -8,7 +8,7 @@ import {
   PAGE_INFO,
   injectPageCtx,
   I_PAGE_CTX,
-} from '@ctxs/index';
+} from '@rCtxs/index';
 
 import './index.scss';
 
