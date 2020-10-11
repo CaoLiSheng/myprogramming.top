@@ -1,5 +1,6 @@
 /* 以下：全局预设 */
 .markdown-body figure {
+  padding: unset;
   margin: unset;
 }
 

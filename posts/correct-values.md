@@ -12,7 +12,8 @@ tags:
 
 ### 如何快速成长为技术大牛？阿里资深技术专家的总结亮了
 
-![快速成长大纲](correct-values/grow-up-quickly.png) [XMind 创作文件](correct-values/grow-up-quickly.xmind 'grow-up-quickly.xmind')
+![快速成长大纲](correct-values/grow-up-quickly.png)
+[XMind 创作文件](correct-values/grow-up-quickly.xmind 'grow-up-quickly.xmind')
 
 #### 感想
 
@@ -26,7 +27,8 @@ tags:
 
 ### 毕业 3 年，为何技术能力相差越来越大？
 
-![技术能力大纲](correct-values/tech-ability.png) [XMind 创作文件](correct-values/tech-ability.xmind 'tech-ability.xmind')
+![技术能力大纲](correct-values/tech-ability.png)
+[XMind 创作文件](correct-values/tech-ability.xmind 'tech-ability.xmind')
 
 #### 感想
 
@@ -34,7 +36,8 @@ tags:
 
 ### 程序员吃的是青春饭？本质上取决于……
 
-![35 岁之前大纲](correct-values/before-35-years-old.png) [XMind 创作文件](correct-values/before-35-years-old.xmind 'before-35-years-old.xmind')
+![35 岁之前大纲](correct-values/before-35-years-old.png)
+[XMind 创作文件](correct-values/before-35-years-old.xmind 'before-35-years-old.xmind')
 
 #### 感想
 
@@ -42,7 +45,8 @@ tags:
 
 ### 技术变化那么快，程序员如何做到不被淘汰？
 
-![不被淘汰大纲](correct-values/not-eliminated.png) [XMind 创作文件](correct-values/not-eliminated.xmind 'not-eliminated.xmind')
+![不被淘汰大纲](correct-values/not-eliminated.png)
+[XMind 创作文件](correct-values/not-eliminated.xmind 'not-eliminated.xmind')
 
 #### 感想
 
@@ -50,7 +54,8 @@ tags:
 
 ### 加班越久故障越多，如何跳出程序员的恶性循环？
 
-![研发数据大纲](correct-values/dev-data.png) [XMind 创作文件](correct-values/dev-data.xmind 'dev-data.xmind')
+![研发数据大纲](correct-values/dev-data.png)
+[XMind 创作文件](correct-values/dev-data.xmind 'dev-data.xmind')
 
 #### 感想（摘抄）
 
@@ -62,7 +67,8 @@ tags:
 
 ### 如何在阿里技术面试中脱颖而出？
 
-![面试大纲](correct-values/interview.png) [XMind 创作文件](correct-values/interview.xmind 'interview.xmind')
+![面试大纲](correct-values/interview.png)
+[XMind 创作文件](correct-values/interview.xmind 'interview.xmind')
 
 #### 感想
 
@@ -70,7 +76,8 @@ tags:
 
 ### 使用开源项目的正确姿势，血和泪的总结
 
-![拥抱开源大纲](correct-values/embrace-open-source.png) [XMind 创作文件](correct-values/embrace-open-source.xmind 'embrace-open-source.xmind')
+![拥抱开源大纲](correct-values/embrace-open-source.png)
+[XMind 创作文件](correct-values/embrace-open-source.xmind 'embrace-open-source.xmind')
 
 #### 感想
 
@@ -80,7 +87,8 @@ tags:
 
 ### 前端工程师的未来在哪里？
 
-![未来前端大纲](correct-values/future-frontend.png) [XMind 创作文件](correct-values/future-frontend.xmind 'future-frontend.xmind')
+![未来前端大纲](correct-values/future-frontend.png)
+[XMind 创作文件](correct-values/future-frontend.xmind 'future-frontend.xmind')
 
 #### 感想
 
@@ -94,7 +102,8 @@ tags:
 
 ### 前端 Leader 如何做好团队规划？阿里内部培训总结公开
 
-![技术规划大纲](correct-values/tl-plans.png) [XMind 创作文件](correct-values/tl-plans.xmind 'tl-plans.xmind')
+![技术规划大纲](correct-values/tl-plans.png)
+[XMind 创作文件](correct-values/tl-plans.xmind 'tl-plans.xmind')
 
 #### 感想
 
@@ -115,7 +124,8 @@ TL 还是一种有意思的职业呢。
 
 ### 一位优秀前端的自我修养
 
-![职业素养大纲](correct-values/professionalism.png) [XMind 创作文件](correct-values/professionalism.xmind 'professionalism.xmind')
+![职业素养大纲](correct-values/professionalism.png)
+[XMind 创作文件](correct-values/professionalism.xmind 'professionalism.xmind')
 
 #### 感想
 
@@ -123,7 +133,8 @@ TL 还是一种有意思的职业呢。
 
 ### 如何成为一名顶尖的阿里架构师？
 
-![架构师大纲](correct-values/architect.png) [XMind 创作文件](correct-values/architect.xmind 'architect.xmind')
+![架构师大纲](correct-values/architect.png)
+[XMind 创作文件](correct-values/architect.xmind 'architect.xmind')
 
 #### 感想
 

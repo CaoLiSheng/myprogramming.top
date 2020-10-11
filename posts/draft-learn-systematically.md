@@ -1,18 +1,20 @@
 ---
 style: splendor
 title: 系统地学习路线图
-date: 2020-09-24 13:07:00
+date: 2020-10-11 10:11:00
 tags:
   - 学习
 ---
 
-> 35+
+> 35+ 个主题
 
 ## 1. 大学基础课程
 
 _仅列出数学相关，另外还有英语_
 
-### 1. 微积分
+### 1. 高等数学
+
+![高等数学知识点-考察点](learn-systematically/advanced-mathematics.png =100%-)
 
 ### 2. 离散数学
 
@@ -67,6 +69,8 @@ _包括大学教的和自学的_
 ### 2. 汇编语言程序设计
 
 ### 3. 数据库系统（初级/高级）
+
+![一个DBMS的主要组件](learn-systematically/dbms-main-components.png)
 
 ### 4. Linux 程序设计环境
 
