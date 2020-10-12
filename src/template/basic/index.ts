@@ -6,7 +6,7 @@ declare var __site_root__: string;
 // 重定向生成的HTML页面到网站
 function checkIfNakedStatus() {
   if (window.top === window) {
-    location.href = `${__site_root__}/#/post${location.pathname}`;
+    location.href = __site_root__;
   }
 }
 checkIfNakedStatus();
@@ -62,14 +62,7 @@ function extendBackToTop(anchor: HTMLAnchorElement, href?: string | null) {
 // support opening in new tab
 function openInNewTab(href: string | null | undefined, ev: MouseEvent) {
   ev.preventDefault();
-  window.top.postMessage(
-    `please-open-in-new-tab ${
-      href?.startsWith('post:')
-        ? `${__site_root__}/#/${href.replace(':', '/')}`
-        : href
-    }`,
-    __origin__
-  );
+  window.top.postMessage(`please-open-in-new-tab ${href}`, __origin__);
 }
 function extendOpenInNewTab(anchor: HTMLAnchorElement, href?: string | null) {
   anchor.addEventListener('click', openInNewTab.bind(anchor, href));

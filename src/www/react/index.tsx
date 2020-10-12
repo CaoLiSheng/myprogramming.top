@@ -18,40 +18,10 @@ interface AppStates {
   hasError: boolean;
 }
 
-const flyWindow = (
-  source: Window | MessagePort | ServiceWorker | null
-): Window | ServiceWorker | null => {
-  if (source instanceof MessagePort) return null;
-  return source;
-};
-
 @withDBCtxProvider()
 @withPageCtxProvider()
 class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
   state = { hasError: false };
-
-  private handlers: { [key: string]: (event: MessageEvent) => void } = {
-    'is-it-time-to-show': this.showTime,
-    'please-open-in-new-tab': this.openInNewTab,
-  };
-
-  private showTime(event: MessageEvent) {
-    flyWindow(event.source)?.postMessage(
-      `show-time ${event.data.split(' ')[1]}`,
-      '*'
-    );
-  }
-
-  private openInNewTab(event: MessageEvent) {
-    window.open(event.data.split(' ')[1], '_blank');
-  }
-
-  private receiveMessage = (event: MessageEvent) => {
-    if (typeof event.data === 'string') {
-      const [key] = event.data.split(' ');
-      this.handlers[key] && this.handlers[key](event);
-    }
-  };
 
   static getDerivedStateFromError(_: Error) {
     return { hasError: true };
@@ -62,8 +32,6 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
   }
 
   async componentDidMount() {
-    window.top.addEventListener('message', this.receiveMessage, false);
-
     const resp = await fetch(__dirs__.__posts_db__, {
       method: 'GET',
       mode: 'cors',
@@ -76,10 +44,6 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
 
   shouldComponentUpdate() {
     return false;
-  }
-
-  componentWillUnmount() {
-    window.top.removeEventListener('message', this.receiveMessage);
   }
 
   render() {
