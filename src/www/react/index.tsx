@@ -86,28 +86,30 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
     if (this.state.hasError) return <h1 className="failure">出错了</h1>;
 
     return (
-      <HashRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/post/:name" component={Post} />
-          <Route path="/tags/:tags" component={Tags} />
-          <Route path="/canlendar/:year/:month/:date" component={Canlendar} />
-        </Switch>
-        <Route
-          path={[
-            '/canlendar/:year/:month/:date',
-            '/tags/:tags',
-            '/post/:name',
-            '/',
-          ]}
-          component={Header}
-        />
-        {/* <Overlay
+      <div id="main">
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/post/:name" component={Post} />
+            <Route path="/tags/:tags" component={Tags} />
+            <Route path="/canlendar/:year/:month/:date" component={Canlendar} />
+          </Switch>
+          <Route
+            path={[
+              '/canlendar/:year/:month/:date',
+              '/tags/:tags',
+              '/post/:name',
+              '/',
+            ]}
+            component={Header}
+          />
+          {/* <Overlay
               icon={CategoryEntrySVG}
               positionStyleObj={{ right: '0.1rem', bottom: '0.1rem' }}
               contentShrinkPos="100% 100% 0"
             /> */}
-      </HashRouter>
+        </HashRouter>
+      </div>
     );
   }
 }
