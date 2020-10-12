@@ -14,8 +14,10 @@ function openInNewTab(ev: MessageEvent) {
   switch (protocal) {
     case 'post':
       window.open(location.pathname + `#/post/${value}`, '_blank');
+      break;
     default:
       window.open(protocal, '_blank');
+      break;
   }
 }
 
