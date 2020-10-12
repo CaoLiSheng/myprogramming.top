@@ -1,25 +1,13 @@
-const path = require('path');
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const wba = require('webpack-bundle-analyzer');
 
 const base = require('./base.site.react');
+const dev = require('./base.site.dev');
 
-module.exports = merge(base, {
-  mode: 'development',
-  devServer: {
-    port: 3000,
-    host: '0.0.0.0',
-    disableHostCheck: true,
-  },
+module.exports = merge(base, dev, {
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
-  },
-  output: {
-    path: path.join(process.cwd(), 'dist'),
-    publicPath: '/',
   },
   module: {
     rules: [
@@ -65,10 +53,4 @@ module.exports = merge(base, {
       },
     ],
   },
-  plugins: [
-    new wba.BundleAnalyzerPlugin(),
-    new webpack.DefinePlugin({
-      __posts_root__: JSON.stringify('http://dev.myprogramming.top:5555/'),
-    }),
-  ],
 });

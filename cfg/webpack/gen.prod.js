@@ -5,6 +5,7 @@ const { merge } = require('webpack-merge');
 const base = require('./base.gen');
 
 module.exports = merge(base, {
+  mode: 'production',
   output: {
     path: path.join(process.cwd(), 'build', 'prod'),
     publicPath: './',

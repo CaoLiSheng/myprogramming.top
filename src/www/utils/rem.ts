@@ -8,7 +8,7 @@ function setFontSize() {
   }
 }
 
-let timer: NodeJS.Timeout;
+let timer: any;
 function setDelay() {
   return clearTimeout(timer), (timer = setTimeout(setFontSize, 150));
 }

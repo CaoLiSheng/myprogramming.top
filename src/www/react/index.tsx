@@ -113,7 +113,7 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
 }
 
 import('react-dom').then(({ render }) =>
-  render(<App />, document.getElementById('main'))
+  render(<App />, document.getElementById('app'))
 );
 
 // (async () => {

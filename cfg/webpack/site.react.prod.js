@@ -1,15 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const base = require('./base.site.react');
+const prod = require('./base.site.prod');
 
-module.exports = merge(base, {
-  mode: 'production',
-  output: {
-    path: path.join(process.cwd(), 'public'),
-    publicPath: './',
-  },
+module.exports = merge(base, prod, {
   module: {
     rules: [
       {
@@ -53,9 +47,4 @@ module.exports = merge(base, {
       },
     ],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      __posts_root__: JSON.stringify('./posts/'),
-    }),
-  ],
 });
