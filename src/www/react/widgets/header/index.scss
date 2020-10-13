@@ -31,22 +31,25 @@
 
       & > ul.mobile {
         display: none;
-        background-color: #2175bc;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         flex-wrap: nowrap;
-        width: 5em;
 
         & > li {
-          width: 100%;
+          width: 0.8rem;
           height: 0.8rem;
 
           &.slot {
+            width: 5em;
             border-top: solid 0.01rem #106090;
+            background-color: #f1f1f1;
+            transform: translateX(-100%);
+            transition: background-color 1s, transform 200ms;
 
-            &:not(.show) {
-              display: none;
+            &.show {
+              background-color: #2175bc;
+              transform: translateX(0);
             }
 
             & > a {
