@@ -1,6 +1,19 @@
 import ClickWAV from './click.wav';
 
-const playAudio = () => {
+const validatePlayer = (() => {
+  let firstValidPalyer: string | null = null;
+  return (name: string): boolean => {
+    if (null === firstValidPalyer) {
+      firstValidPalyer = name;
+    }
+
+    return firstValidPalyer === name;
+  };
+})();
+
+const playAudio = (name: string) => {
+  if (!validatePlayer(name)) return;
+
   let player = document.getElementById('click-wav');
   if (!player) {
     player = document.createElement('audio');
@@ -11,10 +24,16 @@ const playAudio = () => {
   (player as HTMLAudioElement).play();
 };
 
-document.body.addEventListener('mousedown', playAudio);
-document.body.addEventListener('touchstart', playAudio);
+// const mouseupListender = playAudio.bind(null, 'mouseup');
+const mousedownListender = playAudio.bind(null, 'mousedown');
+const touchstartListender = playAudio.bind(null, 'touchstart');
+
+// document.body.addEventListener('mouseup', mouseupListender);
+document.body.addEventListener('mousedown', mousedownListender);
+document.body.addEventListener('touchstart', touchstartListender);
 
 window.addEventListener('beforeunload', () => {
-  document.body.removeEventListener('mousedown', playAudio);
-  document.body.removeEventListener('touchstart', playAudio);
+  // document.body.removeEventListener('mouseup', mouseupListender);
+  document.body.removeEventListener('mousedown', mousedownListender);
+  document.body.removeEventListener('touchstart', touchstartListender);
 });
