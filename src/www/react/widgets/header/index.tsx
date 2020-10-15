@@ -78,7 +78,7 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
       <Link
         to={to || ctx}
         className={classNames({
-          ctx: this.props.match.path === ctx,
+          ctx: this.props.match.path.startsWith(ctx),
         })}
       >
         {name}
@@ -99,7 +99,7 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
   }
 
   render() {
-    const homeLink = this.renderLink('/', '首页');
+    const homeLink = this.renderLink('/index', '首页');
     const canlendarLink = this.renderLink(
       '/canlendar/:year/:month/:date',
       '日历',
@@ -115,8 +115,8 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
             <Route
               exact
               path={[
-                '/',
-                '/:page',
+                '/index',
+                '/index/:page',
                 '/tags/:tags',
                 '/tags/:tags/:page',
                 '/canlendar/:year/:month/:date',

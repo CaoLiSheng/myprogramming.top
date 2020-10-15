@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 import {
   withPageCtxProvider,
@@ -53,9 +53,10 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
       <div id="main">
         <HashRouter>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/:page" component={Home} />
+            <Redirect exact path="/" to="/index" />
             <Route exact path="/post/:name" component={Post} />
+            <Route exact path="/index" component={Home} />
+            <Route exact path="/index/:page" component={Home} />
             <Route exact path="/tags/:tags" component={Tags} />
             <Route exact path="/tags/:tags/:page" component={Tags} />
             <Route
@@ -76,8 +77,8 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
               '/tags/:tags/:page',
               '/tags/:tags/',
               '/post/:name',
-              '/:page',
-              '/',
+              '/index/:page',
+              '/index',
             ]}
             component={Header}
           />

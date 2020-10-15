@@ -5,8 +5,8 @@ import { HOCDecrator } from '@common/index';
 export const PAGE_SIZE = 6;
 
 export const PATH_PAGER_MAP = {
-  '/': 'homepage',
-  '/:page': 'homepage',
+  '/index': 'homepage',
+  '/index/:page': 'homepage',
   '/tags/:tags': 'tagspage',
   '/tags/:tags/:page': 'tagspage',
   '/canlendar/:year/:month/:date': 'datepage',
@@ -14,13 +14,13 @@ export const PATH_PAGER_MAP = {
 };
 
 export const APPENDING_PATH_PAGER_MAP = [
+  '/index',
   '/tags/:tags',
   '/canlendar/:year/:month/:date',
 ];
 
 export const REPLACING_PATH_PAGER_MAP = [
-  '/',
-  '/:page',
+  '/index/:page',
   '/tags/:tags/:page',
   '/canlendar/:year/:month/:date/:page',
 ];

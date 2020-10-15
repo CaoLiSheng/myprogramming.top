@@ -21,7 +21,7 @@ export default class Pager extends Component<
   state = { inputValue: '', curPage: 0 };
 
   goToPage = (page?: number) => {
-    if (!page) return;
+    if (undefined === page) return;
     this.props.history.push(buildPagerPath(this.props.match, page));
   };
 
