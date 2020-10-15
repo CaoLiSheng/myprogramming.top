@@ -6,9 +6,37 @@ export const PAGE_SIZE = 6;
 
 export const PATH_PAGER_MAP = {
   '/': 'homepage',
+  '/:page': 'homepage',
   '/tags/:tags': 'tagspage',
+  '/tags/:tags/:page': 'tagspage',
   '/canlendar/:year/:month/:date': 'datepage',
+  '/canlendar/:year/:month/:date/:page': 'datepage',
 };
+
+export const APPENDING_PATH_PAGER_MAP = [
+  '/tags/:tags',
+  '/canlendar/:year/:month/:date',
+];
+
+export const REPLACING_PATH_PAGER_MAP = [
+  '/',
+  '/:page',
+  '/tags/:tags/:page',
+  '/canlendar/:year/:month/:date/:page',
+];
+
+export function buildPagerPath(
+  info: { path: string; url: string },
+  page: number
+): string {
+  const paths = info.url.split('/');
+  if (APPENDING_PATH_PAGER_MAP.includes(info.path)) {
+    paths.push(`${page}`);
+  } else if (REPLACING_PATH_PAGER_MAP.includes(info.path)) {
+    paths[paths.length - 1] = `${page}`;
+  }
+  return paths.join('/');
+}
 
 export interface PAGE_INFO {
   cur: number;
@@ -23,8 +51,7 @@ export interface PAGE_SCHEMA {
 
 export interface I_PAGE_CTX {
   page: PAGE_SCHEMA;
-  change: (key: string, value: number) => void;
-  update: (key: string, value: string[]) => void;
+  update: (key: string, value: string[], cur?: number) => void;
 }
 
 export const { Provider: SetPage, Consumer: GetPage } = createContext({});
@@ -51,22 +78,13 @@ export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
     WrappedComponent: ComponentType<P>
   ) =>
     class extends Component<P, I_PAGE_CTX> {
-      changePage = (key: string, cur: number) =>
-        this.setState(
-          ({ page }) => {
-            const info = page?.[key] || { min: 0, max: 0, data: [] };
-            return { page: { ...(page || {}), [key]: { ...info, cur } } };
-          },
-          () => window.scrollTo(0, 0)
-        );
-
-      updatePage = (key: string, data: string[]) =>
+      updatePage = (key: string, data: string[], cur?: number) =>
         this.setState(
           ({ page }) => ({
             page: {
               ...page,
               [key]: {
-                cur: 0,
+                cur: cur || 0,
                 min: 0,
                 max: Math.max(0, Math.ceil(data.length / PAGE_SIZE) - 1),
                 data,
@@ -76,7 +94,7 @@ export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
           () => window.scrollTo(0, 0)
         );
 
-      state = { page: {}, change: this.changePage, update: this.updatePage };
+      state = { page: {}, update: this.updatePage };
 
       public render() {
         return (

@@ -5,7 +5,6 @@ const base = require('./base.babel');
 
 module.exports = merge(base, {
   target: 'node',
-  mode: 'production',
   entry: {
     generator: 'src/generator/index',
     template: 'src/template/basic/index',
@@ -15,7 +14,7 @@ module.exports = merge(base, {
       if ('generator' === chunkData.chunk.name) {
         return '[name].min.js';
       }
-      return '[name].[hash].js';
+      return '[name].[hash:10].js';
     },
   },
   module: {

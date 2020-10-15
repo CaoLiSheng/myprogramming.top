@@ -10,7 +10,6 @@
 
 import path from 'path';
 import fs from 'fs-extra';
-import md5 from 'md5';
 
 import Sheets from '@tpl/styles';
 
@@ -79,7 +78,7 @@ export function fetchCSS(base: string): string {
       .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
   );
 
-  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css`;
+  CSSMaps[base] = cssContent.md5(base, 'css', 10);
 
   preWrite(path.join(outDir, CSSMaps[base])).writeFileSync(cssContent);
 

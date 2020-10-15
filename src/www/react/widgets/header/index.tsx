@@ -114,7 +114,14 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
             <Route path="/post/:name" component={Category} />
             <Route
               exact
-              path={['/', '/tags/:tags', '/canlendar/:year/:month/:date']}
+              path={[
+                '/',
+                '/:page',
+                '/tags/:tags',
+                '/tags/:tags/:page',
+                '/canlendar/:year/:month/:date',
+                '/canlendar/:year/:month/:date/:page',
+              ]}
               component={Pager}
             />
           </Switch>

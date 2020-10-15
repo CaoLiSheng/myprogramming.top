@@ -7,6 +7,7 @@ import {
   PAGE_INFO,
   injectPageCtx,
   I_PAGE_CTX,
+  buildPagerPath,
 } from '@rCtxs/index';
 
 import './index.scss';
@@ -14,10 +15,15 @@ import { LeftIcon } from '@images/index';
 
 @injectPageCtx()
 export default class Pager extends Component<
-  RouteComponentProps & { page?: I_PAGE_CTX },
+  RouteComponentProps<{ page?: string }> & { page?: I_PAGE_CTX },
   { inputValue: string; curPage: number }
 > {
   state = { inputValue: '', curPage: 0 };
+
+  goToPage = (page?: number) => {
+    if (!page) return;
+    this.props.history.push(buildPagerPath(this.props.match, page));
+  };
 
   getPager = (): { pager: PAGE_INFO; pagerKey: string } | null => {
     let pager: PAGE_INFO | undefined;
@@ -30,47 +36,68 @@ export default class Pager extends Component<
     return { pager, pagerKey };
   };
 
-  change = (change: (cur: number) => void, cur: number) => {
-    this.setState(
-      { inputValue: `${cur}`, curPage: cur },
-      () => change && change(cur)
+  change = (ignored: boolean, target: number) => {
+    if (ignored) return;
+
+    this.setState({ inputValue: `${target}`, curPage: target }, () =>
+      this.goToPage(target)
     );
   };
 
-  onChange = (
-    pager: PAGE_INFO,
-    change: (cur: number) => void,
-    event: React.ChangeEvent<HTMLInputElement>
+  buildState = (
+    pager: { min: number; max: number },
+    parsed?: number,
+    curPage: number = 0
   ) => {
-    console.log(event.target.value);
-    let cur = parseInt(event.target.value);
-    const normal = !isNaN(cur);
-    console.log(normal);
-    if (normal) {
-      cur = Math.max(pager.min, Math.min(pager.max, cur));
+    let target = 0;
+    if (parsed) {
+      target = Math.max(pager.min, Math.min(pager.max, parsed));
     }
 
+    return {
+      inputValue: parsed ? `${target}` : '',
+      curPage: parsed ? target : curPage,
+    };
+  };
+
+  onChange = (pager: PAGE_INFO, event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState(
-      ({ curPage }) => ({
-        inputValue: normal ? `${cur}` : '',
-        curPage: normal ? cur : curPage,
-      }),
-      () => normal && change && change(cur)
+      ({ curPage }) =>
+        this.buildState(pager, event.target.value.toInt(), curPage),
+      () => this.goToPage(this.state.curPage)
     );
   };
 
+  update = () => {
+    const res = this.getPager();
+    if (!res) return;
+    const { pager } = res;
+    const states = this.buildState(
+      pager,
+      this.props.match.params.page?.toInt()
+    );
+    this.setState(states);
+  };
+
+  componentDidMount() {
+    this.update();
+  }
+
   componentDidUpdate(prevProps: RouteComponentProps & { page?: I_PAGE_CTX }) {
-    if (prevProps.match.url !== this.props.match.url) {
-      this.setState({ inputValue: '', curPage: 0 });
+    if (
+      prevProps.match.url !== this.props.match.url ||
+      prevProps.page?.page !== this.props.page?.page
+    ) {
+      this.update();
     }
   }
 
-  renderInput(pager: PAGE_INFO, change: (cur: number) => void) {
+  renderInput(pager: PAGE_INFO) {
     return (
       <input
         type="text"
         placeholder={`${pager.min} - ${pager.max}`}
-        onChange={this.onChange.bind(this, pager, change)}
+        onChange={this.onChange.bind(this, pager)}
         value={this.state.inputValue}
       />
     );
@@ -79,8 +106,7 @@ export default class Pager extends Component<
   render() {
     const res = this.getPager();
     if (!res) return null;
-    const { pager, pagerKey } = res;
-    const changeFn = this.props.page?.change.bind(this, pagerKey);
+    const { pager } = res;
 
     const cur = this.state.curPage;
 
@@ -96,20 +122,20 @@ export default class Pager extends Component<
           }}
           onClick={this.change.bind(
             this,
-            changeFn,
+            cur === pager.max,
             Math.min(pager.max, cur + 1)
           )}
         >
           <LeftIcon />
         </a>
-        {this.renderInput(pager, changeFn)}
+        {this.renderInput(pager)}
         <a
           className={classNames('icon', {
             disabled: cur === pager.min,
           })}
           onClick={this.change.bind(
             this,
-            changeFn,
+            cur === pager.min,
             Math.max(pager.min, cur - 1)
           )}
         >

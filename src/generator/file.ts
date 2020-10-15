@@ -1,6 +1,18 @@
 import path from 'path';
 import fs from 'fs-extra';
 
+import '@common/shims-string';
+// String.prototype.filter = function(
+//   this: string,
+//   ...fns: ((file: string) => boolean)[]
+// ): boolean {
+//   for (let i = 0; i < fns.length; i++) {
+//     if (fns[i](this)) continue;
+//     else return false;
+//   }
+//   return true;
+// };
+
 declare var __out_path__: string;
 declare var __production__: boolean;
 
@@ -27,17 +39,6 @@ function notDraft(file: string): boolean {
 function notPrivate(file: string): boolean {
   return !__production__ || !file.startsWith('private-');
 }
-
-String.prototype.filter = function (
-  this: string,
-  ...fns: ((file: string) => boolean)[]
-): boolean {
-  for (let i = 0; i < fns.length; i++) {
-    if (fns[i](this)) continue;
-    else return false;
-  }
-  return true;
-};
 
 export function isAsset(file: string): boolean {
   return file.filter(notPrivate, isDir);

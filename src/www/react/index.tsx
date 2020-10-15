@@ -54,15 +54,29 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
         <HashRouter>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/post/:name" component={Post} />
-            <Route path="/tags/:tags" component={Tags} />
-            <Route path="/canlendar/:year/:month/:date" component={Canlendar} />
+            <Route exact path="/:page" component={Home} />
+            <Route exact path="/post/:name" component={Post} />
+            <Route exact path="/tags/:tags" component={Tags} />
+            <Route exact path="/tags/:tags/:page" component={Tags} />
+            <Route
+              exact
+              path="/canlendar/:year/:month/:date"
+              component={Canlendar}
+            />
+            <Route
+              exact
+              path="/canlendar/:year/:month/:date/:page"
+              component={Canlendar}
+            />
           </Switch>
           <Route
             path={[
+              '/canlendar/:year/:month/:date/:page',
               '/canlendar/:year/:month/:date',
-              '/tags/:tags',
+              '/tags/:tags/:page',
+              '/tags/:tags/',
               '/post/:name',
+              '/:page',
               '/',
             ]}
             component={Header}

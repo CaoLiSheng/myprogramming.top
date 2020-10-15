@@ -1,6 +1,9 @@
 import React, { Component, Fragment, createRef } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 
+import { distinctReduce, dateSortDesc } from '@common/index';
+import '@common/shims-string';
+
 import { SnapList } from '@rWidgets/snapList';
 
 import {
@@ -12,12 +15,11 @@ import {
 } from '@rCtxs/index';
 
 import './index.scss';
-import { distinctReduce, dateSortDesc } from '@common/index';
 
 @injectDBCtx()
 @injectPageCtx()
 export class Tags extends Component<
-  RouteComponentProps<{ tags: string }> & {
+  RouteComponentProps<{ tags: string; page?: string }> & {
     db: I_DB_CTX;
     page: I_PAGE_CTX;
   },
@@ -36,7 +38,11 @@ export class Tags extends Component<
         queryedTags: Object.keys(this.props.db.db.tagCategories),
       });
 
-      this.props.page.update(pagerKey, this.props.db.db.sortedPosts);
+      this.props.page.update(
+        pagerKey,
+        this.props.db.db.sortedPosts,
+        this.props.match.params.page?.toInt()
+      );
 
       return;
     }
@@ -59,17 +65,16 @@ export class Tags extends Component<
 
     this.props.page.update(
       pagerKey,
-      dateSortDesc(selectedPosts, this.props.db.db.metas)
+      dateSortDesc(selectedPosts, this.props.db.db.metas),
+      this.props.match.params.page?.toInt()
     );
   };
 
   onSearch = () =>
     this.props.history.push(
-      `/tags/${
-        this.inputRef.current?.value ||
+      `/tags/${this.inputRef.current?.value ||
         this.inputRef.current?.placeholder ||
-        '*'
-      }`
+        '*'}`
     );
 
   onSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -87,7 +92,7 @@ export class Tags extends Component<
     }
   ) {
     if (
-      prevProps.match.params.tags === this.props.match.params.tags &&
+      prevProps.match.url === this.props.match.url &&
       prevProps.db.db.tagCategories === this.props.db.db.tagCategories
     )
       return;

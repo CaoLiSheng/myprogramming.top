@@ -369,17 +369,17 @@ export const converter = new showdown.Converter({
         $4: string,
         $5: string
       ) =>
-        `<figure><img alt="${$1}" src="${$2}" title="${$3}" width="${
-          $4 || 'auto'
-        }" height="${$5 || 'auto'}" /><figcaption>${$3}</figcaption></figure>`,
+        `<figure><img alt="${$1}" src="${$2}" title="${$3}" width="${$4 ||
+          'auto'}" height="${$5 ||
+          'auto'}" /><figcaption>${$3}</figcaption></figure>`,
     },
     {
       type: 'lang',
       regex: /!\[(.*?)\]\((\S+?) =(\S*?)-(\S*?)\)/g,
       replace: (_: string, $1: string, $2: string, $3: string, $4: string) =>
-        `<figure><img alt="${$1}" src="${$2}" title="${$1}" width="${
-          $3 || 'auto'
-        }" height="${$4 || 'auto'}" /><figcaption>${$1}</figcaption></figure>`,
+        `<figure><img alt="${$1}" src="${$2}" title="${$1}" width="${$3 ||
+          'auto'}" height="${$4 ||
+          'auto'}" /><figcaption>${$1}</figcaption></figure>`,
     },
     {
       type: 'lang',
@@ -447,4 +447,5 @@ window.addEventListener('beforeunload', () => {
 
 ## 同系列文章
 
-- [「里程碑-2020-1」博客 V1.0](post:2020-milestone-1)
+- [「里程碑-2020-1.0」博客 V1.0](post:2020-milestone-1-0)
+- [回到开头](scroll-to-the-very-top)

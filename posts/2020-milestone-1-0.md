@@ -1,6 +1,6 @@
 ---
 style: github-border
-title: 「里程碑-2020-1」博客 V1.0
+title: 「里程碑-2020-1.0」博客 V1.0
 date: 2020-08-09 16:14:00
 tags:
   - 博客
@@ -273,4 +273,5 @@ window.top.addEventListener(
 
 ## 同系列文章
 
+- [回到开头](scroll-to-the-very-top)
 - [「里程碑-2020-1.1」博客 V1.1](post:2020-milestone-1-1)

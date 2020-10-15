@@ -17,7 +17,12 @@ import './index.scss';
 @injectDBCtx()
 @injectPageCtx()
 export class Canlendar extends Component<
-  RouteComponentProps<{ year: string; month: string; date: string }> & {
+  RouteComponentProps<{
+    year: string;
+    month: string;
+    date: string;
+    page?: string;
+  }> & {
     db: I_DB_CTX;
     page: I_PAGE_CTX;
   }
@@ -47,7 +52,8 @@ export class Canlendar extends Component<
 
     this.props.page.update(
       pagerKey,
-      dateSortDesc(this.reduceRNK(rnk), this.props.db.db.metas)
+      dateSortDesc(this.reduceRNK(rnk), this.props.db.db.metas),
+      this.props.match.params.page?.toInt()
     );
   };
 
@@ -66,9 +72,7 @@ export class Canlendar extends Component<
     }
   ) {
     if (
-      prevProps.match.params.year === this.props.match.params.year &&
-      prevProps.match.params.month === this.props.match.params.month &&
-      prevProps.match.params.date === this.props.match.params.date &&
+      prevProps.match.url === this.props.match.url &&
       prevProps.db.db.dateCategories === this.props.db.db.dateCategories
     )
       return;
