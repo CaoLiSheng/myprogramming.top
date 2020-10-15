@@ -267,10 +267,6 @@ window.top.addEventListener(
 );
 ```
 
-## 结语
-
-> 接下来要抓紧时间去完成剩余的[计划](post:2020-plan)咯!
-
 ## 同系列文章
 
 - [回到开头](scroll-to-the-very-top)
