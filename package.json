@@ -10,7 +10,7 @@
     "dPackGenerator": "rm -rf build/dev && webpack --config=cfg/webpack/gen.dev.js",
     "dev-v1-react": "npm run dPackGenerator && npm run dGenerate && concurrently 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.react.dev.js'",
     "dev-v2-vue": "npm run dPackGenerator && npm run dGenerate && concurrently 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.vue.dev.js'",
-    "publish": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.react.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt && cp placeholder/loader.html public/index.html"
+    "publish": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.react.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt && cp placeholder/* public/ && cat public/loader.html > public/index.html"
   },
   "repository": {
     "type": "git",
