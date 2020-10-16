@@ -48,7 +48,7 @@ export class DB {
 
     // Parse private Metadata
     const meta: Meta = {
-      date: Moment(date, 'YYYY-MM-DD HH:mm:ss'),
+      date: Moment(date, 'YYYY-MM-DD'),
     };
     this.postMetas[name] = meta;
 

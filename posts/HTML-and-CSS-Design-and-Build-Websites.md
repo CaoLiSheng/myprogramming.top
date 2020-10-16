@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《HTML and CSS Design and Build Websites》
-date: 2020-09-10 15:28:00
+date: 2020-09-10
 tags:
   - 读书
   - 笔记

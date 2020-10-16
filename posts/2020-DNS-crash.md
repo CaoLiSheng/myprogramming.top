@@ -1,7 +1,7 @@
 ---
 style: citizen
 title: 记一次DNS服务崩溃事件
-date: 2020-09-03 16:19:00
+date: 2020-09-03
 tags:
   - 新闻
   - 2020

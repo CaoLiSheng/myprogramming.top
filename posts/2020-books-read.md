@@ -1,8 +1,8 @@
 ---
 no-receive-emails
 style: lopash
-title: 2020年8月之后的读书列表
-date: 2020-10-10 16:00:00
+title: 2020 年读书列表
+date: 2020-10-16
 tags:
   - 计划
   - 读书

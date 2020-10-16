@@ -20,7 +20,7 @@ export default class extends Component<
     const postName = this.props.match.params.name;
     if (!postName || !db.metas[postName]) return null;
 
-    const date = Moment(db.metas[postName].date, 'YYYY-MM-DD HH:mm:ss');
+    const date = Moment(db.metas[postName].date, 'YYYY-MM-DD');
     const tags = db.metas[postName].tags;
     return (
       <Fragment>

@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》2
-date: 2020-10-09 15:56:00
+date: 2020-10-09
 tags:
   - 读书
   - 笔记

@@ -2,9 +2,10 @@
   "name": "yxblog",
   "version": "1.0.0",
   "description": "YX's BLOG SITE",
-  "main": "build/index.js",
+  "main": "./index.js",
   "scripts": {
-    "test": "webpack-dev-server --config=cfg/webpack/site.vue.dev.js",
+    "test": "node test.js",
+    "local-date": "node local-date.js",
     "dGenerate": "node ./build/dev/generator.min.js > log.txt",
     "dPackGenerator": "rm -rf build/dev && webpack --config=cfg/webpack/gen.dev.js",
     "dev-v1-react": "npm run dPackGenerator && npm run dGenerate && concurrently 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server --config=cfg/webpack/site.react.dev.js'",

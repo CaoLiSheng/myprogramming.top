@@ -1,7 +1,7 @@
 ---
 style: github-border
 title: 毛玻璃背景效果
-date: 2020-07-31 12:52:00
+date: 2020-07-31
 tags:
   - 网页截图
   - 视觉效果

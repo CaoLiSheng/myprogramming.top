@@ -1,7 +1,7 @@
 ---
 style: github-border
 title: 「里程碑-2020-1.0」博客 V1.0
-date: 2020-08-09 16:14:00
+date: 2020-08-09
 tags:
   - 博客
   - 里程碑
@@ -119,7 +119,7 @@ const body = converter.makeHtml(content);
 ---
 style: amblin
 title: 2020 年里程碑 - 1
-date: 2020-08-09 16:14:00
+date: 2020-08-09
 tags:
 
   + 里程碑

@@ -1,7 +1,7 @@
 ---
 style: github-colors
 title: Top 6 ways to improve the SPA performance
-date: 2020-09-23 17:37:00
+date: 2020-09-23
 tags:
   - SPA 性能优化
 ---

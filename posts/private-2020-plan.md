@@ -2,7 +2,7 @@
 no-receive-emails
 style: air
 title: 我的2020年
-date: 2020-10-10 19:45:00
+date: 2020-10-10
 tags:
   - 计划
   - 2020
