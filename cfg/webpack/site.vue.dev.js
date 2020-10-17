@@ -3,4 +3,8 @@ const { merge } = require('webpack-merge');
 const base = require('./base.site.vue');
 const dev = require('./base.site.dev');
 
-module.exports = merge(base, dev, {});
+module.exports = merge(base, dev, {
+  devServer: {
+    port: 3333,
+  },
+});

@@ -106,3 +106,4 @@ HHGuess(Pop[1 .. n],D):
 1. [回到开头](scroll-to-the-very-top)
 2. [Recursion](post:Algorithms-2-Recursion)
 3. [Backtracking](post:Algorithms-3-Backtracking)
+4. [Dynamic Programming](post:Algorithms-4-Dynamic-Programming)

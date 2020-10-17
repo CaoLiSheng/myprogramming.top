@@ -38,3 +38,4 @@ tags:
 1. [Preface-&-Introduction](post:Algorithms-1-Preface-&-Introduction)
 2. [Recursion](post:Algorithms-2-Recursion)
 3. [回到开头](scroll-to-the-very-top)
+4. [Dynamic Programming](post:Algorithms-4-Dynamic-Programming)

@@ -5,7 +5,6 @@ const wba = require('webpack-bundle-analyzer');
 module.exports = {
   mode: 'development',
   devServer: {
-    port: 3000,
     host: '0.0.0.0',
     disableHostCheck: true,
   },
