@@ -39,12 +39,7 @@ module.exports = merge(base, {
         oneOf: [
           {
             resourceQuery: /lang=styl(us)?/,
-            use: [
-              'vue-style-loader',
-              'css-loader',
-              'postcss-loader',
-              'stylus-loader',
-            ],
+            use: ['vue-style-loader', 'css-loader', 'stylus-loader'],
           },
         ],
       },

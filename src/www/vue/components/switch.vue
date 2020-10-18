@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     Links
-    h1 {{title}}: 
+    p {{title}}: 
       router-view
 </template>
 

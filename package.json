@@ -1,10 +1,10 @@
 {
   "name": "yxblog",
-  "version": "1.0.0",
+  "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "main": "./index.js",
   "scripts": {
-    "test": "echo 'nothing to test.'",
+    "test": "echo 'nothing to test.' && webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js",
     "local-date": "node local-date.js",
     "dPackGenerator": "rm -rf build/dev && webpack --config=cfg/webpack/gen.dev.js",
     "dRegenerate": "node ./build/dev/generator.min.js > log.txt",
@@ -54,8 +54,6 @@
     "html-webpack-plugin": "^4.3.0",
     "md5": "^2.3.0",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4",
-    "postcss-loader": "^4.0.4",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "react-hot-loader": "^4.12.21",

@@ -25,9 +25,3 @@ export default class HelloComponent extends HelloComponentProps {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-  .hello 
-    width 100%
-    text-align center
-</style>
