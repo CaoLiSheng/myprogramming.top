@@ -8,6 +8,8 @@
 // });
 // console.log('CSS Assets Copied');
 
+import '@common/shims-string';
+
 import path from 'path';
 import fs from 'fs-extra';
 

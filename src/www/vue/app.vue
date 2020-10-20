@@ -5,6 +5,12 @@ div(:class="{inverted:inverted}")
     #main
   .row-wrapper
     #bar
+      .explore(@click="changeTheme")
+        AllIcon
+      .explore(@click="changeTheme")
+        CanlendarIcon
+      .explore(@click="changeTheme")
+        TagsIcon
       .change-theme(@click="changeTheme") 
         ThemeIcon
     #status
@@ -13,8 +19,16 @@ div(:class="{inverted:inverted}")
 <script lang="ts">
 import Vue from 'vue'
 import ThemeIcon from '@images/theme.vue'
+import AllIcon from '@images/all.vue'
+import CanlendarIcon from '@images/canlendar.vue'
+import TagsIcon from '@images/tags.vue'
 export default Vue.extend({
-  components: {ThemeIcon},
+  components: {
+    ThemeIcon,
+    AllIcon,
+    CanlendarIcon,
+    TagsIcon,
+  },
   data() {
     return {inverted:false}
   },
@@ -97,6 +111,9 @@ p
     svg.icon
       width 100%
       height 100%
+
+    &.explore
+      float left
 
     &.change-theme
       float right
