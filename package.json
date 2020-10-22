@@ -10,7 +10,7 @@
     "dServePosts": "concurrently --handle-input 'nodemon --exec \"npm run dRegenerate\"' 'serve -C -l 5555 ./build/posts/'",
     "dev-v1-react": "npm run dPackGenerator && npm run dRegenerate && webpack-dev-server --config=cfg/webpack/site.react.dev.js",
     "dev-v2-vue": "npm run dPackGenerator && npm run dRegenerate && webpack-dev-server --config=cfg/webpack/site.vue.dev.js",
-    "publish": "rm -rf public build/prod && cp -a placeholder public && cat public/loader.html > public/index.html && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/site.react.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt'"
+    "publish": "rm -rf public build/prod && cp -a loader public && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/site.react.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt'"
   },
   "repository": {
     "type": "git",

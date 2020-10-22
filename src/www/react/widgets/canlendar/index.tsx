@@ -136,12 +136,19 @@ export class Canlendar extends Component<
     }
 
     if (month === '*') {
-      return <h1>{year}年</h1>;
+      return (
+        <h1>
+          <Link to={`/canlendar/*/*/*`}>起源</Link>
+          <span> : {year}年</span>
+        </h1>
+      );
     }
 
     if (date === '*') {
       return (
         <h1>
+          <Link to={`/canlendar/*/*/*`}>起源</Link>
+          <span> : </span>
           <Link to={`/canlendar/${year}/*/*`}>{year}</Link>
           <span>年{month}月</span>
         </h1>
@@ -150,6 +157,8 @@ export class Canlendar extends Component<
 
     return (
       <h1>
+        <Link to={`/canlendar/*/*/*`}>起源</Link>
+        <span> : </span>
         <Link to={`/canlendar/${year}/*/*`}>{year}</Link>
         <span>年</span>
         <Link to={`/canlendar/${year}/${month}/*`}>{month}</Link>

@@ -11,10 +11,41 @@ module.exports = merge(base, {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        // loader: 'ts-loader',
+        // exclude: /node_modules/,
+        // options: { appendTsSuffixTo: [/\.vue$/] },
         exclude: /node_modules/,
+        loader: 'babel-loader',
         options: {
-          appendTsSuffixTo: [/\.vue$/],
+          cacheDirectory: true,
+          babelrc: false,
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  browsers: 'last 2 versions',
+                },
+              },
+            ],
+            ['@babel/preset-typescript', { allExtensions: true }],
+          ],
+          plugins: [
+            [
+              '@babel/plugin-proposal-decorators',
+              {
+                legacy: true,
+              },
+            ],
+            [
+              '@babel/plugin-proposal-class-properties',
+              {
+                loose: true,
+              },
+            ],
+            '@babel/plugin-proposal-optional-chaining',
+            '@babel/plugin-transform-runtime',
+          ],
         },
       },
       {
