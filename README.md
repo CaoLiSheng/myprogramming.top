@@ -19,8 +19,8 @@
 
    1. Github // 技术
 
-      1. github-colors // 搬运并总结 _ 知识 _
-      2. github-border // 创造并分享 _ 知识 _
+      1. github-colors // 创造并分享 _ 知识 _
+      2. github-border // 搬运并总结 _ 知识 _
 
    2. Categories
 

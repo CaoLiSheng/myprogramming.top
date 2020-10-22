@@ -5,9 +5,9 @@
   "scripts": {
     "test": "echo 'something is going to test.' && ts-node ./test.ts",
     "local-date": "ts-node local-date.ts",
-    "dPackGenerator": "rm -rf build/dev && webpack --config=cfg/webpack/gen.dev.js",
-    "dRegenerate": "node ./build/dev/generator.min.js > log.txt && ts-node local-date.ts",
-    "dServePosts": "serve -C -l 5555 ./build/posts/",
+    "dRegenerate": "node ./build/dev/generator.min.js > log.txt && echo 'All have been regenerated! @' &&  ts-node local-date.ts",
+    "dPackGenerator": "rm -rf build/dev && webpack --config=cfg/webpack/gen.dev.js && npm run dRegenerate",
+    "dServePosts": "concurrently --handle-input 'nodemon --exec \"npm run dRegenerate\"' 'serve -C -l 5555 ./build/posts/'",
     "dev-v1-react": "npm run dPackGenerator && npm run dRegenerate && webpack-dev-server --config=cfg/webpack/site.react.dev.js",
     "dev-v2-vue": "npm run dPackGenerator && npm run dRegenerate && webpack-dev-server --config=cfg/webpack/site.vue.dev.js",
     "publish": "rm -rf public build/prod && cp -a placeholder public && cat public/loader.html > public/index.html && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.vue.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/site.react.prod.js' 'webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt'"
@@ -53,6 +53,7 @@
     "html-webpack-plugin": "^4.3.0",
     "md5": "^2.3.0",
     "node-sass": "^4.14.1",
+    "nodemon": "^2.0.6",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "react-hot-loader": "^4.12.21",

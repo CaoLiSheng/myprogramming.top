@@ -6,5 +6,5 @@
     "src/template/basic/index.html"
   ],
   "ext": "*",
-  "delay": "3000"
+  "delay": "5000"
 }

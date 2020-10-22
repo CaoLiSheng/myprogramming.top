@@ -1,6 +1,6 @@
 ---
 style: antique
-title: 读书笔记之《Algorithms》1
+title: 读书笔记之《Algorithms》0
 date: 2020-10-01
 tags:
   - 读书
@@ -105,6 +105,6 @@ HHGuess(Pop[1 .. n],D):
 ## 同一本书的文章集
 
 1. [回到开头](scroll-to-the-very-top)
-2. [Recursion](post:Algorithms-2-Recursion)
-3. [Backtracking](post:Algorithms-3-Backtracking)
-4. [Dynamic Programming](post:Algorithms-4-Dynamic-Programming)
+2. [Recursion](post:Algorithms-1-Recursion)
+3. [Backtracking](post:Algorithms-2-Backtracking)
+4. [Dynamic Programming](post:Algorithms-3-Dynamic-Programming)

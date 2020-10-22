@@ -1,5 +1,5 @@
 ---
-style: github-border
+style: github-colors
 title: 解读XXX源代码
 date: 2020-10-01
 tags:

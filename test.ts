@@ -77,4 +77,37 @@ function invertCap(str: string): string {
   }
   return results.join('');
 }
-console.log('\n\ninvertCap()...\n', invertCap('Hello World!'));
+// console.log('\n\ninvertCap()...\n', invertCap('Hello World!'));
+
+interface DBIndex {
+  str: string;
+  num: number;
+}
+
+const byStr = (i: DBIndex, v: any) => {
+  return i.str === v;
+};
+
+function byNum(i: DBIndex, v: any): boolean {
+  return i.num === v;
+}
+
+type Indexer = 'str' | 'num';
+
+function searchByIndex(data: DBIndex[], flag: Indexer, v: any): DBIndex[] {
+  let indexer: (i: DBIndex, v: any) => boolean;
+  switch (flag) {
+    case 'str':
+      indexer = byStr;
+      break;
+    case 'num':
+      indexer = byNum;
+      break;
+    default:
+      throw new Error('Wrong flag ' + flag);
+  }
+
+  const results: DBIndex[] = [];
+  data.forEach((i: DBIndex) => indexer(i, v) && results.push(i));
+  return results;
+}

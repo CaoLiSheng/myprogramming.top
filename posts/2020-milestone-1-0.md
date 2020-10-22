@@ -1,5 +1,5 @@
 ---
-style: github-border
+style: github-colors
 title: 「里程碑-2020-1.0」博客 V1.0
 date: 2020-08-09
 tags:

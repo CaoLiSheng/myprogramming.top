@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github-border
 title: Top 6 ways to improve the SPA performance
 date: 2020-09-23
 tags:

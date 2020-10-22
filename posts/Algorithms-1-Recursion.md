@@ -1,6 +1,6 @@
 ---
 style: antique
-title: 读书笔记之《Algorithms》2
+title: 读书笔记之《Algorithms》1
 date: 2020-10-09
 tags:
   - 读书
@@ -70,7 +70,7 @@ S(n) = T(n+𝛼)
 
 ## 同一本书的文章集
 
-1. [Preface-&-Introduction](post:Algorithms-1-Preface-&-Introduction)
+1. [Preface-&-Introduction](post:Algorithms-0-Preface-&-Introduction)
 2. [回到开头](scroll-to-the-very-top)
-3. [Backtracking](post:Algorithms-3-Backtracking)
-4. [Dynamic Programming](post:Algorithms-4-Dynamic-Programming)
+3. [Backtracking](post:Algorithms-2-Backtracking)
+4. [Dynamic Programming](post:Algorithms-3-Dynamic-Programming)

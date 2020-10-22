@@ -14,7 +14,7 @@ const styles: { [key: string]: StyleSheet } = {
   antique: UnsetPadding,
   splendor: UnsetPadding,
   'github-border': UnsetPadding,
-  'github-colors': UnsetPadding,
+  'github-colors': PostfixPadding,
   modest: PostfixPadding,
 };
 
