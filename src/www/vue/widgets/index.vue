@@ -15,30 +15,29 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Component from "vue-class-component";
 
 const BarComponent = () =>
-  import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar/index.vue");
+  import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
 
-export default Vue.extend({
-  components: { Bar: BarComponent },
+@Component({ components: { Bar: BarComponent } })
+export default class IndexComponent extends Vue {
   data() {
     return { inverted: false };
-  },
-  methods: {
-    changeTheme() {
-      this.$data.inverted = !this.$data.inverted;
-    },
-    showDefaultExplorer() {
-      console.log("showDefaultExplorer");
-    },
-    showCanlenderExplorer() {
-      console.log("showCanlenderExplorer");
-    },
-    showTagsExplorer() {
-      console.log("showTagsExplorer");
-    },
-  },
-});
+  }
+  changeTheme() {
+    this.$data.inverted = !this.$data.inverted;
+  }
+  showDefaultExplorer() {
+    console.log("showDefaultExplorer");
+  }
+  showCanlenderExplorer() {
+    console.log("showCanlenderExplorer");
+  }
+  showTagsExplorer() {
+    console.log("showTagsExplorer");
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

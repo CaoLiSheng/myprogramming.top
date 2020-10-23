@@ -48,5 +48,5 @@ export default class BarComponent extends BarComponentBase {}
     &.tags
       padding: 0.24rem
     &.canlendar
-      padding: 0.18rem
+      padding: 0.22rem
 </style>
