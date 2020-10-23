@@ -1,10 +1,10 @@
 <template lang="pug">
 #bar
-  .explorer(@click="changeTheme")
+  .explorer(@click="showDefaultExplorer")
     AllIcon
-  .explorer(@click="changeTheme")
+  .explorer.canlendar(@click="showCanlenderExplorer")
     CanlendarIcon
-  .explorer.tags(@click="changeTheme")
+  .explorer.tags(@click="showTagsExplorer")
     TagsIcon
   .change-theme(@click="changeTheme")
     ThemeIcon
@@ -19,7 +19,12 @@ import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
 
 const BarComponentBase = Vue.extend({
-  props: ["changeTheme"],
+  props: [
+    "changeTheme",
+    "showDefaultExplorer",
+    "showCanlenderExplorer",
+    "showTagsExplorer",
+  ],
 });
 
 @Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })
@@ -42,4 +47,6 @@ export default class BarComponent extends BarComponentBase {}
       height: 100%
     &.tags
       padding: 0.24rem
+    &.canlendar
+      padding: 0.18rem
 </style>
