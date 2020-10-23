@@ -22,6 +22,9 @@
       ],
       "@rWidgets/*": [
         "src/www/react/widgets/*"
+      ],
+      "@vWidgets/*": [
+        "src/www/vue/widgets/*"
       ]
     },
     "outDir": "dist",
