@@ -2,7 +2,7 @@
 #main-wrapper(:class="{ inverted: inverted }")
   .row-wrapper
     #side
-    #main
+    #main(v-once, v-html="article")
   .row-wrapper
     Bar(
       :changeTheme="changeTheme",
@@ -20,10 +20,19 @@ import Component from "vue-class-component";
 const BarComponent = () =>
   import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
 
+const DefaultArticle = `
+<h1 style="text-align:center;line-height:3em;color:#1AAACD;">
+欢迎来到这个神奇的博客
+</h1>
+`;
+
 @Component({ components: { Bar: BarComponent } })
 export default class IndexComponent extends Vue {
   data() {
-    return { inverted: false };
+    return {
+      inverted: false,
+      article: window["ARTICLE"] || DefaultArticle,
+    };
   }
   changeTheme() {
     this.$data.inverted = !this.$data.inverted;

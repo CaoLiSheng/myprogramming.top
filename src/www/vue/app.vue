@@ -1,14 +1,16 @@
 <template lang="pug">
-router-view
+Index
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({
-  data() {
-    return {};
-  },
-});
+import Component from "vue-class-component";
+
+const IndexComponent = () =>
+  import(/* webpackChunkName: 'IndexComponent' */ "@vWidgets/index.vue");
+
+@Component({ components: { Index: IndexComponent } })
+export default class App extends Vue {}
 </script>
 
 <style lang="stylus">
@@ -19,6 +21,10 @@ export default Vue.extend({
   border: none
   padding: 0
   margin: 0
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap')
+body
+  font-family: 'Long Cang', -apple-system-font, 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, sans-serif
+  font-weight: 300
 h1
   font-size: 0.72rem
 span, div, p
