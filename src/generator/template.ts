@@ -20,6 +20,7 @@ import { minify } from './minify';
 import argv from './yargs';
 
 declare var __production__: boolean;
+declare var __resources_dir__: string;
 
 // Locate Template Script Path
 export function tplScriptPath(): string {
@@ -70,6 +71,7 @@ export function fetchCSS(base: string): string {
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
       .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
+      .replace('/* reources_dir */', __resources_dir__)
   );
 
   CSSMaps[base] = cssContent.md5(base, 'css', 10);
