@@ -8,7 +8,7 @@ tags:
   - 算法
 ---
 
-> Backtracking
+> Backtracking（回溯）
 
 ## Pattern（recursive brute force）
 

@@ -1,16 +1,12 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 
-const base = require('./base.site.react');
-const dev = require('./base.site.dev');
+const base = require('./base.site.v1');
+const prod = require('./base.site.prod');
 
-module.exports = merge(base, dev, {
-  devServer: {
-    port: 3000,
-  },
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
+module.exports = merge(base, prod, {
+  output: {
+    path: path.join(process.cwd(), 'public', 'v1'),
   },
   module: {
     rules: [
@@ -49,7 +45,6 @@ module.exports = merge(base, dev, {
               ],
               '@babel/plugin-proposal-optional-chaining',
               '@babel/plugin-transform-runtime',
-              'react-hot-loader/babel',
             ],
           },
         },

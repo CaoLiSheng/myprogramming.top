@@ -419,7 +419,6 @@ Description:  An "antiqued" theme with off-white background and serif typography
   position: relative;
   display: inline-block;
   margin-bottom: 2em;
-  text-align: center;
 }
 .markdown-body figure:hover {
   cursor: pointer;

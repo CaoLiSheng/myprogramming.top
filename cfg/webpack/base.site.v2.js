@@ -5,7 +5,7 @@ const base = require('./base.site');
 
 module.exports = merge(base, {
   entry: {
-    app: 'src/www/vue/app.ts',
+    app: 'src/www/v2/app',
   },
   module: {
     rules: [

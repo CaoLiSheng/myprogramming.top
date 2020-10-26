@@ -8,7 +8,7 @@ tags:
   - 算法
 ---
 
-> Recursion
+> Recursion（递归）
 
 ## Reduction（降低复杂度技术）
 

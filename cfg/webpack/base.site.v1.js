@@ -6,11 +6,11 @@ const base = require('./base.site');
 
 module.exports = merge(base, {
   entry: {
-    app: 'src/www/react/app',
+    app: 'src/www/v1/app',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src/www/react/index.html'),
+      template: path.join(process.cwd(), 'src/www/v1/index.html'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: ['app'],

@@ -96,7 +96,7 @@ export function titleTag(fileName: string): string {
 
 // dateTag
 export function dateTag(date: string): string {
-  return `<code> ~~ 更新时间 -> ${date}</code>`;
+  return `<code> ~~ 更新于 -> ${date}</code>`;
 }
 
 // hm baidu

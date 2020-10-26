@@ -8,9 +8,21 @@ tags:
   - 算法
 ---
 
-> Dynamic Programming
+> Dynamic Programming（动态规划）
+
+## 第一个简单的动态规划算法
+
+大学时没上过课，都是闷着自学的；把好多问题都想复杂了，原来用 for 循环迭代填充斐波那契数组就是一个动态规划算法。
+
+### 结合快速求解矩阵幂运算（O(log(n))）计算斐波那契数
+
+![结合快速求解矩阵幂运算（O(log(n))）计算斐波那契数](Algorithms-3-Dynamic-Programming/formula-fabnacci.png =200px-)
+
+重点就在左边矩阵的n次幂上！通过递归可以将矩阵乘法的次数降到 `log(n)` 次。
 
 ## 书中的典型案例
+
+- 求斐波那契数
 
 （陆续完善……）
 

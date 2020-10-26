@@ -18,13 +18,13 @@
         "src/www/*"
       ],
       "@rCtxs/*": [
-        "src/www/react/ctxs/*"
+        "src/www/v1/ctxs/*"
       ],
       "@rWidgets/*": [
-        "src/www/react/widgets/*"
+        "src/www/v1/widgets/*"
       ],
       "@vWidgets/*": [
-        "src/www/vue/widgets/*"
+        "src/www/v2/widgets/*"
       ]
     },
     "outDir": "dist",
