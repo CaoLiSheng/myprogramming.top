@@ -1,12 +1,15 @@
 <template lang="pug">
 #bar
-  .explorer(@click="showDefaultExplorer")
+  router-link.explorer(title="浏览全部", :to="{ name: 'AllComponent' }")
     AllIcon
-  .explorer.canlendar(@click="showCanlenderExplorer")
+  router-link.explorer.canlendar(
+    title="按日历浏览",
+    :to="{ name: 'CanlendarComponent' }"
+  )
     CanlendarIcon
-  .explorer.tags(@click="showTagsExplorer")
+  router-link.explorer.tags(title="按标签浏览", :to="{ name: 'TagsComponent' }")
     TagsIcon
-  .change-theme(@click="changeTheme")
+  .change-theme(title="切换主题", @click="changeTheme")
     ThemeIcon
 </template>
 
@@ -19,12 +22,7 @@ import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
 
 const BarComponentBase = Vue.extend({
-  props: [
-    "changeTheme",
-    "showDefaultExplorer",
-    "showCanlenderExplorer",
-    "showTagsExplorer",
-  ],
+  props: ["changeTheme"],
 });
 
 @Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })

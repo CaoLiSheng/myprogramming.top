@@ -5,6 +5,6 @@ dist
 package-lock.json
 yarn.lock
 yarn-error.log
-log.txt
+log*.txt
 
 .DS_Store

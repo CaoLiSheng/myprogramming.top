@@ -1,15 +1,16 @@
 <template lang="pug">
-Index
+router-view
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
-const IndexComponent = () =>
-  import(/* webpackChunkName: 'IndexComponent' */ "@vWidgets/index.vue");
+// const IndexComponent = () =>
+//   import(/* webpackChunkName: 'IndexComponent' */ "@vWidgets/index.vue");
 
-@Component({ components: { Index: IndexComponent } })
+// @Component({ components: { Index: IndexComponent } })
+@Component
 export default class App extends Vue {}
 </script>
 

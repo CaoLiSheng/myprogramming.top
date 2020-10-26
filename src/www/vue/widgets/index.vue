@@ -2,14 +2,10 @@
 #main-wrapper(:class="{ inverted: inverted }")
   .row-wrapper
     #side
+      router-view
     #main(v-once, v-html="article")
   .row-wrapper
-    Bar(
-      :changeTheme="changeTheme",
-      :showDefaultExplorer="showDefaultExplorer",
-      :showCanlenderExplorer="showCanlenderExplorer",
-      :showTagsExplorer="showTagsExplorer"
-    ) 
+    Bar(:changeTheme="changeTheme") 
     #status
 </template>
 
@@ -20,12 +16,6 @@ import Component from "vue-class-component";
 const BarComponent = () =>
   import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
 
-const DefaultArticle = `
-<h1 style="text-align:center;line-height:3em;color:#1AAACD;">
-欢迎来到这个神奇的博客
-</h1>
-`;
-
 @Component({ components: { Bar: BarComponent } })
 export default class IndexComponent extends Vue {
   data() {
@@ -33,7 +23,11 @@ export default class IndexComponent extends Vue {
       inverted: false,
       article:
         window["INDEX_FLAG"] === window["INDEX_FLAG_TRUE"]
-          ? DefaultArticle
+          ? window["ARTICLE"]
+              .replace("{{title_tag}}", "首页")
+              .replace("{{article_title}}", "欢迎来到这个神奇的博客")
+              .replace("{{date_tag}}", new Date().toLocaleDateString())
+              .replace("{{article_body}}", "balabala")
           : window["ARTICLE"],
     };
   }

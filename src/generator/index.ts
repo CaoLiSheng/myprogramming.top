@@ -109,11 +109,30 @@ posts.forEach((fileName: string) => {
           '{{article_body}}',
           `${body}${emailLink(fileName, noReceiveEmails, stylesheet, title)}`
         )
-        .replace('{{is_index}}', 'FALSE')
     )
   );
 });
 console.log('All HTML Generated');
+
+preWrite(path.join(outDir, 'index.html')).writeFileSync(
+  htmlMinify(
+    tplContent
+      .replace('{{title}}', '又心真人的博客')
+      .replace('{{article_title}}', '又心真人的博客')
+      .replace('{{javascript}}', tplScriptPath())
+      .replace('{{hm_baidu}}', hmBaidu())
+      .replace('{{stylesheet}}', fetchCSS('github-colors'))
+      .replace(
+        '{{title_tag}}',
+        '<blockquote><code>-> 首页 <-</code></blockquote>'
+      )
+      .replace(
+        '{{date_tag}}',
+        `<code> ~~ 最近更新于 -> ${new Date().toLocaleDateString()}</code>`
+      )
+      .replace('{{article_body}}', '<h2>欢迎来到这个神奇的博客</h2>')
+  )
+);
 
 const dbPath = path.join(outDir, 'db.json');
 fs.createFileSync(dbPath);
