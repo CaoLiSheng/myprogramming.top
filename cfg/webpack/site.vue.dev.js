@@ -1,10 +1,11 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 
 const base = require('./base.site.vue');
 const dev = require('./base.site.dev');
 
 module.exports = merge(base, dev, {
-  devServer: {
-    port: 3333,
+  output: {
+    path: path.join(process.cwd(), 'build/v2/dev'),
   },
 });

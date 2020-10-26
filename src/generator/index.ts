@@ -1,14 +1,3 @@
-import yargs from 'yargs';
-
-const argv = yargs
-  .option('tpl-path', {
-    alias: 'tp',
-    description: '模板路径',
-    type: 'string',
-  })
-  .help()
-  .alias('help', 'h').argv;
-
 import path from 'path';
 import fs from 'fs-extra';
 
@@ -30,6 +19,8 @@ import { htmlMinify } from './minify';
 import { DB } from '@common/db';
 const dbData = new DB();
 
+declare var __production__: boolean;
+
 // Clean & Make Out Dir
 fs.mkdirSync(outDir, { recursive: true });
 fs.emptyDirSync(outDir);
@@ -41,14 +32,16 @@ console.log('Sources:', sources);
 
 // Copy Assets
 copyTemplateAssets();
-const assets = sources.filter((file: string) => isAsset(file));
-console.log('Assets:', assets);
-assets.forEach((dir: string) =>
-  fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
-    recursive: true,
-  })
-);
-console.log('All Assets Copied');
+if (!__production__) {
+  const assets = sources.filter((file: string) => isAsset(file));
+  console.log('Assets:', assets);
+  assets.forEach((dir: string) =>
+    fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
+      recursive: true,
+    })
+  );
+  console.log('All Assets Copied');
+}
 
 // Generate HTML
 const posts = sources.filter((file: string) => isPost(file));
@@ -104,10 +97,10 @@ posts.forEach((fileName: string) => {
 
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
-      tplContent(argv['tpl-path'])
+      tplContent
         .replace('{{title}}', title)
         .replace('{{article_title}}', title)
-        .replace('{{javascript}}', tplScriptPath)
+        .replace('{{javascript}}', tplScriptPath())
         .replace('{{hm_baidu}}', hmBaidu())
         .replace('{{stylesheet}}', fetchCSS(stylesheet))
         .replace('{{title_tag}}', titleTag(fileName))
@@ -116,6 +109,7 @@ posts.forEach((fileName: string) => {
           '{{article_body}}',
           `${body}${emailLink(fileName, noReceiveEmails, stylesheet, title)}`
         )
+        .replace('{{is_index}}', 'FALSE')
     )
   );
 });

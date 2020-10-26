@@ -7,6 +7,6 @@ const dev = require('./base.site.prod');
 
 module.exports = merge(base, dev, {
   output: {
-    path: path.join(process.cwd(), 'public', 'v2'),
+    path: path.join(process.cwd(), 'build/v2/prod'),
   },
 });

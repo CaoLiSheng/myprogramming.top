@@ -31,7 +31,10 @@ export default class IndexComponent extends Vue {
   data() {
     return {
       inverted: false,
-      article: window["ARTICLE"] || DefaultArticle,
+      article:
+        window["INDEX_FLAG"] === window["INDEX_FLAG_TRUE"]
+          ? DefaultArticle
+          : window["ARTICLE"],
     };
   }
   changeTheme() {
@@ -70,6 +73,8 @@ export default class IndexComponent extends Vue {
     flex: 1
     height: 100%
     background: white
+  #side, #main
+    overflow: auto
 .inverted
   .row-wrapper
     &:first-child

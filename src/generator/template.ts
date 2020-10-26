@@ -17,30 +17,31 @@ import Sheets from '@tpl/styles';
 
 import { outDir, preWrite } from './file';
 import { minify } from './minify';
+import argv from './yargs';
 
-declare var __tpl_assets_dir__: string;
 declare var __production__: boolean;
 
 // Locate Template Script Path
-export const tplScriptPath: string =
-  fs
-    .readdirSync(__tpl_assets_dir__)
-    .find(
-      (asset: string) => asset.startsWith('template.') && asset.endsWith('.js')
-    ) || 'template.min.js';
+export function tplScriptPath(): string {
+  return (
+    fs
+      .readdirSync(argv.tplDir)
+      .find(
+        (asset: string) =>
+          asset.startsWith('template.') && asset.endsWith('.js')
+      ) || 'template.min.js'
+  );
+}
 
 // Copy Template Assets
 export function copyTemplateAssets() {
-  const assets = fs.readdirSync(__tpl_assets_dir__);
+  const assets = fs.readdirSync(argv.tplDir);
   console.log('template assets dir:', assets);
 
   assets.forEach((asset: string) => {
     if (asset === 'generator.min.js') return;
 
-    fs.copyFileSync(
-      path.join(__tpl_assets_dir__, asset),
-      path.join(outDir, asset)
-    );
+    fs.copyFileSync(path.join(argv.tplDir, asset), path.join(outDir, asset));
   });
 }
 
@@ -79,13 +80,8 @@ export function fetchCSS(base: string): string {
 }
 
 // Load Template
-export function tplContent(tplPathArg?: string): string {
-  const tplPath = path.join(
-    process.cwd(),
-    tplPathArg || 'src/template/v1/index.html'
-  );
-  return fs.readFileSync(tplPath, { encoding: 'UTF-8' });
-}
+const tplPath = path.join(process.cwd(), argv.tplPath);
+export const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 // titleTag
 export function titleTag(fileName: string): string {

@@ -3,12 +3,13 @@ import fs from 'fs-extra';
 
 import '@common/shims-string';
 
-declare var __out_path__: string;
+import argv from './yargs';
+
 declare var __production__: boolean;
 
 export const inDir = path.join(process.cwd(), 'posts');
 
-export const outDir = path.join(process.cwd(), __out_path__);
+export const outDir = path.join(process.cwd(), argv.outPath);
 
 function isDir(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isDirectory();

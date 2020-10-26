@@ -1,7 +1,8 @@
 {
   "watch": [
     "posts/",
-    "src/template/style-source/",
+    "build/v2/dev/",
+    "src/template/styles/",
     "src/template/basic/index.css",
     "src/template/basic/index.html"
   ],

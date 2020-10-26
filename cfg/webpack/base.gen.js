@@ -9,7 +9,7 @@ module.exports = merge(base, {
   target: 'node',
   entry: {
     generator: 'src/generator/index',
-    templateV1: 'src/template/v1/index',
+    template: 'src/template/v1/index',
   },
   output: {
     filename: (chunkData) => {
