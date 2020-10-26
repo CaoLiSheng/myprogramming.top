@@ -1,3 +1,14 @@
+import yargs from 'yargs';
+
+const argv = yargs
+  .option('tpl-path', {
+    alias: 'tp',
+    description: '模板路径',
+    type: 'string',
+  })
+  .help()
+  .alias('help', 'h').argv;
+
 import path from 'path';
 import fs from 'fs-extra';
 
@@ -93,7 +104,7 @@ posts.forEach((fileName: string) => {
 
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
-      tplContent
+      tplContent(argv['tpl-path'])
         .replace('{{title}}', title)
         .replace('{{article_title}}', title)
         .replace('{{javascript}}', tplScriptPath)

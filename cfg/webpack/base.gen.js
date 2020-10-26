@@ -1,4 +1,6 @@
+const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const { merge } = require('webpack-merge');
 
 const base = require('./base.babel');
@@ -7,7 +9,7 @@ module.exports = merge(base, {
   target: 'node',
   entry: {
     generator: 'src/generator/index',
-    template: 'src/template/basic/index',
+    templateV1: 'src/template/v1/index',
   },
   output: {
     filename: (chunkData) => {
@@ -17,8 +19,19 @@ module.exports = merge(base, {
       return '[name].[hash:10].js';
     },
   },
+  externals: [
+    nodeExternals({ modulesDir: path.join(process.cwd(), 'node_modules') }),
+  ],
+  resolve: {
+    extensions: ['.wasm', '.mjs', '.js', '.ts', '.json'],
+  },
   module: {
     rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
       {
         test: /\.(j|t)s(x)?$/,
         exclude: /node_modules/,

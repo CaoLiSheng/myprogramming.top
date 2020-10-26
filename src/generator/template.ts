@@ -45,13 +45,7 @@ export function copyTemplateAssets() {
 }
 
 // CSS Assets Maps
-const tplCSSPath = path.join(
-  process.cwd(),
-  'src',
-  'template',
-  'basic',
-  'index.css'
-);
+const tplCSSPath = path.join(process.cwd(), 'src/template/v1/index.css');
 const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 
 const CSSMaps: {
@@ -63,10 +57,7 @@ export function fetchCSS(base: string): string {
 
   const baseCSSPath = path.join(
     process.cwd(),
-    'src',
-    'template',
-    'style-source',
-    `${base}.css`
+    `src/template/styles/${base}.css`
   );
 
   const baseCSSContent = fs.readFileSync(baseCSSPath, {
@@ -88,14 +79,13 @@ export function fetchCSS(base: string): string {
 }
 
 // Load Template
-const tplPath = path.join(
-  process.cwd(),
-  'src',
-  'template',
-  'basic',
-  'index.html'
-);
-export const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
+export function tplContent(tplPathArg?: string): string {
+  const tplPath = path.join(
+    process.cwd(),
+    tplPathArg || 'src/template/v1/index.html'
+  );
+  return fs.readFileSync(tplPath, { encoding: 'UTF-8' });
+}
 
 // titleTag
 export function titleTag(fileName: string): string {
