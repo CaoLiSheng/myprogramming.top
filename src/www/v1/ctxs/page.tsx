@@ -5,24 +5,24 @@ import { HOCDecrator } from '@common/index';
 export const PAGE_SIZE = 6;
 
 export const PATH_PAGER_MAP = {
-  '/index': 'homepage',
-  '/index/:page': 'homepage',
+  '/home': 'homepage',
+  '/home/p/:page': 'homepage',
   '/tags/:tags': 'tagspage',
-  '/tags/:tags/:page': 'tagspage',
+  '/tags/:tags/p/:page': 'tagspage',
   '/canlendar/:year/:month/:date': 'datepage',
-  '/canlendar/:year/:month/:date/:page': 'datepage',
+  '/canlendar/:year/:month/:date/p/:page': 'datepage',
 };
 
 export const APPENDING_PATH_PAGER_MAP = [
-  '/index',
+  '/home',
   '/tags/:tags',
   '/canlendar/:year/:month/:date',
 ];
 
 export const REPLACING_PATH_PAGER_MAP = [
-  '/index/:page',
-  '/tags/:tags/:page',
-  '/canlendar/:year/:month/:date/:page',
+  '/home/p/:page',
+  '/tags/:tags/p/:page',
+  '/canlendar/:year/:month/:date/p/:page',
 ];
 
 export function buildPagerPath(
@@ -31,7 +31,7 @@ export function buildPagerPath(
 ): string {
   const paths = info.url.split('/');
   if (APPENDING_PATH_PAGER_MAP.includes(info.path)) {
-    paths.push(`${page}`);
+    paths.push(`p/${page}`);
   } else if (REPLACING_PATH_PAGER_MAP.includes(info.path)) {
     paths[paths.length - 1] = `${page}`;
   }

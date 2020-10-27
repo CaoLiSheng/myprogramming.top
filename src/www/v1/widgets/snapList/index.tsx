@@ -18,8 +18,8 @@ class InnerSnapList extends Component<
 > {
   private renderPostSnap = (name: string) => {
     return (
-      <Link key={name} to={`/post/${name}`}>
-        <li>
+      <li key={name}>
+        <Link to={`/post/${name}`}>
           <iframe
             src={`${
               __dirs__.__posts_root__
@@ -29,8 +29,8 @@ class InnerSnapList extends Component<
             scrolling="no"
             style={{ overflow: 'hidden' }}
           />
-        </li>
-      </Link>
+        </Link>
+      </li>
     );
   };
 

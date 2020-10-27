@@ -23,7 +23,6 @@ declare var __production__: boolean;
 
 // Clean & Make Out Dir
 fs.mkdirSync(outDir, { recursive: true });
-fs.emptyDirSync(outDir);
 console.log('inDir', inDir, '\noutDir', outDir, '\nready...');
 
 // Read Source Dir

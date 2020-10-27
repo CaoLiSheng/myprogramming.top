@@ -99,7 +99,7 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
   }
 
   render() {
-    const homeLink = this.renderLink('/index', '首页');
+    const homeLink = this.renderLink('/home', '首页');
     const canlendarLink = this.renderLink(
       '/canlendar/:year/:month/:date',
       '日历',
@@ -115,12 +115,12 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
             <Route
               exact
               path={[
-                '/index',
-                '/index/:page',
+                '/home',
+                '/home/p/:page',
                 '/tags/:tags',
-                '/tags/:tags/:page',
+                '/tags/:tags/p/:page',
                 '/canlendar/:year/:month/:date',
-                '/canlendar/:year/:month/:date/:page',
+                '/canlendar/:year/:month/:date/p/:page',
               ]}
               component={Pager}
             />

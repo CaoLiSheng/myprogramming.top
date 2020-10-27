@@ -39,7 +39,7 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
     const db: Schema = await resp.json();
 
     this.props.db?.load(db);
-    this.props.page?.update('homepage', db.sortedPosts);
+    // this.props.page?.update('homepage', db.sortedPosts);
   }
 
   shouldComponentUpdate() {
@@ -53,12 +53,12 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
       <div id="main">
         <HashRouter>
           <Switch>
-            <Redirect exact path="/" to="/index" />
+            <Redirect exact path="/" to="/home" />
             <Route exact path="/post/:name" component={Post} />
-            <Route exact path="/index" component={Home} />
-            <Route exact path="/index/:page" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/home/p/:page" component={Home} />
             <Route exact path="/tags/:tags" component={Tags} />
-            <Route exact path="/tags/:tags/:page" component={Tags} />
+            <Route exact path="/tags/:tags/p/:page" component={Tags} />
             <Route
               exact
               path="/canlendar/:year/:month/:date"
@@ -66,19 +66,19 @@ class App extends Component<{ db?: I_DB_CTX; page?: I_PAGE_CTX }, AppStates> {
             />
             <Route
               exact
-              path="/canlendar/:year/:month/:date/:page"
+              path="/canlendar/:year/:month/:date/p/:page"
               component={Canlendar}
             />
           </Switch>
           <Route
             path={[
-              '/canlendar/:year/:month/:date/:page',
+              '/canlendar/:year/:month/:date/p/:page',
               '/canlendar/:year/:month/:date',
-              '/tags/:tags/:page',
+              '/tags/:tags/p/:page',
               '/tags/:tags/',
+              '/home/p/:page',
+              '/home',
               '/post/:name',
-              '/index/:page',
-              '/index',
             ]}
             component={Header}
           />

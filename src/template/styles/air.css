@@ -59,18 +59,18 @@
 }
 
 html {
-  font-size: 12px;
+  font-size: 14px;
 }
 
-@media screen and (min-width: 32rem) and (max-width: 48rem) {
+@media screen and (min-width: 500px) and (max-width: 750px) {
   html {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 750px) {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
