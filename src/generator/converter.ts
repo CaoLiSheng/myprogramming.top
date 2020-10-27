@@ -6,12 +6,7 @@ export const converter = new showdown.Converter({
   extensions: [
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\((\S+?) '(.*?)'\)/g,
-      replace: `<figure><img alt="$1" src="${__resources_dir__}$2" title="$3" /><figcaption>$3</figcaption></figure>`,
-    },
-    {
-      type: 'lang',
-      regex: /!\[(.*?)\]\((\S+?) '(.*?)' =(\S*?)-(\S*?)\)/g,
+      regex: /!\[(.*?)\]\((\S+?) ':(.*?)=(\S*?)-(\S*?)'\)/g,
       replace: (
         _: string,
         $1: string,
@@ -26,11 +21,28 @@ export const converter = new showdown.Converter({
     },
     {
       type: 'lang',
-      regex: /!\[(.*?)\]\((\S+?) =(\S*?)-(\S*?)\)/g,
+      regex: /!\[(.*?)\]\((\S+?) ':(.*?)'\)/g,
+      replace: `<figure><img alt="$1" src="${__resources_dir__}$2" title="$3" /><figcaption>$3</figcaption></figure>`,
+    },
+    {
+      type: 'lang',
+      regex: /!!\[(.*?)\]\((\S+?) '=(\S*?)-(\S*?)'\)/g,
+      replace: (_: string, $1: string, $2: string, $3: string, $4: string) =>
+        `<img alt="${$1}" src="${__resources_dir__}${$2}" title="${$1}" width="${$3 ||
+          'auto'}" height="${$4 || 'auto'}" />`,
+    },
+    {
+      type: 'lang',
+      regex: /!\[(.*?)\]\((\S+?) '=(\S*?)-(\S*?)'\)/g,
       replace: (_: string, $1: string, $2: string, $3: string, $4: string) =>
         `<figure><img alt="${$1}" src="${__resources_dir__}${$2}" title="${$1}" width="${$3 ||
           'auto'}" height="${$4 ||
           'auto'}" /><figcaption>${$1}</figcaption></figure>`,
+    },
+    {
+      type: 'lang',
+      regex: /!!\[(.*?)\]\((\S+?)\)/g,
+      replace: `<img alt="$1" src="${__resources_dir__}$2" title="$1" />`,
     },
     {
       type: 'lang',

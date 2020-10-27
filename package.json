@@ -3,11 +3,11 @@
   "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "scripts": {
-    "test": "echo 'something is going to test.' && ts-node test.ts",
+    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts",
     "d-build-generator": "rm -rf build/gen/dev && webpack --config=cfg/webpack/gen.dev.js",
     "dev-v1": "npm run d-build-generator && concurrently --handle-input 'nodemon --exec \"./src/zsh/genV1.zsh\"' 'serve -C -l 5555 build/v1/posts' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
     "d-build-v2": "rm -rf build/v2 && webpack --config=cfg/webpack/site.v2.dev.js && npm run d-build-generator",
-    "dev-v2": "npm run d-build-v2 && concurrently --handle-input 'nodemon --exec \"./src/zsh/genV2.zsh\"' 'webpack -w --watch-aggregate-timeout=2000 --config=cfg/webpack/site.vue.dev.js' 'serve -l tcp://dev.myprogramming.top:3333 build/v2/posts'",
+    "dev-v2": "npm run d-build-v2 && concurrently --handle-input 'nodemon --exec \"./src/zsh/genV2.zsh\"' 'webpack -w --watch-aggregate-timeout=2000 --config=cfg/webpack/site.v2.dev.js' 'serve -l tcp://dev.myprogramming.top:3333 build/v2/posts'",
     "publish": "./src/zsh/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'node ./build/gen/prod/generator.min.js --td='build/v2/prod' --tp='build/v2/prod/index.html' --op='public/v2' > log2.txt' 'node ./build/gen/prod/generator.min.js --td='build/gen/prod' --tp='src/template/v1/index.html' --op='public/posts' > log1.txt'"
   },
   "repository": {
