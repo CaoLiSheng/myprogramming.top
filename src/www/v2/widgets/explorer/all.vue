@@ -1,6 +1,6 @@
 <template lang="pug">
 .r
-  h5 搜索
+  h5 搜索123
   p @ page {{ page }}
   p Search for {{ query }}
   p Filter by {{ query }}

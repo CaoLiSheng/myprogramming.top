@@ -11,8 +11,6 @@ export default class App extends Vue {}
 
 <style lang="stylus">
 *, *:before, *:after
-  user-select: none
-  -webkit-user-drag: none
   box-sizing: border-box
   border: none
   padding: 0
@@ -32,10 +30,8 @@ body[inverted]
   --btn-hover-theme-color: white
   --btn-active-theme-color: rgb(125, 128, 132)
 body
-  font-family: -apple-system-font, 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, sans-serif
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
   font-weight: 200
-h1
-  font-size: 0.72rem
-span, div, p
-  font-size: 0.32rem
+  user-select: none
+  -webkit-user-drag: none
 </style>

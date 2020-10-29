@@ -51,4 +51,6 @@ export default class IndexComponent extends Vue {
     background: var(--theme-color)
   #side, #main
     overflow: auto
+  #main
+    user-select: text
 </style>

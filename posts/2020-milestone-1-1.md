@@ -15,7 +15,7 @@ tags:
 
 ## 配置文件部分
 
-![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1-1/webpack.cfg.png =512px-)
+![webpack配置文件继承结构以及需要定义的变量](2020-milestone-1-1/webpack.cfg.png '=512px-')
 
 ### 变量说明
 
