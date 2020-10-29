@@ -1,13 +1,19 @@
 <template lang="pug">
 #bar
-  router-link.explorer(title="浏览全部", :to="{ name: 'AllComponent' }")
+  router-link.explorer(
+    title="浏览全部",
+    :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
+  )
     AllIcon
   router-link.explorer.canlendar(
     title="按日历浏览",
-    :to="{ name: 'CanlendarComponent' }"
+    :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
   )
     CanlendarIcon
-  router-link.explorer.tags(title="按标签浏览", :to="{ name: 'TagsComponent' }")
+  router-link.explorer.tags(
+    title="按标签浏览",
+    :to="{ name: 'TagsComponent', params: { query: '*', page: 1 } }"
+  )
     TagsIcon
   .change-theme(title="切换主题", @click="changeTheme")
     ThemeIcon
@@ -16,17 +22,24 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+
 import ThemeIcon from "@images/theme.vue";
 import AllIcon from "@images/all.vue";
 import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
 
-const BarComponentBase = Vue.extend({
-  props: ["changeTheme"],
-});
+const ThemeAttr = "inverted";
 
 @Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })
-export default class BarComponent extends BarComponentBase {}
+export default class BarComponent extends Vue {
+  changeTheme() {
+    if (document.body.hasAttribute(ThemeAttr)) {
+      document.body.removeAttribute(ThemeAttr);
+    } else {
+      document.body.setAttribute(ThemeAttr, "");
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

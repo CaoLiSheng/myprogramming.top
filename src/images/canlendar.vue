@@ -12,15 +12,10 @@
 </template>
 
 <style lang="stylus" scoped>
+.explorer path
+  fill: var(--btn-base-theme-color)
 .explorer:hover path.outline
-  fill: #3E3AAB
+  fill: var(--btn-hover-theme-color)
 .explorer:active path.outline
-  fill: rgb(125, 128, 132)
-#main-wrapper.inverted
-  .explorer path
-    fill: rgb(225, 228, 232)
-  .explorer:hover path.outline
-    fill: white
-  .explorer:active path.outline
-    fill: rgb(125, 128, 132)
+  fill: var(--btn-active-theme-color)
 </style>

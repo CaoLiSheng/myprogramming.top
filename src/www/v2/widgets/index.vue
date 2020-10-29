@@ -1,17 +1,19 @@
 <template lang="pug">
-#main-wrapper(:class="{ inverted: inverted }")
+.r
   .row-wrapper
     #side
       router-view
     #main(v-once, v-html="article")
   .row-wrapper
-    Bar(:changeTheme="changeTheme") 
+    Bar 
     #status
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+
+declare var ARTICLE: string;
 
 const BarComponent = () =>
   import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
@@ -20,28 +22,8 @@ const BarComponent = () =>
 export default class IndexComponent extends Vue {
   data() {
     return {
-      inverted: false,
-      article:
-        window["INDEX_FLAG"] === window["INDEX_FLAG_TRUE"]
-          ? window["ARTICLE"]
-              .replace("{{title_tag}}", "首页")
-              .replace("{{article_title}}", "欢迎来到这个神奇的博客")
-              .replace("{{date_tag}}", new Date().toLocaleDateString())
-              .replace("{{article_body}}", "balabala")
-          : window["ARTICLE"],
+      article: ARTICLE,
     };
-  }
-  changeTheme() {
-    this.$data.inverted = !this.$data.inverted;
-  }
-  showDefaultExplorer() {
-    console.log("showDefaultExplorer");
-  }
-  showCanlenderExplorer() {
-    console.log("showCanlenderExplorer");
-  }
-  showTagsExplorer() {
-    console.log("showTagsExplorer");
   }
 }
 </script>
@@ -53,29 +35,20 @@ export default class IndexComponent extends Vue {
   flex-direction: row
   &:first-child
     height: calc(100vh - 0.8rem)
-    border-bottom: solid 0.01rem rgb(225, 228, 232)
+    border-bottom: solid 0.01rem var(--border-theme-color)
   &:last-child
     height: 0.8rem
   #side, #bar
-    max-width: 20%
+    max-width: 28%
     min-width: 3.2rem
     flex: 2
     height: 100%
-    background: rgb(246, 248, 250)
-    border-right: solid 0.01rem rgb(225, 228, 232)
+    background: var(--secondary-theme-color)
+    border-right: solid 0.01rem var(--border-theme-color)
   #main, #status
     flex: 1
     height: 100%
-    background: white
+    background: var(--theme-color)
   #side, #main
     overflow: auto
-.inverted
-  .row-wrapper
-    &:first-child
-      border-bottom: solid 0.01rem rgb(27, 31, 35)
-    #side, #bar
-      background: rgb(31, 36, 40)
-      border-right: solid 0.01rem rgb(27, 31, 35)
-    #main, #status
-      background: rgb(36, 41, 46)
 </style>

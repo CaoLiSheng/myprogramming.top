@@ -5,11 +5,6 @@ router-view
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-
-// const IndexComponent = () =>
-//   import(/* webpackChunkName: 'IndexComponent' */ "@vWidgets/index.vue");
-
-// @Component({ components: { Index: IndexComponent } })
 @Component
 export default class App extends Vue {}
 </script>
@@ -22,10 +17,23 @@ export default class App extends Vue {}
   border: none
   padding: 0
   margin: 0
-@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap')
 body
-  font-family: 'Long Cang', -apple-system-font, 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, sans-serif
-  font-weight: 300
+  --theme-color: white
+  --secondary-theme-color: rgb(246, 248, 250)
+  --border-theme-color: rgb(225, 228, 232)
+  --btn-base-theme-color: rgb(71, 71, 71)
+  --btn-hover-theme-color: rgb(99, 99, 99)
+  --btn-active-theme-color: rgb(125, 128, 132)
+body[inverted]
+  --theme-color: rgb(36, 41, 46)
+  --secondary-theme-color: rgb(31, 36, 40)
+  --border-theme-color: rgb(27, 31, 35)
+  --btn-base-theme-color: rgb(225, 228, 232)
+  --btn-hover-theme-color: white
+  --btn-active-theme-color: rgb(125, 128, 132)
+body
+  font-family: -apple-system-font, 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, sans-serif
+  font-weight: 200
 h1
   font-size: 0.72rem
 span, div, p

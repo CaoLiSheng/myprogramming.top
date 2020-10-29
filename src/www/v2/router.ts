@@ -22,17 +22,20 @@ const routes = [
     component: IndexComponent,
     children: [
       {
-        path: 'all',
+        props: true,
+        path: 'all/:query/p/:page',
         name: 'AllComponent',
         component: AllComponent,
       },
       {
-        path: 'canlendar',
+        props: true,
+        path: 'canlendar/:year/:month/:day/p/:page',
         name: 'CanlendarComponent',
         component: CanlendarComponent,
       },
       {
-        path: 'tags',
+        props: true,
+        path: 'tags/:query/p/:page',
         name: 'TagsComponent',
         component: TagsComponent,
       },

@@ -25,15 +25,10 @@
 </template>
 
 <style lang="stylus" scoped>
+.change-theme path
+  fill: var(--btn-base-theme-color)
 .change-theme:hover path.outline
-  fill: #6556dd
+  fill: var(--btn-hover-theme-color)
 .change-theme:active path.outline
-  fill: white
-#main-wrapper.inverted
-  .change-theme path
-    fill: rgb(225, 228, 232)
-  .change-theme:hover path.outline
-    fill: white
-  .change-theme:active path.outline
-    fill: rgb(36, 41, 46)
+  fill: var(--btn-active-theme-color)
 </style>
