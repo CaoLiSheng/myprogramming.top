@@ -6,7 +6,7 @@
     "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts",
     "dev-v1": "webpack --config=cfg/webpack/gen.dev.js && concurrently --handle-input 'nodemon --exec \"./src/scripts/genV1.zsh\"' 'serve -C -l 5555 build/v1/posts' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
     "dev-v2": "webpack --config=cfg/webpack/gen.dev.js && concurrently --handle-input 'nodemon --exec \"./src/scripts/genV2.zsh\"' 'serve -l 3333 build/v2/posts' 'webpack --config=cfg/webpack/site.v2.dev.js'",
-    "publish": "./src/zsh/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'node ./build/gen/prod/generator.min.js --td='build/v2/prod' --tp='build/v2/prod/index.html' --op='public/v2' > log2.txt' 'node ./build/gen/prod/generator.min.js --td='build/gen/prod' --tp='src/template/v1/index.html' --op='public/posts' > log1.txt'"
+    "publish": "./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' './src/scripts/pubV1.zsh' './src/scripts/pubV2.zsh'"
   },
   "repository": {
     "type": "git",
