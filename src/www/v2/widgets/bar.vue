@@ -52,12 +52,12 @@ export default class BarComponent extends Vue {
     width: 0.8rem
     height: 0.8rem
     padding: 0.2rem
-    svg.icon
-      display: block
-      width: 100%
-      height: 100%
     &.tags
       padding: 0.24rem
     &.canlendar
       padding: 0.22rem
+    svg.icon
+      display: block
+      width: 100%
+      height: 100%
 </style>

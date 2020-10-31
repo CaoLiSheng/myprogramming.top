@@ -8,14 +8,14 @@ module.exports = {
   devtool: 'eval-source-map',
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
     plugins: [new TsconfigPathsPlugin()],
   },
   module: {
     rules: [
       {
         test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav)$/,
-        loader: 'url-loader?limit=2048&name=[name]-[hash].[ext]',
+        loader: 'url-loader?limit=2048&name=[name]-[hash:10].[ext]',
       },
     ],
   },
@@ -24,7 +24,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new CleanWebpackPlugin({
       // dry: true,
-      cleanAfterEveryBuildPatterns: ['*.js', '*.wav', '!*.html'],
+      cleanAfterEveryBuildPatterns: ['*.js', '!*.wav', '!*.html'],
     }),
   ],
 };

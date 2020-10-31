@@ -12,7 +12,7 @@ module.exports = merge(base, dev, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src/template/v2/index.prod.html'),
+      template: path.join(process.cwd(), 'src/template/v2/index.html'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: ['app'],

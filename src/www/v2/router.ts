@@ -5,15 +5,17 @@ const IndexComponent = () =>
   import(/* webpackChunkName: 'IndexComponent' */ '@vWidgets/index.vue');
 
 const AllComponent = () =>
-  import(/* webpackChunkName: 'AllComponent' */ '@vWidgets/explorer/all.vue');
+  import(/* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue');
 
 const CanlendarComponent = () =>
   import(
-    /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorer/canlendar.vue'
+    /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
   );
 
 const TagsComponent = () =>
-  import(/* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorer/tags.vue');
+  import(
+    /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
+  );
 
 const routes = [
   {
@@ -21,6 +23,10 @@ const routes = [
     name: 'IndexComponent',
     component: IndexComponent,
     children: [
+      {
+        path: '',
+        redirect: { name: 'AllComponent', params: { query: '*', page: '1' } },
+      },
       {
         props: true,
         path: 'all/:query/p/:page',

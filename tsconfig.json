@@ -23,6 +23,9 @@
       "@rWidgets/*": [
         "src/www/v1/widgets/*"
       ],
+      "@vStores/*": [
+        "src/www/v2/stores/*"
+      ],
       "@vWidgets/*": [
         "src/www/v2/widgets/*"
       ]
