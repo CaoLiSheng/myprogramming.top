@@ -63,15 +63,20 @@
 
 .markdown-body div.comments a[href^='mailto:'] {
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 15px 100px;
   text-align: center;
   display: block;
   font-weight: bolder;
-  background-color: green;
-  background: linear-gradient(to bottom, whitesmoke, whitesmoke 50%, green);
+  background-color: var(--a-backgrounnd-article-color);
+  background: linear-gradient(
+    to bottom,
+    whitesmoke,
+    whitesmoke 50%,
+    var(--a-backgrounnd-article-color)
+  );
   background-position: 0 100%;
   background-size: 100% 200%;
-  color: azure;
+  color: var(--a-foregrounnd-article-color);
   text-shadow: 0 0 2px darkcyan;
   transition: background-color 300ms, background-position 100ms, color 1s;
 }
@@ -79,7 +84,7 @@
 .markdown-body div.comments a[href^='mailto:']:hover {
   background-color: whitesmoke;
   background-position: 0 0;
-  color: teal;
+  color: var(--a-hover-foregrounnd-article-color);
 }
 
 @media only screen and (max-width: 1080px) {
@@ -109,6 +114,14 @@
 }
 
 @media only screen and (max-width: 1080px) {
+  .markdown-body div.comments {
+    margin-bottom: 5em;
+  }
+
+  .markdown-body div.comments h6.tip {
+    opacity: 0.5;
+  }
+
   .markdown-body table {
     width: 100%;
   }

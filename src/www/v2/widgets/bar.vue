@@ -22,22 +22,32 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import localforage from "localforage";
 
 import ThemeIcon from "@images/theme.vue";
 import AllIcon from "@images/all.vue";
 import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
 
-const ThemeAttr = "inverted";
+const ThemeAttr = "theme";
+const ThemeKey = "THEME";
+const ThemeDefault = "Light";
+const Theme2 = "Dark";
 
 @Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })
 export default class BarComponent extends Vue {
   changeTheme() {
-    if (document.body.hasAttribute(ThemeAttr)) {
-      document.body.removeAttribute(ThemeAttr);
-    } else {
-      document.body.setAttribute(ThemeAttr, "");
-    }
+    const theme =
+      document.body.getAttribute(ThemeAttr) === ThemeDefault
+        ? Theme2
+        : ThemeDefault;
+    document.body.setAttribute(ThemeAttr, theme);
+    localforage.setItem(ThemeKey, theme);
+  }
+
+  async mounted() {
+    const curTheme = await localforage.getItem<string>(ThemeKey);
+    document.body.setAttribute(ThemeAttr, curTheme || ThemeDefault);
   }
 }
 </script>

@@ -1,21 +1,25 @@
 .markdown-body {
-  --main-foreground-article-color: #24292e;
-  --a-foregrounnd-article-color: #0366d6;
-  --blockquote-foreground-article-color: #6a737d;
-  --pre-background-article-color: #f6f8fa;
-  --code-background-article-color: rgba(27, 31, 35, 0.05);
   --odd-tr-background-article-color: transparent;
-  --even-tr-background-article-color: #f6f8fa;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
   --kbd-border-article-color: #d1d5da;
   --kbd-box-shadow-article-color: #d1d5da;
+  --a-hover-foregrounnd-article-color: #3b97ff;
+  --a-foregrounnd-article-color: #0366d6;
+  --a-backgrounnd-article-color: #596674;
 }
 
-body[inverted] .markdown-body {
+body[theme='Light'] .markdown-body {
+  --main-foreground-article-color: #24292e;
+  --blockquote-foreground-article-color: #6a737d;
+  --pre-background-article-color: #f6f8fa;
+  --code-background-article-color: rgba(27, 31, 35, 0.05);
+  --even-tr-background-article-color: #f6f8fa;
+}
+
+body[theme='Dark'] .markdown-body {
   --main-foreground-article-color: white;
   --blockquote-foreground-article-color: white;
-  --a-foregrounnd-article-color: rgb(159, 161, 163);
   --pre-background-article-color: rgb(159, 161, 163);
   --code-background-article-color: rgb(159, 161, 163);
   --even-tr-background-article-color: rgb(159, 161, 163);
