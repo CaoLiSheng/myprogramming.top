@@ -6,6 +6,6 @@ export const db = {
     Object.keys(data).forEach((key: string) => {
       this.state[key] = data[key];
     });
-    console.log('Updated', JSON.stringify(data));
+    // console.log('Updated', JSON.stringify(data));
   },
 };

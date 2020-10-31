@@ -9,7 +9,7 @@ declare var __production__: boolean;
 
 export const inDir = path.join(process.cwd(), 'posts');
 
-export const outDir = path.join(process.cwd(), argv.outPath);
+export const outDir = path.join(process.cwd(), argv.outDir);
 
 function isDir(file: string): boolean {
   return fs.statSync(path.join(inDir, file)).isDirectory();

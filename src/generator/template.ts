@@ -1,13 +1,3 @@
-// Deprecated: Copy CSS Assets
-// Object.keys(styles).forEach((stylesheet) => {
-//   const { src, desc } = styles[stylesheet];
-//   fs.copySync(
-//     path.join(process.cwd(), 'src', 'template', 'style-source', src),
-//     path.join(outDir, desc)
-//   );
-// });
-// console.log('CSS Assets Copied');
-
 import '@common/shims-string';
 
 import path from 'path';
@@ -47,7 +37,7 @@ export function copyTemplateAssets() {
 }
 
 // CSS Assets Maps
-const tplCSSPath = path.join(process.cwd(), 'src/template/v1/index.css');
+const tplCSSPath = path.join(process.cwd(), argv.cssPath);
 const tplCSSContent = fs.readFileSync(tplCSSPath, { encoding: 'UTF-8' });
 
 const CSSMaps: {

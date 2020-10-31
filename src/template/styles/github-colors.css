@@ -4,6 +4,8 @@
   --blockquote-foreground-article-color: #6a737d;
   --pre-background-article-color: #f6f8fa;
   --code-background-article-color: rgba(27, 31, 35, 0.05);
+  --odd-tr-background-article-color: transparent;
+  --even-tr-background-article-color: #f6f8fa;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
   --kbd-border-article-color: #d1d5da;
@@ -13,13 +15,13 @@
 body[inverted] .markdown-body {
   --main-foreground-article-color: white;
   --blockquote-foreground-article-color: white;
+  --a-foregrounnd-article-color: rgb(159, 161, 163);
   --pre-background-article-color: rgb(159, 161, 163);
   --code-background-article-color: rgb(159, 161, 163);
+  --even-tr-background-article-color: rgb(159, 161, 163);
 }
 
 .markdown-body {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji;
   font-size: 16px;
@@ -234,12 +236,12 @@ body[inverted] .markdown-body {
 }
 
 .markdown-body table tr {
-  background-color: #fff;
+  background-color: var(--odd-tr-background-article-color);
   border-top: 1px solid #c6cbd1;
 }
 
 .markdown-body table tr:nth-child(2n) {
-  background-color: #f6f8fa;
+  background-color: var(--even-tr-background-article-color);
 }
 
 .markdown-body img {
