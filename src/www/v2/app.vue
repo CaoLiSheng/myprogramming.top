@@ -30,7 +30,7 @@ body[theme='Dark']
   --btn-hover-theme-color: white
   --btn-active-theme-color: rgb(125, 128, 132)
 body
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
+  font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'
   font-weight: 200
   user-select: none
   -webkit-user-drag: none
