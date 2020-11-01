@@ -8,43 +8,13 @@ import React, {
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 
+import { HTMLElementOffset, getOffset } from '@www/utils/offset';
+
 import './index.scss';
 
 const popupsContainer: HTMLDivElement = document.getElementById(
   'popups-container'
 ) as HTMLDivElement;
-
-interface HTMLElementOffset {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-}
-
-const getOffset = (ele?: HTMLElement | null): HTMLElementOffset => {
-  if (!ele) return { top: 0, left: 0, width: 0, height: 0 };
-
-  const offset = {
-    top: 0,
-    left: 0,
-    width: ele.offsetWidth,
-    height: ele.offsetHeight,
-  };
-
-  while (ele.offsetParent) {
-    offset.top += ele.offsetTop;
-
-    offset.left += ele.offsetLeft;
-
-    if (ele.offsetParent instanceof HTMLElement) {
-      ele = ele.offsetParent;
-    } else {
-      return offset;
-    }
-  }
-
-  return offset;
-};
 
 const posMain = (main: string, offset: HTMLElementOffset, style = {}) => {
   switch (main) {

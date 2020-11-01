@@ -17,4 +17,5 @@ h5
   margin-bottom: 0.2rem
   border-botton: solid 0.01rem gray
   box-shadow: 0 0.03rem 0.05rem 0 gray
+  color: var(--title-theme-color)
 </style>

@@ -1,5 +1,7 @@
 <template lang="pug">
-router-view
+.r
+  router-view
+  portal-target(name="in-dev-portal")
 </template>
 
 <script lang="ts">

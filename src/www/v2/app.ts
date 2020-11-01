@@ -5,8 +5,11 @@ import '@www/utils/favicon';
 import '@www/utils/rem';
 
 import Vue from 'vue';
+import PortalVue from 'portal-vue';
 import App from './app.vue';
 import router from './router';
+
+Vue.use(PortalVue);
 
 new Vue({
   el: '#app',

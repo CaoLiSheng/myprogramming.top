@@ -20,7 +20,6 @@ const TagsComponent = () =>
 const routes = [
   {
     path: '/',
-    name: 'IndexComponent',
     component: IndexComponent,
     children: [
       {
