@@ -3,7 +3,7 @@
   "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "scripts": {
-    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && webpack-dev-server --inline --progress --config=cfg/webpack/site.v2.dev.js",
+    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && webpack --inline --progress --config=cfg/webpack/gen.dev.js",
     "dev-v1": "webpack --inline --progress --config=cfg/webpack/gen.dev.js && concurrently --handle-input 'nodemon --exec \"zsh ./src/scripts/genV1.zsh\"' 'serve -C -l 5555 build/v1/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v1.dev.js'",
     "dev-v2": "webpack --inline --progress --config=cfg/webpack/gen.dev.js && concurrently --handle-input 'nodemon --exec \"zsh ./src/scripts/genV2.zsh\"' 'serve -C -l 3333 build/v2/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v2.dev.js'",
     "publish": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --inline --progress --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --inline --progress --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"

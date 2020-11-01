@@ -92,7 +92,7 @@ posts.forEach((fileName: string) => {
   );
 
   const name = fileName.substring(0, fileName.length - '.md'.length);
-  dbData.add({ name, date, tags: parsedTags });
+  dbData.add({ name, title, date, tags: parsedTags });
 
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(

@@ -15,6 +15,9 @@ export default class App extends Vue {}
   border: none
   padding: 0
   margin: 0
+body
+  --a-foregrounnd-article-color: #0366d6
+  --title-theme-color: gray
 body[theme='Light']
   --theme-color: white
   --secondary-theme-color: rgb(246, 248, 250)

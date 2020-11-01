@@ -1,15 +1,17 @@
 <template lang="pug">
-a(:href="href") {{ text }}
+a(:href="href")
+  span.title {{ data.title }}
+  span.date {{ data.date }}
+  span.tags {{ data.tags.join(',') }}
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props: ["data"],
+  props: ["name", "data"],
   data() {
     return {
-      href: `${this.$props.data}${location.hash}`,
-      text: this.$props.data,
+      href: `${this.$props.name}${location.hash}`,
     };
   },
 });
@@ -20,4 +22,13 @@ a
   display: block
   font-size: 16px
   line-height: 1.5em
+  padding: 0.1rem 0.3rem
+  text-decoration: none
+  color: var(--a-foregrounnd-article-color)
+  & ~ a
+    border-top: dashed 0.01rem gray
+  span
+    display: block
+    &.title
+      font-size: 20px
 </style>

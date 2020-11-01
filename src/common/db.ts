@@ -5,6 +5,7 @@ export interface RNK {
 }
 
 export interface PublicMeta {
+  title: string;
   date: string;
   tags: string[];
 }
@@ -37,10 +38,12 @@ export class DB {
 
   public add({
     name,
+    title,
     date,
     tags,
   }: {
     name: string;
+    title: string;
     date: string;
     tags: string[];
   }): Meta {
@@ -53,7 +56,7 @@ export class DB {
     this.postMetas[name] = meta;
 
     // Write public meta & infos
-    this.schema.metas[name] = { date, tags };
+    this.schema.metas[name] = { title, date, tags };
 
     this.pushToSortedPosts(name);
     this.pushToDateCategories(name);

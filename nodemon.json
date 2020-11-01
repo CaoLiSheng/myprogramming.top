@@ -1,11 +1,11 @@
 {
   "watch": [
     "posts/",
+    "build/v2/dev/",
     "src/template/styles/",
-    "src/template/v1/index.html",
-    "src/template/v1/index.css",
     "src/template/v2/index.css",
-    "build/v2/dev/index.html"
+    "src/template/v1/index.css",
+    "src/template/v1/index.html"
   ],
   "ext": "*",
   "delay": "4268"
