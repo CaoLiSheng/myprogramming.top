@@ -1,12 +1,37 @@
-/*
-This document has been created with Marked.app <http://marked2app.com>, Copyright 2013 Brett Terpstra
-Content is property of the document author
-Please leave this notice in place, along with any additional credits below.
----------------------------------------------------------------
-Title:  Antique
-Author:  Brett Terpstra
-Description:  An "antiqued" theme with off-white background and serif typography
-*/
+.markdown-body {
+  --odd-tr-background-article-color: transparent;
+  --kbd-foreground-article-color: #444d56;
+  --kbd-background-article-color: #fafbfc;
+  --kbd-border-article-color: #d1d5da;
+  --kbd-box-shadow-article-color: #d1d5da;
+  --a-hover-foregrounnd-article-color: #92afff;
+  --table-background-article-color: rgba(124, 119, 112, 0.15);
+  --tbody-background-article-color: rgba(124, 119, 112, 0.05);
+  --odd-tr-background-article-color: rgba(227, 217, 205, 0.06);
+  --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
+}
+
+body[theme='Light'] .markdown-body {
+  --main-foreground-article-color: #45462f;
+  --main-background-article-color: rgba(240, 223, 221, 0.7);
+  --a-foregrounnd-article-color: #00857a;
+  --a-backgrounnd-article-color: #45462f;
+  --blockquote-foreground-article-color: #6a737d;
+  --pre-background-article-color: #f2ede8;
+  --code-background-article-color: #f2ede8;
+  --strong-foreground-article-color: #605b4b;
+}
+
+body[theme='Dark'] .markdown-body {
+  --main-foreground-article-color: #f0ede3;
+  --main-background-article-color: rgba(57, 54, 47, 0.7);
+  --a-foregrounnd-article-color: white;
+  --a-backgrounnd-article-color: #39362f;
+  --blockquote-foreground-article-color: white;
+  --pre-background-article-color: #39362f;
+  --code-background-article-color: #39362f;
+}
+
 .markdown-body {
   font-family: Palatino, Georgia, 'Times New Roman', -apple-system-font,
     'PingFang SC', 'Microsoft YaHei', serif;
@@ -15,6 +40,9 @@ Description:  An "antiqued" theme with off-white background and serif typography
   line-height: 1.5em;
   margin: 0;
   font-size: 14px;
+  text-indent: 0px;
+  color: var(--main-foreground-article-color);
+  background: var(--main-background-article-color);
 }
 .markdown-body p {
   margin: 1.3125em 0;
@@ -124,7 +152,6 @@ Description:  An "antiqued" theme with off-white background and serif typography
   padding-top: 0.25em;
   font-family: 'Hoefler Text', Georgia, serif;
   line-height: 1.5em;
-  color: #514d3f;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
 .markdown-body h1 {
@@ -154,12 +181,11 @@ Description:  An "antiqued" theme with off-white background and serif typography
 .markdown-body p,
 .markdown-body td,
 .markdown-body div {
-  color: #45462f;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
 .markdown-body a {
-  color: #00857a;
+  color: var(--a-foregrounnd-article-color);
   text-decoration: none;
   -webkit-transition: color 0.1s ease-in-out;
   -moz-transition: color 0.1s ease-in-out;
@@ -168,16 +194,11 @@ Description:  An "antiqued" theme with off-white background and serif typography
   transition: color 0.1s ease-in-out;
 }
 .markdown-body a:hover {
-  color: #35b8ad;
+  color: var(--a-hover-foregrounnd-article-color);
 }
 .markdown-body strong {
   font-weight: 600;
-  color: #605b4b;
-}
-.markdown-body .footnote {
-  font-size: 0.8em;
-  vertical-align: super;
-  color: #0d6ea1;
+  color: var(--strong-foreground-article-color);
 }
 .markdown-body img {
   max-width: 100%;
@@ -195,15 +216,14 @@ Description:  An "antiqued" theme with off-white background and serif typography
   margin: 14px 40px;
 }
 .markdown-body code {
-  font-family: courier, monospace;
-  background: #f2ede8;
+  background: var(--code-background-article-color);
   border: solid 1px #a7a099;
   font-size: 0.95em;
   padding: 0 0.2em;
 }
 .markdown-body pre {
   border: solid 1px #a7a099;
-  background: #f2ede8;
+  background: var(--pre-background-article-color);
   padding: 4px;
 }
 .markdown-body pre code {
@@ -219,7 +239,7 @@ Description:  An "antiqued" theme with off-white background and serif typography
   background-color: #a7a099;
 }
 
-@media print {
+/* @media print {
   body {
     overflow: auto;
     background: #fff;
@@ -242,19 +262,8 @@ Description:  An "antiqued" theme with off-white background and serif typography
     padding: 1in;
     font-size: 85%;
   }
-}
+} */
 @media screen {
-  body {
-    height: 100%;
-    background: #f0edeb;
-  }
-
-  .markdown-body {
-    color: #514d3f;
-    overflow: auto;
-    text-indent: 0px;
-    padding: 25px;
-  }
   .markdown-body ::selection {
     background: rgba(157, 193, 200, 0.5);
   }
@@ -283,13 +292,7 @@ Description:  An "antiqued" theme with off-white background and serif typography
     background-color: rgba(180, 237, 95, 0.5);
   }
 
-  .inverted {
-    background: #39362f;
-  }
-  .inverted .markdown-body {
-    background: #39362f;
-  }
-  .inverted .markdown-body a::selection {
+  /* .inverted .markdown-body a::selection {
     background-color: rgba(255, 230, 102, 0.6);
   }
   .inverted .markdown-body p,
@@ -318,15 +321,9 @@ Description:  An "antiqued" theme with off-white background and serif typography
     border-color: rgba(52, 52, 52, 0.3);
   }
   .inverted .markdown-body a {
-    color: #fff;
     text-decoration: underline;
     border-bottom: none;
-  }
-  .inverted .markdown-body .popup li,
-  .inverted .markdown-body .popup ul,
-  .inverted .markdown-body .popup strong {
-    background: none;
-  }
+  } */
 }
 .markdown-body li > p:first-child {
   margin: 0;
@@ -394,18 +391,18 @@ Description:  An "antiqued" theme with off-white background and serif typography
   line-height: 23px;
 }
 .markdown-body table tbody {
-  background-color: rgba(124, 119, 112, 0.05);
+  background-color: var(--tbody-background-article-color);
 }
 .markdown-body table thead,
 .markdown-body table tfoot {
-  background-color: rgba(124, 119, 112, 0.15);
+  background-color: var(--table-background-article-color);
 }
 .markdown-body table tr:nth-child(odd) {
-  background-color: rgba(227, 217, 205, 0.06);
+  background-color: var(--odd-tr-background-article-color);
 }
 .markdown-body table tr:nth-child(even),
 .markdown-body table td:nth-child(even) {
-  background-color: rgba(124, 119, 112, 0.06);
+  background-color: var(--even-tr-background-article-color);
 }
 .markdown-body table thead,
 .markdown-body table tfoot {
@@ -433,27 +430,8 @@ Description:  An "antiqued" theme with off-white background and serif typography
   bottom: -20px;
   color: #a7a099;
 }
-.markdown-body .poetry pre {
-  font-family: Georgia, Garamond, serif !important;
-  font-style: italic;
-  font-size: 110% !important;
-  line-height: 1.6em;
-  display: block;
-  margin-left: 1em;
-}
-.markdown-body .poetry pre code {
-  font-family: Georgia, Garamond, serif !important;
-  word-break: break-all;
-  word-break: break-word;
-  /* Non standard for webkit */
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
-  white-space: pre-wrap;
-}
 .markdown-body sup,
-.markdown-body sub,
-.markdown-body a.footnote {
+.markdown-body sub {
   font-size: 1.4ex;
   height: 0;
   line-height: 1;

@@ -23,14 +23,14 @@ body
 body[theme='Light']
   --theme-color: white
   --secondary-theme-color: rgb(246, 248, 250)
-  --border-theme-color: rgb(225, 228, 232)
+  --third-theme-color: rgb(225, 228, 232)
   --btn-base-theme-color: rgb(71, 71, 71)
   --btn-hover-theme-color: rgb(99, 99, 99)
   --btn-active-theme-color: rgb(125, 128, 132)
 body[theme='Dark']
   --theme-color: rgb(36, 41, 46)
   --secondary-theme-color: rgb(31, 36, 40)
-  --border-theme-color: rgb(27, 31, 35)
+  --third-theme-color: rgb(27, 31, 35)
   --btn-base-theme-color: rgb(225, 228, 232)
   --btn-hover-theme-color: white
   --btn-active-theme-color: rgb(125, 128, 132)

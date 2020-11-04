@@ -35,7 +35,7 @@ export default class IndexComponent extends Vue {
   flex-direction: row
   &:first-child
     height: calc(100vh - 0.8rem)
-    border-bottom: solid 0.01rem var(--border-theme-color)
+    border-bottom: solid 0.01rem var(--third-theme-color)
   &:last-child
     height: 0.8rem
   #side, #bar
@@ -44,7 +44,7 @@ export default class IndexComponent extends Vue {
     flex: 2
     height: 100%
     background: var(--secondary-theme-color)
-    border-right: solid 0.01rem var(--border-theme-color)
+    border-right: solid 0.01rem var(--third-theme-color)
   #main, #status
     flex: 1
     height: 100%
@@ -53,4 +53,5 @@ export default class IndexComponent extends Vue {
     overflow: auto
   #main
     user-select: text
+    background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color))
 </style>

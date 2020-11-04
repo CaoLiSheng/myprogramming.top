@@ -11,6 +11,7 @@
 
 body[theme='Light'] .markdown-body {
   --main-foreground-article-color: #24292e;
+  --main-background-article-color: rgba(255, 255, 255, 0.7);
   --blockquote-foreground-article-color: #6a737d;
   --pre-background-article-color: #f6f8fa;
   --code-background-article-color: rgba(27, 31, 35, 0.05);
@@ -19,6 +20,7 @@ body[theme='Light'] .markdown-body {
 
 body[theme='Dark'] .markdown-body {
   --main-foreground-article-color: white;
+  --main-background-article-color: rgba(50, 50, 50, 0.7);
   --blockquote-foreground-article-color: white;
   --pre-background-article-color: rgb(159, 161, 163);
   --code-background-article-color: rgb(159, 161, 163);
@@ -33,6 +35,7 @@ body[theme='Dark'] .markdown-body {
   word-wrap: break-word;
   font-weight: normal;
   color: var(--main-foreground-article-color);
+  background: var(--main-background-article-color);
 }
 
 .markdown-body:after,
