@@ -1,8 +1,9 @@
 <template lang="pug">
-a(:href="href")
-  span.title {{ data.title }}
-  span.date {{ data.date }}
-  span.tags {{ data.tags.join(',') }}
+.router
+  a(:href="href")
+    span.title {{ data.title }}
+    span.date {{ data.date }}
+    span.tags {{ data.tags.join(',') }}
 </template>
 
 <script lang="ts">
@@ -18,17 +19,23 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-a
-  display: block
-  font-size: 16px
-  line-height: 1.5em
-  padding: 0.1rem 0.3rem
-  text-decoration: none
-  color: var(--a-foregrounnd-article-color)
-  & ~ a
+.router
+  padding: 0.1rem
+  & ~ .router
     border-top: dashed 0.01rem gray
-  span
+  a
     display: block
-    &.title
-      font-size: 20px
+    font-size: 16px
+    line-height: 1.5em
+    text-decoration: none
+    padding: 0.05rem 0.1rem
+    color: var(--btn-foreground-theme-color)
+    border: solid 0.01rem var(--btn-foreground-theme-color)
+    border-radius: 0.05rem
+    &:hover
+      background-color: var(--btn-background-theme-color)
+    span
+      display: block
+      &.title
+        font-size: 20px
 </style>
