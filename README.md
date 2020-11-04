@@ -19,17 +19,12 @@
 
    1. Github // 技术
 
-      1. github-colors // 创造并分享 _ 知识 _
-      2. github-border // 搬运并总结 _ 知识 _
+      1. github-colors // （Github 风格）做*技术分享*
 
    2. Categories
 
-      3. air // 计划（任务）
-      4. lopash // 书架（表格）
-      5. modest // 感想
-      6. antique // 笔记
-      7. citizen // 新闻（技术相关）
-      8. splendor // 新闻（技术无关）/ 技术图集（如路线图、思维导图、流程图）
+      2. antique // （古风，羊皮卷）适合*学习相关*
+      3. bountiful // （表格好看，字体特殊）用于*其它*
 
 ### 疑惑
 

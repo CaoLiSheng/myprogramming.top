@@ -1,6 +1,6 @@
 ---
 no-receive-emails
-style: air
+style: bountiful
 title: 我的2020年
 date: 2020-10-10
 tags:

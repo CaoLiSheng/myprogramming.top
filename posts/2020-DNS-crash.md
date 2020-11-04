@@ -1,5 +1,5 @@
 ---
-style: citizen
+style: bountiful
 title: 记一次DNS服务崩溃事件
 date: 2020-09-03
 tags:

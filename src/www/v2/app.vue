@@ -32,10 +32,10 @@ body[theme='Dark']
   --theme-color: rgb(36, 41, 46)
   --secondary-theme-color: rgb(31, 36, 40)
   --third-theme-color: rgb(27, 31, 35)
-  --btn-foreground-theme-color: white
+  --btn-foreground-theme-color: wheat
   --btn-background-theme-color: rgb(28, 68, 114)
   --btn-base-theme-color: rgb(225, 228, 232)
-  --btn-hover-theme-color: wheat
+  --btn-hover-theme-color: white
   --btn-active-theme-color: rgb(125, 128, 132)
 body
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'

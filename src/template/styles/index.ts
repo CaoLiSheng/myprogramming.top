@@ -3,19 +3,15 @@ export interface StyleSheet {
 }
 
 const UnsetPadding = { padding: { pc: '', mobile: '' } };
-const PostfixPadding = (pc: number = 20, mobile: number = 10) => ({
-  padding: { pc: `padding: ${pc}px;`, mobile: `padding: ${mobile}px;` },
+const PostfixPadding = (pc: number = 20, mobile?: number) => ({
+  padding: { pc: `padding: ${pc}px;`, mobile: `padding: ${mobile || pc}px;` },
 });
 
 const styles: { [key: string]: StyleSheet } = {
-  air: UnsetPadding,
-  lopash: UnsetPadding,
-  citizen: UnsetPadding,
-  splendor: UnsetPadding,
   antique: PostfixPadding(25),
-  'github-border': UnsetPadding,
+  bountiful: PostfixPadding(30),
   'github-colors': PostfixPadding(),
-  modest: PostfixPadding(),
+  'github-border': UnsetPadding,
 };
 
 export default styles;

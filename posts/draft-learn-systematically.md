@@ -1,5 +1,5 @@
 ---
-style: splendor
+style: bountiful
 title: 系统地学习路线图
 date: 2020-10-16
 tags:

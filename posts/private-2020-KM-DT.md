@@ -1,5 +1,5 @@
 ---
-style: modest
+style: bountiful
 title: 鸡汤独饮
 date: 2020-08-20
 tags:

@@ -86,46 +86,47 @@ export default class BarComponent extends Vue {
 <style lang="stylus" scoped>
 #bar
   &>*
-    width: 0.8rem
-    height: 0.8rem
+    width: 0.8rem;
+    height: 0.8rem;
   .explorer
-    float: left
+    float: left;
     .hoverable
-      width: 100%
-      height: 100%
-      padding: 0.2rem
+      width: 100%;
+      height: 100%;
+      padding: 0.2rem;
       &.tags
-        padding: 0.24rem
+        padding: 0.24rem;
       &.canlendar
-        padding: 0.22rem
+        padding: 0.22rem;
   .change-theme
-    float: right
-    padding: 0.2rem
+    float: right;
+    padding: 0.2rem;
   svg.icon
-    display: block
-    width: 100%
-    height: 100%
-    pointer-events: none
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 .in-dev-popup
-  pointer-events: none
-  font-size: 18px
-  position: fixed
-  transform: translateX(-50%)
-  background: var(--theme-color)
-  width: 5em
-  height: 5em
-  line-height: 5em
-  text-align: center
-  border-radius: 50%
+  pointer-events: none;
+  font-size: 18px;
+  position: fixed;
+  transform: translateX(-50%);
+  background: var(--btn-background-theme-color);
+  color: var(--btn-foreground-theme-color);
+  width: 5em;
+  height: 5em;
+  line-height: 5em;
+  text-align: center;
+  border-radius: 50%;
   &:before
-    content: ''
-    display: block
-    height: 0
-    width: 0
-    border: solid 30px transparent
-    border-top-color: var(--theme-color)
-    position: absolute
-    bottom: -40px
-    left: 2.5em
-    transform: translateX(-50%)
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    border: solid 30px transparent;
+    border-top-color: var(--btn-background-theme-color);
+    position: absolute;
+    bottom: -40px;
+    left: 2.5em;
+    transform: translateX(-50%);
 </style>

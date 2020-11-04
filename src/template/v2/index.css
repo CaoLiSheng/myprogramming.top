@@ -7,15 +7,6 @@
   */
 
 /* 以下：全局预设 */
-.markdown-body figure {
-  width: 100%;
-}
-
-.markdown-body figure > figcaption {
-  position: static;
-  background: transparent;
-}
-
 .markdown-body h6.date-tag {
   text-align: right;
 }
