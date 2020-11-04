@@ -99,6 +99,27 @@ body[theme='Dark'] .markdown-body {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
+  background-color: var(--pre-background-article-color);
+  border: 1px solid #ccc;
+  font-size: 14px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+  margin: 26px 0;
+}
+
+.markdown-body pre > code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+  background-color: transparent;
+  border: none;
 }
 
 .markdown-body q {
