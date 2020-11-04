@@ -61,7 +61,7 @@ export function fetchCSS(base: string): string {
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
       .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
-      .replace('/* reources_dir */', __resources_dir__)
+      .replace(/\/* reources_dir *\//g, __resources_dir__)
   );
 
   CSSMaps[base] = cssContent.md5(base, 'css', 10);

@@ -102,7 +102,7 @@
 /* 以下：全局正规化 */
 @font-face {
   font-family: 'Cascadia Code PL';
-  src: url('fonts/CascadiaCodePL.woff2') format('woff2');
+  src: url(/* reources_dir */fonts/CascadiaCodePL.woff2) format('woff2');
 }
 
 .markdown-body code,

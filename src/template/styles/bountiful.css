@@ -16,7 +16,8 @@
 
 @font-face {
   font-family: 'HanBiaoBangYangMaoBiPinYin';
-  src: url('fonts/HanBiaoBangYangMaoBiPinYin-2.ttf') format('truetype');
+  src: url(/* reources_dir */fonts/HanBiaoBangYangMaoBiPinYin-2.ttf)
+    format('truetype');
 }
 
 .markdown-body {
