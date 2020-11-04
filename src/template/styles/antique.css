@@ -417,6 +417,7 @@ body[theme='Dark'] .markdown-body {
   display: inline-block;
   margin-bottom: 2em;
   text-align: center;
+  width: 100%;
 }
 .markdown-body figure:hover {
   cursor: pointer;

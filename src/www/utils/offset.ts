@@ -19,7 +19,6 @@ export function getOffset(ele?: HTMLElement | null): HTMLElementOffset {
 
   while (ele.offsetParent) {
     offset.top += ele.offsetTop;
-
     offset.left += ele.offsetLeft;
 
     if (ele.offsetParent instanceof HTMLElement) {

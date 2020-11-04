@@ -172,26 +172,3 @@
   }
 }
 /* 以上：.markdown-body 统一设置 */
-
-/*Scroll bar nav*/
-::-webkit-scrollbar {
-  width: 3pt;
-  height: 3pt;
-}
-/* Track */
-::-webkit-scrollbar-track {
-  background: #ddd;
-  border-radius: 9pt;
-}
-/* Corner */
-::-webkit-scrollbar-corner {
-  background: #ddd;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 9pt;
-}
-::-webkit-scrollbar-thumb:window-inactive {
-  background: #aaa;
-}

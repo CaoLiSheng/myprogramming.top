@@ -30,28 +30,29 @@ export default class IndexComponent extends Vue {
 
 <style lang="stylus" scoped>
 .row-wrapper
-  width: 100vw
-  display: flex
-  flex-direction: row
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
   &:first-child
-    height: calc(100vh - 0.8rem)
-    border-bottom: solid 0.01rem var(--third-theme-color)
+    height: calc(100vh - 0.8rem);
+    border-bottom: solid 0.01rem var(--third-theme-color);
   &:last-child
-    height: 0.8rem
+    height: 0.8rem;
   #side, #bar
-    max-width: 28%
-    min-width: 3.2rem
-    flex: 2
-    height: 100%
-    background: var(--secondary-theme-color)
-    border-right: solid 0.01rem var(--third-theme-color)
+    max-width: 28%;
+    min-width: 3.2rem;
+    flex: 2;
+    height: 100%;
+    background: var(--secondary-theme-color);
+    border-right: solid 0.01rem var(--third-theme-color);
   #main, #status
-    flex: 1
-    height: 100%
-    background: var(--theme-color)
-  #side, #main
-    overflow: auto
+    flex: 1;
+    height: 100%;
+    background: var(--theme-color);
+  #side
+    overflow: hidden;
   #main
-    user-select: text
-    background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color))
+    overflow: auto;
+    user-select: text;
+    background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
 </style>

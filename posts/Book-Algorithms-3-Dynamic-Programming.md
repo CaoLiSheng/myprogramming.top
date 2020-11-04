@@ -59,6 +59,11 @@ def FastRecFibo(n):
         return curr, next
 ```
 
+## The Patterns
+
+> Dynamic programming is not about filling in tables.
+> It’s about smart recursion!
+
 ## 书中的典型案例
 
 - 求斐波那契数
