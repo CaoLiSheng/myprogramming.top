@@ -92,7 +92,7 @@ posts.forEach((fileName: string) => {
   );
 
   const name = fileName.substring(0, fileName.length - '.md'.length);
-  dbData.add({ name, title, date, tags: parsedTags });
+  if (name !== 'index') dbData.add({ name, title, date, tags: parsedTags });
 
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
@@ -113,25 +113,25 @@ posts.forEach((fileName: string) => {
 });
 console.log('All HTML Generated');
 
-preWrite(path.join(outDir, 'index.html')).writeFileSync(
-  htmlMinify(
-    tplContent
-      .replace('{{title}}', '又心真人的博客')
-      .replace('{{article_title}}', '又心真人的博客')
-      .replace('{{javascript}}', tplScriptPath())
-      .replace('{{hm_baidu}}', hmBaidu())
-      .replace('{{stylesheet}}', fetchCSS('github-colors'))
-      .replace(
-        '{{title_tag}}',
-        '<blockquote><code>-> 首页 <-</code></blockquote>'
-      )
-      .replace(
-        '{{date_tag}}',
-        `<code> ~~ 最近更新于 -> ${new Date().toLocaleDateString()}</code>`
-      )
-      .replace('{{article_body}}', '<h2>欢迎来到这个神奇的博客</h2>')
-  )
-);
+// preWrite(path.join(outDir, 'index.html')).writeFileSync(
+//   htmlMinify(
+//     tplContent
+//       .replace('{{title}}', '又心真人的博客')
+//       .replace('{{article_title}}', '又心真人的博客')
+//       .replace('{{javascript}}', tplScriptPath())
+//       .replace('{{hm_baidu}}', hmBaidu())
+//       .replace('{{stylesheet}}', fetchCSS('github-colors'))
+//       .replace(
+//         '{{title_tag}}',
+//         '<blockquote><code>-> 首页 <-</code></blockquote>'
+//       )
+//       .replace(
+//         '{{date_tag}}',
+//         `<code> ~~ 最近更新于 -> ${new Date().toLocaleDateString()}</code>`
+//       )
+//       .replace('{{article_body}}', '<h2>欢迎来到这个神奇的博客</h2>')
+//   )
+// );
 
 const dbPath = path.join(outDir, 'db.json');
 fs.createFileSync(dbPath);

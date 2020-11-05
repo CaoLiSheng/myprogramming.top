@@ -1,7 +1,8 @@
 <template lang="pug">
 .r
   .header
-    h5 搜索结果
+    h5
+      a(:href="href") 首页
   .links
     in-site-link(
       v-for="post in posts",
@@ -26,6 +27,10 @@ export default class AllComponent extends Vue.extend({
 }) {
   data() {
     return { db: db.state, width: 0, display: "none" };
+  }
+
+  get href() {
+    return `index.html${location.hash}`;
   }
 
   get posts() {
@@ -65,7 +70,12 @@ export default class AllComponent extends Vue.extend({
       font-size: 24px;
       line-height: 50px;
       padding: 0 0.5rem;
-      color: var(--header-theme-color);
+      a
+        text-decoration: none;
+        color: var(--btn-foreground-theme-color);
+        text-shadow: 0.01rem 0.01rem 0.02rem var(--btn-background-theme-color);
+        &:hover
+          color: var(--btn-hover-theme-color);
   .links
     overflow-x: hidden;
     overflow-y: visible;
