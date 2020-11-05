@@ -116,6 +116,7 @@ HHGuess(Pop[1 .. n],D):
 ## 同一本书的文章集
 
 1. [回到开头](scroll-to-the-very-top)
-2. [Recursion](post:Algorithms-1-Recursion)
-3. [Backtracking](post:Algorithms-2-Backtracking)
-4. [Dynamic Programming](post:Algorithms-3-Dynamic-Programming)
+2. [Recursion](post:Book-Algorithms-1-Recursion)
+3. [Backtracking](post:Book-Algorithms-2-Backtracking)
+4. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
+5. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)

@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》3
-date: 2020-10-27
+date: 2020-11-05
 tags:
   - 读书
   - 笔记
@@ -59,14 +59,75 @@ def FastRecFibo(n):
         return curr, next
 ```
 
-## The Patterns
+## Pattern（Smart Recursion）
 
 > Dynamic programming is not about filling in tables.
 > It’s about smart recursion!
 
+动态规划是剔除重复之后的递归算法。开发一个动态规划算法需要经历两个阶段：
+
+1. 将问题用递归的思路解决出来：
+
+   - 精确描述问题
+   - 用递归思路解决
+
+2. 虽然动态规划算法并不是填表格或者数组（像前面的例子，用数学的方法可以简化掉数组），但是由于我们处理的数据大概率是数组或者表格，所以在这个阶段要决定一个递归解决问题的顺序，关系到如何填表格或者数组：
+
+   - 定位子问题
+   - 确定一种数据结构来存储所有子问题的解，通常是数组或表格
+   - 判断子问题间的依赖关系，画出图，用公式描述
+   - 确定解子问题的顺序：Base Case 最先，然后是依赖 Base Case 的子问题，一直接下去，直到解决最初最顶层的问题；说到顺序，填数组可能容易理解，其实填表格也是一样，一行接着下一行，且往往最后只需要填出一个三角矩阵即可
+   - 分析时间复杂度和空间复杂度
+   - 写下来：往往是有规律可循的
+
+## Warning（Greed is Stupid）
+
+> Greedy algorithms never work!
+> Use dynamic programming instead!
+
+---
+
+> You will not receive any credit for any greedy algorithm,
+> on any homework or exam, even if the algorithm is correct,
+> without a formal proof of correctness.
+
+---
+
+> Whenever you write—or even think—the word “greeDY”,
+> your subconscious is telling you to use DYnamic programming.
+
+## 一次失败的尝试
+
+在 `子集和问题` 中，如果参数 `和` 特别大，那么用动态规划时需要填充的表格也会特别大；算法效率明显不高。我看到这里的时候，想能不能用 `Map[]` 存储来存储，结果失败了。
+
+```python
+# def FastSubsetSum(arr, sum):
+#     arrLen = len(arr)
+#     S = []
+#     for i in range(arrLen + 1):
+#         S.append(dict(t0=True))
+
+#     i = arrLen - 1
+#     while i >= 0:
+#         S[i][] = S[i+1][] or S[i+1][]
+#         i -= 1
+
+#     return S[0]['t{}'.format(sum)]
+```
+
+所以，有时候回溯比动态规划要好一些：
+
+> In the 1967 research memorandum(!) where he proposed memo functions, Donald Michie
+> wrote, “To tabulate values of a function which will not be needed is a waste of space, and to
+> recompute the same values more than once is a waste of time.”
+
 ## 书中的典型案例
 
 - 求斐波那契数
+- 断句分词
+- 编辑距离
+- 子集之和
+- 最大独立点集合（这个坑：有一张无回路的图，也就是一颗树啦；独立点集合就是集合中任何两个点之间没有边相连）
 
 （陆续完善……）
 
@@ -76,7 +137,8 @@ def FastRecFibo(n):
 
 ## 同一本书的文章集
 
-1. [Preface-&-Introduction](post:Algorithms-0-Preface-&-Introduction)
-2. [Recursion](post:Algorithms-1-Recursion)
-3. [Backtracking](post:Algorithms-2-Backtracking)
+1. [Preface-&-Introduction](post:Book-Algorithms-0-Preface-&-Introduction)
+2. [Recursion](post:Book-Algorithms-1-Recursion)
+3. [Backtracking](post:Book-Algorithms-2-Backtracking)
 4. [回到开头](scroll-to-the-very-top)
+5. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)

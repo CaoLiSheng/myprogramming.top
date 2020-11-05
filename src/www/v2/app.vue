@@ -43,17 +43,17 @@ body
   user-select: none;
   -webkit-user-drag: none;
 ::-webkit-scrollbar
-  width: 3px;
-  height: 3px;
+  width: 3pt;
+  height: 3pt;
   border: none;
 ::-webkit-scrollbar-track
   background: #ddd;
-  border-radius: 9px;
+  border-radius: 9pt;
 ::-webkit-scrollbar-corner
   background: #ddd;
 ::-webkit-scrollbar-thumb
   background: #999;
-  border-radius: 9px;
+  border-radius: 9pt;
 ::-webkit-scrollbar-thumb:window-inactive
   background: #aaa;
 </style>

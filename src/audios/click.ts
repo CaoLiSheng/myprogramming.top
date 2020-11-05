@@ -17,11 +17,14 @@ const playAudio = (name: string) => {
   let player = document.getElementById('click-wav');
   if (!player) {
     player = document.createElement('audio');
-    player.setAttribute('src', ClickWAV);
     player.id = 'click-wav';
     document.body.appendChild(player);
   }
-  (player as HTMLAudioElement).play();
+
+  if (player instanceof HTMLAudioElement) {
+    player.setAttribute('src', ClickWAV);
+    player.play();
+  }
 };
 
 // const mouseupListender = playAudio.bind(null, 'mouseup');

@@ -67,7 +67,7 @@ export class DB {
 
   private push(name: string, targets: string[]): string[] {
     const insertIndex = targets.findIndex((checking: string) =>
-      this.postMetas[checking].date.isBefore(this.postMetas[name].date)
+      this.postMetas[checking].date.isSameOrBefore(this.postMetas[name].date)
     );
 
     if (insertIndex === -1) {

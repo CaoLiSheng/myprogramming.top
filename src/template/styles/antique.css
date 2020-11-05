@@ -222,15 +222,20 @@ body[theme='Dark'] .markdown-body {
   padding: 0 0.2em;
 }
 .markdown-body pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   border: solid 1px #a7a099;
   background: var(--pre-background-article-color);
-  padding: 4px;
+  padding: 6px;
+  overflow: auto;
 }
 .markdown-body pre code {
   font-size: 1em;
   margin: 0;
-  padding: 4px;
+  padding: 0;
   border: none;
+  white-space: pre;
   background: none;
 }
 .markdown-body hr {
