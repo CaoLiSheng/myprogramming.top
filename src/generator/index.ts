@@ -11,7 +11,14 @@ import {
   emailLink,
   hmBaidu,
 } from './template';
-import { inDir, outDir, isAsset, isPost, preWrite } from './file';
+import {
+  inDir,
+  outDir,
+  isAsset,
+  isPost,
+  preWrite,
+  extractPostName,
+} from './file';
 import { converter } from './converter';
 import { htmlMinify } from './minify';
 
@@ -91,7 +98,7 @@ posts.forEach((fileName: string) => {
     ].join('\n\n')
   );
 
-  const name = fileName.substring(0, fileName.length - '.md'.length);
+  const name = extractPostName(fileName);
   if (name !== 'index') dbData.add({ name, title, date, tags: parsedTags });
 
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
@@ -111,27 +118,7 @@ posts.forEach((fileName: string) => {
     )
   );
 });
-console.log('All HTML Generated');
-
-// preWrite(path.join(outDir, 'index.html')).writeFileSync(
-//   htmlMinify(
-//     tplContent
-//       .replace('{{title}}', '又心真人的博客')
-//       .replace('{{article_title}}', '又心真人的博客')
-//       .replace('{{javascript}}', tplScriptPath())
-//       .replace('{{hm_baidu}}', hmBaidu())
-//       .replace('{{stylesheet}}', fetchCSS('github-colors'))
-//       .replace(
-//         '{{title_tag}}',
-//         '<blockquote><code>-> 首页 <-</code></blockquote>'
-//       )
-//       .replace(
-//         '{{date_tag}}',
-//         `<code> ~~ 最近更新于 -> ${new Date().toLocaleDateString()}</code>`
-//       )
-//       .replace('{{article_body}}', '<h2>欢迎来到这个神奇的博客</h2>')
-//   )
-// );
+console.log('All HTMLs Generated');
 
 const dbPath = path.join(outDir, 'db.json');
 fs.createFileSync(dbPath);

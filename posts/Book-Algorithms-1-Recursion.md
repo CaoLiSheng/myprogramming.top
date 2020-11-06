@@ -72,8 +72,8 @@ S(n) = T(n+𝛼)
 
 ## 同一本书的文章集
 
-1. [Preface-&-Introduction](post:Book-Algorithms-0-Preface-&-Introduction)
-2. [回到开头](scroll-to-the-very-top)
-3. [Backtracking](post:Book-Algorithms-2-Backtracking)
-4. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
-5. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)
+0. [Preface-&-Introduction](post:Book-Algorithms-0-Preface-&-Introduction)
+1. [回到开头](scroll-to-the-very-top)
+1. [Backtracking](post:Book-Algorithms-2-Backtracking)
+1. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
+1. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)

@@ -39,6 +39,13 @@ export function isPost(file: string): boolean {
   return file.filter(notPrivate, notDraft, isMarkdown, isFile);
 }
 
+export const extractPostName = (() => {
+  const end = '.md'.length;
+  return function(fileName: string): string {
+    return fileName.substring(0, fileName.length - end);
+  };
+})();
+
 // pre write: do some cleaning
 type WriteFileOptions =
   | string
