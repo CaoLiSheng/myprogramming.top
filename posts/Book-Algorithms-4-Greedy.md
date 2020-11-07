@@ -239,6 +239,8 @@ measure(lambda: print("result1:", ScheduleRecursively(S[:], F[:])))
 
 - 磁带中的文件排列问题
 - 排课表问题
+- 哈夫曼编码
+- 双向选择问题（有意思的是这类问题存在【主动权归属】导致不同的情况）
 
 （陆续完善……）
 
