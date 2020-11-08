@@ -64,5 +64,6 @@ export const converter = new showdown.Converter({
   // openLinksInNewWindow: true, // 做下载链接时遇到了一点bug，所以自己加了一个插件
   disableForced4SpacesIndentedSublists: true,
   parseImgDimensions: true,
+  rawHeaderId: true,
   tables: true,
 });

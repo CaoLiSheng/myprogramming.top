@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》4
-date: 2020-11-06
+date: 2020-11-07
 tags:
   - 读书
   - 笔记
@@ -238,7 +238,7 @@ measure(lambda: print("result1:", ScheduleRecursively(S[:], F[:])))
 ## 书中的典型案例
 
 - 磁带中的文件排列问题
-- 排课表问题
+- [排课表问题](#排课表)
 - 哈夫曼编码
 - 双向选择问题（有意思的是这类问题存在【主动权归属】导致不同的情况）
 
