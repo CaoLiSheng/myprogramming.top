@@ -4,13 +4,13 @@
     title="浏览全部",
     :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
   )
-    .hoverable
+    .hoverable.icon-wrapper
       AllIcon
   router-link.explorer(
     title="按日历浏览",
     :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
   )
-    .hoverable.canlendar(
+    .hoverable.icon-wrapper(
       @mouseover="showPopup",
       @mouseleave="inDevPopupVisibility = false"
     )
@@ -19,12 +19,12 @@
     title="按标签浏览",
     :to="{ name: 'TagsComponent', params: { query: '*', page: 1 } }"
   )
-    .hoverable.tags(
+    .hoverable.icon-wrapper(
       @mouseover="showPopup",
       @mouseleave="inDevPopupVisibility = false"
     )
       TagsIcon
-  .change-theme(title="切换主题", @click="changeTheme")
+  .change-theme.icon-wrapper(title="切换主题", @click="changeTheme")
     ThemeIcon
   portal(to="in-dev-portal")
     .in-dev-popup(
@@ -87,24 +87,21 @@ export default class BarComponent extends Vue {
 #bar
   &>*
     width: 0.8rem;
-    height: 0.8rem;
+    height: 100%;
   .explorer
     float: left;
     .hoverable
       width: 100%;
       height: 100%;
-      padding: 0.2rem;
-      &.tags
-        padding: 0.24rem;
-      &.canlendar
-        padding: 0.22rem;
   .change-theme
     float: right;
-    padding: 0.2rem;
+  .icon-wrapper
+    display: flex;
+    align-items: center;
+    justify-content: center;
   svg.icon
-    display: block;
-    width: 100%;
-    height: 100%;
+    width: 0.25rem;
+    height: 0.25rem;
     pointer-events: none;
 .in-dev-popup
   pointer-events: none;

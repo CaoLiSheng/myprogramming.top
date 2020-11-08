@@ -1,4 +1,5 @@
 import '@audios/click';
+import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
 declare var __origin__: string;
 declare var __site_root__: string;
@@ -49,11 +50,30 @@ function extendDownloadLink(anchor: HTMLAnchorElement): boolean {
 // support scrolling to the-very-top
 function scrollToTop(ev: MouseEvent) {
   ev.preventDefault();
-  window.scrollTo(0, 0);
+  scrollToCoords(document.getElementById('main'), 0);
 }
 function extendBackToTop(anchor: HTMLAnchorElement, href?: string | null) {
   if (href === 'scroll-to-the-very-top') {
     anchor.addEventListener('click', scrollToTop);
+    return false;
+  }
+  return true;
+}
+
+// support scrolling to element(header)
+function scrollToHeader(ele: HTMLElement | null, ev: MouseEvent) {
+  ev.preventDefault();
+  scroolToElement(document.getElementById('main'), ele);
+}
+function extendScrollToHeader(anchor: HTMLAnchorElement, href?: string | null) {
+  if (href?.startsWith('scroll-to:')) {
+    anchor.addEventListener(
+      'click',
+      scrollToHeader.bind(
+        anchor,
+        document.getElementById(href?.substring('scroll-to:'.length))
+      )
+    );
     return false;
   }
   return true;
@@ -75,6 +95,7 @@ type extender = (anchor: HTMLAnchorElement, href?: string | null) => boolean;
 const anchorExtenders: extender[] = [
   extendDownloadLink,
   extendBackToTop,
+  extendScrollToHeader,
   extendOpenInNewTab,
 ];
 function extendAnchor(anchor: HTMLAnchorElement) {

@@ -157,13 +157,13 @@
 
 /* 以下：正规化文章主体块 */
 body {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+  margin: 0;
   padding: 0;
   border: none;
+  box-sizing: border-box;
   background-color: white;
+  overflow: hidden;
+  height: 100vh;
 }
 
 body.snapshot {
@@ -177,6 +177,11 @@ body:not(.snapshot) {
   background-repeat: repeat-y;
 }
 
+#main {
+  overflow: auto;
+  height: 100%;
+}
+
 .markdown-body {
   box-sizing: border-box;
   max-width: 1000px;
@@ -184,12 +189,12 @@ body:not(.snapshot) {
   /* body_padding_pc */
 }
 
-body.snapshot > .markdown-body {
+body.snapshot .markdown-body {
   margin: 0;
   width: 100%;
 }
 
-body:not(.snapshot) > .markdown-body {
+body:not(.snapshot) .markdown-body {
   margin: 1rem auto;
   width: calc(100% - 2rem);
   background: white;

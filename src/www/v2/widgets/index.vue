@@ -34,10 +34,10 @@ export default class IndexComponent extends Vue {
   display: flex;
   flex-direction: row;
   &:first-child
-    height: calc(100vh - 0.8rem);
+    height: calc(100vh - 0.5rem);
     border-bottom: solid 0.01rem var(--third-theme-color);
   &:last-child
-    height: 0.8rem;
+    height: 0.5rem;
   #side, #bar
     max-width: 28%;
     min-width: 3.2rem;

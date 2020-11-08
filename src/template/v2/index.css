@@ -5,7 +5,6 @@
   *     --a-foregrounnd-article-color
   *     --a-hover-foregrounnd-article-color
   */
-
 /* 以下：全局预设 */
 .markdown-body h6.date-tag {
   text-align: right;
@@ -154,6 +153,7 @@
 /* 以下：.markdown-body 统一设置 */
 .markdown-body {
   box-sizing: border-box;
+  width: calc(100% - 10pt);
   max-width: 1000px;
   min-width: 200px;
   border-radius: 6px;

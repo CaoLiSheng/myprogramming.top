@@ -7,25 +7,27 @@ export interface HTMLElementOffset {
 
 export const EmptyOffset = { top: 0, left: 0, width: 0, height: 0 };
 
-export function getOffset(ele?: HTMLElement | null): HTMLElementOffset {
+export function getOffset(
+  ele?: HTMLElement | null,
+  parent?: HTMLElement | null
+): HTMLElementOffset {
   if (!ele) return EmptyOffset;
 
   const offset = {
-    top: 0,
-    left: 0,
+    top: ele.offsetTop,
+    left: ele.offsetLeft,
     width: ele.offsetWidth,
     height: ele.offsetHeight,
   };
 
-  while (ele.offsetParent) {
-    offset.top += ele.offsetTop;
-    offset.left += ele.offsetLeft;
+  let it = ele.offsetParent;
+  while (!parent || it !== parent) {
+    if (!(it instanceof HTMLElement)) return offset;
 
-    if (ele.offsetParent instanceof HTMLElement) {
-      ele = ele.offsetParent;
-    } else {
-      return offset;
-    }
+    offset.top += it.offsetTop;
+    offset.left += it.offsetLeft;
+
+    it = it.offsetParent;
   }
 
   return offset;
