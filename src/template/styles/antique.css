@@ -230,6 +230,7 @@ body[theme='Dark'] .markdown-body {
   background: var(--pre-background-article-color);
   padding: 6px;
   overflow: auto;
+  margin-bottom: 14px;
 }
 .markdown-body pre code {
   font-size: 1em;

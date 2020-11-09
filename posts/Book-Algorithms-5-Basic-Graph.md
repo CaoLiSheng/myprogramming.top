@@ -95,7 +95,9 @@ WFSAll(G):
   for v in G:
     if v is unmarked:
       WhateverFirstSearch(v)
+```
 
+```python
 CountComponents(G):
   count = 0
   for v in G:
