@@ -120,3 +120,4 @@ HHGuess(Pop[1 .. n],D):
 1. [Backtracking](post:Book-Algorithms-2-Backtracking)
 1. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
 1. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)
+1. [Basic Graph](post:Book-Algorithms-5-Basic-Graph)

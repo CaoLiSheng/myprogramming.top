@@ -39,12 +39,16 @@ export default class IndexComponent extends Vue {
   &:last-child
     height: 0.5rem;
   #side, #bar
-    max-width: 28%;
-    min-width: 3.2rem;
-    flex: 2;
+    flex-basis: 3.3rem;
+    flex-shrink: 0;
+    flex-grow: 1;
     height: 100%;
     background: var(--secondary-theme-color);
     border-right: solid 0.01rem var(--third-theme-color);
+    @media screen and (min-width: 1100px)
+      max-width: 30%;
+    @media screen and (max-width: 1100px)
+      max-width: 3.3rem;
   #main, #status
     flex: 1;
     height: 100%;

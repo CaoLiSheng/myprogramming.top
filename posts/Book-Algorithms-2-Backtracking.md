@@ -51,3 +51,4 @@ tags:
 1. [回到开头](scroll-to-the-very-top)
 1. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
 1. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)
+1. [Basic Graph](post:Book-Algorithms-5-Basic-Graph)

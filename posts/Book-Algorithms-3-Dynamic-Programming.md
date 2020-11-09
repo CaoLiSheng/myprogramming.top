@@ -142,3 +142,4 @@ def FastRecFibo(n):
 1. [Backtracking](post:Book-Algorithms-2-Backtracking)
 1. [回到开头](scroll-to-the-very-top)
 1. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)
+1. [Basic Graph](post:Book-Algorithms-5-Basic-Graph)

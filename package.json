@@ -6,8 +6,8 @@
     "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts",
     "_d---g": "zsh ./src/scripts/genV1.zsh && zsh ./src/scripts/genV2.zsh",
     "_d-b-g": "rm -rf build/gen/dev && webpack --inline --progress --config=cfg/webpack/gen.dev.js && npm run _d---g",
-    "dev-v1": "npm run _d-b-g && concurrently --handle-input 'serve -C -l 5555 build/v1/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v1.dev.js'",
-    "dev-v2": "npm run _d-b-g && rm -rf build/v2/dev && concurrently --handle-input 'serve -C -l 3333 build/v2/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v2.dev.js'",
+    "dev-v1": "npm run _d-b-g && concurrently 'serve -C -l 5555 build/v1/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v1.dev.js'",
+    "dev-v2": "npm run _d-b-g && rm -rf build/v2/dev && concurrently 'serve -C -l 3333 build/v2/posts' 'webpack-dev-server --inline --progress --config=cfg/webpack/site.v2.dev.js'",
     "publish": "zsh ./src/scripts/prePublish.zsh && webpack -p --inline --progress --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --inline --progress --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --inline --progress --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
   },
   "repository": {
