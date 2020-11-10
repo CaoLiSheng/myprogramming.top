@@ -8,8 +8,8 @@ const PostfixPadding = (pc: number = 20, mobile?: number) => ({
 });
 
 const styles: { [key: string]: StyleSheet } = {
-  antique: PostfixPadding(25),
-  bountiful: PostfixPadding(30),
+  antique: PostfixPadding(),
+  bountiful: PostfixPadding(),
   'github-colors': PostfixPadding(),
   'github-border': UnsetPadding,
 };

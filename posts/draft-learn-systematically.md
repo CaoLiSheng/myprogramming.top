@@ -6,6 +6,10 @@ tags:
   - 学习
 ---
 
+## 0. 学习大纲
+
+![学成圆满（精简后）](learn-systematically/learning-simplified.png)
+
 > 35+ 个主题
 
 ## 1. 大学基础课程（5+）
@@ -14,7 +18,7 @@ _仅列出数学相关，另外还有英语_
 
 ### 1. 高等数学
 
-![高等数学知识点-考察点](learn-systematically/advanced-mathematics.png =100%-)
+![高等数学知识点-考察点](learn-systematically/advanced-mathematics.png '=500px-')
 
 ### 2. 离散数学
 

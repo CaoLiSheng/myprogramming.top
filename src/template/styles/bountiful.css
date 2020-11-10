@@ -92,7 +92,8 @@ body[theme='Dark'] .markdown-body {
 .markdown-body pre,
 .markdown-body samp {
   /* font-family: monospace, serif; */
-  font-size: 1em;
+  font-size: 13px;
+  line-height: 1.5em;
 }
 
 .markdown-body pre {
@@ -101,10 +102,8 @@ body[theme='Dark'] .markdown-body {
   word-wrap: break-word;
   background-color: var(--pre-background-article-color);
   border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 19px;
   overflow: auto;
-  padding: 6px 10px;
+  padding: 8px 10px;
   border-radius: 3px;
   margin: 26px 0;
 }
@@ -164,53 +163,43 @@ body[theme='Dark'] .markdown-body {
 } */
 
 .markdown-body h1,
-.markdown-body h2 {
-  line-height: 1em;
-  margin-bottom: 18px;
-}
-
-.markdown-body h1,
 .markdown-body h2,
-.markdown-body h3,
-.markdown-body h4 {
-  margin-top: 1.5em;
-}
-
 .markdown-body h3,
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  line-height: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 18px;
 }
 
 .markdown-body h1 {
-  font-size: 44px;
-  top: 5px;
+  font-size: 48px;
+  top: 10px;
 }
 
 .markdown-body h2 {
-  font-size: 35px;
+  font-size: 44px;
   top: 8px;
 }
 
 .markdown-body h3 {
-  font-size: 29px;
-  top: 1px;
+  font-size: 40px;
+  top: 6px;
 }
 
 .markdown-body h4 {
-  font-size: 25px;
-  top: 2px;
+  font-size: 36px;
+  top: 4px;
 }
 
 .markdown-body h5 {
-  font-size: 22px;
+  font-size: 32px;
   top: 4px;
 }
 
 .markdown-body h6 {
-  font-size: 20px;
-  top: 5px;
+  font-size: 28px;
+  top: 4px;
 }
 
 .markdown-body h1:first-child,
@@ -228,13 +217,6 @@ body[theme='Dark'] .markdown-body {
   font-style: italic;
 }
 
-.markdown-body p,
-.markdown-body pre,
-.markdown-body address {
-  font-size: 22px;
-  line-height: 26px;
-}
-
 .markdown-body small {
   font-size: 80%;
 }
@@ -245,15 +227,13 @@ body[theme='Dark'] .markdown-body {
 .markdown-body samp,
 .markdown-body small,
 .markdown-body var {
-  line-height: 22px;
+  line-height: 1.2em;
 }
 
 .markdown-body ul,
 .markdown-body ol,
 .markdown-body dl,
 .markdown-body dialog {
-  font-size: 22px;
-  line-height: 27px;
   margin-top: 18px;
   margin-bottom: 18px;
 }
@@ -277,22 +257,6 @@ body[theme='Dark'] .markdown-body {
   top: 0;
 }
 
-.markdown-body form,
-.markdown-body legend,
-.markdown-body label {
-  font-size: 20px;
-  line-height: 22px;
-}
-
-.markdown-body table {
-  font-size: 20px;
-}
-
-.markdown-body caption {
-  font-size: 20px;
-  line-height: 1em;
-}
-
 .markdown-body hr {
   height: 4px;
   margin: 18px 0 14px 0;
@@ -304,7 +268,8 @@ body[theme='Dark'] .markdown-body {
   background: var(--main-background-article-color);
   font-family: Varela, HanBiaoBangYangMaoBiPinYin, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 22px;
+  font-size: 28px;
+  line-height: 1.3em;
 }
 
 .markdown-body h1,
@@ -322,21 +287,18 @@ body[theme='Dark'] .markdown-body {
   border-left: none;
   color: var(--blockquote-foreground-article-color);
   font-family: Quattrocento, HanBiaoBangYangMaoBiPinYin, system-ui, serif;
-  font-size: 22px;
-  line-height: 28px;
   margin-top: 25px;
 }
 
 .markdown-body blockquote p {
-  font-size: 22px;
   margin: 20px 0 25px;
   padding: 0 15px;
-  line-height: 28px;
 }
 
 .markdown-body ul,
 .markdown-body ol {
   color: var(--list-foreground-article-color);
+  list-style-position: inside;
 }
 
 .markdown-body ol {
@@ -375,8 +337,6 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body table th,
 .markdown-body table td {
-  font-size: 22px;
-  line-height: 1em;
   padding: 10px 18px 8px 0;
 }
 .markdown-body table thead th,

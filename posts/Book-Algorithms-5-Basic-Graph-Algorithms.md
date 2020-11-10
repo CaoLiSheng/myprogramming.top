@@ -35,8 +35,9 @@ tags:
 - 连接的：所有顶点间都是可达的
 - 连接子图（components）：最大连接的子图
 - 闭合遍历：遍历开始并结束于同一个顶点
-- 环图：每个顶点可以组成闭合遍历，且每个顶点只被访问了一次
+- 有环图：每个顶点可以组成闭合遍历，且每个顶点只被访问了一次
 - 无环图：图中任何子图都不是环图，无环图又可以叫做森林
+- 有向无环图（Dags）：有向图+无环图
 - 树：连接的无环图，或者其中的一个连接子图
 - 展开树：将图转化为它的无环子图。当且仅当原图为连接图时才可以展开图。
 - 展开森林：将图中的各个连接子图展开树组成的森林
@@ -119,5 +120,6 @@ CountComponents(G):
 1. [Recursion](post:Book-Algorithms-1-Recursion)
 1. [Backtracking](post:Book-Algorithms-2-Backtracking)
 1. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
-1. [Greedy Algorithm](post:Book-Algorithms-4-Greedy)
+1. [Greedy Algorithms](post:Book-Algorithms-4-Greedy-Algorithms)
 1. [回到开头](scroll-to-the-very-top)
+1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)

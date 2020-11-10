@@ -30,7 +30,8 @@ function articleAnchorClickDelegate(ev: MouseEvent) {
       location.href = `${params[0]}${location.hash}`;
       break;
     default:
-      throw new Error('Here is a bug -> ' + attrHref);
+      if (attrHref) window.open(attrHref, '_blank');
+      break;
   }
 }
 

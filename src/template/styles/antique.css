@@ -58,7 +58,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 0;
-  list-style-position: outside;
+  list-style-position: inside;
 }
 .markdown-body ul li,
 .markdown-body ol li {

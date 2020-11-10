@@ -15,6 +15,6 @@ tags:
 
 ## 主要文章系列
 
-1. [学习记录](post:2020-study-records)
-2. [Algorithms](post:Book-Algorithms-0-Preface-&-Introduction)
-3. [里程碑总结](post:2020-milestone-1-0)
+1. [学习资料记录分享](post:2020-study-records)
+2. [《Algorithms》](post:Book-Algorithms-0-Preface-&-Introduction)
+3. [里程碑总结与分享](post:2020-milestone-1-0)
