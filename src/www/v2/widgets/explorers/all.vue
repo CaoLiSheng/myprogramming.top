@@ -2,13 +2,14 @@
 .r
   .header
     h5
-      a(:href="href") 首页
+      a(:href="indexHref") 首页
   .links
     in-site-link(
-      v-for="post in posts",
+      v-for="(post, idx) in posts",
       :key="post",
       :name="post",
-      :data="postData(post)"
+      :data="postData(post)",
+      :delay="idx * 100"
     )
 </template>
 
@@ -26,10 +27,10 @@ export default class AllComponent extends Vue.extend({
   props: ["query", "page"],
 }) {
   data() {
-    return { db: db.state, width: 0, display: "none" };
+    return { db: db.state };
   }
 
-  get href() {
+  get indexHref() {
     return `index.html${location.hash}`;
   }
 
@@ -41,18 +42,16 @@ export default class AllComponent extends Vue.extend({
     return this.$data.db.metas[name];
   }
 
-  updateheaderStyle() {
-    const side = document.getElementById("side");
+  // updateheaderStyle() {
+  //   const side = document.getElementById("side");
 
-    if (side && side instanceof HTMLDivElement) {
-      this.$data.width = side.offsetWidth - 4;
-      this.$data.display = "block";
-    }
-  }
+  //   if (side && side instanceof HTMLDivElement) {
+  //     this.$data.width = side.offsetWidth - 4;
+  //     this.$data.display = "block";
+  //   }
+  // }
 
   async mounted() {
-    this.updateheaderStyle();
-
     const resp = await fetch(`db.json?var=${Date.now()}`);
     const data: Schema = await resp.json();
     db.update(data);

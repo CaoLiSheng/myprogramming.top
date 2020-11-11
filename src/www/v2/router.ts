@@ -24,23 +24,23 @@ const routes = [
     children: [
       {
         path: '',
-        redirect: { name: 'AllComponent', params: { query: '*', page: '1' } },
+        redirect: { name: 'AllComponent', params: { query: '*' } },
       },
       {
         props: true,
-        path: 'all/:query/p/:page',
+        path: 'all/:query',
         name: 'AllComponent',
         component: AllComponent,
       },
       {
         props: true,
-        path: 'canlendar/:year/:month/:day/p/:page',
+        path: 'canlendar/:year/:month/:day',
         name: 'CanlendarComponent',
         component: CanlendarComponent,
       },
       {
         props: true,
-        path: 'tags/:query/p/:page',
+        path: 'tags/:query',
         name: 'TagsComponent',
         component: TagsComponent,
       },

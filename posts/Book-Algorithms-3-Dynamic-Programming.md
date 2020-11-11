@@ -144,3 +144,4 @@ def FastRecFibo(n):
 1. [Greedy Algorithms](post:Book-Algorithms-4-Greedy-Algorithms)
 1. [Basic Graph Algorithms](post:Book-Algorithms-5-Basic-Graph-Algorithms)
 1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
+1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)

@@ -123,3 +123,4 @@ CountComponents(G):
 1. [Greedy Algorithms](post:Book-Algorithms-4-Greedy-Algorithms)
 1. [回到开头](scroll-to-the-very-top)
 1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
+1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)
