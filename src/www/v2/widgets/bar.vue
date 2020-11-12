@@ -29,7 +29,7 @@
   portal(to="in-dev-portal")
     .in-dev-popup(
       v-show="inDevPopupVisibility",
-      :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
+      :style="{ top: popupTop + 'px', left: popupLeft + 'px' }"
     )
       .content 开发中...
 </template>
@@ -54,7 +54,7 @@ const Theme2 = "Dark";
 @Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })
 export default class BarComponent extends Vue {
   data() {
-    return { inDevPopupVisibility: false, popupBottom: 0, popupLeft: 0 };
+    return { inDevPopupVisibility: false, popupTop: 0, popupLeft: 0 };
   }
 
   showPopup(ev: MouseEvent) {
@@ -62,7 +62,7 @@ export default class BarComponent extends Vue {
     if (ev.target instanceof HTMLElement) {
       offset = getOffset(ev.target);
     }
-    this.$data.popupBottom = window.innerHeight - offset.top + 10;
+    this.$data.popupTop = offset.top + offset.height + 10;
     this.$data.popupLeft = offset.left + offset.width / 2;
     this.$data.inDevPopupVisibility = true;
   }
@@ -127,9 +127,9 @@ export default class BarComponent extends Vue {
     height: 0;
     width: 0;
     border: solid 30px transparent;
-    border-top-color: var(--btn-background-theme-color);
+    border-bottom-color: var(--btn-background-theme-color);
     position: absolute;
-    bottom: -40px;
+    top: -40px;
     left: 2.5em;
     transform: translateX(-50%);
 </style>
