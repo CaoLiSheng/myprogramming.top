@@ -1,14 +1,14 @@
 <template lang="pug">
 .r
   .row-wrapper
+    #side(:class="{ opened: ui.menuOpened }")
+      router-view
+    #main(v-once, v-html="article")
+  .row-wrapper
     #bar(:class="{ opened: ui.menuOpened }")
       Bar
     #status
       Status
-  .row-wrapper
-    #side(:class="{ opened: ui.menuOpened }")
-      router-view
-    #main(v-once, v-html="article")
 </template>
 
 <script lang="ts">
@@ -41,14 +41,16 @@ export default class IndexComponent extends Vue {
   display: flex;
   flex-direction: row;
   position: relative;
-  &:last-child
-    height: calc(100vh - 0.5rem);
-    border-top: solid 0.01rem var(--third-theme-color);
-    @media screen and (max-width: 750px)
-      height: calc(100vh - 1rem);
   &:first-child
+    height: calc(100vh - 0.5rem);
+    border-bottom: solid 0.01rem var(--third-theme-color);
+  &:last-child
     height: 0.5rem;
-    @media screen and (max-width: 750px)
+  @media screen and (max-width: 750px)
+    &:first-child
+      height: calc(100vh - 1rem);
+      height: calc(var(--vh, 1vh) * 100 - 1rem);
+    &:last-child
       height: 1rem;
   #side, #bar
     flex-basis: 3.3rem;
@@ -82,5 +84,5 @@ export default class IndexComponent extends Vue {
   #main
     overflow: auto;
     user-select: text;
-    background: linear-gradient(to top, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
+    background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
 </style>

@@ -7,7 +7,6 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import { clickIn } from "@www/utils/dom";
 import { ui } from "@vStores/index";
 
 @Component
@@ -15,19 +14,10 @@ export default class StatusComponent extends Vue {
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
 
-  handleMenuClose(ev: MouseEvent) {
-    if (!(ev.target instanceof HTMLElement)) return;
-    if (clickIn(ev.target, this.sideRoot, this.barRoot)) return;
-    ui.closeMenu();
-    document.body.removeEventListener("click", this.handleMenuClose);
-  }
-
   openMenu() {
-    ui.openMenu();
-    setTimeout(
-      () => document.body.addEventListener("click", this.handleMenuClose),
-      0
-    );
+    if (!ui.state.menuOpened) {
+      ui.openMenu(this.sideRoot, this.barRoot);
+    }
   }
 
   mounted() {
