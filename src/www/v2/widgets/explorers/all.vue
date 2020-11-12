@@ -3,7 +3,7 @@
   .header
     h5
       a(:href="indexHref") 首页
-  .links
+  .links(v-if="ui.menuOpened")
     in-site-link(
       v-for="(post, idx) in posts",
       :key="post",
@@ -20,14 +20,14 @@ import Component from "vue-class-component";
 import inSiteLink from "@vWidgets/insitelink.vue";
 
 import { Schema } from "@common/index";
-import { db } from "@vStores/index";
+import { db, ui } from "@vStores/index";
 
 @Component({ components: { "in-site-link": inSiteLink } })
 export default class AllComponent extends Vue.extend({
   props: ["query", "page"],
 }) {
   data() {
-    return { db: db.state };
+    return { db: db.state, ui: ui.state };
   }
 
   get indexHref() {

@@ -1,5 +1,5 @@
 <template lang="pug">
-#bar
+.bar
   router-link.explorer(
     title="浏览全部",
     :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
@@ -84,10 +84,13 @@ export default class BarComponent extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-#bar
+.bar
+  height: 100%;
   &>*
-    width: 0.8rem;
     height: 100%;
+    width: 0.8rem;
+    @media screen and (max-width: 750px)
+      width: 1.2rem;
   .explorer
     float: left;
     .hoverable
@@ -103,6 +106,9 @@ export default class BarComponent extends Vue {
     width: 0.25rem;
     height: 0.25rem;
     pointer-events: none;
+    @media screen and (max-width: 750px)
+      width: 0.5rem;
+      height: 0.5rem;
 .in-dev-popup
   pointer-events: none;
   font-size: 18px;

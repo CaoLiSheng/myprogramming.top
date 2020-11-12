@@ -50,11 +50,16 @@ export default class InsiteLink extends InsiteLinkProps {
     border-radius: 0.05rem;
     transform: translateX(0);
     transition: transform ease-in-out 300ms;
+    @media screen and (min-width: 750px)
+      transition: transform ease-in-out 100ms;
+      &:hover
+        transform: translate3d(0.05rem, -0.05rem, 0);
+        background-color: var(--btn-background-theme-color);
+      &:active
+        transform: translate3d(0.05rem, 0.05rem, 0);
     &.init
       transform: translateX(-100%);
     &.running
-      background-color: var(--btn-background-theme-color);
-    &:hover
       background-color: var(--btn-background-theme-color);
     span
       display: block;

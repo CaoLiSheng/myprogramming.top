@@ -5,21 +5,10 @@ import classNames from 'classnames';
 import Category from './category';
 import Pager from './pager';
 
+import { clickIn } from '@www/utils/dom';
+
 import './index.scss';
 import { CategoryIcon } from '@images/index';
-
-const clickIn = (
-  target: HTMLElement | null | undefined,
-  wrapper: HTMLElement | null
-): boolean => {
-  if (!wrapper) return false;
-
-  while (!!target) {
-    if (target === wrapper) return true;
-    target = target?.parentElement;
-  }
-  return false;
-};
 
 interface HeaderStates {
   categoryExpanded: boolean;
