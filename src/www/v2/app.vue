@@ -23,6 +23,7 @@ body[theme='Light']
   --theme-color: white;
   --secondary-theme-color: rgb(246, 248, 250);
   --third-theme-color: rgb(225, 228, 232);
+  --contrast-theme-color: rgb(27, 31, 35);
   --btn-foreground-theme-color: rgb(137, 143, 149);
   --btn-background-theme-color: rgb(207, 228, 253);
   --btn-base-theme-color: rgb(71, 71, 71);
@@ -32,6 +33,7 @@ body[theme='Dark']
   --theme-color: rgb(36, 41, 46);
   --secondary-theme-color: rgb(31, 36, 40);
   --third-theme-color: rgb(27, 31, 35);
+  --contrast-theme-color: rgb(225, 228, 232);
   --btn-foreground-theme-color: wheat;
   --btn-background-theme-color: rgb(28, 68, 114);
   --btn-base-theme-color: rgb(225, 228, 232);

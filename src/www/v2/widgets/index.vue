@@ -57,6 +57,7 @@ export default class IndexComponent extends Vue {
     flex-shrink: 0;
     flex-grow: 1;
     height: 100%;
+    width: 100%;
     background: var(--secondary-theme-color);
     border-right: solid 0.01rem var(--third-theme-color);
     @media screen and (min-width: 1100px)
@@ -65,22 +66,20 @@ export default class IndexComponent extends Vue {
       max-width: 3.3rem;
     @media screen and (max-width: 750px)
       max-width: 80%;
-      width: 100%;
       position: absolute;
       z-index: 1;
       top: 0;
       bottom: 0;
       left: 0;
       transform: translateX(-100%);
-      transition: transform ease-in-out 200ms;
+      transition: transform ease-in-out 200ms, box-shadow linear 500ms;
       &.opened
         transform: translateX(0);
+        box-shadow: 0.1rem 0.5rem 0.5rem var(--contrast-theme-color);
   #main, #status
     flex: 1;
     height: 100%;
     background: var(--theme-color);
-  #side
-    overflow: hidden;
   #main
     overflow: auto;
     user-select: text;
