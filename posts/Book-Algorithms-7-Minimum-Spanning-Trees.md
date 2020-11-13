@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》7
-date: 2020-11-12
+date: 2020-11-13
 tags:
   - 读书
   - 笔记
@@ -30,7 +30,129 @@ tags:
 
 考虑 `T" = T' + e - e"`（可能与 `T` 相同），`w(T") = w(T') + w(e) - w(e") <= w(T')`。由于 `T'` 是最小展开树，所以 `T"` 也是最小展开树。三颗树是相同的，`G` 的最小展开树是唯一的。
 
+## 名词解释
+
+- intermediate spanning forest（F）：G 的最小展开树的子图，初始状态时 F 仅包含 G 的一个节点，算法运行时 F 不断地扩展邻边，最终生成一颗展开树。
+- useless edge to F：两个端点已经在 F 的同一个子图中。
+- safe edge to F：有且仅有一个端点在 F 的某一子图中的最小权重边。
+- undecided edge：既不是 useless 也不是 safe 的边。
+
+## Boruvka 算法
+
+```python
+def LabelOne(s, count):
+  put s into the bag
+  while the bag is not empty:
+    take v from the bag
+    if v is unmarked:
+      mark v
+      v.comp = count # label
+      for each edge v->w:
+        put w into the bag
+
+def CountAndLabel(G):
+  count = 0
+  for v in G:
+    unmark v
+  for v in G:
+    if v is unmarked:
+      count += 1 # count
+      LabelOne(v, count)
+  return count
+
+def AddAllSafeDedges(E, G, count):
+  for i in range(1, count+1):
+    safe[i] = None
+  for each edge uv in E:
+    if u.comp != v.comp:
+      if safe[u.comp] == None or w(uv) < w(safe[u.comp]):
+        safe[u.comp] = uv
+      if safe[v.comp] == None or w(uv) < w(safe[v.comp]):
+        safe[v.comp] = uv
+  for i in range(1, count+1):
+    add safe[i] to F
+
+def Boruvka(V, E):
+  F = (V, {})
+  count = CountAndLabel(F)
+  while (count > 1):
+    AddAllSafeDedges(E, F, count)
+    count = CountAndLabel(F)
+  return F
+```
+
+### 算法分析
+
+- CountAndLabel：O(V)
+- AddAllSafeDedges：O(V + E) 又 G 是连通图（`V<=E+1`），所以 O(E)
+- while 循环最多 log(V) 次，所以 Boruvka 算法整体的时间复杂度为 O(E\*log(V))
+
+## Jarník 算法
+
+```python
+def JarníkInit(V, E, s):
+  for v in range(V - s):
+    if vs in E:
+      edge(v) = vs
+      priority(v) = w(vs)
+    else:
+      edge(v) = None
+      priority(v) = Infinity
+    Insert(v)
+
+def JarníkLoop(V, E, s):
+  T = ({s}, {})
+  for i in range(1, len(V) - 1):
+    v = ExtractMin()
+    add v and edge(v) to T
+    for each neighbor u of v:
+      if u not in T and priority(u) > w(uv):
+        edge(u) = uv
+        DecreaseKey(u, w(uv))
+
+def Jarník(V, E, s):
+  JarníkInit(V, E, s)
+  JarníkLoop(V, E, s)
+```
+
+## 算法分析
+
+JarníkInit 中有 (V-1) 次 Inserts；
+JarníkLoop 中有 E 次 DecreaseKeys 和 (V-1) 次 ExtractMins。
+所以，若使用 binary heap，算法整体时间复杂度为 `O(E*log(V))`；若使用 fibonacci heap，可以提升到 `O(E+V*log(V))`。
+可见，仅当输入的图非常大且边的数量远大于顶点的时，fibonacci heap 才可以发挥作用。
+
+## Kruskal 算法
+
+```python
+def Kruskal(V, E):
+  sort E by increasing weight
+  F = (V, {})
+  for v in range(V):
+    MakeSet(v)
+  for uv in range(sorted(E)):
+    if Find(u) != Find(v):
+      Union(u, v)
+      add uv to F
+  return F
+```
+
+### 算法分析
+
+- 排序 `O(E*log(E))`
+- MakeSet：V 次 `O(1)`
+- Find(v)：2E 次 `O(1)`
+- Union(u,v)：最多 log(V) 次 `O(1)`
+
+所以，去掉排序不计，算法整体时间复杂度为 `O(E + V*log(V))`；然而排序显然更耗时，整个算法时间复杂度为 `O(E*log(E))`。
+
+可见这三种算法没差，除非用其它一些逻辑复杂，常数级上大于 1 的数据结构或算法来提升理论上的效率；并且，有时候这种提升只适合于某些特定输入。
+
 ## 书中的典型案例
+
+- [Boruvka 算法](scroll-to:boruvka-算法)
+- [Jarník 算法](scroll-to:jarník-算法)
+- [Kruskal 算法](scroll-to:kruskal-算法)
 
 （陆续完善……）
 
@@ -48,3 +170,4 @@ tags:
 1. [Basic Graph Algorithms](post:Book-Algorithms-5-Basic-Graph-Algorithms)
 1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
 1. [回到开头](scroll-to-the-very-top)
+1. [Shortest Paths](post:Book-Algorithms-8-Shortest-Paths)

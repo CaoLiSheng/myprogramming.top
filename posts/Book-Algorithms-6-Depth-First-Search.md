@@ -295,3 +295,4 @@ def Tarjan(G):
 1. [Basic Graph Algorithms](post:Book-Algorithms-5-Basic-Graph-Algorithms)
 1. [回到开头](scroll-to-the-very-top)
 1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)
+1. [Shortest Paths](post:Book-Algorithms-8-Shortest-Paths)

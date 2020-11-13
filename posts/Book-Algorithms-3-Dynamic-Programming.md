@@ -145,3 +145,4 @@ def FastRecFibo(n):
 1. [Basic Graph Algorithms](post:Book-Algorithms-5-Basic-Graph-Algorithms)
 1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
 1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)
+1. [Shortest Paths](post:Book-Algorithms-8-Shortest-Paths)
