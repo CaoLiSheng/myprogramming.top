@@ -26,6 +26,8 @@
       TagsIcon
   .change-theme.icon-wrapper(title="切换主题", @click="changeTheme")
     ThemeIcon
+  .home.icon-wrapper(title="首页", @click="goToHomePage")
+    HomeIcon
   portal(to="in-dev-portal")
     .in-dev-popup(
       v-show="inDevPopupVisibility",
@@ -41,6 +43,7 @@ import localforage from "localforage";
 
 import { HTMLElementOffset, EmptyOffset, getOffset } from "@www/utils/offset";
 
+import HomeIcon from "@images/home.vue";
 import ThemeIcon from "@images/theme.vue";
 import AllIcon from "@images/all.vue";
 import CanlendarIcon from "@images/canlendar.vue";
@@ -51,7 +54,9 @@ const ThemeKey = "THEME";
 const ThemeDefault = "Light";
 const Theme2 = "Dark";
 
-@Component({ components: { ThemeIcon, AllIcon, CanlendarIcon, TagsIcon } })
+@Component({
+  components: { HomeIcon, ThemeIcon, AllIcon, CanlendarIcon, TagsIcon },
+})
 export default class BarComponent extends Vue {
   data() {
     return { inDevPopupVisibility: false, popupTop: 0, popupLeft: 0 };
@@ -65,6 +70,10 @@ export default class BarComponent extends Vue {
     this.$data.popupTop = offset.top + offset.height + 10;
     this.$data.popupLeft = offset.left + offset.width / 2;
     this.$data.inDevPopupVisibility = true;
+  }
+
+  goToHomePage() {
+    window.location.href = "index.html";
   }
 
   changeTheme() {
@@ -90,18 +99,20 @@ export default class BarComponent extends Vue {
     height: 100%;
     width: 0.8rem;
     @media screen and (max-width: 750px)
-      width: 1.2rem;
+      width: 1rem;
   .explorer
     float: left;
     .hoverable
       width: 100%;
       height: 100%;
-  .change-theme
+  .change-theme, .home
     float: right;
   .icon-wrapper
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover
+      cursor: pointer;
   svg.icon
     width: 0.25rem;
     height: 0.25rem;

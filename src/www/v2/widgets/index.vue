@@ -53,7 +53,7 @@ export default class IndexComponent extends Vue {
     &:last-child
       height: 1rem;
   #side, #bar
-    flex-basis: 3.3rem;
+    flex-basis: 4.5rem;
     flex-shrink: 0;
     flex-grow: 1;
     height: 100%;
@@ -63,7 +63,7 @@ export default class IndexComponent extends Vue {
     @media screen and (min-width: 1100px)
       max-width: 30%;
     @media screen and (max-width: 1100px)
-      max-width: 3.3rem;
+      max-width: 4.5rem;
     @media screen and (max-width: 750px)
       max-width: 80%;
       position: absolute;
