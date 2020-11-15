@@ -1,6 +1,6 @@
 ---
 no-receive-emails
-style: bountiful
+style: solarized
 title: 又心真人的博客
 date: 1991-11-06
 tags:

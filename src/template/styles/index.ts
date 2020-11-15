@@ -10,6 +10,7 @@ const PostfixPadding = (pc: number = 20, mobile?: number) => ({
 const styles: { [key: string]: StyleSheet } = {
   antique: PostfixPadding(),
   bountiful: PostfixPadding(),
+  solarized: PostfixPadding(),
   'github-colors': PostfixPadding(),
   'github-border': UnsetPadding,
 };
