@@ -7,15 +7,15 @@ const IndexComponent = () =>
 const AllComponent = () =>
   import(/* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue');
 
-const CanlendarComponent = () =>
-  import(
-    /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
-  );
+// const CanlendarComponent = () =>
+//   import(
+//     /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
+//   );
 
-const TagsComponent = () =>
-  import(
-    /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
-  );
+// const TagsComponent = () =>
+//   import(
+//     /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
+//   );
 
 const routes = [
   {
@@ -32,18 +32,18 @@ const routes = [
         name: 'AllComponent',
         component: AllComponent,
       },
-      {
-        props: true,
-        path: 'canlendar/:year/:month/:day',
-        name: 'CanlendarComponent',
-        component: CanlendarComponent,
-      },
-      {
-        props: true,
-        path: 'tags/:query',
-        name: 'TagsComponent',
-        component: TagsComponent,
-      },
+      // {
+      //   props: true,
+      //   path: 'canlendar/:year/:month/:day',
+      //   name: 'CanlendarComponent',
+      //   component: CanlendarComponent,
+      // },
+      // {
+      //   props: true,
+      //   path: 'tags/:query',
+      //   name: 'TagsComponent',
+      //   component: TagsComponent,
+      // },
     ],
   },
 ];

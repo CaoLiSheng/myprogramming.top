@@ -63,7 +63,10 @@ export default class AllComponent extends Vue.extend({
     }
 
     return (this.$data.db.sortedPosts || []).filter((p: string) => {
-      return this.postData(p).title.indexOf(query) >= 0;
+      const meta = this.postData(p);
+      if (meta.title.indexOf(query) >= 0) return true;
+      if (meta.tags.some((t: string) => t.indexOf(query) >= 0)) return true;
+      return false;
     });
   }
 

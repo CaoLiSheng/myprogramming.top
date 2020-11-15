@@ -103,11 +103,14 @@ export default class BarComponent extends Vue {
     @media screen and (max-width: 750px)
       width: 1rem;
   .explorer
+    display: none;
     float: left;
     .hoverable
       width: 100%;
       height: 100%;
-  .change-theme, .home
+  .home
+    float: left;
+  .change-theme
     float: right;
   .icon-wrapper
     display: flex;

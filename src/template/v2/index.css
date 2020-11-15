@@ -13,6 +13,7 @@
 .markdown-body h6.date-tag code {
   position: relative;
   cursor: default;
+  font-size: 13px;
 }
 
 .markdown-body h6.date-tag code::after {
