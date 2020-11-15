@@ -92,7 +92,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body pre,
 .markdown-body samp {
   /* font-family: monospace, serif; */
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5em;
 }
 
@@ -268,8 +268,8 @@ body[theme='Dark'] .markdown-body {
   background: var(--main-background-article-color);
   font-family: Varela, HanBiaoBangYangMaoBiPinYin, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 28px;
-  line-height: 1.3em;
+  font-size: 30px;
+  line-height: 1.1em;
 }
 
 .markdown-body h1,
@@ -279,6 +279,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h5,
 .markdown-body h6 {
   font-family: Quattrocento, HanBiaoBangYangMaoBiPinYin, system-ui, serif;
+  line-height: 1.1em;
 }
 
 .markdown-body blockquote {

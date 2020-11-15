@@ -12,7 +12,8 @@
   )
     .hoverable.icon-wrapper(
       @mouseover="showPopup",
-      @mouseleave="inDevPopupVisibility = false"
+      @mouseleave="inDevPopupVisibility = false",
+      @click="$event.preventDefault()"
     )
       CanlendarIcon
   router-link.explorer(
@@ -21,7 +22,8 @@
   )
     .hoverable.icon-wrapper(
       @mouseover="showPopup",
-      @mouseleave="inDevPopupVisibility = false"
+      @mouseleave="inDevPopupVisibility = false",
+      @click="$event.preventDefault()"
     )
       TagsIcon
   .change-theme.icon-wrapper(title="切换主题", @click="changeTheme")
@@ -31,7 +33,7 @@
   portal(to="in-dev-portal")
     .in-dev-popup(
       v-show="inDevPopupVisibility",
-      :style="{ top: popupTop + 'px', left: popupLeft + 'px' }"
+      :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
     )
       .content 开发中...
 </template>
@@ -59,7 +61,7 @@ const Theme2 = "Dark";
 })
 export default class BarComponent extends Vue {
   data() {
-    return { inDevPopupVisibility: false, popupTop: 0, popupLeft: 0 };
+    return { inDevPopupVisibility: false, popupBottom: 0, popupLeft: 0 };
   }
 
   showPopup(ev: MouseEvent) {
@@ -67,7 +69,7 @@ export default class BarComponent extends Vue {
     if (ev.target instanceof HTMLElement) {
       offset = getOffset(ev.target);
     }
-    this.$data.popupTop = offset.top + offset.height + 10;
+    this.$data.popupBottom = window.innerHeight - offset.top + 10;
     this.$data.popupLeft = offset.left + offset.width / 2;
     this.$data.inDevPopupVisibility = true;
   }
@@ -122,7 +124,7 @@ export default class BarComponent extends Vue {
       height: 0.5rem;
 .in-dev-popup
   pointer-events: none;
-  font-size: 18px;
+  font-size: 0.18rem;
   position: fixed;
   transform: translateX(-50%);
   background: var(--btn-background-theme-color);
@@ -137,10 +139,11 @@ export default class BarComponent extends Vue {
     display: block;
     height: 0;
     width: 0;
-    border: solid 30px transparent;
-    border-bottom-color: var(--btn-background-theme-color);
+    font-size: 0.18rem;
+    border: solid 0.3rem transparent;
+    border-top-color: var(--btn-background-theme-color);
     position: absolute;
-    top: -40px;
+    bottom: -2.5em;
     left: 2.5em;
     transform: translateX(-50%);
 </style>

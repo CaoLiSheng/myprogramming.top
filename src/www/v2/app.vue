@@ -19,7 +19,6 @@ export default class App extends Vue {}
   margin: 0;
 body
   background: var(--theme-color);
-  --header-theme-color: gray;
 body[theme='Light']
   --theme-color: white;
   --secondary-theme-color: rgb(246, 248, 250);
