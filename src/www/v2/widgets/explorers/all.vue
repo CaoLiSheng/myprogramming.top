@@ -71,15 +71,12 @@ export default class AllComponent extends Vue.extend({
     return this.$data.db.metas[name];
   }
 
-  onChange(ev: ChangeEvent) {
+  _onChangeDelayed(query: string) {
     if (null !== _RefreshTimmer) clearTimeout(_RefreshTimmer);
     this.$data.refresh = false;
 
-    const query = (ev.target as HTMLInputElement).value || this.$props.query;
-
     _RefreshTimmer = setTimeout(
       (query: string) => {
-        // this.$data.dynamicQuery = query;
         this.$data.refresh = true;
 
         const curR = this.$router.currentRoute;
@@ -92,10 +89,13 @@ export default class AllComponent extends Vue.extend({
     );
   }
 
+  onChange(ev: ChangeEvent) {
+    const query = (ev.target as HTMLInputElement).value || this.$props.query;
+    this._onChangeDelayed(query);
+  }
+
   onClear() {
-    const curR = this.$router.currentRoute;
-    if (curR.name === "AllComponent" && curR.params["query"] === "*") return;
-    this.$router.replace({ name: "AllComponent", params: { query: "*" } });
+    this._onChangeDelayed("*");
   }
 
   async mounted() {
