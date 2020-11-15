@@ -1,41 +1,41 @@
 <template lang="pug">
 .bar
-  router-link.explorer(
-    title="浏览全部",
-    :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
-  )
-    .hoverable.icon-wrapper
-      AllIcon
-  router-link.explorer(
-    title="按日历浏览",
-    :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
-  )
-    .hoverable.icon-wrapper(
-      @mouseover="showPopup",
-      @mouseleave="inDevPopupVisibility = false",
-      @click="$event.preventDefault()"
-    )
-      CanlendarIcon
-  router-link.explorer(
-    title="按标签浏览",
-    :to="{ name: 'TagsComponent', params: { query: '*', page: 1 } }"
-  )
-    .hoverable.icon-wrapper(
-      @mouseover="showPopup",
-      @mouseleave="inDevPopupVisibility = false",
-      @click="$event.preventDefault()"
-    )
-      TagsIcon
+  //- router-link.explorer(
+  //-   title="浏览全部",
+  //-   :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
+  //- )
+  //-   .hoverable.icon-wrapper
+  //-     AllIcon
+  //- router-link.explorer(
+  //-   title="按日历浏览",
+  //-   :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
+  //- )
+  //-   .hoverable.icon-wrapper(
+  //-     @mouseover="showPopup",
+  //-     @mouseleave="inDevPopupVisibility = false",
+  //-     @click="$event.preventDefault()"
+  //-   )
+  //-     CanlendarIcon
+  //- router-link.explorer(
+  //-   title="按标签浏览",
+  //-   :to="{ name: 'TagsComponent', params: { query: '*', page: 1 } }"
+  //- )
+  //-   .hoverable.icon-wrapper(
+  //-     @mouseover="showPopup",
+  //-     @mouseleave="inDevPopupVisibility = false",
+  //-     @click="$event.preventDefault()"
+  //-   )
+  //-     TagsIcon
   .change-theme.icon-wrapper(title="切换主题", @click="changeTheme")
     ThemeIcon
   .home.icon-wrapper(title="首页", @click="goToHomePage")
     HomeIcon
-  portal(to="in-dev-portal")
-    .in-dev-popup(
-      v-show="inDevPopupVisibility",
-      :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
-    )
-      .content 开发中...
+  //- portal(to="in-dev-portal")
+  //-   .in-dev-popup(
+  //-     v-show="inDevPopupVisibility",
+  //-     :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
+  //-   )
+  //-     .content 开发中...
 </template>
 
 <script lang="ts">

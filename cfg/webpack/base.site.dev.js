@@ -11,6 +11,8 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), 'dist'),
     publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
   },
   plugins: [
     // new wba.BundleAnalyzerPlugin(),

@@ -6,19 +6,6 @@ const base = require('./base.babel');
 
 module.exports = merge(base, {
   target: 'web',
-  output: {
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js',
-  },
-  module: {
-    rules: [
-      {
-        test: /(\.s?css$|\/css\?.*)/,
-        include: [path.join(process.cwd(), 'src')],
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-    ],
-  },
   optimization: {
     splitChunks: {
       chunks: 'async',

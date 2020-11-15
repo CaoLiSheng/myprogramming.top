@@ -6,11 +6,11 @@ import '@www/utils/rem';
 import '@www/utils/vh100';
 
 import Vue from 'vue';
-import PortalVue from 'portal-vue';
+// import PortalVue from 'portal-vue';
 import App from './app.vue';
 import router from './router';
 
-Vue.use(PortalVue);
+// Vue.use(PortalVue);
 
 new Vue({
   el: '#app',

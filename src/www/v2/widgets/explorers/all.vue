@@ -2,12 +2,7 @@
 .r
   .header
     h6 {{ header }}
-  search-field(
-    height="0.8rem",
-    fontSize="0.2rem",
-    :onClear="onClear",
-    :onChange="onChange"
-  )
+  search-field(:onClear="onClear", :onChange="onChange")
   .links(v-if="ui.menuOpened && refresh")
     in-site-link(
       v-for="(post, idx) in posts",
@@ -51,7 +46,7 @@ export default class AllComponent extends Vue.extend({
     if ("*" === query) {
       return "全部文章都在这里咯……";
     } else {
-      return `搜索标题“${query}”……`;
+      return `搜索关键词“${query}”……`;
     }
   }
 
@@ -116,11 +111,13 @@ export default class AllComponent extends Vue.extend({
     border-bottom: solid 0.01rem gray;
     background: var(--secondary-theme-color);
     h6
-      font-size: 0.18rem;
-      line-height: 0.3rem;
+      font-size: 0.2rem;
+      line-height: 0.5rem;
       color: var(--btn-foreground-theme-color);
+      @media screen and (max-width: 750px)
+        font-size: 0.36rem;
   .links
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: calc(100% - 0.3rem - 0.8rem);
+    max-height: calc(100% - 0.5rem - 0.8rem);
 </style>  

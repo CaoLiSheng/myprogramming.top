@@ -1,7 +1,7 @@
 ---
 style: github-colors
 title: 「里程碑-2020-1.2」博客 V2.0
-date: 2020-11-13
+date: 2020-11-15
 tags:
   - 博客
   - 里程碑
@@ -70,6 +70,14 @@ body[theme='Dark']
 ```
 
 使用以上模板，既渲染了 markdown 生成的代码，又让用户无感知地传递到了 Vue.js 组件中。
+
+## webpack
+
+开发配置总是那么的重要（迷一样的复杂）。此次 V2.0 因为要做静态化，最开始使用 watch 生成模板；很快暴露出问题，vue 项目所打包的文件越来越多，实际有用的是最新打包出来的那份，然而在调用 generator 时全部拷贝到 http serve 目录，导致 generate 这一步越来越慢，最后慢到秒级、十秒级。
+
+这个问题本来是寄希望于一个叫做 CleanWebpackPlugin 的，但是没有卵用，反而把 HtmlTemplatePlugin 生成的 index.html 给干掉了。上网搜了搜，原来是 HtmlTemplatePlugin 默认有缓存，不能在 CleanWebpackPlugin 运作时被识别到，加上 `cache: false` 配置后就好了。然而，如此配置依然没有解决最初的问题，只好把 output 下的文件统统不带 hash 命名；反正开发时各种 `强制刷新` 且 `禁用缓存`，所以影响不大。
+
+最后，我把 watch 模式 换成使用 webpack-dev-server，在 devServer 中配置 writeToDisk 写入 output 目录。
 
 ## 同系列文章
 
