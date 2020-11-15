@@ -19,6 +19,7 @@ module.exports = merge(base, dev, {
       filename: './index.html',
       title: '又心真人的博客',
       chunks: ['app'],
+      cache: false,
     }),
   ],
 });

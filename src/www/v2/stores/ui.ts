@@ -3,6 +3,7 @@ import { clickIn } from '@www/utils/dom';
 export const ui = {
   state: {
     menuOpened: true,
+    menuVisible: false,
   },
   private: {
     handleMenuClose: (ev: MouseEvent) => {},
@@ -23,5 +24,8 @@ export const ui = {
   },
   closeMenu() {
     this.state.menuOpened = false;
+  },
+  setVisible(v: boolean) {
+    this.state.menuVisible = v;
   },
 };

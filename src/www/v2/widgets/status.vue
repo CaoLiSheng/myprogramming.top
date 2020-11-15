@@ -26,7 +26,10 @@ export default class StatusComponent extends Vue {
     this.sideRoot = document.getElementById("side");
     this.barRoot = document.getElementById("bar");
 
-    setTimeout(ui.closeMenu.bind(ui), 1000);
+    setTimeout(() => {
+      ui.setVisible(true);
+      setTimeout(ui.closeMenu.bind(ui), 1000);
+    }, 500);
   }
 }
 </script>

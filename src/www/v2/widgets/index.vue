@@ -1,14 +1,14 @@
 <template lang="pug">
 .r
   .row-wrapper
-    #side(:class="{ opened: ui.menuOpened }")
-      router-view
     #main(v-once, v-html="article")
+    #side(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
+      router-view
   .row-wrapper
-    #bar(:class="{ opened: ui.menuOpened }")
-      Bar
     #status
       Status
+    #bar(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
+      Bar
 </template>
 
 <script lang="ts">
@@ -39,7 +39,7 @@ export default class IndexComponent extends Vue {
 .row-wrapper
   width: 100vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   position: relative;
   &:first-child
     height: calc(100vh - 0.5rem);
@@ -67,15 +67,17 @@ export default class IndexComponent extends Vue {
     @media screen and (max-width: 750px)
       max-width: 80%;
       position: absolute;
-      z-index: 1;
       top: 0;
       bottom: 0;
       left: 0;
-      transform: translateX(-100%);
-      transition: transform ease-in-out 200ms, box-shadow linear 500ms;
-      &.opened
-        transform: translateX(0);
-        box-shadow: 0.1rem 0.5rem 0.5rem var(--contrast-theme-color);
+      visibility: hidden;
+      transform: translateX(0);
+      box-shadow: 0.1rem 0.5rem 0.5rem var(--contrast-theme-color);
+      transition: transform ease-in-out 500ms, box-shadow linear 500ms;
+      &.visible
+        visibility: visible;
+      &.hidden
+        transform: translateX(-200%);
   #main, #status
     flex: 1;
     height: 100%;
