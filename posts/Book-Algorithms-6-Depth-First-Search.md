@@ -98,6 +98,8 @@ def IsAcyclic(G):
   return True
 ```
 
+`O(V + E)`
+
 ## 拓扑排序
 
 > 每个 dag 都有一个拓扑顺序，把其任一后续遍历反序排列就是一个拓扑顺序。

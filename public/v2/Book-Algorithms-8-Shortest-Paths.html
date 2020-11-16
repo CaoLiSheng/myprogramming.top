@@ -1,1 +1,126 @@
-<!doctype html><html lang="cn-zh"><head><meta charset="UTF-8"/><meta http-equiv="pragma" content="no-cache"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta name="viewport" content="user-scalable=0,width=device-width,initial-scale=1"><title>读书笔记之《Algorithms》8</title><script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script><link rel="stylesheet" href="antique.b61036fa75.css"/></head><body><div id="article" style="display:none;"><article class="markdown-body"><h1>读书笔记之《Algorithms》8</h1><h6 class="date-tag"><code> ~~ 更新于 -> 2020-11-16</code></h6><blockquote><p>Shortest Paths（最短路径）</p></blockquote><h2 id="书中的典型案例">书中的典型案例</h2><p>（陆续完善……）</p><h2 id="书中习题">书中习题</h2><p>（陆续完善……）</p><h2 id="同一本书的文章集">同一本书的文章集</h2><ol start="0"><li><a href="post:Book-Algorithms-0-Preface-&-Introduction">Preface-&-Introduction</a></li><li><a href="post:Book-Algorithms-1-Recursion">Recursion</a></li><li><a href="post:Book-Algorithms-2-Backtracking">Backtracking</a></li><li><a href="post:Book-Algorithms-3-Dynamic-Programming">Dynamic Programming</a></li><li><a href="post:Book-Algorithms-4-Greedy-Algorithms">Greedy Algorithms</a></li><li><a href="post:Book-Algorithms-5-Basic-Graph-Algorithms">Basic Graph Algorithms</a></li><li><a href="post:Book-Algorithms-6-Depth-First-Search">Depth-First Search</a></li><li><a href="post:Book-Algorithms-7-Minimum-Spanning-Trees">Minimum Spanning Trees</a></li><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Algorithms》8」">发邮件~来评价~一下吧</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script>var temp = document.getElementById('article'); window.ARTICLE = temp.innerHTML; document.body.removeChild(temp);</script><div id="app"></div><script src="./app~31ecd969.2c67ac8ded0feeb53916.js"></script><script src="./app~55ff73d6.2c67ac8ded0feeb53916.js"></script></body></html>
+<!doctype html><html lang="cn-zh"><head><meta charset="UTF-8"/><meta http-equiv="pragma" content="no-cache"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta name="viewport" content="user-scalable=0,width=device-width,initial-scale=1"><title>读书笔记之《Algorithms》8</title><script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script><link rel="stylesheet" href="antique.cb3189d36f.css"/></head><body><div id="article" style="display:none;"><article class="markdown-body"><h1>读书笔记之《Algorithms》8</h1><h6 class="date-tag"><code> ~~ 更新于 -> 2020-11-16</code></h6><blockquote><p>Shortest Paths（最短路径）</p></blockquote><h2 id="定义">定义</h2><p>给定一<strong>有向加权图</strong>，节点 s 到节点 t 的最短路径 P，满足 <code>w(P)=sum({w(u-&gt;v) | u-&gt;v in P})</code>。</p><h2 id="名词解释">名词解释</h2><ul><li>SSSP：（Single Source Shortest Path）单起点最短路径</li><li>SPT：（Shortest Path Tree）对短路径树</li></ul><table><thead><tr><th style="text-align:center;">对比</th><th style="text-align:center;">SPT</th><th style="text-align:center;">MST</th></tr></thead><tbody><tr><td style="text-align:center;">树的形态</td><td style="text-align:center;">有向的，有根节点的</td><td style="text-align:center;">无向的，没有根节点的</td></tr><tr><td style="text-align:center;">适合的场景</td><td style="text-align:center;">天然适合有向图</td><td style="text-align:center;">天然适合无向图</td></tr><tr><td style="text-align:center;">唯一性</td><td style="text-align:center;">起点不同产生的 SPT 就不同</td><td style="text-align:center;">假如各边权重唯一，MST 就是唯一的</td></tr></tbody></table><h2 id="模板（ford’s-generic-relaxation-algorithm）">模板（Ford’s generic relaxation algorithm）</h2><p>图中每个节点有两个属性</p><ul><li>.dist：当前 <code>s~&gt;v</code> 的最短路径<strong>长度</strong></li><li>.prev：当前 <code>s~&gt;v</code> 的最短路径上 v 的前继<strong>节点</strong></li></ul><p><code>u-&gt;v</code> 的 tense 状态：<code>u.dist + w(u-&gt;v) &lt; v.dist</code>。</p><pre><code class="python language-python">def InitSSSP(s):
+  s.dist = 0
+  s.pred = None
+  for all vertices v != s:
+    v.dist = Infinity
+    v.pred = None
+
+def Relax(u-&gt;v):
+  v.dist = u.dist + w(u-&gt;v)
+  v.pred = u
+
+def FordSSSP(s):
+  InitSSSP(s)
+  while there is at least one tense edge:
+    Relax any tense edge
+</code></pre><h2 id="广度优先算法（解-_无权图_-最短路径问题）">广度优先算法（解 <em>无权图</em> 最短路径问题）</h2><pre><code class="python language-python">def BFS(s):
+  InitSSSP(s)
+  Push(s) # 1
+  while the queue is not empty:
+    u = Pull() #2
+    for all edges u-&gt;v:
+      if v.dist &gt; u.dist + 1: # 5
+        v.dist = u.dist + 1 # 3
+        v.pred = u # 4
+        Push(v) # 1
+</code></pre><p>以上 <code>语句 1、2、3、4</code> 对于每个节点至多执行一次，<code>语句 5</code> 对于每条边至多执行一次。所以，算法的时间复杂度为 <code>O(V + E)</code>。</p><h2 id="深度优先（拓扑顺序）算法（解-_dag_-最短路径问题）">深度优先（拓扑顺序）算法（解 <em>DAG</em> 最短路径问题）</h2><p>递归式：</p><p>dist(v) = min({dist(u) + w(u-&gt;v)|u-&gt;v in DAG})</p><p><code>BASE CASE</code>：dist(s) = 0。</p><p>根据<a href="post:Book-Algorithms-3-Dynamic-Programming">第三章</a>和<a href="post:Book-Algorithms-6-Depth-First-Search">第六章</a>的知识，节点 v 要么是节点 s 无法抵达的，要么<code>s~&gt;v</code>中各节点顺序同 DAG 的拓扑排序。</p><pre><code class="python language-python">def DagSSSP(s):
+  InitSSSP(s)
+  for all vertices v in topological order:
+    for all edges u-&gt;v:
+      if v.dist &gt; u.dist + w(u-&gt;v):
+        v.dist = u.dist + w(u-&gt;v)
+</code></pre><p>以上，称为 Pull 式，所以，还有个变种，Push 式：</p><pre><code class="python language-python">def PushDagSSSP(s):
+  InitSSSP(s)
+  for all vertices u in topological order:
+    for all outgoing edges u-&gt;v:
+      if v.dist &gt; u.dist + w(u-&gt;v):
+        v.dist = u.dist + w(u-&gt;v)
+</code></pre><h2 id="最优优先算法（dijkstra’s-algorithm，解-_加权图_-最短路径问题）">最优优先算法（Dijkstra’s Algorithm，解 <em>加权图</em> 最短路径问题）</h2><pre><code class="python language-python">def NonnegativeDijkstra(s):
+  InitSSSP(s)
+  for all vertices v:
+    Insert(v, v.dist)
+  while the priority queue is not empty:
+    u = ExtractMin()
+    for all edges u-&gt;v:
+      if u-&gt;v is tense:
+        Relax(u-&gt;v) # Relaxation
+        DecreaseKey(v, v.dist)
+</code></pre><p>以上算法严格遵守每个节点仅入队一次的规则，假如权重出现负数，同一节点就可能多次入队，且意味着多次 Relaxation 调用：</p><pre><code class="python language-python">def Dijkstra(s):
+  InitSSSP(s)
+  Insert(s, 0)
+  while the priority queue is not empty:
+    u = ExtractMin()
+    for all edges u-&gt;v:
+      if u-&gt;v is tense:
+        Relax(u-&gt;v) # Relaxation
+        if v is in the priority queue:
+          DecreaseKey(v, v.dist)
+        else:
+          Insert(v, v.dist)
+</code></pre><h2 id="最大限度-relaxations-算法（relax-all-the-edges）">最大限度 Relaxations 算法（Relax ALL the Edges）</h2><pre><code class="python language-python">def BellmanFord(s):
+  InitSSSP(s)
+  repeat V-1 times:
+    for every edge u-&gt;v:
+      if u-&gt;v is tense:
+        Relax(u-&gt;v) # Relaxation
+  for every edge u-&gt;v:
+    if u-&gt;v is tense:
+      return "Negative cycle!"
+</code></pre><p>以上算法实际上是从一个动态规划算法一步步简化来的：</p><pre><code class="python language-python">def BellmanFordDP0(s):
+  dist[0,s] = 0
+  for every vertex v != s:
+    dist[0,v] = Infinity
+  for i in range(1, V-1):
+    for every vertex v:
+      dist[i,v] = dist[i-1,v]
+      for every edge u-&gt;v:
+        if dist[i,v] &gt; dist[i-1,v] + w(u-&gt;v): # consider one edges
+          dist[i,v] = dist[i-1,v] + w(u-&gt;v)
+</code></pre><p>以上算法中 <code>语句 consider one edges</code> 实际上运行了 E 次，所以最内层 for 循环可以整体外移一层。即：</p><pre><code class="python language-python">def BellmanFordDP1(s):
+  dist[0,s] = 0
+  for every vertex v != s:
+    dist[0,v] = Infinity
+  for i in range(1, V-1):
+    for every vertex v:
+      dist[i,v] = dist[i-1,v]
+    for every edge u-&gt;v:
+      if dist[i,v] &gt; dist[i-1,v] + w(u-&gt;v): # consider one edge
+        dist[i,v] = dist[i-1,v] + w(u-&gt;v)
+</code></pre><p>以上算法中 <code>语句 consider one edges</code> 里 <code>dist[i-1,v]</code> 在循环开始前已经复制给了 <code>dist[i,v]</code>，所以可以直接使用。即：</p><pre><code class="python language-python">def BellmanFordDP2(s):
+  dist[0,s] = 0
+  for every vertex v != s:
+    dist[0,v] = Infinity
+  for i in range(1, V-1):
+    for every vertex v:
+      dist[i,v] = dist[i-1,v] # consider this copy
+    for every edge u-&gt;v:
+      if dist[i,v] &gt; dist[i,v] + w(u-&gt;v):
+        dist[i,v] = dist[i,v] + w(u-&gt;v)
+</code></pre><p>以上算法中 <code>语句 consider this copy</code> 实质上说明，可以用一维数组代替当前的二维表格。即</p><pre><code class="python language-python">def BellmanFordDP3(s):
+  dist[s] = 0
+  for every vertex v != s:
+    dist[v] = Infinity
+  for i in range(1, V-1):
+    for every edge u-&gt;v:
+      if dist[v] &gt; dist[v] + w(u-&gt;v):
+        dist[v] = dist[v] + w(u-&gt;v)
+</code></pre><p>最终就如同 <code>BellmanFord</code> 了。</p><p>由于以上算法在暴力检查每一条边是否 tense 的低效，Moore 基于队列做了优化：</p><pre><code class="python language-python">def Moore(s):
+  InitSSSP(s)
+  Push(s)
+  Push(*)
+  count = 0
+  while the queue contains at least one vertex:
+    u = Pull()
+    if u == *:
+      count += 1
+      Push(*)
+    else:
+      for all edges u-&gt;v:
+        if u-&gt;v is tense:
+          if count &gt;= V-1:
+            return "Negative cycle!"
+          else:
+            Relax(u-&gt;v)
+            if v is not already in the queue:
+              Push(v)
+</code></pre><h2 id="书中的典型案例">书中的典型案例</h2><ul><li><a href="scroll-to:广度优先算法（解-_无权图_-最短路径问题）">无权图 最短路径问题</a></li><li><a href="scroll-to:深度优先（拓扑顺序）算法（解-_dag_-最短路径问题）">有向无环加权图 最短路径问题</a></li><li><a href="scroll-to:最优优先算法（dijkstra’s-algorithm，解-_加权图_-最短路径问题）">加权图 最短路径问题 使用优先队列</a></li><li><a href="scroll-to:最大限度-relaxations-算法（relax-all-the-edges）">加权图 最短路径问题 最大限度 Relaxations</a></li></ul><p>（陆续完善……）</p><h2 id="书中习题">书中习题</h2><p>（陆续完善……）</p><h2 id="同一本书的文章集">同一本书的文章集</h2><ol start="0"><li><a href="post:Book-Algorithms-0-Preface-&-Introduction">Preface-&-Introduction</a></li><li><a href="post:Book-Algorithms-1-Recursion">Recursion</a></li><li><a href="post:Book-Algorithms-2-Backtracking">Backtracking</a></li><li><a href="post:Book-Algorithms-3-Dynamic-Programming">Dynamic Programming</a></li><li><a href="post:Book-Algorithms-4-Greedy-Algorithms">Greedy Algorithms</a></li><li><a href="post:Book-Algorithms-5-Basic-Graph-Algorithms">Basic Graph Algorithms</a></li><li><a href="post:Book-Algorithms-6-Depth-First-Search">Depth-First Search</a></li><li><a href="post:Book-Algorithms-7-Minimum-Spanning-Trees">Minimum Spanning Trees</a></li><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Algorithms》8」">发邮件~来评价~一下吧</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script>var temp = document.getElementById('article'); window.ARTICLE = temp.innerHTML; document.body.removeChild(temp);</script><div id="app"></div><script src="./app~31ecd969.87e78d61492612894ac9.js"></script><script src="./app~55ff73d6.87e78d61492612894ac9.js"></script></body></html>

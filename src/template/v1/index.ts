@@ -1,4 +1,5 @@
 import '@audios/click';
+import extendTables from '@www/utils/table';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
 declare var __origin__: string;
@@ -111,25 +112,4 @@ function extendAnchor(anchor: HTMLAnchorElement) {
 document.querySelectorAll('a').forEach(extendAnchor);
 
 // support table on mobile
-function collectThData(thData: string[], elem: Element, i: number) {
-  if (i === 0) {
-    elem.classList.add('main');
-  } else {
-    thData[i] = elem.textContent ? (elem.textContent as string) : '';
-  }
-}
-function bindThData(thData: string, tRow: Element) {
-  const children = tRow.children;
-  for (let i = 1; i < children.length; i++) {
-    children[i].setAttribute('data-th', thData[i]);
-  }
-}
-function extendTable(table: HTMLTableElement) {
-  const thData: string[] = [];
-  table
-    .querySelectorAll('thead > tr > th')
-    .forEach(collectThData.bind(null, thData));
-  table.querySelectorAll('tbody > tr').forEach(bindThData.bind(null, thData));
-}
-
-document.querySelectorAll('.markdown-body table').forEach(extendTable);
+extendTables();
