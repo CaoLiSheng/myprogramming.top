@@ -7,6 +7,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import { isMobileSize } from "@www/utils/rem";
 import { ui } from "@vStores/index";
 
 @Component
@@ -21,7 +22,7 @@ export default class StatusComponent extends Vue {
   }
 
   mounted() {
-    if (window.screen.availWidth > 750) return;
+    if (!isMobileSize().result) return;
 
     this.sideRoot = document.getElementById("side");
     this.barRoot = document.getElementById("bar");
@@ -39,6 +40,8 @@ export default class StatusComponent extends Vue {
   height: 100%;
   a
     &.btn
+      cursor: pointer;
+      user-select: none;
       display: inline-block;
       height: 100%;
       padding: 0 1em;

@@ -14,12 +14,6 @@
     format('woff');
 }
 
-@font-face {
-  font-family: 'HanBiaoBangYangMaoBiPinYin';
-  src: url(/* reources_dir */fonts/HanBiaoBangYangMaoBiPinYin-2.ttf)
-    format('truetype');
-}
-
 .markdown-body {
   --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
@@ -266,10 +260,10 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: Varela, HanBiaoBangYangMaoBiPinYin, system-ui, sans-serif;
+  font-family: Varela, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 30px;
-  line-height: 1.1em;
+  font-size: 18px;
+  line-height: 1.3em;
 }
 
 .markdown-body h1,
@@ -278,8 +272,8 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-family: Quattrocento, HanBiaoBangYangMaoBiPinYin, system-ui, serif;
-  line-height: 1.1em;
+  font-family: Quattrocento, system-ui, serif;
+  line-height: 1.5em;
 }
 
 .markdown-body blockquote {
@@ -287,7 +281,7 @@ body[theme='Dark'] .markdown-body {
   border-right: none;
   border-left: none;
   color: var(--blockquote-foreground-article-color);
-  font-family: Quattrocento, HanBiaoBangYangMaoBiPinYin, system-ui, serif;
+  font-family: Quattrocento, system-ui, serif;
   margin-top: 25px;
 }
 
@@ -342,7 +336,7 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body table thead th,
 .markdown-body table thead td {
-  font-family: Quattrocento, HanBiaoBangYangMaoBiPinYin, system-ui, serif;
+  font-family: Quattrocento, system-ui, serif;
   padding-top: 7px;
 }
 .markdown-body table tfoot th,

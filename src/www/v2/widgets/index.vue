@@ -71,23 +71,19 @@ export default class IndexComponent extends Vue {
       max-width: 4.5rem;
     @media screen and (max-width: 750px)
       max-width: 80%;
+      visibility: hidden;
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
-      visibility: hidden;
+      z-index: 1;
+      box-shadow: 0.1rem 0.5rem 0.5rem var(--contrast-theme-color);
       transform: translateX(0);
       transition: transform ease-in-out 500ms, box-shadow linear 500ms;
       &.visible
         visibility: visible;
       &.hidden
         transform: translateX(-125%);
-  #side
-    @media screen and (max-width: 750px)
-      box-shadow: 0.1rem 0.5rem 0.5rem var(--contrast-theme-color);
-  #bar
-    @media screen and (max-width: 750px)
-      box-shadow: 0.2rem 0 0.4rem -0.1rem var(--contrast-theme-color);
   #main, #status
     flex: 1;
     height: 100%;
