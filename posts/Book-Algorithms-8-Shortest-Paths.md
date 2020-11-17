@@ -253,3 +253,7 @@ def Moore(s):
 1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
 1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)
 1. [回到开头](scroll-to-the-very-top)
+1. [All-Pairs Shortest Paths](post:Book-Algorithms-9-All-Pairs-Shortest-Paths)
+1. [Maximum Flows & Minimum Cuts](post:Book-Algorithms-10-Maximum-Flows-&-Minimum-Cuts)
+1. [Applications of Flows and Cuts](post:Book-Algorithms-11-Applications-of-Flows-and-Cuts)
+1. [NP-Hardness](post:Book-Algorithms-12-NP-Hardness)

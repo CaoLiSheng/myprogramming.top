@@ -36,6 +36,7 @@ form
       height: 75%;
   a
     flex-basis: 3em;
+    cursor: pointer;
     font-weight: bold;
     text-align: center;
     @media (hover: hover)
