@@ -8,7 +8,11 @@ tags:
   - 算法
 ---
 
-> Maximum Flows & Minimum Cuts（）
+> Maximum Flows & Minimum Cuts（最大流量和最小代价截流）
+
+## 定义
+
+### 流量
 
 ## 书中的典型案例
 

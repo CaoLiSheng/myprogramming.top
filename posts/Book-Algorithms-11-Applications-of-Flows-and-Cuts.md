@@ -8,7 +8,7 @@ tags:
   - 算法
 ---
 
-> Applications of Flows and Cuts（）
+> Applications of Flows and Cuts（流量和截流的应用）
 
 ## 书中的典型案例
 

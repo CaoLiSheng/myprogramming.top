@@ -6,6 +6,18 @@
   *     --a-hover-foregrounnd-article-color
   */
 /* 以下：全局预设 */
+dl dl,
+dl ol,
+dl ul,
+ol dl,
+ul dl,
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin: 2em;
+}
+
 .markdown-body h6.date-tag {
   text-align: right;
 }
