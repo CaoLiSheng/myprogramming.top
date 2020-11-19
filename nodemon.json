@@ -8,5 +8,5 @@
     "src/template/v1/index.html"
   ],
   "ext": "*",
-  "delay": "4268"
+  "delay": "3000"
 }

@@ -12,7 +12,7 @@ tags:
 | :---------------------------------------------------------------------: | :---------------: | :--: | ------------------: | :------------------ |
 |                    零基础 Blender2.8 黑铁骑士入门篇                     |  只剩一瓶辣椒酱   | B 站 | 2020 年 08 月 21 日 | -                   |
 |                 HTML and CSS Design and Build Websites                  |    Jon Duckett    | 图书 | 2020 年 08 月 28 日 | 2020 年 09 月 21 日 |
-| Algorithms[〔主页〕](http://jeffe.cs.illinois.edu/teaching/algorithms/) |   Jeff Erickson   | 图书 | 2020 年 09 月 01 日 | -                   |
+| Algorithms[〔主页〕](http://jeffe.cs.illinois.edu/teaching/algorithms/) |   Jeff Erickson   | 图书 | 2020 年 09 月 01 日 | 2020 年 11 月 20 日 |
 |                 不止代码（工程师必备-职业发展黄金手册）                 |   阿里巴巴集团    | 图书 | 2020 年 09 月 22 日 | 2020 年 09 月 27 日 |
 |                        Blender2.9 修炼之路入门篇                        |   华帅 Blender    | B 站 | 2020 年 10 月 02 日 | 2020 年 10 月 04 日 |
 |              Unity 着色器和屏幕特效开发秘笈（原书第 2 版）              | 〔英〕艾伦·朱科尼 | 图书 | 2020 年 10 月 09 日 | -                   |

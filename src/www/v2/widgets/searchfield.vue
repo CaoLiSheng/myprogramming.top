@@ -1,7 +1,12 @@
 <template lang="pug">
 form(action="", method="")
-  a(@click="$event.preventDefault(); onClear()") 清空
-  input(type="text", placeholder="输入关键字搜索", @input="onChange($event)")
+  a(@click="$event.preventDefault(); clear()") 清空
+  input(
+    ref="query",
+    type="text",
+    placeholder="输入关键字搜索",
+    @input="onChange($event)"
+  )
 </template>
 
 <script lang="ts">
@@ -9,6 +14,12 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: ["onChange", "onClear"],
+  methods: {
+    clear() {
+      (this.$refs.query as HTMLInputElement).value = "";
+      this.onClear();
+    },
+  },
 });
 </script>
 
