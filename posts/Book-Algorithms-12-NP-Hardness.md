@@ -1,14 +1,14 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》12
-date: 2020-11-20
+date: 2020-11-23
 tags:
   - 读书
   - 笔记
   - 算法
 ---
 
-> NP-Hardness（NP-难问题）
+> NP-Hardness（NP 一族问题）
 
 ## 书中的典型案例
 

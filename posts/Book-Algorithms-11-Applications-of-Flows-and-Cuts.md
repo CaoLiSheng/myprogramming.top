@@ -1,16 +1,26 @@
 ---
 style: antique
 title: 读书笔记之《Algorithms》11
-date: 2020-11-19
+date: 2020-11-22
 tags:
   - 读书
   - 笔记
   - 算法
 ---
 
-> Applications of Flows and Cuts（流量和截流的应用）
+> Applications of Flows and Cuts（流量和切割的应用）
+
+## 新概念
+
+不相交边路径，不相交点路径，点的容量，路径覆盖，不相交路径覆盖
 
 ## 书中的典型案例
+
+- Bipartite Matching（更具一般性的是 Tuple Selection，作者 Jeff 起的名字）
+- 考试安排
+- 课程安排
+- 联赛中提前被淘汰的队伍
+- 项目选择
 
 （陆续完善……）
 
