@@ -10,7 +10,25 @@ tags:
 
 > NP-Hardness（NP 一族问题）
 
+## decision problem
+
+原来这最后一章*只针对决策问题*，书中第一个例子是给定二极管电路，计算能最终让灯亮起来的输入。
+
+- P
+- NP
+- co-NP
+- NP-Hard
+- NP-Complete
+
+NP 问题，只能快速验证给定的解，不能求出所有正确的解。
+
+![时下公认的分布1](Algorithms-12-NP-Hardness/what-we-believe-now-1.png '=180px-')
+
+![时下公认的分布2](Algorithms-12-NP-Hardness/what-we-believe-now-2.png '=220px-')
+
 ## 书中的典型案例
+
+- circuit satisfiability
 
 （陆续完善……）
 
