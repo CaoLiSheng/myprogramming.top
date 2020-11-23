@@ -10,6 +10,15 @@ export const distinctReduce = (p: string[], v: string[]): string[] => [
   ...v.filter((np: string) => p.every((pp: string) => np !== pp)),
 ];
 
+export const intersectingReduce = (
+  p: string[],
+  v: string[],
+  idx: number
+): string[] =>
+  idx === 0
+    ? v
+    : [...p.filter((np: string) => v.some((nv: string) => np === nv))];
+
 interface Sortable {
   s: string;
   date: Moment.Moment;

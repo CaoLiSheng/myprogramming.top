@@ -1,12 +1,57 @@
-import { Schema, EmptySchema } from '@common/index';
+import {
+  Schema,
+  EmptySchema,
+  distinctReduce,
+  dateSortDesc,
+  intersectingReduce,
+} from '@common/index';
+
+interface dbState {
+  refresh: boolean;
+  allTags: string[];
+}
+
+const EmptyDbState: dbState = {
+  refresh: false,
+  allTags: [],
+};
 
 export const db = {
-  state: EmptySchema,
+  state: EmptyDbState,
+  data: EmptySchema,
   update(data: Schema) {
     Object.keys(data).forEach((key: string) => {
-      this.state[key] = data[key];
+      this.data[key] = data[key];
     });
-    // console.log('Updated', JSON.stringify(data));
+    this.state.allTags = Object.keys(data.tagCategories);
+    this.state.refresh = true;
+  },
+  filterByKW(kw: string) {
+    if ('*' === kw) {
+      return this.data.sortedPosts;
+    }
+
+    return (this.data.sortedPosts || []).filter((p: string) => {
+      const meta = this.data.metas[p];
+      if (meta.title.indexOf(kw) >= 0) return true;
+      if (meta.tags.some((t: string) => t.indexOf(kw) >= 0)) return true;
+      return false;
+    });
+  },
+  filterByTags(tags: string[]) {
+    const unSorted = tags
+      .map((t: string) => this.data.tagCategories[t])
+      .reduce(intersectingReduce, []);
+
+    const extendable = [
+      ...unSorted.map((p: string) => this.data.metas[p].tags),
+      tags,
+    ].reduce(distinctReduce, []);
+
+    return {
+      extendable,
+      posts: dateSortDesc(unSorted, this.data.metas),
+    };
   },
 };
 

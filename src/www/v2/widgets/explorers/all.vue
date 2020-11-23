@@ -1,7 +1,7 @@
 <template lang="pug">
 .r
   e-header(:text="header")
-  search-field(:onClear="onClear", :onChange="onChange")
+  search-field(:onClear="onClear", :onInput="onInput")
   in-site-links(
     height="calc(100% - 0.5rem - 0.8rem)",
     :refresh="refresh",
@@ -17,8 +17,7 @@ import header from "@vWidgets/explorers/header.vue";
 import inSiteLinks from "@vWidgets/explorers/insitelinks.vue";
 import searchfield from "@vWidgets/explorers/searchfield.vue";
 
-import { db, initOnce, ui } from "@vStores/index";
-import { ChangeEvent } from "react";
+import { db, initOnce } from "@vStores/index";
 
 let _RefreshTimmer: NodeJS.Timeout | null = null;
 
@@ -33,11 +32,7 @@ export default class AllComponent extends Vue.extend({
   props: ["query"],
 }) {
   data() {
-    return {
-      db: db.state,
-      ui: ui.state,
-      refresh: true,
-    };
+    return { db: db.state, refresh: true };
   }
 
   get header() {
@@ -51,18 +46,8 @@ export default class AllComponent extends Vue.extend({
   }
 
   get posts() {
-    const query = this.query;
-
-    if ("*" === query) {
-      return this.$data.db.sortedPosts;
-    }
-
-    return (this.$data.db.sortedPosts || []).filter((p: string) => {
-      const meta = this.$data.db.metas[p];
-      if (meta.title.indexOf(query) >= 0) return true;
-      if (meta.tags.some((t: string) => t.indexOf(query) >= 0)) return true;
-      return false;
-    });
+    if (!this.$data.db.refresh) return [];
+    return db.filterByKW(this.query);
   }
 
   _onChangeDelayed(query: string) {
@@ -83,8 +68,9 @@ export default class AllComponent extends Vue.extend({
     );
   }
 
-  onChange(ev: ChangeEvent) {
-    const query = (ev.target as HTMLInputElement).value || this.$props.query;
+  onInput(ev: InputEvent) {
+    const input = ev.target as HTMLInputElement;
+    const query = input.value || "*";
     this._onChangeDelayed(query);
   }
 

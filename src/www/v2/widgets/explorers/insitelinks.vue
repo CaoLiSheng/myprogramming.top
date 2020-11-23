@@ -1,5 +1,5 @@
 <template lang="pug">
-.links(v-if="ui.menuOpened && refresh", :style="{ maxHeight: height }")
+.links(v-if="ui.menuOpened && refresh", :style="{ height: height }")
   in-site-link(
     v-for="(name, idx) in posts",
     :key="name",
@@ -22,11 +22,11 @@ export default class InSiteLinks extends Vue.extend({
   props: ["refresh", "posts", "height"],
 }) {
   data() {
-    return { db: db.state, ui: ui.state };
+    return { ui: ui.state };
   }
 
   postMeta(name: string) {
-    return this.$data.db.metas[name];
+    return db.data.metas[name];
   }
 }
 </script>

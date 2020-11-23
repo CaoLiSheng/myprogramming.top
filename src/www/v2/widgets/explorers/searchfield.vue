@@ -5,22 +5,24 @@ form(action="", method="")
     ref="query",
     type="text",
     placeholder="输入关键字搜索",
-    @input="onChange($event)"
+    @input="onInput($event)"
   )
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import Component from "vue-class-component";
 
-export default Vue.extend({
-  props: ["onChange", "onClear"],
-  methods: {
-    clear() {
-      (this.$refs.query as HTMLInputElement).value = "";
-      this.onClear();
-    },
-  },
-});
+@Component
+export default class SearchField extends Vue.extend({
+  props: ["onInput", "onClear"],
+}) {
+  clear() {
+    const input = this.$refs.query as HTMLInputElement;
+    input.value = "";
+    this.onClear();
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
