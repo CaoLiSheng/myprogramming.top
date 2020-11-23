@@ -1,36 +1,36 @@
 <template lang="pug">
 .r
-  .header
-    h6 {{ header }}
+  e-header(:text="header")
   search-field(:onClear="onClear", :onChange="onChange")
-  .links(v-if="ui.menuOpened && refresh")
-    in-site-link(
-      v-for="(post, idx) in posts",
-      :key="post",
-      :name="post",
-      :data="postData(post)",
-      :delay="idx * 100"
-    )
+  in-site-links(
+    height="calc(100% - 0.5rem - 0.8rem)",
+    :refresh="refresh",
+    :posts="posts"
+  )
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import inSiteLink from "@vWidgets/insitelink.vue";
-import searchfield from "@vWidgets/searchfield.vue";
+import header from "@vWidgets/explorers/header.vue";
+import inSiteLinks from "@vWidgets/explorers/insitelinks.vue";
+import searchfield from "@vWidgets/explorers/searchfield.vue";
 
-import { Schema } from "@common/index";
-import { db, ui } from "@vStores/index";
+import { db, initOnce, ui } from "@vStores/index";
 import { ChangeEvent } from "react";
 
 let _RefreshTimmer: NodeJS.Timeout | null = null;
 
 @Component({
-  components: { "in-site-link": inSiteLink, "search-field": searchfield },
+  components: {
+    "e-header": header,
+    "in-site-links": inSiteLinks,
+    "search-field": searchfield,
+  },
 })
 export default class AllComponent extends Vue.extend({
-  props: ["query", "page"],
+  props: ["query"],
 }) {
   data() {
     return {
@@ -58,15 +58,11 @@ export default class AllComponent extends Vue.extend({
     }
 
     return (this.$data.db.sortedPosts || []).filter((p: string) => {
-      const meta = this.postData(p);
+      const meta = this.$data.db.metas[p];
       if (meta.title.indexOf(query) >= 0) return true;
       if (meta.tags.some((t: string) => t.indexOf(query) >= 0)) return true;
       return false;
     });
-  }
-
-  postData(name: string) {
-    return this.$data.db.metas[name];
   }
 
   _onChangeDelayed(query: string) {
@@ -96,28 +92,8 @@ export default class AllComponent extends Vue.extend({
     this._onChangeDelayed("*");
   }
 
-  async mounted() {
-    const resp = await fetch(`db.json?var=${Date.now()}`);
-    const data: Schema = await resp.json();
-    db.update(data);
+  mounted() {
+    initOnce();
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-.r
-  height: 100%;
-  .header
-    border-bottom: solid 0.01rem gray;
-    background: var(--secondary-theme-color);
-    h6
-      font-size: 0.2rem;
-      line-height: 0.5rem;
-      color: var(--btn-foreground-theme-color);
-      @media screen and (max-width: 750px)
-        font-size: 0.36rem;
-  .links
-    overflow-x: hidden;
-    overflow-y: auto;
-    max-height: calc(100% - 0.5rem - 0.8rem);
-</style>  

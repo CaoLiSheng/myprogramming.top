@@ -44,6 +44,9 @@ body
   font-weight: 200;
   user-select: none;
   -webkit-user-drag: none;
+.r
+  width: 100%;
+  height: 100%;
 ::-webkit-scrollbar
   width: 3pt;
   height: 3pt;

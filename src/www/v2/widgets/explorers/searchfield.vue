@@ -38,17 +38,16 @@ form
     background: var(--btn-background-theme-color);
     border: solid 0.01rem var(--btn-base-theme-color);
     border-radius: 0.2em;
-    font-size: 0.2rem;
+    font-size: 0.18rem;
     line-height: 0.38rem;
     height: 50%;
     @media screen and (max-width: 750px)
-      font-size: 0.3rem;
+      font-size: 0.28rem;
       line-height: 0.58rem;
       height: 75%;
   a
     flex-basis: 3em;
     cursor: pointer;
-    font-weight: bold;
     text-align: center;
     @media (hover: hover)
       &:hover

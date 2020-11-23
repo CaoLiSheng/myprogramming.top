@@ -1,11 +1,25 @@
 <template lang="pug">
-.bar
-  //- router-link.explorer(
-  //-   title="浏览全部",
-  //-   :to="{ name: 'AllComponent', params: { query: '*', page: 1 } }"
-  //- )
-  //-   .hoverable.icon-wrapper
-  //-     AllIcon
+.r.bar
+  .home.icon-wrapper(title="首页", :style="iconStyle", @click="goToHomePage")
+    HomeIcon
+  router-link.explorer.icon-wrapper(
+    title="浏览全部",
+    :style="iconStyle",
+    :to="{ name: 'AllComponent', params: { query: '*' } }"
+  )
+    AllIcon
+  router-link.explorer.icon-wrapper(
+    title="按标签浏览",
+    :style="iconStyle",
+    :to="{ name: 'TagsComponent', params: { query: '*' } }"
+  )
+    TagsIcon
+  .change-theme.icon-wrapper(
+    title="切换主题",
+    :style="iconStyle",
+    @click="changeTheme"
+  )
+    ThemeIcon
   //- router-link.explorer(
   //-   title="按日历浏览",
   //-   :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
@@ -16,20 +30,6 @@
   //-     @click="$event.preventDefault()"
   //-   )
   //-     CanlendarIcon
-  //- router-link.explorer(
-  //-   title="按标签浏览",
-  //-   :to="{ name: 'TagsComponent', params: { query: '*', page: 1 } }"
-  //- )
-  //-   .hoverable.icon-wrapper(
-  //-     @mouseover="showPopup",
-  //-     @mouseleave="inDevPopupVisibility = false",
-  //-     @click="$event.preventDefault()"
-  //-   )
-  //-     TagsIcon
-  .change-theme.icon-wrapper(title="切换主题", @click="changeTheme")
-    ThemeIcon
-  .home.icon-wrapper(title="首页", @click="goToHomePage")
-    HomeIcon
   //- portal(to="in-dev-portal")
   //-   .in-dev-popup(
   //-     v-show="inDevPopupVisibility",
@@ -50,6 +50,7 @@ import ThemeIcon from "@images/theme.vue";
 import AllIcon from "@images/all.vue";
 import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
+import { isMobileSize } from "@www/utils/rem";
 
 const ThemeAttr = "theme";
 const ThemeKey = "THEME";
@@ -59,9 +60,20 @@ const Theme2 = "Dark";
 @Component({
   components: { HomeIcon, ThemeIcon, AllIcon, CanlendarIcon, TagsIcon },
 })
-export default class BarComponent extends Vue {
+export default class BarComponent extends Vue.extend({
+  props: ["sizeCfg"],
+}) {
   data() {
     return { inDevPopupVisibility: false, popupBottom: 0, popupLeft: 0 };
+  }
+
+  get iconStyle() {
+    const isMobile = isMobileSize().result;
+
+    return {
+      width: isMobile ? this.sizeCfg[1] : this.sizeCfg[0],
+      "--icon-size": isMobile ? this.sizeCfg[3] : this.sizeCfg[2],
+    };
   }
 
   showPopup(ev: MouseEvent) {
@@ -96,35 +108,21 @@ export default class BarComponent extends Vue {
 
 <style lang="stylus" scoped>
 .bar
-  height: 100%;
-  &>*
-    height: 100%;
-    width: 0.8rem;
-    @media screen and (max-width: 750px)
-      width: 1rem;
-  .explorer
-    display: none;
-    float: left;
-    .hoverable
-      width: 100%;
-      height: 100%;
-  .home
+  .home, .explorer
     float: left;
   .change-theme
     float: right;
   .icon-wrapper
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     &:hover
       cursor: pointer;
-  svg.icon
-    width: 0.25rem;
-    height: 0.25rem;
-    pointer-events: none;
-    @media screen and (max-width: 750px)
-      width: 0.5rem;
-      height: 0.5rem;
+    svg.icon
+      pointer-events: none;
+      width: var(--icon-size);
+      height: var(--icon-size);
 .in-dev-popup
   pointer-events: none;
   font-size: 0.18rem;

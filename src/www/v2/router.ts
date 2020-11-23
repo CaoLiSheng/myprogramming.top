@@ -12,10 +12,10 @@ const AllComponent = () =>
 //     /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
 //   );
 
-// const TagsComponent = () =>
-//   import(
-//     /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
-//   );
+const TagsComponent = () =>
+  import(
+    /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
+  );
 
 const routes = [
   {
@@ -38,12 +38,12 @@ const routes = [
       //   name: 'CanlendarComponent',
       //   component: CanlendarComponent,
       // },
-      // {
-      //   props: true,
-      //   path: 'tags/:query',
-      //   name: 'TagsComponent',
-      //   component: TagsComponent,
-      // },
+      {
+        props: true,
+        path: 'tags/:query',
+        name: 'TagsComponent',
+        component: TagsComponent,
+      },
     ],
   },
 ];

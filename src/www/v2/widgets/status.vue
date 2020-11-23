@@ -1,5 +1,5 @@
 <template lang="pug">
-.status
+.r.status
   a#menu.btn.right(@click="openMenu") 菜单
 </template>
 
@@ -37,7 +37,6 @@ export default class StatusComponent extends Vue {
 
 <style lang="stylus" scoped>
 .status
-  height: 100%;
   a
     &.btn
       cursor: pointer;

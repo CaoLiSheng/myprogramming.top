@@ -8,7 +8,7 @@
     #status
       Status
     #bar(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
-      Bar
+      Bar(:sizeCfg="barIconSizeCfg")
 </template>
 
 <script lang="ts">
@@ -29,6 +29,7 @@ const StatusComponent = () =>
 export default class IndexComponent extends Vue {
   data() {
     return {
+      barIconSizeCfg: ["0.5rem", "1rem", "0.25rem", "0.5rem"],
       article: ARTICLE,
       ui: ui.state,
     };

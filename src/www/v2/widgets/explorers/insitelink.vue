@@ -1,5 +1,5 @@
 <template lang="pug">
-.router
+.link
   a(:href="href", :class="{ init, running }")
     span.title {{ data.title }}
     span.date {{ data.date }}
@@ -35,9 +35,9 @@ export default class InsiteLink extends InsiteLinkProps {
 </script>
 
 <style lang="stylus" scoped>
-.router
+.link
   padding: 0.1rem;
-  & ~ .router
+  & ~ .link
     border-top: dashed 0.01rem gray;
   a
     display: block;
