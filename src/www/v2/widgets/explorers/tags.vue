@@ -7,7 +7,11 @@
     :extendable="tagClouds.extendable",
     :selected="tagClouds.selected"
   )
-  in-site-links(height="calc(100% - 20vh)", :refresh="refresh", :posts="posts")
+  in-site-links(
+    height="calc(100% - 20vh - 0.5rem)",
+    :refresh="refresh",
+    :posts="posts"
+  )
 </template>
 
 <script lang="ts">

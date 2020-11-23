@@ -85,6 +85,8 @@ export default class TagClouds extends Vue.extend({
     &:active
       color: var(--tag-active-foreground-theme-color);
       background: var(--tag-active-background-theme-color);
+    @media screen and (max-width: 750px)
+      font-size: 0.36rem;
 </style>
 
 <style lang="stylus" scoped>
