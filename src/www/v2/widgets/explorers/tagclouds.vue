@@ -60,8 +60,9 @@ export default class TagClouds extends Vue.extend({
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: center;
   a
     cursor: pointer;
     font-size: 0.18rem;
