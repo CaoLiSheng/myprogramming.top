@@ -6,6 +6,9 @@ tags:
   - 读书
   - 笔记
   - 算法
+  - 图论
+  - 流量
+  - 切割
 ---
 
 > Applications of Flows and Cuts（流量和切割的应用）

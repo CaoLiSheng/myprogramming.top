@@ -1,6 +1,6 @@
 <template lang="pug">
 .link
-  a(:href="href", :class="{ init, running }")
+  a(:class="{ init, running }", @click="$event.preventDefault(); goToHref()")
     span.title {{ data.title }}
     span.date {{ data.date }}
     span.tags {{ data.tags.join(',') }}
@@ -16,8 +16,8 @@ const InsiteLinkProps = Vue.extend({
 
 @Component
 export default class InsiteLink extends InsiteLinkProps {
-  get href() {
-    return `${this.$props.name}${location.hash}`;
+  goToHref() {
+    location.href = `${this.$props.name}${location.hash}`;
   }
 
   init = true;
@@ -40,6 +40,7 @@ export default class InsiteLink extends InsiteLinkProps {
   & ~ .link
     border-top: dashed 0.01rem gray;
   a
+    cursor: pointer;
     display: block;
     font-size: 16px;
     line-height: 1.5em;

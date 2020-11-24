@@ -6,9 +6,11 @@ tags:
   - 读书
   - 笔记
   - 算法
+  - 图论
+  - 全对最短路径
 ---
 
-> All-Pairs Shortest Paths（全部节点对的最短路径）
+> All-Pairs Shortest Paths（全对最短路径）
 
 ## 定义
 

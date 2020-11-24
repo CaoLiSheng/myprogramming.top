@@ -1,43 +1,29 @@
 ---
 style: antique
-title: 读书笔记之《Algorithms》12
-date: 2020-11-23
+title: 读书笔记之《Algorithms》总结
+date: 2020-11-24
 tags:
   - 读书
   - 笔记
   - 算法
-  - NP问题
+  - 总结
 ---
 
-> NP-Hardness（NP 一族问题）
+> Summing-Up（总结）
 
-## decision problem
+## 证明方法
 
-原来这最后一章*只针对决策问题*，书中第一个例子是给定二极管电路，计算能最终让灯亮起来的输入。
+具不完全统计，证明方法有归纳法、（不）等式法、矛盾法（反证法）。
+在整本书都在严谨地讲道理的氛围下，出现了无数段证明；真心想全部掌握，奈何能力有限。
 
-- P
-- NP
-- co-NP
-- NP-Hard
-- NP-Complete
+## 我知道
 
-NP 问题，只能快速验证给定的解，不能求出所有正确的解。
+- 我知道现在学算法不算太晚，不是因为年纪再大就学不会；而是因为学它永远不会太晚
+  （对我的性格来说，做不了领导，不深度钻研就废了）。。。
+- 我知道下次工作的时候，年纪稍微大了，对框架、工具的掌握，一定不能肤浅；要弄清楚原理。。。
+- 我知道我要去钻研的框架和工具，到时候也一定会跟上时代的发展。。。
 
-![时下公认的分布1](Algorithms-12-NP-Hardness/what-we-believe-now-1.png '=180px-')
-
-![时下公认的分布2](Algorithms-12-NP-Hardness/what-we-believe-now-2.png '=220px-')
-
-## 书中的典型案例
-
-- circuit satisfiability
-
-（陆续完善……）
-
-## 书中习题
-
-（陆续完善……）
-
-## 同一本书的文章集
+## 章节回顾
 
 0. [Preface-&-Introduction](post:Book-Algorithms-0-Preface-&-Introduction)
 1. [Recursion](post:Book-Algorithms-1-Recursion)
@@ -51,4 +37,5 @@ NP 问题，只能快速验证给定的解，不能求出所有正确的解。
 1. [All-Pairs Shortest Paths](post:Book-Algorithms-9-All-Pairs-Shortest-Paths)
 1. [Maximum Flows & Minimum Cuts](post:Book-Algorithms-10-Maximum-Flows-&-Minimum-Cuts)
 1. [Applications of Flows and Cuts](post:Book-Algorithms-11-Applications-of-Flows-and-Cuts)
+1. [NP-Hardness](post:Book-Algorithms-12-NP-Hardness)
 1. [回到开头](scroll-to-the-very-top)

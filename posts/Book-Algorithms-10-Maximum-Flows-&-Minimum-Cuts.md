@@ -6,6 +6,9 @@ tags:
   - 读书
   - 笔记
   - 算法
+  - 图论
+  - 流量
+  - 切割
 ---
 
 > Maximum Flows & Minimum Cuts（最大流量和最小切割）

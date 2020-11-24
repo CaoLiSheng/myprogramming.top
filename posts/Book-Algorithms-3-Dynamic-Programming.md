@@ -6,6 +6,7 @@ tags:
   - 读书
   - 笔记
   - 算法
+  - 动态规划
 ---
 
 > Dynamic Programming（动态规划）

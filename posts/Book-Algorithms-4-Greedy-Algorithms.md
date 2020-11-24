@@ -6,6 +6,7 @@ tags:
   - 读书
   - 笔记
   - 算法
+  - 贪心算法
 ---
 
 > Greedy Algorithm（贪心算法）
