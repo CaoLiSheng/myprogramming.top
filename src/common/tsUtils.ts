@@ -35,3 +35,22 @@ export const dateSortDesc = (
     }))
     .sort((a: Sortable, b: Sortable) => (a.date.isBefore(b.date) ? 1 : -1))
     .map((obj: Sortable) => obj.s);
+
+export function timer(
+  jobOnce: (...params: any[]) => void,
+  jobLast: (...params: any[]) => void,
+  delay: number
+): (params: any[][]) => void {
+  let _timer: NodeJS.Timeout | null = null;
+  return (...params: any[]) => {
+    if (null !== _timer) clearTimeout(_timer);
+
+    jobOnce(...params);
+
+    _timer = setTimeout(() => {
+      _timer = null;
+
+      jobLast(...params);
+    }, delay);
+  };
+}
