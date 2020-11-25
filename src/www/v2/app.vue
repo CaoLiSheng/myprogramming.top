@@ -7,6 +7,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+
 @Component
 export default class App extends Vue {}
 </script>
@@ -42,8 +43,9 @@ body[theme='Dark']
 body
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-weight: 200;
-  user-select: none;
   -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
 .r
   width: 100%;
   height: 100%;

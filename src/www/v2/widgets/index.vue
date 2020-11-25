@@ -91,6 +91,7 @@ export default class IndexComponent extends Vue {
     background: var(--theme-color);
   #main
     overflow: auto;
+    -webkit-user-select: text;
     user-select: text;
     background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
 </style>

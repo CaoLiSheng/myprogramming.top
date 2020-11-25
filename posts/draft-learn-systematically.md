@@ -11,7 +11,9 @@ tags:
 
 ## 0. 学习大纲
 
-![学成圆满（精简后）](learn-systematically/learning-simplified.png)
+![整体学习大纲](learn-systematically/learning-simplified.png)
+
+![专业课程间的依赖关系，反向是它发挥的作用](learn-systematically/depandencies.png '=500px-')
 
 > 35+ 个主题
 
@@ -69,7 +71,7 @@ _非程序设计语言类_
 
 ## 3. 程序设计语言（10+）
 
-_包括大学教的和自学的_
+_包括大学教的和自学_
 
 ### 0. C/C++语言程序设计
 
@@ -104,11 +106,11 @@ _包括大学教的和自学的_
 
 _包括实战过的和按兴趣学的_
 
-### 1. Spring/SpringBoot/SpringCloud
+### 1. Spring / SpringBoot / SpringCloud
 
 ### 2. ReactJS
 
-### 3. ReactVR/ThreeJS
+### 3. ReactVR / ThreeJS
 
 ### 4. Webpack
 

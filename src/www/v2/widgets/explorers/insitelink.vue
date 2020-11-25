@@ -10,12 +10,10 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
-const InsiteLinkProps = Vue.extend({
-  props: ["name", "data", "delay"],
-});
-
 @Component
-export default class InsiteLink extends InsiteLinkProps {
+export default class InsiteLink extends Vue.extend({
+  props: ["name", "data", "delay"],
+}) {
   goToHref() {
     location.href = `${this.$props.name}${location.hash}`;
   }
