@@ -80,8 +80,8 @@ export default class StatusComponent extends Vue {
   transform: scaleX(-1);
   a
     transform: scaleX(-1);
-    cursor: pointer;
     user-select: none;
+    cursor: pointer;
     color: var(--btn-foreground-theme-color);
     @media (hover: hover)
       &:hover

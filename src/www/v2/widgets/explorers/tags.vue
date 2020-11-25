@@ -24,6 +24,8 @@ import tagClouds from "@vWidgets/explorers/tagclouds.vue";
 
 import { db, initOnce } from "@vStores/index";
 
+let _RefreshTimmer: NodeJS.Timeout | null = null;
+
 @Component({
   components: {
     "e-header": header,
@@ -33,6 +35,16 @@ import { db, initOnce } from "@vStores/index";
 })
 export default class TagsComponent extends Vue.extend({
   props: ["query"],
+  watch: {
+    query: function () {
+      if (null !== _RefreshTimmer) clearTimeout(_RefreshTimmer);
+      this.$data.refresh = false;
+
+      _RefreshTimmer = setTimeout((query: string) => {
+        this.$data.refresh = true;
+      }, 800);
+    },
+  },
 }) {
   data() {
     return {
