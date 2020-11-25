@@ -1,10 +1,10 @@
 <template lang="pug">
 form(action="", method="")
-  a(@click="$event.preventDefault(); clear()") 清空
+  a(@click="$event.preventDefault(); clear()") 🈳️
   input(
     ref="query",
     type="text",
-    placeholder="输入关键字搜索",
+    placeholder="🔍 Type to Search",
     @input="onInput($event)"
   )
 </template>
@@ -48,7 +48,7 @@ form
       line-height: 0.58rem;
       height: 75%;
   a
-    flex-basis: 3em;
+    flex-basis: 2em;
     cursor: pointer;
     text-align: center;
     @media (hover: hover)
@@ -59,6 +59,6 @@ form
     &:focus, &:visited
       background: var(--btn-background-theme-color);
   input
-    flex-basis: calc(100% - 6em);
+    flex-basis: calc(100% - 4em);
     padding: 0 0.45em;
 </style>

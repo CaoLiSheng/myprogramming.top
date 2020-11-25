@@ -82,11 +82,12 @@ export default class StatusComponent extends Vue {
     transform: scaleX(-1);
     cursor: pointer;
     color: var(--btn-foreground-theme-color);
+    background: var(--btn-background-theme-color);
     @media (hover: hover)
       &:hover
         background: var(--btn-hover-theme-color);
     &:active
-      background: var(--btn-background-theme-color);
+      background: var(--btn-active-theme-color);
     &.btn
       padding: 0 1em;
       font-size: 0.25rem;
@@ -99,7 +100,6 @@ export default class StatusComponent extends Vue {
       align-items: center;
       padding: 0.2em 0.5em;
       border-radius: 0.7em;
-      background: var(--secondary-theme-color);
       font-size: 0.2rem;
       @media screen and (max-width: 750px)
         font-size: 0.36rem;

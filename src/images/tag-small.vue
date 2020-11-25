@@ -10,8 +10,4 @@
 <style lang="stylus" scoped>
 .tag path
   fill: var(--btn-base-theme-color);
-.tag:hover path.outline
-  fill: var(--btn-hover-theme-color);
-.tag:active path.outline
-  fill: var(--btn-active-theme-color);
 </style>

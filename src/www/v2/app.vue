@@ -28,7 +28,7 @@ body[theme='Light']
   --btn-foreground-theme-color: rgb(137, 143, 149);
   --btn-background-theme-color: rgb(207, 228, 253);
   --btn-base-theme-color: rgb(71, 71, 71);
-  --btn-hover-theme-color: rgb(99, 99, 99);
+  --btn-hover-theme-color: rgb(200, 220, 230);
   --btn-active-theme-color: rgb(125, 128, 132);
 body[theme='Dark']
   --theme-color: rgb(36, 41, 46);
@@ -38,7 +38,7 @@ body[theme='Dark']
   --btn-foreground-theme-color: wheat;
   --btn-background-theme-color: rgb(28, 68, 114);
   --btn-base-theme-color: rgb(225, 228, 232);
-  --btn-hover-theme-color: white;
+  --btn-hover-theme-color: rgb(30, 70, 136);
   --btn-active-theme-color: rgb(125, 128, 132);
 body
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
