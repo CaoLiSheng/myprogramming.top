@@ -85,7 +85,10 @@ export function titleTag(fileName: string): string {
 }
 
 export function titleTagHTML(fileName: string): string {
-  return `<blockquote><code>-> ${titleTag(fileName)} <-</code></blockquote>`;
+  const tag = titleTag(fileName);
+  if (!tag) return '';
+
+  return `<blockquote><code>-> ${tag} <-</code></blockquote>`;
 }
 
 // dateTag
