@@ -1,19 +1,50 @@
 <template lang="pug">
 .r.status
-  a#menu.btn.right(@click="openMenu") 菜单
+  a#menu.btn(@click="openMenu") 菜单
+  a.tag(
+    v-for="tag in tags",
+    :key="tag",
+    @click="$event.preventDefault(), click(tag)"
+  ) {{ tag }}
+    TagIcon
+  a.no-tag ...没有标签咯
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import { isMobileSize } from "@www/utils/rem";
-import { ui } from "@vStores/index";
+import TagIcon from "@images/tag-small.vue";
 
-@Component
+import { isMobileSize } from "@www/utils/rem";
+import { db, initOnce, ui } from "@vStores/index";
+import { clickOnTag } from "../router";
+
+@Component({ components: { TagIcon } })
 export default class StatusComponent extends Vue {
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
+
+  get tags() {
+    if (!this.$data.db.refresh) return [];
+
+    const parsed = location.pathname.split("/");
+    const post = parsed[parsed.length - 1];
+    if (!post) return [];
+
+    return db.data.metas[post].tags;
+  }
+
+  data() {
+    return { db: db.state };
+  }
+
+  click(tag: string) {
+    if (isMobileSize().result) {
+      this.openMenu();
+    }
+    clickOnTag(tag, this.$router);
+  }
 
   openMenu() {
     if (!ui.state.menuOpened) {
@@ -22,6 +53,8 @@ export default class StatusComponent extends Vue {
   }
 
   mounted() {
+    initOnce();
+
     if (!isMobileSize().result) return;
 
     this.sideRoot = document.getElementById("side");
@@ -37,23 +70,54 @@ export default class StatusComponent extends Vue {
 
 <style lang="stylus" scoped>
 .status
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  transform: scaleX(-1);
   a
+    transform: scaleX(-1);
+    cursor: pointer;
+    user-select: none;
+    color: var(--btn-foreground-theme-color);
+    @media (hover: hover)
+      &:hover
+        background: var(--btn-hover-theme-color);
+    &:active
+      background: var(--btn-background-theme-color);
     &.btn
-      cursor: pointer;
-      user-select: none;
-      display: inline-block;
-      height: 100%;
       padding: 0 1em;
-      line-height: 2em;
       font-size: 0.25rem;
-      color: var(--btn-foreground-theme-color);
       @media screen and (max-width: 750px)
         font-size: 0.5rem;
-    &.right
-      float: right;
-    &:active
-      background-color: var(--btn-background-theme-color);
+    &.tag
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      padding: 0.2em 0.5em;
+      border-radius: 0.7em;
+      background: var(--secondary-theme-color);
+      font-size: 0.2rem;
+      @media screen and (max-width: 750px)
+        font-size: 0.36rem;
+      svg.icon
+        margin-right: 0.25em;
+        width: 0.2rem;
+        height: 0.2rem;
+        @media screen and (max-width: 750px)
+          width: 0.32rem;
+          height: 0.32rem;
+    &.no-tag
+      height: 100%;
+      line-height: 1rem;
+      font-size: 0.2rem;
+    &:not(:first-child)
+      margin-left: 1em;
     @media screen and (min-width: 750px)
-      &#menu
+      &#menu, &.no-tag
         display: none;
 </style>

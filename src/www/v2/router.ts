@@ -53,3 +53,28 @@ Vue.use(Router);
 export default new Router({
   routes,
 });
+
+export function clickOnTag(tag: string, router: Router) {
+  const curR = router.currentRoute;
+  const query = curR.params['query'];
+
+  let newQuery = tag;
+  if ('*' !== query) {
+    const tags = query.split(',').map((t: string) => t.trim());
+    const idx = tags.indexOf(tag);
+    if (idx >= 0) {
+      if (tags.length === 1) {
+        newQuery = '*';
+      } else {
+        newQuery = [...tags.slice(0, idx), ...tags.slice(idx + 1)].join(',');
+      }
+    } else {
+      newQuery = [...tags, tag].join(',');
+    }
+  }
+
+  router.replace({
+    name: 'TagsComponent',
+    params: { query: newQuery },
+  });
+}

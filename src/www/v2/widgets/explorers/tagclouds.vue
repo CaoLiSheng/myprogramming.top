@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts">
+import { clickOnTag } from "@www/v2/router";
 import Vue from "vue";
 import Component from "vue-class-component";
 
@@ -28,28 +29,7 @@ export default class TagClouds extends Vue.extend({
   }
 
   click(tag: string) {
-    const curR = this.$router.currentRoute;
-    const query = curR.params["query"];
-
-    let newQuery = tag;
-    if ("*" !== query) {
-      const tags = query.split(",").map((t: string) => t.trim());
-      const idx = tags.indexOf(tag);
-      if (idx >= 0) {
-        if (tags.length === 1) {
-          newQuery = "*";
-        } else {
-          newQuery = [...tags.slice(0, idx), ...tags.slice(idx + 1)].join(",");
-        }
-      } else {
-        newQuery = [...tags, tag].join(",");
-      }
-    }
-
-    this.$router.replace({
-      name: "TagsComponent",
-      params: { query: newQuery },
-    });
+    clickOnTag(tag, this.$router);
   }
 }
 </script>
