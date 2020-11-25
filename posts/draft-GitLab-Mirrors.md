@@ -1,8 +1,7 @@
 ---
 style: github-colors
-title: Vuejs--use props in styles
-date: 2020-11-23
+title: Gitlab Mirrors
+date: 2020-11-30
 tags:
-  - Vuejs
   - 写代码时的困惑
 ---

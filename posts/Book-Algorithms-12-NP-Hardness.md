@@ -29,7 +29,8 @@ NP 问题，只能快速验证给定的解，不能求出所有正确的解。
 
 ## 书中的典型案例
 
-- circuit satisfiability
+- circuit satisfiability problem
+- formula satisfiability problem
 
 （陆续完善……）
 

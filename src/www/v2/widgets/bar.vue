@@ -87,7 +87,7 @@ export default class BarComponent extends Vue.extend({
   }
 
   goToHomePage() {
-    window.location.href = "index.html";
+    window.location.href = `index.html${location.hash}`;
   }
 
   changeTheme() {

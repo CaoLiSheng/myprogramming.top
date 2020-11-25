@@ -78,17 +78,18 @@ export const tplContent = fs.readFileSync(tplPath, { encoding: 'UTF-8' });
 
 // titleTag
 export function titleTag(fileName: string): string {
-  if (fileName.startsWith('index.'))
-    return '<blockquote><code>-> 首页 <-</code></blockquote>';
-  if (fileName.startsWith('private-'))
-    return '<blockquote><code>-> 隐私 <-</code></blockquote>';
-  if (fileName.startsWith('draft-'))
-    return '<blockquote><code>-> 草稿 <-</code></blockquote>';
+  if (fileName.startsWith('index.')) return '首页';
+  if (fileName.startsWith('private-')) return '隐私';
+  if (fileName.startsWith('draft-')) return '草稿';
   return '';
 }
 
+export function titleTagHTML(fileName: string): string {
+  return `<blockquote><code>-> ${titleTag(fileName)} <-</code></blockquote>`;
+}
+
 // dateTag
-export function dateTag(date: string): string {
+export function dateTagHTML(date: string): string {
   return `<code> ~~ 更新于 -> ${date}</code>`;
 }
 
@@ -110,7 +111,7 @@ export function hmBaidu(): string {
 }
 
 // email link
-export function emailLink(
+export function emailLinkHTML(
   fileName: string,
   noReceiveEmails: string,
   style: string,

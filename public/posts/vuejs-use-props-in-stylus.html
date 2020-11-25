@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="cn-zh"><head><meta charset="UTF-8" /><meta http-equiv="pragma" content="no-cache" /><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Vuejs--use props in stylus</title><script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script><link rel="stylesheet" type="text/css" href="github-colors.d97585598e.css" /></head><body theme="Light" class="snapshot"><div id="main"><article class="markdown-body hidden"><blockquote><code>-><-</code></blockquote><h1>Vuejs--use props in stylus</h1><h6 class="date-tag"><code> ~~ 更新于 -> 2020-11-25</code></h6><p><code>CSS3</code> 中有一特性是定义变量，然后通过 <code>var()</code> 取值。本站（宽屏版）就是利用这个特性，做了日间模式和夜间模式的适配。</p><p>假设，有一个 Vuejs 组件：绘制一个正方形，props 中定义了 size，我们就可以通过上面的 CSS 特性和 Vuejs 模板语言来实现。</p><pre><code class="vue language-vue">&lt;template lang="pug"&gt;
+.rect(:style="{ '--size': size }")
+&lt;/template&gt;
+
+&lt;script lang="ts"&gt;
+import Vue from 'vue';
+export default Vue({
+  props: ['size'],
+});
+&lt;/script&gt;
+
+&lt;style lang="stylus" scoped&gt;
+.rect
+  width: var(--size);
+  height: var(--size);
+&lt;/style&gt;
+</code></pre><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「Vuejs--use props in stylus」">发邮件~来评价~一下吧</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script type="application/javascript" src="template.08f9417792.js"></script></body></html>

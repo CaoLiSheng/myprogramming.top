@@ -31,7 +31,7 @@ form
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-bottom: solid 0.01rem gray;
+  border-bottom: solid 0.01rem var(--third-theme-color);
   height: 0.8rem;
   &>*
     flex: 0;

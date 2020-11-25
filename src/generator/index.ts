@@ -7,8 +7,9 @@ import {
   copyTemplateAssets,
   fetchCSS,
   titleTag,
-  dateTag,
-  emailLink,
+  dateTagHTML,
+  titleTagHTML,
+  emailLinkHTML,
   hmBaidu,
 } from './template';
 import {
@@ -72,7 +73,7 @@ posts.forEach((fileName: string) => {
     content,
   ] = matches.slice(1);
   const tagsRe = /- (.*?)\n/g;
-  const parsedTags = [];
+  const parsedTags = [titleTag(fileName)].filter((t: string) => !!t.trim());
   if (tags) {
     let tempTag;
     while ((tempTag = tagsRe.exec(tags))) {
@@ -99,8 +100,7 @@ posts.forEach((fileName: string) => {
   );
 
   const name = extractPostName(fileName);
-  if (name !== 'index') dbData.add({ name, title, date, tags: parsedTags });
-
+  dbData.add({ name, title, date, tags: parsedTags }).persist();
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
       tplContent
@@ -109,11 +109,16 @@ posts.forEach((fileName: string) => {
         .replace('{{javascript}}', tplScriptPath())
         .replace('{{hm_baidu}}', hmBaidu())
         .replace('{{stylesheet}}', fetchCSS(stylesheet))
-        .replace('{{title_tag}}', titleTag(fileName))
-        .replace('{{date_tag}}', dateTag(date))
+        .replace('{{title_tag}}', titleTagHTML(fileName))
+        .replace('{{date_tag}}', dateTagHTML(date))
         .replace(
           '{{article_body}}',
-          `${body}${emailLink(fileName, noReceiveEmails, stylesheet, title)}`
+          `${body}${emailLinkHTML(
+            fileName,
+            noReceiveEmails,
+            stylesheet,
+            title
+          )}`
         )
     )
   );

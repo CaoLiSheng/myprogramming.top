@@ -28,6 +28,13 @@ export interface Meta {
   date: Moment.Moment;
 }
 
+export interface Row {
+  name: string;
+  title: string;
+  date: string;
+  tags: string[];
+}
+
 export class DB {
   private postMetas: { [key: string]: Meta } = {};
   private schema: Schema = EmptySchema;
@@ -36,17 +43,17 @@ export class DB {
     return JSON.stringify(this.schema);
   }
 
-  public add({
-    name,
-    title,
-    date,
-    tags,
-  }: {
-    name: string;
-    title: string;
-    date: string;
-    tags: string[];
-  }): Meta {
+  public add(datum: Row): { persist: () => void } {
+    return {
+      persist: () => {
+        if (datum.name === 'index') return;
+        this.addRow(datum);
+      },
+    };
+  }
+
+  private addRow({ name, title, date, tags }: Row): Meta {
+    console.log();
     if (this.postMetas[name]) throw new Error(`POST重复了 ${name}`);
 
     // Parse private Metadata

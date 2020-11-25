@@ -14,11 +14,18 @@ export default Vue.extend({
 .header
   padding-left: 0.5em;
   padding-right: 0.5em;
-  border-left: solid 0.1rem gray;
-  border-bottom: solid 0.01rem gray;
-  background: var(--secondary-theme-color);
+  border-bottom: solid 0.01rem var(--third-theme-color);
   line-height: 0.5rem;
   font-size: 0.2rem;
+  position: relative;
+  &::before
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.3em;
+    background: var(--contrast-theme-color);
   @media screen and (max-width: 750px)
     font-size: 0.36rem;
   h6
