@@ -60,3 +60,13 @@ computed: {
   },
 },
 ```
+
+搭配 Vuejs 的 watch 也是极好的。
+
+```typescript
+watch: {
+  query: function () {
+    this.onQueryChanged();
+  },
+},
+```

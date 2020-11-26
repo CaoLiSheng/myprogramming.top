@@ -1,0 +1,44 @@
+<!doctype html><html lang="cn-zh"><head><meta charset="UTF-8"/><meta http-equiv="pragma" content="no-cache"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta name="viewport" content="user-scalable=0,width=device-width,initial-scale=1"><title>小小计时器</title><script> var _hmt = _hmt || []; (function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?f402a68d651d46513a3688a8d07eb93c'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })(); </script><link rel="stylesheet" href="github-colors.cf26e3f47f.css"/></head><body><div id="article" style="display:none;"><article class="markdown-body"><h1>小小计时器</h1><h6 class="date-tag"><code> ~~ 更新于 -> 2020-11-26</code></h6><blockquote><p>有这么一个需求，输入框的自动补全功能。显然，当用户正在疯狂输入的时候是不需要去帮他补全什么的，就是在那不到一秒的停顿时，才是计算补全信息的最佳时机。</p></blockquote><p>所以，我写了这个小工具函数：</p><pre><code class="typescript language-typescript">export function switcher(
+  jobAtOnce: (...params: any[]) =&gt; void,
+  jobLater: (...params: any[]) =&gt; void,
+  delay: number
+): (...params: any[]) =&gt; void {
+  let _timer: NodeJS.Timeout | null = null;
+  let _need_once: boolean = true;
+
+  // 1
+  return (...params: any[]) =&gt; {
+    if (null !== _timer) clearTimeout(_timer);
+
+    if (_need_once) {
+      // 2
+      _need_once = false;
+      jobAtOnce(...params);
+    }
+
+    _timer = setTimeout(() =&gt; {
+      _timer = null;
+      _need_once = true;
+      jobLater(...params);
+    }, delay);
+  };
+}
+</code></pre><p>这个工具函数一般只计算一次，返回一个可以方便用于每次 <code>KeyUp</code> 调用的函数。 <code>jobAtOnce</code> 在这里可以是隐藏自动补全面板等等，<code>jobLater</code> 在这里可以是计算自动补全数据并显示面板等等。</p><p>因其具有只计算一次的特点，所以在 Vuejs 中可以方便地使用 computed 属性来计算。</p><pre><code class="typescript language-typescript">computed: {
+  onQueryChanged: function () {
+    return switcher(
+      () =&gt; {
+        this.$data.refresh = false;
+      },
+      () =&gt; {
+        this.$data.refresh = true;
+      },
+      200
+    );
+  },
+},
+</code></pre><p>搭配 Vuejs 的 watch 也是极好的。</p><pre><code class="typescript language-typescript">watch: {
+  query: function () {
+    this.onQueryChanged();
+  },
+},
+</code></pre><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「小小计时器」">发邮件~来评价~一下吧</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script>var temp = document.getElementById('article'); window.ARTICLE = temp.innerHTML; document.body.removeChild(temp);</script><div id="app"></div><script src="./app~31ecd969.6203fe5458a9f87b5d2f.js"></script><script src="./app~55ff73d6.6203fe5458a9f87b5d2f.js"></script></body></html>
