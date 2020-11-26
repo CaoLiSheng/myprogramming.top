@@ -34,6 +34,24 @@ import { switcher } from "@common/index";
 })
 export default class TagsComponent extends Vue.extend({
   props: ["query"],
+  watch: {
+    query: function () {
+      this.onQueryChanged();
+    },
+  },
+  computed: {
+    onQueryChanged: function () {
+      return switcher(
+        () => {
+          this.$data.refresh = false;
+        },
+        () => {
+          this.$data.refresh = true;
+        },
+        200
+      );
+    },
+  },
 }) {
   db = db.state;
   refresh = true;
@@ -41,24 +59,6 @@ export default class TagsComponent extends Vue.extend({
 
   mounted() {
     initOnce();
-  }
-
-  watch() {
-    return {
-      query: this.onQueryChanged,
-    };
-  }
-
-  get onQueryChanged() {
-    return switcher(
-      () => {
-        this.$data.refresh = false;
-      },
-      () => {
-        this.$data.refresh = true;
-      },
-      200
-    );
   }
 
   get posts() {
