@@ -12,12 +12,18 @@ ul.snap-list {
     box-shadow: 0 0 5px 0 gray;
     border: dashed 0.01rem #888888;
 
-    &:first-child {
+    &:first-child,
+    &:first-child a,
+    &:first-child iframe,
+    &:first-child a::after {
       border-top-left-radius: 0.1rem;
       border-top-right-radius: 0.1rem;
     }
 
-    &:last-child {
+    &:last-child,
+    &:last-child a,
+    &:last-child iframe,
+    &:last-child a::after {
       border-bottom-left-radius: 0.1rem;
       border-bottom-right-radius: 0.1rem;
     }
