@@ -26,9 +26,11 @@ tags:
 | Non-Rational Database    |   -   |  -   |   -    |   -    |  -  |  -  |
 | 2D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
 | 3D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
+| VR Design Plugins        |   -   |  -   |   -    |   -    |  -  |  -  |
 | Game Engine              |   -   |  -   |   -    |   -    |  -  |  -  |
 | Web Crawler              |   -   |  -   |   -    |   -    |  -  |  -  |
 | Search Engine            |   -   |  -   |   -    |   -    |  -  |  -  |
+| AI System                |   -   |  -   |   -    |   -    |  -  |  -  |
 | Data Middle Platform     |   -   |  -   |   -    |   -    |  -  |  -  |
 
 ---

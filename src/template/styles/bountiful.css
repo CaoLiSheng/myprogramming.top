@@ -60,6 +60,10 @@ body[theme='Dark'] .markdown-body {
   -ms-text-size-adjust: 100%;
 }*/
 
+.markdown-body p {
+  margin: 1em 0;
+}
+
 .markdown-body a:focus {
   outline: thin dotted;
 }
@@ -90,15 +94,24 @@ body[theme='Dark'] .markdown-body {
   line-height: 1.5em;
 }
 
+.markdown-body code,
 .markdown-body pre {
-  white-space: pre;
-  white-space: pre-wrap;
   word-wrap: break-word;
   background-color: var(--pre-background-article-color);
   border: 1px solid #ccc;
-  overflow: auto;
-  padding: 8px 10px;
   border-radius: 3px;
+}
+
+.markdown-body code {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.markdown-body pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  padding: 8px 10px;
+  overflow: auto;
   margin: 26px 0;
 }
 
@@ -167,32 +180,33 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body h1 {
-  font-size: 48px;
+  font-size: 2.5em;
   top: 10px;
 }
 
 .markdown-body h2 {
-  font-size: 44px;
+  font-size: 2em;
   top: 8px;
 }
 
 .markdown-body h3 {
-  font-size: 40px;
+  font-size: 1.5em;
   top: 6px;
 }
 
 .markdown-body h4 {
-  font-size: 36px;
+  font-size: 1.2em;
   top: 4px;
 }
 
 .markdown-body h5 {
-  font-size: 32px;
+  color: #777;
+  font-size: 1em;
   top: 4px;
 }
 
 .markdown-body h6 {
-  font-size: 28px;
+  font-size: 12px;
   top: 4px;
 }
 
@@ -262,8 +276,8 @@ body[theme='Dark'] .markdown-body {
   background: var(--main-background-article-color);
   font-family: Varela, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 18px;
-  line-height: 1.3em;
+  font-size: 15px;
+  line-height: 1.6em;
 }
 
 .markdown-body h1,

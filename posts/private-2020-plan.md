@@ -40,25 +40,8 @@ tags:
 
 ……
 
-| Project / Lang / Version | C/C++ | Java | NodeJS | Python | Go  | C#  |
-| :----------------------- | :---: | :--: | :----: | :----: | :-: | :-: |
-| Web Server               |   -   |  -   |   -    |   -    |  -  |  -  |
-| Rational Database        |   -   |  -   |   -    |   -    |  -  |  -  |
-| Non-Rational Database    |   -   |  -   |   -    |   -    |  -  |  -  |
-| 2D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
-| 3D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
-| Game Engine              |   -   |  -   |   -    |   -    |  -  |  -  |
-| Web Crawler              |   -   |  -   |   -    |   -    |  -  |  -  |
-| Search Engine            |   -   |  -   |   -    |   -    |  -  |  -  |
-| Data Middle Platform     |   -   |  -   |   -    |   -    |  -  |  -  |
+[选中的项目 x6 传送门](post:draft-learn-systematically)
 
----
+### 第四阶段
 
-> 注：版本的意义
-
-```
--   未开始
-0.x 开发中
-1.x 优化中（性能方面，评测中）
-2.x 已完成（学习任务）
-```
+**蜕变为优秀的软件工程师 = 完成选中的项目 = 喜欢的编程语言 + 五大原理**，666！
