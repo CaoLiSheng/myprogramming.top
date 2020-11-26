@@ -1,5 +1,7 @@
 <template lang="pug">
 .r.status
+  a#gate.btn(title="去旧版网站", @click="goToV1")
+    GateIcon
   a#menu.btn(@click="openMenu") 菜单
   a.tag(
     v-for="tag in tags",
@@ -15,12 +17,15 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import TagIcon from "@images/tag-small.vue";
+import GateIcon from "@images/gate.vue";
 
 import { isMobileSize } from "@www/utils/rem";
 import { db, initOnce, ui } from "@vStores/index";
 import { clickOnTag } from "../router";
 
-@Component({ components: { TagIcon } })
+declare var __portal_to_v1__: string;
+
+@Component({ components: { TagIcon, GateIcon } })
 export default class StatusComponent extends Vue {
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
@@ -63,6 +68,10 @@ export default class StatusComponent extends Vue {
       ui.openMenu(this.sideRoot, this.barRoot);
     }
   }
+
+  goToV1() {
+    location.href = __portal_to_v1__;
+  }
 }
 </script>
 
@@ -87,6 +96,14 @@ export default class StatusComponent extends Vue {
       font-size: 0.25rem;
       @media screen and (max-width: 750px)
         font-size: 0.5rem;
+        &#gate
+          display: none;
+      svg.icon
+        width: 0.2rem;
+        height: 0.2rem;
+        @media screen and (max-width: 750px)
+          width: 0.32rem;
+          height: 0.32rem;
     &.tag
       display: flex;
       flex-direction: row-reverse;

@@ -1,7 +1,7 @@
 ---
 style: bountiful
 title: 系统地学习路线图
-date: 2020-10-16
+date: 2020-11-26
 tags:
   - 2020
   - 学习
@@ -14,6 +14,33 @@ tags:
 ![整体学习大纲](learn-systematically/learning-simplified.png)
 
 ![专业课程间的依赖关系，反向是它发挥的作用](learn-systematically/depandencies.png '=500px-')
+
+---
+
+【项目/编程语言/当前版本】一览表
+
+| Project / Lang / Version | C/C++ | Java | NodeJS | Python | Go  | C#  |
+| :----------------------- | :---: | :--: | :----: | :----: | :-: | :-: |
+| Web Server               |   -   |  -   |   -    |   -    |  -  |  -  |
+| Rational Database        |   -   |  -   |   -    |   -    |  -  |  -  |
+| Non-Rational Database    |   -   |  -   |   -    |   -    |  -  |  -  |
+| 2D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
+| 3D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
+| Game Engine              |   -   |  -   |   -    |   -    |  -  |  -  |
+| Web Crawler              |   -   |  -   |   -    |   -    |  -  |  -  |
+| Search Engine            |   -   |  -   |   -    |   -    |  -  |  -  |
+| Data Middle Platform     |   -   |  -   |   -    |   -    |  -  |  -  |
+
+---
+
+> 注：版本的意义
+
+```
+-   未开始
+0.x 开发中
+1.x 优化中（性能方面，评测中）
+2.x 已完成（学习任务）
+```
 
 ### 35+ 个主题
 
@@ -197,7 +224,5 @@ _包括实战过的和按兴趣学的_
 ## 5. 开源项目剖析
 
 _站内传送门列表_
-
-- [yi-ha](post:draft-source-code)
 
 - [回到大目录](scroll-to:35+-个主题)

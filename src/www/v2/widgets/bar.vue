@@ -117,8 +117,7 @@ export default class BarComponent extends Vue.extend({
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover
-      cursor: pointer;
+    cursor: pointer;
     svg.icon
       pointer-events: none;
       width: var(--icon-size);

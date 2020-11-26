@@ -8,7 +8,9 @@ import Pager from './pager';
 import { clickIn } from '@www/utils/dom';
 
 import './index.scss';
-import { CategoryIcon } from '@images/index';
+import { CategoryIcon, GateIcon } from '@images/index';
+
+declare var __portal_to_v2__: string;
 
 interface HeaderStates {
   categoryExpanded: boolean;
@@ -99,6 +101,9 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
     return (
       <div className="title-bar">
         <nav>
+          <a className="icon pc" title="去新版网站" href={__portal_to_v2__}>
+            <GateIcon />
+          </a>
           <Switch>
             <Route path="/post/:name" component={Category} />
             <Route
