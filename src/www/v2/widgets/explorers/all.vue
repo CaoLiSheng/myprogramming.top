@@ -18,7 +18,7 @@ import inSiteLinks from "@vWidgets/explorers/insitelinks.vue";
 import searchfield from "@vWidgets/explorers/searchfield.vue";
 
 import { db, initOnce } from "@vStores/index";
-import { timer } from "@common/index";
+import { switcher } from "@common/index";
 
 @Component({
   components: {
@@ -29,27 +29,12 @@ import { timer } from "@common/index";
 })
 export default class AllComponent extends Vue.extend({
   props: ["query"],
-  computed: {
-    onChangeDelayed: function () {
-      return timer(
-        () => {
-          this.$data.refresh = false;
-        },
-        (query: string) => {
-          this.$data.refresh = true;
-
-          const curR = this.$router.currentRoute;
-          if (curR.name === "AllComponent" && curR.params["query"] === query)
-            return;
-          this.$router.replace({ name: "AllComponent", params: { query } });
-        },
-        800
-      );
-    },
-  },
 }) {
-  data() {
-    return { db: db.state, refresh: true };
+  db = db.state;
+  refresh = true;
+
+  mounted() {
+    initOnce();
   }
 
   get header() {
@@ -67,6 +52,23 @@ export default class AllComponent extends Vue.extend({
     return db.filterByKW(this.query);
   }
 
+  get onChangeDelayed() {
+    return switcher(
+      () => {
+        this.$data.refresh = false;
+      },
+      (query: string) => {
+        this.$data.refresh = true;
+
+        const curR = this.$router.currentRoute;
+        if (curR.name === "AllComponent" && curR.params["query"] === query)
+          return;
+        this.$router.replace({ name: "AllComponent", params: { query } });
+      },
+      800
+    );
+  }
+
   onInput(ev: InputEvent) {
     const input = ev.target as HTMLInputElement;
     const query = input.value || "*";
@@ -75,10 +77,6 @@ export default class AllComponent extends Vue.extend({
 
   onClear() {
     this.onChangeDelayed("*");
-  }
-
-  mounted() {
-    initOnce();
   }
 }
 </script>

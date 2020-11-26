@@ -25,32 +25,7 @@ export default class StatusComponent extends Vue {
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
 
-  get tags() {
-    if (!this.$data.db.refresh) return [];
-
-    const parsed = location.pathname.split("/");
-    const post = parsed[parsed.length - 1];
-    if (!post) return [];
-
-    return db.data.metas[post].tags;
-  }
-
-  data() {
-    return { db: db.state };
-  }
-
-  click(tag: string) {
-    if (isMobileSize().result) {
-      this.openMenu();
-    }
-    clickOnTag(tag, this.$router);
-  }
-
-  openMenu() {
-    if (!ui.state.menuOpened) {
-      ui.openMenu(this.sideRoot, this.barRoot);
-    }
-  }
+  db = db.state;
 
   mounted() {
     initOnce();
@@ -64,6 +39,29 @@ export default class StatusComponent extends Vue {
       ui.setVisible(true);
       setTimeout(ui.closeMenu.bind(ui), 1000);
     }, 500);
+  }
+
+  get tags() {
+    if (!this.$data.db.refresh) return [];
+
+    const parsed = location.pathname.split("/");
+    const post = parsed[parsed.length - 1];
+    if (!post) return [];
+
+    return db.data.metas[post].tags;
+  }
+
+  click(tag: string) {
+    if (isMobileSize().result) {
+      this.openMenu();
+    }
+    clickOnTag(tag, this.$router);
+  }
+
+  openMenu() {
+    if (!ui.state.menuOpened) {
+      ui.openMenu(this.sideRoot, this.barRoot);
+    }
   }
 }
 </script>

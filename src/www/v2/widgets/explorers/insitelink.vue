@@ -14,10 +14,6 @@ import Component from "vue-class-component";
 export default class InsiteLink extends Vue.extend({
   props: ["name", "data", "delay"],
 }) {
-  goToHref() {
-    location.href = `${this.$props.name}${location.hash}`;
-  }
-
   init = true;
   running = true;
 
@@ -28,6 +24,10 @@ export default class InsiteLink extends Vue.extend({
     setTimeout(() => {
       this.running = false;
     }, this.delay + 300);
+  }
+
+  goToHref() {
+    location.href = `${this.$props.name}${location.hash}`;
   }
 }
 </script>

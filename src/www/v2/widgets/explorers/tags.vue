@@ -23,7 +23,7 @@ import inSiteLinks from "@vWidgets/explorers/insitelinks.vue";
 import tagClouds from "@vWidgets/explorers/tagclouds.vue";
 
 import { db, initOnce } from "@vStores/index";
-import { timer } from "@common/index";
+import { switcher } from "@common/index";
 
 @Component({
   components: {
@@ -34,31 +34,31 @@ import { timer } from "@common/index";
 })
 export default class TagsComponent extends Vue.extend({
   props: ["query"],
-  watch: {
-    query: function () {
-      this.onQueryChanged();
-    },
-  },
-  computed: {
-    onQueryChanged: function () {
-      return timer(
-        () => {
-          this.$data.refresh = false;
-        },
-        () => {
-          this.$data.refresh = true;
-        },
-        200
-      );
-    },
-  },
 }) {
-  data() {
+  db = db.state;
+  refresh = true;
+  tagClouds = { extendable: [], selected: [] };
+
+  mounted() {
+    initOnce();
+  }
+
+  watch() {
     return {
-      db: db.state,
-      tagClouds: { extendable: [], selected: [] },
-      refresh: true,
+      query: this.onQueryChanged,
     };
+  }
+
+  get onQueryChanged() {
+    return switcher(
+      () => {
+        this.$data.refresh = false;
+      },
+      () => {
+        this.$data.refresh = true;
+      },
+      200
+    );
   }
 
   get posts() {
@@ -75,11 +75,5 @@ export default class TagsComponent extends Vue.extend({
     this.$data.tagClouds.extendable = result.extendable;
     return result.posts;
   }
-
-  mounted() {
-    initOnce();
-  }
 }
 </script>
-
-<style lang="stylus" scoped></style>

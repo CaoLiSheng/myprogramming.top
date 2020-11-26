@@ -63,8 +63,13 @@ const Theme2 = "Dark";
 export default class BarComponent extends Vue.extend({
   props: ["sizeCfg"],
 }) {
-  data() {
-    return { inDevPopupVisibility: false, popupBottom: 0, popupLeft: 0 };
+  inDevPopupVisibility = false;
+  popupBottom = 0;
+  popupLeft = 0;
+
+  async mounted() {
+    const curTheme = await localforage.getItem<string>(ThemeKey);
+    document.body.setAttribute(ThemeAttr, curTheme || ThemeDefault);
   }
 
   get iconStyle() {
@@ -97,11 +102,6 @@ export default class BarComponent extends Vue.extend({
         : ThemeDefault;
     document.body.setAttribute(ThemeAttr, theme);
     localforage.setItem(ThemeKey, theme);
-  }
-
-  async mounted() {
-    const curTheme = await localforage.getItem<string>(ThemeKey);
-    document.body.setAttribute(ThemeAttr, curTheme || ThemeDefault);
   }
 }
 </script>

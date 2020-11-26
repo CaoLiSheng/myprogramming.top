@@ -27,13 +27,9 @@ const StatusComponent = () =>
 
 @Component({ components: { Bar: BarComponent, Status: StatusComponent } })
 export default class IndexComponent extends Vue {
-  data() {
-    return {
-      barIconSizeCfg: ["0.5rem", "1rem", "0.25rem", "0.5rem"],
-      article: ARTICLE,
-      ui: ui.state,
-    };
-  }
+  barIconSizeCfg = ["0.5rem", "1rem", "0.25rem", "0.5rem"];
+  article = ARTICLE;
+  ui = ui.state;
 
   mounted() {
     extendTables();
@@ -43,7 +39,7 @@ export default class IndexComponent extends Vue {
 
 <style lang="stylus" scoped>
 .row-wrapper
-  width: 100vw;
+  width = 100vw;
   display: flex;
   flex-direction: row-reverse;
   position: relative;

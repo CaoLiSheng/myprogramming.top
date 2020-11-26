@@ -59,7 +59,7 @@ export function clickOnTag(tag: string, router: Router) {
   const query = curR.params['query'];
 
   let newQuery = tag;
-  if ('*' !== query) {
+  if ('*' !== query && 'TagsComponent' === curR.name) {
     const tags = query.split(',').map((t: string) => t.trim());
     const idx = tags.indexOf(tag);
     if (idx >= 0) {

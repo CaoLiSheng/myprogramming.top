@@ -36,21 +36,26 @@ export const dateSortDesc = (
     .sort((a: Sortable, b: Sortable) => (a.date.isBefore(b.date) ? 1 : -1))
     .map((obj: Sortable) => obj.s);
 
-export function timer(
-  jobOnce: (...params: any[]) => void,
-  jobLast: (...params: any[]) => void,
+export function switcher(
+  jobAtOnce: (...params: any[]) => void,
+  jobLater: (...params: any[]) => void,
   delay: number
-): (params: any[][]) => void {
+): (...params: any[]) => void {
   let _timer: NodeJS.Timeout | null = null;
+  let _need_once: boolean = true;
+
   return (...params: any[]) => {
     if (null !== _timer) clearTimeout(_timer);
 
-    jobOnce(...params);
+    if (_need_once) {
+      _need_once = false;
+      jobAtOnce(...params);
+    }
 
     _timer = setTimeout(() => {
       _timer = null;
-
-      jobLast(...params);
+      _need_once = true;
+      jobLater(...params);
     }, delay);
   };
 }

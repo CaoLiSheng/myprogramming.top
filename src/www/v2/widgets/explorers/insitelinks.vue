@@ -21,9 +21,7 @@ import { db, ui } from "@vStores/index";
 export default class InSiteLinks extends Vue.extend({
   props: ["refresh", "posts", "height"],
 }) {
-  data() {
-    return { ui: ui.state };
-  }
+  ui = ui.state;
 
   postMeta(name: string) {
     return db.data.metas[name];
