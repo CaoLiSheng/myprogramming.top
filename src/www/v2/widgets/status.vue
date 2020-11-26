@@ -82,14 +82,10 @@ export default class StatusComponent extends Vue {
     transform: scaleX(-1);
     cursor: pointer;
     color: var(--btn-foreground-theme-color);
-    background: var(--btn-background-theme-color);
-    @media (hover: hover)
-      &:hover
-        background: var(--btn-hover-theme-color);
-    &:active
-      background: var(--btn-active-theme-color);
     &.btn
+      height: 100%;
       padding: 0 1em;
+      line-height: 2em;
       font-size: 0.25rem;
       @media screen and (max-width: 750px)
         font-size: 0.5rem;
@@ -98,8 +94,10 @@ export default class StatusComponent extends Vue {
       flex-direction: row-reverse;
       justify-content: center;
       align-items: center;
-      padding: 0.2em 0.5em;
-      border-radius: 0.7em;
+      background: var(--btn-background-theme-color);
+      padding: 0 0.5em;
+      border-radius: 0.8em;
+      line-height: 1.6em;
       font-size: 0.2rem;
       @media screen and (max-width: 750px)
         font-size: 0.36rem;
@@ -111,9 +109,15 @@ export default class StatusComponent extends Vue {
           width: 0.32rem;
           height: 0.32rem;
     &.no-tag
+      pointer-events: none;
       height: 100%;
       line-height: 1rem;
       font-size: 0.2rem;
+    @media (hover: hover)
+      &:hover
+        background: var(--btn-hover-theme-color);
+    &:active
+      background: var(--btn-active-theme-color);
     &:not(:first-child)
       margin-left: 1em;
     @media screen and (min-width: 750px)

@@ -43,9 +43,11 @@ body[theme='Dark']
 body
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-weight: 200;
+  -webkit-tap-highlight-color: transparent;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   user-select: none;
+  outline: none;
 .r
   width: 100%;
   height: 100%;
