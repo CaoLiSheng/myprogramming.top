@@ -90,14 +90,14 @@ import('react-dom').then(({ render }) =>
 
 最近，发现好多 IDE 都有运行项目里 `npm script` 的功能，而为了避免选择列表太长，所以，并没有抽离公共脚本，做到脚本数量最小。
 
-```javascript
+```json
 {
   "scripts": {
     "help": "webpack -h",
     "build": "rm -rf build/dev && webpack -p --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
     "start": "npm run build && concurrently --handle-input 'nodemon --exec \"node ./build/dev/generator.min.js > log.txt\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server -p --devtool=false --config=cfg/webpack/site.dev.js'",
     "public": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt"
-  },
+  }
 }
 ```
 

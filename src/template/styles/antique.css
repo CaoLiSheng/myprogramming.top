@@ -222,7 +222,7 @@ body[theme='Dark'] .markdown-body {
   font-size: 0.95em;
   padding: 0 0.2em;
 }
-.markdown-body pre {
+.markdown-body pre.prettyprint {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -232,7 +232,7 @@ body[theme='Dark'] .markdown-body {
   overflow: auto;
   margin-bottom: 14px;
 }
-.markdown-body pre code {
+.markdown-body pre.prettyprint code {
   font-size: 1em;
   margin: 0;
   padding: 0;

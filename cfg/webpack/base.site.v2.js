@@ -1,5 +1,7 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const base = require('./base.site');
 
@@ -76,5 +78,14 @@ module.exports = merge(base, {
       },
     ],
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(process.cwd(), 'src/template/v2/index.html'),
+      filename: './index.html',
+      title: '又心真人的博客',
+      chunks: ['app'],
+      cache: false,
+    }),
+  ],
 });

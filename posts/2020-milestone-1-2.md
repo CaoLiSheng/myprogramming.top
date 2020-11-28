@@ -1,7 +1,7 @@
 ---
 style: github-colors
 title: 「里程碑-2020-1.2」博客 V2.0
-date: 2020-11-15
+date: 2020-11-28
 tags:
   - 博客
   - 里程碑
@@ -78,6 +78,50 @@ body[theme='Dark']
 这个问题本来是寄希望于一个叫做 CleanWebpackPlugin 的，但是没有卵用，反而把 HtmlTemplatePlugin 生成的 index.html 给干掉了。上网搜了搜，原来是 HtmlTemplatePlugin 默认有缓存，不能在 CleanWebpackPlugin 运作时被识别到，加上 `cache: false` 配置后就好了。然而，如此配置依然没有解决最初的问题，只好把 output 下的文件统统不带 hash 命名；反正开发时各种 `强制刷新` 且 `禁用缓存`，所以影响不大。
 
 最后，我把 watch 模式 换成使用 webpack-dev-server，在 devServer 中配置 writeToDisk 写入 output 目录。
+
+## package.json
+
+这是我每次都飘忽不定的地方。熟练掌握了 concurrently、nodemon、webpack、webpack-dev-server 以及 shell。
+
+```json
+{
+  "scripts": {
+    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts",
+    "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
+    "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
+    "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",
+    "devV1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
+    "devV2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
+    "publish": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
+  }
+}
+```
+
+## code prettify
+
+> google code prettify
+
+```html
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="./pretty-code-resources/prettify.css"
+/>
+<script
+  type="text/javascript"
+  src="./pretty-code-resources/prettify.js"
+></script>
+```
+
+```js
+document
+  .querySelectorAll('.markdown-body pre')
+  .forEach((preElem: HTMLPreElement) => {
+    preElem.classList.add('prettyprint');
+  });
+
+window['PR'].prettyPrint();
+```
 
 ## 同系列文章
 

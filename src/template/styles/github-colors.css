@@ -169,7 +169,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body dl,
 .markdown-body ol,
 .markdown-body p,
-.markdown-body pre,
+.markdown-body pre.prettyprint,
 .markdown-body table,
 .markdown-body ul {
   margin-top: 0;
@@ -269,7 +269,7 @@ body[theme='Dark'] .markdown-body {
 
 .markdown-body code,
 .markdown-body kbd,
-.markdown-body pre {
+.markdown-body pre.prettyprint {
   font-size: 11px;
 }
 
@@ -293,7 +293,7 @@ body[theme='Dark'] .markdown-body {
   border-radius: 3px;
 }
 
-.markdown-body pre > code {
+.markdown-body pre.prettyprint > code {
   padding: 0;
   margin: 0;
   font-size: 100%;
@@ -303,7 +303,7 @@ body[theme='Dark'] .markdown-body {
   border: 0;
 }
 
-.markdown-body pre {
+.markdown-body pre.prettyprint {
   word-wrap: normal;
   padding: 16px;
   overflow: auto;
@@ -313,7 +313,7 @@ body[theme='Dark'] .markdown-body {
   border-radius: 3px;
 }
 
-.markdown-body pre code {
+.markdown-body pre.prettyprint code {
   display: inline;
   max-width: auto;
   padding: 0;

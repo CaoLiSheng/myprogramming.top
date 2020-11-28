@@ -87,7 +87,7 @@ body[theme='Dark'] .markdown-body {
 
 .markdown-body code,
 .markdown-body kbd,
-.markdown-body pre,
+.markdown-body pre.prettyprint,
 .markdown-body samp {
   /* font-family: monospace, serif; */
   font-size: 14px;
@@ -95,7 +95,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body code,
-.markdown-body pre {
+.markdown-body pre.prettyprint {
   word-wrap: break-word;
   background-color: var(--pre-background-article-color);
   border: 1px solid #ccc;
@@ -107,7 +107,7 @@ body[theme='Dark'] .markdown-body {
   padding-right: 8px;
 }
 
-.markdown-body pre {
+.markdown-body pre.prettyprint {
   white-space: pre;
   white-space: pre-wrap;
   padding: 8px 10px;
@@ -115,15 +115,15 @@ body[theme='Dark'] .markdown-body {
   margin: 26px 0;
 }
 
-.markdown-body pre > code {
+.markdown-body pre.prettyprint > code {
   margin: 0;
   padding: 0;
   white-space: pre;
   border: none;
 }
 
-.markdown-body pre code,
-.markdown-body pre tt {
+.markdown-body pre.prettyprint code,
+.markdown-body pre.prettyprint tt {
   background-color: transparent;
   border: none;
 }

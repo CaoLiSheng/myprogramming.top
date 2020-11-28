@@ -1,4 +1,5 @@
 import '@audios/click';
+import extendCodes from '@www/utils/code';
 import extendTables from '@www/utils/table';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
@@ -113,3 +114,6 @@ document.querySelectorAll('a').forEach(extendAnchor);
 
 // support table on mobile
 extendTables();
+
+// support code prettifed
+extendCodes();
