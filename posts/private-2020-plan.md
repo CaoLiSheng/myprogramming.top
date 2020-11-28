@@ -40,7 +40,7 @@ tags:
 
 ……
 
-[选中的项目 x6 传送门](post:draft-learn-systematically)
+[【项目/编程语言/当前版本】一览表](post:draft-2020-project-records)
 
 ### 第四阶段
 
