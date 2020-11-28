@@ -70,7 +70,7 @@ import('react-dom').then(({ render }) =>
 );
 ```
 
-```shell
+```sh
 // 优化前
 274K  9 30 11:10 app.f629bf8dd3ae91057b3c.js
 670B  9 30 11:10 index.html
