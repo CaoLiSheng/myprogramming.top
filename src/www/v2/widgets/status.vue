@@ -36,7 +36,7 @@ export default class StatusComponent extends Vue {
   mounted() {
     initOnce();
 
-    if (this.isMobile) return;
+    if (!this.isMobile) return;
 
     this.sideRoot = document.getElementById("side");
     this.barRoot = document.getElementById("bar");

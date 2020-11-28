@@ -55,24 +55,27 @@ export default class TagsComponent extends Vue.extend({
 }) {
   db = db.state;
   refresh = true;
-  tagClouds = { extendable: [], selected: [] };
+  tagClouds: { extendable: string[]; selected: string[] } = {
+    extendable: [],
+    selected: [],
+  };
 
   mounted() {
     initOnce();
   }
 
   get posts() {
-    if (!this.$data.db.refresh) return [];
+    if (!this.db.refresh) return [];
     if ("*" === this.query) {
-      this.$data.tagClouds.extendable = [];
-      this.$data.tagClouds.selected = [];
+      this.tagClouds.extendable = [];
+      this.tagClouds.selected = [];
       return db.data.sortedPosts;
     }
 
     const tags = this.query.split(",").map((t: string) => t.trim());
-    this.$data.tagClouds.selected = tags;
+    this.tagClouds.selected = tags;
     const result = db.filterByTags(tags);
-    this.$data.tagClouds.extendable = result.extendable;
+    this.tagClouds.extendable = result.extendable;
     return result.posts;
   }
 }

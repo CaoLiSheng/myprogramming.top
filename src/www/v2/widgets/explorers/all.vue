@@ -48,17 +48,17 @@ export default class AllComponent extends Vue.extend({
   }
 
   get posts() {
-    if (!this.$data.db.refresh) return [];
+    if (!this.db.refresh) return [];
     return db.filterByKW(this.query);
   }
 
   get onChangeDelayed() {
     return switcher(
       () => {
-        this.$data.refresh = false;
+        this.refresh = false;
       },
       (query: string) => {
-        this.$data.refresh = true;
+        this.refresh = true;
 
         const curR = this.$router.currentRoute;
         if (curR.name === "AllComponent" && curR.params["query"] === query)
