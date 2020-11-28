@@ -1,15 +1,15 @@
 <template lang="pug">
 .r.status
-  a#gate.btn(title="去旧版网站", @click="goToV1")
+  a#gate.btn(title="去旧版网站", v-if="!isMobile", @click="goToV1")
     GateIcon
-  a#menu.btn(@click="openMenu") 菜单
+  a#menu.btn(v-if="isMobile", @click="openMenu") 菜单
   a.tag(
     v-for="tag in tags",
     :key="tag",
     @click="$event.preventDefault(), click(tag)"
   ) {{ tag }}
     TagIcon
-  a.no-tag ...没有标签咯
+  a.no-tag(v-if="isMobile") ...没有标签咯
 </template>
 
 <script lang="ts">
@@ -31,11 +31,12 @@ export default class StatusComponent extends Vue {
   barRoot: HTMLElement | null;
 
   db = db.state;
+  isMobile = isMobileSize().result;
 
   mounted() {
     initOnce();
 
-    if (!isMobileSize().result) return;
+    if (this.isMobile) return;
 
     this.sideRoot = document.getElementById("side");
     this.barRoot = document.getElementById("bar");
@@ -47,7 +48,7 @@ export default class StatusComponent extends Vue {
   }
 
   get tags() {
-    if (!this.$data.db.refresh) return [];
+    if (!this.db.refresh) return [];
 
     const parsed = location.pathname.split("/");
     const post = parsed[parsed.length - 1];
@@ -57,7 +58,7 @@ export default class StatusComponent extends Vue {
   }
 
   click(tag: string) {
-    if (isMobileSize().result) {
+    if (this.isMobile) {
       this.openMenu();
     }
     clickOnTag(tag, this.$router);
@@ -96,8 +97,6 @@ export default class StatusComponent extends Vue {
       font-size: 0.25rem;
       @media screen and (max-width: 750px)
         font-size: 0.5rem;
-        &#gate
-          display: none;
       svg.icon
         width: 0.2rem;
         height: 0.2rem;
@@ -135,7 +134,4 @@ export default class StatusComponent extends Vue {
       background: var(--btn-active-theme-color);
     &:not(:first-child)
       margin-left: 1em;
-    @media screen and (min-width: 750px)
-      &#menu, &.no-tag
-        display: none;
 </style>
