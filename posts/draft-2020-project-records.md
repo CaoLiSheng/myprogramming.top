@@ -2,7 +2,7 @@
 no-receive-emails
 style: bountiful
 title: 2020 年自研项目记录
-date: 2020-11-28
+date: 2021-01-21
 tags:
   - 计划
   - 自研项目
@@ -12,18 +12,18 @@ tags:
 【项目/编程语言/当前版本】一览表
 
 | Project / Lang / Version | C/C++ | Java | NodeJS | Python | Go  | C#  |
-| :----------------------- | :---: | :--: | :----: | :----: | :-: | :-: |
-| Web Server               |   -   |  -   |   -    |   -    |  -  |  -  |
-| Rational Database        |   -   |  -   |   -    |   -    |  -  |  -  |
-| Non-Rational Database    |   -   |  -   |   -    |   -    |  -  |  -  |
-| 2D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
-| 3D Lib                   |   -   |  -   |   -    |   -    |  -  |  -  |
-| VR Design Plugins        |   -   |  -   |   -    |   -    |  -  |  -  |
-| Game Engine              |   -   |  -   |   -    |   -    |  -  |  -  |
-| Web Crawler              |   -   |  -   |   -    |   -    |  -  |  -  |
-| Search Engine            |   -   |  -   |   -    |   -    |  -  |  -  |
-| AI System                |   -   |  -   |   -    |   -    |  -  |  -  |
-| Data Middle Platform     |   -   |  -   |   -    |   -    |  -  |  -  |
+| :----------------------- | :---- | :--- | :----- | :----- | :-- | :-- |
+| Web Server               | -     | -    | -      | -      | -   | -   |
+| Relational Database      | -     | -    | -      | -      | -   | -   |
+| Non-Relational Database  | -     | -    | -      | -      | -   | -   |
+| 2D Lib                   | -     | -    | -      | -      | -   | -   |
+| 3D Lib                   | -     | -    | -      | -      | -   | -   |
+| VR Design Plugins        | -     | -    | -      | -      | -   | -   |
+| Game Engine              | -     | -    | -      | -      | -   | -   |
+| Web Crawler              | -     | -    | -      | -      | -   | -   |
+| Search Engine            | -     | -    | -      | -      | -   | -   |
+| AI System                | -     | -    | -      | -      | -   | -   |
+| Data Middle Platform     | -     | -    | -      | -      | -   | -   |
 
 ---
 

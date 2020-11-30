@@ -1,7 +1,8 @@
 ---
 style: github-colors
 title: Gitlab Mirrors
-date: 2020-11-30
+date: 2021-01-01
 tags:
-  - 写代码时的困惑
+  - 工程化
+  - gitlab
 ---
