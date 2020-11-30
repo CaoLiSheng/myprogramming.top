@@ -1,7 +1,6 @@
 import '@tpl/v2/index';
 import '@audios/click';
 import '@www/utils/messages';
-import '@www/utils/favicon';
 import '@www/utils/vh100';
 
 import initREM from '@www/utils/rem';

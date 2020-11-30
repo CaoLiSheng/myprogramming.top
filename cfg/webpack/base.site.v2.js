@@ -82,6 +82,7 @@ module.exports = merge(base, {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'src/template/v2/index.html'),
+      favicon: path.join(process.cwd(), 'src/images/favicon.ico'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: ['app'],

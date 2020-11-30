@@ -20,6 +20,7 @@ module.exports = merge(base, {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(process.cwd(), 'src/www/v1/index.html'),
+      favicon: path.join(process.cwd(), 'src/images/favicon.ico'),
       filename: './index.html',
       title: '又心真人的博客',
       chunks: ['app'],
