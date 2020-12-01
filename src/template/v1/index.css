@@ -188,6 +188,7 @@ body:not(.snapshot) {
 
 .markdown-body {
   box-sizing: border-box;
+  font-weight: normal;
   max-width: 1000px;
   min-width: 200px;
   /* body_padding_pc */

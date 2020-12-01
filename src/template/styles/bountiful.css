@@ -78,7 +78,9 @@ body[theme='Dark'] .markdown-body {
 
 .markdown-body b,
 .markdown-body strong {
-  font-weight: bold;
+  font-weight: inherit;
+  font-weight: bolder;
+  font-weight: 600;
 }
 
 .markdown-body dfn {

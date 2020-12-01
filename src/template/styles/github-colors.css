@@ -34,7 +34,6 @@ body[theme='Dark'] .markdown-body {
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
-  font-weight: normal;
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
 }

@@ -35,7 +35,6 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   font-family: Palatino, Georgia, 'Times New Roman', -apple-system-font,
     'PingFang SC', 'Microsoft YaHei', serif;
-  font-weight: normal;
   font-size: 0.8764em;
   line-height: 1.5em;
   margin: 0;
@@ -86,7 +85,9 @@ body[theme='Dark'] .markdown-body {
   list-style: circle;
 }
 .markdown-body strong {
-  font-weight: bold;
+  font-weight: inherit;
+  font-weight: bolder;
+  font-weight: 600;
 }
 .markdown-body em {
   font-style: italic;
@@ -198,7 +199,6 @@ body[theme='Dark'] .markdown-body {
   color: var(--a-hover-foregrounnd-article-color);
 }
 .markdown-body strong {
-  font-weight: 600;
   color: var(--strong-foreground-article-color);
 }
 .markdown-body img {
