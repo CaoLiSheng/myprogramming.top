@@ -177,6 +177,7 @@ ul ul {
   border: solid 1px gray;
   box-shadow: 0 0 5px 0 gray;
   margin: 0.3rem auto;
+  font-weight: normal;
   /* body_padding_pc */
 }
 
