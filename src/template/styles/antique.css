@@ -436,7 +436,7 @@ body[theme='Dark'] .markdown-body {
   background: transparent;
   width: 100%;
   left: 0;
-  bottom: -20px;
+  bottom: -2em;
   color: #a7a099;
 }
 .markdown-body sup,

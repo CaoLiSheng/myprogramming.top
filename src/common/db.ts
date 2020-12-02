@@ -63,7 +63,11 @@ export class DB {
     this.postMetas[name] = meta;
 
     // Write public meta & infos
-    this.schema.metas[name] = { title, date, tags };
+    this.schema.metas[name] = {
+      date: meta.date.format('YYYY-MM-DD'),
+      title,
+      tags,
+    };
 
     this.pushToSortedPosts(name);
     this.pushToDateCategories(name);

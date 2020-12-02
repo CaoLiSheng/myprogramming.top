@@ -124,6 +124,28 @@ ul ul {
     'Liberation Mono', monospace;
 }
 
+.markdown-body figure {
+  font-size: 0;
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.markdown-body figure .image {
+  overflow: auto;
+  line-height: 1;
+  font-size: 0;
+  width: 100%;
+}
+
+.markdown-body figure .image img {
+  max-width: unset;
+}
+
+.markdown-body figure figcaption {
+  font-size: 14px;
+  line-height: 2em;
+}
+
 @media only screen and (max-width: 1080px) {
   .markdown-body div.comments {
     margin-bottom: 5em;
