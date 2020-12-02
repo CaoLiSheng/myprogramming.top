@@ -203,7 +203,7 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body img {
   max-width: 100%;
-  height: auto;
+  /* height: auto; */
   border: solid 2px rgba(56, 40, 18, 0.25);
 }
 .markdown-body dt {
@@ -426,6 +426,7 @@ body[theme='Dark'] .markdown-body {
   text-align: center;
   width: 100%;
 }
+
 .markdown-body figure:hover {
   cursor: pointer;
 }

@@ -1,6 +1,6 @@
 ---
 style: bountiful
-title: 找好工作
+title: 去找好工作
 date: 2020-12-01
 tags:
   - 职场

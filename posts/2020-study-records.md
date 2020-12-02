@@ -1,5 +1,5 @@
 ---
-no-receive-emails
+no-receive-emails: true
 style: bountiful
 title: 2020 年学习资料记录
 date: 2020-12-01

@@ -1,5 +1,5 @@
 ---
-no-receive-emails
+no-receive-emails: true
 style: bountiful
 title: 我的2020年
 date: 2020-11-25

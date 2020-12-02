@@ -1,5 +1,5 @@
 ---
-no-receive-emails
+no-receive-emails: true
 style: bountiful
 title: 2020 年自研项目记录
 date: 2021-01-21

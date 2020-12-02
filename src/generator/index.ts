@@ -1,10 +1,11 @@
 import path from 'path';
 import fs from 'fs-extra';
+import jsYAML from 'js-yaml';
 
 import {
+  copyTemplateAssets,
   tplContent,
   tplScriptPath,
-  copyTemplateAssets,
   fetchCSS,
   titleTag,
   dateTagHTML,
@@ -20,8 +21,8 @@ import {
   preWrite,
   extractPostName,
 } from './file';
-import { converter } from './converter';
 import { htmlMinify } from './minify';
+import { converter } from './converter';
 
 // DB
 import { DB } from '@common/db';
@@ -58,49 +59,34 @@ posts.forEach((fileName: string) => {
     encoding: 'UTF-8',
   });
 
-  const matches = fileContent.match(
-    /^---\n(no-receive-emails\n)?style: (.*?)\ntitle: (.*?)\ndate: (.*?)\n(?:tags:.*?\n([\s\S]*?))?---\n([\s\S]*)$/
-  );
+  /**
+   * moved deprecated code to ./_deprecated.ts
+   * where implements metadata parsing
+   */
 
-  if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
+  const body = converter.makeHtml(fileContent);
+  const rawMetadata = converter.getMetadata(true) as string;
+  let metadata: any;
+  let tags = [];
 
-  const [
-    noReceiveEmails,
-    stylesheet,
-    title,
-    date,
-    tags,
-    content,
-  ] = matches.slice(1);
-  const tagsRe = /- (.*?)\n/g;
-  const parsedTags = [titleTag(fileName)].filter((t: string) => !!t.trim());
-  if (tags) {
-    let tempTag;
-    while ((tempTag = tagsRe.exec(tags))) {
-      parsedTags.push(tempTag[1]);
-    }
+  try {
+    metadata = jsYAML.safeLoad(rawMetadata);
+  } catch (e) {
+    console.log(e);
   }
-  const body = converter.makeHtml(content);
 
-  // converter.makeHtml(fileContent);
-  // console.log(converter.getMetadata());
+  const { 'no-receive-emails': noReceiveEmails, style, title, date } = metadata;
+  if (titleTag(fileName)) tags.push(titleTag(fileName));
+  if (metadata.tags) tags.push(...metadata.tags);
 
   console.log(
-    [
-      fileName,
-      fileContent,
-      noReceiveEmails,
-      stylesheet,
-      title,
-      date,
-      tags,
-      parsedTags,
-      body,
-    ].join('\n\n')
+    'parsing------------------\n',
+    [rawMetadata, noReceiveEmails, style, title, date, tags, body].join('\n\n'),
+    '\n------------------parsing'
   );
 
   const name = extractPostName(fileName);
-  dbData.add({ name, title, date, tags: parsedTags }).persist();
+  dbData.add({ name, title, date, tags }).persist();
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
       tplContent
@@ -108,17 +94,12 @@ posts.forEach((fileName: string) => {
         .replace('{{article_title}}', title)
         .replace('{{javascript}}', tplScriptPath())
         .replace('{{hm_baidu}}', hmBaidu())
-        .replace('{{stylesheet}}', fetchCSS(stylesheet))
+        .replace('{{stylesheet}}', fetchCSS(style))
         .replace('{{title_tag}}', titleTagHTML(fileName))
         .replace('{{date_tag}}', dateTagHTML(date))
         .replace(
           '{{article_body}}',
-          `${body}${emailLinkHTML(
-            fileName,
-            noReceiveEmails,
-            stylesheet,
-            title
-          )}`
+          `${body}${emailLinkHTML(fileName, noReceiveEmails, style, title)}`
         )
     )
   );

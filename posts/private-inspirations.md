@@ -1,5 +1,5 @@
 ---
-no-receive-emails
+no-receive-emails: true
 style: bountiful
 title: 灵感
 date: 2045-11-06
