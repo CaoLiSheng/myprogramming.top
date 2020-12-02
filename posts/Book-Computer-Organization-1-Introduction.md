@@ -11,6 +11,6 @@ tags:
 
 > 概论
 
-![知识点梳理（右键在新窗口单独查看）](Computer-Orgenization-1-Introduction/key-knowlages.png '=1200px-500px')
+![知识点梳理（右键在新窗口单独查看）](Computer-Orgenization-1-Introduction/key-knowlages.png '=1000px-500px')
 
-![图1：计算机的组成](Computer-Orgenization-1-Introduction/key-knowlages-1.png)
+![图1：计算机的组成](Computer-Orgenization-1-Introduction/key-knowlages-1.png '=600px-')
