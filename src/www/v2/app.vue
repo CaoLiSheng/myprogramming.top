@@ -51,6 +51,8 @@ body
 .r
   width: 100%;
   height: 100%;
+  &.hidden
+    display: none;
 ::-webkit-scrollbar
   width: 3pt;
   height: 3pt;

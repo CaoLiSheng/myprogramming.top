@@ -211,4 +211,17 @@ ul ul {
     /* body_padding_mobile */
   }
 }
+
+@media print {
+  .markdown-body {
+    border: none;
+    box-shadow: none;
+  }
+  .markdown-body div.comments {
+    display: none;
+  }
+  .markdown-body h6.date-tag code::after {
+    height: 0;
+  }
+}
 /* 以上：.markdown-body 统一设置 */

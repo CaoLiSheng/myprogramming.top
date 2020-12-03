@@ -405,9 +405,10 @@ body[theme='Dark'] .markdown-body {
   background: rgba(0, 0, 0, 0.1);
 } */
 
-/* @media print {
+@media print {
   body {
     overflow: auto;
+    background: rgb(250, 248, 245);
   }
 
   img,
@@ -420,9 +421,13 @@ body[theme='Dark'] .markdown-body {
   }
 
   .markdown-body {
-    font-size: 85%;
+    font-size: 12.75px;
     padding: 10px;
     position: relative;
     text-indent: 0;
   }
-} */
+
+  .markdown-body hr {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}

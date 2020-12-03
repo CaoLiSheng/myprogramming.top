@@ -1,4 +1,3 @@
-import Moment from 'moment';
 import '@common/shims-string';
 
 import path from 'path';
@@ -94,8 +93,7 @@ export function titleTagHTML(fileName: string): string {
 
 // dateTag
 export function dateTagHTML(date: string): string {
-  const tag = Moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
-  return `<code> ~-~> ${tag}</code>`;
+  return `<code> ~-~> ${date}</code>`;
 }
 
 // hm baidu

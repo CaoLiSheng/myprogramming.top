@@ -40,7 +40,7 @@ tags:
 
 ……
 
-[【项目/编程语言/当前版本】一览表](post:draft-2020-project-records)
+[【项目/编程语言/当前版本】一览表](post:resume)
 
 ### 第四阶段
 

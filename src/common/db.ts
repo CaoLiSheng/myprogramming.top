@@ -35,6 +35,8 @@ export interface Row {
   tags: string[];
 }
 
+const noRecordableRows = ['index', 'resume'];
+
 export class DB {
   private postMetas: { [key: string]: Meta } = {};
   private schema: Schema = EmptySchema;
@@ -43,28 +45,27 @@ export class DB {
     return JSON.stringify(this.schema);
   }
 
-  public add(datum: Row): { persist: () => void } {
+  public add(datum: Row): { persist: () => PublicMeta | null } {
     return {
-      persist: () => {
-        if (datum.name === 'index') return;
-        this.addRow(datum);
+      persist: (): PublicMeta | null => {
+        if (noRecordableRows.some((name: string) => name === datum.name))
+          return null;
+        return this.addRow(datum);
       },
     };
   }
 
-  private addRow({ name, title, date, tags }: Row): Meta {
-    console.log();
+  private addRow({ name, title, date, tags }: Row): PublicMeta {
     if (this.postMetas[name]) throw new Error(`POST重复了 ${name}`);
 
     // Parse private Metadata
-    const meta: Meta = {
+    this.postMetas[name] = {
       date: Moment(date, 'YYYY-MM-DD'),
     };
-    this.postMetas[name] = meta;
 
     // Write public meta & infos
     this.schema.metas[name] = {
-      date: meta.date.format('YYYY-MM-DD'),
+      date: this.postMetas[name].date.format('YYYY-MM-DD'),
       title,
       tags,
     };
@@ -73,7 +74,7 @@ export class DB {
     this.pushToDateCategories(name);
     this.pushToTagCategories(name, tags);
 
-    return meta;
+    return this.schema.metas[name];
   }
 
   private push(name: string, targets: string[]): string[] {

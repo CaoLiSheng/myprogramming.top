@@ -86,7 +86,7 @@ posts.forEach((fileName: string) => {
   );
 
   const name = extractPostName(fileName);
-  dbData.add({ name, title, date, tags }).persist();
+  const rowMeta = dbData.add({ name, title, date, tags }).persist();
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
       tplContent
@@ -96,7 +96,7 @@ posts.forEach((fileName: string) => {
         .replace('{{hm_baidu}}', hmBaidu())
         .replace('{{stylesheet}}', fetchCSS(style))
         .replace('{{title_tag}}', titleTagHTML(fileName))
-        .replace('{{date_tag}}', dateTagHTML(date))
+        .replace('{{date_tag}}', dateTagHTML(rowMeta ? rowMeta.date : date))
         .replace(
           '{{article_body}}',
           `${body}${emailLinkHTML(fileName, noReceiveEmails, style, title)}`
