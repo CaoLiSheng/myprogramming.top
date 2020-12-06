@@ -3,7 +3,7 @@
   "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "scripts": {
-    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && rm -rf build/gen/dev && webpack --config=cfg/webpack/gen.dev.js",
+    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && webpack -h",
     "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
     "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
     "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",

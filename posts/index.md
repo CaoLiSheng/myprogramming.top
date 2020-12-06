@@ -2,7 +2,7 @@
 no-receive-emails: true
 style: solarized
 title: 又心真人的博客
-date: 1991-11-06
+date: 有缘千里来相会
 tags:
   - 纯属虚构
 ---

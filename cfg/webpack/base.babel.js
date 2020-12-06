@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new CleanWebpackPlugin({ protectWebpackAssets: false }),
   ],
 };

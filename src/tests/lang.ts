@@ -111,3 +111,80 @@ function searchByIndex(data: DBIndex[], flag: Indexer, v: any): DBIndex[] {
   data.forEach((i: DBIndex) => indexer(i, v) && results.push(i));
   return results;
 }
+
+function invertColor(color: string, isBody?: boolean) {
+  let r, g, b, a;
+
+  // hex format
+  if (color.indexOf('#') === 0) {
+    color = color.slice(1);
+
+    if (color.length === 3) {
+      r = parseInt(color[0] + color[0], 16);
+      g = parseInt(color[1] + color[1], 16);
+      b = parseInt(color[2] + color[2], 16);
+      a = 1;
+    } else if (color.length === 4) {
+      r = parseInt(color[0] + color[0], 16);
+      g = parseInt(color[1] + color[1], 16);
+      b = parseInt(color[2] + color[2], 16);
+      a = parseInt(color[3] + color[3], 16) / 255;
+    } else if (color.length === 6) {
+      r = parseInt(color.slice(0, 2), 16);
+      g = parseInt(color.slice(2, 4), 16);
+      b = parseInt(color.slice(4, 6), 16);
+      a = 1;
+    } else if (color.length === 8) {
+      r = parseInt(color.slice(0, 2), 16);
+      g = parseInt(color.slice(2, 4), 16);
+      b = parseInt(color.slice(4, 6), 16);
+      a = parseInt(color.slice(6, 8), 16) / 255;
+    } else {
+      throw new Error('Invalid hex color.');
+    }
+  } else if (color.indexOf('rgb') === 0) {
+    const parts = color
+      .slice(color.indexOf('(') + 1, color.indexOf(')'))
+      .split(',');
+    r = parseInt(parts[0]);
+    g = parseInt(parts[1]);
+    b = parseInt(parts[2]);
+    a = parts[3] ? parseFloat(parts[3]) : 1.0;
+  } else {
+    throw new Error('Not Supported Yet!');
+  }
+
+  // invert trasparent to black
+  if (isBody && a < 0.001) {
+    return 'black';
+  }
+
+  // invert color components
+  r = 255 - r;
+  g = 255 - g;
+  b = 255 - b;
+  const retVal = `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})`;
+
+  console.log('debug invert color func', color, 'to', retVal);
+  return retVal;
+}
+
+function invertProperty() {
+  const regs = [
+    //   '#[0-9a-fA-F]{3}',
+    //   '#[0-9a-fA-F]{4}',
+    //   '#[0-9a-fA-F]{6}',
+    //   '#[0-9a-fA-F]{8}',
+    'rgb\\(\\s*?\\d{1,3}\\s*?,\\d{1,3}\\s*?,\\d{1,3}\\s*?\\)',
+    /rgba\(\s*?\d{1,3}\s*?,\d{1,3}\s*?,\d{1,3}\s*?,\s*?\d(.\d+)?\s*?\)/,
+  ];
+
+  const value = 'rgba(12,12,12,0.1)';
+  let allReplaced = value;
+  regs.forEach((reg) => {
+    allReplaced = allReplaced.replace(reg, ($0) => invertColor($0));
+  });
+  console.log('debug', value, 'to', allReplaced);
+}
+
+console.log('invertProperty()', invertProperty());
