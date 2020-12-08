@@ -17,7 +17,7 @@ tags:
 
 ---
 
-[【项目/编程语言/当前版本】一览表](post:resume)
+[【项目/编程语言/当前版本】一览表](post:hidden-resume)
 
 ### 35+ 个主题
 
@@ -67,6 +67,7 @@ _非程序设计语言类_
 
 ### 2. 算法分析与设计
 
+- [读书笔记之《Algorithms》](post:Book-Algorithms-13-Summary)
 - [回到大目录](scroll-to:35+-个主题)
 
 ### 3. 用户界面设计与评价

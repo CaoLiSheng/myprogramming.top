@@ -40,8 +40,18 @@ tags:
 
 ……
 
-[【项目/编程语言/当前版本】一览表](post:resume)
+[【项目/编程语言/当前版本】一览表](post:hidden-resume)
 
 ### 第四阶段
 
 **蜕变为优秀的软件工程师 = 完成选中的项目 = 喜欢的编程语言 + 五大原理**，666！
+
+此阶段的书单包括但不限于：
+
+- 计算机组成原理
+- 深入理解计算机系统（Computer Systems A Programmer’s Perspective）
+- 操作系统概念（Operating System Concepts）
+- 信号量（The Little Book of Semaphores）
+- 网络编程教程（Beej’s Guide to Network Programming）
+
+所以说，编程四兽（基础 + 中断 + 网络 + 并发），之后再谈实现一个 nginx、还是自研一个 mysql；有兴趣再研究下编译原理，没记错的话，对解决很多形式化问题有帮助。
