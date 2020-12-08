@@ -9,15 +9,16 @@ tags:
 
 ## 目前对各网站的支持情况
 
-| Web Site      | Supported |
+| Site          | Supported |
 | :------------ | --------: |
-| baidu         |         √ |
-| bing          |         √ |
-| google        |         √ |
-| github        |         √ |
-| gitee         |         √ |
-| stackoverflow |         √ |
-| apple         |         X |
+| baidu         |       Yes |
+| gitee         |       Yes |
+| csdn          |       Yes |
+| bing          |       Yes |
+| google        |       Yes |
+| github        |       Yes |
+| stackoverflow |       Yes |
+| apple         |        No |
 
 ## 开发过程
 
@@ -39,4 +40,4 @@ tags:
 
 !![因为穷，玩不起](Safari-Dark-Mode-Web-Extension/lack-of-money.png)
 
-只好在最后线上[开源链接](https://gitee.com/yx1991/dark-mode-web-extension)，希望有人能一起研究、改进。
+只好在最后献上[开源链接](https://gitee.com/yx1991/dark-mode-web-extension)，希望有人能一起研究、改进。
