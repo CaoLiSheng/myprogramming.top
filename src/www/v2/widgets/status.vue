@@ -54,7 +54,7 @@ export default class StatusComponent extends Vue {
     const post = parsed[parsed.length - 1];
     if (!post) return [];
 
-    return db.data.metas[post].tags;
+    return db.data.metas[post]?.tags;
   }
 
   click(tag: string) {

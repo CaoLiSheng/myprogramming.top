@@ -33,8 +33,18 @@ export const db = {
 
     return (this.data.sortedPosts || []).filter((p: string) => {
       const meta = this.data.metas[p];
+      // try {
       if (meta.title.indexOf(kw) >= 0) return true;
-      if (meta.tags.some((t: string) => t.indexOf(kw) >= 0)) return true;
+      if (
+        meta.tags
+          .map((t: any) => `${t}`)
+          .some((t: string) => t.indexOf(kw) >= 0)
+      ) {
+        return true;
+      }
+      // } catch (e) {
+      //   console.log('tua', p, JSON.parse(JSON.stringify(meta)), e);
+      // }
       return false;
     });
   },

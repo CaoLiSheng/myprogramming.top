@@ -35,7 +35,11 @@ export interface Row {
   tags: string[];
 }
 
-const noRecordableRows = ['index', 'resume'];
+function nonRecordable(name: string): boolean {
+  if ('index' === name) return true;
+  if (name.startsWith('hidden-')) return true;
+  return false;
+}
 
 export class DB {
   private postMetas: { [key: string]: Meta } = {};
@@ -48,8 +52,7 @@ export class DB {
   public add(datum: Row): { persist: () => PublicMeta | null } {
     return {
       persist: (): PublicMeta | null => {
-        if (noRecordableRows.some((name: string) => name === datum.name))
-          return null;
+        if (nonRecordable(datum.name)) return null;
         return this.addRow(datum);
       },
     };
