@@ -13,14 +13,7 @@ import {
   emailLinkHTML,
   hmBaidu,
 } from './template';
-import {
-  inDir,
-  outDir,
-  isAsset,
-  isPost,
-  preWrite,
-  extractPostName,
-} from './file';
+import { inDir, outDir, isPost, preWrite, extractPostName } from './file';
 import { htmlMinify } from './minify';
 import { converter } from './converter';
 
@@ -38,18 +31,8 @@ console.log('inDir', inDir, '\noutDir', outDir, '\nready...');
 const sources = fs.readdirSync(inDir);
 console.log('Sources:', sources);
 
-// Copy Assets
+// Copy Template's Assets
 copyTemplateAssets();
-if (!__production__) {
-  const assets = sources.filter((file: string) => isAsset(file));
-  console.log('Assets:', assets);
-  assets.forEach((dir: string) =>
-    fs.copySync(path.join(inDir, dir), path.join(outDir, dir), {
-      recursive: true,
-    })
-  );
-  console.log('All Assets Copied');
-}
 
 // Generate HTML
 const posts = sources.filter((file: string) => isPost(file));
