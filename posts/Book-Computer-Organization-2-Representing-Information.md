@@ -12,4 +12,4 @@ tags:
 
 > 数据的机器层表示
 
-![知识点梳理（右键在新窗口单独查看）](Computer-Organization-2-Representing-Information/key-knowlages.png '=1000px-500px')
+![知识点梳理（右键在新窗口单独查看）](Computer-Organization-2-Representing-Information/key-knowlages.png '=950px-500px')
