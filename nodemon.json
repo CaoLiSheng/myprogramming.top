@@ -2,6 +2,7 @@
   "watch": [
     "posts/",
     "build/v2/dev/",
+    "public/resources",
     "src/template/styles/",
     "src/template/v2/index.css",
     "src/template/v1/index.css",

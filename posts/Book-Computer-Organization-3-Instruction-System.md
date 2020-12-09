@@ -11,4 +11,4 @@ tags:
 
 > 指令系统
 
-![知识点梳理（右键在新窗口单独查看）](Computer-Organization-3-Instruction-System/key-knowlages.png '=1000px-500px')
+![知识点梳理（右键在新窗口单独查看）](Computer-Organization-3-Instruction-System/key-knowlages.png '=1100px-500px')
