@@ -30,7 +30,7 @@ body[theme='Light'] .markdown-body {
   --main-foreground-article-color: rgba(0, 0, 0, 0.9);
   --main-background-article-color: rgba(250, 248, 245, 0.7);
   --a-foregrounnd-article-color: #07c;
-  --a-backgrounnd-article-color: #45462f;
+  --a-backgrounnd-article-color: rgb(223, 188, 146);
   --blockquote-foreground-article-color: rgba(0, 0, 0, 0.7);
   --list-foreground-article-color: rgba(0, 0, 0, 0.7);
   --pre-background-article-color: #f2ede8;
@@ -44,7 +44,7 @@ body[theme='Dark'] .markdown-body {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
   --a-foregrounnd-article-color: #4eaff5;
-  --a-backgrounnd-article-color: #39362f;
+  --a-backgrounnd-article-color: rgb(41, 172, 110);
   --blockquote-foreground-article-color: white;
   --blockquote-foreground-article-color: white;
   --pre-background-article-color: #39362f;

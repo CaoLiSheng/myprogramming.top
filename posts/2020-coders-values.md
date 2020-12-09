@@ -14,38 +14,34 @@ tags:
 ### 如何快速成长为技术大牛？阿里资深技术专家的总结亮了
 
 ![快速成长大纲](correct-values/grow-up-quickly.png)
-[XMind 创作文件](correct-values/grow-up-quickly.xmind 'grow-up-quickly.xmind')
 
 #### 感想
 
-> 就我个人而言，并没有太多地走入误区；除了一点：总想写些除了业务之外不一样的代码、以至于恍惚间分不清业务代码和技术代码，变成了一个以谁为主体而言的问题。
+> 就我个人而言，并没有太多地走入误区；除了一点：认为一直写业务没前途，看到框架、类库等觉得高大上，跃跃欲试地想自己搞一个。
 
-我毕业已经整整 7 年了，最初的梦想却是成为一名 CTO，首先要成为一名架构师。在我的认知中，只有架构师升级后才是 CTO；而项目经理都抛开技术做管理了，所以其升级后应该是与技术无关的总裁。在经历了一些之后，发觉有些地方的 CTO 可能不仅仅是领导团队的技术，里面更多是人情世故的存在；而我选择技术这条路，就是为了简单的人际关系、纯粹的知识追求、用技术改变世界；不论将来能走到哪一步，都将继续走下去！
+我毕业已经整整 7 年了，入行时最初的梦想却是成为一名 CTO。如今，静下心来想想那些令人羡慕的描写：「CTO 带领的团队，自研的全新架构帮助整个系统吞吐量提升了……，更好地应对未来需求的变化」。抛开一切顾虑，CTO 需要从资深架构师过渡，我现在的目标是成为一名架构师。没有立刻去找工作，因为我知道现在的我也进不了知名企业，换句话说，那样的公司里，身边没有优秀的架构师。另一个原因就是，我认为架构师才是工程师职业生涯的开始，因为架构师可以有机会获得跟原来工作完全不同领域的新工作，所谓「工作中心不拘泥于一点」；他们是系统设计者，并不是占着“熟悉业务”为优势的团队管理者。我要自己从头学习一遍计算机科学，设计若干个通用系统；到时对编程炉火纯青后，再发动人脉了解行业真实需求，尝试系统设计；多几次这样的经历后，再尝试设计一整套系统，就是我心中的架构。
 
-> 如果，一个 CTO 跟着老板出去把牛皮吹多了，在公司内部真的就能带领团队的技术吗？技术的攻坚克难是要静下心来深藏功与名的！虽说大公司的上升双通道，我只听说过，没见过；但是小公司那种两手抓的情况是体验过了。
+> 新利好消息： 2020 年公布的年龄段划分新标准，不知是真是假。总之，我看到了「在这个计算机起步时间与社会发展略微不协调后产生的“程序员 35 岁魔咒”、“996”等不和谐」的消散之兆！所以，我完全不担心年轻不工作，中年没工作的问题，因为中年已经 66 岁起啦！况且，我估算了下，我这个样子活到老也没问题，完全不担心经济问题。再有，女性最佳生育年龄也会相应扩大吧？就算以后找不到小姑凉，找个同岁的也没问题呀！哇哈哈，这，就是我心中的架构。
 
 ### 毕业 3 年，为何技术能力相差越来越大？
 
 ![技术能力大纲](correct-values/tech-ability.png)
-[XMind 创作文件](correct-values/tech-ability.xmind 'tech-ability.xmind')
 
 #### 感想
 
-暂无感想，不过*计划* 列一列掌握了的和需要掌握的知识结构。
+暂无感想，不过*计划* 列一列掌握了的和需要掌握的知识结构。PS：方法论总是容易给人自大的印象！
 
 ### 程序员吃的是青春饭？本质上取决于……
 
 ![35 岁之前大纲](correct-values/before-35-years-old.png)
-[XMind 创作文件](correct-values/before-35-years-old.xmind 'before-35-years-old.xmind')
 
 #### 感想
 
-毕业后的十年间，前一半作为「个人贡献者」勤奋学习，后一半作为「团队贡献者」继续努力。TL 重点在于保证团队盈利、熟谙客户的业务、管理项目生命周期；架构师重点在于需求分析、合理响应需求的变化、保证团队的技术输出。另外，与下文中呼应，架构师的客户是团队中的每个成员。
+就是说：毕业后的十年间，前一半作为「个人贡献者」勤奋学习，后一半作为「团队贡献者」继续努力。TL 重点在于保证团队盈利、熟谙客户的业务、管理项目生命周期；架构师重点在于需求分析、合理响应需求的变化、保证团队的技术输出。另外，与下文中呼应，架构师的客户是团队中的每个成员。
 
 ### 技术变化那么快，程序员如何做到不被淘汰？
 
 ![不被淘汰大纲](correct-values/not-eliminated.png)
-[XMind 创作文件](correct-values/not-eliminated.xmind 'not-eliminated.xmind')
 
 #### 感想
 
@@ -54,7 +50,6 @@ tags:
 ### 加班越久故障越多，如何跳出程序员的恶性循环？
 
 ![研发数据大纲](correct-values/dev-data.png)
-[XMind 创作文件](correct-values/dev-data.xmind 'dev-data.xmind')
 
 #### 感想（摘抄）
 
@@ -67,7 +62,6 @@ tags:
 ### 如何在阿里技术面试中脱颖而出？
 
 ![面试大纲](correct-values/interview.png)
-[XMind 创作文件](correct-values/interview.xmind 'interview.xmind')
 
 #### 感想
 
@@ -76,7 +70,6 @@ tags:
 ### 使用开源项目的正确姿势，血和泪的总结
 
 ![拥抱开源大纲](correct-values/embrace-open-source.png)
-[XMind 创作文件](correct-values/embrace-open-source.xmind 'embrace-open-source.xmind')
 
 #### 感想
 
@@ -87,7 +80,6 @@ tags:
 ### 前端工程师的未来在哪里？
 
 ![未来前端大纲](correct-values/future-frontend.png)
-[XMind 创作文件](correct-values/future-frontend.xmind 'future-frontend.xmind')
 
 #### 感想
 
@@ -102,7 +94,6 @@ tags:
 ### 前端 Leader 如何做好团队规划？阿里内部培训总结公开
 
 ![技术规划大纲](correct-values/tl-plans.png)
-[XMind 创作文件](correct-values/tl-plans.xmind 'tl-plans.xmind')
 
 #### 感想
 
@@ -124,7 +115,6 @@ TL 还是一种有意思的职业呢。
 ### 一位优秀前端的自我修养
 
 ![职业素养大纲](correct-values/professionalism.png)
-[XMind 创作文件](correct-values/professionalism.xmind 'professionalism.xmind')
 
 #### 感想
 
@@ -133,7 +123,6 @@ TL 还是一种有意思的职业呢。
 ### 如何成为一名顶尖的阿里架构师？
 
 ![架构师大纲](correct-values/architect.png)
-[XMind 创作文件](correct-values/architect.xmind 'architect.xmind')
 
 #### 感想
 
