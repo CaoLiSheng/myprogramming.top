@@ -132,7 +132,7 @@ export function emailLinkHTML(
 <hr />
 <br />
 <div class="comments">
-<a href="mailto:954382491@qq.com?subject=评价「${title}」">发邮件～来聊两句吧～</a>
+<a href="mailto:954382491@qq.com?subject=评价「${title}」">来聊两句吧～</a>
 <h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6>
 </div>
 <br />
