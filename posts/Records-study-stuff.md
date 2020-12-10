@@ -1,8 +1,7 @@
 ---
-no-receive-emails: true
 style: bountiful
-title: 2020 年学习资料记录
-date: 2020-12-01
+title: 学习资料记录（2020 -- ？）
+date: 2020-12-10
 tags:
   - 学习资料
   - 记录

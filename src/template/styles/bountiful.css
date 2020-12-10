@@ -43,7 +43,7 @@ body[theme='Light'] .markdown-body {
 body[theme='Dark'] .markdown-body {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
-  --a-foregrounnd-article-color: rgb(209, 209, 209);
+  --a-foregrounnd-article-color: rgb(33, 68, 111);
   --a-backgrounnd-article-color: rgb(33, 68, 111);
   --blockquote-foreground-article-color: white;
   --blockquote-foreground-article-color: white;

@@ -5,7 +5,9 @@ title: 命中注定
 date: 2045-11-06
 tags:
   - 命运
-  - 神界
+  - 转折
+  - 不放弃
+  - 希望
 ---
 
 > [命运:现实](http://www.64365.com/video/ddexz/)
