@@ -14,11 +14,20 @@
       "@audios/*": [
         "src/audios/*"
       ],
-      "@ctxs/*": [
-        "src/www/ctxs/*"
+      "@www/*": [
+        "src/www/*"
       ],
-      "@widgets/*": [
-        "src/www/widgets/*"
+      "@rCtxs/*": [
+        "src/www/v1/ctxs/*"
+      ],
+      "@rWidgets/*": [
+        "src/www/v1/widgets/*"
+      ],
+      "@vStores/*": [
+        "src/www/v2/stores/*"
+      ],
+      "@vWidgets/*": [
+        "src/www/v2/widgets/*"
       ]
     },
     "outDir": "dist",

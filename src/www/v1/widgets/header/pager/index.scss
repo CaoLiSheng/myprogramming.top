@@ -1,0 +1,20 @@
+.title-bar > nav > input {
+  width: 5em;
+  height: 0.3rem;
+  font-size: 0.2rem;
+  line-height: 0.2rem;
+  padding: 0.05rem 0.3em;
+  margin: 0 0.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  outline: none;
+  color: #333333;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .title-bar > nav > input {
+    height: 0.45rem;
+    font-size: 0.35rem;
+    line-height: 0.35rem;
+  }
+}

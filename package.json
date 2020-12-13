@@ -1,20 +1,24 @@
 {
   "name": "yxblog",
-  "version": "1.0.0",
+  "version": "1.9.9",
   "description": "YX's BLOG SITE",
-  "main": "build/index.js",
   "scripts": {
-    "test": "webpack -h",
-    "dev:pre": "rm -rf build/dev && webpack -p --devtool=false --config=cfg/webpack/gen.dev.js && node ./build/dev/generator.min.js > log.txt",
-    "dev": "npm run dev:pre && concurrently --handle-input 'nodemon --exec \"node ./build/dev/generator.min.js > log.txt\"' 'serve -C -l 5555 ./build/posts/' 'webpack-dev-server -p --devtool=false --config=cfg/webpack/site.dev.js'",
-    "prod": "rm -rf public build/prod && webpack -p --devtool=false --config=cfg/webpack/site.prod.js && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && node ./build/prod/generator.min.js > log.txt"
+    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && webpack -h",
+    "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
+    "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
+    "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",
+    "devV1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
+    "devV2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
+    "publish": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
   },
   "repository": {
     "type": "git",
     "url": "https://gitee.com/yx1991/blog.git"
   },
   "keywords": [
-    "blog"
+    "blog",
+    "react",
+    "vue"
   ],
   "author": "CaoLS",
   "license": "ISC",
@@ -32,6 +36,7 @@
     "@types/classnames": "^2.2.10",
     "@types/fs-extra": "^9.0.1",
     "@types/html2canvas": "^0.0.35",
+    "@types/js-yaml": "^3.12.5",
     "@types/md5": "^2.2.0",
     "@types/node": "^12.12.0",
     "@types/react": "^16.9.43",
@@ -39,7 +44,10 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/showdown": "^1.9.3",
+    "@types/yargs": "^15.0.9",
     "babel-loader": "^8.1.0",
+    "babel-preset-typescript-vue": "^1.1.1",
+    "clean-webpack-plugin": "^3.0.0",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
@@ -47,30 +55,48 @@
     "file-loader": "^6.0.0",
     "fork-ts-checker-webpack-plugin": "^5.0.9",
     "html-webpack-plugin": "^4.3.0",
+    "js-yaml": "^3.14.0",
     "md5": "^2.3.0",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
+    "pug": "^2.0.0",
+    "pug-plain-loader": "^1.0.0",
     "react-hot-loader": "^4.12.21",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.1.1",
+    "ts-loader": "^8.0.4",
+    "ts-node": "^9.0.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.9.7",
     "url-loader": "^4.1.0",
+    "vue-class-component": "^7.2.6",
+    "vue-loader": "^15.9.3",
+    "vue-property-decorator": "^9.0.2",
+    "vue-style-loader": "^4.1.2",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.0.9"
+    "webpack-merge": "^5.0.9",
+    "webpack-node-externals": "^2.5.2",
+    "yargs": "^16.1.0"
   },
   "dependencies": {
+    "@csstools/normalize.css": "^11.0.1",
     "classnames": "^2.2.6",
     "fs-extra": "^9.0.1",
+    "localforage": "^1.9.0",
     "moment": "^2.27.0",
+    "portal-vue": "^2.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "showdown": "^1.9.1"
+    "showdown": "^1.9.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.6"
   }
 }

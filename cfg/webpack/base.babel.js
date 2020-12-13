@@ -1,15 +1,27 @@
-const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
     plugins: [new TsconfigPathsPlugin()],
   },
-  plugins: [new ForkTsCheckerWebpackPlugin(), new webpack.NamedModulesPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.(eot|woff|woff2|ttf|svg|jpe?g|png|gif|wav|ico)$/,
+        loader: 'url-loader?limit=2048&name=[name]-[hash:10].[ext]',
+      },
+    ],
+  },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin(),
+    // new webpack.NamedModulesPlugin(),
+    new CleanWebpackPlugin({ protectWebpackAssets: false }),
+  ],
 };

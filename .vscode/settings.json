@@ -1,0 +1,16 @@
+{
+  "path-intellisense.mappings": {
+    "@tpl": "src/template",
+    "@common": "src/common",
+    "@images": "src/images",
+    "@audios": "src/audios",
+    "@www": "src/www",
+    "@rCtxs": "src/www/v1/ctxs",
+    "@rWidgets": "src/www/v1/widgets",
+    "@vStores": "src/www/v2/stores",
+    "@vWidgets": "src/www/v2/widgets"
+  },
+  "markdown.styles": [
+    "cfg/thomasf-solarizedcsslight.css"
+  ],
+}

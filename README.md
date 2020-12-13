@@ -10,27 +10,27 @@
 
 2. 文章内容涵盖
 
-   1. 项目本身
+   1. 正在做的软件项目
    2. 计算机科学
    3. Blender3D 与 VR
-   4. 一些私人的、不公开的内容
+   4. 一些私人的、不公开的内容（仅在本地运行方式中可见）
 
 3. 文章画风选择太多，一时区分不出来
 
    1. Github // 技术
 
-      1. github-colors
-      2. github-border
+      1. github-colors // （Github 风格）做*技术分享*
 
    2. Categories
 
-      3. splendor // 新闻（技术无关）
-      4. air // 计划（任务）
-      5. retro // 黑科技
-      6. modest // 感想
-      7. antique // 笔记
-      8. citizen // 新闻（技术相关）
-      9. lopash // 书架（表格）
+      2. antique // （古风，羊皮卷）适合*学习相关*
+      3. bountiful // （表格好看，字体特殊）用于*其它*
+
+### 疑惑
+
+Q: 为什么把 `package.json` 里的 `scripts` 写得那么长？
+
+A: `VSCode` 里有个 `NPM 脚本` 插件，为了让插件这里看到不那么乱！况且一条线看下去，思路也都清晰了。
 
 ## 安装教程
 

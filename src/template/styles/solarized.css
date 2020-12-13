@@ -1,0 +1,319 @@
+.markdown-body {
+  --h1-article-color: #d33682;
+  --h2-h6-article-color: #859900;
+  --a-article-color: #b58900;
+  --a-hover-article-color: #cb4b16;
+  --a-visited-article-color: #cb4b16;
+}
+
+body[theme='Light'] .markdown-body {
+  --foreground-article-color: #657b83;
+  --background-article-color: #fdf6e3;
+  --code-background-article-color: #eee8d5;
+  --pre-code-background-article-color: #fdf6e3;
+}
+
+body[theme='Dark'] .markdown-body {
+  --foreground-article-color: #839496;
+  --background-article-color: #002b36;
+  --code-background-article-color: #073642;
+  --pre-code-background-article-color: #002b36;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  list-style-position: inside;
+}
+
+.markdown-body article,
+.markdown-body aside,
+.markdown-body details,
+.markdown-body figcaption,
+.markdown-body figure,
+.markdown-body footer,
+.markdown-body header,
+.markdown-body hgroup,
+.markdown-body nav,
+.markdown-body section,
+.markdown-body summary {
+  display: block;
+}
+.markdown-body audio,
+.markdown-body canvas,
+.markdown-body video {
+  display: inline-block;
+}
+.markdown-body audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+.markdown-body [hidden] {
+  display: none;
+}
+/* html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+} */
+.markdown-body a:focus {
+  outline: thin dotted;
+}
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+.markdown-body abbr[title] {
+  border-bottom: 1px dotted;
+}
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+.markdown-body dfn {
+  font-style: italic;
+}
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+}
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-size: 1em;
+}
+.markdown-body pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.markdown-body q {
+  quotes: '\201C''\201D''\2018''\2019';
+}
+.markdown-body small {
+  font-size: 80%;
+}
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+.markdown-body img {
+  border: 0;
+}
+.markdown-body svg:not(:root) {
+  overflow: hidden;
+}
+.markdown-body figure {
+  margin: 0;
+}
+.markdown-body fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+.markdown-body legend {
+  border: 0;
+  padding: 0;
+}
+.markdown-body button,
+.markdown-body input,
+.markdown-body select,
+.markdown-body textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+.markdown-body button,
+.markdown-body input {
+  line-height: normal;
+}
+.markdown-body button,
+.markdown-body input[type='button'],
+.markdown-body input[type='reset'],
+.markdown-body input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+.markdown-body button[disabled],
+.markdown-body input[disabled] {
+  cursor: default;
+}
+.markdown-body input[type='checkbox'],
+.markdown-body input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.markdown-body input[type='search'] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.markdown-body input[type='search']::-webkit-search-cancel-button,
+.markdown-body input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.markdown-body button::-moz-focus-inner,
+.markdown-body input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.markdown-body textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@import url('//fonts.googleapis.com/css?family=PT+Sans');
+@import url('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400, 700');
+.markdown-body {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
+}
+/* pre,
+code {
+  font-family: monospace, sans-serif;
+} */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+}
+.markdown-body {
+  background-color: var(--background-article-color);
+  color: var(--foreground-article-color);
+  /* margin: 1em; */
+}
+.markdown-body code {
+  background-color: var(--code-background-article-color);
+  padding: 2px;
+}
+.markdown-body a {
+  color: var(--a-article-color);
+}
+.markdown-body a:visited {
+  color: var(--a-visited-article-color);
+}
+.markdown-body a:hover {
+  color: var(--a-hover-article-color);
+}
+.markdown-body h1 {
+  color: var(--h1-article-color);
+}
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: var(--h2-h6-article-color);
+}
+.markdown-body pre {
+  background-color: var(--background-article-color);
+  color: var(--foreground-article-color);
+  border: 1pt solid #93a1a1;
+  padding: 1em;
+  box-shadow: 5pt 5pt 8pt #eee8d5;
+}
+.markdown-body pre code {
+  background-color: var(--pre-code-background-article-color);
+}
+.markdown-body h1 {
+  font-size: 2.8em;
+}
+.markdown-body h2 {
+  font-size: 2.4em;
+}
+.markdown-body h3 {
+  font-size: 1.8em;
+}
+.markdown-body h4 {
+  font-size: 1.4em;
+}
+.markdown-body h5 {
+  font-size: 1.3em;
+}
+.markdown-body h6 {
+  font-size: 1.15em;
+}
+.markdown-body .tag {
+  background-color: #eee8d5;
+  color: #d33682;
+  padding: 0 0.2em;
+}
+.markdown-body .todo,
+.markdown-body .next,
+.markdown-body .done {
+  color: #fdf6e3;
+  background-color: #dc322f;
+  padding: 0 0.2em;
+}
+.markdown-body .tag {
+  -webkit-border-radius: 0.35em;
+  -moz-border-radius: 0.35em;
+  border-radius: 0.35em;
+}
+.markdown-body .TODO {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #2aa198;
+}
+.markdown-body .NEXT {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.markdown-body .ACTIVE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.markdown-body .DONE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #859900;
+}
+.markdown-body .WAITING {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  color: #cb4b16;
+}
+.markdown-body .HOLD {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  color: #d33682;
+}
+.markdown-body .NOTE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  color: #d33682;
+}
+.markdown-body .CANCELLED {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  color: #859900;
+}

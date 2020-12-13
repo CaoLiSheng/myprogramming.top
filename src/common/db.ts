@@ -5,6 +5,7 @@ export interface RNK {
 }
 
 export interface PublicMeta {
+  title: string;
   date: string;
   tags: string[];
 }
@@ -27,6 +28,19 @@ export interface Meta {
   date: Moment.Moment;
 }
 
+export interface Row {
+  name: string;
+  title: string;
+  date: string;
+  tags: string[];
+}
+
+function nonRecordable(name: string): boolean {
+  if ('index' === name) return true;
+  if (name.startsWith('hidden-')) return true;
+  return false;
+}
+
 export class DB {
   private postMetas: { [key: string]: Meta } = {};
   private schema: Schema = EmptySchema;
@@ -35,36 +49,40 @@ export class DB {
     return JSON.stringify(this.schema);
   }
 
-  public add({
-    name,
-    date,
-    tags,
-  }: {
-    name: string;
-    date: string;
-    tags: string[];
-  }): Meta {
+  public add(datum: Row): { persist: () => PublicMeta | null } {
+    return {
+      persist: (): PublicMeta | null => {
+        if (nonRecordable(datum.name)) return null;
+        return this.addRow(datum);
+      },
+    };
+  }
+
+  private addRow({ name, title, date, tags }: Row): PublicMeta {
     if (this.postMetas[name]) throw new Error(`POST重复了 ${name}`);
 
     // Parse private Metadata
-    const meta: Meta = {
-      date: Moment(date, 'YYYY-MM-DD HH:mm:ss'),
+    this.postMetas[name] = {
+      date: Moment(date, 'YYYY-MM-DD'),
     };
-    this.postMetas[name] = meta;
 
     // Write public meta & infos
-    this.schema.metas[name] = { date, tags };
+    this.schema.metas[name] = {
+      date: this.postMetas[name].date.format('YYYY-MM-DD'),
+      title,
+      tags,
+    };
 
     this.pushToSortedPosts(name);
     this.pushToDateCategories(name);
     this.pushToTagCategories(name, tags);
 
-    return meta;
+    return this.schema.metas[name];
   }
 
   private push(name: string, targets: string[]): string[] {
     const insertIndex = targets.findIndex((checking: string) =>
-      this.postMetas[checking].date.isBefore(this.postMetas[name].date)
+      this.postMetas[checking].date.isSameOrBefore(this.postMetas[name].date)
     );
 
     if (insertIndex === -1) {

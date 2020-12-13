@@ -1,9 +1,13 @@
 {
   "watch": [
     "posts/",
-    "src/template/basic/index.html",
-    "src/template/basic/index.css",
-    "src/template/style-source/"
+    "build/v2/dev/",
+    "public/resources",
+    "src/template/styles/",
+    "src/template/v2/index.css",
+    "src/template/v1/index.css",
+    "src/template/v1/index.html"
   ],
-  "ext": "*"
+  "ext": "*",
+  "delay": "3000"
 }
