@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《计算机组成原理》10
-date: 2020-12-21
+date: 2020-12-21 00:00:01
 tags:
   - 读书
   - 笔记
@@ -45,4 +45,10 @@ IEEE 754 短浮点数规格化的数值 v 表示为：`v = (-1)^S X (1.f) X 2^(E
 0. [概论](post:Book-Computer-Organization-1-Introduction)
 1. [数据表示](post:Book-Computer-Organization-2-Representing-Information)
 1. [指令系统](post:Book-Computer-Organization-3-Instruction-System)
+1. [指令系统](post:Book-Computer-Organization-4-Numeric-Computation)
+1. [指令系统](post:Book-Computer-Organization-5-Storage-System-&-Structure)
+1. [指令系统](post:Book-Computer-Organization-6-CPU)
+1. [指令系统](post:Book-Computer-Organization-7-Bus)
+1. [指令系统](post:Book-Computer-Organization-8-Outer-Equipment)
+1. [指令系统](post:Book-Computer-Organization-9-In-Out-System)
 1. [回到开头](scroll-to-the-very-top)

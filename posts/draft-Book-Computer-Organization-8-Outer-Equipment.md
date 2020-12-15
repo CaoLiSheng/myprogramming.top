@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《计算机组成原理》8
-date: 2020-12-08
+date: 2020-12-20
 tags:
   - 读书
   - 笔记

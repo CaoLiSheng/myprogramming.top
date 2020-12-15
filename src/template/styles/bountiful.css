@@ -87,6 +87,15 @@ body[theme='Dark'] .markdown-body {
   font-style: italic;
 }
 
+.markdown-body table code {
+  display: block;
+  white-space: nowrap;
+}
+
+.markdown-body table code ~ code {
+  margin-top: 0.5em;
+}
+
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre.prettyprint,
