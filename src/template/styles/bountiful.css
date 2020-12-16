@@ -417,23 +417,28 @@ body[theme='Dark'] .markdown-body {
 @media print {
   body {
     overflow: auto;
-    background: rgb(250, 248, 245);
-  }
-
-  img,
-  pre,
-  blockquote,
-  table,
-  figure,
-  p {
-    page-break-inside: avoid;
+    background: white;
   }
 
   .markdown-body {
+    padding: 0;
+    background: white;
     font-size: 12.75px;
-    padding: 10px;
     position: relative;
     text-indent: 0;
+  }
+
+  .markdown-body a {
+    text-decoration: underline;
+  }
+
+  .markdown-body img,
+  .markdown-body pre,
+  .markdown-body blockquote,
+  .markdown-body table,
+  .markdown-body figure,
+  .markdown-body p {
+    page-break-inside: avoid;
   }
 
   .markdown-body hr {
