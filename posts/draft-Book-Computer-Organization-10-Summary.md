@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《计算机组成原理》10
-date: 2020-12-21 00:00:01
+date: 2020-12-21
 tags:
   - 读书
   - 笔记
@@ -42,6 +42,10 @@ IEEE 754 短浮点数规格化的数值 v 表示为：`v = (-1)^S X (1.f) X 2^(E
 
 也许你以为电路板只是个二维生物。错！其实它也是有 Z 轴的。
 
+## Q：双核为何能四线程？
+
+可以理解为每个物理核上“软”实现双核，当然跟真·核有差别：为了避免 CPU 处理资源冲突，负责处理第二个线程的那个逻辑处理器，其使用的仅是运行第一个线程时被暂时闲置的处理单元。
+
 ## Q：中断是什么？什么又是无阻塞 I/O？
 
 ## 章节回顾
@@ -49,10 +53,10 @@ IEEE 754 短浮点数规格化的数值 v 表示为：`v = (-1)^S X (1.f) X 2^(E
 0. [概论](post:Book-Computer-Organization-1-Introduction)
 1. [数据表示](post:Book-Computer-Organization-2-Representing-Information)
 1. [指令系统](post:Book-Computer-Organization-3-Instruction-System)
-1. [指令系统](post:Book-Computer-Organization-4-Numeric-Computation)
-1. [指令系统](post:Book-Computer-Organization-5-Storage-System-&-Structure)
-1. [指令系统](post:Book-Computer-Organization-6-CPU)
-1. [指令系统](post:Book-Computer-Organization-7-Bus)
-1. [指令系统](post:Book-Computer-Organization-8-Outer-Equipment)
-1. [指令系统](post:Book-Computer-Organization-9-In-Out-System)
+1. [算术运算](post:Book-Computer-Organization-4-Numeric-Computation)
+1. [存储系统](post:Book-Computer-Organization-5-Storage-System-&-Structure)
+1. [中央处理器](post:Book-Computer-Organization-6-CPU)
+1. [总线](post:Book-Computer-Organization-7-Bus)
+1. [外部设备](post:Book-Computer-Organization-8-Outer-Equipment)
+1. [输入/输出系统](post:Book-Computer-Organization-9-In-Out-System)
 1. [回到开头](scroll-to-the-very-top)
