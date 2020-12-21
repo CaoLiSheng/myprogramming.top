@@ -12,10 +12,10 @@ tags:
 4. Use WebSockets where appropriate (i.e. for highly interactive apps)
 5. Employ JSONP/CORS to bypass the same-origin policy
 
-![](images/collection/asynch-in-script-tag.png)
+![](misc/collection/asynch-in-script-tag.png)
 As preflight checks add a second roundtrip, they can effectively double your latency.
 
-![](images/collection/preflight-double-latency.png)
+![](misc/collection/preflight-double-latency.png)
 
     1. Write your APIs and serve your content using only HEAD, GET, POST, Accept, Accept-Language, Content-Language, and Content-Type as they don’t initiate preflight request
     2. Cache the preflight responses to decrease the subsequent checks

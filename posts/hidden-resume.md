@@ -2,7 +2,7 @@
 no-receive-emails: true
 style: bountiful
 title: 曹力升的简历
-date: 30岁独立开发者/架构师
+date: 独立开发者/架构师
 tags:
   - 真实不虚
 ---
