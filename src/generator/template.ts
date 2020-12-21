@@ -45,9 +45,28 @@ const CSSMaps: {
   [key: string]: string;
 } = {};
 
-export function fetchCSS(base: string): string {
-  if (CSSMaps[base]) return CSSMaps[base];
+function fetchCSSCache(
+  name: string,
+  callback: (name: string) => string
+): string {
+  if (CSSMaps[name]) return CSSMaps[name];
+  const res: string = callback(name);
+  CSSMaps[name] = res;
+  return res;
+}
 
+function fetchCommonCSS(partial: string): string {
+  const partialCSSPath = path.join(
+    process.cwd(),
+    `src/template/common/${partial}`
+  );
+
+  return fs.readFileSync(partialCSSPath, {
+    encoding: 'UTF-8',
+  });
+}
+
+function fetchCSSImpl(base: string): string {
   const baseCSSPath = path.join(
     process.cwd(),
     `src/template/styles/${base}.css`
@@ -62,14 +81,21 @@ export function fetchCSS(base: string): string {
       .replace('/* base_stylesheet */', baseCSSContent)
       .replace('/* body_padding_pc */', Sheets[base].padding.pc)
       .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
+      .replace(/\/\* common\/(.*?) \*\//g, (_: string, partial: string) =>
+        fetchCSSCache(partial, fetchCommonCSS)
+      )
       .replace(/\/\* reources_dir \*\//g, __resources_dir__)
   );
 
-  CSSMaps[base] = cssContent.md5(base, 'css', 10);
+  const fileName = cssContent.md5(base, 'css', 10);
 
-  preWrite(path.join(outDir, CSSMaps[base])).writeFileSync(cssContent);
+  preWrite(path.join(outDir, fileName)).writeFileSync(cssContent);
 
-  return CSSMaps[base];
+  return fileName;
+}
+
+export function fetchCSS(base: string): string {
+  return fetchCSSCache(base, fetchCSSImpl);
 }
 
 // Load Template

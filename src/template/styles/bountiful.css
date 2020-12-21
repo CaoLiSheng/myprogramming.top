@@ -53,6 +53,22 @@ body[theme='Dark'] .markdown-body {
   --odd-tr-background-article-color: rgba(0, 0, 0, 0.1);
 }
 
+@media print {
+  body[theme='Dark'] .markdown-body {
+    --main-foreground-article-color: rgba(0, 0, 0, 0.9);
+    --main-background-article-color: rgba(250, 248, 245, 0.7);
+    --a-foregrounnd-article-color: #07c;
+    --a-backgrounnd-article-color: rgb(223, 188, 146);
+    --blockquote-foreground-article-color: rgba(0, 0, 0, 0.7);
+    --list-foreground-article-color: rgba(0, 0, 0, 0.7);
+    --pre-background-article-color: #f2ede8;
+    --code-background-article-color: #f2ede8;
+    --strong-foreground-article-color: #605b4b;
+    --table-border-top-article-color: black;
+    --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
+  }
+}
+
 /* Normalize bits */
 /* html {
   font-family: sans-serif;
@@ -85,15 +101,6 @@ body[theme='Dark'] .markdown-body {
 
 .markdown-body dfn {
   font-style: italic;
-}
-
-.markdown-body table code {
-  display: block;
-  white-space: nowrap;
-}
-
-.markdown-body table code ~ code {
-  margin-top: 0.5em;
 }
 
 .markdown-body code,

@@ -1,0 +1,21 @@
+.markdown-body figure {
+  font-size: 0;
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.markdown-body figure .image {
+  overflow: auto;
+  line-height: 1;
+  font-size: 0;
+  width: 100%;
+}
+
+.markdown-body figure .image img {
+  max-width: unset;
+}
+
+.markdown-body figure figcaption {
+  font-size: 14px;
+  line-height: 2em;
+}

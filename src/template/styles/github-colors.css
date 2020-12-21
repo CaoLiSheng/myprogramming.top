@@ -28,6 +28,18 @@ body[theme='Dark'] .markdown-body {
   --a-backgrounnd-article-color: #00fabb;
 }
 
+@media print {
+  body[theme='Dark'] .markdown-body {
+    --main-foreground-article-color: #24292e;
+    --main-background-article-color: rgba(255, 255, 255, 0.7);
+    --blockquote-foreground-article-color: #6a737d;
+    --pre-background-article-color: #f6f8fa;
+    --code-background-article-color: rgba(27, 31, 35, 0.05);
+    --even-tr-background-article-color: #f6f8fa;
+    --a-backgrounnd-article-color: #f3e98f;
+  }
+}
+
 .markdown-body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji;

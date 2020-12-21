@@ -5,79 +5,19 @@
   *     --a-foregrounnd-article-color
   *     --a-hover-foregrounnd-article-color
   */
-/* 以下：全局预设 */
-dl dl,
-dl ol,
-dl ul,
-ol dl,
-ul dl,
-ol ol,
-ol ul,
-ul ol,
-ul ul {
-  margin: 2em;
-}
+/* base_stylesheet */
 
-.markdown-body h6.date-tag {
-  text-align: right;
-}
+/* 以下：统一风格 */
+/* common/normalize.css */
 
-.markdown-body h6.date-tag code {
-  position: relative;
-  cursor: default;
-  font-size: 13px;
-}
+/* common/figure.css */
 
-.markdown-body h6.date-tag code::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 0.3em;
-  opacity: 1;
-  pointer-events: none;
-  background-color: blueviolet;
-  transition: height 100ms ease-in-out;
-}
+/* common/table.css */
 
-.markdown-body h6.date-tag code:hover::after {
-  height: 100%;
-  opacity: 0.6;
-}
+/* common/date-tag.css */
 
-.markdown-body a[download] {
-  text-decoration: underline;
-}
-
-.markdown-body div.comments {
-  position: relative;
-}
-
-.markdown-body div.comments h6.tip {
-  opacity: 0;
-  cursor: default;
-  text-align: center;
-  pointer-events: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.markdown-body div.comments:hover h6.tip {
-  opacity: 0.5;
-}
-
+/* common/comments.css */
 .markdown-body div.comments a[href^='mailto:'] {
-  text-decoration: none;
-  padding: 15px 100px;
-  text-align: center;
-  display: block;
-  font-weight: bolder;
   background-color: var(--a-backgrounnd-article-color);
   background: linear-gradient(
     to bottom,
@@ -88,7 +28,6 @@ ul ul {
   background-position: 0 100%;
   background-size: 100% 200%;
   color: var(--a-foregrounnd-article-color);
-  text-shadow: 0 0 2px darkcyan;
   transition: background-color 300ms, background-position 100ms, color 1s;
 }
 
@@ -97,97 +36,7 @@ ul ul {
   background-position: 0 0;
   color: var(--a-hover-foregrounnd-article-color);
 }
-
-@media only screen and (max-width: 1080px) {
-  .markdown-body div.comments {
-    margin-bottom: 5em;
-  }
-
-  .markdown-body div.comments h6.tip {
-    opacity: 0.5;
-  }
-}
-/* 以上：全局预设 */
-
-/* base_stylesheet */
-
-/* 以下：全局正规化 */
-@font-face {
-  font-family: 'Cascadia Code PL';
-  src: url(/* reources_dir */fonts/CascadiaCodePL.woff2) format('woff2');
-}
-
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre {
-  font-family: 'Cascadia Code PL', Menlo, SFMono-Regular, Consolas,
-    'Liberation Mono', monospace;
-}
-
-.markdown-body figure {
-  font-size: 0;
-  line-height: 1;
-  margin: 20px 0;
-}
-
-.markdown-body figure .image {
-  overflow: auto;
-  line-height: 1;
-  font-size: 0;
-  width: 100%;
-}
-
-.markdown-body figure .image img {
-  max-width: unset;
-}
-
-.markdown-body figure figcaption {
-  font-size: 14px;
-  line-height: 2em;
-}
-
-@media only screen and (max-width: 1080px) {
-  .markdown-body div.comments {
-    margin-bottom: 5em;
-  }
-
-  .markdown-body div.comments h6.tip {
-    opacity: 0.5;
-  }
-
-  .markdown-body table {
-    width: 100%;
-  }
-
-  .markdown-body thead th:not(.main) {
-    display: none;
-  }
-
-  .markdown-body td,
-  .markdown-body th {
-    text-align: left !important;
-    display: flex;
-    flex-direction: row;
-    padding: 10px 8px 8px !important;
-  }
-
-  .markdown-body td[data-th]:before {
-    content: attr(data-th);
-    text-align: left;
-    flex-basis: 5em;
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-
-  .markdown-body td:first-child {
-    border-bottom: solid 1px #999;
-  }
-
-  .markdown-body tr {
-    border-top: solid 1px #999;
-  }
-}
-/* 以上：全局正规化 */
+/* 以上：统一风格 */
 
 /* 以下：.markdown-body 统一设置 */
 .markdown-body {
@@ -216,12 +65,6 @@ ul ul {
   .markdown-body {
     border: none;
     box-shadow: none;
-  }
-  .markdown-body div.comments {
-    display: none;
-  }
-  .markdown-body h6.date-tag code::after {
-    height: 0;
   }
 }
 /* 以上：.markdown-body 统一设置 */

@@ -9,6 +9,7 @@
   --tbody-background-article-color: rgba(124, 119, 112, 0.05);
   --odd-tr-background-article-color: rgba(227, 217, 205, 0.06);
   --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
+  --strong-foreground-article-color: #605b4b;
 }
 
 body[theme='Light'] .markdown-body {
@@ -19,7 +20,6 @@ body[theme='Light'] .markdown-body {
   --blockquote-foreground-article-color: #6a737d;
   --pre-background-article-color: #f2ede8;
   --code-background-article-color: #f2ede8;
-  --strong-foreground-article-color: #605b4b;
 }
 
 body[theme='Dark'] .markdown-body {
@@ -30,6 +30,18 @@ body[theme='Dark'] .markdown-body {
   --blockquote-foreground-article-color: white;
   --pre-background-article-color: #39362f;
   --code-background-article-color: #39362f;
+}
+
+@media print {
+  body[theme='Dark'] .markdown-body {
+    --main-foreground-article-color: #45462f;
+    --main-background-article-color: rgba(240, 223, 221, 0.7);
+    --a-foregrounnd-article-color: #00857a;
+    --a-backgrounnd-article-color: #45462f;
+    --blockquote-foreground-article-color: #6a737d;
+    --pre-background-article-color: #f2ede8;
+    --code-background-article-color: #f2ede8;
+  }
 }
 
 .markdown-body {

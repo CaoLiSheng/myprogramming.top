@@ -1,0 +1,40 @@
+.markdown-body table code {
+  display: block;
+  white-space: nowrap;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+@media only screen and (max-width: 1080px) {
+  .markdown-body table {
+    width: 100%;
+  }
+
+  .markdown-body thead th:not(.main) {
+    display: none;
+  }
+
+  .markdown-body td,
+  .markdown-body th {
+    text-align: left !important;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 8px 8px !important;
+  }
+
+  .markdown-body td[data-th]:before {
+    content: attr(data-th);
+    text-align: left;
+    flex-basis: 5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .markdown-body td:first-child {
+    border-bottom: solid 1px #999;
+  }
+
+  .markdown-body tr {
+    border-top: solid 1px #999;
+  }
+}

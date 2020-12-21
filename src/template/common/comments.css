@@ -1,0 +1,54 @@
+.markdown-body div.comments {
+  position: relative;
+}
+
+.markdown-body div.comments h6.tip {
+  opacity: 0;
+  cursor: default;
+  text-align: center;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.markdown-body div.comments:hover h6.tip {
+  opacity: 0.5;
+}
+
+.markdown-body div.comments a[href^='mailto:'] {
+  text-decoration: none;
+  padding: 15px 100px;
+  text-align: center;
+  display: block;
+  font-weight: bolder;
+  color: black;
+  background-color: white;
+  text-shadow: 0 0 2px rgb(0, 139, 139);
+  transition: background-color 300ms, color 1s;
+}
+
+.markdown-body div.comments a[href^='mailto:']:hover {
+  color: rgb(116, 130, 145);
+  background-color: rgb(230, 224, 224);
+}
+
+@media only screen and (max-width: 1080px) {
+  .markdown-body div.comments {
+    margin-bottom: 5em;
+  }
+
+  .markdown-body div.comments h6.tip {
+    opacity: 0.5;
+  }
+}
+
+@media print {
+  .markdown-body div.comments {
+    display: none;
+  }
+}

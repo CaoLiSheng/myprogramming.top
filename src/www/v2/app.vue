@@ -40,6 +40,16 @@ body[theme='Dark']
   --btn-base-theme-color: rgb(225, 228, 232);
   --btn-hover-theme-color: rgb(30, 70, 136);
   --btn-active-theme-color: rgb(125, 128, 132);
+  @media print
+    --theme-color: white;
+    --secondary-theme-color: rgb(246, 248, 250);
+    --third-theme-color: rgb(225, 228, 232);
+    --contrast-theme-color: rgb(27, 31, 35);
+    --btn-foreground-theme-color: rgb(137, 143, 149);
+    --btn-background-theme-color: rgb(207, 228, 253);
+    --btn-base-theme-color: rgb(71, 71, 71);
+    --btn-hover-theme-color: rgb(200, 220, 230);
+    --btn-active-theme-color: rgb(125, 128, 132);
 body
   font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', Helvetica, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-weight: 200;
