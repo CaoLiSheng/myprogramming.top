@@ -1,7 +1,9 @@
-/* base_stylesheet */
-
 /* 以下：统一风格 */
 /* common/normalize.css */
+
+/* base_stylesheet */
+
+/* common/code.css */
 
 /* common/figure.css */
 
@@ -79,7 +81,7 @@ body:not(.snapshot) .markdown-body {
 }
 /* 以上：正规化文章主体块 */
 
-/*Scroll bar nav*/
+/* Scroll bar nav */
 ::-webkit-scrollbar {
   width: 3pt;
   height: 3pt;

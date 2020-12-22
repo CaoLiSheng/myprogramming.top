@@ -1,3 +1,12 @@
+.markdown-body *,
+.markdown-body *::after,
+.markdown-body *::before {
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .markdown-body dl dl,
 .markdown-body dl ol,
 .markdown-body dl ul,
@@ -12,16 +21,4 @@
 
 .markdown-body a[download] {
   text-decoration: underline;
-}
-
-@font-face {
-  font-family: 'Cascadia Code PL';
-  src: url(/* reources_dir */fonts/CascadiaCodePL.woff2) format('woff2');
-}
-
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre {
-  font-family: 'Cascadia Code PL', Menlo, SFMono-Regular, Consolas,
-    'Liberation Mono', monospace;
 }

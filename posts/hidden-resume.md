@@ -13,21 +13,21 @@ tags:
 
 > 项目/编程语言/当前版本 一览表：
 
-| Project / Lang / Version | C/C++                              | Java | NodeJS | Python | Go  | C#  |
-| ------------------------ | ---------------------------------- | ---- | ------ | ------ | --- | --- |
-| Web Server               | 🔗 [0.0](https://gitee.com/yx1991) | -    | -      | -      | -   | -   |
-| Relational Database      | -                                  | -    | -      | -      | -   | -   |
-| Non-Relational Database  | -                                  | -    | -      | -      | -   | -   |
-| 2D Lib                   | -                                  | -    | -      | -      | -   | -   |
-| 3D Lib                   | -                                  | -    | -      | -      | -   | -   |
-| VR Design Plugins        | -                                  | -    | -      | -      | -   | -   |
-| Game Engine              | -                                  | -    | -      | -      | -   | -   |
-| Web Crawler              | -                                  | -    | -      | -      | -   | -   |
-| Search Engine            | -                                  | -    | -      | -      | -   | -   |
-| AI System                | -                                  | -    | -      | -      | -   | -   |
-| Data Middle Platform     | -                                  | -    | -      | -      | -   | -   |
+| Project / Lang / Version | `(C)C++`                               | `"Java"`                               | `NodeJS`                               | `Python`                               | `Golang`                               |
+| :----------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| Web Server               | V [0.0](https://gitee.com/yx1991/blog) | V [0.0](https://gitee.com/yx1991/blog) | V [0.0](https://gitee.com/yx1991/blog) | V [0.0](https://gitee.com/yx1991/blog) | V [0.0](https://gitee.com/yx1991/blog) |
+| Relational Database      | -                                      | -                                      | -                                      | -                                      | -                                      |
+| Non-Relational Database  | -                                      | -                                      | -                                      | -                                      | -                                      |
+| 2D Lib                   | -                                      | -                                      | -                                      | -                                      | -                                      |
+| 3D Lib                   | -                                      | -                                      | -                                      | -                                      | -                                      |
+| VR Design Plugins        | -                                      | -                                      | -                                      | -                                      | -                                      |
+| Game Engine              | -                                      | -                                      | -                                      | -                                      | -                                      |
+| Web Crawler              | -                                      | -                                      | -                                      | -                                      | -                                      |
+| Search Engine            | -                                      | -                                      | -                                      | -                                      | -                                      |
+| AI System                | -                                      | -                                      | -                                      | -                                      | -                                      |
+| Data Middle Platform     | -                                      | -                                      | -                                      | -                                      | -                                      |
 
-> 版本的意义（链接指向开源项目主页）：
+> 版本的意义（链接 `V` 指向开源项目主页）：
 
 ```
 - 未开始｜0.x 开发中｜1.x 测试并优化性能中｜2.x 已完成（学习目标）
