@@ -31,7 +31,7 @@ export const dateSortDesc = (
   src
     .map((s: string) => ({
       s,
-      date: Moment(metas[s].date, 'YYYY-MM-DD'),
+      date: Moment(metas[s].date),
     }))
     .sort((a: Sortable, b: Sortable) => (a.date.isBefore(b.date) ? 1 : -1))
     .map((obj: Sortable) => obj.s);

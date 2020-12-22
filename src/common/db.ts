@@ -62,16 +62,10 @@ export class DB {
     if (this.postMetas[name]) throw new Error(`POST重复了 ${name}`);
 
     // Parse private Metadata
-    this.postMetas[name] = {
-      date: Moment(date, 'YYYY-MM-DD'),
-    };
+    this.postMetas[name] = { date: Moment(date) };
 
     // Write public meta & infos
-    this.schema.metas[name] = {
-      date: this.postMetas[name].date.format('YYYY-MM-DD'),
-      title,
-      tags,
-    };
+    this.schema.metas[name] = { date, title, tags };
 
     this.pushToSortedPosts(name);
     this.pushToDateCategories(name);
