@@ -15,6 +15,7 @@ tags:
 
 ## 主要文章集
 
-0. [里程碑总结与分享](post:2020-milestone-1-0)
-1. [学习资料记录分享](post:2020-study-records)
-1. [读书笔记之《Algorithms》](post:Book-Algorithms-0-Preface-&-Introduction)
+0. [阶段性总结与分享](post:Milestone-2020-1-0)
+1. [学习资料记录与分享](post:Records-study-stuff)
+1. [读书笔记之《Algorithms》](post:Book-Algorithms-13-Summary)
+1. [读书笔记之《计算机组成原理》](post:Book-Computer-Organization-10-Summary)

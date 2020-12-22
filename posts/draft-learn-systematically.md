@@ -11,9 +11,13 @@ tags:
 
 ## 0. 学习大纲
 
-![整体学习大纲](learn-systematically/learning-simplified.png)
+![整体学习大纲](learn-systematically/learning-simplified.png '=1000px-')
 
 ![专业课程间的依赖关系，反向是它发挥的作用](learn-systematically/depandencies.png '=500px-')
+
+![职业规划分析-软件人之魂](learn-systematically/软件人之魂.png '=1200px-')
+
+![职业规划分析-架构师之魂](learn-systematically/架构师之魂.png '=1000px-')
 
 ---
 
@@ -132,6 +136,7 @@ _包括大学教的和自学_
 
 ### 1. 汇编语言程序设计
 
+- [读书笔记之《计算机组成原理》](post:Book-Computer-Organization-10-Summary)
 - [回到大目录](scroll-to:35+-个主题)
 
 ### 2. 数据库系统（初级/高级）
