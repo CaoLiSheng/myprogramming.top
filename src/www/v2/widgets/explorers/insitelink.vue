@@ -2,13 +2,14 @@
 .link
   a(:class="{ init, running }", @click="$event.preventDefault(); goToHref()")
     span.title {{ data.title }}
-    span.date {{ data.date }}
+    span.date {{ date }}
     span.tags {{ data.tags.join(',') }}
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import Moment from "moment";
 
 @Component
 export default class InsiteLink extends Vue.extend({
@@ -16,6 +17,10 @@ export default class InsiteLink extends Vue.extend({
 }) {
   init = true;
   running = true;
+
+  get date() {
+    return Moment(this.data.date).format("YYYY-MM-DD");
+  }
 
   mounted() {
     setTimeout(() => {
