@@ -392,11 +392,6 @@ export const converter = new showdown.Converter({
       regex: /\[(.*?)\]\((\S+?) '(.*?)'\)/g,
       replace: '<a href="$2" download="$3">点击下载「$1」</a>',
     },
-    {
-      type: 'lang',
-      regex: /~~(.+?)~~/g,
-      replace: '<s>$1</s>',
-    },
   ],
   // metadata: true, // 解析不了yaml数组
   // openLinksInNewWindow: true, // 做下载链接时遇到了bug，所以自己加了一个插件

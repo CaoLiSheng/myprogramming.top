@@ -17,6 +17,7 @@ import Component from "vue-class-component";
 
 import extendCodes from "@www/utils/code";
 import extendTables from "@www/utils/table";
+import extendFigures from "@www/utils/figure";
 import { ui } from "@vStores/index";
 
 declare var ARTICLE: string;
@@ -35,6 +36,7 @@ export default class IndexComponent extends Vue {
   mounted() {
     extendCodes();
     extendTables();
+    extendFigures();
   }
 }
 </script>

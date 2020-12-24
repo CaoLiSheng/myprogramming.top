@@ -1,6 +1,7 @@
 import '@audios/click';
 import extendCodes from '@www/utils/code';
 import extendTables from '@www/utils/table';
+import extendFigure from '@www/utils/figure';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
 declare var __origin__: string;
@@ -117,3 +118,6 @@ extendTables();
 
 // support code prettifed
 extendCodes();
+
+// support figure init scroll postition
+extendFigure();
