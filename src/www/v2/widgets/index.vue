@@ -16,6 +16,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 import extendCodes from "@www/utils/code";
+import extendLinks from "@www/utils/links";
 import extendTables from "@www/utils/table";
 import extendFigures from "@www/utils/figure";
 import { ui } from "@vStores/index";
@@ -35,6 +36,7 @@ export default class IndexComponent extends Vue {
 
   mounted() {
     extendCodes();
+    extendLinks();
     extendTables();
     extendFigures();
   }
