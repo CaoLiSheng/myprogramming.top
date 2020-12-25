@@ -1,7 +1,7 @@
 ---
 style: bountiful
 title: 学习资料记录（2020 -- ？）
-date: 2020-12-21T00:00:00.100Z
+date: 2020-12-25
 tags:
   - 学习资料
   - 记录
@@ -26,3 +26,4 @@ tags:
 |              [C++ Tutorials](//www.tutorialspoint.com/cplusplus/index.htm)               |  K. K. Panigrahi  | TP 站  | 2020 年 11 月 25 日 | 2020 年 11 月 30 日 |
 |         试读 [金领简历：敲开苹果、微软、谷歌的大门](//www.duokan.com/book/68635)         |    〔译〕漆犇     |  多看  | 2020 年 11 月 30 日 | 2020 年 11 月 30 日 |
 |                                      计算机组成原理                                      |      蒋本珊       | 纸质书 | 2020 年 12 月 01 日 | 2020 年 12 月 21 日 |
+|                        Operating System Concepts（Tenth Edition）                        |      很多人       | 电子书 | 2020 年 12 月 24 日 | -                   |
