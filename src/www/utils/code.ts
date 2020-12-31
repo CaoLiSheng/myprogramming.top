@@ -1,3 +1,7 @@
+/**
+ * 查阅语言支持情况：https://github.com/googlearchive/code-prettify
+ */
+
 declare var __resources_dir__: string;
 const codePrettyDir = 'pretty-code-resources/';
 const cssFileName = 'prettify.css';
