@@ -1,9 +1,16 @@
+import localforage from 'localforage';
 import { clickIn } from '@www/utils/dom';
 
-export const ui = {
+declare var __production__: string;
+
+const ReaderLevelKey = 'READERLEVEL';
+
+const ui = {
   state: {
     menuOpened: true,
     menuVisible: false,
+    readerLevelGranted: false,
+    rlGrantable: !JSON.parse(__production__),
   },
   private: {
     handleMenuClose: (ev: MouseEvent) => {},
@@ -28,4 +35,15 @@ export const ui = {
   setVisible(v: boolean) {
     this.state.menuVisible = v;
   },
+  toggleReaderLevel() {
+    this.state.readerLevelGranted = !this.state.readerLevelGranted;
+    localforage.setItem(ReaderLevelKey, this.state.readerLevelGranted);
+  },
 };
+
+(async () => {
+  ui.state.readerLevelGranted =
+    (await localforage.getItem<boolean>(ReaderLevelKey)) || false;
+})();
+
+export { ui };

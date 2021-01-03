@@ -1,7 +1,7 @@
 <template lang="pug">
 .links(v-if="ui.menuOpened && refresh", :style="{ height: height }")
   in-site-link(
-    v-for="(name, idx) in posts",
+    v-for="(name, idx) in postsGranted",
     :key="name",
     :name="name",
     :delay="idx * 100",
@@ -22,6 +22,17 @@ export default class InSiteLinks extends Vue.extend({
   props: ["refresh", "posts", "height"],
 }) {
   ui = ui.state;
+
+  get postsGranted(): string[] {
+    return this.ui.readerLevelGranted
+      ? this.posts
+      : this.posts.filter((name: string) => {
+          const meta = this.postMeta(name);
+          return !meta.tags.some(
+            (tag: string) => tag === "草稿" || tag === "隐私"
+          );
+        });
+  }
 
   postMeta(name: string) {
     return db.data.metas[name];

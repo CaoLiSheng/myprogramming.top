@@ -14,12 +14,16 @@
     :to="{ name: 'TagsComponent', params: { query: '*' } }"
   )
     TagsIcon
-  .change-theme.icon-wrapper(
-    title="切换主题",
-    :style="iconStyle",
-    @click="changeTheme"
-  )
+  .fn-btn.icon-wrapper(title="切换主题", :style="iconStyle", @click="changeTheme")
     ThemeIcon
+  .fn-btn.icon-wrapper(
+    title="切换浏览级别",
+    v-if="ui.rlGrantable",
+    :style="iconStyle",
+    @click="changeReaderLevel"
+  )
+    DraftsShowIcon(v-if="ui.readerLevelGranted")
+    DraftsHideIcon(v-if="!ui.readerLevelGranted")
   //- router-link.explorer(
   //-   title="按日历浏览",
   //-   :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
@@ -44,13 +48,16 @@ import Component from "vue-class-component";
 import localforage from "localforage";
 
 import { HTMLElementOffset, EmptyOffset, getOffset } from "@www/utils/offset";
+import { isMobileSize } from "@www/utils/rem";
+import { ui } from "@vStores/index";
 
 import HomeIcon from "@images/home.vue";
 import ThemeIcon from "@images/theme.vue";
 import AllIcon from "@images/all.vue";
 import CanlendarIcon from "@images/canlendar.vue";
 import TagsIcon from "@images/tags.vue";
-import { isMobileSize } from "@www/utils/rem";
+import DraftsShowIcon from "@images/drafts-show.vue";
+import DraftsHideIcon from "@images/drafts-hide.vue";
 
 const ThemeAttr = "theme";
 const ThemeKey = "THEME";
@@ -58,7 +65,15 @@ const ThemeDefault = "Light";
 const Theme2 = "Dark";
 
 @Component({
-  components: { HomeIcon, ThemeIcon, AllIcon, CanlendarIcon, TagsIcon },
+  components: {
+    HomeIcon,
+    ThemeIcon,
+    AllIcon,
+    CanlendarIcon,
+    TagsIcon,
+    DraftsShowIcon,
+    DraftsHideIcon,
+  },
 })
 export default class BarComponent extends Vue.extend({
   props: ["sizeCfg"],
@@ -66,6 +81,7 @@ export default class BarComponent extends Vue.extend({
   inDevPopupVisibility = false;
   popupBottom = 0;
   popupLeft = 0;
+  ui = ui.state;
 
   async mounted() {
     const curTheme = await localforage.getItem<string>(ThemeKey);
@@ -103,6 +119,10 @@ export default class BarComponent extends Vue.extend({
     document.body.setAttribute(ThemeAttr, theme);
     localforage.setItem(ThemeKey, theme);
   }
+
+  changeReaderLevel() {
+    ui.toggleReaderLevel();
+  }
 }
 </script>
 
@@ -110,7 +130,7 @@ export default class BarComponent extends Vue.extend({
 .bar
   .home, .explorer
     float: left;
-  .change-theme
+  .fn-btn
     float: right;
   .icon-wrapper
     height: 100%;
