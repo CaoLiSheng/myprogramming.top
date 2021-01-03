@@ -39,21 +39,35 @@ export default class InsiteLink extends Vue.extend({
 
 <style lang="stylus" scoped>
 .link
-  padding: 0.1rem;
+  padding: 0.2rem;
   & ~ .link
     border-top: dashed 0.01rem gray;
   a
     cursor: pointer;
     display: block;
-    font-size: 16px;
-    line-height: 1.5em;
+    font-size: 0;
     text-decoration: none;
     padding: 0.05rem 0.1rem;
     color: var(--btn-foreground-theme-color);
     border: solid 0.01rem var(--btn-foreground-theme-color);
-    border-radius: 0.05rem;
+    border-radius: 0.1rem;
     transform: translateX(0);
     transition: transform ease-in-out 300ms;
+    &.init
+      transform: translateX(-100%);
+    &.running
+      background-color: var(--btn-background-theme-color);
+    span
+      display: block;
+      line-height: 1.5em;
+      &.title
+        font-size: 0.32rem;
+      &.date
+        font-size: 0.26rem;
+        border-top: dashed 0.01rem var(--btn-foreground-theme-color);
+        border-bottom: dashed 0.01rem var(--btn-foreground-theme-color);
+      &.tags
+        font-size: 0.2rem;
     @media screen and (min-width: 750px)
       transition: transform ease-in-out 100ms;
       @media (hover: hover)
@@ -62,12 +76,11 @@ export default class InsiteLink extends Vue.extend({
           background-color: var(--btn-background-theme-color);
       &:active
         transform: translate3d(0.05rem, 0.05rem, 0);
-    &.init
-      transform: translateX(-100%);
-    &.running
-      background-color: var(--btn-background-theme-color);
-    span
-      display: block;
-      &.title
-        font-size: 20px;
+      span
+        &.title
+          font-size: 0.2rem;
+        &.date
+          font-size: 0.16rem;
+        &.tags
+          font-size: 0.12rem;
 </style>

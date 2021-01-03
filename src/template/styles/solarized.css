@@ -51,6 +51,25 @@ body[theme='Dark'] .markdown-body {
   display: none;
 }
 
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body table,
+.markdown-body pre {
+  margin: 15px 0;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 15px;
+  color: #777;
+}
+.markdown-body blockquote > :first-child {
+  margin-top: 0;
+}
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
 .markdown-body a:focus {
   outline: thin dotted;
 }
