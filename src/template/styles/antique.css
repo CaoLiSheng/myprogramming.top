@@ -44,14 +44,18 @@ body[theme='Dark'] .markdown-body {
   }
 }
 
+@font-face {
+  font-family: 'Modern Antiqua';
+  src: url(/* reources_dir */fonts/ModernAntiqua-Regular.ttf) format('truetype');
+}
+
 .markdown-body {
-  font-family: Palatino, Georgia, 'Times New Roman', -apple-system-font,
-    'PingFang SC', 'Microsoft YaHei', serif;
-  font-size: 0.8764em;
-  line-height: 1.5em;
+  font-family: 'Modern Antiqua', Georgia, -apple-system-font, 'PingFang SC',
+    'Microsoft YaHei', serif;
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   text-indent: 0px;
+  line-height: 1.5em;
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
 }

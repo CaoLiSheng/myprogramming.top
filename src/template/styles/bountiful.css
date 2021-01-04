@@ -1,6 +1,3 @@
-@import url('//fonts.googleapis.com/css?family=PT+Sans');
-@import url('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400, 700');
-
 .markdown-body {
   --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
@@ -53,6 +50,11 @@ body[theme='Dark'] .markdown-body {
     --table-border-top-article-color: black;
     --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
   }
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url(/* reources_dir */fonts/PT_Sans-Web-Regular.ttf) format('truetype');
 }
 
 .markdown-body p {
