@@ -38,6 +38,6 @@ tags:
 
 > 因为穷，玩不起。既没有苹果手机，也交不起会费。
 
-!![因为穷，玩不起](Safari-Dark-Mode-Web-Extension/lack-of-money.png)
+![因为穷，玩不起](Safari-Dark-Mode-Web-Extension/lack-of-money.png)
 
 只好在最后献上[开源链接](https://gitee.com/yx1991/dark-mode-web-extension)，希望有人能一起研究、改进。

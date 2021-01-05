@@ -26,9 +26,9 @@ tags:
 那么接下来在设计递归算法之前，还需要若干步推导。从 `figure 1` 看出，我们要设计一个函数，返回值可以是一个元组 `(F(n-1), F(n))`；递归式可以设计为 `T(n) = T(n/2) + O(n)`，这样效率最高。有了目标，`n/2` 是特殊情况，不妨从普通情况开始推导：
 
 首先，这个算法还有一种行向量的表达方式：
-!![结合快速求解矩阵幂运算（O(log(n))）计算斐波那契数](Algorithms-3-Dynamic-Programming/formula-fabnacci-0.png '=300px-')
+![结合快速求解矩阵幂运算（O(log(n))）计算斐波那契数](Algorithms-3-Dynamic-Programming/formula-fabnacci-0.png '~=300px-')
 ，另外幂运算的特点是
-!![矩阵幂运算的特点](Algorithms-3-Dynamic-Programming/formula-fabnacci-1.png '=300px-')
+![矩阵幂运算的特点](Algorithms-3-Dynamic-Programming/formula-fabnacci-1.png '~=300px-')
 。所以，可以得到 F(n)的计算公式：
 
 ![figure 2: F(n)的计算公式](Algorithms-3-Dynamic-Programming/formula-fabnacci-2.png '=500px-')

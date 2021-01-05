@@ -37,6 +37,7 @@ copyTemplateAssets();
 // Generate HTML
 const posts = sources.filter((file: string) => isPost(file));
 console.log('Posts:', posts);
+
 posts.forEach((fileName: string) => {
   const fileContent = fs.readFileSync(path.join(inDir, fileName), {
     encoding: 'UTF-8',
@@ -46,9 +47,11 @@ posts.forEach((fileName: string) => {
    * moved deprecated code to ./_deprecated.ts
    * where implements metadata parsing
    */
+  const matches = fileContent.match(/^[\s\S]*?---\n([\s\S]*?)---\n([\s\S]*)$/);
+  if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
+  const [rawMetadata, mdContent] = matches.slice(1);
+  const body = converter.render(mdContent);
 
-  const body = converter.makeHtml(fileContent);
-  const rawMetadata = converter.getMetadata(true) as string;
   let metadata: any;
   let tags = [];
 
@@ -63,9 +66,9 @@ posts.forEach((fileName: string) => {
   if (metadata.tags) tags.push(...metadata.tags);
 
   console.log(
-    'parsing------------------\n',
+    'parsing-------------start\n',
     [rawMetadata, noReceiveEmails, style, title, date, tags, body].join('\n\n'),
-    '\n------------------parsing'
+    '\nend---------------parsing'
   );
 
   const name = extractPostName(fileName);

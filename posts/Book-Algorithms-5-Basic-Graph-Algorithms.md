@@ -54,15 +54,15 @@ tags:
 
 ### 邻接表（adjacency list）
 
-!![邻接表（adjacency list）](Algorithms-5-Basic-Graph/adjacency-list.png '=400px-')
+![邻接表（adjacency list）](Algorithms-5-Basic-Graph/adjacency-list.png '~=400px-')
 
 ### 邻接数组（adjacency array）
 
-!![邻接数组（adjacency array）](Algorithms-5-Basic-Graph/adjacency-array.png '=900px-')
+![邻接数组（adjacency array）](Algorithms-5-Basic-Graph/adjacency-array.png '~=900px-')
 
 ### 邻接矩阵（adjacency matrices）
 
-!![邻接矩阵（adjacency matrices）](Algorithms-5-Basic-Graph/adjacency-matrices.png '=400px-')
+![邻接矩阵（adjacency matrices）](Algorithms-5-Basic-Graph/adjacency-matrices.png '~=400px-')
 
 ## 书中的典型案例
 

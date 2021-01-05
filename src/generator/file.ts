@@ -7,7 +7,7 @@ import argv from './yargs';
 
 declare var __production__: boolean;
 
-export const inDir = path.join(process.cwd(), 'posts');
+export const inDir = path.join(process.cwd(), argv.inDir || 'posts');
 
 export const outDir = path.join(process.cwd(), argv.outDir);
 

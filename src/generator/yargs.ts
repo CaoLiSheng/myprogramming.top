@@ -5,6 +5,7 @@ interface Argv {
   cssPath: string;
   tplDir: string;
   outDir: string;
+  inDir: string;
 }
 
 const argv = yargs
@@ -24,6 +25,10 @@ const argv = yargs
     description: '输出目录',
     type: 'string',
   })
+  .option('inDir', {
+    description: '输入目录',
+    type: 'string',
+  })
   .help()
   .alias('help', 'h').argv;
 
@@ -33,5 +38,6 @@ if (!argv.tplPath) throw new Error('Lack of [HTML模板路径]');
 if (!argv.cssPath) throw new Error('Lack of [CSS模板路径]');
 if (!argv.tplDir) throw new Error('Lack of [模板脚本目录]');
 if (!argv.outDir) throw new Error('Lack of [输出目录]');
+// if (!argv.inDir) throw new Error('Lack of [输入目录]');
 
 export default argv as Argv;

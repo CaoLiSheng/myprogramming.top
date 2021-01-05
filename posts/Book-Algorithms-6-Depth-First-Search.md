@@ -67,7 +67,7 @@ def DFSAll(G):
 | back edge          | v is active 且 v.pre < u.pre < u.post < v.post               |
 | cross edge         | v is finished 且 v.post < u.post                             |
 
-!![classifying edges](Algorithms-6-Depth-First-Search/classifying-edges.png '=300px-')
+![classifying edges](Algorithms-6-Depth-First-Search/classifying-edges.png '~=300px-')
 
 ## 检测环路
 
