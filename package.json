@@ -3,7 +3,7 @@
   "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "scripts": {
-    "test": "echo 'something is going to test.' && ts-node src/tests/lang.ts && webpack -h",
+    "test": "echo 'something is going to test.' && ts-node src/tests/mdEngine.ts",
     "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
     "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
     "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",
@@ -89,6 +89,7 @@
     "classnames": "^2.2.6",
     "fs-extra": "^9.0.1",
     "localforage": "^1.9.0",
+    "markdown-it": "^12.0.4",
     "moment": "^2.27.0",
     "portal-vue": "^2.1.7",
     "react": "^16.13.1",

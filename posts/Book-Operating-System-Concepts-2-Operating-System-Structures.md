@@ -30,6 +30,68 @@ Another set of operating-system functions exists not for helping the user but ra
 - _**Logging**_. We want to keep track of which programs use how much and what kinds of computer resources. This record keeping may be used for accounting (so that users can be billed) or simply for accumulating usage statistics.
 - _**Protection and security**_. If a system is to be protected and secure, precautions must be instituted throughout it. A chain is only as strong as its weakest link.
 
+## Application Programming Interface (API)
+
+Why would an application programmer prefer programming according to an API rather than invoking actual system calls?
+
+- One benefit concerns program portablity.
+- Furthermore, actual system calls can often be more detailed and difficult to work with than the API available to an application programmer. Nevertheless, there often exists a strong correlation between a funtion in the API and its associated system call within the kernel.
+
+Most of the details of the operating-system interface are hidden from the programmer by the API and are managed by the RTE, run-time enviroment (the full suite of software needed to execute applications writen in a given programming language, including its compilers or interpreters as well as other software, such as libraries and loaders).
+
+The RTE provides a system-call interface that serves as the link to system calls made available by the operating system. The system-call interface intercepts function calls in the API and invokes the necessary system calls within the operating system. Typically, a number is associated with each system call, and the system-call interface maintains a table indexed according to these numbers. The system-call interface then invokes the intended system call in the operating-system kernel and returns the **_status_** of the system call.
+
+Three general methods are used to pass parameters to the operating-system. The simplest approach is to pass the parameters in registers. In some cases, however, there may be more parameters than registers. In these cases, the parameters are generally stored in a block, or table, or stack, in memory, and the address of the block is passed as a parameter in a register. Linux uses a combination of these approaches. If there are five or fewer parameters, registers are used. If there are more than five parameters, the block method is used.
+
+## System Calls
+
+### Types of system calls
+
+- Process control
+  - create process, terminate process
+  - load, execute
+  - get process attributes, set process attributes
+  - wait event, signal event
+  - allocate and free memory
+- File management
+  - create file, delete file
+  - open, close
+  - read, write, reposition
+  - get file attributes, set file attributes
+- Device management
+  - request device, release device
+  - read, write, reposition
+  - get device attributes, set device attributes
+  - logically attach or detach devices
+- Information maintenance
+  - get time or date, set time or date
+  - get system data, set system data
+  - get process, file, or device attributes
+  - set process, file, or device attributes
+- Communications
+  - create, delete communication connection
+  - send, receive messages
+  - transfer status information
+  - attach or detach remote devices
+- Protection
+  - get file permissions
+  - set file permissions
+
+### Examples of Windows and UNIX system calls
+
+The following illustrates various equivalent system calls for Windows and UNIX operating systems.
+
+| \_                           | Windows                                                                             | Unix                                  |
+| :--------------------------- | :---------------------------------------------------------------------------------- | :------------------------------------ |
+| Process <br> control         | `CreateProcess()` `ExitProcess()` `WaitForSingleObject()`                           | `fork()` `exit()` `wait()`            |
+| File <br> management         | `CreateFile()` `ReadFile()` `WriteFile()` `CloseHandle()`                           | `open()` `read()` `write()` `close()` |
+| Device <br> management       | `SetConsoleMode()` `ReadConsole()` `WriteConsole()`                                 | `ioctl()` `read()` `write()`          |
+| Information <br> maintenance | `GetCurrentProcessID()` `SetTimer()` `Sleep()`                                      | `getpid()` `alarm()` `sleep()`        |
+| Communications               | `CreatePipe()` `CreateFileMapping()` `MapViewOfFile()`                              | `pipe()` `shm_open()` `mmap()`        |
+| Protection                   | `SetFileSecurity()` `InitializeSecurityDescriptor()` `SetSecurityDescriptorGroup()` | `chmod()` `umask()` `chown()`         |
+
+## Another COPY of Summary in the Book
+
 ## 笔记目录
 
 1. [回到开头](scroll-to-the-very-top)

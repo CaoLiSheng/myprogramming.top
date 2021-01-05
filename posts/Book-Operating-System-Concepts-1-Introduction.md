@@ -165,7 +165,7 @@ while the other is a _**peer-to-peer system**_ (with or without centralized look
 
 These cloud-computing types are not discrete, as a cloud computing enviroment my provide a combination of several types. Notice that both the cloud services and the cloud user interface are protected by a firewall.
 
-## One COPY of Summary in the Book
+## Another COPY of Summary in the Book
 
 - An operating system is software that manages the computer hardware, as well as providing an enviroment for application programs to run.
 - Interrupts are a key way in which hardware interacts with the operating system. A hardware device triggers an interrupt by sending a signal to the CPU to alert the CPU that some event requires attention. The interrupt is managed by the interrupt handler.
@@ -177,7 +177,7 @@ These cloud-computing types are not discrete, as a cloud computing enviroment my
 - Modern computer architectures are multiprocessor system employ multiprogramming, which allows several jobs to be in memory at the same time, thus ensuring that the CPU always has a job to execute.
 - Multitasking is an extension of multiprogramming wherein CPU scheduling algorithms rapidly switch between processes, providing users with a fast response time.
 - To prevent user programs from interfering with the proper operation of the system, the system hardware has two modes: user mode and kernel mode.
-- Various instructions are privileged and can be executed only in kernel mode. Examples include the instruction to switch to kernel mode, I/O control, timer management, and interrupt management.
+- **_Various instructions are privileged and can be executed only in kernel mode._** Examples include the instruction to switch to kernel mode, I/O control, timer management, and interrupt management.
 - A process is the fundamental unit of work in an operating system. Process management includes creating and deleting processes and providing mechanisms for processes to communicate and synchronize with each other.
 - An operating system manages memory by keeping track of what parts of memory are being used and by whom. It is also responsible for dynamically allocating and freeing memory space.
 - Storage space is managed by the operating system; this includes providing file systems for representing files and directories and managing space on mass-storage devices.

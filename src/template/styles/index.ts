@@ -11,6 +11,7 @@ const styles: { [key: string]: StyleSheet } = {
   antique: PostfixPadding(),
   bountiful: PostfixPadding(),
   solarized: PostfixPadding(),
+  'resume-bountiful': PostfixPadding(),
   'github-colors': PostfixPadding(),
   'github-border': UnsetPadding,
 };

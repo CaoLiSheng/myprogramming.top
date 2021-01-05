@@ -16,7 +16,7 @@
 .markdown-body ol ul,
 .markdown-body ul ol,
 .markdown-body ul ul {
-  margin: 2em;
+  margin-left: 2em;
 }
 
 .markdown-body a[download] {
