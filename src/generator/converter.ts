@@ -44,7 +44,8 @@ md.renderer.rules.image = function(tokens, idx, options, env, self) {
     const imgTitle = title || defualtName;
 
     if (flag) {
-      return `<img alt="${caption}" src="${paddedSrc}" title="${imgTitle}" />`;
+      return `<img alt="${caption}" src="${paddedSrc}" title="${imgTitle}"
+              width="${width || 'auto'}" height="${height || 'auto'}" />`;
     }
 
     return `<figure>
