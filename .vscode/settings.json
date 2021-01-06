@@ -1,5 +1,6 @@
 {
   "path-intellisense.mappings": {
+    "@mditgridtables": "lib/markdown-it-gridtables",
     "@tpl": "src/template",
     "@common": "src/common",
     "@images": "src/images",

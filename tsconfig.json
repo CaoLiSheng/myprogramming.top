@@ -2,6 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@mditgridtables/*": [
+        "lib/markdown-it-gridtables/*"
+      ],
       "@tpl/*": [
         "src/template/*"
       ],
