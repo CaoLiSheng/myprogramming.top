@@ -2,8 +2,16 @@ declare var __resources_dir__: string;
 
 import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
+import gridTableRulePlugin from 'markdown-it-gridtables';
 
 const md = MarkdownIt({ html: true });
+md.use(require('markdown-it-multimd-table'), {
+  multiline: true,
+  rowspan: true,
+  headerless: false,
+});
+md.use(gridTableRulePlugin);
+
 const defualtName = '又心真人的博客';
 const titleRE = /^(~)?(?::(.*?))?(?:=(\d[^-\s]*?)?-(\d[^-\s]*?)?(?:-(\d[^-\s]*?)?-(\d[^-\s]*?)?)?)?$/;
 
