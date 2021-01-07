@@ -68,12 +68,12 @@ export default class InsiteLink extends Vue.extend({
         border-bottom: dashed 0.01rem var(--btn-foreground-theme-color);
       &.tags
         font-size: 0.2rem;
+    @media (hover: hover)
+      &:hover
+        transform: translate3d(0.05rem, -0.05rem, 0);
+        background-color: var(--btn-background-theme-color);
     @media screen and (min-width: 750px)
       transition: transform ease-in-out 100ms;
-      @media (hover: hover)
-        &:hover
-          transform: translate3d(0.05rem, -0.05rem, 0);
-          background-color: var(--btn-background-theme-color);
       &:active
         transform: translate3d(0.05rem, 0.05rem, 0);
       span

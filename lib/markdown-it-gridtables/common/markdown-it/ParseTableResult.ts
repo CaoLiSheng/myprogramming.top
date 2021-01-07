@@ -9,9 +9,7 @@ import TableRow from './TableRow';
 export default class ParseTableResult {
   Success: boolean = false;
 
-  ColumnWidths: number[] = [];
-
-  ColumnOffsets: number[] = [];
+  ColumnCount: number = 0;
 
   ColumnAlignments: ColumnAlignments[] = [];
 

@@ -81,14 +81,34 @@ Three general methods are used to pass parameters to the operating-system. The s
 
 The following illustrates various equivalent system calls for Windows and UNIX operating systems.
 
-| \_                           | Windows                                                                             | Unix                                  |
-| :--------------------------- | :---------------------------------------------------------------------------------- | :------------------------------------ |
-| Process <br> control         | `CreateProcess()` `ExitProcess()` `WaitForSingleObject()`                           | `fork()` `exit()` `wait()`            |
-| File <br> management         | `CreateFile()` `ReadFile()` `WriteFile()` `CloseHandle()`                           | `open()` `read()` `write()` `close()` |
-| Device <br> management       | `SetConsoleMode()` `ReadConsole()` `WriteConsole()`                                 | `ioctl()` `read()` `write()`          |
-| Information <br> maintenance | `GetCurrentProcessID()` `SetTimer()` `Sleep()`                                      | `getpid()` `alarm()` `sleep()`        |
-| Communications               | `CreatePipe()` `CreateFileMapping()` `MapViewOfFile()`                              | `pipe()` `shm_open()` `mmap()`        |
-| Protection                   | `SetFileSecurity()` `InitializeSecurityDescriptor()` `SetSecurityDescriptorGroup()` | `chmod()` `umask()` `chown()`         |
++------------------------------+----------------------------------+--------------+
+|                              | Windows                          | Unix         |
++==============================+==================================+==============+
+| Process <br> control         | `CreateProcess()`                | `fork()`     |
+|                              | `ExitProcess()`                  | `exit()`     |
+|                              | `WaitForSingleObject()`          | `wait()`     |
++------------------------------+----------------------------------+--------------+
+| File <br> management         | `CreateFile()`                   | `open()`     |
+|                              | `ReadFile()`                     | `read()`     |
+|                              | `WriteFile()`                    | `write()`    |
+|                              | `CloseHandle()`                  | `close()`    |
++------------------------------+----------------------------------+--------------+
+| Device <br> management       | `SetConsoleMode()`               | `ioctl()`    |
+|                              | `ReadConsole()`                  | `read()`     |
+|                              | `WriteConsole()`                 | `write()`    |
++------------------------------+----------------------------------+--------------+
+| Information <br> maintenance | `GetCurrentProcessID()`          | `getpid()`   |
+|                              | `SetTimer()`                     | `alarm()`    |
+|                              | `Sleep()`                        | `sleep()`    |
++------------------------------+----------------------------------+--------------+
+| Communications               | `CreatePipe()`                   | `pipe()`     |
+|                              | `CreateFileMapping()`            | `shm_open()` |
+|                              | `MapViewOfFile()`                | `mmap()`     |
++------------------------------+----------------------------------+--------------+
+| Protection                   | `SetFileSecurity()`              | `chmod()`    |
+|                              | `InitializeSecurityDescriptor()` | `umask()`    |
+|                              | `SetSecurityDescriptorGroup()`   | `chown()`    |
++------------------------------+----------------------------------+--------------+
 
 ## Another COPY of Summary in the Book
 

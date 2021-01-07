@@ -7,7 +7,8 @@ import IState from '../../interfaces/markdown-it/IState';
 import ColumnAlignments from './ColumnAlignments';
 import TableRow from './TableRow';
 import ParseTableResult from './ParseTableResult';
-import getColumnWidths from '../gridtables/GetColumnWidths';
+import getColumnCount from '../gridtables/GetColumnCount';
+import getColumnAlignments from './GetColumnAlignments';
 import getLine from './GetLine';
 
 export default function parseTable(
@@ -24,16 +25,16 @@ export default function parseTable(
     return result;
   }
 
-  result.ColumnWidths = getColumnWidths(rowLine);
+  result.ColumnCount = getColumnCount(rowLine);
 
-  if (result.ColumnWidths.length == 0) {
+  if (result.ColumnCount == 0) {
     // no columns found
     return result;
   }
 
   // initialize column alignments
-  result.ColumnAlignments = result.ColumnWidths.map(
-    (_) => ColumnAlignments.None
+  result.ColumnAlignments = Array.from(
+    [].fill.call({ length: result.ColumnCount }, ColumnAlignments.None)
   );
 
   if (rowLine.indexOf(':') >= 0) {
@@ -41,7 +42,7 @@ export default function parseTable(
     result.HeaderLess = true;
 
     // set column alignments
-    result.ColumnAlignments = getColumnAlignments(rowLine, result.ColumnWidths);
+    result.ColumnAlignments = getColumnAlignments(rowLine, result.ColumnCount);
 
     // remove alignment specifiers for further matching
     rowLine = rowLine.replace(/[:]/g, '-');
@@ -50,28 +51,20 @@ export default function parseTable(
   // create header line matcher
   const headerLineMatcher = new RegExp(
     '^\\+' +
-      result.ColumnWidths.map((w) => '[=:][=]{' + (w - 3) + '}[=:]\\+').join(
-        ''
-      ) +
+      Array.from(
+        [].fill.call({ length: result.ColumnCount }, '[=:][=]*?[=:]\\+')
+      ).join('') +
       '$'
   );
 
-  // build column offsets
-  result.ColumnOffsets = [0];
-
-  for (let i = 0; i < result.ColumnWidths.length - 1; i++) {
-    result.ColumnOffsets.push(result.ColumnOffsets[i] + result.ColumnWidths[i]);
-  }
-
   // create cell line matcher
   const cellLineMatcher = new RegExp(
-    '^\\|' + result.ColumnWidths.map((_) => '[^|]+?\\|').join('') + '$'
+    '^\\|' +
+      Array.from(
+        [].fill.call({ length: result.ColumnCount }, '[^|]+?\\|')
+      ).join('') +
+      '$'
   );
-  //   const cellLineMatcher = new RegExp(
-  //     '^\\|' +
-  //       result.ColumnWidths.map((w) => '[^|]{' + (w - 1) + '}\\|').join('') +
-  //       '$'
-  //   );
 
   // save first separator line offset
   result.SeparatorLineOffsets.push(startLine);
@@ -118,7 +111,7 @@ export default function parseTable(
           // set column alignments
           result.ColumnAlignments = getColumnAlignments(
             line,
-            result.ColumnWidths
+            result.ColumnCount
           );
         }
       } else {
@@ -174,36 +167,4 @@ export default function parseTable(
   result.Success = true;
 
   return result;
-}
-
-function getColumnAlignments(
-  line: string,
-  columnWidths: number[]
-): ColumnAlignments[] {
-  let alignments: ColumnAlignments[] = [];
-
-  let left = 1;
-  let right = -1;
-
-  for (let i = 0; i < columnWidths.length; i++) {
-    right += columnWidths[i];
-
-    let alignment = ColumnAlignments.None;
-
-    if (line.charAt(right) == ':') {
-      if (line.charAt(left) == ':') {
-        alignment = ColumnAlignments.Center;
-      } else {
-        alignment = ColumnAlignments.Right;
-      }
-    } else if (line.charAt(left) == ':') {
-      alignment = ColumnAlignments.Left;
-    }
-
-    alignments.push(alignment);
-
-    left += columnWidths[i];
-  }
-
-  return alignments;
 }

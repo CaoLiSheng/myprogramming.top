@@ -14,12 +14,12 @@ import TableRow from '../markdown-it/TableRow';
  * @param lines The lines for the row.
  */
 export default function getCells(
-  columnWidths: number[],
+  columnCount: number,
   row: TableRow
 ): string[][] {
   const cells = [];
 
-  for (let i = 0; i < columnWidths.length; i++) {
+  for (let i = 0; i < columnCount; i++) {
     const lines = row.lines;
     let cell = [];
 
