@@ -230,13 +230,16 @@ body[theme='Dark'] .markdown-body {
   text-indent: 1em;
 }
 .markdown-body blockquote {
-  margin: 14px 40px;
+  margin: 14px 30px;
+  padding: 0 10px;
+  box-shadow: -1px 0 0 white, -2px 0 0 #837e70;
 }
 .markdown-body code {
-  background: var(--code-background-article-color);
-  border: solid 1px #a7a099;
+  /* background: var(--code-background-article-color);
+  border: solid 1px #a7a099; */
   font-size: 0.95em;
   padding: 0 0.2em;
+  text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
 .markdown-body pre.prettyprint {
   white-space: pre;

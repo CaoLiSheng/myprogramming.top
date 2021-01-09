@@ -146,7 +146,7 @@ Each node that is distributed can be used for clustering. Clusters are not necce
 
 ## Distributed Operating System : Hormony
 
-A _**network operating system**_ is an operating system that provides features such as file sharing across the network, along with a communication scheme that allows different processes on different computers to exchange messages. A computer running a network operating system acts autonomously from all other computers on the network, although it is aware of the network and is able to communicate with other networked computers. A _**distributed operating system**_ provides a less autonomous enviroment. The different computers communicate closely enough to provide the illusion that only a single operating system controls the network.
+A _**network operating system**_ is an operating system that provides features such as file sharing across the network, along with a communication scheme that allows different processes on different computers to exchange messages. A computer running a network operating system acts autonomously from all other computers on the network, although it is aware of the network and is able to communicate with other networked computers. A _**distributed operating system**_ provides a less autonomous environment. The different computers communicate closely enough to provide the illusion that only a single operating system controls the network.
 
 ## Two Specialized Distributed System
 
@@ -163,11 +163,11 @@ while the other is a _**peer-to-peer system**_ (with or without centralized look
 - Platform as a service (**PaaS**) -- a software stack ready for application use via the Internet (for example, a database server)
 - Infrastructure as a service (**IaaS**) -- servers or starge abailable over the Internet (for example, storage available for making backup copies of production data)
 
-These cloud-computing types are not discrete, as a cloud computing enviroment my provide a combination of several types. Notice that both the cloud services and the cloud user interface are protected by a firewall.
+These cloud-computing types are not discrete, as a cloud computing environment my provide a combination of several types. Notice that both the cloud services and the cloud user interface are protected by a firewall.
 
 ## Another COPY of Summary in the Book
 
-- An operating system is software that manages the computer hardware, as well as providing an enviroment for application programs to run.
+- An operating system is software that manages the computer hardware, as well as providing an environment for application programs to run.
 - Interrupts are a key way in which hardware interacts with the operating system. A hardware device triggers an interrupt by sending a signal to the CPU to alert the CPU that some event requires attention. The interrupt is managed by the interrupt handler.
 - For a computer to do its job of executing programs, the programs must be in main memory, which is the only large storage area that the processor can access directly.
 - The main memory is usually a volatile storage device that loses its contents when power is turned off or lost.
@@ -182,9 +182,9 @@ These cloud-computing types are not discrete, as a cloud computing enviroment my
 - An operating system manages memory by keeping track of what parts of memory are being used and by whom. It is also responsible for dynamically allocating and freeing memory space.
 - Storage space is managed by the operating system; this includes providing file systems for representing files and directories and managing space on mass-storage devices.
 - Operating system provide mechanisms for protecting and securing the operating system and users. Proctection measures control the access of processes or users to the resources made available by the computer system.
-- Virtualization involves abstracting a computer's hardware into several defferent execution enviroment.
+- Virtualization involves abstracting a computer's hardware into several defferent execution environment.
 - Data structures that are used in an operating system includes lists, stacks, queues, trees, and maps.
-- Computing takes place in a variety of enviroments, including traditional computing, mobile computing, client-server computing, peer-to-peer systems, cloud computing, and real-time embedded systems.
+- Computing takes place in a variety of environments, including traditional computing, mobile computing, client-server computing, peer-to-peer systems, cloud computing, and real-time embedded systems.
 - Free and open-source operating systems are available in source-code format. Free software is licensed to allow no-cost use, redistribution, and modification. GNU/Linux, FreeBSD, and Solaris are examples of popular open-source systems.
 
 ## 笔记目录
