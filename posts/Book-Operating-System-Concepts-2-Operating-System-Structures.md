@@ -300,9 +300,115 @@ It has also made changes in memory management and allocation and has add a new f
 > 相反的，之前看到 Linux 上也可以运行 Windows 程序了，而且不是通过 wine 模拟器。
 > 为进一步丰富生态软件，优麒麟与 CodeWeavers 公司积极合作适配，正式推出 CrossOver 优麒麟版本，使优麒麟系统能够兼容运行 Windows 应用。
 > 同时，将微信(crossover版) 和 QQ(crossover版) 上架麒麟软件商店，方便普通用户一键安装体验。
-> [CrossOver正式版来了，微信、QQ上架麒麟软件商店！](https://www.ubuntukylin.com/news/1632-cn.html)
+> 详见[CrossOver正式版来了，微信、QQ上架麒麟软件商店！](https://www.ubuntukylin.com/news/1632-cn.html)
+
+## Operating-System Generation
+
+follow these steps to generate (or build) an operating system from scratch:
+
+1. Write the operating system source code (or obtain previously written source code).
+2. Configure the operating system for the system on which it will run.
+3. Compile the operating system.
+4. Install the operating system.
+5. Boot the computer and its new operating system.
+
+(build a Linux system from scratch):
+
+1. Download the Linux source code from <http://www.kernel.org>.
+2. Configure the kernel using the "make menuconfig" command. This step generates the .config configuration file.
+3. Compile the main kernel using the "make" command. The make command compiles the kernel based on the configuration parameters identified in the .config file, producing the file `vmlinuz`, which is the kernel image.
+4. Compile the kernel modules using the "make modules" command. Just as with compiling the kernel, module compilation depends on the configuration parameters specified in the .config file.
+5. Use the command "make modules_install" to install the kernel modules into `vmlinuz`.
+6. Install the new kernel on the system by entering the "make install" command.
+
+The approach above to configure a operating system, at one extreme, let a system administrator can use it to modify a copy of the source code;
+or at a slightly less tailored level, the system description can lead to the selection of precompiled object modules from an existing library.
+At the other extreme, it is possible to construct a system that is completely modular.
+Here, selection occurs at execution time rather than at compile or link time. (For example):
+
+1. Downloaded the Ubuntu ISO image from <https://www.ubuntu.com>.
+2. Instructed the virtual machine software VirtualBox to use the ISO as the bootable medium and booted the virtual machine.
+3. Answered the installation questions and then isntalled and booted the operating system as a virtual machine.
+
+## System Boot
+
+On most systems, the boot process proceeds as follows:
+
+1. A small piece of code known as the `bootstrap program` or `boot loader` runs diagnostics and locates the kernel.
+2. The kernel is loaded into memory and started.
+3. The kernel initializes hardware.
+4. The root file system is mounted.
+
+### BIOS
+
+Some computer systems use a multistage boot process: When the computer is first powered on, a small boot loader located in nonvolatile firmware known as `BIOS` in run. This initial boot loader usually does nothing more than load a second boot loader, which is located at a fixed disk location called the `boot block`. The program stored in the book block may be sophisticated enough to load the entire operating system into the memory and begin its execution. More typically, it is simple code (as it must fit in a single disk block) and knows only the address on disk and the length of the remainder of the bootstrap program.
+
+### UEFI
+
+Many recent computer systems have replaced the BIOS-based boot process with `UEFI` (Unified Extensible Firmware Interface). UEFI has several advantages over BIOS, including better support for 64-bit system and larger disks. UEFI is a single, complete boot manager and therefore is faster than the multistage BIOS boot process.
+
+### GRUB (pure software)
+
+`GRUB` is an open-source bootstrap program for Linux and UNIX systems. Boot parameters for the system are set in a GRUB configuration file, which is loaded at startup. To save space as well as decrease boot time, the Linux kernel image is a compressed file that is extracted after it is loaded into memory. During the boot process, the boot loader typically creates a temporary RAM file system, known as `initramfs`. This file system contains necessary drivers and kernel modules that must be installed to support the real root file system (which is not in main memory). Once the kernel has started and the necessary drivers are installed, the kernel switches the root file system from the temporary RAM location to the appopriate root file system location. Finally, Linux creates the `systemd` process, the initial process in the system, and then starts other services (for example, a web server and/or database). Ultimately, the system will present the user with a login prompt.
+
+### for Mobile System (Android)
+
+The boot process for mobile system is slightly dirrerent from that for traditional PCs.
+
+- For example, although its kernel is Linux-based, Android does not use GRUB and instead leaves it up to vendors to provide boot loaders. The most common Android boot loader is LK (for "little kernel").
+- Android system use the same compressed kernel image as Linux, as well as an intial RAM file system. However, whereas Linux discards the initramfs once all necessary drivers have been loaded, Android maintains initramfs as the root file system for the device.
+- Once the kernel has been loaded and the root file system mounted, Android starts the init process and creates a number of services before displaying the home screen.
+
+> Finally, boot loaders for most operating systems provide booting into `recovery mode` or `single-user mode` for diagnosing hardware issues, fixing corrupt file systems, and even reinstalling the operating system.
+
+## Operating-System Debugging
+
+### Failure Analysis
+
+when crash
+
+- error information is saved to a log file
+- the memory state is saved to a crash dump (core dump--a capture of the memory of the process)
+
+### Tools that provide either *Per-Process* or *System-Wide* observations
+
+- Counters
+  - Per-Process
+    - ps--reports information for a single process or selection of processes
+    - top--reports real-time statistics for current processes
+  - System-Wide
+    - vmstat--reports memory-usage statistics
+    - netstat--reports statistics for network interfaces
+    - iostat--reports I/O usage for disks
+- Tracing
+  - Per-Process
+    - strace--traces system calls invoked by a process
+    - gdb--s source-level debugger
+  - System-Wide
+    - perf-a collection of Linux performance tools
+    - tcpdump--collects network packets
+
+### BCC
+
+> 这个东西不得了：[深入浅出 eBPF](https://www.ebpf.top)。
 
 ## Another COPY of Summary in the Book
+
+- An operating system provides an environment for the execution of programs by providing services to users and programs.
+- The three primary approaches for interacting with an operating system are (1) command interpreters, (2) graphical user interfaces, and (3) touchscreen interfaces.
+- System calls provide an interface to the services made available by an operating system. Programmers use a system call's application programming interface (API) for accessing system-call services.
+- System calls can be divided into six major categories: (1) process control, (2) file management, (3) device management, (4) information maintenance, (5) communications, and (6) protection.
+- The standard C libary provides the system-call interface for UNIX and Linux systems.
+- Operating systems also include a collection of system programs that provide utilities to suers.
+- A linker combines several relocatable object modules into a single binary executable file. A loader loads the executable file into memory, where it becomes eligible to run on an available CPU.
+- There are several reasons why applications are operating-system specific. These include different binary formats for program executables, different instruction sets for defferent CPUs, and system calls that vary form one operating system to another.
+- An operating systgem is designed with specific goals in mind. These goals ultimately determine the operating system's policies. An operating system implements these policies through specific mechanisms.
+- A monolithic operating system has no structure; all functionality is provided in a single, static binary file that runs in a single address space. Although such systems are difficult to modify, their primary benefit is efficiency.
+- A layered operating system is devided into a number of discrete layers, where the bottom layer is the hardware interface and the highest layer is the user interface. Although layered software system have had some success, this approach is generally not ideal for designing operating systems due to performance problems.
+- The microkernel approach for designing operating systems uses aa minimal kernel; most services run as user-level applications. Communication takes place via message passing.
+- A modular approach for designing operating systems provides operating system services through modules that can be loaded and removed during run time. Many contemporary operating systems are constructed as hybrid systems using a combination of a monolithic kernel and modules.
+- A boot loader loads an operating system into memory, performs initialization and begins system execution.
+- The performance of an operating system can be monitored using either counters or tracing. Counters are a collection of system-wide or per-process statistics, while tracing follows the execution of a program through the operating system.
 
 ## 笔记目录
 
