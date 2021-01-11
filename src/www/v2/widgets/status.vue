@@ -50,7 +50,7 @@ export default class StatusComponent extends Vue {
   get tags() {
     if (!this.db.refresh) return [];
 
-    const parsed = location.pathname.split("/");
+    const parsed = decodeURIComponent(location.pathname).split("/");
     const post = parsed[parsed.length - 1];
     if (!post) return [];
 
