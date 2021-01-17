@@ -5,8 +5,8 @@ export interface RNK {
 }
 
 export interface PublicMeta {
-  title: string;
   date: string;
+  title: string;
   tags: string[];
 }
 

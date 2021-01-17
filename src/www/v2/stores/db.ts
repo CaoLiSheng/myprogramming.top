@@ -31,9 +31,10 @@ export const db = {
       return this.data.sortedPosts;
     }
 
-    return (this.data.sortedPosts || []).filter((p: string) => {
-      const meta = this.data.metas[p];
-      // try {
+    return (this.data.sortedPosts || []).filter((name: string) => {
+      const meta = this.data.metas[name];
+      if (name.indexOf(kw) >= 0) return true;
+      if (meta.date.indexOf(kw) >= 0) return true;
       if (meta.title.indexOf(kw) >= 0) return true;
       if (
         meta.tags
@@ -42,9 +43,6 @@ export const db = {
       ) {
         return true;
       }
-      // } catch (e) {
-      //   console.log('tua', p, JSON.parse(JSON.stringify(meta)), e);
-      // }
       return false;
     });
   },

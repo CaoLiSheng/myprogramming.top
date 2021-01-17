@@ -76,7 +76,7 @@ posts.forEach((fileName: string) => {
   preWrite(path.join(outDir, name + '.html')).writeFileSync(
     htmlMinify(
       tplContent
-        .replace('{{title}}', title)
+        .replace('{{title}}', title + ' | 又心真人的博客')
         .replace('{{article_title}}', title)
         .replace('{{javascript}}', tplScriptPath())
         .replace('{{hm_baidu}}', hmBaidu())
