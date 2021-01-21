@@ -47,7 +47,7 @@ export default function emitTable(
 
   for (let i = 0; i < result.TableRows.length; i++) {
     let cells = getCells(result.ColumnCount, result.TableRows[i]);
-
+    console.log('tua', cells);
     processRow(
       md,
       state,
@@ -93,7 +93,8 @@ function processRow(
       token.children = [];
     } else {
       // multi line cell -> render and emit as html
-      let cell = md.render(cells[i].join('\r\n')).trim();
+      // let cell = md.render(cells[i].join('\r\n')).trim();
+      let cell = md.render(cells[i].join('')).trim();
 
       // remove single p tag because we're in a table cell
       if (

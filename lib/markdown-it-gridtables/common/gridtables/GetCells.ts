@@ -26,9 +26,12 @@ export default function getCells(
     for (let j = 0; j < lines.length; j++) {
       const columnOffsets = row.columnOffsets[j];
 
-      const s = trimEnd(
-        lines[j].substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
-      );
+      // const s = trimEnd(
+      //   lines[j].substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
+      // );
+      const s = lines[j]
+        .substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
+        .trim();
 
       if (s.length === 0 && cell.length === 0) {
         // skip leading empty lines
@@ -56,12 +59,12 @@ export default function getCells(
   return cells;
 }
 
-function trimEnd(s: string): string {
-  const trimmed = s.trim();
+// function trimEnd(s: string): string {
+//   const trimmed = s.trim();
 
-  if (trimmed.length === 0) {
-    return '';
-  }
+//   if (trimmed.length === 0) {
+//     return '';
+//   }
 
-  return s.slice(0, s.indexOf(trimmed) + trimmed.length);
-}
+//   return s.slice(0, s.indexOf(trimmed) + trimmed.length);
+// }
