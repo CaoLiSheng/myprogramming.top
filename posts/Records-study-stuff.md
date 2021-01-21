@@ -27,3 +27,4 @@ tags:
 |         试读 [金领简历：敲开苹果、微软、谷歌的大门](//www.duokan.com/book/68635)         |    〔译〕漆犇     |  多看  | 2020 年 11 月 30 日 | 2020 年 11 月 30 日 |
 |                                      计算机组成原理                                      |      蒋本珊       | 纸质书 | 2020 年 12 月 01 日 | 2020 年 12 月 21 日 |
 |                        Operating System Concepts（Tenth Edition）                        |      很多人       | 电子书 | 2020 年 12 月 24 日 | -                   |
+|                                 Java I/O, NIO and NIO.2                                  |   Jeff Friesen    | 电子书 | 2020 年 12 月 28 日 | -                   |

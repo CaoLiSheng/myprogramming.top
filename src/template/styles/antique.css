@@ -45,12 +45,12 @@ body[theme='Dark'] .markdown-body {
 }
 
 @font-face {
-  font-family: 'Modern Antiqua';
-  src: url(/* reources_dir */fonts/ModernAntiqua-Regular.ttf) format('truetype');
+  font-family: PatrickHand;
+  src: url(/* reources_dir */fonts/PatrickHand-Regular.ttf) format('truetype');
 }
 
 .markdown-body {
-  font-family: 'Modern Antiqua', Georgia, -apple-system-font, 'PingFang SC',
+  font-family: PatrickHand, Georgia, -apple-system-font, 'PingFang SC',
     'Microsoft YaHei', serif;
   margin: 0;
   font-size: 15px;

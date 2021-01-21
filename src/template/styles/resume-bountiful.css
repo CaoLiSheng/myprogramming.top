@@ -266,8 +266,8 @@ body[theme='Dark'] .markdown-body {
 /* Theme-specific styles */
 
 @font-face {
-  font-family: 'PT Sans';
-  src: url(/* reources_dir */fonts/PT_Sans-Web-Regular.ttf) format('truetype');
+  font-family: PatrickHand;
+  src: url(/* reources_dir */fonts/PatrickHand-Regular.ttf) format('truetype');
 }
 
 @font-face {
@@ -279,7 +279,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: 'PT Sans', 'ZCOOL QingKe HuangYou', cursive, sans-serif;
+  font-family: PatrickHand, 'ZCOOL QingKe HuangYou', cursive, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   line-height: 1.6em;

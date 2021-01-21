@@ -68,10 +68,7 @@ export default class IndexComponent extends Vue {
     width: 100%;
     background: var(--secondary-theme-color);
     border-right: solid 0.01rem var(--third-theme-color);
-    @media screen and (min-width: 1100px)
-      max-width: 30%;
-    @media screen and (max-width: 1100px)
-      max-width: 4.5rem;
+    max-width: min(30%, 4.5rem);
     @media screen and (max-width: 750px)
       max-width: 80%;
       visibility: hidden;
