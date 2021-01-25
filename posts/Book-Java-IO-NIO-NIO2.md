@@ -44,4 +44,16 @@ The java.io package provides several classes that identify various stream destin
 
 Explored OutputStream and InputStream, followed by the byte array, file, piped, filter, buffered, data, object, and print streams. While covering object streams, it introduced the topics of serialization and externalization. Concluded by revisiting standard I/O.
 
-![Overviews](Book-Java-IO-NIO-NIO2/Overviews.png '=666px-')
+![Overviews](Book-Java-IO-NIO-NIO2/Streams.png '=666px-')
+
+Tell the serialization and deserialization mechanisms to serialize or deserialize the object’s normal state before serializing or deserializing additional data items by first calling ObjectOutputStream’s defaultWriteObject() method in writeObject(ObjectOutputStream) or by first calling ObjectInputStream’s defaultReadObject() method in readObject(ObjectInputStream).
+
+## Writers and Readers
+
+Java’s stream classes are good for streaming sequences of bytes, but they’re not good for streaming sequences of characters because bytes and characters are two different things. A byte represents an 8-bit data item and a character represents a 16-bit data item. Also, Java’s char and String types naturally handle characters instead of bytes. More importantly, byte streams have no knowledge of character sets and their encodings.
+
+Java provides writer and reader classes to stream characters. They support character I/O (they work with char instead of byte) and take character encodings into account. The abstract Writer and Reader classes describe what it means to be a writer and a reader.
+
+Writer and Reader are subclassed by OutputStreamWriter and InputStreamReader, which bridge the gap between character and byte streams. These classes are subclassed by the FileWriter and FileReader convenience classes, which facilitate writing/reading characters to/from files. Writer and Reader are also subclassed by BufferedWriter and BufferedReader, which buffer characters for efficiency.
+
+![Overviews](Book-Java-IO-NIO-NIO2/Writers&Readers.png '=666px-')
