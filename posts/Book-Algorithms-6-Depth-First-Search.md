@@ -278,10 +278,10 @@ def Tarjan(G):
 
 ## 书中的典型案例
 
-- [检测环路](scroll-to:检测环路)
-- [拓扑排序](scroll-to:拓扑排序)
-- [动态规划及备忘录](scroll-to:动态规划及备忘录)
-- [强连接图](scroll-to:强连接图)
+- [检测环路](scroll-to:jian-ce-huan-lu)
+- [拓扑排序](scroll-to:tuo-bu-pai-xu)
+- [动态规划及备忘录](scroll-to:dong-tai-gui-hua-ji-bei-wang-lu)
+- [强连接图](scroll-to:qiang-lian-jie-tu)
 
 （陆续完善……）
 

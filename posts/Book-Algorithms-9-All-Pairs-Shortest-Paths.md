@@ -117,10 +117,10 @@ def FloydWarshell(V,E,w):
 
 ## 书中的典型案例
 
-- [Johnson’s Algorithm](scroll-to:johnson’s-algorithm)
-- [动态规划解法](scroll-to:动态规划解法)
-- [分治解法](scroll-to:分治解法)
-- [另一个递归式](scroll-to:另一个递归式)
+- [Johnson’s Algorithm](scroll-to:johnsons-algorithm)
+- [动态规划解法](scroll-to:dong-tai-gui-hua-jie-fa)
+- [分治解法](scroll-to:fen-zhi-jie-fa)
+- [另一个递归式](scroll-to:ling-yi-ge-di-gui-shi)
 
 （陆续完善……）
 

@@ -152,9 +152,9 @@ def Kruskal(V, E):
 
 ## 书中的典型案例
 
-- [Boruvka 算法](scroll-to:boruvka-算法)
-- [Jarník 算法](scroll-to:jarník-算法)
-- [Kruskal 算法](scroll-to:kruskal-算法)
+- [Boruvka 算法](scroll-to:boruvka-suan-fa)
+- [Jarník 算法](scroll-to:jarnik-suan-fa)
+- [Kruskal 算法](scroll-to:kruskal-suan-fa)
 
 （陆续完善……）
 

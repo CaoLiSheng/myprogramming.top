@@ -6,6 +6,7 @@ import gridTableRulePlugin from '@mditgridtables/index';
 
 const md = MarkdownIt({ html: true });
 md.use(gridTableRulePlugin);
+md.use(require('markdown-it-named-headings'));
 
 const defualtName = '又心真人的博客';
 const titleRE = /^(~)?(?::(.*?))?(?:=(\d[^-\s]*?)?-(\d[^-\s]*?)?(?:-(\d[^-\s]*?)?-(\d[^-\s]*?)?)?)?$/;

@@ -233,10 +233,10 @@ def Moore(s):
 
 ## 书中的典型案例
 
-- [无权图 最短路径问题](scroll-to:广度优先算法（解-_无权图_-最短路径问题）)
-- [有向无环加权图 最短路径问题](scroll-to:深度优先（拓扑顺序）算法（解-_dag_-最短路径问题）)
-- [加权图 最短路径问题 使用优先队列](scroll-to:最优优先算法（dijkstra’s-algorithm，解-_加权图_-最短路径问题）)
-- [加权图 最短路径问题 最大限度 Relaxations](scroll-to:最大限度-relaxations-算法（relax-all-the-edges）)
+- [无权图 最短路径问题](scroll-to:yan-du-you-xian-suan-fa-jie-em-wu-quan-tu-em-zui-duan-lu-jing-wen-ti)
+- [有向无环加权图 最短路径问题](scroll-to:shen-du-you-xian-tuo-bu-shun-xu-suan-fa-jie-em-dag-em-zui-duan-lu-jing-wen-ti)
+- [加权图 最短路径问题 使用优先队列](scroll-to:zui-you-you-xian-suan-fa-dijkstras-algorithm-jie-em-jia-quan-tu-em-zui-duan-lu-jing-wen-ti)
+- [加权图 最短路径问题 最大限度 Relaxations](scroll-to:zui-da-xian-du-relaxations-suan-fa-relax-all-the-edges)
 
 （陆续完善……）
 
