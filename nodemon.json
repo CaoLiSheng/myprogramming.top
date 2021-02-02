@@ -1,5 +1,11 @@
 {
   "ext": "*",
   "delay": "3000",
-  "watch": ["posts", "build/v2/dev", "src/template", "public/resources"]
+  "watch": [
+    "posts",
+    "build/v1/dev",
+    "build/v2/dev",
+    "src/template",
+    "public/resources"
+  ]
 }

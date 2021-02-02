@@ -14,8 +14,6 @@ module.exports = merge(base, {
     new webpack.DefinePlugin({
       __production__: false,
       __resources_dir__: JSON.stringify('./'),
-      __origin__: JSON.stringify('http://dev.myprogramming.top:3000'),
-      __site_root__: JSON.stringify('http://dev.myprogramming.top:3000'),
     }),
   ],
 });

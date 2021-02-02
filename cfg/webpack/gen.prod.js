@@ -14,8 +14,6 @@ module.exports = merge(base, {
     new webpack.DefinePlugin({
       __production__: true,
       __resources_dir__: JSON.stringify('../resources/'),
-      __origin__: JSON.stringify('https://yx1991.gitee.io'),
-      __site_root__: JSON.stringify('https://yx1991.gitee.io/blog'),
     }),
   ],
 });

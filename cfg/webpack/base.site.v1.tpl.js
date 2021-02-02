@@ -1,31 +1,18 @@
 const path = require('path');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 const { merge } = require('webpack-merge');
 
 const base = require('./base.babel');
 
 module.exports = merge(base, {
-  target: 'node',
+  target: 'web',
   entry: {
-    generator: 'src/generator/index',
+    template: 'src/template/v1/index',
   },
   output: {
-    filename: '[name].min.js',
-  },
-  externals: [
-    nodeExternals({ modulesDir: path.join(process.cwd(), 'node_modules') }),
-  ],
-  resolve: {
-    extensions: ['.wasm', '.mjs', '.js', '.ts', '.json'],
+    filename: '[name].[hash:10].js',
   },
   module: {
     rules: [
-      {
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      },
       {
         test: /\.(j|t)s(x)?$/,
         exclude: /node_modules/,
@@ -50,7 +37,12 @@ module.exports = merge(base, {
           },
         },
       },
+      {
+        test: /(\.s?css$|\/css\?.*)/,
+        include: [path.join(process.cwd(), 'src')],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
-  plugins: [new webpack.DefinePlugin({})],
+  plugins: [],
 });
