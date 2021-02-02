@@ -11,13 +11,15 @@ tags:
 ---
 
 <style>
-.markdown-body table th, .markdown-body table td { padding-left: 5px; padding-right: 5px; }
-.markdown-body table th:nth-of-type(1), .markdown-body table td:nth-of-type(1) { width: 3em; border-right: solid 1px #888; }
-.markdown-body table th:nth-of-type(2) { width: calc(38% - 3em); }
-.markdown-body table th:nth-of-type(3) { width: 12%; }
-.markdown-body table th:nth-of-type(4) { width: 10%; }
-.markdown-body table th:nth-of-type(5), .markdown-body table td:nth-of-type(5) { width: 10em; border-left: solid 1px #888; }
-.markdown-body table th:nth-of-type(6), .markdown-body table td:nth-of-type(6) { width: calc(40% - 10em); border-left: solid 1px #888; }
+@media only screen and (min-width: 1080px) {
+  .markdown-body table th, .markdown-body table td { padding-left: 5px; padding-right: 5px; }
+  .markdown-body table th:nth-of-type(1), .markdown-body table td:nth-of-type(1) { width: 3em; border-right: solid 1px #888; }
+  .markdown-body table th:nth-of-type(2) { width: calc(38% - 3em); }
+  .markdown-body table th:nth-of-type(3) { width: 12%; }
+  .markdown-body table th:nth-of-type(4) { width: 10%; }
+  .markdown-body table th:nth-of-type(5), .markdown-body table td:nth-of-type(5) { width: 10em; border-left: solid 1px #888; }
+  .markdown-body table th:nth-of-type(6), .markdown-body table td:nth-of-type(6) { width: calc(40% - 10em); border-left: solid 1px #888; }
+}
 </style>
 
 | 序号 |                                                资源名                                                 |       作者        |  来源  |              开始于 |                                                完成于 |
@@ -38,5 +40,5 @@ tags:
 |   15 |               试读 [金领简历：敲开苹果、微软、谷歌的大门](//www.duokan.com/book/68635)                |    〔译〕漆犇     |  多看  | 2020 年 11 月 30 日 |                                   2020 年 11 月 30 日 |
 |   16 |                                            计算机组成原理                                             |      蒋本珊       | 纸质书 | 2020 年 12 月 01 日 |                                   2020 年 12 月 21 日 |
 |   17 | [Operating System Concepts<br>(Tenth Edition)](https://codex.cs.yale.edu/avi/os-book/OS10/index.html) |      很多人       | 电子书 | 2020 年 12 月 24 日 |                                        <u>3/21 章</u> |
-|   18 |                [Java I/O, NIO and NIO.2](https://www.apress.com/cn/book/9781484215661)                |   Jeff Friesen    | 电子书 | 2021 年 01 月 08 日 |           <u>11/14 章<br>预计｜2021 年 02 月 08 日</u> |
+|   18 |                [Java I/O, NIO and NIO.2](https://www.apress.com/cn/book/9781484215661)                |   Jeff Friesen    | 电子书 | 2021 年 01 月 08 日 |          <u>11/14 章<br>预计｜2021 年 02 月 08 日</u> |
 |   19 |          [Boost C++ Application Development Cookbook](https://www.amazon.com/dp/1787282244)           |  Antony Polukhin  | 电子书 | 2021 年 02 月 09 日 |                                                     - |
