@@ -8,6 +8,9 @@
       "@tpl/*": [
         "src/template/*"
       ],
+      "@sprites/*": [
+        "src/sprites/*"
+      ],
       "@common/*": [
         "src/common/*"
       ],

@@ -1,6 +1,6 @@
 import '@tpl/v2/index';
-import '@audios/click';
-import '@www/utils/messages';
+// import '@audios/click';
+import '@sprites/ring';
 import '@www/utils/print';
 import '@www/utils/vh100';
 

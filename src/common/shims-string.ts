@@ -34,3 +34,14 @@ String.prototype.toInt = function(this: string): number | undefined {
     return undefined;
   }
 };
+
+String.prototype.uniqueCheck = (function() {
+  const checkers = {};
+  return function(this: string, key: string): boolean {
+    let theChecker = checkers[key];
+    if (!theChecker) {
+      theChecker = checkers[key] = this;
+    }
+    return this === theChecker;
+  };
+})();

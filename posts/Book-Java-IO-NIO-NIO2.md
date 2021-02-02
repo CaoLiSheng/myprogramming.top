@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Java I/O, NIO, and NIO.2》
-date: 2021-01-25
+date: 2021-02-08
 tags:
   - 读书
   - 笔记
@@ -67,3 +67,39 @@ Buffers possess capacity, limit, position, and mark properties. These four prope
 Buffers are implemented by abstract classes that derive from the abstract Buffer class. These classes include ByteBuffer, CharBuffer, DoubleBuffer, FloatBuffer, IntBuffer, LongBuffer, and ShortBuffer. Furthermore, ByteBuffer is subclassed by the abstract MappedByteBuffer class.
 
 In this chapter, learned how to create buffers (including view buffers), write and read buffer contents, flip buffers, mark buffers, and perform additional operations on buffers such as compaction. Also learned about byte ordering and direct byte buffers.
+
+## Channels
+
+Channels partner with buffers to achieve high-performance I/O. A channel is an object that represents an open connection to a hardware device, a file, a network socket, an application component, or another entity that’s capable of performing write, read, and other I/O operations. Channels efficiently transfer data between byte buffers and operating system-based I/O service sources or destinations.
+
+Java supports channels by providing the Channel interface, its WritableByteChannel and ReadableByteChannel subinterfaces, the Channels class, and other types in the java.nio.channels package. While exploring this package, learned about scatter/gather I/O, file channels (in terms of the FileChannel class with emphasis on its file locking, memory-mapped file I/O, and byte-transfer capabilities), socket channels, and pipes.
+
+## Selectors
+
+A selector is an object created from a subclass of the abstract Selector class. The selector maintains a set of channels that it examines to determine which channels are ready for reading, writing, completing a connection sequence, accepting another connection, or some combination of these tasks.
+
+Selectors are used with selectable channels, which are objects whose classes ultimately inherit from the abstract SelectableChannel class, which describes a channel that can be multiplexed by a selector.
+
+One or more previously created selectable channels are registered with a selector. Each registration returns an instance of a subclass of the abstract SelectionKey class, which is a token signifying the relationship between one channel and the selector. When a selection method is invoked, the selector’s associated keys are updated by checking all channels registered with that selector. The application can then obtain a set of keys whose channels were found ready and iterate over these keys to service each channel that has become ready since the previous select method call.
+
+## Regular Expressions
+
+Text-processing applications often need to match text against patterns. NIO includes regular expressions to help these applications perform pattern matching with high performance. Java supports regular expressions by providing the Pattern, PatternSyntaxException, and Matcher classes.
+
+In this chapter, explored Pattern, PatternSyntaxException, and Matcher. Then, learned about character classes, capturing groups, boundary matchers and zero-length matches, and quantifiers. Finally, observed a practical use case for regexes: phone number matching.
+
+> 虽然现在经常用正则表达式，但是一些小细节还是忽略了。
+> 比如，
+> 1）字符类有六种，分别是简单、非、区间、联合、并集、差集。尤其差集，是以前忽略的。
+> 2）组可以用反斜线加数字被引用
+> 3）边界匹配原以为只有开头和结尾，现在知道还有词的边界和内部，段落开头和结尾等
+> 4）匹配到零长度字符串的概念
+> 5）量词匹配仅原来只知道贪心和最短，现在知道还有一种所有格量词
+
+## Charsets
+
+Charsets combine coded character sets with character-encoding schemes. They’re used to translate between byte sequences and the characters that are encoded into these sequences. Java supports charsets by providing Charset and related classes. It also uses charsets with the String class.
+
+## Formatter
+
+

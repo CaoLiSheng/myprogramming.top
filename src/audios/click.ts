@@ -1,18 +1,9 @@
+import '@common/shims-string';
+
 import ClickWAV from './click.wav';
 
-const validatePlayer = (() => {
-  let firstValidPalyer: string | null = null;
-  return (name: string): boolean => {
-    if (null === firstValidPalyer) {
-      firstValidPalyer = name;
-    }
-
-    return firstValidPalyer === name;
-  };
-})();
-
 const playAudio = (name: string) => {
-  if (!validatePlayer(name)) return;
+  if (!name.uniqueCheck('ClickWAV')) return;
 
   let player = document.getElementById('click-wav');
   if (!player) {
