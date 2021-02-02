@@ -102,4 +102,12 @@ Charsets combine coded character sets with character-encoding schemes. They’re
 
 ## Formatter
 
+JDK 5 introduced the Formatter class as an interpreter for printf()-style format strings. This class provides support for layout justification and alignment; common formats for numeric, string, and date/time data; and more. Commonly used Java types (such as byte and BigDecimal) are supported.
 
+Formatter declares several constructors for creating Formatter objects. These constructors let you specify where you want formatted output to be sent. For example, Formatter() writes formatted output to an internal StringBuilder instance. You can access the destination by calling Formatter’s Appendable out() method.
+
+After creating a Formatter object, call a format() method to format a varying number of values. For example, Formatter format(String format, Object... args) formats the args array according to the string of format specifiers passed to the format parameter, and returns a reference to the invoking Formatter so that you can chain the format() calls together.
+
+It’s cumbersome to have to create and manage a Formatter object when all you want to do is achieve something equivalent to the C language’s printf() function. Java addresses this situation by adding format() and equivalent printf() methods (such as PrintStream printf(String format, Object... args)) to the PrintStream class.
+
+Formatter is accompanied by a Formattable interface and a FormattableFlags class that collectively support limited formatting customization for arbitrary user-defined types. Formattable is implemented by any class that needs to perform custom formatting using Formatter’s “s” (format argument as string) conversion character.

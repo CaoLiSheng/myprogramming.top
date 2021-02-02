@@ -12,7 +12,7 @@ function initSprite(player: HTMLCanvasElement) {
   player.width = player.height = SpriteSize;
   player.style.borderRadius = '50%';
   player.style.background = `radial-gradient(circle ${SpriteSize /
-    2}px at 50% 50%, transparent 0%, transparent 50%, white 55%, blue 95%, transparent 100%)`;
+    2}px at 50% 50%, transparent 0%, transparent 50%, white 75%, blue 95%, transparent 100%)`;
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
 
@@ -28,9 +28,12 @@ function initSprite(player: HTMLCanvasElement) {
             opacity: 1;
         }
 
+        90% {
+            transform: scale3d(${SpriteEndScale}, ${SpriteEndScale}, 1);
+        }
+
         100% {
             opacity: 0;
-            transform: scale3d(${SpriteEndScale}, ${SpriteEndScale}, 1);
         }
     }
   `);
@@ -66,15 +69,18 @@ const playHearts = (name: string, event: Event) => {
 };
 
 // const mouseupListender = playHearts.bind(null, 'mouseup');
-const mousedownListender = playHearts.bind(null, 'mousedown');
-const touchstartListender = playHearts.bind(null, 'touchstart');
+// const mousedownListender = playHearts.bind(null, 'mousedown');
+// const touchstartListender = playHearts.bind(null, 'touchstart');
+const dblclickListender = playHearts.bind(null, 'dblclick');
 
 // document.body.addEventListener('mouseup', mouseupListender);
-document.body.addEventListener('mousedown', mousedownListender);
-document.body.addEventListener('touchstart', touchstartListender);
+// document.body.addEventListener('mousedown', mousedownListender);
+// document.body.addEventListener('touchstart', touchstartListender);
+document.body.addEventListener('dblclick', dblclickListender);
 
 window.addEventListener('beforeunload', () => {
   // document.body.removeEventListener('mouseup', mouseupListender);
-  document.body.removeEventListener('mousedown', mousedownListender);
-  document.body.removeEventListener('touchstart', touchstartListender);
+  // document.body.removeEventListener('mousedown', mousedownListender);
+  // document.body.removeEventListener('touchstart', touchstartListender);
+  document.body.removeEventListener('dblclick', dblclickListender);
 });
