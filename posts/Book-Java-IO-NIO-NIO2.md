@@ -44,7 +44,7 @@ The java.io package provides several classes that identify various stream destin
 
 Explored OutputStream and InputStream, followed by the byte array, file, piped, filter, buffered, data, object, and print streams. While covering object streams, it introduced the topics of serialization and externalization. Concluded by revisiting standard I/O.
 
-![Overviews](Book-Java-IO-NIO-NIO2/Streams.png '=666px-')
+![Overviews](Java-IO-NIO-NIO2/Streams.png '=666px-')
 
 Tell the serialization and deserialization mechanisms to serialize or deserialize the object’s normal state before serializing or deserializing additional data items by first calling ObjectOutputStream’s defaultWriteObject() method in writeObject(ObjectOutputStream) or by first calling ObjectInputStream’s defaultReadObject() method in readObject(ObjectInputStream).
 
@@ -56,7 +56,7 @@ Java provides writer and reader classes to stream characters. They support chara
 
 Writer and Reader are subclassed by OutputStreamWriter and InputStreamReader, which bridge the gap between character and byte streams. These classes are subclassed by the FileWriter and FileReader convenience classes, which facilitate writing/reading characters to/from files. Writer and Reader are also subclassed by BufferedWriter and BufferedReader, which buffer characters for efficiency.
 
-![Overviews](Book-Java-IO-NIO-NIO2/Writers&Readers.png '=666px-')
+![Overviews](Java-IO-NIO-NIO2/Writers&Readers.png '=666px-')
 
 ## Buffers
 
@@ -111,3 +111,19 @@ After creating a Formatter object, call a format() method to format a varying nu
 It’s cumbersome to have to create and manage a Formatter object when all you want to do is achieve something equivalent to the C language’s printf() function. Java addresses this situation by adding format() and equivalent printf() methods (such as PrintStream printf(String format, Object... args)) to the PrintStream class.
 
 Formatter is accompanied by a Formattable interface and a FormattableFlags class that collectively support limited formatting customization for arbitrary user-defined types. Formattable is implemented by any class that needs to perform custom formatting using Formatter’s “s” (format argument as string) conversion character.
+
+## Improved File System Interface
+
+NIO.2 improves the file system interface that was previously limited to the File class. The improved file system interface features methods throwing exceptions, support for symbolic links, broad and efficient support for file attributes, directory streams, support for alternative file systems via custom file system providers, support for file copying and file moving, support for walking the file tree/visiting files and watching directories, and more.
+
+The improved file system interface is implemented mainly by the various types in the java.nio.file, java.nio.file.attribute, and java.nio.file.spi packages. FileSystem, FileSystems, and FileSystemProvider form the core of the improved file system interface.
+
+![Overviews](Java-IO-NIO-NIO2/AttrViews.png '=333px-')
+
+## Asynchronous I/O
+
+
+
+## Completion of Socket Channel Functionality
+
+

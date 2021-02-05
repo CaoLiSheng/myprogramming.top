@@ -23,8 +23,10 @@ tags:
 
 <div class="projects">
 <style>
-.markdown-body .projects + table th { width: 12%; }
-.markdown-body .projects + table th:first-of-type { width: 28%; }
+@media only screen and (min-width: 1080px) {
+  .markdown-body .projects + table th { width: 12%; }
+  .markdown-body .projects + table th:first-of-type { width: 28%; }
+}
 </style>
 </div>
 
@@ -50,8 +52,10 @@ tags:
 
 <div class="experiences">
 <style>
-.markdown-body .experiences + table th:nth-of-type(1) { width: 16%; }
-.markdown-body .experiences + table th:nth-of-type(2) { width: 1%; }
+@media only screen and (min-width: 1080px) {
+  .markdown-body .experiences + table th:nth-of-type(1) { width: 16%; }
+  .markdown-body .experiences + table th:nth-of-type(2) { width: 1%; }
+}
 </style>
 </div>
 
