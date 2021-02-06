@@ -149,4 +149,4 @@ JDK 7 also completed socket channel functionality by introducing support for cha
 2）之后的职业生涯转到了别的技术栈。
 同样由于我薄弱的底子，对于至少以下两个问题是心存疑惑的：
 1）SocketChannel 的读写都使用 ByteBuffer，而 option 中可以设置 buffer size。虽然，我觉得 option 中设置的那个不止包含业务数据，还有底层数据包拼出来的开头结尾。疑惑在于，大多少合适呢？还有就是，小了会怎样呢？
-2）组播用到的 D 类 IP 地址，连上就能用，不收费的吗？
+2）[组播用到的 D 类 IP 地址，连上就能用，不收费的吗？](post:net-multicasting)
