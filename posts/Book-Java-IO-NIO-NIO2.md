@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Java I/O, NIO, and NIO.2》
-date: 2021-02-08
+date: 2021-02-06
 tags:
   - 读书
   - 笔记
@@ -122,8 +122,31 @@ The improved file system interface is implemented mainly by the various types in
 
 ## Asynchronous I/O
 
+Asynchronous I/O lets client code initiate an I/O operation and subsequently notifies the client when the operation is complete. The AsynchronousChannel interface describes an asynchronous channel that supports asynchronous I/O operations (reads, writes, and so on). An I/O operation is initiated by calling a method that returns a Future or requires a CompletionHandler argument.
 
+CompletionHandler declares a completed() method to consume the result of an operation when it completes successfully. It also declares a failed() method to report operation failure (in terms of an exception) and allow an application to take appropriate action.
+
+The AsynchronousByteChannel interface extends AsynchronousChannel and declares a pair of read() methods and a pair of write() methods. Each pair consists of a method that returns a Future and a method that requires a CompletionHandler argument.
+
+The abstract AsynchronousFileChannel class describes an asynchronous channel for reading, writing, and manipulating a file. The abstract AsynchronousServerSocketChannel class describes an asynchronous channel for stream-oriented listening sockets. Its counterpart channel for stream-oriented connecting sockets is described by the abstract AsynchronousSocketChannel class.
+
+The abstract AsynchronousChannelGroup class describes a grouping of asynchronous channels for the purpose of resource sharing. A group has an associated thread pool to which tasks are submitted, to handle I/O events and to dispatch to completion handlers that consume the results of asynchronous operations performed on the group’s channels.
+
+AsynchronousServerSocketChannels and AsynchronousSocketChannels created via their noargument open() methods are bound to the default group. They can be bound to groups created from AsynchronousChannelGroup's class methods by passing these group objects to their open(AsynchronousChannelGroup) methods.
+
+AsynchronousFileChannels don't belong to groups. However, they are associated with a default thread pool, which can be configured or replaced.
 
 ## Completion of Socket Channel Functionality
 
+JDK 7 completed socket channel functionality by extending the DatagramChannel, ServerSocketChannel, and SocketChannel classes to support binding and option configuration. These capabilities are declared in the NetworkChannel interface, which these and other classes implement.
 
+JDK 7 also completed socket channel functionality by introducing support for channel-based multicasting. This support consists of MulticastChannel (an interface that extends NetworkChannel), the MembershipKey class, and an open(ProtocolFamily) method in the DatagramChannel class.
+
+## 新的疑惑
+
+通读这本书后，解开了自从大一学 Java 一来积攒的很多疑惑，主要原因是
+1）没有大二计算机组成原理、操作系统、计算机网络的基础，不小心走了弯路；
+2）之后的职业生涯转到了别的技术栈。
+同样由于我薄弱的底子，对于至少以下两个问题是心存疑惑的：
+1）SocketChannel 的读写都使用 ByteBuffer，而 option 中可以设置 buffer size。虽然，我觉得 option 中设置的那个不止包含业务数据，还有底层数据包拼出来的开头结尾。疑惑在于，大多少合适呢？还有就是，小了会怎样呢？
+2）组播用到的 D 类 IP 地址，连上就能用，不收费的吗？
