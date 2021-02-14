@@ -14,11 +14,11 @@ tags:
 @media only screen and (min-width: 1080px) {
   .markdown-body table th, .markdown-body table td { padding-left: 5px; padding-right: 5px; }
   .markdown-body table th:nth-of-type(1), .markdown-body table td:nth-of-type(1) { width: 3em; border-right: solid 1px #888; }
-  .markdown-body table th:nth-of-type(2) { width: calc(38% - 3em); }
+  .markdown-body table th:nth-of-type(2) { width: calc(38 * var(--mdvw) - 3em); }
   .markdown-body table th:nth-of-type(3) { width: 12%; }
   .markdown-body table th:nth-of-type(4) { width: 10%; }
   .markdown-body table th:nth-of-type(5), .markdown-body table td:nth-of-type(5) { width: 10em; border-left: solid 1px #888; }
-  .markdown-body table th:nth-of-type(6), .markdown-body table td:nth-of-type(6) { width: calc(40% - 10em); border-left: solid 1px #888; }
+  .markdown-body table th:nth-of-type(6), .markdown-body table td:nth-of-type(6) { width: calc(40 * var(--mdvw) - 10em); border-left: solid 1px #888; }
 }
 </style>
 
