@@ -1,4 +1,5 @@
 import '@audios/click';
+import extendMDVW from '@www/utils/mdvw100';
 import extendCodes from '@www/utils/code';
 import extendTables from '@www/utils/table';
 import extendFigure from '@www/utils/figure';
@@ -121,3 +122,6 @@ extendCodes();
 
 // support figure init scroll postition
 extendFigure();
+
+// support --mdvw style property
+extendMDVW(document.querySelector('#main>.markdown-body') as HTMLElement);

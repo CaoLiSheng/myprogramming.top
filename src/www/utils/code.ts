@@ -3,6 +3,7 @@
  */
 
 declare var __resources_dir__: string;
+
 const codePrettyDir = 'pretty-code-resources/';
 const cssFileName = 'prettify.css';
 const jsFileName = 'prettify.js';

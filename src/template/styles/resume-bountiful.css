@@ -412,7 +412,6 @@ body[theme='Dark'] .markdown-body {
   }
 
   .markdown-body {
-    padding: 0;
     background: white;
     font-size: 12.75px;
     position: relative;
@@ -426,7 +425,7 @@ body[theme='Dark'] .markdown-body {
   .markdown-body img,
   .markdown-body pre,
   .markdown-body blockquote,
-  .markdown-body table,
+  /* .markdown-body table, */
   .markdown-body figure,
   .markdown-body p {
     page-break-inside: avoid;

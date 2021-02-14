@@ -15,6 +15,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 
+import extendMDVW from "@www/utils/mdvw100";
 import extendCodes from "@www/utils/code";
 import extendLinks from "@www/utils/links";
 import extendTables from "@www/utils/table";
@@ -35,6 +36,7 @@ export default class IndexComponent extends Vue {
   ui = ui.state;
 
   mounted() {
+    extendMDVW(document.querySelector("#main>.markdown-body") as HTMLElement);
     extendCodes();
     extendLinks();
     extendTables();
