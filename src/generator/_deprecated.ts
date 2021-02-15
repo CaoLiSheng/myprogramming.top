@@ -35,8 +35,7 @@
 //   ].join('\n\n')
 // );
 
-// ===================================================
-
+// ===================================
 // import showdown from 'showdown';
 
 // declare var __resources_dir__: string;
@@ -177,3 +176,28 @@
 //   rawHeaderId: true,
 //   tables: true,
 // });
+
+// ==============================
+// pre write: do some cleaning
+// type WriteFileOptions =
+//   | string
+//   | {
+//       encoding?: string | null | undefined;
+//       mode?: string | number | undefined;
+//       flag?: string | undefined;
+//     }
+//   | null
+//   | undefined;
+
+// export function preWrite(
+//   file: string
+// ): {
+//   writeFileSync: (data: any, options?: WriteFileOptions) => void;
+// } {
+//   if (fs.existsSync(file)) fs.removeSync(file);
+//   fs.createFileSync(file);
+//   return {
+//     writeFileSync: (data: any, options?: WriteFileOptions) =>
+//       fs.writeFileSync(file, data, options),
+//   };
+// }

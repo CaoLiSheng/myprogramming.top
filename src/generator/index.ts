@@ -13,7 +13,7 @@ import {
   emailLinkHTML,
   hmBaidu,
 } from './template';
-import { inDir, outDir, isPost, preWrite, extractPostName } from './file';
+import { inDir, outDir, isPost, extractPostName } from './file';
 import { htmlMinify } from './minify';
 import { converter } from './converter';
 
@@ -73,7 +73,8 @@ posts.forEach((fileName: string) => {
 
   const name = extractPostName(fileName);
   const rowMeta = dbData.add({ name, title, date, tags }).persist();
-  preWrite(path.join(outDir, name + '.html')).writeFileSync(
+  fs.writeFileSync(
+    path.join(outDir, name + '.html'),
     htmlMinify(
       tplContent
         .replace('{{title}}', title + ' | 又心真人的博客')
@@ -87,7 +88,8 @@ posts.forEach((fileName: string) => {
           '{{article_body}}',
           `${body}${emailLinkHTML(fileName, noReceiveEmails, style, title)}`
         )
-    )
+    ),
+    { encoding: 'UTF-8', flag: 'w' }
   );
 });
 console.log('All HTMLs Generated');

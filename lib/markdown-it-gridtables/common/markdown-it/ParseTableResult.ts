@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import ColumnAlignments from './ColumnAlignments';
+import ColumnAlignments from '../gridtables/ColumnAlignments';
 import TableRow from './TableRow';
 
 export default class ParseTableResult {

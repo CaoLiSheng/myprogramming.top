@@ -22,10 +22,8 @@ function setDelay() {
   return clearTimeout(timer), (timer = setTimeout(setFontSize, 150));
 }
 
-export default function() {
-  window.addEventListener('pageshow', function(evt) {
-    return evt.persisted && setDelay();
-  });
-  window.addEventListener('resize', setDelay);
-  setFontSize();
-}
+window.addEventListener('pageshow', function(evt) {
+  return evt.persisted && setDelay();
+});
+window.addEventListener('resize', setDelay);
+setFontSize();

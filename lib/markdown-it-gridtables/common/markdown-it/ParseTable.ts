@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 import IState from '../../interfaces/markdown-it/IState';
-import ColumnAlignments from './ColumnAlignments';
+import ColumnAlignments from '../gridtables/ColumnAlignments';
 import TableRow from './TableRow';
 import ParseTableResult from './ParseTableResult';
 import getColumnCount from '../gridtables/GetColumnCount';
-import getColumnAlignments from './GetColumnAlignments';
+import getColumnAlignments from '../gridtables/GetColumnAlignments';
 import getLine from './GetLine';
 
 export default function parseTable(

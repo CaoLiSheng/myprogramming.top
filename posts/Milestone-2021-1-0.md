@@ -1,0 +1,449 @@
+---
+style: github-colors
+title: 「里程碑-2021-1.0」博客整体优化 V2.1
+date: 2021-02-08
+tags:
+  - 博客
+  - 里程碑
+  - 计划
+  - 2021
+---
+
+## 前言
+
+> 继 V2.0 后又有几次整体的依赖替换和优化，影响范围包括新、旧两个版本。
+
+## markdown-it
+
+`markdown-it` 是 `hexo` 所依赖的 markdown 转 html 库。与我之前所使用 `showdown` 有些不同，可以说更高级、更复杂一些。当然，复杂在于写插件的方式。
+
+```typescript
+import MarkdownIt from 'markdown-it';
+import gridTableRulePlugin from '@mditgridtables/index';
+
+const md = MarkdownIt({ html: true })
+  .use(require('markdown-it-named-headings'))
+  .use(gridTableRulePlugin);
+
+const matches = fileContent.match(/^[\s\S]*?---\n([\s\S]*?)---\n([\s\S]*)$/);
+if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
+const [rawMetadata, mdContent] = matches.slice(1);
+const articleBody = md.render(mdContent);
+```
+
+以上就是去除多余代码后，本博客使用 `markdown-it` 的方式。
+`gridTableRulePlugin` 是 `fork` 来的一个插件，解决了其中文的兼容性问题，后文 [grid table](scroll-to:grid-table) 会详细说明。
+`markdown-it-named-headings` 是一个给 `header` 元素加 `id` 属性的插件。
+`rawMetadata` 后面使用 `js-yaml` 解析。
+
+为了兼容 `showdown` 的那些插件的写法，自然也要给 `markdown-it` 写插件。
+这次，思路上有所转变，不需要写那么多个各自包含一个正则表达式的插件，因为那样插件的排序就会变复杂；这次的插件将排序的复杂度直接体现在插件代码逻辑中。
+
+```typescript
+const defualtName = '又心真人的博客';
+const titleRE = /^(~)?(?::(.*?))?(?:=(\d[^-\s]*?)?-(\d[^-\s]*?)?(?:-(\d[^-\s]*?)?-(\d[^-\s]*?)?)?)?$/;
+
+const defaultRender: Renderer.RenderRule = function(
+  tokens,
+  idx,
+  options,
+  env,
+  self
+) {
+  const token = tokens[idx];
+  const aIndex = token.attrIndex('src');
+  const src = token.attrs?.[aIndex]?.[1];
+  if (!src) return '';
+
+  const bIndex = token.attrIndex('title');
+  const title = token.attrs?.[bIndex]?.[1] || defualtName;
+  const caption = token.content || defualtName;
+  return `<figure>
+    <img alt="${caption}" src="${__resources_dir__}${src}" title="${title}" />
+    <figcaption>${caption}</figcaption>
+  </figure>`;
+};
+
+md.renderer.rules.image = function(tokens, idx, options, env, self) {
+  const token = tokens[idx];
+  const aIndex = token.attrIndex('src');
+  const src = token.attrs?.[aIndex]?.[1];
+  if (!src) return '';
+
+  const bIndex = token.attrIndex('title');
+  const title = token.attrs?.[bIndex]?.[1];
+  let matches;
+  if (title && (matches = title.match(titleRE))) {
+    const [flag, title, width, height, scorllX, scrollY] = matches.slice(1);
+    const paddedSrc = `${__resources_dir__}${src}`;
+    const caption = token.content || defualtName;
+    const imgTitle = title || defualtName;
+
+    if (flag) {
+      return `<img alt="${caption}" src="${paddedSrc}" title="${imgTitle}"
+              width="${width || 'auto'}" height="${height || 'auto'}" />`;
+    }
+
+    return `<figure>
+      <div class="image" style="height: ${height || 'auto'};"
+        data-scroll-x="${scorllX || 0}" data-scroll-y="${scrollY || 0}">
+          <img alt="${caption}" src="${paddedSrc}" title="${imgTitle}"
+            width="${width || 'auto'}" height="auto" />
+        </div>
+      <figcaption>${caption}</figcaption>
+    </figure>`;
+  }
+
+  return defaultRender(tokens, idx, options, env, self);
+};
+```
+
+`md.renderer.rules.image` 就是指在 `markdown` 转化为 `html` 的最后一步，如何渲染 `image` 标签。
+`markdown-it` 有类似虚拟 DOM 的结构，这里的例子有 `tokens[idx]`、`token.attrIndex(string)`、`token.attrs?.[idx]`、`token.attrs?.[idx]?.[1]`。
+`data-scroll-x` 和 `data-scroll-y` 是支持一个重要功能的属性，后文 [补记/figure](scroll-to:figure) 会详细说明。
+
+## grid table
+
+```markdown
++---------------+---------------+--------------------+
+|  北京         | 上海          | 广州               |
++==============:+:==============+:==================:+
+| Bananas       | $1.34         | built-in wrapper   |
+|  北京         | 上海          | 广州               |
++---------------+---------------+--------------------+
+| Bananas       | $1.34         | built-in wrapper   |
++---------------+---------------+--------------------+
+```
+
+`grid table` 就是这种看上去很整齐、清爽的表格书写方式，且不受屏幕宽度的限制。
+对我来说，不用每次写大表格都关掉侧边栏，调整 zoom 设置，甚至切换屏幕分辨率；再也不用做那些多余的、影响书写流畅度的事情。
+
+前文说到这是通过 fork 来的一个插件实现的。通过调整，支持了中文内容；同时学习到了 `markdown-it` 插件的皮毛。
+
+```typescript
+function gridTableRulePlugin(md: any, options: any) {
+    md.block.ruler.before(
+        "table",
+        "gridtable",
+        gridTableRule(md));
+}
+```
+
+这是另一种插件，不同于 `renderer.rules`，`block.ruler` 维护块级元素的规则，对应的还有 `core.ruler`、`inline.ruler`，看过源码后知道对应的 `state` 是不同。`ruler.before` 将在 `table`  前插入规则 `gridtable`。
+
+```typescript
+function gridTableRule(md: MarkdownIt): TRuleFunction {
+  return function(
+    state: IState,
+    startLine: number,
+    endLine: number,
+    silent: boolean
+  ): boolean {
+    // 判断一行的第一个非空白字母是否为 '+'
+    if (getCharCodeAtStartOfLine(state, startLine) != 0x2b) {
+      return false;
+    }
+
+    // 解析 grid table
+    let parseResult = parseTable(state, startLine, endLine);
+
+    // 解析异常退出
+    if (!parseResult.Success) {
+      console.log('>>>>>>>>>>>>>>mdit-gridtables-parse-failed<<<<<<<<<<<<<');
+      return false;
+    }
+
+    if (silent) {
+      return true;
+    }
+
+    // 生成 Token 流，注意：不是抽象语法树（AST）、更不是 HTML 代码
+    emitTable(md, state, parseResult);
+
+    // 更新上下文，继续解析后面的 markdown 代码
+    state.line = parseResult.CurrentLine;
+
+    return true;
+  };
+}
+```
+
+有时候写插件就是这么一件有意思的事情，`markdown-it` 是 js 写的，`gridtable` 这个插件是 ts 写的；插件原作者自己写了 ts 的接口 `TRuleFunction`、`IState`。
+`TRuleFunction` 就是 `gridTableRule(md: MarkdownIt)` 的返回值类型，很直观。
+而 `IState` 相对很神奇，贯穿始终；而且前文也提到 `markdown-it` 有三种不同的 `state`。
+
+最初，但凡写了中文的 grid table 都会最终显示为普通文字，开始我纠结于各种 markdown table 的语法，困扰了好一阵。
+后来，看我的 markdown 生成 html 日志才发现，原来是解析异常退出。
+最后，弄明白 grid table 的源码，才解决了问题。
+
+所以说，问题出在 `parseTable(state, startLine, endLine)`。
+由于中文占两个空格，而英文占一个空格，编辑器将表格对齐格式化后，反而使每行的长度不一定相等，而原版插件是对每行长度相等是有硬性要求的；这就是问题的根源。
+
+## markdown 里书写样式的规范
+
+```markdown
+<div class="covtos">
+<style>
+.markdown-body .covtos + table th { width: 18%; }
+.markdown-body .covtos + table th:first-of-type { width: 10%; }
+</style>
+</div>
+```
+
+忽然有一天，我觉得：虽然这个博客站点可以根据文章的 metadata 自定义所使用的 css 文件，但仍然很局限。
+就如上面的例子，定义且仅定义了 `.markdown-body .covtos` 之后的**一个**表格的样式。
+
+## site.v1.tpl
+
+这块就是 `webpack` 配置的文件变动的例行记录了。
+以前 V1 的 `template.min.js` 文件与 `generator.min.js` 使用一份配置打包，因为其公用了一些变量。
+但是因为后者 `target` 为 `node`，且配置了 `nodeExternals`，导致前者在引入了特殊文件后打包失败；所以，分开了。
+目前的 `package.json` 的配置是这样的：
+
+```json
+"scripts": {
+  "test": "rm -rf build/v1/dev && webpack --config=cfg/webpack/site.v1.tpl.dev.js",
+  "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
+  "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
+  "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",
+  "devV1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run devbuildgen' 'npm run devV1Ttpl' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
+  "devV1Tpl": "rm -rf build/v1/dev && webpack --silent --config=cfg/webpack/site.v1.tpl.dev.js && npm run devgen",
+  "devV2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
+  "boundle": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v1.tpl.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
+}
+```
+
+## 补记
+
+### public/resource
+
+resource 文件夹从 posts 文件夹移入 public 文件夹，打包的时候无需搬运 `find posts -d 1 -type dir -exec cp -a '{}' public/resources \;`。
+进而，posts 文件夹里可以放一些新的内容。比如，在转移到 `markdowwn-it` 时，建立了一个 tests 文件夹来存放测试用的 markdown 文件。
+
+### sprites
+
+之前，每当有鼠标点击事件都会发出一个响声。
+后来系统升级了 macOS big sur 后，有个地方管理者所有音频，看到一个 1s 不到的音频在这里很不爽。
+所以，就想换成点击生成小爱心这样的动效。
+为此，src/sprites 文件夹就此创建。
+在实现小爱心动效前，先做了一个很久以前用的一个动效，我把它叫做 `Ring`；双击可见。
+
+### --vh & --mdvw
+
+为了应对 iOS Safari 浏览器页面高度可变的问题（这个浏览器特性其实挺有科技感），我将我的 V2 在手机上的高度锁死为第一次读到的 `window.innerHeight`。
+为此，`--vh`应运而生。
+
+```typescript
+const setVh = () => {
+  const vh = (window.innerHeight * 0.01).toFixed(1);
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
+window.addEventListener('pageshow', function(evt) {
+  return evt.persisted && setVh();
+});
+window.addEventListener('resize', setVh);
+```
+
+在个性化表格宽度时，由于 calc 的怪异表现，主要是百分比与其它单位四则运算时的问题；不得不使用 `--mdvw`，不是整个页面的宽度，而是文章内容的宽度。
+
+```typescript
+const setMDVW = () => {
+  const elem = document.querySelector('#main>.markdown-body') as HTMLElement;
+  const style = getComputedStyle(elem);
+  const innerWidth =
+    elem.offsetWidth -
+    parseFloat(style.paddingLeft) -
+    parseFloat(style.paddingRight);
+  root.style.setProperty('--mdvw', `${(innerWidth * 0.01).toFixed(1)}px`);
+};
+
+window.addEventListener('pageshow', function(evt) {
+  return evt.persisted && setMDVW();
+});
+window.addEventListener('resize', setMDVW);
+```
+
+### tables on mobile
+
+这是一个 css 和 js 配合才能实现的特性。
+
+```css
+@media only screen and (max-width: 1080px) {
+  .markdown-body table {
+    width: 100%;
+  }
+
+  .markdown-body thead th:not(.main) {
+    display: none;
+  }
+
+  .markdown-body td,
+  .markdown-body th {
+    text-align: left !important;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 8px 8px !important;
+  }
+
+  .markdown-body td[data-th]:before {
+    content: attr(data-th);
+    text-align: left;
+    flex-basis: 5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .markdown-body td:first-child {
+    border-bottom: solid 1px #999;
+  }
+
+  .markdown-body tr {
+    border-top: solid 1px #999;
+  }
+}
+```
+
+```typescript
+function collectThData(thData: string[], elem: Element, i: number) {
+  if (i === 0) {
+    elem.classList.add('main');
+  } else {
+    thData[i] = elem.textContent ? (elem.textContent as string) : '';
+  }
+}
+function bindThData(thData: string, tRow: Element) {
+  const children = tRow.children;
+  for (let i = 1; i < children.length; i++) {
+    children[i].setAttribute('data-th', thData[i]);
+  }
+}
+function extendTable(table: HTMLTableElement) {
+  const thData: string[] = [];
+  table
+    .querySelectorAll('thead > tr > th')
+    .forEach(collectThData.bind(null, thData));
+  table.querySelectorAll('tbody > tr').forEach(bindThData.bind(null, thData));
+}
+
+export default function() {
+  document.querySelectorAll('.markdown-body table').forEach(extendTable);
+}
+```
+
+可见，css 中需要 td 包含 data-th 属性。当然，这种表格必须是最左边第一列是一整行的概括，而后每列是对应表头的值。这样，手机上看到的才会是，一个概括接下来是键值对。
+
+### figure
+
+image 插件有一种情况就是生成带滚动条的 figure 窗口。另外还有一个特性就是，当图片第一次加载出来后，显示到定位的位置。
+
+```typescript
+function extendFigure(figureWrapper: HTMLElement) {
+  const img = figureWrapper.children[0];
+  const attr1 = figureWrapper.getAttribute('data-scroll-x');
+  const attr2 = figureWrapper.getAttribute('data-scroll-y');
+  if (!attr1 || !attr2 || !(img instanceof HTMLImageElement)) return;
+
+  img.onload = () => {
+    const imgWidth = img.offsetWidth;
+    const imgHeight = img.offsetHeight;
+
+    const wrapperWidth = figureWrapper.offsetWidth;
+    const wrapperHeight = figureWrapper.offsetHeight;
+
+    const scrollScaleX = parseFloat(attr1);
+    const scrollScaleY = parseFloat(attr2);
+
+    const scrollX = clamp(
+      imgWidth * scrollScaleX - wrapperWidth / 2,
+      0,
+      imgWidth - wrapperWidth,
+      false,
+      true
+    );
+    const scrollY = clamp(
+      imgHeight * scrollScaleY - wrapperHeight / 2,
+      0,
+      imgHeight - wrapperHeight,
+      false,
+      true
+    );
+    figureWrapper.scrollTo(scrollX, scrollY);
+  };
+}
+
+export default function() {
+  document
+    .querySelectorAll('.markdown-body figure>.image')
+    .forEach(extendFigure);
+}
+```
+
+### rem
+
+很久以前学到的自适应各种手机屏幕尺寸的特性。css 代码中关于尺寸的单位多用 rem。
+
+```typescript
+function setFontSize() {
+  const judge = isMobileSize();
+  if (judge.result) {
+    html.style.fontSize = judge.width / 7.5 + 'px';
+  } else {
+    html.style.fontSize = 100 + 'px';
+  }
+}
+
+let timer: any;
+function setDelay() {
+  return clearTimeout(timer), (timer = setTimeout(setFontSize, 150));
+}
+
+window.addEventListener('pageshow', function(evt) {
+  return evt.persisted && setDelay();
+});
+window.addEventListener('resize', setDelay);
+setFontSize();
+```
+
+### print
+
+打印功能是为了一个隐藏页面而加的特性，仅打印 markdown 文章部分。
+
+```typescript
+let articleRoot: HTMLDivElement | null = null;
+
+const beforePrint = function() {
+  console.log('Functionality to run before printing.');
+  const originalRoot = document.querySelector('body > .r');
+  articleRoot = document
+    .getElementById('main')
+    ?.cloneNode(true) as HTMLDivElement;
+  if (originalRoot && articleRoot) {
+    originalRoot.classList.add('hidden');
+    document.body.appendChild(articleRoot);
+  }
+};
+
+const afterPrint = function() {
+  console.log('Functionality to run after printing');
+  const originalRoot = document.querySelector('body > .r');
+  if (originalRoot && articleRoot) {
+    document.body.removeChild(articleRoot);
+    originalRoot.classList.remove('hidden');
+  }
+};
+
+window.onbeforeprint = beforePrint;
+window.onafterprint = afterPrint;
+```
+
+### 等距更纱黑体
+
+等宽字体，严格遵守两个字母的宽度等于一个汉字的宽度；写 markdown 再好不过。
+
+## 同系列文章
+
+- [「里程碑-2020-1.0」博客 V1.0](post:Milestone-2020-1-0)
+- [「里程碑-2020-1.1」博客 V1.1](post:Milestone-2020-1-1)
+- [「里程碑-2020-1.2」博客 V2.0](post:Milestone-2020-1-2)
+- [回到开头](scroll-to-the-very-top)

@@ -4,15 +4,16 @@ import { insertStyleSheetRule } from './utils';
 const SpriteId = 'click-ring';
 const SpriteSize = 2560;
 const SpriteStartScale = 2;
-const SpriteEndScale = 0.05;
-const SpriteAniDuration = '500ms';
+const SpriteEndScale = 0.01;
+const SpriteAniDuration = '800ms';
 
 function initSprite(player: HTMLCanvasElement) {
   player.id = SpriteId;
   player.width = player.height = SpriteSize;
   player.style.borderRadius = '50%';
-  player.style.background = `radial-gradient(circle ${SpriteSize /
-    2}px at 50% 50%, transparent 0%, transparent 50%, white 75%, blue 95%, transparent 100%)`;
+  player.style.background =
+    `radial-gradient(circle ${SpriteSize / 2}px at 50% 50%, ` +
+    'transparent 0%, rgba(255, 255, 255, 0) 50%, wheat 60%, blue 65%, rgba(0, 0, 255, 0.7) 80%, rgba(255, 255, 255, 0) 100%)';
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
 
@@ -34,6 +35,7 @@ function initSprite(player: HTMLCanvasElement) {
 
         100% {
             opacity: 0;
+            transform: scale3d(${SpriteEndScale}, ${SpriteEndScale}, 1);
         }
     }
   `);
@@ -50,7 +52,7 @@ function posSprite(player: HTMLCanvasElement, event: Event) {
 
   setTimeout(() => {
     player.style.visibility = 'visible';
-    player.style.animation = `${SpriteAniDuration} ease-in-out 0s 1 normal both running AnimationSpriteRing`;
+    player.style.animation = `${SpriteAniDuration} ease-in 0s 1 normal both running AnimationSpriteRing`;
   }, 0);
 }
 

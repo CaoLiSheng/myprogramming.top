@@ -3,9 +3,7 @@ import '@tpl/v2/index';
 import '@sprites/ring';
 import '@www/utils/print';
 import '@www/utils/vh100';
-
-import initREM from '@www/utils/rem';
-initREM();
+import '@www/utils/rem';
 
 import Vue from 'vue';
 // import PortalVue from 'portal-vue';

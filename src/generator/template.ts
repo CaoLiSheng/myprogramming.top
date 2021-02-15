@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 
 import Sheets from '@tpl/styles';
 
-import { outDir, preWrite } from './file';
+import { outDir } from './file';
 import { minify } from './minify';
 import argv from './yargs';
 
@@ -90,7 +90,10 @@ function fetchCSSImpl(base: string): string {
 
   const fileName = cssContent.md5(base, 'css', 10);
 
-  preWrite(path.join(outDir, fileName)).writeFileSync(cssContent);
+  fs.writeFileSync(path.join(outDir, fileName), cssContent, {
+    encoding: 'UTF-8',
+    flag: 'w',
+  });
 
   return fileName;
 }

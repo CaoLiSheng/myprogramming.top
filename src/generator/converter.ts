@@ -4,9 +4,9 @@ import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
 import gridTableRulePlugin from '@mditgridtables/index';
 
-const md = MarkdownIt({ html: true });
-md.use(gridTableRulePlugin);
-md.use(require('markdown-it-named-headings'));
+const md = MarkdownIt({ html: true })
+  .use(require('markdown-it-named-headings'))
+  .use(gridTableRulePlugin);
 
 const defualtName = '又心真人的博客';
 const titleRE = /^(~)?(?::(.*?))?(?:=(\d[^-\s]*?)?-(\d[^-\s]*?)?(?:-(\d[^-\s]*?)?-(\d[^-\s]*?)?)?)?$/;

@@ -9,3 +9,14 @@
   font-family: 'Cascadia Code PL', Menlo, SFMono-Regular, Consolas,
     'Liberation Mono', monospace;
 }
+
+@font-face {
+  font-family: 'sarasa-mono-sc';
+  src: url(/* reources_dir */fonts/sarasa-mono-sc-regular.ttf)
+    format('truetype');
+}
+
+.markdown-body code.language-markdown {
+  font-family: 'sarasa-mono-sc', 'Cascadia Code PL', Menlo, SFMono-Regular,
+    Consolas, 'Liberation Mono', monospace;
+}
