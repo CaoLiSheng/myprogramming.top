@@ -138,7 +138,7 @@ Each node that is distributed can be used for clustering. Clusters are not necce
 
 ## Kinds of Area Networks
 
-- A _**local-area network (LAN)**_ connects computers within a room, a building, or a compus.
+- A _**local-area network (LAN)**_ connects computers within a room, a building, or a campus.
 - A _**wide-area network (WAN)**_ usually links buildings, cities, or countries.
 - A _**metropolitan-area network (MAN)**_ could link buildings within a city.
 - BlueTooth and 802.11 devices use wireless technology to conmmunicate over a distance of several feet, in essence creating a _**personal-area network (PAN)**_ between a phone and a headset or a smartphone and a desktop computer.
@@ -163,7 +163,7 @@ while the other is a _**peer-to-peer system**_ (with or without centralized look
 - Platform as a service (**PaaS**) -- a software stack ready for application use via the Internet (for example, a database server)
 - Infrastructure as a service (**IaaS**) -- servers or starge abailable over the Internet (for example, storage available for making backup copies of production data)
 
-These cloud-computing types are not discrete, as a cloud computing environment my provide a combination of several types. Notice that both the cloud services and the cloud user interface are protected by a firewall.
+These cloud-computing types are not discrete, as a cloud computing environment may provide a combination of several types. Notice that both the cloud services and the cloud user interface are protected by a firewall.
 
 ## Another COPY of Summary in the Book
 
@@ -177,7 +177,7 @@ These cloud-computing types are not discrete, as a cloud computing environment m
 - Modern computer architectures are multiprocessor system employ multiprogramming, which allows several jobs to be in memory at the same time, thus ensuring that the CPU always has a job to execute.
 - Multitasking is an extension of multiprogramming wherein CPU scheduling algorithms rapidly switch between processes, providing users with a fast response time.
 - To prevent user programs from interfering with the proper operation of the system, the system hardware has two modes: user mode and kernel mode.
-- **_Various instructions are privileged and can be executed only in kernel mode._** Examples include the instruction to switch to kernel mode, I/O control, timer management, and interrupt management.
+- **_Various instructions are privileged and can be executed only in kernel mode._** Examples include I/O control, timer management, and interrupt management.
 - A process is the fundamental unit of work in an operating system. Process management includes creating and deleting processes and providing mechanisms for processes to communicate and synchronize with each other.
 - An operating system manages memory by keeping track of what parts of memory are being used and by whom. It is also responsible for dynamically allocating and freeing memory space.
 - Storage space is managed by the operating system; this includes providing file systems for representing files and directories and managing space on mass-storage devices.
