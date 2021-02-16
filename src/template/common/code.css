@@ -11,12 +11,12 @@
 }
 
 @font-face {
-  font-family: 'sarasa-mono-sc';
+  font-family: '等距更纱黑体';
   src: url(/* reources_dir */fonts/sarasa-mono-sc-regular.ttf)
     format('truetype');
 }
 
 .markdown-body code.language-markdown {
-  font-family: 'sarasa-mono-sc', 'Cascadia Code PL', Menlo, SFMono-Regular,
+  font-family: '等距更纱黑体', 'Cascadia Code PL', Menlo, SFMono-Regular,
     Consolas, 'Liberation Mono', monospace;
 }

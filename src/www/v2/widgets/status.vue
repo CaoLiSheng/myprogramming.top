@@ -102,12 +102,12 @@ export default class StatusComponent extends Vue.extend({
     cursor: pointer;
     color: var(--btn-foreground-theme-color);
     &.btn
-      height: 100%;
       padding: 0 1em;
-      line-height: 2em;
-      font-size: 0.25rem;
+      font-size: 0.2rem;
+      line-height: 0.5rem;
       @media screen and (max-width: 750px)
-        font-size: 0.5rem;
+        font-size: 0.4rem;
+        line-height: 1rem;
       svg.icon
         width: 0.2rem;
         height: 0.2rem;
@@ -122,10 +122,11 @@ export default class StatusComponent extends Vue.extend({
       background: var(--btn-background-theme-color);
       padding: 0 0.5em;
       border-radius: 0.8em;
-      line-height: 1.6em;
-      font-size: 0.2rem;
+      line-height: 0.3rem;
+      font-size: 0.16rem;
       @media screen and (max-width: 750px)
-        font-size: 0.36rem;
+        line-height: 0.6rem;
+        font-size: 0.3rem;
       svg.icon
         margin-right: 0.25em;
         width: 0.2rem;
@@ -135,9 +136,11 @@ export default class StatusComponent extends Vue.extend({
           height: 0.32rem;
     &.no-tag
       pointer-events: none;
-      height: 100%;
-      line-height: 1rem;
-      font-size: 0.2rem;
+      line-height: 0.5rem;
+      font-size: 0.16rem;
+      @media screen and (max-width: 750px)
+        line-height: 1rem;
+        font-size: 0.3rem;
     @media (hover: hover)
       &:hover
         background: var(--btn-hover-theme-color);

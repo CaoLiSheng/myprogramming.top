@@ -196,7 +196,7 @@ body[theme='Dark'] .markdown-body {
 @import url('//fonts.googleapis.com/css?family=PT+Sans');
 @import url('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400, 700');
 .markdown-body {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'PT Sans', '等距更纱黑体', sans-serif;
   font-size: 16px;
 }
 
@@ -206,7 +206,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'PT Sans Narrow', '等距更纱黑体', sans-serif;
   font-weight: 700;
 }
 .markdown-body {
