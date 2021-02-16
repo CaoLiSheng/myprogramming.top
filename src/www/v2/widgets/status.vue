@@ -6,6 +6,7 @@
   a.tag(
     v-for="tag in tags",
     :key="tag",
+    :class="{ selected: selectedTags.includes(tag) }",
     @click="$event.preventDefault(), click(tag)"
   ) {{ tag }}
     TagIcon
@@ -26,7 +27,9 @@ import { clickOnTag } from "../router";
 declare var __portal_to_v1__: string;
 
 @Component({ components: { TagIcon, GateIcon } })
-export default class StatusComponent extends Vue {
+export default class StatusComponent extends Vue.extend({
+  props: ["query"],
+}) {
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
 
@@ -55,6 +58,14 @@ export default class StatusComponent extends Vue {
     if (!post) return [];
 
     return db.data.metas[post]?.tags;
+  }
+
+  get selectedTags() {
+    if (!this.query || "*" === this.query) {
+      return [];
+    }
+
+    return this.query.split(",").map((t: string) => t.trim());
   }
 
   click(tag: string) {

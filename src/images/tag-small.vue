@@ -10,4 +10,9 @@
 <style lang="stylus" scoped>
 .tag path
   fill: var(--btn-base-theme-color);
+  transition: transform 200ms;
+.tag:hover path, .tag.selected path
+  transform: scale3d(-1, 1, 1);
+  transform-origin: 50% 50% 0;
+  fill: var(--btn-active-theme-color);
 </style>

@@ -6,7 +6,7 @@
       router-view
   .row-wrapper
     #status
-      Status
+      router-view(name="status")
     #bar(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
       Bar(:sizeCfg="barIconSizeCfg")
 </template>
@@ -26,10 +26,8 @@ declare var ARTICLE: string;
 
 const BarComponent = () =>
   import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
-const StatusComponent = () =>
-  import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/status.vue");
 
-@Component({ components: { Bar: BarComponent, Status: StatusComponent } })
+@Component({ components: { Bar: BarComponent } })
 export default class IndexComponent extends Vue {
   barIconSizeCfg = ["0.5rem", "1rem", "0.25rem", "0.5rem"];
   article = ARTICLE;

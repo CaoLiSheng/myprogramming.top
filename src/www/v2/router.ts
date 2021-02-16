@@ -17,6 +17,9 @@ const TagsComponent = () =>
     /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
   );
 
+const StatusComponent = () =>
+  import(/* webpackChunkName: 'StatusComponent' */ '@vWidgets/status.vue');
+
 const routes = [
   {
     path: '/',
@@ -27,10 +30,13 @@ const routes = [
         redirect: { name: 'AllComponent', params: { query: '*' } },
       },
       {
-        props: true,
         path: 'all/:query',
         name: 'AllComponent',
-        component: AllComponent,
+        components: {
+          default: AllComponent,
+          status: StatusComponent,
+        },
+        props: { default: true, status: false },
       },
       // {
       //   props: true,
@@ -39,10 +45,13 @@ const routes = [
       //   component: CanlendarComponent,
       // },
       {
-        props: true,
         path: 'tags/:query',
         name: 'TagsComponent',
-        component: TagsComponent,
+        components: {
+          default: TagsComponent,
+          status: StatusComponent,
+        },
+        props: { default: true, status: true },
       },
     ],
   },
