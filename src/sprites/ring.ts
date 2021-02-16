@@ -13,7 +13,7 @@ function initSprite(player: HTMLCanvasElement) {
   player.style.borderRadius = '50%';
   player.style.background =
     `radial-gradient(circle ${SpriteSize / 2}px at 50% 50%, ` +
-    'transparent 0%, rgba(255, 255, 255, 0) 50%, wheat 60%, blue 65%, rgba(0, 0, 255, 0.7) 80%, rgba(255, 255, 255, 0) 100%)';
+    'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgb(205, 205, 255) 60%, rgb(30, 30, 255) 61%, rgba(0, 0, 255, 0.8) 75%, rgba(255, 255, 255, 0) 100%)';
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
 
