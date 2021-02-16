@@ -1,4 +1,5 @@
 import '@audios/click';
+import '@www/utils/hotkeys';
 import extendMDVW from '@www/utils/mdvw100';
 import extendCodes from '@www/utils/code';
 import extendTables from '@www/utils/table';

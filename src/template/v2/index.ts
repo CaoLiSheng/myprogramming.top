@@ -1,3 +1,4 @@
+import '@www/utils/hotkeys';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
 function articleAnchorClickDelegate(ev: MouseEvent) {
