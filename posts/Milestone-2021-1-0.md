@@ -239,9 +239,7 @@ const setVh = () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
 
-window.addEventListener('pageshow', function(evt) {
-  return evt.persisted && setVh();
-});
+window.addEventListener('load', setVh);
 window.addEventListener('resize', setVh);
 ```
 
@@ -258,9 +256,7 @@ const setMDVW = () => {
   root.style.setProperty('--mdvw', `${(innerWidth * 0.01).toFixed(1)}px`);
 };
 
-window.addEventListener('pageshow', function(evt) {
-  return evt.persisted && setMDVW();
-});
+window.addEventListener('load', setMDVW);
 window.addEventListener('resize', setMDVW);
 ```
 

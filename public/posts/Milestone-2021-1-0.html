@@ -134,9 +134,7 @@ md.renderer.rules.image = function(tokens, idx, options, env, self) {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
 
-window.addEventListener('pageshow', function(evt) {
-  return evt.persisted &amp;&amp; setVh();
-});
+window.addEventListener('load', setVh);
 window.addEventListener('resize', setVh);
 </code></pre><p>在个性化表格宽度时，由于 calc 的怪异表现，主要是百分比与其它单位四则运算时的问题；不得不使用 <code>--mdvw</code>，不是整个页面的宽度，而是文章内容的宽度。</p><pre><code class="language-typescript">const setMDVW = () =&gt; {
   const elem = document.querySelector('#main&gt;.markdown-body') as HTMLElement;
@@ -148,9 +146,7 @@ window.addEventListener('resize', setVh);
   root.style.setProperty('--mdvw', `${(innerWidth * 0.01).toFixed(1)}px`);
 };
 
-window.addEventListener('pageshow', function(evt) {
-  return evt.persisted &amp;&amp; setMDVW();
-});
+window.addEventListener('load', setMDVW);
 window.addEventListener('resize', setMDVW);
 </code></pre><h3 id="tables-on-mobile">tables on mobile</h3><p>这是一个 css 和 js 配合才能实现的特性。</p><pre><code class="language-css">@media only screen and (max-width: 1080px) {
   .markdown-body table {
