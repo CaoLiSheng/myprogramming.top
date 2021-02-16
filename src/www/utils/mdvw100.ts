@@ -9,8 +9,6 @@ export default function(root: HTMLElement) {
     root.style.setProperty('--mdvw', `${(innerWidth * 0.01).toFixed(1)}px`);
   };
 
-  window.addEventListener('pageshow', function(evt) {
-    return evt.persisted && setMDVW();
-  });
+  window.addEventListener('load', setMDVW);
   window.addEventListener('resize', setMDVW);
 }

@@ -57,7 +57,7 @@ export default class IndexComponent extends Vue {
   @media screen and (max-width: 750px)
     &:first-child
       height: calc(100vh - 1rem);
-      height: calc(var(--vh, 1vh) * 100 - 1rem);
+      height: calc(100 * var(--vh, 1vh) - 1rem);
     &:last-child
       height: 1rem;
   #side, #bar

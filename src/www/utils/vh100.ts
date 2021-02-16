@@ -3,7 +3,5 @@ const setVh = () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
 
-window.addEventListener('pageshow', function(evt) {
-  return evt.persisted && setVh();
-});
+window.addEventListener('load', setVh);
 window.addEventListener('resize', setVh);
