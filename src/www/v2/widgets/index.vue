@@ -20,6 +20,7 @@ import extendCodes from "@www/utils/code";
 import extendLinks from "@www/utils/links";
 import extendTables from "@www/utils/table";
 import extendFigures from "@www/utils/figure";
+import extendHistory from "@www/utils/history";
 import { ui } from "@vStores/index";
 
 declare var ARTICLE: string;
@@ -39,6 +40,7 @@ export default class IndexComponent extends Vue {
     extendLinks();
     extendTables();
     extendFigures();
+    extendHistory();
   }
 }
 </script>

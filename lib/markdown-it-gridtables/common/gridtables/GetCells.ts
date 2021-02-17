@@ -5,6 +5,8 @@
 
 import TableRow from '../markdown-it/TableRow';
 
+const __InlineChars = ['`', '_', '*'];
+
 /**
  * getCells parses the lines found for a certain row, and transforms these to
  * the separate cell lines.
@@ -29,9 +31,17 @@ export default function getCells(
       // const s = trimEnd(
       //   lines[j].substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
       // );
-      const s = lines[j]
+      let s = lines[j]
         .substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
         .trim();
+
+      if (__InlineChars.includes(s.charAt(0))) {
+        s = ' ' + s;
+      }
+
+      if (__InlineChars.includes(s.charAt(s.length - 1))) {
+        s += ' ';
+      }
 
       if (s.length === 0 && cell.length === 0) {
         // skip leading empty lines

@@ -1,5 +1,5 @@
-import '@tpl/v2/index';
 // import '@audios/click';
+import '@tpl/v2/index';
 import '@sprites/ring';
 import '@www/utils/print';
 import '@www/utils/vh100';

@@ -1,9 +1,11 @@
-import '@audios/click';
+// import '@audios/click';
+import '@sprites/ring';
 import '@www/utils/hotkeys';
 import extendMDVW from '@www/utils/mdvw100';
 import extendCodes from '@www/utils/code';
 import extendTables from '@www/utils/table';
 import extendFigure from '@www/utils/figure';
+import extendHistory from '@www/utils/history';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
 
 declare var __origin__: string;
@@ -123,6 +125,9 @@ extendCodes();
 
 // support figure init scroll postition
 extendFigure();
+
+// support restore reading histories
+extendHistory();
 
 // support --mdvw style property
 extendMDVW(document.querySelector('#main>.markdown-body') as HTMLElement);
