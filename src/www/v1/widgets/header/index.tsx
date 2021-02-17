@@ -3,6 +3,7 @@ import { Link, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import classNames from 'classnames';
 
 import Category from './category';
+import GoToV2 from './goToV2';
 import Pager from './pager';
 
 import { clickIn } from '@www/utils/dom';
@@ -101,9 +102,21 @@ export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
     return (
       <div className="title-bar">
         <nav>
-          <a className="icon pc" title="去新版网站" href={__portal_to_v2__}>
-            <GateIcon />
-          </a>
+          <Switch>
+            <Route path="/post/:name" component={GoToV2} />
+            <Route
+              path="*"
+              component={() => (
+                <a
+                  className="icon pc"
+                  title="去新版网站"
+                  href={__portal_to_v2__}
+                >
+                  <GateIcon />
+                </a>
+              )}
+            />
+          </Switch>
           <Switch>
             <Route path="/post/:name" component={Category} />
             <Route

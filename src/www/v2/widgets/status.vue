@@ -82,7 +82,7 @@ export default class StatusComponent extends Vue.extend({
   }
 
   goToV1() {
-    location.href = __portal_to_v1__;
+    location.href = __portal_to_v1__ + "#/post" + location.pathname;
   }
 }
 </script>
