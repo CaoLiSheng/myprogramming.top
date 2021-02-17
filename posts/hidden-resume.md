@@ -1,9 +1,7 @@
 ---
-mainfont: Noto Sans Mono CJK SC
-no-receive-emails: true
 style: resume-bountiful
-title: 曹力升的简报
-date: 独立开发者/架构师
+title: RESUME of 「yx1991.cao」
+date: 2021-06-01
 tags:
   - 真实不虚
   - 自学成才
@@ -18,33 +16,33 @@ tags:
 > 项目 / 编程语言 / 当前版本 一览表：
 >
 > ```
-> 版本说明：
+> 版本说明（博客项目除外）：
 > - 未开始｜0.x 开发中｜1.x 测试并优化性能中｜2.x 已完成（既定目标）
 > 可点击此处链接跳到对应的开源项目主页
 > ```
 
 <div class="projects">
 <style>
-@media only screen and (min-width: 1080px) {
-  .markdown-body .projects + table th { width: calc((100 * var(--mdvw) - 300px) / 7); }
-  .markdown-body .projects + table th:first-of-type { width: 300px; }
+@media all and (min-width: 1080px) {
+  .markdown-body .projects + table th { width: calc((100 * var(--mdvw) - 15em) / 7); }
+  .markdown-body .projects + table th:first-of-type { width: 15em; }
 }
 </style>
 </div>
 
-| 项目 / 语言 / 当前版本 | C/C++ | On JVMs | NodeJS | Python | Golang | C#  | Web              |
-| ---------------------- | ----- | ------- | ------ | ------ | ------ | --- | ---------------- |
-| 博客                   | -     | -       | -      | -      | -      | -   | [1.2](proj:blog) |
-| 网络服务器             | -     | -       | -      | -      | -      | -   | -                |
-| 数据库                 | -     | -       | -      | -      | -      | -   | -                |
-| 分布式系统             | -     | -       | -      | -      | -      | -   | -                |
-| 数据挖掘               | -     | -       | -      | -      | -      | -   | -                |
-| 数据中台               | -     | -       | -      | -      | -      | -   | -                |
-| AI 辅助设计决策系统    | -     | -       | -      | -      | -      | -   | -                |
-| 2D UI 库               | -     | -       | -      | -      | -      | -   | -                |
-| 3D 图形库              | -     | -       | -      | -      | -      | -   | -                |
-| 游戏引擎               | -     | -       | -      | -      | -      | -   | -                |
-| VR 内容创作插件        | -     | -       | -      | -      | -      | -   | -                |
+| 项目 / 语言 / 版本 | C/C++ | On JVMs | NodeJS | Python | Golang | C#  | Web              |
+| ------------------ | ----- | ------- | ------ | ------ | ------ | --- | ---------------- |
+| 博客               | -     | -       | -      | -      | -      | -   | [2.1](proj:blog) |
+| 网络服务器         | -     | -       | -      | -      | -      | -   | -                |
+| 数据库             | -     | -       | -      | -      | -      | -   | -                |
+| 高性能计算         | -     | -       | -      | -      | -      | -   | -                |
+| 数据挖掘           | -     | -       | -      | -      | -      | -   | -                |
+| 数据中台           | -     | -       | -      | -      | -      | -   | -                |
+| AI 系统            | -     | -       | -      | -      | -      | -   | -                |
+| 2D UI 框架         | -     | -       | -      | -      | -      | -   | -                |
+| 3D 图形框架        | -     | -       | -      | -      | -      | -   | -                |
+| 游戏引擎           | -     | -       | -      | -      | -      | -   | -                |
+| VR 内容创作插件    | -     | -       | -      | -      | -      | -   | -                |
 
 ## 造化弄人（2020 年以前）
 

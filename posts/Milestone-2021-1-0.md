@@ -375,6 +375,26 @@ export default function() {
 }
 ```
 
+### reading progress
+
+利用 localforage 存储阅读进度，页面加载时还原存储的进度。
+
+```typescript
+import localforage from 'localforage';
+
+export default async function() {
+  const parent = document.getElementById('main');
+  if (!parent) return;
+
+  const scrollTopHistory = await localforage.getItem<number>(location.pathname);
+  parent.scrollTo(0, scrollTopHistory || 0);
+
+  parent.addEventListener('scroll', () => {
+    localforage.setItem(location.pathname, parent.scrollTop);
+  });
+}
+```
+
 ### rem
 
 很久以前学到的自适应各种手机屏幕尺寸的特性。css 代码中关于尺寸的单位多用 rem。
@@ -436,6 +456,7 @@ window.onafterprint = afterPrint;
 ### 等距更纱黑体
 
 等宽字体，严格遵守两个字母的宽度等于一个汉字的宽度；写 markdown 再好不过。
+而且，在等宽的同时，还能很清晰地区分汉字中的字母和数字；作为页面上最终呈现的字体也是不错的。
 
 ## 同系列文章
 

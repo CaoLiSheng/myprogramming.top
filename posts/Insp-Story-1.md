@@ -1,7 +1,7 @@
 ---
 style: bountiful
 title: 灵感来自「仙武帝尊」
-date: 2021-02-16
+date: 2021-02-16 00:00:10
 tags:
   - 灵感源泉
   - 小说

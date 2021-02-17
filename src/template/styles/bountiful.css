@@ -88,7 +88,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body kbd,
 .markdown-body pre.prettyprint,
 .markdown-body samp {
-  font-size: 14px;
+  font-size: 0.91em;
   line-height: 1.5em;
 }
 
@@ -204,7 +204,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body h6 {
-  font-size: 12px;
+  font-size: 0.8em;
   top: 4px;
 }
 
@@ -274,7 +274,7 @@ body[theme='Dark'] .markdown-body {
   background: var(--main-background-article-color);
   font-family: 'PT Sans', '等距更纱黑体', sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.6em;
 }
 

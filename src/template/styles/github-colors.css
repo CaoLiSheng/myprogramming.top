@@ -43,7 +43,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   font-family: '等距更纱黑体', -apple-system, BlinkMacSystemFont, Segoe UI,
     Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   word-wrap: break-word;
   color: var(--main-foreground-article-color);
@@ -144,27 +144,27 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body h1 {
-  font-size: 32px;
+  font-size: 2em;
 }
 
 .markdown-body h2 {
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 .markdown-body h3 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 .markdown-body h4 {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .markdown-body h5 {
-  font-size: 14px;
+  font-size: 0.875em;
 }
 
 .markdown-body h6 {
-  font-size: 12px;
+  font-size: 0.75em;
 }
 
 .markdown-body hr {
@@ -281,7 +281,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre.prettyprint {
-  font-size: 11px;
+  font-size: 0.6875em;
 }
 
 .markdown-body kbd {

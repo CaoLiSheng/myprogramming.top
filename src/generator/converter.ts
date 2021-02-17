@@ -65,4 +65,12 @@ md.renderer.rules.image = function(tokens, idx, options, env, self) {
   return defaultRender(tokens, idx, options, env, self);
 };
 
+md.renderer.rules.table_open = function(tokens, idx, options, env, self) {
+  return '<div class="table">' + self.renderToken(tokens, idx, options);
+};
+
+md.renderer.rules.table_close = function(tokens, idx, options, env, self) {
+  return self.renderToken(tokens, idx, options) + '</div>';
+};
+
 export const converter = md;

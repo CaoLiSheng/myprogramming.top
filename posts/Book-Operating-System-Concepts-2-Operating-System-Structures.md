@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Operating System Concepts》2
-date: 2021-01-10
+date: 2021-02-17 00:00:00
 tags:
   - 读书
   - 笔记
@@ -18,7 +18,7 @@ We can view an operating system from several vantage points. One view focuses on
 One set of operating system services provides functions that are helpful to the user.
 
 - _**User interface**_. This interface can take several forms. **graphical user interface**, **touch-screen interface**, **command-line interface**.
-- _**Program execution**_. THe system must be able to load a program into memory and to run that program. The program must be able to end its execution, either normally or abnormally (indicating error).
+- _**Program execution**_. The system must be able to load a program into memory and to run that program. The program must be able to end its execution, either normally or abnormally (indicating error).
 - _**I/O operations**_. For efficiency and protection, users usually cannot control I/O devices directly. Therefore, the operating system must provide a means to do I/O.
 - _**File-system manipulation**_. Many operating systems provide a variety of file systems, sometimes to allow personal choice and sometimes to provide special features or performance characteristics.
 - _**Communications**_. A communication may occur between processes that are executing on the same computer or between processes that are executing on different computer systems tied together by a network. Communications may be implemented via **shared memory**, in which two or more processes read and write to a shared section of memory, or **message passing**, in which packets of information in predefined formats are moved between processes by the operating system.
@@ -127,7 +127,7 @@ With sufficiently **frequent timer interrupts**, a statistical picture of the ti
 
 Messages can be exchanged beteween the processes either directly or indirectly through a common mailbox.
 Before communication can take place, a connection must be opened.
-The name of the other communication must be known, be it another process on the same system or another computer connected by a communications network.
+The name of the other communicator must be known, be it another process on the same system or another computer connected by a communications network.
 The `get_hostid()` and `get_processid()` system calls do this translation.
 The identifiers are then passed to the general-purpose `open()` and `close()` calls provided by the file system or to special `open_connection()` and `close_connection()` system calls, depending on the system's model of communication.
 The recipient process usually must give its permission for communication to take place with an `accept_connection()` call.
@@ -140,9 +140,16 @@ The `close_connection()` call terminates the connection.
 
 In this model, processes use `shared_memory_create()` and ` shared_memory_attach()` system calls to create and gain access to regions of memory owned by other processes.
 Shared memory requires that two or more processes agree to remove the restriction which the operating system prevents one process from accessing another process's memory.
-The form of exchanged data is determined by the processes andd is not under the operating system's control.
+The form of exchanged data is determined by the processes and is not under the operating system's control.
 The processes are also responsible for ensuring that they are not writing to the same location simultaneously.
-So problems exist, however, in the area of protection and synchronization between the processes sharing memory.
+
+### conclution
+
+Both of the models just discussed are common in operating systems, and most systems implement both.
+Message passing is useful for exchanging smaller amounts of data, because no conflicts need be avoided.
+It is also easier to implement than is shared memory for intercomputer communication.
+Shared memory allows maximum speed and convenience of communication, since it can be done at memory transfer speeds when it takes place within a computer.
+Problems exist, however, in the area of protection and synchronization between the processes sharing memory.
 
 ## System Services (system utilities)
 
@@ -151,7 +158,7 @@ So problems exist, however, in the area of protection and synchronization betwee
   - Some programs simply ask the system for the date, time, amount of available memory or disk space, number of users, or similar status information.
   - Others are more complex, prorviding detailed performance, logging, and debugging information. Typically, these programs format and print the output to the terminal or other output devices or files or display it in a window of the GUI.
   - Some systems also support a *registry*, which is used to store and retrieve configuration information.
-- ***File management.*** Several text editors my be available to create and modify the content of files stored on disk or other storage devices. There may also be specail commands to search contents of files or perform transformations of the text.
+- ***File management.*** Several text editors may be available to create and modify the content of files stored on disk or other storage devices. There may also be specail commands to search contents of files or perform transformations of the text.
 - ***Programming-language support.*** Compilers, assemblers, debuggers, and intercepters for common programming language (such as C, C++, Java, and Python) are often provided with the operating system or available as a seperate download.
 - ***Program loading and execution.*** Once a program is assembled or compiled, it must be loaded into memory to be executed. The system may provide *absolute loaders*, *relocatable loaders*, *linkage editors*, and *overlay loaders*. Debugging systems for either higher-level language or machine language are needed as well.
 - ***Communications.*** These programs provide the mechanism for creating virtual connections among processes, users, and computer systems. They allow users to send messages to one anothers's screens, to browse web pages, to send e-mail messages, to log in remotely, or to transfer files from one machine to another.
@@ -161,7 +168,7 @@ So problems exist, however, in the area of protection and synchronization betwee
 
 ![the role of the linker and loader](Operating-System-Concepts-2-Operating-System-Structures/the-role-of-the-linker-and-loader.png '=500px-')
 
-Object files and executable files typically have standard formats that include the compiled machine code and a symbol table containing metadata about functions and variables that are referenced in the program. For UNIX and Linux systems, this standard format is known as ELF (for Executable and Linkable Format). There are separate ELF formats for relocatable and executable files. One piece of information in the ELF file for executable files is the program's **entry point**, which contains the address of the first instruction to be executed when the program runs. Windows system use the *Portable Executable* (PE) format, and macOS uses the *Mach-O* format.
+Object files and executable files typically have standard formats that include the compiled machine code and a symbol table containing metadata about functions and variables that are referenced in the program. For UNIX and Linux systems, this standard format is known as ELF (for ***Executable and Linkable Format***). There are separate ELF formats for relocatable and executable files. One piece of information in the ELF file for executable files is the program's **entry point**, which contains the address of the first instruction to be executed when the program runs. Windows system use the ***Portable Executable*** (PE) format, and macOS uses the ***Mach-O*** format.
 
 ## Cross-Platform Software Development
 
@@ -171,7 +178,7 @@ An application can be made available to run on multiple operating systems in one
 2. The application can be writen in a language that includes a virtual machine containing the running application. The virtual machine is **part** of the language's full RTE. One example of this method is Java. Java has an RTE that includes a loader, byte-code verifier, and other components that load the Java application into the Java virtual machine. This RTE has been **ported**, or developed, for many operating system, from mainframes to smartphones, and in theory any Java app can run within the RTE wherever it is available. System of this kind have disadvantages similar to those of interpreters, discussed above.
 3. The application developer can use a standard language or API in which the compiler generates binaries in a machine- and operating-system-specific language. The application must be ported to each operatng systemon which it will run. This porting can be quite time sonsuming and must be done for each new version of the application, with subsequent testing and debugging.
 
-API and ABI (Application Binaries Interface, architecture level) are both causing the general lack of application mobility.
+API and ABI (Application Binaries Interface, CPU architecture level) are both causing the general lack of application mobility.
 
 ## Policies and Mechanisms
 
@@ -247,10 +254,10 @@ Here, the kernel has a set of core components and can link in additional service
 ![Architecture of Apple's macOS and iOS operating systems](Operating-System-Concepts-2-Operating-System-Structures/Architecture-of-Apples-macOS-and-iOS-operating-systems.png '=400px-')
 
 - `User experience layer.` This layer defines the software interface that allows users to interact with the computing devices. macOS uses the ***Aqua*** user interface, which is designed for a mouse or trackpad, whereas iOS uses the ***Springboard*** user interface, which is designed for touch devices.
-- `Application frameworks layer.` This layer includes the ***Cocoa*** and ***Cocoa Touch*** frameworks, which provide an API for the Objective-C and Swift programming languages. The primary defference between Cocoa and Cocoa Touch is that the former is used for developing macOS applications, and the latterby iOS to provide support for hardware features unique to mobile devices, such as touch screens.
+- `Application frameworks layer.` This layer includes the ***Cocoa*** and ***Cocoa Touch*** frameworks, which provide an API for the Objective-C and Swift programming languages. The primary defference between Cocoa and Cocoa Touch is that the former is used for developing macOS applications, and the latter by iOS to provide support for hardware features unique to mobile devices, such as touch screens.
 - `Core frameworks.` This layer defines frameworks that support graphics and media including, Quicktime and OpenGL.
 - `Kernel environment.` This environment, also known as `Darwin`, includes the Mach microkernel and the BSD UNIX kernel.
-
+  
 ![The structure of Darwin](Operating-System-Concepts-2-Operating-System-Structures/The-structure-of-Darwin.png '=300px-')
 
 Beneath the system-call interface, Mach provides fundamental operating-system services, including memory management, CPU scheduling,
@@ -260,7 +267,7 @@ As an example, an application may create a new process using the **BSD POISX `fo
 
 In addition to Mach and BSD, the kernel environment provides an I/O kit for development of device drivers and dynamically loadable modules (which macOS refers to as `kernel extensions`, or `kexts`).
 
-To address the performance problem caused by theh overhead of message passing between different services running in user space,
+To address the performance problem caused by the overhead of message passing between different services running in user space,
 Darwin combines Mach, BSD, the I/O kit, and any kernel extensions into a single address space.
 Message passing within Mach still does occur, but no copying is necessary, as the services have access to the same address space.
 

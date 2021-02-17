@@ -1,5 +1,7 @@
 import Moment from 'moment';
 
+declare var __production__: boolean;
+
 export interface RNK {
   [key: number]: RNK | string[];
 }
@@ -37,7 +39,7 @@ export interface Row {
 
 function nonRecordable(name: string): boolean {
   if ('index' === name) return true;
-  if (name.startsWith('hidden-')) return true;
+  if (__production__ && name.startsWith('hidden-')) return true;
   return false;
 }
 
