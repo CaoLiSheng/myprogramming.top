@@ -63,7 +63,7 @@ export default class StatusComponent extends Vue.extend({
     if (!this.db.refresh) return [];
 
     const parsed = decodeURIComponent(location.pathname).split("/");
-    const post = parsed[parsed.length - 1].match(/^(.*)(\.html)?$/)?.[1];
+    const post = parsed[parsed.length - 1];
     if (!post) return [];
 
     return db.data.metas[post]?.tags;

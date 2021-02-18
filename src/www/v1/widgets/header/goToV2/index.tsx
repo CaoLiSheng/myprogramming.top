@@ -11,7 +11,7 @@ export default class extends Component<RouteComponentProps<{ name: string }>> {
       <a
         className="icon pc"
         title="去新版网站"
-        href={__portal_to_v2__ + this.props.match.params.name + '.html'}
+        href={__portal_to_v2__ + this.props.match.params.name}
       >
         <GateIcon />
       </a>
