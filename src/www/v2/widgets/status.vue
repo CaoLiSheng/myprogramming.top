@@ -88,7 +88,7 @@ export default class StatusComponent extends Vue.extend({
     }
 
     const post = location.pathname.match(/^.*\/(.*)(\.html)?$/)?.[1];
-    if (!post || post.startsWith("blog/")) {
+    if (!post || post.startsWith("blog/" || post === "index")) {
       location.href = __portal_to_v1__;
       return;
     }
