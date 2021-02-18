@@ -26,6 +26,15 @@ import { clickOnTag } from "../router";
 
 declare var __portal_to_v1__: string;
 
+const __HomePageIndicators = [
+  "/blog/v2/",
+  "/blog/v2/index",
+  "/blog/v2/index.html",
+  "/",
+  "/index",
+  "/index.html",
+];
+
 @Component({ components: { TagIcon, GateIcon } })
 export default class StatusComponent extends Vue.extend({
   props: ["query"],
@@ -54,7 +63,7 @@ export default class StatusComponent extends Vue.extend({
     if (!this.db.refresh) return [];
 
     const parsed = decodeURIComponent(location.pathname).split("/");
-    const post = parsed[parsed.length - 1];
+    const post = parsed[parsed.length - 1].match(/^(.*)(\.html)?$/)?.[1];
     if (!post) return [];
 
     return db.data.metas[post]?.tags;
@@ -82,13 +91,13 @@ export default class StatusComponent extends Vue.extend({
   }
 
   goToV1() {
-    if (location.pathname.endsWith("/")) {
+    if (__HomePageIndicators.includes(location.pathname)) {
       location.href = __portal_to_v1__;
       return;
     }
 
     const post = location.pathname.match(/^.*\/(.*)(\.html)?$/)?.[1];
-    if (!post || post.startsWith("blog/" || post === "index")) {
+    if (!post) {
       location.href = __portal_to_v1__;
       return;
     }
