@@ -21,8 +21,8 @@ module.exports = {
       __production__: JSON.stringify(false),
       __resources_dir__: JSON.stringify('./'),
       __posts_root__: JSON.stringify('http://dev.myprogramming.top:5555/'),
-      __portal_to_v1__: JSON.stringify('http://dev.myprogramming.top:3000'),
-      __portal_to_v2__: JSON.stringify('http://dev.myprogramming.top:3333'),
+      __portal_to_v1__: JSON.stringify('http://dev.myprogramming.top:3000/'),
+      __portal_to_v2__: JSON.stringify('http://dev.myprogramming.top:3333/'),
     }),
   ],
 };
