@@ -348,7 +348,7 @@ On most systems, the boot process proceeds as follows:
 
 ### BIOS
 
-Some computer systems use a multistage boot process: When the computer is first powered on, a small boot loader located in nonvolatile firmware known as `BIOS` in run. This initial boot loader usually does nothing more than load a second boot loader, which is located at a fixed disk location called the `boot block`. The program stored in the book block may be sophisticated enough to load the entire operating system into the memory and begin its execution. More typically, it is simple code (as it must fit in a single disk block) and knows only the address on disk and the length of the remainder of the bootstrap program.
+Some computer systems use a multistage boot process: When the computer is first powered on, a small boot loader located in nonvolatile firmware known as `BIOS` is run. This initial  boot loader usually does nothing more than load a second boot loader, which is located at a fixed disk location called the `boot block`. The program stored in the boot block may be sophisticated enough to load the entire operating system into the memory and begin its execution. More typically, it is simple code (as it must fit in a single disk block) and knows only the address on disk and the length of the remainder of the bootstrap program.   
 
 ### UEFI
 
@@ -412,8 +412,8 @@ when crash
 - An operating systgem is designed with specific goals in mind. These goals ultimately determine the operating system's policies. An operating system implements these policies through specific mechanisms.
 - A monolithic operating system has no structure; all functionality is provided in a single, static binary file that runs in a single address space. Although such systems are difficult to modify, their primary benefit is efficiency.
 - A layered operating system is devided into a number of discrete layers, where the bottom layer is the hardware interface and the highest layer is the user interface. Although layered software system have had some success, this approach is generally not ideal for designing operating systems due to performance problems.
-- The microkernel approach for designing operating systems uses aa minimal kernel; most services run as user-level applications. Communication takes place via message passing.
-- A modular approach for designing operating systems provides operating system services through modules that can be loaded and removed during run time. Many contemporary operating systems are constructed as hybrid systems using a combination of a monolithic kernel and modules.
+- The microkernel approach for designing operating systems uses a minimal kernel; most services run as user-level applications. Communication takes place via message passing.
+- A modular approach for designing operating systems provides operating system services through modules that can be loaded and removed during run time. ***Many contemporary operating systems are constructed as hybrid systems using a combination of a monolithic kernel and modules.***
 - A boot loader loads an operating system into memory, performs initialization and begins system execution.
 - The performance of an operating system can be monitored using either counters or tracing. Counters are a collection of system-wide or per-process statistics, while tracing follows the execution of a program through the operating system.
 

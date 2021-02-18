@@ -20,7 +20,7 @@ tags:
 ## 2.2 What is the purpose of the command interpreter? Why is it usually separate from the kernel?
 
 提供一种解析文字输入并执行命令的人机交互接口。
-命令解释执行的软件有很多，用户可以使用自己习惯的；因为其可变性，一般不会做到内核里。
+命令解释执行的软件有很多，用户可以使用自己习惯的；又因为其可变性，一般不会做到内核里。
 
 ## 2.3 What system calls have to be executed by a command interpreter or shell in order to start a new process on a UNIX system?
 
@@ -42,13 +42,33 @@ fork() & exec()
 
 ## 2.6 List five services provided by an operating system, and explain how each creates convenience for users. In which cases would it be impossible for user-level programs to provide the services? Explain your answer.
 
-1. 进程管理
+1. 启动程序
+
+操作系统将一定格式的可执行文件加载到内存，并调度 CPU 执行文件中的程序指令。
+用户级程序不能被信任去调度 CPU。
+虽说 Java 看上去也有自己的可执行文件格式，即 class 文件。
+但是 JVM 虚拟机程序直接被 CPU 调度，class 文件中的指令会被翻译成 JVM 中的程序指令。
+
 2. I/O 操作
-3. 文件管理
+
+操作系统将用户的 I/O 请求转为对外设或者外设控制器（例如 DMA）的操作指令。
+用户级程序不能被信任去直接操作外设或外设控制器。
+假如不同的应用程序都直接操作外设或外设控制器，它们之间是竞争关系，没有办法很好的同步的。
+
+3. 操纵文件系统
+
+文件系统给用户提供文件的创建、删除、读写（内容、属性、权限），同时隐藏了操作存储设备的细节，如扇区、块、分区等。
+用户级程序不能保证对文件和对存储设备的一致性。
+
 4. 通信管理
+
+网络通信有七层架构，发送方和接收方都要遵循。
+用户级程序独占网卡的使用权的话，就会监听到其它程序的通信内容。
+
 5. 错误检测
 
-由于 CPU 及其它硬件资源系程序运行实际载体，如果不加以管理不同的程序就会提高造成错误的可能；所以，多任务环境下，这个管理程序就是操作系统。
+硬件本身也有检错、纠正的能力；而软件（操作系统）在执行各种对外服务的指令时，会遇到一些如状态不一致等错误。
+既然操作系统服务本身就不是用户级程序可以提供的，那么这些错误的检测更加不可能提供。
 
 ## 2.7 Why do some systems store the operating system in frimware, while others store it on disk?
 
@@ -61,13 +81,13 @@ fork() & exec()
 ## 2.9 The services and functions provided by an operating system can be divided into two main categories. Briefly describe the two categories, and discuss how they differ.
 
 - 保护进程运行，通过服务操作硬件
-- 提供硬件本身不提供的功能，例如文件系统、虚拟内存空间
+- 提供硬件没有直接提供的功能，例如文件系统、虚拟内存空间
 
 ## 2.10 Describe three general methods for passing parameters to the operating system.
 
 - 寄存器传参
-- 开辟一块内存空间存放参数，将这块内存空间首地址及大小放入寄存器，传参
-- 栈空间传参
+- 开辟一块内存空间（块、表、栈）存放参数，将这块内存空间首地址及大小放入寄存器，最后用寄存器传参
+- 混合方式传参
 
 ## 2.11 Describe how you could obtain a statistical profile of the amount of time a program spends executing different sections of its code. Discuss the importance of obtaining such a statistical profile.
 
@@ -75,7 +95,7 @@ BCC (eBPF).
 
 ## 2.12 What are the advantages and disadvantages of using the same system-call interface for manipulating both files and services?
 
-统一的接口风格，有利于简化应用程序的设计。
+统一的接口风格，有利于简化应用程序的设计。但是可能丢失特殊设备的部分功能、甚至性能。
 
 ## 2.13 Would it be possible for the user to develop a new command interpreter using the system-call interface provided by the operating system?
 
@@ -105,7 +125,7 @@ Yes
 
 ## 2.16 Contrast and compare an application programming interface (API) and an application binary interface (ABI).
 
-API 是给开发人员看的，实际程序调用时使用的是 ABI。
+API 是系统调用的接口，操作系统级的。ABI 是 CPU 架构级的，不同 CPU 架构（如 Intel 和 ARM）有不同的 ABI。
 
 ## 2.17 Why is the separation of mechanism and policy desirable?
 
@@ -127,11 +147,11 @@ API 是给开发人员看的，实际程序调用时使用的是 ABI。
 
 ## 2.20 What are the advantages of using loadable kernel modules?
 
-模块的设计上具备分层系统那样的简洁性，性能上接近巨型内核。
+模块的设计上具备分层系统那样的简洁性，由于可以在系统运行时，增减内核模块，所以性能上接近整体内核。
 
 ## 2.21 How the iOS and Android similar? How are they different?
 
-都是运行在移动端的基于已有内核的分层设计的操作系统。安卓应用运行在 JVM 虚拟机里，而 iOS 不是。
+都是运行在移动端的基于已有内核的混合设计的操作系统。安卓应用运行在 `ART VM` 虚拟机里，而 iOS 不是。
 
 ## 2.22 Explain why Java programs running on Android systems do not use the standard Java API and virtual machine.
 
