@@ -101,8 +101,8 @@ The operating system is responsible for the following activities in connection w
 
 <div class="covtos">
 <style>
-.markdown-body .covtos + table th { width: 18%; }
-.markdown-body .covtos + table th:first-of-type { width: 10%; }
+.markdown-body .covtos + .table>table th { width: 18%; }
+.markdown-body .covtos + .table>table th:first-of-type { width: 10%; }
 </style>
 </div>
 

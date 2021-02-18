@@ -12,10 +12,10 @@ tags:
 <div class="scenes">
 <style>
 @media only screen and (min-width: 1080px) {
-  .markdown-body .scenes ~ table td { padding: 0.1em 0.3em; }
-  .markdown-body .scenes ~ table th { width: calc(50% / 3); }
-  .markdown-body .scenes ~ table th:first-of-type { width: 14%; }
-  .markdown-body .scenes ~ table th:last-of-type, .markdown-body .scenes ~ table td:last-of-type { width: 36%; border-left: solid 1px #888; }
+  .markdown-body .scenes ~ .table>table td { padding: 0.1em 0.3em; }
+  .markdown-body .scenes ~ .table>table th { width: calc(50% / 3); }
+  .markdown-body .scenes ~ .table>table th:first-of-type { width: 14%; }
+  .markdown-body .scenes ~ .table>table th:last-of-type, .markdown-body .scenes ~ .table>table td:last-of-type { width: 36%; border-left: solid 1px #888; }
 }
 </style>
 </div>
