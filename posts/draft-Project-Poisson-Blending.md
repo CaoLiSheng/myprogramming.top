@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github
 title: 泊松融合
 date: 2021-06-01
 tags:

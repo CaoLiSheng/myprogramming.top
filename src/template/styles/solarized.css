@@ -193,8 +193,14 @@ body[theme='Dark'] .markdown-body {
   border-collapse: collapse;
   border-spacing: 0;
 }
-@import url('//fonts.googleapis.com/css?family=PT+Sans');
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url(/* reources_dir */fonts/PT_Sans-Web-Regular.ttf) format('truetype');
+}
+
 @import url('//fonts.googleapis.com/css?family=PT+Sans+Narrow:400, 700');
+
 .markdown-body {
   font-family: 'PT Sans', '等距更纱黑体', sans-serif;
   font-size: 18px;

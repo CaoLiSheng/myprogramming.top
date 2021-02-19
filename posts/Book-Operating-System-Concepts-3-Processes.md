@@ -53,7 +53,7 @@ In brief, the PCB simply serves as the repository for all the data needed to sta
 - ***degree of multiprogramming***. The number of processes currently in memory.
 - ***I/O bound process***. One kind of process that spends more of its time doing I/O than it spends doing computations.
 - ***CPU-bound process***. One kind of process that generates I/O requests infrequently, using more of its time doing computations.
-- ***ready queue***. A queue of process which is ready and wwaiting to execute on a CPU's core.
+- ***ready queue***. A queue of process which is ready and waiting to execute on a CPU's core.
 - ***wait queue***. A queue of process which is waiting for a certain event to occur (such as completion of I/O).
 
 ## Queueing Diagram

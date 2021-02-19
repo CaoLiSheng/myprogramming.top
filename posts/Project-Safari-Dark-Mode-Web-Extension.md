@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github
 title: Safari Dark Mode Web Extension
 date: 2020-12-06
 tags:

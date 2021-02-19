@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github
 title: IPV4 组播通信
 date: 2021-02-06
 tags:

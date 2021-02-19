@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github
 title: Vuejs--use props in stylus
 date: 2020-11-25
 tags:

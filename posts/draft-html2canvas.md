@@ -1,5 +1,5 @@
 ---
-style: github-colors
+style: github
 title: 毛玻璃背景效果
 date: 2020-07-31
 tags:

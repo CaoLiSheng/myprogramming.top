@@ -45,13 +45,23 @@ body[theme='Dark'] .markdown-body {
 }
 
 @font-face {
+  font-family: Pacifico;
+  src: url(/* reources_dir */fonts/Pacifico-Regular.ttf) format('truetype');
+}
+
+@font-face {
   font-family: PatrickHand;
   src: url(/* reources_dir */fonts/PatrickHand-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: COOL;
+  src: url(/* reources_dir */fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    format('truetype');
+}
+
 .markdown-body {
-  font-family: PatrickHand, Georgia, '等距更纱黑体', -apple-system-font,
-    'PingFang SC', 'Microsoft YaHei', serif;
+  font-family: Pacifico, COOL, 'PingFang SC', 'Microsoft YaHei', serif;
   margin: 0;
   font-size: 18px;
   text-indent: 0px;
@@ -167,8 +177,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h2 {
   padding-bottom: 0.4em;
   padding-top: 0.25em;
-  font-family: 'Hoefler Text', Georgia, '等距更纱黑体', -apple-system-font,
-    'PingFang SC', 'Microsoft YaHei', serif;
+  font-family: PatrickHand, COOL, 'PingFang SC', 'Microsoft YaHei', serif;
   line-height: 1.5em;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
