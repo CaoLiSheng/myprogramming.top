@@ -421,7 +421,7 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body table th,
 .markdown-body table td {
-  padding: 0 1em;
+  padding: 0.8em 1em;
   font-size: 1.1em;
   line-height: 23px;
 }

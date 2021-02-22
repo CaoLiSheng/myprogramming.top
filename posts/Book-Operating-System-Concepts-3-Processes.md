@@ -67,6 +67,71 @@ Later, the process can be reintroduced into memory, and its execution can be con
 This scheme is known as ***swapping*** because a process can be "swapped out" from memory to disk, where its current status is saved, and later "swapped in" from disk back to memory, where its status is restored.
 Swapping is typically only necessary when memory has been overcommitted and must be freed up.
 
+## Process Creation
+
+When a process creates a new process, two possibilities for execution exist:
+
+1. The parent continues to execute concurrently with its children.
+2. The parent waits until some or all of its children have terminatied.
+
+There are also two address-space possibilities for the new process:
+
+1. The child process is a duplicate of the parent process (it is the same program and data as the parent).
+2. The child process has a new program loaded into it.
+
+## Process Termination
+
+A parent may terminate the execution of one of its children for a variety of reasons, such as these:
+
+1. The child has exceeded its usage of some of the resources that it has been allocated. (To determine whether this has occurred, the parent must have a mechanism to inspect the state of its children.)
+2. The task assigned to the child is no longer required.
+3. The parent is exiting, and the operating system does not allow a child to continue if its parent terminates.
+
+## Android Process Hierarchy
+
+From most to least important, the hierarchy of process classifications is as follows:
+
++--------------------------+-------------------------------------------------------------------------------+
+| ***Foreground process*** | The current process visible on the screen, representing the application the   |
+|                          | user is currently interacting with                                            |
++--------------------------+-------------------------------------------------------------------------------+
+| ***Visible process***    | A process that is not directly visible on the foreground but that is          |
+|                          | performing an activity that the foreground process is referring to (that is,  |
+|                          | a process performing an activity whose status is displayed on the foreground  |
+|                          | process)                                                                      |
++--------------------------+-------------------------------------------------------------------------------+
+| ***Service process***    | A process that is similar to a background process but is performing an        |
+|                          | activity that is apparent to the user (such as streaming music)               |
++--------------------------+-------------------------------------------------------------------------------+
+| ***Background process*** | A process that may be performing an activity but is not apparent to the user. |
++--------------------------+-------------------------------------------------------------------------------+
+| ***Empty process***      | A process that holds no active components associated with any application.    |
++--------------------------+-------------------------------------------------------------------------------+
+
+If system resources must be reclaimed, Android will first terminate empty processes, followed by background processes, and so forth.
+Processes are assigned an importance ranking, and Android attempts to assign a process as high a ranking as possible.
+
+Forthermore, Android development practices suggest following the guidelines of the process life cycle.
+When these guidelines are followed, the state of a process will be saved prior to termination and resumed at its saved state
+if the user navigates back to the application.
+
+## Process Cooperation
+
+There are several reasons for providing an environment that allow process cooperation:
+
+- ***Information sharing.*** Since several applications may be interested in the same piece of information (for instance, coping and pasting), we must provide an environment to allow concurrent access to such information.
+- ***Computation speedup.*** If we want a particular task to run faster, we must break it into subtasks, each of which will be executing in parallel with the others. Notice that such a speedup can be achieved only if the computer has multiple processing cores.
+- ***Modularity.*** We may want to construct the system in a modular fashion, dividing the system functions into seperate processes or threads.
+
+## Brief Contrast of Shared Memory and Message Passing
+
+Both of the models are common in operating systems, and many systems implement both.
+Message passing is useful for exchanging smaller amounts of data, because no conflicts need be avoided.
+Message passing is also easier to implement in a distributed system than shared memory.
+Shared memory can be faster than message passing, since message-passing systems are typically implementedd using system calls and thus require the more time-consuming task of kernel intervention.
+In shared-memory systems, system calls are required only to establish shared-memory regions.
+Once shared memory is established, all accesses are treated as routine memory accesses, and no assistance from the kernel is required.
+
 ## Another COPY of Summary in the Book
 
 ## 笔记目录
