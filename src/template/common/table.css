@@ -26,7 +26,7 @@
     overflow: hidden;
     position: relative;
     text-align: left !important;
-    padding: 10px calc(5em + 8px) 8px !important;
+    padding: 10px 8px 8px calc(5em + 8px) !important;
   }
 
   .markdown-body td:not([data-th]) {

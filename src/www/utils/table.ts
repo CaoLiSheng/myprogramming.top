@@ -13,7 +13,7 @@ function bindThData(thData: string, tRow: Element) {
   }
 }
 function extendTable(table: HTMLTableElement) {
-  const thData: string[] = [];
+  const thData: string[] = Array.from(table.rows[0].cells).map(() => '说明：');
   table
     .querySelectorAll('thead > tr > th')
     .forEach(collectThData.bind(null, thData));
