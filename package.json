@@ -10,7 +10,7 @@
     "devV1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run devbuildgen' 'npm run devV1Ttpl' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
     "devV1Tpl": "rm -rf build/v1/dev && webpack --silent --config=cfg/webpack/site.v1.tpl.dev.js && npm run devgen",
     "devV2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
-    "boundle": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v1.tpl.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
+    "bundle": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v1.tpl.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
   },
   "repository": {
     "type": "git",
