@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Operating System Concepts》3
-date: 2021-02-18
+date: 2021-02-24
 tags:
   - 读书
   - 笔记
@@ -72,7 +72,7 @@ Swapping is typically only necessary when memory has been overcommitted and must
 When a process creates a new process, two possibilities for execution exist:
 
 1. The parent continues to execute concurrently with its children.
-2. The parent waits until some or all of its children have terminatied.
+2. The parent waits until some or all of its children have terminated.
 
 There are also two address-space possibilities for the new process:
 
@@ -132,7 +132,110 @@ Shared memory can be faster than message passing, since message-passing systems 
 In shared-memory systems, system calls are required only to establish shared-memory regions.
 Once shared memory is established, all accesses are treated as routine memory accesses, and no assistance from the kernel is required.
 
+## IPC in Message-Passing
+
+Here are several methods for logically implementing a link and the `send()/receive()` operations:
+
+- Direct or indirect communication
+- Synchronous or asynchronous communication
+- Automatic or explicit buffering
+
+## Mach Message Passing
+
+When a task is created, two special ports--the **Task Self** port and the **Notify** port--are also created.
+The kernel has receive rights to the Task Self port, which allows a task to send messages to the kernel.
+The kernel can send notification of event occurrences to a task's Nofity port (to which, of course, the task has receive rights).
+
+Each task also has access to a `bootstrap port`, which allows a task to register a port it has created with a system-wide `bootstrap server`.
+Once a port has been registered with the bootstrap server, other tasks can look up the port in this registry and obtain rights for sending messagees to the port.
+
+Mach messages contain the following two fields:
+
+- A fixed-size message header containing metadata about the message, including the size of the message as well as source and destination ports. Commonly, the sending thread expects a reply, so the port name of the source is passed on to the receiving task, which can use it as a "return address" in sending a reply.
+- A variable-sized body containing data.
+
+The major problem with message systems has generally been poor performance caused by copying of the messages from the sender's port to the receiver's port.
+The Mach message system attampts to avoid copy operations by using virtual-memory-management techniques.
+Essentially, Mach maps the address space containing the sender's message into the receiver's address space.
+Therefore, the message itself is never actually copied,, as both the sender and receiver access the same memory.
+This message-management technique provides a large performance boost but works only for intrasystem messages.
+
+## ALPC Facility in Windows
+
+The message-passing facility in Windows is called the `advanced local procedure call (ALPC)` facility.
+It is similar to the standard remote procedure call (RPC) mechanism that is widely used, but it is optimized for and specific to Windows.
+Like Mach, Windows use a port object to establish and maintain a connection between two processes.
+Windows uses two types of ports: `connection ports` and `communication ports`.
+
+When an ALPC channel is created, one of three message-passing techniques is chosen:
+
+1. For small messages (up to 256 bytes), the port's message queue is used as intermediate storage, and the messages are copied from one process to the other.
+2. Larger messages must be passed through a `section object`, which is a region of shared memory associated with the channel.
+3. When the amount of data is too large to fit into a section object, an API is available that allows server processes to read and write directly into the address space of a client.
+
+It's important to note that the ALPC facility in Windows is not part of the Windows API and hence is not visible to the application programmer.
+Rather, applications using the Windows API invoke standard remote procedure calls.
+When the RPC is being invoked on a process on the same system, the RPC is handled indirectly through an ALPC procedure call.
+Additionally, many kernel services use ALPC to communicate with client processes.
+
+## Pipes
+
+A `pipe` acts as a conduit allowing two processes to communicate.
+Pipes were one of the first IPC mechanisms in early UNIX system.
+In implementing a pipe, four issues must be considered:
+
+1. Does the pipe allow bidirectional communication, or is communication unidirectional?
+2. If two-way communication is allowed, is it half duplex (data can travel only one way at a time) or full duplex (data can travel in both directions at the same time)?
+3. Must a relationship (such as parent-child) exist between the communicating processes?
+4. Can the pipes communicate over a network, or must the communicating processes reside on the same machine?
+
+Brief contrast between `Ordinary Pipes` and `Named Pipes` on `UNIX` and `Windows`:
+
+- Ordinary Pipes (termed `anonymous pipes` on Windows systems)
+  - unidirectional
+  - parent-child relationship
+  - cease to exist, once the processes have finished communicating and have terminated
+- Named Pipes
+  - bidirectional
+  - no need for parent-child relationship
+  - continue to exist, ...
+  - UNIX
+    - half-duplex
+    - on the same machine
+  - Windows
+    - full-duplex
+    - ability to communicate over a network
+
+## RPCs (remote procedure calls)
+
+Communication using sockets -- although common and efficient -- is considered a low-level form of communication between distributed processes.
+One reason is that sockets allow only an unstructured stream of bytes to be exchanged between the communicating threads.
+It is the responsibility of the client and server application to impose a structure on the data.
+RPCs is a higher-level method of communication.
+There are several issues:
+
+- Parameter marshaling addresses the issue concerning differences in data representation on the client and server machines. Many RPC systems define a machine-independent representation of data. One such representation is known as `external data representation (XDR)`.
+- Another important issue involves the semantic of a call. One way to address this problem is for the operating system to ensure that messages are acted on **exactly once**, rather than **at most once**. For **exactly once**, we need to remove the risk that the server will never receive the request. To accomplish this, the server must implement the **at most once**protocol (the server must keep a history of all the timestamps of messages it has already processed, incoming messages that have a timestamp already in the history are ignored) but must also acknowledge to the client that the RPC call was received and executed. The client must resend each RPC call periodically until it receives the ACK for that call.
+- Yet another important issue concerns the communication between a server and a cient. Two approaches are common. First, the binding information may be predetermined, in the form of fixed port addresses. Second, binding can be done dynamically by a rendezvous mechanism. Typically, an operating system provides a rendezvous (also called a matchmaker) daemon on a fixed RPC port. Figure below shows a sample interaction.
+
+![Execution of a remote procedure call (RPC)](Operating-System-Concepts-3-Processes/execution-of-a-remote-procedure-call.png '=666px--0.5-')
+
 ## Another COPY of Summary in the Book
+
+- A process is a program in execution, and the status of the current activity of a process is represented by the program counter, as well as other registers.
+- The layout of a process in memory is represented by four different sections: (1)text, (2)data, (3)heap, and (4)stack.
+- As a process executes, it changes state. There are four general states of a process: (1)ready, (2)running, (3)waiting, and (4)terminated.
+- A process control block (PCB) is the kernel data structure that represents a process in an operating system.
+- The role of the process scheduler is to select an available process to run on a CPU.
+- An operating system performs a context switch when it switches from running one process to running another.
+- The `fork()` and `CreateProcess()` system calls are used to create processes on UNIX and Windows systems, respectively.
+- When shared memory is used for communication between processes, two (or more) processes share the same region of memory. POSIX provides an API for shared memory.
+- Two processes may communicate by exchanging messages with one another using message passing. The Mach operating system uses message passing as its primary form of interprocess communication. Windows provides a form of message passing as well.
+- A pipe provides a conduit for two processes to communicate. There are two forms of pipes, ordinary and named. Ordinary pipes are designed for communication between processes that have a parent-child relationship. Named pipes are more general and allow serveral processes to communicate.
+- UNIX systems provide ordinary pipes through the `pipe()` system call. Ordinary pipes have a read end and a write end. A parent process can, for example, send data to the pipe using its write end, and the child process can read it from its read end. Named pipes in UNIX are termed FIFOs.
+- Windows systems also provide two forms of pipes -- anonymous and named pipes. Anonymous pipes are similar to UNIX ordinary pipes. They are unidirectional and employ parent-child relationships between teh communicating processes. Named pipes offer a richer form of interprocess communication than the UNIX couterpart, FIFOs.
+- Two common forms of client-server communication are sockets and remote procedure calls (RPCs). Sockets allow two processes on different machines to communicate over a network. RPCs abstract the concept of function (procedure) calls in such a way that a function can be invoked on another process that may reside on a seperate computer.
+- The Android operating system uses RPCs as a form of interprocess communication using its binder framework.
 
 ## 笔记目录
 

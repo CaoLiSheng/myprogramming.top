@@ -4,10 +4,8 @@
 }
 
 .markdown-body code,
-.markdown-body kbd,
-.markdown-body pre {
-  font-family: 'Cascadia Code PL', Menlo, SFMono-Regular, Consolas,
-    'Liberation Mono', monospace;
+.markdown-body kbd {
+  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace;
 }
 
 @font-face {
@@ -16,7 +14,6 @@
     format('truetype');
 }
 
-.markdown-body code.language-markdown {
-  font-family: '等距更纱黑体', 'Cascadia Code PL', Menlo, SFMono-Regular,
-    Consolas, 'Liberation Mono', monospace;
+.markdown-body pre code.language-markdown {
+  font-family: '等距更纱黑体', 'Cascadia Code PL', monospace;
 }

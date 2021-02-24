@@ -60,8 +60,14 @@ body[theme='Dark'] .markdown-body {
     format('truetype');
 }
 
+.markdown-body code,
+.markdown-body kbd {
+  font-family: PatrickHand, '等距更纱黑体', monospace, Apple Color Emoji,
+    Segoe UI Emoji !important;
+}
+
 .markdown-body {
-  font-family: Pacifico, COOL, 'PingFang SC', 'Microsoft YaHei', serif;
+  font-family: Pacifico, COOL, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   margin: 0;
   font-size: 18px;
   text-indent: 0px;
@@ -175,9 +181,9 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body h1,
 .markdown-body h2 {
+  font-family: PatrickHand, COOL, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   padding-bottom: 0.4em;
   padding-top: 0.25em;
-  font-family: PatrickHand, COOL, 'PingFang SC', 'Microsoft YaHei', serif;
   line-height: 1.5em;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 }
@@ -244,11 +250,14 @@ body[theme='Dark'] .markdown-body {
   box-shadow: -1px 0 0 white, -2px 0 0 #837e70;
 }
 .markdown-body code {
-  /* background: var(--code-background-article-color);
-  border: solid 1px #a7a099; */
-  font-size: 0.95em;
-  padding: 0 0.2em;
-  text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
+  /* background: var(--code-background-article-color); */
+  display: inline-block;
+  font-size: 0.9em;
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  border-radius: 0.5em;
+  border: solid 1px #a7a099;
+  text-shadow: 1px 0px 0px #a7a099, 0 1px 0 #a7a099;
 }
 .markdown-body pre.prettyprint {
   white-space: pre;

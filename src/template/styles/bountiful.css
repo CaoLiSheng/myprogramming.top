@@ -272,7 +272,8 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: 'PT Sans', '等距更纱黑体', sans-serif;
+  font-family: 'PT Sans', '等距更纱黑体', sans-serif, Apple Color Emoji,
+    Segoe UI Emoji;
   -webkit-font-smoothing: antialiased;
   font-size: 18px;
   line-height: 1.6em;
@@ -284,7 +285,8 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  /* font-family: 'PT Sans', serif; */
+  font-family: 'PT Sans', '等距更纱黑体', serif, Apple Color Emoji,
+    Segoe UI Emoji;
   line-height: 1.5em;
 }
 
@@ -293,7 +295,6 @@ body[theme='Dark'] .markdown-body {
   border-right: none;
   border-left: none;
   color: var(--blockquote-foreground-article-color);
-  /* font-family: 'PT Sans', serif; */
   margin-top: 25px;
 }
 
@@ -348,7 +349,6 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body table thead th,
 .markdown-body table thead td {
-  /* font-family: 'PT Sans', serif; */
   padding-top: 7px;
 }
 .markdown-body table tfoot th,
