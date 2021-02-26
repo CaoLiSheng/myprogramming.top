@@ -3,17 +3,22 @@
   src: url(/* reources_dir */fonts/CascadiaCodePL.woff2) format('woff2');
 }
 
-.markdown-body code,
-.markdown-body kbd {
-  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace;
-}
-
 @font-face {
   font-family: '等距更纱黑体';
   src: url(/* reources_dir */fonts/sarasa-mono-sc-regular.ttf)
     format('truetype');
 }
 
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body code {
+  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace;
+}
+
+.markdown-body pre code[class^='language-'] {
+  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace !important;
+}
+
 .markdown-body pre code.language-markdown {
-  font-family: '等距更纱黑体', 'Cascadia Code PL', monospace;
+  font-family: '等距更纱黑体', 'Cascadia Code PL', monospace !important;
 }

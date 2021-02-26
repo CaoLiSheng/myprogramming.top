@@ -78,6 +78,8 @@ fork() & exec()
 
 在 Boot Loader 中存放一个特殊的程序（Boot Manager）首地址，这个程序让用户选择要进入的系统，或者选择超时进入默认系统。
 
+---
+
 ## 2.9 The services and functions provided by an operating system can be divided into two main categories. Briefly describe the two categories, and discuss how they differ.
 
 - 保护进程运行，通过服务操作硬件

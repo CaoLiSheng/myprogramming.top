@@ -72,6 +72,8 @@ a) Set value of timer. c) Clear memory. e) Turn off interrupts. f) Modify entrie
 打洞成功后，p2p 中的客户端同时也是服务器，他们之间可以直接通信。
 而 client-server 模式下若客户端之间要通信，必须经过 server。
 
+---
+
 ## 1.12 How do clustered systems differ from multiprocessor systems? What is required for two machines belonging to a cluster to cooperate to provide a highly available service?
 
 集群利用分散在不同的物理机上提供的算力，外部看上去像是一台物理机；多核处理器是真的一台有多个处理器的物理机。

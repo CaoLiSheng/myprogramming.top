@@ -60,8 +60,10 @@ body[theme='Dark'] .markdown-body {
     format('truetype');
 }
 
-.markdown-body code,
-.markdown-body kbd {
+.markdown-body h2 kbd,
+.markdown-body h2 code,
+.markdown-body h2 ~ * kbd,
+.markdown-body h2 ~ * code {
   font-family: PatrickHand, '等距更纱黑体', monospace, Apple Color Emoji,
     Segoe UI Emoji !important;
 }
@@ -279,7 +281,7 @@ body[theme='Dark'] .markdown-body {
 }
 .markdown-body hr {
   border-color: #f2ede8;
-  height: 0;
+  height: 2px;
   background-color: #a7a099;
 }
 
