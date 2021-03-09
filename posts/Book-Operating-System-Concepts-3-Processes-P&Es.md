@@ -62,7 +62,7 @@ int main()
 }
 ```
 
-8
+`8`
 
 ## 3.3 Original versions of Apple's mobile iOS operating system provided no means of concurrent processing. Discuss three major complications that concurrent processing adds to an operating system.
 
@@ -93,7 +93,7 @@ RPC 在“仅执行一次”的语义机制下，既使 ACK 消息丢失，算�
 
 ## 3.7 Assume that a distributed system is susceptible to server failure. What mechanisms would be required to guarantee the "exactly once" semantic for execution of RPCs?
 
-✰ 服务端可以将“仅执行一次”的请求写入数据库，以备宕机重启后，正确执行。
+✰ 服务端可以将“仅执行一次”的请求写入数据库，以备宕机重启后，保持语义一致性。
 
 ---
 

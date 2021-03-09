@@ -3,6 +3,7 @@
   "version": "1.9.9",
   "description": "YX's BLOG SITE",
   "scripts": {
+    "test:lang": "rm -rf build/tests/lang && webpack --config=cfg/webpack/test.lang.js && node ./build/tests/lang/index.min.js",
     "test": "rm -rf build/v1/dev && webpack --config=cfg/webpack/site.v1.tpl.dev.js",
     "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
     "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",

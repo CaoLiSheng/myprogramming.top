@@ -188,3 +188,19 @@ function invertProperty() {
 }
 
 console.log('invertProperty()', invertProperty());
+
+class Person {
+  private _age: number;
+
+  get age() {
+    return this._age;
+  }
+
+  constructor(age: number) {
+    this._age = age;
+  }
+}
+
+const cory = new Person(100);
+console.log(cory.age);
+console.log(cory._age);
