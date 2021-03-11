@@ -12,10 +12,5 @@
 </template>
 
 <style lang="stylus" scoped>
-.fn-btn path
-  fill: var(--btn-base-theme-color);
-.fn-btn:hover path.outline
-  fill: var(--btn-hover-theme-color);
-.fn-btn:active path.outline
-  fill: var(--btn-active-theme-color);
+@import './styl/bar.styl';
 </style>

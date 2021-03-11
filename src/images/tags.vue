@@ -8,10 +8,5 @@
 </template>
 
 <style lang="stylus" scoped>
-.explorer path
-  fill: var(--btn-base-theme-color);
-.explorer:hover path.outline
-  fill: var(--btn-hover-theme-color);
-.explorer:active path.outline
-  fill: var(--btn-active-theme-color);
+@import './styl/bar.styl';
 </style>

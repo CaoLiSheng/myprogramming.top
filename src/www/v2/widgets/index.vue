@@ -8,7 +8,7 @@
     #status
       router-view(name="status")
     #bar(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
-      Bar(:sizeCfg="barIconSizeCfg")
+      Bar
 </template>
 
 <script lang="ts">
@@ -30,7 +30,6 @@ const BarComponent = () =>
 
 @Component({ components: { Bar: BarComponent } })
 export default class IndexComponent extends Vue {
-  barIconSizeCfg = ["0.5rem", "1rem", "0.25rem", "0.5rem"];
   article = ARTICLE;
   ui = ui.state;
 

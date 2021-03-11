@@ -1,8 +1,13 @@
 <template lang="pug">
 .r.status
-  a#gate.btn(title="去旧版网站", v-if="!isMobile", @click="goToV1")
+  a.icon-wrapper(
+    title="去旧版网站",
+    v-if="!isMobile",
+    :style="iconStyle",
+    @click="goToV1"
+  )
     GateIcon
-  a#menu.btn(v-if="isMobile", @click="openMenu") 菜单
+  a.btn(v-if="isMobile", @click="openMenu") 菜单
   a.tag(
     v-for="tag in tags",
     :key="tag",
@@ -21,6 +26,7 @@ import TagIcon from "@images/tag-small.vue";
 import GateIcon from "@images/gate.vue";
 
 import { isMobileSize } from "@www/utils/rem";
+import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
 import { db, initOnce, ui } from "@vStores/index";
 import { clickOnTag } from "../router";
 
@@ -39,6 +45,7 @@ const __HomePageIndicators = [
 export default class StatusComponent extends Vue.extend({
   props: ["query"],
 }) {
+  iconStyle = computeIconStyle(iconSizeCfg1 as SizeCfg);
   sideRoot: HTMLElement | null;
   barRoot: HTMLElement | null;
 
@@ -121,6 +128,15 @@ export default class StatusComponent extends Vue.extend({
     transform: scaleX(-1);
     cursor: pointer;
     color: var(--btn-foreground-theme-color);
+    &.icon-wrapper
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg.icon
+        pointer-events: none;
+        width: var(--icon-size);
+        height: var(--icon-size);
     &.btn
       padding: 0 1em;
       font-size: 0.2rem;
@@ -128,17 +144,12 @@ export default class StatusComponent extends Vue.extend({
       @media screen and (max-width: 750px)
         font-size: 0.4rem;
         line-height: 1rem;
-      svg.icon
-        width: 0.2rem;
-        height: 0.2rem;
-        @media screen and (max-width: 750px)
-          width: 0.32rem;
-          height: 0.32rem;
     &.tag
       display: flex;
       flex-direction: row-reverse;
       justify-content: center;
       align-items: center;
+      color: var(--theme-color);
       background: var(--btn-background-theme-color);
       padding: 0 0.5em;
       border-radius: 0.8em;
@@ -161,11 +172,11 @@ export default class StatusComponent extends Vue.extend({
       @media screen and (max-width: 750px)
         line-height: 1rem;
         font-size: 0.3rem;
-    @media (hover: hover)
-      &:hover
-        background: var(--btn-hover-theme-color);
     &:active
       background: var(--btn-active-theme-color);
     &:not(:first-child)
       margin-left: 1em;
+    @media (hover: hover)
+      &:hover
+        background: var(--btn-hover-theme-color);
 </style>

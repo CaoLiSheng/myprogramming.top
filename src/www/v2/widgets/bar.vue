@@ -48,7 +48,7 @@ import Component from "vue-class-component";
 import localforage from "localforage";
 
 import { HTMLElementOffset, EmptyOffset, getOffset } from "@www/utils/offset";
-import { isMobileSize } from "@www/utils/rem";
+import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
 import { ui } from "@vStores/index";
 
 import HomeIcon from "@images/home.vue";
@@ -75,9 +75,8 @@ const Theme2 = "Dark";
     DraftsHideIcon,
   },
 })
-export default class BarComponent extends Vue.extend({
-  props: ["sizeCfg"],
-}) {
+export default class BarComponent extends Vue {
+  iconStyle = computeIconStyle(iconSizeCfg1 as SizeCfg);
   inDevPopupVisibility = false;
   popupBottom = 0;
   popupLeft = 0;
@@ -86,15 +85,6 @@ export default class BarComponent extends Vue.extend({
   async mounted() {
     const curTheme = await localforage.getItem<string>(ThemeKey);
     document.body.setAttribute(ThemeAttr, curTheme || ThemeDefault);
-  }
-
-  get iconStyle() {
-    const isMobile = isMobileSize().result;
-
-    return {
-      width: isMobile ? this.sizeCfg[1] : this.sizeCfg[0],
-      "--icon-size": isMobile ? this.sizeCfg[3] : this.sizeCfg[2],
-    };
   }
 
   showPopup(ev: MouseEvent) {
@@ -142,6 +132,11 @@ export default class BarComponent extends Vue.extend({
       pointer-events: none;
       width: var(--icon-size);
       height: var(--icon-size);
+    @media (hover: hover)
+      &:hover
+        background: var(--btn-hover-theme-color);
+    &:active
+      background: var(--btn-active-theme-color);
 .in-dev-popup
   pointer-events: none;
   font-size: 0.18rem;
