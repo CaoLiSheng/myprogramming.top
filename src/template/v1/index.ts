@@ -96,6 +96,16 @@ function extendOpenInNewTab(anchor: HTMLAnchorElement, href?: string | null) {
   return false;
 }
 
+// support opening gitee link
+function extendGiteeLink(anchor: HTMLAnchorElement, href?: string | null) {
+  const parts = href?.split(':');
+  if (!parts || parts.length !== 2 || parts[0] !== 'proj') return false;
+
+  const projectName = parts[1];
+  anchor.setAttribute('href', `https://www.gitee.com/yx1991/${projectName}`);
+  return true;
+}
+
 // Anchor扩展的抽象，返回true表示继续执行下一个扩展，false表示立即停止对当前Anchor进行扩展
 type extender = (anchor: HTMLAnchorElement, href?: string | null) => boolean;
 
@@ -104,6 +114,7 @@ const anchorExtenders: extender[] = [
   extendBackToTop,
   extendScrollToHeader,
   extendOpenInNewTab,
+  extendGiteeLink,
 ];
 function extendAnchor(anchor: HTMLAnchorElement) {
   const href: string | null = anchor.getAttribute('href');
