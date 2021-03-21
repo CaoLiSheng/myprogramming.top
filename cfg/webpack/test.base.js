@@ -19,36 +19,6 @@ module.exports = merge(base, {
     extensions: ['.wasm', '.mjs', '.js', '.ts', '.json'],
   },
   module: {
-    rules: [
-      {
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      },
-      {
-        test: /\.(j|t)s(x)?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            babelrc: false,
-            presets: [
-              [
-                '@babel/preset-env',
-                { targets: { browsers: 'last 2 versions' } },
-              ],
-              '@babel/preset-typescript',
-            ],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { legacy: true }],
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
-              '@babel/plugin-proposal-optional-chaining',
-              '@babel/plugin-transform-runtime',
-            ],
-          },
-        },
-      },
-    ],
+    rules: [require('./rules/mjs.auto'), require('./rules/babel.loader')()],
   },
 });

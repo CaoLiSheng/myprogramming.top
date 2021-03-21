@@ -9,13 +9,7 @@ module.exports = merge(base, {
     app: 'src/www/v1/app',
   },
   module: {
-    rules: [
-      {
-        test: /(\.s?css$|\/css\?.*)/,
-        include: [path.join(process.cwd(), 'src')],
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-    ],
+    rules: [require('./rules/scss.loader')],
   },
   plugins: [
     new HtmlWebpackPlugin({

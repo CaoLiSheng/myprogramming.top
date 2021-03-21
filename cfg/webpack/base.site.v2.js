@@ -11,71 +11,14 @@ module.exports = merge(base, {
   },
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        // loader: 'ts-loader',
-        // exclude: /node_modules/,
-        // options: { appendTsSuffixTo: [/\.vue$/] },
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          babelrc: false,
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: {
-                  browsers: 'last 2 versions',
-                },
-              },
-            ],
-            ['@babel/preset-typescript', { allExtensions: true }],
-          ],
-          plugins: [
-            [
-              '@babel/plugin-proposal-decorators',
-              {
-                legacy: true,
-              },
-            ],
-            [
-              '@babel/plugin-proposal-class-properties',
-              {
-                loose: true,
-              },
-            ],
-            '@babel/plugin-proposal-optional-chaining',
-            '@babel/plugin-transform-runtime',
-          ],
-        },
-      },
-      {
-        test: /\.pug$/,
-        oneOf: [
-          {
-            resourceQuery: /lang=pug/,
-            use: ['pug-plain-loader'],
-          },
-        ],
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
-        test: /\.styl(us)?$/,
-        oneOf: [
-          {
-            resourceQuery: /lang=styl(us)?/,
-            use: ['vue-style-loader', 'css-loader', 'stylus-loader'],
-          },
-        ],
-      },
+      require('./rules/babel.loader')({ tsAllExts: true }),
+      require('./rules/pug.loader'),
+      require('./rules/vue.loader'),
+      require('./rules/stylus.loader'),
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      // },
     ],
   },
   plugins: [
