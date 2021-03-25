@@ -1,19 +1,19 @@
-const path = require('path');
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const path = require( 'path' );
+const webpack = require( 'webpack' );
+const { merge } = require( 'webpack-merge' );
 
-const base = require('./base.gen');
+const base = require( './base.gen' );
 
-module.exports = merge(base, {
+module.exports = merge( base, {
   mode: 'development',
   output: {
-    path: path.join(process.cwd(), 'build/gen/dev'),
+    path: path.join( process.cwd(), 'build/gen/dev' ),
     publicPath: '/',
   },
   plugins: [
-    new webpack.DefinePlugin({
+    new webpack.DefinePlugin( {
       __production__: false,
-      __resources_dir__: JSON.stringify('./'),
-    }),
+      __resources_dir__: JSON.stringify( './' ),
+    } ),
   ],
-});
+} );

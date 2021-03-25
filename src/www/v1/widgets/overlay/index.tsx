@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, ElementType } from 'react';
 import classNames from 'classnames';
+
+import { bindDoubleSpaceKey } from '@www/utils/hotkeys';
 
 import './index.scss';
 
 interface OverlayProps {
-  icon: string;
+  Icon: ElementType;
+  contentShrinkPos: string;
   positionStyleObj: {
     top?: number | string;
     right?: number | string;
     bottom?: number | string;
     left?: number | string;
   };
-  contentShrinkPos: string;
 }
 
 interface OverlayStates {
@@ -19,27 +21,60 @@ interface OverlayStates {
 }
 
 export class Overlay extends Component<OverlayProps, OverlayStates> {
-  state = { opening: false };
 
-  render() {
-    const { icon, positionStyleObj, contentShrinkPos } = this.props;
+  private bindReceiveMessage = this.receiveMessage.bind( this );
+
+  private bindToggleOverlay = this.toggleOverlay.bind( this );
+
+  private bindHotKeys = bindDoubleSpaceKey.bind( this, this.bindToggleOverlay );
+
+  constructor ( props: OverlayProps ) {
+    super( props );
+
+    this.state = { opening: false };
+  }
+
+  componentDidMount () {
+    window.addEventListener( 'message', this.bindReceiveMessage, false );
+    window.addEventListener( 'keypress', this.bindHotKeys, false );
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener( 'message', this.bindReceiveMessage );
+    window.removeEventListener( 'keypress', this.bindHotKeys );
+  }
+
+  private toggleOverlay () {
+    this.setState( ( { opening } ) => ( { opening: !opening } ) );
+  }
+
+  private receiveMessage ( ev: MessageEvent ) {
+    if ( ev.data === 'iframe.detail double.space' ) {
+      this.toggleOverlay();
+    }
+  }
+
+  render () {
+    const { Icon, positionStyleObj, contentShrinkPos } = this.props;
     const { opening } = this.state;
 
     return (
       <div className="overlay-wrapper">
         <div
-          className={classNames('overlay-mask', { opening })}
-          onClick={() => this.setState({ opening: false })}
+          className={ classNames( 'overlay-mask', { opening } ) }
+          onClick={ this.bindToggleOverlay }
         />
         <div
-          style={{ ...positionStyleObj, transformOrigin: contentShrinkPos }}
-          className={classNames('overlay-content', { opening })}
-        ></div>
-        <a
-          style={{ ...positionStyleObj, backgroundImage: `url(${icon})` }}
-          className={classNames('overlay-icon', { opening })}
-          onClick={() => this.setState({ opening: true })}
-        ></a>
+          style={ { ...positionStyleObj, transformOrigin: contentShrinkPos } }
+          className={ classNames( 'overlay-content', { opening } ) }
+        />
+        <div
+          style={ { ...positionStyleObj } }
+          className={ classNames( 'overlay-icon', { opening } ) }
+          onClick={ this.bindToggleOverlay }
+        >
+          <Icon />
+        </div>
       </div>
     );
   }

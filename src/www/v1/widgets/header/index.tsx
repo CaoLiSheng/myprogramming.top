@@ -1,154 +1,160 @@
-import React, { Component, createRef, ReactElement, RefObject } from 'react';
-import { Link, Switch, Route, RouteComponentProps } from 'react-router-dom';
+import React, {
+  Component, createRef, ReactElement, RefObject,
+} from 'react';
+import {
+  Link, Switch, Route, RouteComponentProps,
+} from 'react-router-dom';
 import classNames from 'classnames';
 
+import { clickIn } from '@www/utils/dom';
+import { MenuIcon, GateIcon } from '@images/index';
 import Category from './category';
 import GoToV2 from './goToV2';
 import Pager from './pager';
 
-import { clickIn } from '@www/utils/dom';
-
 import './index.scss';
-import { CategoryIcon, GateIcon } from '@images/index';
 
-declare var __portal_to_v2__: string;
+declare let __portal_to_v2__: string;
 
 interface HeaderStates {
-  categoryExpanded: boolean;
+  menuExpanded: boolean;
 }
 
-export class Header extends Component<RouteComponentProps<{}>, HeaderStates> {
-  state = { categoryExpanded: false };
+export class Header extends Component<RouteComponentProps<never>, HeaderStates> {
 
-  private toggleElem: RefObject<HTMLAnchorElement> = createRef<
-    HTMLAnchorElement
-  >();
+  private toggleElem: RefObject<HTMLButtonElement> = createRef<HTMLButtonElement>();
 
-  private toClose = (event: MouseEvent) => {
-    const clickedIn = clickIn(
-      event.target as HTMLElement,
-      this.toggleElem.current
-    );
-    if (!clickedIn) {
-      this.setState({ categoryExpanded: false });
-    }
-  };
+  constructor ( props: RouteComponentProps<never> ) {
+    super( props );
 
-  private receiveMessage = (event: MessageEvent) => {
-    if (event.data === 'iframe.detail clicked') {
-      this.setState({ categoryExpanded: false });
-    }
-  };
-
-  private onExpand = () =>
-    this.setState(({ categoryExpanded }) => ({
-      categoryExpanded: !categoryExpanded,
-    }));
-
-  componentDidMount() {
-    window.top.addEventListener('message', this.receiveMessage, false);
-    document.body.addEventListener('click', this.toClose);
+    this.state = { menuExpanded: false };
   }
 
-  componentWillUnmount() {
-    window.top.removeEventListener('message', this.receiveMessage);
-    document.body.removeEventListener('click', this.toClose);
+  componentDidMount () {
+    window.top.addEventListener( 'message', this.receiveMessage, false );
+    document.body.addEventListener( 'click', this.toClose );
   }
 
-  shouldComponentUpdate(
-    nextProps: RouteComponentProps<{}>,
-    nextStates: HeaderStates
+  shouldComponentUpdate (
+    nextProps: RouteComponentProps<never>,
+    nextStates: HeaderStates,
   ) {
     return (
-      nextProps.match.path !== this.props.match.path ||
-      nextStates.categoryExpanded !== this.state.categoryExpanded
+      nextProps.match.path !== this.props.match.path
+      || nextStates.menuExpanded !== this.state.menuExpanded
     );
   }
 
-  renderLink(ctx: string, name: string, to?: string) {
+  componentWillUnmount () {
+    window.top.removeEventListener( 'message', this.receiveMessage );
+    document.body.removeEventListener( 'click', this.toClose );
+  }
+
+  private toClose = ( event: MouseEvent ) => {
+    const clickedIn = clickIn(
+      event.target as HTMLElement,
+      this.toggleElem.current,
+    );
+    if ( !clickedIn ) {
+      this.setState( { menuExpanded: false } );
+    }
+  };
+
+  private receiveMessage = ( event: MessageEvent ) => {
+    if ( event.data === 'iframe.detail clicked' ) {
+      this.setState( { menuExpanded: false } );
+    }
+  };
+
+  private onExpand = () => this.setState( ( { menuExpanded } ) => ( {
+    menuExpanded: !menuExpanded,
+  } ) );
+
+  renderLink ( ctx: string, name: string, to?: string ) {
     return (
       <Link
-        to={to || ctx}
-        className={classNames({
-          ctx: this.props.match.path.startsWith(ctx),
-        })}
+        to={ to || ctx }
+        className={ classNames( {
+          ctx: this.props.match.path.startsWith( ctx ),
+        } ) }
       >
-        {name}
+        { name }
       </Link>
     );
   }
 
-  renderMobileLink(link: ReactElement) {
+  renderMobileLink ( link: ReactElement ) {
     return (
       <li
-        className={classNames('slot', {
-          show: this.state.categoryExpanded,
-        })}
+        className={ classNames( 'slot', {
+          show: this.state.menuExpanded,
+        } ) }
       >
-        {link}
+        { link }
       </li>
     );
   }
 
-  render() {
-    const homeLink = this.renderLink('/home', '首页');
+  render () {
+    const homeLink = this.renderLink( '/home', '首页' );
     const canlendarLink = this.renderLink(
       '/canlendar/:year/:month/:date',
       '日历',
-      '/canlendar/*/*/*'
+      '/canlendar/*/*/*',
     );
-    const tagsLink = this.renderLink('/tags/:tags', '标签', '/tags/*');
+    const tagsLink = this.renderLink( '/tags/:tags', '标签', '/tags/*' );
 
     return (
       <div className="title-bar">
         <nav>
           <Switch>
-            <Route path="/post/:name" component={GoToV2} />
+            <Route path="/post/:name" component={ GoToV2 } />
             <Route
               path="*"
-              component={() => (
+              component={ () => (
                 <a
                   className="icon pc"
                   title="去新版网站"
-                  href={__portal_to_v2__}
+                  href={ __portal_to_v2__ }
                 >
                   <GateIcon />
                 </a>
-              )}
+              ) }
             />
           </Switch>
           <Switch>
-            <Route path="/post/:name" component={Category} />
+            <Route path="/post/:name" component={ Category } />
             <Route
               exact
-              path={[
+              path={ [
                 '/home',
                 '/home/p/:page',
                 '/tags/:tags',
                 '/tags/:tags/p/:page',
                 '/canlendar/:year/:month/:date',
                 '/canlendar/:year/:month/:date/p/:page',
-              ]}
-              component={Pager}
+              ] }
+              component={ Pager }
             />
           </Switch>
           <div className="main">
-            <div className="pc">{homeLink}</div>
-            <div className="pc">{canlendarLink}</div>
-            <div className="pc">{tagsLink}</div>
+            <div className="pc">{ homeLink }</div>
+            <div className="pc">{ canlendarLink }</div>
+            <div className="pc">{ tagsLink }</div>
             <ul className="mobile">
               <li>
-                <a
+                <button
+                  type="button"
                   className="icon"
-                  ref={this.toggleElem}
-                  onClick={this.onExpand}
+                  ref={ this.toggleElem }
+                  onClick={ this.onExpand }
                 >
-                  <CategoryIcon closing={this.state.categoryExpanded} />
-                </a>
+                  <MenuIcon closing={ this.state.menuExpanded } />
+                </button>
               </li>
-              {this.renderMobileLink(homeLink)}
-              {this.renderMobileLink(canlendarLink)}
-              {this.renderMobileLink(tagsLink)}
+              { this.renderMobileLink( homeLink ) }
+              { this.renderMobileLink( canlendarLink ) }
+              { this.renderMobileLink( tagsLink ) }
             </ul>
           </div>
         </nav>

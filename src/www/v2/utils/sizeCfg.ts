@@ -9,13 +9,13 @@ interface IconStyle {
   '--icon-size': string;
 }
 
-export default function(cfg: SizeCfg): IconStyle {
+export default function calc ( cfg: SizeCfg ): IconStyle {
   const isMobile = isMobileSize().result;
 
   return {
-    width: (isMobile ? cfg[1] : cfg[0]) + __UNIT__,
-    '--icon-size': (isMobile ? cfg[3] : cfg[2]) + __UNIT__,
+    width: `${ isMobile ? cfg[1] : cfg[0] }${ __UNIT__ }`,
+    '--icon-size': `${ isMobile ? cfg[3] : cfg[2] }${ __UNIT__ }`,
   };
 }
 
-export const iconSizeCfg1 = [0.5, 1, 0.25, 0.5];
+export const iconSizeCfg1 = [ 0.5, 1, 0.25, 0.5 ];

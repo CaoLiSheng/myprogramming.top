@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class ErrorComp extends Component {
-  render() {
-    throw new Error('WhBt');
-    return <div></div>;
-  }
+export const ErrorComp = () => {
+  throw new Error( 'WhBt' );
+  return <div />;
 }

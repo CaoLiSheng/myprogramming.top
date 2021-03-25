@@ -1,30 +1,59 @@
 import { scrollToCoords } from './scroll';
 
-type Coords = (HTMLElement | number | null)[];
+type Coords = ( Element | number | null )[];
 
-function newCoords(direction: boolean): Coords {
-  const parent = document.getElementById('main');
+function newCoords ( direction: boolean ): Coords {
+  const parent = document.querySelector( '#main' );
   const current = parent?.scrollTop || 0;
-  const height = parent?.offsetHeight || 0;
-  const y = current + (direction ? 0.36 : -0.36) * height;
-  return [parent, y];
+  const height = ( parent as HTMLElement | null )?.offsetHeight || 0;
+  const y = current + ( direction ? 0.36 : -0.36 ) * height;
+  return [ parent, y ];
 }
 
-const hotkeys = function(evt: KeyboardEvent) {
-  switch (evt.key) {
+function hotkeys ( evt: KeyboardEvent ) {
+  let parent: Element | number | null;
+  let y: Element | number | null;
+
+  switch ( evt.key ) {
     case 'Left': // IE/Edge specific value
     case 'ArrowLeft':
-      scrollToCoords.apply(null, newCoords(false));
+      [ parent, y ] = newCoords( false );
+      scrollToCoords( parent as Element | null, y as number );
       break;
     case 'Right': // IE/Edge specific value
     case 'ArrowRight':
-      scrollToCoords.apply(null, newCoords(true));
+      [ parent, y ] = newCoords( true );
+      scrollToCoords( parent as Element | null, y as number );
+      break;
+    default:
       break;
   }
 };
 
-window.addEventListener('keydown', hotkeys);
+export default function init () {
+  window.addEventListener( 'keydown', hotkeys );
 
-window.addEventListener('beforeunload', () => {
-  window.removeEventListener('keydown', hotkeys);
-});
+  window.addEventListener( 'beforeunload', () => {
+    window.removeEventListener( 'keydown', hotkeys );
+  } );
+}
+
+let lastSpaceKeyHit = 0;
+
+export const bindDoubleSpaceKey = ( callback: () => void, ev: KeyboardEvent ) => {
+  if ( ev.key !== ' ' ) {
+    lastSpaceKeyHit = 0;
+    return;
+  }
+
+  ev.preventDefault();
+
+  const now = performance.now();
+  if ( now - lastSpaceKeyHit < 300 ) {
+    lastSpaceKeyHit = 0;
+    callback();
+    return;
+  }
+
+  lastSpaceKeyHit = now;
+};

@@ -19,56 +19,54 @@ const EmptyDbState: dbState = {
 export const db = {
   state: EmptyDbState,
   data: EmptySchema,
-  update(data: Schema) {
-    Object.keys(data).forEach((key: string) => {
+  update ( data: Schema ) {
+    Object.keys( data ).forEach( ( key: string ) => {
       this.data[key] = data[key];
-    });
-    this.state.allTags = Object.keys(data.tagCategories);
+    } );
+    this.state.allTags = Object.keys( data.tagCategories );
     this.state.refresh = true;
   },
-  filterByKW(kw: string) {
-    if ('*' === kw) {
+  filterByKW ( kw: string ) {
+    if ( kw === '*' ) {
       return this.data.sortedPosts;
     }
 
-    return (this.data.sortedPosts || []).filter((name: string) => {
+    return ( this.data.sortedPosts || [] ).filter( ( name: string ) => {
       const meta = this.data.metas[name];
-      if (name.indexOf(kw) >= 0) return true;
-      if (meta.date.indexOf(kw) >= 0) return true;
-      if (meta.title.indexOf(kw) >= 0) return true;
+      if ( name.includes( kw ) ) return true;
+      if ( meta.date.includes( kw ) ) return true;
+      if ( meta.title.includes( kw ) ) return true;
       if (
-        meta.tags
-          .map((t: any) => `${t}`)
-          .some((t: string) => t.indexOf(kw) >= 0)
+        meta.tags.some( ( t: string ) => t.includes( kw ) )
       ) {
         return true;
       }
       return false;
-    });
+    } );
   },
-  filterByTags(tags: string[]) {
+  filterByTags ( tags: string[] ) {
     const unSorted = tags
-      .map((t: string) => this.data.tagCategories[t])
-      .reduce(intersectingReduce, []);
+      .map( ( t: string ) => this.data.tagCategories[t] )
+      .reduce( intersectingReduce, [] );
 
     const extendable = [
-      ...unSorted.map((p: string) => this.data.metas[p].tags),
+      ...unSorted.map( ( p: string ) => this.data.metas[p].tags ),
       tags,
-    ].reduce(distinctReduce, []);
+    ].reduce( distinctReduce, [] );
 
     return {
       extendable,
-      posts: dateSortDesc(unSorted, this.data.metas),
+      posts: dateSortDesc( unSorted, this.data.metas ),
     };
   },
 };
 
 let __INITIALIZATION_STARTED = false;
 export const initOnce = async () => {
-  if (__INITIALIZATION_STARTED) return;
+  if ( __INITIALIZATION_STARTED ) return;
   __INITIALIZATION_STARTED = true;
 
-  const resp = await fetch(`db.json?var=${Date.now()}`);
+  const resp = await fetch( `db.json?var=${Date.now()}` );
   const data: Schema = await resp.json();
-  db.update(data);
+  db.update( data );
 };

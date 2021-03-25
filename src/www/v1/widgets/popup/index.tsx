@@ -2,7 +2,6 @@ import React, {
   Component,
   ReactElement,
   cloneElement,
-  Fragment,
   createRef,
 } from 'react';
 import { createPortal } from 'react-dom';
@@ -12,72 +11,86 @@ import { HTMLElementOffset, getOffset } from '@www/utils/offset';
 
 import './index.scss';
 
-const popupsContainer: HTMLDivElement = document.getElementById(
-  'popups-container'
+interface PositionStyle {
+  top?: number;
+  right?: number;
+  bottom?: number;
+  left?: number;
+  transform?: string;
+}
+
+const popupsContainer: HTMLDivElement = document.querySelector(
+  '#popups-container',
 ) as HTMLDivElement;
 
-const posMain = (main: string, offset: HTMLElementOffset, style = {}) => {
-  switch (main) {
+const posMain = ( main: string, offset: HTMLElementOffset, style: PositionStyle = {} ) => {
+  switch ( main ) {
     case 'top':
-      style['bottom'] = offset.top;
+      style.bottom = offset.top;
       break;
     case 'right':
-      style['left'] = offset.left + offset.width;
+      style.left = offset.left + offset.width;
       break;
     case 'bottom':
-      style['top'] = offset.top + offset.height;
+      style.top = offset.top + offset.height;
       break;
     case 'left':
-      style['right'] = window.innerWidth - offset.left;
+      style.right = window.innerWidth - offset.left;
+      break;
+    default:
       break;
   }
   return style;
 };
 
-const posCross = (cross: string, offset: HTMLElementOffset, style = {}) => {
-  if (cross === 'center') return style;
+const posCross = ( cross: string, offset: HTMLElementOffset, style: PositionStyle = {} ) => {
+  if ( cross === 'center' ) return style;
 
-  switch (cross) {
+  switch ( cross ) {
     case 'top':
-      style['top'] = offset.top;
+      style.top = offset.top;
       break;
     case 'right':
-      style['right'] = window.innerWidth - offset.left - offset.width;
+      style.right = window.innerWidth - offset.left - offset.width;
       break;
     case 'bottom':
-      style['bottom'] = window.innerHeight - offset.top - offset.height;
+      style.bottom = window.innerHeight - offset.top - offset.height;
       break;
     case 'left':
-      style['left'] = offset.left;
+      style.left = offset.left;
+      break;
+    default:
       break;
   }
   return style;
 };
 
-const posCenter = (modes: string[], offset: HTMLElementOffset, style = {}) => {
-  const [mainAxis, crossAxis] = modes;
-  if (crossAxis !== 'center') return style;
+const posCenter = ( modes: string[], offset: HTMLElementOffset, style: PositionStyle = {} ) => {
+  const [ mainAxis, crossAxis ] = modes;
+  if ( crossAxis !== 'center' ) return style;
 
-  switch (mainAxis) {
+  switch ( mainAxis ) {
     case 'left':
     case 'right':
-      style['top'] = offset.top + offset.height / 2;
-      style['transform'] = 'translateY(-50%)';
+      style.top = offset.top + offset.height / 2;
+      style.transform = 'translateY(-50%)';
       break;
     case 'top':
     case 'bottom':
-      style['left'] = offset.left + offset.width / 2;
-      style['transform'] = 'translateX(-50%)';
+      style.left = offset.left + offset.width / 2;
+      style.transform = 'translateX(-50%)';
+      break;
+    default:
       break;
   }
   return style;
 };
 
-const posImpl = (modes: string[], offset: HTMLElementOffset) => {
+const posImpl = ( modes: string[], offset: HTMLElementOffset ) => {
   let style = {};
-  style = posMain(modes[0], offset, style);
-  style = posCross(modes[1], offset, style);
-  style = posCenter(modes, offset, style);
+  style = posMain( modes[ 0 ], offset, style );
+  style = posCross( modes[ 1 ], offset, style );
+  style = posCenter( modes, offset, style );
   return style;
 };
 
@@ -95,10 +108,10 @@ type pos =
   | 'left-top'
   | 'left-bottom';
 
-const position = (pos: pos, offset: HTMLElementOffset) => {
-  const modes = pos.split('-');
-  modes[1] = modes[1] || 'center';
-  return posImpl(modes, offset);
+const position = ( pos: pos, offset: HTMLElementOffset ) => {
+  const modes = pos.split( '-' );
+  modes[ 1 ] = modes[ 1 ] || 'center';
+  return posImpl( modes, offset );
 };
 
 interface PopupProps {
@@ -112,54 +125,56 @@ interface PopupStates {
 }
 
 export class Popup extends Component<PopupProps, PopupStates> {
-  state = { open: false };
-
-  constructor(props: PopupProps) {
-    super(props);
-    this.el = document.createElement('div');
-  }
 
   private el: HTMLDivElement;
+
   private triggerRef = createRef<HTMLElement>();
 
-  componentDidMount() {
-    popupsContainer.appendChild(this.el);
+  constructor ( props: PopupProps ) {
+    super( props );
+
+    this.state = { open: false };
+    this.el = document.createElement( 'div' );
   }
 
-  componentWillUnmount() {
-    popupsContainer.removeChild(this.el);
+  componentDidMount () {
+    popupsContainer.append( this.el );
   }
 
-  private renderPopper() {
+  componentWillUnmount () {
+    this.el.remove();
+  }
+
+  private renderPopper () {
     const { Popper } = this.props;
     const { open } = this.state;
 
     return createPortal(
       <div
-        className={classNames('popup', { open })}
-        style={position(
+        className={ classNames( 'popup', { open } ) }
+        style={ position(
           this.props.position,
-          getOffset(this.triggerRef.current)
-        )}
+          getOffset( this.triggerRef.current ),
+        ) }
       >
-        {Popper}
+        { Popper }
       </div>,
-      this.el
+      this.el,
     );
   }
 
-  render() {
+  render () {
     const { Trigger } = this.props;
 
     return (
-      <Fragment>
-        {cloneElement(Trigger, {
+      <>
+        {cloneElement( Trigger, {
           ref: this.triggerRef,
-          onMouseEnter: () => this.setState({ open: true }),
-          onMouseLeave: () => this.setState({ open: false }),
-        })}
-        {this.renderPopper()}
-      </Fragment>
+          onMouseEnter: () => this.setState( { open: true } ),
+          onMouseLeave: () => this.setState( { open: false } ),
+        } ) }
+        {this.renderPopper() }
+      </>
     );
   }
 }

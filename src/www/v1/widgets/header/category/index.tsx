@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import Moment from 'moment';
 
@@ -12,55 +12,59 @@ import { TagsIcon } from '@images/index';
 
 @injectDBCtx()
 export default class extends Component<
-  RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
+RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
 > {
   private renderCurCategory = (
-    { db }: { db: Schema } = { db: EmptySchema }
+    { db }: { db: Schema } = { db: EmptySchema },
   ) => {
     const postName = this.props.match.params.name;
-    if (!postName || !db.metas[postName]) return null;
+    if ( !postName || !db.metas[ postName ] ) return null;
 
-    const date = Moment(db.metas[postName].date, 'YYYY-MM-DD');
-    const tags = db.metas[postName].tags;
+    const date = Moment( db.metas[ postName ].date, 'YYYY-MM-DD' );
+    const { tags } = db.metas[ postName ];
     return (
-      <Fragment>
-        {!!tags.length && (
+      <>
+        {tags.length > 0 && (
           <Popup
             position="bottom-right"
-            Trigger={
-              <Link className="icon" to={`/tags/${tags.join(',')}`}>
+            Trigger={ (
+              <Link className="icon" to={ `/tags/${ tags.join( ',' ) }` }>
                 <TagsIcon />
               </Link>
-            }
-            Popper={
+            ) }
+            Popper={ (
               <ol className="tags">
-                {tags.map((tag: string) => (
-                  <li key={tag}>#{tag}#</li>
-                ))}
+                {tags.map( ( tag: string ) => (
+                  <li key={ tag }>
+                    #
+                    {tag }
+                    #
+                  </li>
+                ) ) }
               </ol>
-            }
+            ) }
           />
-        )}
+        ) }
         <div className="inline">
-          {/* <span></span> */}
-          <Link to={`/canlendar/${date.year()}/*/*`}>{date.year()}</Link>
+          {/* <span></span> */ }
+          <Link to={ `/canlendar/${ date.year() }/*/*` }>{ date.year() }</Link>
           <span>年</span>
-          <Link to={`/canlendar/${date.year()}/${date.month() + 1}/*`}>
-            {date.month() + 1}
+          <Link to={ `/canlendar/${ date.year() }/${ date.month() + 1 }/*` }>
+            { date.month() + 1 }
           </Link>
           <span>月</span>
           <Link
-            to={`/canlendar/${date.year()}/${date.month() + 1}/${date.date()}`}
+            to={ `/canlendar/${ date.year() }/${ date.month() + 1 }/${ date.date() }` }
           >
-            {date.date()}
+            { date.date() }
           </Link>
           <span>日</span>
         </div>
-      </Fragment>
+      </>
     );
   };
 
-  render() {
-    return this.renderCurCategory(this.props.db);
+  render () {
+    return this.renderCurCategory( this.props.db );
   }
 }

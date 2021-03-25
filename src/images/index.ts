@@ -1,4 +1,5 @@
 export * from './left';
 export * from './tags';
 export * from './gate';
-export * from './category';
+export * from './menu';
+export * from './cmd-and-space';

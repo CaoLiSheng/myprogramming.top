@@ -1,10 +1,10 @@
-const path = require('path');
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const path = require( 'path' );
+const webpack = require( 'webpack' );
+const { merge } = require( 'webpack-merge' );
 
-const base = require('./base.babel');
+const base = require( './base.babel' );
 
-module.exports = merge(base, {
+module.exports = merge( base, {
   target: 'web',
   optimization: {
     splitChunks: {
@@ -19,6 +19,6 @@ module.exports = merge(base, {
   },
   plugins: [
     // new wba.BundleAnalyzerPlugin(),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ),
   ],
-});
+} );

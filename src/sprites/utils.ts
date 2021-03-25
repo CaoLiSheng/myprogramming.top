@@ -1,15 +1,15 @@
-export function insertStyleSheetRule(ruleText: string) {
-  let sheets = document.styleSheets;
+export function insertStyleSheetRule ( ruleText: string ) {
+  const sheets = document.styleSheets;
 
-  if (sheets.length == 0) {
-    let style = document.createElement('style');
-    style.appendChild(document.createTextNode(''));
-    document.head.appendChild(style);
+  if ( sheets.length === 0 ) {
+    const style = document.createElement( 'style' );
+    style.append( document.createTextNode( '' ) );
+    document.head.append( style );
   }
 
-  let sheet = sheets[sheets.length - 1];
+  const sheet = sheets[sheets.length - 1];
   sheet.insertRule(
     ruleText,
-    sheet.rules ? sheet.rules.length : sheet.cssRules.length
+    sheet.rules ? sheet.rules.length : sheet.cssRules.length,
   );
 }

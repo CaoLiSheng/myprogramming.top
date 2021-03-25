@@ -1,11 +1,11 @@
-export function clickIn(
+export function clickIn (
   target: HTMLElement | null | undefined,
-  ...wrappers: (HTMLElement | null)[]
+  ...wrappers: ( HTMLElement | null )[]
 ): boolean {
-  if (!wrappers.length) return false;
+  if ( wrappers.length === 0 ) return false;
 
-  while (!!target) {
-    if (wrappers.some((w) => w === target)) return true;
+  while ( target ) {
+    if ( wrappers.includes( target ) ) return true;
     target = target?.parentElement;
   }
   return false;

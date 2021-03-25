@@ -25,17 +25,17 @@ export const REPLACING_PATH_PAGER_MAP = [
   '/canlendar/:year/:month/:date/p/:page',
 ];
 
-export function buildPagerPath(
+export function buildPagerPath (
   info: { path: string; url: string },
-  page: number
+  page: number,
 ): string {
-  const paths = info.url.split('/');
-  if (APPENDING_PATH_PAGER_MAP.includes(info.path)) {
-    paths.push(`p/${page}`);
-  } else if (REPLACING_PATH_PAGER_MAP.includes(info.path)) {
-    paths[paths.length - 1] = `${page}`;
+  const paths = info.url.split( '/' );
+  if ( APPENDING_PATH_PAGER_MAP.includes( info.path ) ) {
+    paths.push( `p/${ page }` );
+  } else if ( REPLACING_PATH_PAGER_MAP.includes( info.path ) ) {
+    paths[ paths.length - 1 ] = `${ page }`;
   }
-  return paths.join('/');
+  return paths.join( '/' );
 }
 
 export interface PAGE_INFO {
@@ -46,60 +46,58 @@ export interface PAGE_INFO {
 }
 
 export interface PAGE_SCHEMA {
-  [key: string]: PAGE_INFO;
+  [ key: string ]: PAGE_INFO;
 }
 
 export interface I_PAGE_CTX {
   page: PAGE_SCHEMA;
-  update: (key: string, value: string[], cur?: number) => void;
+  update: ( key: string, value: string[], cur?: number ) => void;
 }
 
-export const { Provider: SetPage, Consumer: GetPage } = createContext({});
+export const { Provider: SetPage, Consumer: GetPage } = createContext( {} );
 
-export function injectPageCtx(): HOCDecrator<{ page?: I_PAGE_CTX }> {
-  return <P extends { page?: I_PAGE_CTX }>(
-    WrappedComponent: ComponentType<P>
-  ) =>
-    class extends React.Component<P> {
-      public render() {
-        return (
-          <GetPage>
-            {(page: I_PAGE_CTX) => (
-              <WrappedComponent {...this.props} page={page} />
-            )}
-          </GetPage>
-        );
+export function injectPageCtx (): HOCDecrator<{ page?: I_PAGE_CTX }> {
+  return <P extends { page?: I_PAGE_CTX }> (
+    WrappedComponent: ComponentType<P>,
+  ) => ( props: P ) => (
+    <GetPage>
+      {( page: unknown ) => (
+        <WrappedComponent { ...props } page={ page as I_PAGE_CTX } />
+      ) }
+    </GetPage>
+  );
+}
+
+export function withPageCtxProvider (): HOCDecrator<{ page?: I_PAGE_CTX }> {
+  return <P extends { page?: I_PAGE_CTX }> (
+    WrappedComponent: ComponentType<P>,
+  ) => class extends Component<P, I_PAGE_CTX> {
+
+      constructor ( props: P ) {
+        super( props );
+
+        this.state = { page: {}, update: this.updatePage };
       }
-    };
-}
 
-export function withPageCtxProvider(): HOCDecrator<{ page?: I_PAGE_CTX }> {
-  return <P extends { page?: I_PAGE_CTX }>(
-    WrappedComponent: ComponentType<P>
-  ) =>
-    class extends Component<P, I_PAGE_CTX> {
-      updatePage = (key: string, data: string[], cur?: number) =>
-        this.setState(
-          ({ page }) => ({
-            page: {
-              ...page,
-              [key]: {
-                cur: cur || 0,
-                min: 0,
-                max: Math.max(0, Math.ceil(data.length / PAGE_SIZE) - 1),
-                data,
-              },
+      updatePage = ( key: string, data: string[], cur?: number ) => this.setState(
+        ( { page } ) => ( {
+          page: {
+            ...page,
+            [ key ]: {
+              cur: cur || 0,
+              min: 0,
+              max: Math.max( 0, Math.ceil( data.length / PAGE_SIZE ) - 1 ),
+              data,
             },
-          }),
-          () => window.scrollTo(0, 0)
-        );
+          },
+        } ),
+        () => window.scrollTo( 0, 0 ),
+      );
 
-      state = { page: {}, update: this.updatePage };
-
-      public render() {
+      public render () {
         return (
-          <SetPage value={this.state}>
-            <WrappedComponent {...this.props} page={this.state} />
+          <SetPage value={ this.state }>
+            <WrappedComponent { ...this.props } page={ this.state } />
           </SetPage>
         );
       }

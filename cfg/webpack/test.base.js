@@ -1,11 +1,10 @@
-const path = require('path');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const { merge } = require('webpack-merge');
+const path = require( 'path' );
+const nodeExternals = require( 'webpack-node-externals' );
+const { merge } = require( 'webpack-merge' );
 
-const base = require('./base.babel');
+const base = require( './base.babel' );
 
-module.exports = merge(base, {
+module.exports = merge( base, {
   mode: 'development',
   target: 'node',
   output: {
@@ -13,12 +12,12 @@ module.exports = merge(base, {
     publicPath: '/',
   },
   externals: [
-    nodeExternals({ modulesDir: path.join(process.cwd(), 'node_modules') }),
+    nodeExternals( { modulesDir: path.join( process.cwd(), 'node_modules' ) } ),
   ],
   resolve: {
-    extensions: ['.wasm', '.mjs', '.js', '.ts', '.json'],
+    extensions: [ '.wasm', '.mjs', '.js', '.ts', '.json' ],
   },
   module: {
-    rules: [require('./rules/mjs.auto'), require('./rules/babel.loader')()],
+    rules: [ require( './rules/mjs.auto' ), require( './rules/babel.loader' )() ],
   },
-});
+} );

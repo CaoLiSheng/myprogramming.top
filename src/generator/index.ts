@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import jsYAML from 'js-yaml';
 
+import { DB } from '@common/db';
 import {
   copyTemplateAssets,
   tplContent,
@@ -13,88 +14,100 @@ import {
   emailLinkHTML,
   hmBaidu,
 } from './template';
-import { inDir, outDir, isPost, extractPostName } from './file';
+import {
+  inDir, outDir, isPost, extractPostName,
+} from './file';
 import { htmlMinify } from './minify';
 import { converter } from './converter';
 
 // DB
-import { DB } from '@common/db';
 const dbData = new DB();
 
-declare var __production__: boolean;
+declare let __production__: boolean;
 
 // Clean & Make Out Dir
-fs.mkdirSync(outDir, { recursive: true });
-console.log('inDir', inDir, '\noutDir', outDir, '\nready...');
+fs.mkdirSync( outDir, { recursive: true } );
+console.log( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
 
 // Read Source Dir
-const sources = fs.readdirSync(inDir);
-console.log('Sources:', sources);
+const sources = fs.readdirSync( inDir );
+console.log( 'Sources:', sources );
 
 // Copy Template's Assets
 copyTemplateAssets();
 
 // Generate HTML
-const posts = sources.filter((file: string) => isPost(file));
-console.log('Posts:', posts);
+const posts = sources.filter( ( file: string ) => isPost( file ) );
+console.log( 'Posts:', posts );
 
-posts.forEach((fileName: string) => {
-  const fileContent = fs.readFileSync(path.join(inDir, fileName), {
+posts.forEach( ( fileName: string ) => {
+  const fileContent = fs.readFileSync( path.join( inDir, fileName ), {
     encoding: 'UTF-8',
-  });
+  } );
 
   /**
    * moved deprecated code to ./_deprecated.ts
    * where implements metadata parsing
    */
-  const matches = fileContent.match(/^[\s\S]*?---\n([\s\S]*?)---\n([\s\S]*)$/);
-  if (!matches) throw new Error(`文章[ ${fileName} ]头部信息解析出现错误！`);
-  const [rawMetadata, mdContent] = matches.slice(1);
-  const body = converter.render(mdContent);
+  const matches = fileContent.match( /^[\S\s]*?---\n([\S\s]*?)---\n([\S\s]*)$/ );
+  if ( !matches ) throw new Error( `文章[ ${fileName} ]头部信息解析出现错误！` );
+  const [ rawMetadata, mdContent ] = matches.slice( 1 );
+  const body = converter.render( mdContent );
 
-  let metadata: any;
-  let tags = [];
+  let metadata: unknown;
 
   try {
-    metadata = jsYAML.safeLoad(rawMetadata);
-  } catch (e) {
-    console.log(e);
+    metadata = jsYAML.safeLoad( rawMetadata );
+  } catch ( error ) {
+    console.log( error );
   }
 
-  const { 'no-receive-emails': noReceiveEmails, style, title, date } = metadata;
-  if (titleTag(fileName)) tags.push(titleTag(fileName));
-  if (metadata.tags) tags.push(...metadata.tags);
+  const {
+    'no-receive-emails': noReceiveEmails, tags: tagsMd, style, title, date,
+  } = metadata as {
+    'no-receive-emails': string,
+    tags?: string[],
+    style: string,
+    title: string,
+    date: string,
+  };
+  
+  const tags: string[] = [];
+  if ( titleTag( fileName ) ) tags.push( titleTag( fileName ) );
+  if ( tagsMd ) tags.push( ...tagsMd );
 
   console.log(
     'parsing-------------start\n',
-    [rawMetadata, noReceiveEmails, style, title, date, tags, body].join('\n\n'),
-    '\nend---------------parsing'
+    [ rawMetadata, noReceiveEmails, style, title, date, tags, body ].join( '\n\n' ),
+    '\nend---------------parsing',
   );
 
-  const name = extractPostName(fileName);
-  const rowMeta = dbData.add({ name, title, date, tags }).persist();
+  const name = extractPostName( fileName );
+  const rowMeta = dbData.add( {
+    name, title, date, tags,
+  } ).persist();
   fs.writeFileSync(
-    path.join(outDir, name + '.html'),
+    path.join( outDir, `${name}.html` ),
     htmlMinify(
       tplContent
-        .replace('{{title}}', title + ' | 又心真人的博客')
-        .replace('{{article_title}}', title)
-        .replace('{{javascript}}', tplScriptPath())
-        .replace('{{hm_baidu}}', hmBaidu())
-        .replace('{{stylesheet}}', fetchCSS(style))
-        .replace('{{title_tag}}', titleTagHTML(fileName))
-        .replace('{{date_tag}}', dateTagHTML(date, !rowMeta))
+        .replace( '{{title}}', `${title} | 又心真人的博客` )
+        .replace( '{{article_title}}', title )
+        .replace( '{{javascript}}', tplScriptPath() )
+        .replace( '{{hm_baidu}}', hmBaidu() )
+        .replace( '{{stylesheet}}', fetchCSS( style ) )
+        .replace( '{{title_tag}}', titleTagHTML( fileName ) )
+        .replace( '{{date_tag}}', dateTagHTML( date, !rowMeta ) )
         .replace(
           '{{article_body}}',
-          `${body}${emailLinkHTML(fileName, noReceiveEmails, style, title)}`
-        )
+          `${body}${emailLinkHTML( fileName, noReceiveEmails, style, title )}`,
+        ),
     ),
-    { encoding: 'UTF-8', flag: 'w' }
+    { encoding: 'UTF-8', flag: 'w' },
   );
-});
-console.log('All HTMLs Generated');
+} );
+console.log( 'All HTMLs Generated' );
 
-const dbPath = path.join(outDir, 'db.json');
-fs.createFileSync(dbPath);
-fs.writeFileSync(dbPath, dbData.toString());
-console.log('DB File Writen');
+const dbPath = path.join( outDir, 'db.json' );
+fs.createFileSync( dbPath );
+fs.writeFileSync( dbPath, dbData.toString() );
+console.log( 'DB File Writen' );

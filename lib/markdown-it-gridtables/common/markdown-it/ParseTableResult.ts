@@ -7,13 +7,13 @@ import ColumnAlignments from '../gridtables/ColumnAlignments';
 import TableRow from './TableRow';
 
 export default class ParseTableResult {
-  Success: boolean = false;
+  Success = false;
 
-  ColumnCount: number = 0;
+  ColumnCount = 0;
 
   ColumnAlignments: ColumnAlignments[] = [];
 
-  HeaderLess: boolean = false;
+  HeaderLess = false;
 
   HeaderLines: TableRow = { lines: [], columnOffsets: [] };
 
@@ -21,5 +21,5 @@ export default class ParseTableResult {
 
   SeparatorLineOffsets: number[] = [];
 
-  CurrentLine: number = 0;
+  CurrentLine = 0;
 }

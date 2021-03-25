@@ -11,7 +11,7 @@ import IState from "../../interfaces/markdown-it/IState";
  * 
  * @param state The Markdown It state.
  */
-export default function getCharCodeAtStartOfLine(
+export default function getCharCodeAtStartOfLine (
     state: IState,
     line: number
 ): number
@@ -20,10 +20,10 @@ export default function getCharCodeAtStartOfLine(
         state.bMarks[line] +
         state.tShift[line];
 
-    if (pos >= state.eMarks[line])
+    if ( pos >= state.eMarks[line] )
     {
         return -1;
     }
 
-    return state.src.charCodeAt(pos);
+    return state.src.charCodeAt( pos );
 }

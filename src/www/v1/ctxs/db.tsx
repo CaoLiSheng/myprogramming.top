@@ -4,37 +4,36 @@ import { EmptySchema, Schema, HOCDecrator } from '@common/index';
 
 export interface I_DB_CTX {
   db: Schema;
-  load: (db: Schema) => void;
+  load: ( db: Schema ) => void;
 }
 
-export const { Provider: SetDB, Consumer: GetDB } = createContext({});
+export const { Provider: SetDB, Consumer: GetDB } = createContext( {} );
 
-export function injectDBCtx(): HOCDecrator<{ db?: I_DB_CTX }> {
-  return <P extends { db?: I_DB_CTX }>(WrappedComponent: ComponentType<P>) =>
-    class extends Component<P> {
-      public render() {
-        return (
-          <GetDB>
-            {(ctx: I_DB_CTX) => <WrappedComponent {...this.props} db={ctx} />}
-          </GetDB>
-        );
-      }
-    };
+export function injectDBCtx (): HOCDecrator<{ db?: I_DB_CTX }> {
+  return <P extends { db?: I_DB_CTX }> ( WrappedComponent: ComponentType<P> ) => ( props: P ) => (
+    <GetDB>
+      {( ctx: unknown ) => <WrappedComponent { ...props } db={ ctx as I_DB_CTX } /> }
+    </GetDB>
+  );
 }
 
-export function withDBCtxProvider(): HOCDecrator<{ db?: I_DB_CTX }> {
-  return <P extends { db?: I_DB_CTX }>(WrappedComponent: ComponentType<P>) =>
-    class extends Component<P, I_DB_CTX> {
-      load = (db: Schema) => this.setState({ db });
+export function withDBCtxProvider (): HOCDecrator<{ db?: I_DB_CTX }> {
+  return <P extends { db?: I_DB_CTX }> ( WrappedComponent: ComponentType<P> ) => class extends Component<P, I_DB_CTX> {
 
-      state = { db: EmptySchema, load: this.load };
+    constructor ( props: P ) {
+      super( props );
 
-      public render() {
-        return (
-          <SetDB value={this.state}>
-            <WrappedComponent {...this.props} db={this.state} />
-          </SetDB>
-        );
-      }
-    };
+      this.state = { db: EmptySchema, load: this.load };
+    }
+
+    load = ( db: Schema ) => this.setState( { db } );
+
+    public render () {
+      return (
+        <SetDB value={ this.state }>
+          <WrappedComponent { ...this.props } db={ this.state } />
+        </SetDB>
+      );
+    }
+  };
 }

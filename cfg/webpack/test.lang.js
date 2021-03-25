@@ -1,14 +1,14 @@
-const path = require('path');
+const path = require( 'path' );
 // const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const { merge } = require( 'webpack-merge' );
 
-const base = require('./test.base');
+const base = require( './test.base' );
 
-module.exports = merge(base, {
+module.exports = merge( base, {
   entry: {
     index: 'src/tests/lang',
   },
   output: {
-    path: path.join(process.cwd(), 'build/tests/lang'),
+    path: path.join( process.cwd(), 'build/tests/lang' ),
   },
-});
+} );

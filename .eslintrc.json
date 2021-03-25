@@ -1,0 +1,136 @@
+{
+	"settings": {
+		"react": {
+			"pragma": "React",
+			"version": "detect"
+		}
+	},
+	"parserOptions": {
+		"project": "./tsconfig.json",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+		// "ecmaVersion": 10
+		// "sourceType": "module",
+	},
+	"env": {
+		// "es6": true,
+		// "commonjs": true,
+		"node": true,
+		"browser": true
+	},
+	"extends": [
+		"airbnb-typescript",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"plugin:eslint-comments/recommended",
+		"plugin:promise/recommended",
+		"plugin:unicorn/recommended",
+		"prettier"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"eslint-comments",
+		"promise",
+		"unicorn"
+	],
+	"rules": {
+		"max-classes-per-file": "off",
+		"global-require": "off",
+		"no-new": "off",
+		"no-void": "off",
+		"no-console": "off",
+		"no-continue": "off",
+		"no-extend-native": "off",
+		"no-param-reassign": "off",
+		"no-restricted-syntax": "off",
+		"no-underscore-dangle": "off",
+		"no-prototype-builtins": "off",
+		"space-in-parens": [
+			"error",
+			"always"
+		],
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
+		"array-bracket-spacing": [
+			"error",
+			"always"
+		],
+		"space-before-function-paren": [
+			"error",
+			"always"
+		],
+		"react/no-unused-state": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/destructuring-assignment": "off",
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [
+					".tsx",
+					".jsx"
+				]
+			}
+		],
+		"import/no-extraneous-dependencies": "off",
+		"import/prefer-default-export": "off",
+		"import/no-default-export": "off",
+		"unicorn/no-array-push-push": "off",
+		"unicorn/no-array-callback-reference": "off",
+		"unicorn/prefer-dom-node-dataset": "off",
+		"unicorn/prevent-abbreviations": "off",
+		"unicorn/no-array-for-each": "off",
+		"unicorn/no-array-reduce": "off",
+		"unicorn/filename-case": "off",
+		"unicorn/prefer-spread": "off",
+		"unicorn/no-null": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/no-unsafe-member-access": "off",
+		"@typescript-eslint/no-unsafe-assignment": "off",
+		"@typescript-eslint/prefer-regexp-exec": "off",
+		"@typescript-eslint/naming-convention": "off",
+		"@typescript-eslint/no-var-requires": "off",
+		"@typescript-eslint/no-unsafe-call": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"jsx-a11y/no-static-element-interactions": "off",
+		"jsx-a11y/click-events-have-key-events": "off",
+		"jsx-a11y/iframe-has-title": "off"
+	},
+	"overrides": [
+		{
+			"files": "**/*.vue",
+			"extends": [
+				"airbnb-typescript",
+				"plugin:vue/essential",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				"plugin:eslint-comments/recommended",
+				"plugin:promise/recommended",
+				"plugin:unicorn/recommended",
+				"prettier"
+			],
+			"plugins": [
+				"@typescript-eslint",
+				"eslint-comments",
+				"promise",
+				"unicorn",
+				"vue"
+			],
+			"parserOptions": {
+				"parser": "vue-eslint-parser",
+				"project": "./tsconfig.vue.json",
+				"extraFileExtensions": [
+					".vue"
+				],
+				"ecmaFeatures": {
+					"jsx": true
+				}
+			}
+		}
+	]
+}

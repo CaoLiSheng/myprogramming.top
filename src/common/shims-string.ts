@@ -1,47 +1,48 @@
 import md5 from 'md5';
 
-String.prototype.filter = function(
+String.prototype.filter = function filterImpl (
   this: string,
-  ...fns: ((file: string) => boolean)[]
+  ...fns: ( ( file: string ) => boolean )[]
 ): boolean {
-  const self: string = `${this}`;
-  for (let i = 0; i < fns.length; i++) {
-    if (fns[i](self)) continue;
+  const self = `${this}`;
+  for ( const fn of fns ) {
+    if ( fn( self ) ) continue;
     else return false;
   }
   return true;
 };
 
-String.prototype.md5 = function(
+String.prototype.md5 = function md5Impl (
   this: string,
   name: string,
   ext: string,
-  len: number
+  len: number,
 ): string {
-  return `${name}.${md5(this).substring(0, len)}.${ext}`;
+  return `${name}.${md5( this ).slice( 0, Math.max( 0, len ) )}.${ext}`;
 };
 
-String.prototype.toInt = function(this: string): number | undefined {
-  const self: string = this;
+String.prototype.toInt = function toIntImpl ( this: string ): ( number | null ) {
+  let parsed: number = Number.NaN;
+
   try {
-    const parsed = parseInt(self);
+    parsed = Number.parseInt( this, 10 );
 
-    if (isNaN(parsed)) return undefined;
-
-    return parsed;
+    if ( Number.isNaN( parsed ) ) return null;
   } catch {
-    console.error(`${self} is not a integer.`);
-    return undefined;
+    console.error( `${ this } is not a integer.` );
   }
+  
+  return parsed;
 };
 
-String.prototype.uniqueCheck = (function() {
+String.prototype.uniqueCheck = ( function factory () {
   const checkers = {};
-  return function(this: string, key: string): boolean {
+  return function uniqueCheckImpl ( this: string, key: string ): boolean {
     let theChecker = checkers[key];
-    if (!theChecker) {
-      theChecker = checkers[key] = this;
+    if ( !theChecker ) {
+      checkers[key] = this;
+      theChecker = checkers[key];
     }
     return this === theChecker;
   };
-})();
+}() );

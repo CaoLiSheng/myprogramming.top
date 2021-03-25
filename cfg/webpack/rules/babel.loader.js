@@ -1,10 +1,10 @@
-module.exports = function (configs = {}) {
+module.exports = function factory ( configs = {} ) {
   const { dev, react, tsAllExts } = configs;
 
-  const extPlugins = dev ? ['react-hot-loader/babel'] : [];
-  const extPresets = react ? ['@babel/preset-react'] : [];
+  const extPlugins = dev ? [ 'react-hot-loader/babel' ] : [];
+  const extPresets = react ? [ '@babel/preset-react' ] : [];
   const babelPrestTs = tsAllExts
-    ? ['@babel/preset-typescript', { allExtensions: true }]
+    ? [ '@babel/preset-typescript', { allExtensions: true } ]
     : '@babel/preset-typescript';
 
   return {
@@ -16,13 +16,13 @@ module.exports = function (configs = {}) {
         cacheDirectory: true,
         babelrc: false,
         presets: [
-          ['@babel/preset-env', { targets: { browsers: 'last 2 versions' } }],
+          [ '@babel/preset-env', { targets: { browsers: 'last 2 versions' } } ],
           babelPrestTs,
           ...extPresets,
         ],
         plugins: [
-          ['@babel/plugin-proposal-decorators', { legacy: true }],
-          ['@babel/plugin-proposal-class-properties', { loose: true }],
+          [ '@babel/plugin-proposal-decorators', { legacy: true } ],
+          [ '@babel/plugin-proposal-class-properties', { loose: true } ],
           '@babel/plugin-proposal-optional-chaining',
           '@babel/plugin-transform-runtime',
           ...extPlugins,

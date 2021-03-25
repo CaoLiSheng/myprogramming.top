@@ -3,7 +3,7 @@ module.exports = {
   oneOf: [
     {
       resourceQuery: /lang=pug/,
-      use: ['pug-plain-loader'],
+      use: [ 'pug-plain-loader' ],
     },
   ],
 };

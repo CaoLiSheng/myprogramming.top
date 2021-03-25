@@ -1,24 +1,20 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const IndexComponent = () =>
-  import(/* webpackChunkName: 'IndexComponent' */ '@vWidgets/index.vue');
+const IndexComponent = () => import( /* webpackChunkName: 'IndexComponent' */ '@vWidgets/index.vue' );
 
-const AllComponent = () =>
-  import(/* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue');
+const AllComponent = () => import( /* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue' );
 
 // const CanlendarComponent = () =>
 //   import(
 //     /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
 //   );
 
-const TagsComponent = () =>
-  import(
-    /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
-  );
+const TagsComponent = () => import(
+  /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
+);
 
-const StatusComponent = () =>
-  import(/* webpackChunkName: 'StatusComponent' */ '@vWidgets/status.vue');
+const StatusComponent = () => import( /* webpackChunkName: 'StatusComponent' */ '@vWidgets/status.vue' );
 
 const routes = [
   {
@@ -57,33 +53,29 @@ const routes = [
   },
 ];
 
-Vue.use(Router);
+Vue.use( Router );
 
-export default new Router({
+export default new Router( {
   routes,
-});
+} );
 
-export function clickOnTag(tag: string, router: Router) {
+export function clickOnTag ( tag: string, router: Router ) {
   const curR = router.currentRoute;
-  const query = curR.params['query'];
+  const { query } = curR.params;
 
   let newQuery = tag;
-  if ('*' !== query && 'TagsComponent' === curR.name) {
-    const tags = query.split(',').map((t: string) => t.trim());
-    const idx = tags.indexOf(tag);
-    if (idx >= 0) {
-      if (tags.length === 1) {
-        newQuery = '*';
-      } else {
-        newQuery = [...tags.slice(0, idx), ...tags.slice(idx + 1)].join(',');
-      }
+  if ( query !== '*' && curR.name === 'TagsComponent' ) {
+    const tags = query.split( ',' ).map( ( t: string ) => t.trim() );
+    const idx = tags.indexOf( tag );
+    if ( idx >= 0 ) {
+      newQuery = tags.length === 1 ? '*' : [ ...tags.slice( 0, idx ), ...tags.slice( idx + 1 ) ].join( ',' );
     } else {
-      newQuery = [...tags, tag].join(',');
+      newQuery = [ ...tags, tag ].join( ',' );
     }
   }
 
-  router.replace({
+  void router.replace( {
     name: 'TagsComponent',
     params: { query: newQuery },
-  });
+  } );
 }

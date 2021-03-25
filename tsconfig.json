@@ -38,7 +38,7 @@
     },
     "outDir": "dist",
     "module": "esnext",
-    "target": "es5",
+    "target": "es2015",
     "lib": [
       "es6",
       "dom"
@@ -56,6 +56,7 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
+    "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
@@ -67,7 +68,6 @@
     "public",
     "build",
     "posts",
-    "dist",
-    "cfg"
+    "dist"
   ]
 }

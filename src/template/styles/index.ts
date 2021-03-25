@@ -3,9 +3,9 @@ export interface StyleSheet {
 }
 
 // const UnsetPadding = { padding: { pc: '', mobile: '' } };
-const PostfixPadding = (pc: number = 20, mobile?: number) => ({
+const PostfixPadding = ( pc = 20, mobile?: number ) => ( {
   padding: { pc: `padding: ${pc}px;`, mobile: `padding: ${mobile || pc}px;` },
-});
+} );
 
 const styles: { [key: string]: StyleSheet } = {
   github: PostfixPadding(), // 代码多
@@ -17,10 +17,8 @@ const styles: { [key: string]: StyleSheet } = {
 
 export default styles;
 
-const stylesWhichIsNotCompetibleForReceivingEmails: string[] = [];
+const stylesWhichIsNotCompetibleForReceivingEmails: Set<string> = new Set( [] );
 
-export function notCompetibleForReceivingEmails(style: string): boolean {
-  return stylesWhichIsNotCompetibleForReceivingEmails.some(
-    (s: string) => s === style
-  );
+export function notCompetibleForReceivingEmails ( style: string ): boolean {
+  return stylesWhichIsNotCompetibleForReceivingEmails.has( style );
 }

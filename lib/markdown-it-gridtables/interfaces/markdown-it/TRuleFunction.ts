@@ -9,6 +9,6 @@ type TRuleFunction = (
     state: IState,
     startLine: number,
     endLine: number,
-    silent: boolean) => boolean;
+    silent: boolean ) => boolean;
 
 export default TRuleFunction;

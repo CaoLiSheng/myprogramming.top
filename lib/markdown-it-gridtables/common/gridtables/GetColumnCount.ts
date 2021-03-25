@@ -9,16 +9,16 @@
  * @param line The separator line to parse for the column widths.
  * @returns The column widths for the provided line, or an empty array if the line is invalid.
  */
-export default function getColumnCount(line: string): number {
+export default function getColumnCount ( line: string ): number {
   // try to parse as a row separator line
-  let columnMatch = line.substr(1).match(/[:-][-]+[:-]\+/g);
+  let columnMatch = line.slice( 1 ).match( /[:-]-+[:-]\+/g );
 
-  if (columnMatch == null) {
+  if ( columnMatch == null ) {
     // try to parse as a header separator line
-    columnMatch = line.substr(1).match(/[:=][=]+[:=]\+/g);
+    columnMatch = line.slice( 1 ).match( /[:=]=+[:=]\+/g );
   }
 
-  if (columnMatch == null) {
+  if ( columnMatch == null ) {
     return 0;
   }
 

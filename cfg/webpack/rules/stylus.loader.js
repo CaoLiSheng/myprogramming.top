@@ -3,7 +3,7 @@ module.exports = {
   oneOf: [
     {
       resourceQuery: /lang=styl(us)?/,
-      use: ['vue-style-loader', 'css-loader', 'stylus-loader'],
+      use: [ 'vue-style-loader', 'css-loader', 'stylus-loader' ],
     },
   ],
 };

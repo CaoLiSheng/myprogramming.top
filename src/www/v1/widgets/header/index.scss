@@ -78,31 +78,31 @@
         color: darkmagenta;
         background-color: whitesmoke;
       }
+    }
 
-      &.icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 0.5rem;
-        height: 0.5rem;
-        padding: 0.1rem;
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.5rem;
+      height: 0.5rem;
+      padding: 0.1rem;
 
-        & > svg {
-          width: 100%;
-          height: 100%;
+      & > svg {
+        width: 100%;
+        height: 100%;
 
-          .icon-color {
-            fill: #ffffff;
-          }
+        .icon-color {
+          fill: #ffffff;
         }
+      }
 
-        &:hover > svg .icon-color {
-          fill: darkmagenta;
-        }
+      &:hover > svg .icon-color {
+        fill: darkmagenta;
+      }
 
-        &.disabled > svg .icon-color {
-          fill: #a0a0a0;
-        }
+      &.disabled > svg .icon-color {
+        fill: #a0a0a0;
       }
     }
   }
@@ -115,24 +115,20 @@
     height: 0.8rem;
 
     nav {
-      div.main {
-        & > div.pc {
+      .main {
+        & > .pc {
           display: none;
         }
 
-        & > ul.mobile {
+        & > .mobile {
           display: block;
+
+          .icon {
+            width: 0.8rem;
+            height: 0.8rem;
+            padding: 0.2rem;
+          }
         }
-      }
-
-      a.icon {
-        width: 0.8rem;
-        height: 0.8rem;
-        padding: 0.2rem;
-      }
-
-      a.pc {
-        display: none;
       }
     }
   }
