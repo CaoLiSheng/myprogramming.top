@@ -1,10 +1,10 @@
 import '@common/shims-string';
 
-import Moment from 'moment';
 import path from 'path';
-import fs from 'fs-extra';
 
 import Sheets from '@tpl/styles';
+import fs from 'fs-extra';
+import Moment from 'moment';
 
 import { outDir } from './file';
 import { minify } from './minify';

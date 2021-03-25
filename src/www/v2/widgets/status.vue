@@ -19,15 +19,15 @@
 </template>
 
 <script lang="ts">
+
+import GateIcon from "@images/gate.vue";
+import TagIcon from "@images/tag-small.vue";
+import { db, initOnce, ui } from "@vStores/index";
+import { isMobileSize } from "@www/utils/rem";
+import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-import TagIcon from "@images/tag-small.vue";
-import GateIcon from "@images/gate.vue";
-
-import { isMobileSize } from "@www/utils/rem";
-import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
-import { db, initOnce, ui } from "@vStores/index";
 import { clickOnTag } from "../router";
 
 declare var __portal_to_v1__: string;

@@ -1,20 +1,18 @@
-import React, { Component, createRef } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
-
-import { distinctReduce, dateSortDesc } from '@common/index';
 import '@common/shims-string';
 
-import { SnapList } from '@rWidgets/snapList';
+import './index.scss';
 
+import { dateSortDesc, distinctReduce } from '@common/index';
 import {
-  injectDBCtx,
-  PATH_PAGER_MAP,
-  injectPageCtx,
   I_DB_CTX,
   I_PAGE_CTX,
+  PATH_PAGER_MAP,
+  injectDBCtx,
+  injectPageCtx,
 } from '@rCtxs/index';
-
-import './index.scss';
+import { SnapList } from '@rWidgets/snapList';
+import React, { Component, createRef } from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 type TagsProps = RouteComponentProps<{ tags: string; page?: string }> & {
   db: I_DB_CTX;

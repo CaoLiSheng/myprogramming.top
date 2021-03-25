@@ -6,6 +6,7 @@ import '@www/utils/vh100';
 import '@www/utils/rem';
 
 import Vue from 'vue';
+
 // import PortalVue from 'portal-vue';
 import App from './app.vue';
 import router from './router';

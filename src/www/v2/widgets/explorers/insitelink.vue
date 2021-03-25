@@ -7,9 +7,10 @@
 </template>
 
 <script lang="ts">
+
+import Moment from "moment";
 import Vue from "vue";
 import Component from "vue-class-component";
-import Moment from "moment";
 
 @Component
 export default class InsiteLink extends Vue.extend({

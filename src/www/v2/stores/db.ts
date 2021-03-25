@@ -1,8 +1,8 @@
 import {
-  Schema,
   EmptySchema,
-  distinctReduce,
+  Schema,
   dateSortDesc,
+  distinctReduce,
   intersectingReduce,
 } from '@common/index';
 

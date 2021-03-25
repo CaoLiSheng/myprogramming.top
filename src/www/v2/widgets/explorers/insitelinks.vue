@@ -10,12 +10,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
-
-import inSiteLink from "@vWidgets/explorers/insitelink.vue";
 
 import { db, ui } from "@vStores/index";
+import inSiteLink from "@vWidgets/explorers/insitelink.vue";
+import Vue from "vue";
+import Component from "vue-class-component";
 
 @Component({ components: { "in-site-link": inSiteLink } })
 export default class InSiteLinks extends Vue.extend({

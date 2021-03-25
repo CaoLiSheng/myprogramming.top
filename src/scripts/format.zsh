@@ -11,5 +11,5 @@ import-sort --write '**/*.{js,jsx,ts,tsx,vue}'
 echo "💆 Fixing JS/TS..."
 npm run lint-es -- --fix >/dev/null 2>&1 || true
 
-echo "💆 Prettier..."
-prettier --write '**/*.{js,jsx,ts,tsx,vue,styl,scss,md,mdx,json,yaml,yml}' '.editorconfig'
+# echo "💆 Prettier..."
+# prettier --write '**/*.{js,jsx,ts,tsx,vue,styl,scss,md,mdx,json,yaml,yml}' '.editorconfig'

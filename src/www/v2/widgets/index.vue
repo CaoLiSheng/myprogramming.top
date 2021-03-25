@@ -12,16 +12,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
 
-import extendMDVW from "@www/utils/mdvw100";
+import { ui } from "@vStores/index";
 import extendCodes from "@www/utils/code";
-import extendLinks from "@www/utils/links";
-import extendTables from "@www/utils/table";
 import extendFigures from "@www/utils/figure";
 import extendHistory from "@www/utils/history";
-import { ui } from "@vStores/index";
+import extendLinks from "@www/utils/links";
+import extendMDVW from "@www/utils/mdvw100";
+import extendTables from "@www/utils/table";
+import Vue from "vue";
+import Component from "vue-class-component";
 
 declare var ARTICLE: string;
 

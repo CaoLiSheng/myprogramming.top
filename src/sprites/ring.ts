@@ -1,4 +1,5 @@
 import '@common/shims-string';
+
 import { insertStyleSheetRule } from './utils';
 
 const SpriteId = 'click-ring';

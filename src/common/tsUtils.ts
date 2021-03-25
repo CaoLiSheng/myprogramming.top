@@ -1,4 +1,5 @@
 import Moment from 'moment';
+
 import { PublicMeta } from './db';
 
 export type HOCDecrator<InjectProps> = <Props extends InjectProps>(

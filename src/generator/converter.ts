@@ -1,6 +1,6 @@
+import gridTableRulePlugin from '@mditgridtables/index';
 import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
-import gridTableRulePlugin from '@mditgridtables/index';
 
 declare let __resources_dir__: string;
 

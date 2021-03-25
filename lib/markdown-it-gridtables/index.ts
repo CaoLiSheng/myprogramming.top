@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as MarkdownIt from 'markdown-it';
+
 import TRuleFunction from "./interfaces/markdown-it/TRuleFunction";
 import gridTableRule from "./rules/gridtable";
 

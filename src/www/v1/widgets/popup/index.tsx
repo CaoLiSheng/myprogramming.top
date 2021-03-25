@@ -1,3 +1,7 @@
+import './index.scss';
+
+import { HTMLElementOffset, getOffset } from '@www/utils/offset';
+import classNames from 'classnames';
 import React, {
   Component,
   ReactElement,
@@ -5,11 +9,6 @@ import React, {
   createRef,
 } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
-
-import { HTMLElementOffset, getOffset } from '@www/utils/offset';
-
-import './index.scss';
 
 interface PositionStyle {
   top?: number;

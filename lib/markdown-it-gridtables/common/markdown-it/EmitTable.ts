@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as MarkdownIt from 'markdown-it';
+
 import IState from '../../interfaces/markdown-it/IState';
 import ColumnAlignments from '../gridtables/ColumnAlignments';
-import ParseTableResult from './ParseTableResult';
 import getCells from '../gridtables/GetCells';
+import ParseTableResult from './ParseTableResult';
 
 export default function emitTable (
   md: MarkdownIt,

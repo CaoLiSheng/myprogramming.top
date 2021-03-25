@@ -1,9 +1,8 @@
-import React, { Component, ElementType } from 'react';
-import classNames from 'classnames';
+import './index.scss';
 
 import { bindDoubleSpaceKey } from '@www/utils/hotkeys';
-
-import './index.scss';
+import classNames from 'classnames';
+import React, { Component, ElementType } from 'react';
 
 interface OverlayProps {
   Icon: ElementType;

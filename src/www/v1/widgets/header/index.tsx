@@ -1,18 +1,24 @@
+import './index.scss';
+
+import { GateIcon, MenuIcon } from '@images/index';
+import { clickIn } from '@www/utils/dom';
+import classNames from 'classnames';
 import React, {
-  Component, createRef, ReactElement, RefObject,
+  Component,
+  ReactElement,
+  RefObject,
+  createRef,
 } from 'react';
 import {
-  Link, Switch, Route, RouteComponentProps,
+  Link,
+  Route,
+  RouteComponentProps,
+  Switch,
 } from 'react-router-dom';
-import classNames from 'classnames';
 
-import { clickIn } from '@www/utils/dom';
-import { MenuIcon, GateIcon } from '@images/index';
 import Category from './category';
 import GoToV2 from './goToV2';
 import Pager from './pager';
-
-import './index.scss';
 
 declare let __portal_to_v2__: string;
 

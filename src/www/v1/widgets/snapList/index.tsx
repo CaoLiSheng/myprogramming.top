@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import './index.scss';
 
-import { __dirs__ } from '@www/utils/dir';
 import {
+  I_PAGE_CTX,
+  PAGE_INFO,
   PAGE_SIZE,
   PATH_PAGER_MAP,
-  PAGE_INFO,
   injectPageCtx,
-  I_PAGE_CTX,
 } from '@rCtxs/index';
-
-import './index.scss';
+import { __dirs__ } from '@www/utils/dir';
+import React, { Component } from 'react';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 
 @injectPageCtx()
 class InnerSnapList extends Component<

@@ -1,17 +1,16 @@
+import './index.scss';
+
+import { LeftIcon } from '@images/index';
+import {
+  I_PAGE_CTX,
+  PAGE_INFO,
+  PATH_PAGER_MAP,
+  buildPagerPath,
+  injectPageCtx,
+} from '@rCtxs/index';
+import classNames from 'classnames';
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import classNames from 'classnames';
-
-import {
-  PATH_PAGER_MAP,
-  PAGE_INFO,
-  injectPageCtx,
-  I_PAGE_CTX,
-  buildPagerPath,
-} from '@rCtxs/index';
-
-import './index.scss';
-import { LeftIcon } from '@images/index';
 
 type PagerProps = RouteComponentProps<{ page?: string }> & { page?: I_PAGE_CTX };
 

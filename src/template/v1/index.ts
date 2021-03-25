@@ -1,12 +1,13 @@
 // import '@audios/click';
 import '@sprites/ring';
-import bindHotKeys, { bindDoubleSpaceKey } from '@www/utils/hotkeys';
-import extendMDVW from '@www/utils/mdvw100';
+
 import extendCodes from '@www/utils/code';
-import extendTables from '@www/utils/table';
 import extendFigure from '@www/utils/figure';
 import extendHistory from '@www/utils/history';
+import bindHotKeys, { bindDoubleSpaceKey } from '@www/utils/hotkeys';
+import extendMDVW from '@www/utils/mdvw100';
 import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
+import extendTables from '@www/utils/table';
 
 declare let __origin__: string;
 declare let __site_root__: string;

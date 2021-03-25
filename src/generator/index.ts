@@ -1,24 +1,28 @@
 import path from 'path';
+
+import { DB } from '@common/db';
 import fs from 'fs-extra';
 import jsYAML from 'js-yaml';
 
-import { DB } from '@common/db';
+import { converter } from './converter';
 import {
-  copyTemplateAssets,
-  tplContent,
-  tplScriptPath,
-  fetchCSS,
-  titleTag,
-  dateTagHTML,
-  titleTagHTML,
-  emailLinkHTML,
-  hmBaidu,
-} from './template';
-import {
-  inDir, outDir, isPost, extractPostName,
+  extractPostName,
+  inDir,
+  isPost,
+  outDir,
 } from './file';
 import { htmlMinify } from './minify';
-import { converter } from './converter';
+import {
+  copyTemplateAssets,
+  dateTagHTML,
+  emailLinkHTML,
+  fetchCSS,
+  hmBaidu,
+  titleTag,
+  titleTagHTML,
+  tplContent,
+  tplScriptPath,
+} from './template';
 
 // DB
 const dbData = new DB();

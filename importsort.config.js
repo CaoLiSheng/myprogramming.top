@@ -1,10 +1,6 @@
 module.exports = {
-  '.js, .jsx': {
-    parser: 'babylon',
-    style: 'module',
-  },
-  '.ts, .tsx': {
-    parser: 'typescript',
+  '.js, .jsx, .es6, .es, .mjs, .ts, .tsx, .vue': {
+    parser: 'import-sort-parser-babel-vue',
     style: 'module',
   },
 };

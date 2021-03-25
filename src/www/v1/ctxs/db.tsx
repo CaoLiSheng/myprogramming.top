@@ -1,6 +1,5 @@
-import React, { createContext, ComponentType, Component } from 'react';
-
-import { EmptySchema, Schema, HOCDecrator } from '@common/index';
+import { EmptySchema, HOCDecrator, Schema } from '@common/index';
+import React, { Component, ComponentType, createContext } from 'react';
 
 export interface I_DB_CTX {
   db: Schema;

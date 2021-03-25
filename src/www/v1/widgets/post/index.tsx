@@ -1,9 +1,8 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import './index.scss';
 
 import { __dirs__ } from '@www/utils/dir';
-
-import './index.scss';
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 export const Post = ( props: RouteComponentProps<{ name: string }> ) => (
   <iframe

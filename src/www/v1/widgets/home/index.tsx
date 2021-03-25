@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import './index.scss';
 
-import { SnapList } from '@rWidgets/snapList';
 import {
-  injectDBCtx,
-  injectPageCtx,
-  PATH_PAGER_MAP,
   I_DB_CTX,
   I_PAGE_CTX,
+  PATH_PAGER_MAP,
+  injectDBCtx,
+  injectPageCtx,
 } from '@rCtxs/index';
-
-import './index.scss';
+import { SnapList } from '@rWidgets/snapList';
+import React, { Component } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 @injectDBCtx()
 @injectPageCtx()

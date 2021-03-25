@@ -1,22 +1,29 @@
-import React, { Component, ErrorInfo } from 'react';
-import {
-  HashRouter, Redirect, Route, Switch,
-} from 'react-router-dom';
+import './index.scss';
 
+import { Schema } from '@common/index';
+import { CmdAndSpaceIcon } from '@images/index';
 import {
-  withPageCtxProvider,
-  withDBCtxProvider,
   I_DB_CTX,
   I_PAGE_CTX,
+  withDBCtxProvider,
+  withPageCtxProvider,
 } from '@rCtxs/index';
 import {
-  Home, Post, Header, Tags, Canlendar, Overlay,
+  Canlendar,
+  Header,
+  Home,
+  Overlay,
+  Post,
+  Tags,
 } from '@rWidgets/index';
-import { Schema } from '@common/index';
 import { __dirs__ } from '@www/utils/dir';
-
-import './index.scss';
-import { CmdAndSpaceIcon } from '@images/index';
+import React, { Component, ErrorInfo } from 'react';
+import {
+  HashRouter,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 interface AppProps {
   db?: I_DB_CTX;

@@ -15,15 +15,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
 
+import { switcher } from "@common/index";
+import { db, initOnce } from "@vStores/index";
 import header from "@vWidgets/explorers/header.vue";
 import inSiteLinks from "@vWidgets/explorers/insitelinks.vue";
 import tagClouds from "@vWidgets/explorers/tagclouds.vue";
-
-import { db, initOnce } from "@vStores/index";
-import { switcher } from "@common/index";
+import Vue from "vue";
+import Component from "vue-class-component";
 
 @Component({
   components: {

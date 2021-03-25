@@ -1,7 +1,8 @@
-import path from 'path';
-import fs from 'fs-extra';
-
 import '@common/shims-string';
+
+import path from 'path';
+
+import fs from 'fs-extra';
 
 import argv from './yargs';
 

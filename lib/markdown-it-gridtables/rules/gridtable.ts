@@ -4,11 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as MarkdownIt from 'markdown-it';
-import IState from '../interfaces/markdown-it/IState';
-import TRuleFunction from '../interfaces/markdown-it/TRuleFunction';
+
 import emitTable from '../common/markdown-it/EmitTable';
 import getCharCodeAtStartOfLine from '../common/markdown-it/GetCharCodeAtStartOfLine';
 import parseTable from '../common/markdown-it/ParseTable';
+import IState from '../interfaces/markdown-it/IState';
+import TRuleFunction from '../interfaces/markdown-it/TRuleFunction';
 
 export default function gridTableRule ( md: MarkdownIt ): TRuleFunction {
   return function gridTableRuleImpl (

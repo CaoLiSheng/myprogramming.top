@@ -1,7 +1,6 @@
+import { GateIcon } from '@images/index';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-
-import { GateIcon } from '@images/index';
 
 declare let __portal_to_v2__: string;
 

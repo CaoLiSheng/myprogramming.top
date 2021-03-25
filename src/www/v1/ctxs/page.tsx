@@ -1,6 +1,5 @@
-import React, { createContext, ComponentType, Component } from 'react';
-
 import { HOCDecrator } from '@common/index';
+import React, { Component, ComponentType, createContext } from 'react';
 
 export const PAGE_SIZE = 6;
 

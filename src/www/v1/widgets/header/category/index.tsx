@@ -1,14 +1,12 @@
+import './index.scss';
+
+import { EmptySchema, Schema } from '@common/index';
+import { TagsIcon } from '@images/index';
+import { I_DB_CTX, injectDBCtx } from '@rCtxs/index';
+import { Popup } from '@rWidgets/popup';
+import Moment from 'moment';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import Moment from 'moment';
-
-import { Popup } from '@rWidgets/popup';
-
-import { Schema, EmptySchema } from '@common/index';
-import { injectDBCtx, I_DB_CTX } from '@rCtxs/index';
-
-import './index.scss';
-import { TagsIcon } from '@images/index';
 
 @injectDBCtx()
 export default class extends Component<
