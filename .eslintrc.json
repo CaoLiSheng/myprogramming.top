@@ -36,6 +36,7 @@
 	],
 	"rules": {
 		"max-classes-per-file": "off",
+		"consistent-return": "off",
 		"global-require": "off",
 		"no-new": "off",
 		"no-void": "off",
@@ -87,6 +88,7 @@
 		"unicorn/prefer-spread": "off",
 		"unicorn/no-null": "off",
 		"no-use-before-define": "off",
+		"@typescript-eslint/dot-notation": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",

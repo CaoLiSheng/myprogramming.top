@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import IState from '../../interfaces/markdown-it/IState';
+import StateBlock from 'markdown-it/lib/rules_block/state_block';
 import ColumnAlignments from '../gridtables/ColumnAlignments';
 import getColumnAlignments from '../gridtables/GetColumnAlignments';
 import getColumnCount from '../gridtables/GetColumnCount';
@@ -12,7 +12,7 @@ import ParseTableResult from './ParseTableResult';
 import TableRow from './TableRow';
 
 export default function parseTable (
-  state: IState,
+  state: StateBlock,
   startLine: number,
   endLine: number
 ): ParseTableResult {
@@ -34,7 +34,7 @@ export default function parseTable (
 
   // initialize column alignments
   result.ColumnAlignments = Array.from(
-    [].fill.call( { length: result.ColumnCount }, ColumnAlignments.None )
+    ( [] as ColumnAlignments[] ).fill.call( { length: result.ColumnCount }, ColumnAlignments.None )
   );
 
   if ( rowLine.includes( ':' ) ) {

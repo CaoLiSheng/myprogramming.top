@@ -4,15 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as MarkdownIt from 'markdown-it';
+import StateBlock from 'markdown-it/lib/rules_block/state_block';
 
-import IState from '../../interfaces/markdown-it/IState';
 import ColumnAlignments from '../gridtables/ColumnAlignments';
 import getCells from '../gridtables/GetCells';
 import ParseTableResult from './ParseTableResult';
 
 export default function emitTable (
   md: MarkdownIt,
-  state: IState,
+  state: StateBlock,
   result: ParseTableResult
 ) {
   let offsets = result.SeparatorLineOffsets;
@@ -67,7 +67,7 @@ export default function emitTable (
 
 function processRow (
   md: MarkdownIt,
-  state: IState,
+  state: StateBlock,
   tag: string,
   columnAlignments: ColumnAlignments[],
   lineBegin: number,

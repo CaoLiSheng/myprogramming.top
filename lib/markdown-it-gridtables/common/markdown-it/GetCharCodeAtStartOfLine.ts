@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import IState from "../../interfaces/markdown-it/IState";
+import StateBlock from "markdown-it/lib/rules_block/state_block";
 
 /**
  * Returns the char code of the character at the start of the current line,
@@ -12,7 +12,7 @@ import IState from "../../interfaces/markdown-it/IState";
  * @param state The Markdown It state.
  */
 export default function getCharCodeAtStartOfLine (
-    state: IState,
+    state: StateBlock,
     line: number
 ): number
 {

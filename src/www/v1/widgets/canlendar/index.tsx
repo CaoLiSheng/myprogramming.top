@@ -9,7 +9,7 @@ import {
   injectPageCtx,
 } from '@rCtxs/index';
 import { SnapList } from '@rWidgets/index';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 @injectDBCtx()

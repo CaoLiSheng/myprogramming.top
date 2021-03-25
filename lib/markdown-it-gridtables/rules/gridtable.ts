@@ -4,16 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as MarkdownIt from 'markdown-it';
+import { RuleBlock } from 'markdown-it/lib/parser_block';
+import StateBlock from 'markdown-it/lib/rules_block/state_block';
 
 import emitTable from '../common/markdown-it/EmitTable';
 import getCharCodeAtStartOfLine from '../common/markdown-it/GetCharCodeAtStartOfLine';
 import parseTable from '../common/markdown-it/ParseTable';
-import IState from '../interfaces/markdown-it/IState';
-import TRuleFunction from '../interfaces/markdown-it/TRuleFunction';
 
-export default function gridTableRule ( md: MarkdownIt ): TRuleFunction {
+export default function gridTableRule ( md: MarkdownIt ): RuleBlock {
   return function gridTableRuleImpl (
-    state: IState,
+    state: StateBlock,
     startLine: number,
     endLine: number,
     silent: boolean

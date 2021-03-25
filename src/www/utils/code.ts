@@ -42,7 +42,7 @@ export default function init () {
       preElems.forEach( ( preElem: Element ) => {
         preElem.classList.add( 'prettyprint' );
       } );
-      window.PR.prettyPrint();
+      window['PR'].prettyPrint();
     },
     false,
   );

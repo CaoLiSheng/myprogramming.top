@@ -1,4 +1,4 @@
-function extendGiteeLink ( aElem: HTMLElement ) {
+function extendGiteeLink ( aElem: Element ) {
   if ( !( aElem instanceof HTMLAnchorElement ) ) return;
 
   const href = aElem.getAttribute( 'href' )?.split( ':' );
