@@ -19,14 +19,14 @@ const EmptyDbState: dbState = {
 export const db = {
   state: EmptyDbState,
   data: EmptySchema,
-  update ( data: Schema ) {
+  update ( data: Schema ): void {
     Object.keys( data ).forEach( ( key: string ) => {
       this.data[key] = data[key];
     } );
     this.state.allTags = Object.keys( data.tagCategories );
     this.state.refresh = true;
   },
-  filterByKW ( kw: string ) {
+  filterByKW ( kw: string ): string[] {
     if ( kw === '*' ) {
       return this.data.sortedPosts;
     }
@@ -44,7 +44,7 @@ export const db = {
       return false;
     } );
   },
-  filterByTags ( tags: string[] ) {
+  filterByTags ( tags: string[] ): { extendable: string[], posts: string[] } {
     const unSorted = tags
       .map( ( t: string ) => this.data.tagCategories[t] )
       .reduce( intersectingReduce, [] );
@@ -62,7 +62,7 @@ export const db = {
 };
 
 let __INITIALIZATION_STARTED = false;
-export const initOnce = async () => {
+export const initOnce = async (): Promise<void> => {
   if ( __INITIALIZATION_STARTED ) return;
   __INITIALIZATION_STARTED = true;
 

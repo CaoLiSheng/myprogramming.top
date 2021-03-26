@@ -5,7 +5,7 @@ import { TagsIcon } from '@images/index';
 import { I_DB_CTX, injectDBCtx } from '@rCtxs/index';
 import { Popup } from '@rWidgets/popup';
 import Moment from 'moment';
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 @injectDBCtx()
@@ -14,7 +14,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
 > {
   private renderCurCategory = (
     { db }: { db: Schema } = { db: EmptySchema },
-  ) => {
+  ): ReactElement => {
     const postName = this.props.match.params.name;
     if ( !postName || !db.metas[ postName ] ) return null;
 
@@ -62,7 +62,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
     );
   };
 
-  render () {
+  render (): ReactElement {
     return this.renderCurCategory( this.props.db );
   }
 }

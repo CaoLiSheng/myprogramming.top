@@ -63,7 +63,7 @@ const ThemeKey = "THEME";
 const ThemeDefault = "Light";
 const Theme2 = "Dark";
 
-@Component({
+@Component( {
   components: {
     HomeIcon,
     ThemeIcon,
@@ -73,43 +73,47 @@ const Theme2 = "Dark";
     DraftsShowIcon,
     DraftsHideIcon,
   },
-})
+} )
 export default class BarComponent extends Vue {
-  iconStyle = computeIconStyle(iconSizeCfg1 as SizeCfg);
+  iconStyle = computeIconStyle( iconSizeCfg1 as SizeCfg );
+
   inDevPopupVisibility = false;
+
   popupBottom = 0;
+
   popupLeft = 0;
+
   ui = ui.state;
 
-  async mounted() {
-    const curTheme = await localforage.getItem<string>(ThemeKey);
-    document.body.setAttribute(ThemeAttr, curTheme || ThemeDefault);
+  static async mounted (): Promise<void> {
+    const curTheme = await localforage.getItem<string>( ThemeKey );
+    document.body.setAttribute( ThemeAttr, curTheme || ThemeDefault );
   }
 
-  showPopup(ev: MouseEvent) {
+  showPopup ( ev: MouseEvent ): void {
     let offset: HTMLElementOffset = EmptyOffset;
-    if (ev.target instanceof HTMLElement) {
-      offset = getOffset(ev.target);
+    if ( ev.target instanceof HTMLElement ) {
+      offset = getOffset( ev.target );
     }
     this.$data.popupBottom = window.innerHeight - offset.top + 10;
     this.$data.popupLeft = offset.left + offset.width / 2;
     this.$data.inDevPopupVisibility = true;
   }
 
-  goToHomePage() {
-    window.location.href = `index.html${location.hash}`;
+  static goToHomePage (): void {
+    window.location.href = `index.html${ window.location.hash }`;
   }
 
-  changeTheme() {
+  static changeTheme (): void {
     const theme =
-      document.body.getAttribute(ThemeAttr) === ThemeDefault
+      document.body.getAttribute( ThemeAttr ) === ThemeDefault
         ? Theme2
         : ThemeDefault;
-    document.body.setAttribute(ThemeAttr, theme);
-    localforage.setItem(ThemeKey, theme);
+    document.body.setAttribute( ThemeAttr, theme );
+    void localforage.setItem( ThemeKey, theme );
   }
 
-  changeReaderLevel() {
+  static changeReaderLevel (): void {
     ui.toggleReaderLevel();
   }
 }

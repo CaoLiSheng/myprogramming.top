@@ -136,11 +136,11 @@ export class Popup extends Component<PopupProps, PopupStates> {
     this.el = document.createElement( 'div' );
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     popupsContainer.append( this.el );
   }
 
-  componentWillUnmount () {
+  componentWillUnmount (): void {
     this.el.remove();
   }
 
@@ -162,7 +162,7 @@ export class Popup extends Component<PopupProps, PopupStates> {
     );
   }
 
-  render () {
+  render (): ReactElement {
     const { Trigger } = this.props;
 
     return (

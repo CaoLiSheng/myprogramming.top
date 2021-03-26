@@ -19,63 +19,60 @@ import searchfield from "@vWidgets/explorers/searchfield.vue";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component({
+@Component( {
   components: {
     "e-header": header,
     "in-site-links": inSiteLinks,
     "search-field": searchfield,
   },
-})
-export default class AllComponent extends Vue.extend({
-  props: ["query"],
-}) {
+} )
+export default class AllComponent extends Vue.extend( {
+  props: { query: { type: String, default: '' } },
+} ) {
   db = db.state;
+
   refresh = true;
 
-  mounted() {
-    initOnce();
+  static mounted (): void {
+    void initOnce();
   }
 
-  get header() {
-    const query = this.query;
+  get header (): string {
+    const { query } = this;
 
-    if ("*" === query) {
-      return "全部文章都在这里咯……";
-    } else {
-      return `搜索关键词“${query}”……`;
-    }
+    return query === "*" ? "全部文章都在这里咯……" : `搜索关键词“${query}”……`;
   }
 
-  get posts() {
-    if (!this.db.refresh) return [];
-    return db.filterByKW(this.query);
+  get posts (): string[] {
+    if ( !this.db.refresh ) return [];
+    return db.filterByKW( this.query );
   }
 
-  get onChangeDelayed() {
+  get onChangeDelayed (): ( ( ...params: unknown[] ) => void ) {
     return switcher(
       () => {
         this.refresh = false;
       },
-      (query: string) => {
+      ( query: unknown ) => {
         this.refresh = true;
 
         const curR = this.$router.currentRoute;
-        if (curR.name === "AllComponent" && curR.params["query"] === query)
+        if ( curR.name === "AllComponent" && curR.params["query"] === query )
           return;
-        this.$router.replace({ name: "AllComponent", params: { query } });
+        void this.$router.replace( { name: "AllComponent", params: { query: query as string } } );
       },
       800
     );
   }
 
-  onInput(ev: InputEvent) {
+  onInput ( ev: InputEvent ): void {
     const input = ev.target as HTMLInputElement;
     const query = input.value || "*";
-    this.onChangeDelayed(query);
+    this.onChangeDelayed( query );
   }
 
-  onClear() {
-    this.onChangeDelayed("*");
+  onClear (): void {
+    this.onChangeDelayed( "*" );
   }
 }
 </script>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export const LeftIcon = () => (
+export const LeftIcon = (): ReactElement => (
   <svg viewBox="0 0 1536 1024">
     <path
       className="icon-color"

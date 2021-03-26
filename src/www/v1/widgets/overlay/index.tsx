@@ -2,7 +2,7 @@ import './index.scss';
 
 import { bindDoubleSpaceKey } from '@www/utils/hotkeys';
 import classNames from 'classnames';
-import React, { Component, ElementType } from 'react';
+import React, { Component, ElementType, ReactElement } from 'react';
 
 interface OverlayProps {
   Icon: ElementType;
@@ -33,12 +33,12 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
     this.state = { opening: false };
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     window.addEventListener( 'message', this.bindReceiveMessage, false );
     window.addEventListener( 'keypress', this.bindHotKeys, false );
   }
 
-  componentWillUnmount () {
+  componentWillUnmount (): void {
     window.removeEventListener( 'message', this.bindReceiveMessage );
     window.removeEventListener( 'keypress', this.bindHotKeys );
   }
@@ -53,7 +53,7 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
     }
   }
 
-  render () {
+  render (): ReactElement {
     const { Icon, positionStyleObj, contentShrinkPos } = this.props;
     const { opening } = this.state;
 

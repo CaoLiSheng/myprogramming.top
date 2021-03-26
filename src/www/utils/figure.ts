@@ -1,6 +1,6 @@
 import { clamp } from './math';
 
-function complete ( img: HTMLImageElement ) {
+function complete ( img: HTMLImageElement ): Promise<null> {
   return new Promise( ( resolve, reject ) => {
     let triedCount = 0;
     const maxTriedCount = 5;
@@ -24,7 +24,7 @@ function complete ( img: HTMLImageElement ) {
   } );
 }
 
-async function coordImage ( figureWrapper: Element, img: HTMLImageElement, x: string, y: string ) {
+async function coordImage ( figureWrapper: Element, img: HTMLImageElement, x: string, y: string ): Promise<void> {
   await complete( img );
 
   const imgWidth = img.offsetWidth;
@@ -53,7 +53,7 @@ async function coordImage ( figureWrapper: Element, img: HTMLImageElement, x: st
   figureWrapper.scrollTo( scrollX, scrollY );
 }
 
-function extendFigure ( figureWrapper: Element ) {
+function extendFigure ( figureWrapper: Element ): void {
   const img = figureWrapper.children[0];
   const attr1 = figureWrapper.getAttribute( 'data-scroll-x' );
   const attr2 = figureWrapper.getAttribute( 'data-scroll-y' );
@@ -62,7 +62,7 @@ function extendFigure ( figureWrapper: Element ) {
   void coordImage( figureWrapper, img, attr1, attr2 );  
 }
 
-export default function init () {
+export default function init (): void {
   document
     .querySelectorAll( '.markdown-body figure>.image' )
     .forEach( extendFigure );

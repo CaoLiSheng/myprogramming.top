@@ -8,7 +8,7 @@ const codePrettyDir = 'pretty-code-resources/';
 const cssFileName = 'prettify.css';
 const jsFileName = 'prettify.js';
 
-function injectPrettyCSS () {
+function injectPrettyCSS (): void {
   const link = document.createElement( 'link' );
   link.setAttribute( 'rel', 'stylesheet' );
   link.setAttribute( 'type', 'text/css' );
@@ -31,7 +31,7 @@ function injectPrettyScript (): HTMLScriptElement {
   return script;
 }
 
-export default function init () {
+export default function init (): void {
   const preElems = document.querySelectorAll( '.markdown-body pre' );
   if ( preElems.length === 0 ) return;
 

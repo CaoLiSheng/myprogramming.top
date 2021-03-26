@@ -10,7 +10,7 @@ function newCoords ( direction: boolean ): Coords {
   return [ parent, y ];
 }
 
-function hotkeys ( evt: KeyboardEvent ) {
+function hotkeys ( evt: KeyboardEvent ): void {
   let parent: Element | number | null;
   let y: Element | number | null;
 
@@ -30,7 +30,7 @@ function hotkeys ( evt: KeyboardEvent ) {
   }
 };
 
-export default function init () {
+export default function init (): void {
   window.addEventListener( 'keydown', hotkeys );
 
   window.addEventListener( 'beforeunload', () => {
@@ -40,7 +40,7 @@ export default function init () {
 
 let lastSpaceKeyHit = 0;
 
-export const bindDoubleSpaceKey = ( callback: () => void, ev: KeyboardEvent ) => {
+export const bindDoubleSpaceKey = ( callback: () => void, ev: KeyboardEvent ): void => {
   if ( ev.key !== ' ' ) {
     lastSpaceKeyHit = 0;
     return;

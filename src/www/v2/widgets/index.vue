@@ -23,23 +23,24 @@ import extendTables from "@www/utils/table";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-declare var ARTICLE: string;
+declare let ARTICLE: string;
 
 const BarComponent = () =>
-  import(/* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue");
+  import( /* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue" );
 
-@Component({ components: { Bar: BarComponent } })
+@Component( { components: { Bar: BarComponent } } )
 export default class IndexComponent extends Vue {
   article = ARTICLE;
+
   ui = ui.state;
 
-  mounted() {
-    extendMDVW(document.querySelector("#main>.markdown-body") as HTMLElement);
+  static mounted (): void {
+    extendMDVW( document.querySelector( "#main>.markdown-body" ) as HTMLElement );
     extendCodes();
     extendLinks();
     extendTables();
     extendFigures();
-    extendHistory();
+    void extendHistory();
   }
 }
 </script>

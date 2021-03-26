@@ -9,7 +9,7 @@ import gridTableRule from "./rules/gridtable";
 
 export default function gridTableRulePlugin (
     md: MarkdownIt,
-    options: unknown )
+    options: unknown ): void
 {
     md.block.ruler.before(
         "table",

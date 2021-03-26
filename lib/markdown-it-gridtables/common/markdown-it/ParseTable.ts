@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import StateBlock from 'markdown-it/lib/rules_block/state_block';
+
 import ColumnAlignments from '../gridtables/ColumnAlignments';
 import getColumnAlignments from '../gridtables/GetColumnAlignments';
 import getColumnCount from '../gridtables/GetColumnCount';

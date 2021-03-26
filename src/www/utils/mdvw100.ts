@@ -1,4 +1,4 @@
-export default function init ( root: HTMLElement ) {
+export default function init ( root: HTMLElement ): void {
   const setMDVW = () => {
     const elem = document.querySelector( '#main>.markdown-body' ) as HTMLElement;
     const style = getComputedStyle( elem );

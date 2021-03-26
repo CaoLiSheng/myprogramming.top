@@ -10,17 +10,14 @@
 		"ecmaFeatures": {
 			"jsx": true
 		}
-		// "ecmaVersion": 10
-		// "sourceType": "module",
 	},
 	"env": {
-		// "es6": true,
-		// "commonjs": true,
 		"node": true,
 		"browser": true
 	},
 	"extends": [
 		"airbnb-typescript",
+		"plugin:vue/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"plugin:eslint-comments/recommended",
@@ -32,7 +29,8 @@
 		"@typescript-eslint",
 		"eslint-comments",
 		"promise",
-		"unicorn"
+		"unicorn",
+		"vue"
 	],
 	"rules": {
 		"max-classes-per-file": "off",
@@ -90,7 +88,6 @@
 		"no-use-before-define": "off",
 		"@typescript-eslint/dot-notation": "off",
 		"@typescript-eslint/no-use-before-define": "off",
-		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/no-unsafe-member-access": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",
@@ -106,32 +103,15 @@
 	"overrides": [
 		{
 			"files": "**/*.vue",
-			"extends": [
-				"airbnb-typescript",
-				"plugin:vue/essential",
-				"plugin:@typescript-eslint/recommended",
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:eslint-comments/recommended",
-				"plugin:promise/recommended",
-				"plugin:unicorn/recommended",
-				"prettier"
-			],
-			"plugins": [
-				"@typescript-eslint",
-				"eslint-comments",
-				"promise",
-				"unicorn",
-				"vue"
-			],
+			"parser": "vue-eslint-parser",
 			"parserOptions": {
-				"parser": "vue-eslint-parser",
-				"project": "./tsconfig.vue.json",
+				"parser": "@typescript-eslint/parser",
 				"extraFileExtensions": [
 					".vue"
-				],
-				"ecmaFeatures": {
-					"jsx": true
-				}
+				]
+			},
+			"rules": {
+				"import/no-unresolved": "off"
 			}
 		}
 	]

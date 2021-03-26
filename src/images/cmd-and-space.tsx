@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export const CmdAndSpaceIcon = () => (
+export const CmdAndSpaceIcon = (): ReactElement => (
   <>
     <svg viewBox="0 0 1024 1024" width="256" height="256">
       <path

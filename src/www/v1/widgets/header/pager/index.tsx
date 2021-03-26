@@ -9,7 +9,7 @@ import {
   injectPageCtx,
 } from '@rCtxs/index';
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 type PagerProps = RouteComponentProps<{ page?: string }> & { page?: I_PAGE_CTX };
@@ -25,11 +25,11 @@ PagerProps,
     this.state = { inputValue: '', curPage: 0 };
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     this.update();
   }
 
-  componentDidUpdate ( prevProps: RouteComponentProps & { page?: I_PAGE_CTX } ) {
+  componentDidUpdate ( prevProps: RouteComponentProps & { page?: I_PAGE_CTX } ): void {
     if (
       prevProps.match.url !== this.props.match.url
       || prevProps.page?.page !== this.props.page?.page
@@ -38,7 +38,7 @@ PagerProps,
     }
   }
 
-  goToPage = ( page?: number ) => {
+  goToPage = ( page?: number ): void => {
     if ( undefined === page ) return;
     this.props.history.push( buildPagerPath( this.props.match, page ) );
   };
@@ -57,7 +57,7 @@ PagerProps,
     return { pager, pagerKey };
   };
 
-  change = ( ignored: boolean, target: number ) => {
+  change = ( ignored: boolean, target: number ): void => {
     if ( ignored ) return;
 
     this.setState( { inputValue: `${ target }`, curPage: target }, () => this.goToPage( target ) );
@@ -67,7 +67,10 @@ PagerProps,
     pager: { min: number; max: number },
     parsed?: number,
     curPage = 0,
-  ) => {
+  ): { 
+    inputValue: string,
+    curPage: number,
+  } => {
     let target = 0;
     if ( parsed ) {
       target = Math.max( pager.min, Math.min( pager.max, parsed ) );
@@ -79,14 +82,14 @@ PagerProps,
     };
   };
 
-  onChange = ( pager: PAGE_INFO, event: React.ChangeEvent<HTMLInputElement> ) => {
+  onChange = ( pager: PAGE_INFO, event: React.ChangeEvent<HTMLInputElement> ): void => {
     this.setState(
       ( { curPage } ) => this.buildState( pager, event.target.value.toInt(), curPage ),
       () => this.goToPage( this.state.curPage ),
     );
   };
 
-  update = () => {
+  update = (): void => {
     const res = this.getPager();
     if ( !res ) return;
     const { pager } = res;
@@ -97,7 +100,7 @@ PagerProps,
     this.setState( states );
   };
 
-  renderInput ( pager: PAGE_INFO ) {
+  renderInput ( pager: PAGE_INFO ): ReactElement {
     return (
       <input
         type="text"
@@ -108,7 +111,7 @@ PagerProps,
     );
   }
 
-  render () {
+  render (): ReactElement | null {
     const res = this.getPager();
     if ( !res ) return null;
     const { pager } = res;

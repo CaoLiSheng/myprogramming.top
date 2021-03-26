@@ -5,14 +5,7 @@ const IndexComponent = () => import( /* webpackChunkName: 'IndexComponent' */ '@
 
 const AllComponent = () => import( /* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue' );
 
-// const CanlendarComponent = () =>
-//   import(
-//     /* webpackChunkName: 'CanlendarComponent' */ '@vWidgets/explorers/canlendar.vue'
-//   );
-
-const TagsComponent = () => import(
-  /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue'
-);
+const TagsComponent = () => import( /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue' );
 
 const StatusComponent = () => import( /* webpackChunkName: 'StatusComponent' */ '@vWidgets/status.vue' );
 
@@ -34,12 +27,6 @@ const routes = [
         },
         props: { default: true, status: false },
       },
-      // {
-      //   props: true,
-      //   path: 'canlendar/:year/:month/:day',
-      //   name: 'CanlendarComponent',
-      //   component: CanlendarComponent,
-      // },
       {
         path: 'tags/:query',
         name: 'TagsComponent',
@@ -59,7 +46,7 @@ export default new Router( {
   routes,
 } );
 
-export function clickOnTag ( tag: string, router: Router ) {
+export function clickOnTag ( tag: string, router: Router ): void {
   const curR = router.currentRoute;
   const { query } = curR.params;
 

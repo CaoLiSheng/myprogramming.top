@@ -1,4 +1,4 @@
-function extendGiteeLink ( aElem: Element ) {
+function extendGiteeLink ( aElem: Element ): void {
   if ( !( aElem instanceof HTMLAnchorElement ) ) return;
 
   const href = aElem.getAttribute( 'href' )?.split( ':' );
@@ -8,7 +8,7 @@ function extendGiteeLink ( aElem: Element ) {
   aElem.setAttribute( 'href', `https://www.gitee.com/yx1991/${projectName}` );
 }
 
-export default function init () {
+export default function init (): void {
   document
     .querySelectorAll( '.markdown-body a[href^="proj:"]' )
     .forEach( extendGiteeLink );

@@ -15,10 +15,19 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class SearchField extends Vue.extend({
-  props: ["onInput", "onClear"],
-}) {
-  clear() {
+export default class SearchField extends Vue.extend( {
+  props: {
+    onInput: {
+      type: Function,
+      default: undefined,
+    },
+    onClear: {
+      type: Function,
+      default: undefined,
+    }
+  },
+} ) {
+  clear (): void {
     const input = this.$refs.query as HTMLInputElement;
     input.value = "";
     this.onClear();

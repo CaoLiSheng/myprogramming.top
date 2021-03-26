@@ -11,7 +11,7 @@ import {
   injectPageCtx,
 } from '@rCtxs/index';
 import { SnapList } from '@rWidgets/snapList';
-import React, { Component, createRef } from 'react';
+import React, { Component, ReactElement, createRef } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 type TagsProps = RouteComponentProps<{ tags: string; page?: string }> & {
@@ -34,7 +34,7 @@ TagsProps,
     this.state = { queryedTags: [] };
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     this.update();
   }
 
@@ -43,7 +43,7 @@ TagsProps,
       db: I_DB_CTX;
       page: I_PAGE_CTX;
     },
-  ) {
+  ): void {
     if (
       prevProps.match.url === this.props.match.url
       && prevProps.db.db.tagCategories === this.props.db.db.tagCategories
@@ -52,7 +52,7 @@ TagsProps,
     this.update();
   }
 
-  update = () => {
+  update = (): void => {
     const pagerKey: string = PATH_PAGER_MAP[ this.props.match.path ];
     if ( !pagerKey ) throw new Error( '粗错啦，无效的分页关键字！' );
 
@@ -91,17 +91,17 @@ TagsProps,
     );
   };
 
-  onSearch = () => this.props.history.push(
+  onSearch = (): void => this.props.history.push(
     `/tags/${ this.inputRef.current?.value
     || this.inputRef.current?.placeholder
     || '*' }`,
   );
 
-  onSearchKeyDown = ( event: React.KeyboardEvent<HTMLInputElement> ) => {
+  onSearchKeyDown = ( event: React.KeyboardEvent<HTMLInputElement> ): void => {
     if ( event.key === 'Enter' ) this.onSearch();
   };
 
-  render () {
+  render (): ReactElement {
     return (
       <>
         <div className="tags wrapper">

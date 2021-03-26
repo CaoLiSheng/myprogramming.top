@@ -1,4 +1,4 @@
-export function insertStyleSheetRule ( ruleText: string ) {
+export function insertStyleSheetRule ( ruleText: string ): void {
   const sheets = document.styleSheets;
 
   if ( sheets.length === 0 ) {

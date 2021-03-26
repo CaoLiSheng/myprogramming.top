@@ -24,22 +24,17 @@ import tagClouds from "@vWidgets/explorers/tagclouds.vue";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component({
+@Component( {
   components: {
     "e-header": header,
     "tag-clouds": tagClouds,
     "in-site-links": inSiteLinks,
   },
-})
-export default class TagsComponent extends Vue.extend({
-  props: ["query"],
-  watch: {
-    query: function () {
-      this.onQueryChanged();
-    },
-  },
+} )
+export default class TagsComponent extends Vue.extend( {
+  props: { query: { type: String, default: '' } },
   computed: {
-    onQueryChanged: function () {
+    onQueryChanged () {
       return switcher(
         () => {
           this.$data.refresh = false;
@@ -51,29 +46,36 @@ export default class TagsComponent extends Vue.extend({
       );
     },
   },
-}) {
+  watch: {
+    query () {
+      this.onQueryChanged();
+    },
+  },
+} ) {
   db = db.state;
+
   refresh = true;
+
   tagClouds: { extendable: string[]; selected: string[] } = {
     extendable: [],
     selected: [],
   };
 
-  mounted() {
-    initOnce();
+  static mounted (): void {
+    void initOnce();
   }
 
-  get posts() {
-    if (!this.db.refresh) return [];
-    if ("*" === this.query) {
+  get posts (): string[] {
+    if ( !this.db.refresh ) return [];
+    if ( this.query === "*" ) {
       this.tagClouds.extendable = [];
       this.tagClouds.selected = [];
       return db.data.sortedPosts;
     }
 
-    const tags = this.query.split(",").map((t: string) => t.trim());
+    const tags = this.query.split( "," ).map( ( t: string ) => t.trim() );
     this.tagClouds.selected = tags;
-    const result = db.filterByTags(tags);
+    const result = db.filterByTags( tags );
     this.tagClouds.extendable = result.extendable;
     return result.posts;
   }

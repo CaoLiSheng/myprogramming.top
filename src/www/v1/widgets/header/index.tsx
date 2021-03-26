@@ -36,7 +36,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     this.state = { menuExpanded: false };
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     window.top.addEventListener( 'message', this.receiveMessage, false );
     document.body.addEventListener( 'click', this.toClose );
   }
@@ -44,14 +44,14 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   shouldComponentUpdate (
     nextProps: RouteComponentProps<never>,
     nextStates: HeaderStates,
-  ) {
+  ): boolean {
     return (
       nextProps.match.path !== this.props.match.path
       || nextStates.menuExpanded !== this.state.menuExpanded
     );
   }
 
-  componentWillUnmount () {
+  componentWillUnmount (): void {
     window.top.removeEventListener( 'message', this.receiveMessage );
     document.body.removeEventListener( 'click', this.toClose );
   }
@@ -76,7 +76,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     menuExpanded: !menuExpanded,
   } ) );
 
-  renderLink ( ctx: string, name: string, to?: string ) {
+  renderLink ( ctx: string, name: string, to?: string ): ReactElement {
     return (
       <Link
         to={ to || ctx }
@@ -89,7 +89,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     );
   }
 
-  renderMobileLink ( link: ReactElement ) {
+  renderMobileLink ( link: ReactElement ): ReactElement {
     return (
       <li
         className={ classNames( 'slot', {
@@ -101,7 +101,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     );
   }
 
-  render () {
+  render (): ReactElement {
     const homeLink = this.renderLink( '/home', '首页' );
     const canlendarLink = this.renderLink(
       '/canlendar/:year/:month/:date',

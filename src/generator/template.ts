@@ -26,7 +26,7 @@ export function tplScriptPath (): string {
 }
 
 // Copy Template Assets
-export function copyTemplateAssets () {
+export function copyTemplateAssets (): void {
   const assets = fs.readdirSync( argv.tplDir );
   console.log( 'template assets dir:', assets );
 

@@ -14,7 +14,7 @@ export default function emitTable (
   md: MarkdownIt,
   state: StateBlock,
   result: ParseTableResult
-) {
+): void {
   let offsets = result.SeparatorLineOffsets;
 
   let token = state.push( 'table_open', 'table', 1 );

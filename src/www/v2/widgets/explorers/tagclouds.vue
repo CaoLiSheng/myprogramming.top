@@ -17,20 +17,37 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class TagClouds extends Vue.extend({
-  props: ["allTags", "extendable", "selected", "height"],
-}) {
-  isSelected(tag: string): boolean {
-    return this.selected.includes(tag);
+export default class TagClouds extends Vue.extend( {
+  props: { 
+    allTags: {
+      type: Array,
+      default: () => [],
+    },
+    extendable: {
+      type: Array,
+      default: () => [],
+    },
+    selected: {
+      type: Array,
+      default: () => [],
+    },
+    height: {
+      type: String,
+      default: '',
+    },
+  },
+} ) {
+  isSelected ( tag: string ): boolean {
+    return this.selected.includes( tag );
   }
 
-  isOut(tag: string): boolean {
-    if (!this.extendable.length) return false;
-    return !this.extendable.includes(tag);
+  isOut ( tag: string ): boolean {
+    if ( this.extendable.length === 0 ) return false;
+    return !this.extendable.includes( tag );
   }
 
-  click(tag: string) {
-    clickOnTag(tag, this.$router);
+  click ( tag: string ): void {
+    clickOnTag( tag, this.$router );
   }
 }
 </script>

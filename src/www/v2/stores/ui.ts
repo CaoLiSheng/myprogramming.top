@@ -13,9 +13,9 @@ const ui = {
     rlGrantable: !JSON.parse( __production__ ),
   },
   private: {
-    handleMenuClose: ( _: MouseEvent ) => {},
+    handleMenuClose: ( _: MouseEvent ): void => {},
   },
-  openMenu ( ...bounds: ( HTMLElement | null )[] ) {
+  openMenu ( ...bounds: ( HTMLElement | null )[] ): void {
     this.state.menuOpened = true;
     this.private.handleMenuClose = ( ev: MouseEvent ) => {
       if ( !( ev.target instanceof HTMLElement ) ) return;
@@ -28,13 +28,13 @@ const ui = {
       0,
     );
   },
-  closeMenu () {
+  closeMenu (): void {
     this.state.menuOpened = false;
   },
-  setVisible ( v: boolean ) {
+  setVisible ( v: boolean ): void {
     this.state.menuVisible = v;
   },
-  toggleReaderLevel () {
+  toggleReaderLevel (): void {
     this.state.readerLevelGranted = !this.state.readerLevelGranted;
     void localforage.setItem( ReaderLevelKey, this.state.readerLevelGranted );
   },

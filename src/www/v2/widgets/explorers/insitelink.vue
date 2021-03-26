@@ -13,27 +13,41 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class InsiteLink extends Vue.extend({
-  props: ["name", "data", "delay"],
-}) {
+export default class InsiteLink extends Vue.extend( {
+  props: {
+    name: {
+      type: String,
+      default: '',
+    },
+    data: {
+      type: Object,
+      default: () => ( {} ),
+    },
+    delay: {
+      type: Number,
+      default: 0,
+    }
+  },
+} ) {
   init = true;
+  
   running = true;
 
-  get date() {
-    return Moment(this.data.date).format("YYYY-MM-DD");
+  get date (): string {
+    return Moment( this.data.date ).format( "YYYY-MM-DD" );
   }
 
-  mounted() {
-    setTimeout(() => {
+  mounted (): void {
+    setTimeout( () => {
       this.init = false;
-    }, this.delay);
-    setTimeout(() => {
+    }, this.delay );
+    setTimeout( () => {
       this.running = false;
-    }, this.delay + 300);
+    }, this.delay + 300 );
   }
 
-  goToHref() {
-    location.href = `${this.$props.name}${location.hash}`;
+  goToHref (): void {
+    window.location.href = `${ this.$props.name as string }${ window.location.hash }`;
   }
 }
 </script>

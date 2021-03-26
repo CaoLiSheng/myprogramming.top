@@ -9,7 +9,7 @@ import {
   injectPageCtx,
 } from '@rCtxs/index';
 import { SnapList } from '@rWidgets/index';
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 @injectDBCtx()
@@ -26,7 +26,7 @@ RouteComponentProps<{
 }
 > {
 
-  componentDidMount () {
+  componentDidMount (): void {
     this.update();
   }
 
@@ -39,7 +39,7 @@ RouteComponentProps<{
       db: I_DB_CTX;
       page: I_PAGE_CTX;
     },
-  ) {
+  ): void {
     if (
       prevProps.match.url === this.props.match.url
       && prevProps.db.db.dateCategories === this.props.db.db.dateCategories
@@ -57,7 +57,7 @@ RouteComponentProps<{
       .reduce( distinctReduce, [] );
   };
 
-  update = () => {
+  update = (): void => {
     const pagerKey: string = PATH_PAGER_MAP[ this.props.match.path ];
     if ( !pagerKey ) throw new Error( '粗错啦，无效的分页关键字！' );
 
@@ -79,7 +79,7 @@ RouteComponentProps<{
     );
   };
 
-  renderLinks () {
+  renderLinks (): ReactElement | null {
     if ( !this.props.db.db.dateCategories ) return null;
 
     if ( this.props.match.params.year === '*' ) {
@@ -130,7 +130,7 @@ RouteComponentProps<{
     return null;
   }
 
-  renderTitle () {
+  renderTitle (): ReactElement | null {
     const { year, month, date } = this.props.match.params;
 
     if ( year === '*' ) {
@@ -182,7 +182,7 @@ RouteComponentProps<{
     );
   }
 
-  render () {
+  render (): ReactElement {
     return (
       <>
         <div className="canlendar wrapper">
