@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-rm -rf build/test/posts && \
-  mkdir -p build/test/posts && \
+rm -rf build/tests/markdown-it && \
+  mkdir -p build/tests/markdown-it && \
   node build/gen/dev/generator.min.js \
     --tplPath='src/template/v1/index.html' \
     --cssPath='src/template/v1/index.css' \
     --tplDir='build/gen/dev' \
-    --outDir='build/test/posts' \
-    --inDir='posts/tests' > log.test.txt && \
+    --outDir='build/tests/markdown-it' \
+    --inDir='posts/tests' > gen.test.log && \
   echo 'All(tests) have been regenerated! @' && \
   date
