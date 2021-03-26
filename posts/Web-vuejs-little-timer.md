@@ -3,6 +3,7 @@ style: github
 title: 小小计时器
 date: 2020-11-26
 tags:
+  - Web
   - Typescript
   - Timeout
   - Vuejs

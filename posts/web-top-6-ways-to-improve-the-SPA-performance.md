@@ -3,6 +3,7 @@ style: github
 title: Top 6 ways to improve the SPA performance
 date: 2020-09-23
 tags:
+  - Web
   - SPA 性能优化
 ---
 
