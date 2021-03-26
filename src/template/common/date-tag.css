@@ -9,7 +9,7 @@
 }
 
 .markdown-body h6.date-tag code::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   right: 0;

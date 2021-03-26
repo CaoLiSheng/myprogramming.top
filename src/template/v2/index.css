@@ -20,7 +20,7 @@
 /* common/date-tag.css */
 
 /* common/comments.css */
-.markdown-body div.comments a[href^='mailto:'] {
+.markdown-body div.comments a[href^="mailto:"] {
   background-color: var(--a-backgrounnd-article-color);
   background: linear-gradient(
     to bottom,
@@ -34,7 +34,7 @@
   transition: background-color 300ms, background-position 100ms, color 1s;
 }
 
-.markdown-body div.comments a[href^='mailto:']:hover {
+.markdown-body div.comments a[href^="mailto:"]:hover {
   background-color: whitesmoke;
   background-position: 0 0;
   color: var(--a-hover-foregrounnd-article-color);

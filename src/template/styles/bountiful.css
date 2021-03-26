@@ -10,7 +10,7 @@
   --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
 }
 
-body[theme='Light'] .markdown-body {
+body[theme="Light"] .markdown-body {
   --main-foreground-article-color: rgba(0, 0, 0, 0.9);
   --main-background-article-color: rgba(250, 248, 245, 0.7);
   --a-foregrounnd-article-color: #07c;
@@ -24,7 +24,7 @@ body[theme='Light'] .markdown-body {
   --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
 }
 
-body[theme='Dark'] .markdown-body {
+body[theme="Dark"] .markdown-body {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
   --a-foregrounnd-article-color: rgb(33, 68, 111);
@@ -37,7 +37,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 @media print {
-  body[theme='Dark'] .markdown-body {
+  body[theme="Dark"] .markdown-body {
     --main-foreground-article-color: rgba(0, 0, 0, 0.9);
     --main-background-article-color: rgba(250, 248, 245, 0.7);
     --a-foregrounnd-article-color: #07c;
@@ -53,8 +53,8 @@ body[theme='Dark'] .markdown-body {
 }
 
 @font-face {
-  font-family: 'PT Sans';
-  src: url(/* reources_dir */fonts/PT_Sans-Web-Regular.ttf) format('truetype');
+  font-family: "PT Sans";
+  src: url(reources_dir fonts/PT_Sans-Web-Regular.ttf) format("truetype");
 }
 
 .markdown-body p {
@@ -127,7 +127,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body q {
-  quotes: '\201C''\201D''\2018''\2019';
+  quotes: "\201C""\201D""\2018""\2019";
 }
 
 .markdown-body sub,
@@ -272,7 +272,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body {
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: 'PT Sans', '等距更纱黑体', sans-serif, Apple Color Emoji,
+  font-family: "PT Sans", "等距更纱黑体", sans-serif, Apple Color Emoji,
     Segoe UI Emoji;
   -webkit-font-smoothing: antialiased;
   font-size: 18px;
@@ -285,7 +285,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-family: 'PT Sans', '等距更纱黑体', serif, Apple Color Emoji,
+  font-family: "PT Sans", "等距更纱黑体", serif, Apple Color Emoji,
     Segoe UI Emoji;
   line-height: 1.5em;
 }

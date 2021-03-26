@@ -5,7 +5,8 @@
     "posts",
     "build/v1/dev",
     "build/v2/dev",
-    "src/template",
-    "public/resources"
+    "public/resources",
+    "src/template/**/*.css",
+    "src/template/**/*.html"
   ]
 }

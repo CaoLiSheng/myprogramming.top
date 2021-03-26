@@ -8,7 +8,7 @@
   --a-foregrounnd-article-color: #0366d6;
 }
 
-body[theme='Light'] .markdown-body {
+body[theme="Light"] .markdown-body {
   --main-foreground-article-color: #24292e;
   --main-background-article-color: rgba(255, 255, 255, 0.7);
   --blockquote-foreground-article-color: #6a737d;
@@ -18,7 +18,7 @@ body[theme='Light'] .markdown-body {
   --a-backgrounnd-article-color: #f3e98f;
 }
 
-body[theme='Dark'] .markdown-body {
+body[theme="Dark"] .markdown-body {
   --main-foreground-article-color: white;
   --main-background-article-color: rgba(50, 50, 50, 0.7);
   --blockquote-foreground-article-color: white;
@@ -29,7 +29,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 @media print {
-  body[theme='Dark'] .markdown-body {
+  body[theme="Dark"] .markdown-body {
     --main-foreground-article-color: #24292e;
     --main-background-article-color: rgba(255, 255, 255, 0.7);
     --blockquote-foreground-article-color: #6a737d;
@@ -41,7 +41,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body {
-  font-family: '等距更纱黑体', sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: "等距更纱黑体", sans-serif, Apple Color Emoji, Segoe UI Emoji;
   font-size: 18px;
   line-height: 1.5;
   word-wrap: break-word;
@@ -52,7 +52,7 @@ body[theme='Dark'] .markdown-body {
 .markdown-body:after,
 .markdown-body:before {
   display: table;
-  content: '';
+  content: "";
 }
 
 .markdown-body:after {
@@ -269,11 +269,11 @@ body[theme='Dark'] .markdown-body {
   background-color: #fff;
 }
 
-.markdown-body img[align='right'] {
+.markdown-body img[align="right"] {
   padding-left: 20px;
 }
 
-.markdown-body img[align='left'] {
+.markdown-body img[align="left"] {
   padding-right: 20px;
 }
 

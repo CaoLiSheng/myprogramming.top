@@ -20,7 +20,7 @@
   opacity: 0.5;
 }
 
-.markdown-body div.comments a[href^='mailto:'] {
+.markdown-body div.comments a[href^="mailto:"] {
   text-decoration: none;
   padding: 15px 100px;
   text-align: center;
@@ -32,7 +32,7 @@
   transition: background-color 300ms, color 1s;
 }
 
-.markdown-body div.comments a[href^='mailto:']:hover {
+.markdown-body div.comments a[href^="mailto:"]:hover {
   color: rgb(116, 130, 145);
   background-color: rgb(230, 224, 224);
 }

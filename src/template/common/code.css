@@ -1,24 +1,23 @@
 @font-face {
-  font-family: 'Cascadia Code PL';
-  src: url(/* reources_dir */fonts/CascadiaCodePL.woff2) format('woff2');
+  font-family: "Cascadia Code PL";
+  src: url(reources_dir fonts/CascadiaCodePL.woff2) format("woff2");
 }
 
 @font-face {
-  font-family: '等距更纱黑体';
-  src: url(/* reources_dir */fonts/sarasa-mono-sc-regular.ttf)
-    format('truetype');
+  font-family: "等距更纱黑体";
+  src: url(reources_dir fonts/sarasa-mono-sc-regular.ttf) format("truetype");
 }
 
 .markdown-body kbd,
 .markdown-body pre,
 .markdown-body code {
-  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace;
+  font-family: "Cascadia Code PL", "等距更纱黑体", monospace;
 }
 
-.markdown-body pre code[class^='language-'] {
-  font-family: 'Cascadia Code PL', '等距更纱黑体', monospace !important;
+.markdown-body pre code[class^="language-"] {
+  font-family: "Cascadia Code PL", "等距更纱黑体", monospace !important;
 }
 
 .markdown-body pre code.language-markdown {
-  font-family: '等距更纱黑体', 'Cascadia Code PL', monospace !important;
+  font-family: "等距更纱黑体", "Cascadia Code PL", monospace !important;
 }

@@ -7,6 +7,6 @@ rm -rf build/test/posts && \
     --cssPath='src/template/v1/index.css' \
     --tplDir='build/gen/dev' \
     --outDir='build/test/posts' \
-    --inDir='posts/tests' > logT.txt && \
+    --inDir='posts/tests' > log.test.txt && \
   echo 'All(tests) have been regenerated! @' && \
   date

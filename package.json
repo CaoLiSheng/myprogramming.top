@@ -101,8 +101,6 @@
     "html-webpack-plugin": "^4.3.0",
     "import-sort-cli": "^6.0.0",
     "import-sort-parser-babel-vue": "^1.0.6",
-    "import-sort-parser-babylon": "^6.0.0",
-    "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "js-yaml": "^3.14.0",
     "markdown-it": "^12.0.4",

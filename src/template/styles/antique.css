@@ -12,7 +12,7 @@
   --strong-foreground-article-color: #605b4b;
 }
 
-body[theme='Light'] .markdown-body {
+body[theme="Light"] .markdown-body {
   --main-foreground-article-color: #45462f;
   --main-background-article-color: rgba(240, 223, 221, 0.7);
   --a-foregrounnd-article-color: #00857a;
@@ -22,7 +22,7 @@ body[theme='Light'] .markdown-body {
   --code-background-article-color: #f2ede8;
 }
 
-body[theme='Dark'] .markdown-body {
+body[theme="Dark"] .markdown-body {
   --main-foreground-article-color: #f0ede3;
   --main-background-article-color: rgba(57, 54, 47, 0.7);
   --a-foregrounnd-article-color: white;
@@ -33,7 +33,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 @media print {
-  body[theme='Dark'] .markdown-body {
+  body[theme="Dark"] .markdown-body {
     --main-foreground-article-color: #45462f;
     --main-background-article-color: rgba(240, 223, 221, 0.7);
     --a-foregrounnd-article-color: #00857a;
@@ -46,25 +46,25 @@ body[theme='Dark'] .markdown-body {
 
 @font-face {
   font-family: Pacifico;
-  src: url(/* reources_dir */fonts/Pacifico-Regular.ttf) format('truetype');
+  src: url(reources_dir fonts/Pacifico-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: PatrickHand;
-  src: url(/* reources_dir */fonts/PatrickHand-Regular.ttf) format('truetype');
+  src: url(reources_dir fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: COOL;
-  src: url(/* reources_dir */fonts/ZCOOLQingKeHuangYou-Regular.ttf)
-    format('truetype');
+  src: url(reources_dir fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    format("truetype");
 }
 
 .markdown-body h2 kbd,
 .markdown-body h2 code,
 .markdown-body h2 ~ * kbd,
 .markdown-body h2 ~ * code {
-  font-family: PatrickHand, '等距更纱黑体', monospace, Apple Color Emoji,
+  font-family: PatrickHand, "等距更纱黑体", monospace, Apple Color Emoji,
     Segoe UI Emoji !important;
 }
 
@@ -200,7 +200,7 @@ body[theme='Dark'] .markdown-body {
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 } */
 .markdown-body h1:after {
-  content: '\21B5';
+  content: "\21B5";
   position: relative;
   right: -0.2em;
   top: -0.3em;

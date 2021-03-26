@@ -1,10 +1,8 @@
-// Some settings are automatically inherited from .editorconfig
-
 module.exports = {
   overrides: [
-    {
-      files: '.editorconfig',
-      options: { parser: 'yaml' },
-    },
+    // {
+    //   files: '**/*.styl',
+    //   options: { parser: 'pug' },
+    // },
   ],
 };

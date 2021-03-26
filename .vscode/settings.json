@@ -11,7 +11,5 @@
     "@vStores": "src/www/v2/stores",
     "@vWidgets": "src/www/v2/widgets"
   },
-  "markdown.styles": [
-    "cfg/thomasf-solarizedcsslight.css"
-  ],
+  "markdown.styles": ["cfg/thomasf-solarizedcsslight.css"]
 }

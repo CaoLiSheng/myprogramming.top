@@ -10,7 +10,7 @@
   --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
 }
 
-body[theme='Light'] .markdown-body {
+body[theme="Light"] .markdown-body {
   --main-foreground-article-color: rgba(0, 0, 0, 0.9);
   --main-background-article-color: rgba(250, 248, 245, 0.7);
   --a-foregrounnd-article-color: #07c;
@@ -24,7 +24,7 @@ body[theme='Light'] .markdown-body {
   --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
 }
 
-body[theme='Dark'] .markdown-body {
+body[theme="Dark"] .markdown-body {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
   --a-foregrounnd-article-color: rgb(33, 68, 111);
@@ -37,7 +37,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 @media print {
-  body[theme='Dark'] .markdown-body {
+  body[theme="Dark"] .markdown-body {
     --main-foreground-article-color: rgba(0, 0, 0, 0.9);
     --main-background-article-color: rgba(250, 248, 245, 0.7);
     --a-foregrounnd-article-color: #07c;
@@ -122,7 +122,7 @@ body[theme='Dark'] .markdown-body {
 }
 
 .markdown-body q {
-  quotes: '\201C''\201D''\2018''\2019';
+  quotes: "\201C""\201D""\2018""\2019";
 }
 
 .markdown-body sub,
@@ -267,19 +267,19 @@ body[theme='Dark'] .markdown-body {
 
 @font-face {
   font-family: PatrickHand;
-  src: url(/* reources_dir */fonts/PatrickHand-Regular.ttf) format('truetype');
+  src: url(reources_dir fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'ZCOOL QingKe HuangYou';
-  src: url(/* reources_dir */fonts/ZCOOLQingKeHuangYou-Regular.ttf)
-    format('truetype');
+  font-family: "ZCOOL QingKe HuangYou";
+  src: url(reources_dir fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    format("truetype");
 }
 
 .markdown-body {
   color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: PatrickHand, 'ZCOOL QingKe HuangYou', cursive, sans-serif;
+  font-family: PatrickHand, "ZCOOL QingKe HuangYou", cursive, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   line-height: 1.6em;
