@@ -7,6 +7,6 @@ rm -rf build/v1/posts && \
     --tplPath='src/template/v1/index.html' \
     --cssPath='src/template/v1/index.css' \
     --tplDir='build/v1/dev' \
-    --outDir='build/v1/posts' > log.dev.v1.txt && \
+    --outDir='build/v1/posts' > gen.dev.v1.log && \
   echo 'All(v1) have been regenerated! @' && \
   date

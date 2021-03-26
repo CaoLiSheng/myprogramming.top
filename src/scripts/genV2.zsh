@@ -7,6 +7,6 @@
     --tplPath='build/v2/dev/index.html' \
     --cssPath='src/template/v2/index.css' \
     --tplDir='build/v2/dev' \
-    --outDir='build/v2/posts' > log.dev.v2.txt && \
+    --outDir='build/v2/posts' > gen.dev.v2.log && \
   echo 'All(v2) have been regenerated! @' && \
   date
