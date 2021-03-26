@@ -14,7 +14,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
 > {
   private renderCurCategory = (
     { db }: { db: Schema } = { db: EmptySchema },
-  ): ReactElement => {
+  ): ReactElement | null => {
     const postName = this.props.match.params.name;
     if ( !postName || !db.metas[ postName ] ) return null;
 
@@ -62,7 +62,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
     );
   };
 
-  render (): ReactElement {
+  render (): ReactElement | null {
     return this.renderCurCategory( this.props.db );
   }
 }
