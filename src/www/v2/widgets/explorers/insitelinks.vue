@@ -41,14 +41,14 @@ export default class InSiteLinks extends Vue.extend( {
     return this.ui.readerLevelGranted
       ? postNames
       : postNames.filter( ( name: string ) => {
-          const meta = InSiteLinks.postMeta( name );
+          const meta = this.postMeta( name );
           return !meta.tags.some(
             ( tag: string ) => tag === "草稿" || tag === "隐私"
           );
         } );
   }
 
-  static postMeta ( name: string ): { title: string, date: string, tags: string[] } {
+  postMeta ( name: string ): { title: string, date: string, tags: string[] } {
     return db.data.metas[name];
   }
 }

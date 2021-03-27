@@ -267,12 +267,12 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: PatrickHand;
-  src: url(reources_dir fonts/PatrickHand-Regular.ttf) format("truetype");
+  src: url({{reources_dir}}fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "ZCOOL QingKe HuangYou";
-  src: url(reources_dir fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+  src: url({{reources_dir}}fonts/ZCOOLQingKeHuangYou-Regular.ttf)
     format("truetype");
 }
 

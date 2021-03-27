@@ -33,14 +33,14 @@ export default class AllComponent extends Vue.extend( {
 
   refresh = true;
 
-  static mounted (): void {
+  mounted (): void {
     void initOnce();
   }
 
   get header (): string {
     const { query } = this;
 
-    return query === "*" ? "全部文章都在这里咯……" : `搜索关键词“${query}”……`;
+    return query === "*" ? "全部文章都在这里咯……" : `搜索关键词“${ query }”……`;
   }
 
   get posts (): string[] {

@@ -54,7 +54,7 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: "PT Sans";
-  src: url(reources_dir fonts/PT_Sans-Web-Regular.ttf) format("truetype");
+  src: url({{reources_dir}}fonts/PT_Sans-Web-Regular.ttf) format("truetype");
 }
 
 .markdown-body p {

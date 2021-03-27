@@ -85,7 +85,7 @@ export default class BarComponent extends Vue {
 
   ui = ui.state;
 
-  static async mounted (): Promise<void> {
+  async mounted (): Promise<void> {
     const curTheme = await localforage.getItem<string>( ThemeKey );
     document.body.setAttribute( ThemeAttr, curTheme || ThemeDefault );
   }
@@ -100,11 +100,11 @@ export default class BarComponent extends Vue {
     this.$data.inDevPopupVisibility = true;
   }
 
-  static goToHomePage (): void {
+  goToHomePage (): void {
     window.location.href = `index.html${ window.location.hash }`;
   }
 
-  static changeTheme (): void {
+  changeTheme (): void {
     const theme =
       document.body.getAttribute( ThemeAttr ) === ThemeDefault
         ? Theme2
@@ -113,7 +113,7 @@ export default class BarComponent extends Vue {
     void localforage.setItem( ThemeKey, theme );
   }
 
-  static changeReaderLevel (): void {
+  changeReaderLevel (): void {
     ui.toggleReaderLevel();
   }
 }

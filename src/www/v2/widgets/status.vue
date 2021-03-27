@@ -76,7 +76,7 @@ export default class StatusComponent extends Vue.extend( {
     const post = parsed[parsed.length - 1];
     if ( !post ) return [];
 
-    return db.data.metas[post]?.tags;
+    return db.data.metas[post]?.tags.map( ( t: string ) => `${ t }`.trim() );;
   }
 
   get selectedTags (): string[] {
@@ -100,7 +100,7 @@ export default class StatusComponent extends Vue.extend( {
     }
   }
 
-  static goToV1 (): void {
+  goToV1 (): void {
     if ( __HomePageIndicators.has( window.location.pathname ) ) {
       window.location.href = __portal_to_v1__;
       return;

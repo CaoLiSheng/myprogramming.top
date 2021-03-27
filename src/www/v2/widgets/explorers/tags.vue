@@ -61,7 +61,7 @@ export default class TagsComponent extends Vue.extend( {
     selected: [],
   };
 
-  static mounted (): void {
+  mounted (): void {
     void initOnce();
   }
 

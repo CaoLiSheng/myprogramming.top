@@ -37,7 +37,7 @@ export const db = {
       if ( meta.date.includes( kw ) ) return true;
       if ( meta.title.includes( kw ) ) return true;
       if (
-        meta.tags.some( ( t: string ) => t.includes( kw ) )
+        meta.tags.some( ( t: string ) => `${ t }`.trim().includes( kw ) )
       ) {
         return true;
       }

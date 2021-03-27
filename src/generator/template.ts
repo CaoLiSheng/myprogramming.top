@@ -78,11 +78,11 @@ function fetchCSSImpl ( base: string ): string {
 
   const cssContent = minify(
     tplCSSContent
-      .replace( /{{reources_dir}}/g, __resources_dir__ )
       .replace( '/* base_stylesheet */', baseCSSContent )
       .replace( '/* body_padding_pc */', Sheets[base].padding.pc )
       .replace( '/* body_padding_mobile */', Sheets[base].padding.mobile )
       .replace( /\/\* common\/(.*?) \*\//g, ( _: string, partial: string ) => fetchCSSCache( partial, fetchCommonCSS ) )
+      .replace( /{{reources_dir}}/g, __resources_dir__ )
   );
 
   const fileName = cssContent.md5( base, 'css', 10 );

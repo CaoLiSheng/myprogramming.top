@@ -34,7 +34,7 @@ export default class IndexComponent extends Vue {
 
   ui = ui.state;
 
-  static mounted (): void {
+  mounted (): void {
     extendMDVW( document.querySelector( "#main>.markdown-body" ) as HTMLElement );
     extendCodes();
     extendLinks();
