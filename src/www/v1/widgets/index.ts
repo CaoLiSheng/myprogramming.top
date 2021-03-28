@@ -6,4 +6,5 @@ export * from './popup';
 export * from './tags';
 export * from './canlendar';
 export * from './home';
+export * from './search';
 export * from './errorComp';

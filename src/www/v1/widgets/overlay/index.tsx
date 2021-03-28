@@ -6,6 +6,7 @@ import React, { Component, ElementType, ReactElement } from 'react';
 
 interface OverlayProps {
   Icon: ElementType;
+  Content: ElementType;
   contentShrinkPos: string;
   positionStyleObj: {
     top?: number | string;
@@ -54,7 +55,7 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
   }
 
   render (): ReactElement {
-    const { Icon, positionStyleObj, contentShrinkPos } = this.props;
+    const { Icon, Content, positionStyleObj, contentShrinkPos } = this.props;
     const { opening } = this.state;
 
     return (
@@ -66,7 +67,9 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
         <div
           style={ { ...positionStyleObj, transformOrigin: contentShrinkPos } }
           className={ classNames( 'overlay-content', { opening } ) }
-        />
+        >
+          <Content />
+        </div>
         <div
           style={ { ...positionStyleObj } }
           className={ classNames( 'overlay-icon', { opening } ) }

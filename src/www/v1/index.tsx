@@ -15,6 +15,7 @@ import {
   Overlay,
   Post,
   Tags,
+  Search,
 } from '@rWidgets/index';
 import { __dirs__ } from '@www/utils/dir';
 import React, { Component, ErrorInfo } from 'react';
@@ -104,6 +105,7 @@ class App extends Component<AppProps, AppStates> {
           />
           <Overlay
             Icon={ CmdAndSpaceIcon }
+            Content={ Search }
             contentShrinkPos="100% 100% 0"
             positionStyleObj={ { right: '0.1rem', bottom: '0.1rem' } }
           />
