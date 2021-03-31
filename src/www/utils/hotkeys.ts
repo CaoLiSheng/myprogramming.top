@@ -1,29 +1,28 @@
 import { scrollToCoords } from './scroll';
 
-type Coord = Element | number | null;
-type Coords = Coord[];
+interface Coords { parent: Element | null, y: number }
 
 function newCoords ( direction: boolean ): Coords {
   const parent = document.querySelector( '#main' );
   const current = parent?.scrollTop || 0;
   const height = ( parent as HTMLElement | null )?.offsetHeight || 0;
   const y = current + ( direction ? 0.36 : -0.36 ) * height;
-  return [ parent, y ];
+  return { parent, y };
 }
 
 function hotkeys ( evt: KeyboardEvent ): void {
-  let parent: Coord, y: Coord;
+  let coords: Coords;
 
   switch ( evt.key ) {
     case 'Left': // IE/Edge specific value
     case 'ArrowLeft':
-      [ parent, y ] = newCoords( false );
-      scrollToCoords( parent as Element | null, y as number );
+      coords = newCoords( false );
+      scrollToCoords( coords.parent, coords.y );
       break;
     case 'Right': // IE/Edge specific value
     case 'ArrowRight':
-      [ parent, y ] = newCoords( true );
-      scrollToCoords( parent as Element | null, y as number );
+      coords = newCoords( true );
+      scrollToCoords( coords.parent, coords.y );
       break;
     default:
       break;
