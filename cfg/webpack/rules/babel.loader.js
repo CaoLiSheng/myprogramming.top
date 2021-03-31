@@ -16,7 +16,7 @@ module.exports = function factory ( configs = {} ) {
         cacheDirectory: true,
         babelrc: false,
         presets: [
-          [ '@babel/preset-env', { targets: { browsers: 'last 2 versions' } } ],
+          [ '@babel/preset-env', { modules: false, targets: { browsers: 'last 2 versions' } } ],
           babelPrestTs,
           ...extPresets,
         ],
