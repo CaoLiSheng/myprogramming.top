@@ -44,8 +44,7 @@
   <script>
     const downCounter = document.getElementById('downCounter');
     const countText = ['四秒后', '三秒后', '两秒后', '一秒后', '马上' ];
-    let count = 0;
-    let timmer = null;
+    let count = 0, timmer = null;
     const tick = () => {
       clearTimeout(timmer);
       downCounter.innerHTML = countText[count++];

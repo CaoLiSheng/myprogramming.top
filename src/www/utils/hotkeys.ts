@@ -1,6 +1,7 @@
 import { scrollToCoords } from './scroll';
 
-type Coords = ( Element | number | null )[];
+type Coord = Element | number | null;
+type Coords = Coord[];
 
 function newCoords ( direction: boolean ): Coords {
   const parent = document.querySelector( '#main' );
@@ -11,8 +12,7 @@ function newCoords ( direction: boolean ): Coords {
 }
 
 function hotkeys ( evt: KeyboardEvent ): void {
-  let parent: Element | number | null;
-  let y: Element | number | null;
+  let parent: Coord, y: Coord;
 
   switch ( evt.key ) {
     case 'Left': // IE/Edge specific value

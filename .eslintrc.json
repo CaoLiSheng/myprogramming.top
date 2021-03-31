@@ -39,6 +39,7 @@
     "max-classes-per-file": "off",
     "consistent-return": "off",
     "global-require": "off",
+    "one-var": "off",
     "no-new": "off",
     "no-void": "off",
     "no-console": "off",

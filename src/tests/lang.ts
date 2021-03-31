@@ -5,8 +5,7 @@ console.log( '\nloading...\n\n' );
 // console.log(1 + 2 + ' Hello ' + 2 + 1);
 
 function fabs ( count: number ) {
-  let num0 = 1;
-  let num1 = 1;
+  let num0 = 1, num1 = 1;
   for ( let i = 0; i < count; i += 1 ) {
     console.log( num0 );
     const tmp = num1;
@@ -110,8 +109,7 @@ function searchByIndex ( data: DBIndex[], flag: Indexer, v: unknown ): DBIndex[]
 }
 
 function invertColor ( color: string, isBody?: boolean ) {
-  let r; let g; let b; let
-    a;
+  let r, g, b, a;
 
   // hex format
   if ( color.indexOf( '#' ) === 0 ) {

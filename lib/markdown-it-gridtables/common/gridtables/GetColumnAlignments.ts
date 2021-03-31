@@ -8,8 +8,7 @@ import ColumnAlignments from './ColumnAlignments';
 export default function getAlignments ( line: string, columnCount: number ): ColumnAlignments[] {
   const alignments: ColumnAlignments[] = [];
 
-  let left = 1;
-  let right = -1;
+  let left = 1, right = -1;
 
   for ( let i = 0; i < columnCount; i += 1 ) {
     right = line.indexOf( '+', left ) - 1;

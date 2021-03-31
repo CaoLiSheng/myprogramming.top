@@ -16,8 +16,7 @@ function articleAnchorClickDelegate ( ev: MouseEvent ) {
   if ( !it ) return;
   ev.preventDefault();
 
-  let anchor;
-  let container; 
+  let anchor, container; 
   const attrHref = target.getAttribute( 'href' );
   const [ type, ...params ] = attrHref?.split( ':' ) || [];
   switch ( type ) {

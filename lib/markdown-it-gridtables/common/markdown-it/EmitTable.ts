@@ -16,7 +16,7 @@ export default function emitTable (
   result: ParseTableResult
 ): void {
   let offsets = result.SeparatorLineOffsets;
-
+  
   let token = state.push( 'table_open', 'table', 1 );
   token.map = [ offsets[0], offsets[offsets.length - 1] ];
 
