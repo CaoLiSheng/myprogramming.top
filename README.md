@@ -19,7 +19,7 @@
 
    1. Github // 技术
 
-      1. github-colors // （Github 风格）做*技术分享*
+      1. github // （Github 风格）做*技术分享*
 
    2. Categories
 
