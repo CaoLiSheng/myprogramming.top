@@ -11,15 +11,7 @@ function showTime ( ev: MessageEvent ) {
 
 function openInNewTab ( ev: MessageEvent ) {
   const [ , url ] = ( ev.data as string ).split( ' ' );
-  const [ protocal, value ] = url.split( ':' );
-  switch ( protocal ) {
-    case 'post':
-      window.open( `${window.location.pathname}#/post/${ value }`, '_blank' );
-      break;
-    default:
-      window.open( url, '_blank' );
-      break;
-  }
+  window.open( url, '_blank' );
 }
 
 const handlers: { [key: string]: ( ev: MessageEvent ) => void } = {

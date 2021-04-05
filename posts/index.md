@@ -27,7 +27,7 @@ date: 有缘千里来相会
 
 ### 技术类
 
-0. [阶段性总结与分享](post:Milestone-2020-1-0)
+0. [阶段性总结与分享](post:Milestone-2020-1)
 1. [学习资料记录与分享](post:Records-study-stuff)
 1. [读书笔记之《Algorithms》](post:Book-Algorithms-13-Summary)
 1. [读书笔记之《计算机组成原理》](post:Book-Computer-Organization-10-Summary)
