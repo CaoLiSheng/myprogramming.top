@@ -3,8 +3,6 @@ no-receive-emails: true
 style: solarized
 title: 又心真人的博客
 date: 有缘千里来相会
-tags:
-  - 纯属虚构
 ---
 
 ## 欢迎来到我的的博客

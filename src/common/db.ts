@@ -3,10 +3,15 @@ import Moment from 'moment';
 declare let __production__: boolean;
 
 export interface RNK {
-  [key: number]: RNK | string[];
+  [key: number]: {
+    [key: number]: {
+      [key: number]: string[];
+    }
+  };
 }
 
 export interface PublicMeta {
+  top: boolean;
   date: string;
   title: string;
   tags: string[];
@@ -66,11 +71,13 @@ export class DB {
   }: Row ): PublicMeta {
     if ( this.postMetas[name] ) throw new Error( `POST重复了 ${name}` );
 
+    const top = name.startsWith( 'hidden-' );
+
     // Parse private Metadata
-    this.postMetas[name] = { date: Moment( date ) };
+    this.postMetas[name] = { date: Moment( top ? '2121-12-12 11:11:11.111' : date ) };
 
     // Write public meta & infos
-    this.schema.metas[name] = { date, title, tags };
+    this.schema.metas[name] = { date, title, tags, top };
 
     this.pushToSortedPosts( name );
     this.pushToDateCategories( name );
@@ -98,6 +105,8 @@ export class DB {
   }
 
   private pushToDateCategories ( name: string ) {
+    if ( this.schema.metas[name].top ) return;
+
     const d = this.postMetas[name].date;
 
     const year = d.year();
@@ -112,10 +121,7 @@ export class DB {
 
     const day = d.date();
 
-    this.schema.dateCategories[year][month][day] = this.push(
-      name,
-      ( this.schema.dateCategories[year][month][day] as string[] ) || [],
-    );
+    this.schema.dateCategories[year][month][day] = this.push( name,this.schema.dateCategories[year][month][day] || [] );
   }
 
   private pushToTagCategories ( name: string, tags: string[] ) {

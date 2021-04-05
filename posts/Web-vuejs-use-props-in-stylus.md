@@ -4,8 +4,11 @@ title: Vuejs--use props in stylus
 date: 2020-11-25
 tags:
   - Web
+  - 灵感乍现
+  - CSS
+  - Javascript
+  - Typescript
   - Vuejs
-  - 写代码时的困惑
 ---
 
 `CSS3` 中有一特性是定义变量，然后通过 `var()` 取值。本站（宽屏版）就是利用这个特性，做了日间模式和夜间模式的适配。

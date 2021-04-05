@@ -8,7 +8,6 @@
 
 <script lang="ts">
 
-import Moment from "moment";
 import Vue from "vue";
 import Component from "vue-class-component";
 
@@ -34,7 +33,7 @@ export default class InsiteLink extends Vue.extend( {
   running = true;
 
   get date (): string {
-    return Moment( this.data.date ).format( "YYYY-MM-DD" );
+    return ( this.data.top ? this.data.date : this.data.date.slice( 0, 10 ) ) as string;
   }
 
   mounted (): void {

@@ -1,10 +1,8 @@
 ---
+no-receive-emails: true
 style: resume-bountiful
 title: RESUME of 「yx1991.cao」
-date: 2021-06-01
-tags:
-  - 真实不虚
-  - 自学成才
+date: 自学成才，真实不虚
 ---
 
 > 性别：男 | 联系方式：_186****8264_ | QQ：_***382491_ | 博客 🔗：_<https://yx1991.gitee.io/blog>_

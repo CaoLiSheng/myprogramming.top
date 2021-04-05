@@ -16,7 +16,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
     { db }: { db: Schema } = { db: EmptySchema },
   ): ReactElement | null => {
     const postName = this.props.match.params.name;
-    if ( !postName || !db.metas[ postName ] ) return null;
+    if ( !postName || !db.metas[ postName ] || db.metas[ postName ].top ) return null;
 
     const date = Moment( db.metas[ postName ].date, 'YYYY-MM-DD' );
     const { tags } = db.metas[ postName ];

@@ -21,18 +21,25 @@ export const intersectingReduce = (
 
 interface Sortable {
   s: string;
-  date: Moment.Moment;
+  top: boolean;
+  date: Moment.Moment | null;
 }
+
+export const dateReg = /\d{4}-\d{2}-\d{2}([ T]\d{2}:\d{2}:\d{2}\.\d{3}Z?)?/;
 
 export const dateSortDesc = (
   src: string[],
   metas: { [key: string]: PublicMeta },
 ): string[] => src
-  .map( ( s: string ) => ( {
-    s,
-    date: Moment( metas[s].date ),
-  } ) )
-  .sort( ( a: Sortable, b: Sortable ) => ( a.date.isBefore( b.date ) ? 1 : -1 ) )
+  .map( ( s: string ) => {
+    const top = !dateReg.test( metas[s].date );
+    return {
+      s,
+      top,
+      date: top ? null : Moment( metas[s].date ),
+    };
+  } )
+  .sort( ( a: Sortable, b: Sortable ) => ( ( a.top || ( !b.top && a.date?.isBefore( b.date ) ) ) ? 1 : -1 ) )
   .map( ( obj: Sortable ) => obj.s );
 
 export function switcher (

@@ -19,16 +19,16 @@
     "lint": "run-p lint-es lint-ts",
     "lint-es": "eslint --ext .js,.jsx,.ts,.tsx,.vue --format=pretty ./",
     "lint-ts": "tsc --noEmit",
+    "test:babel-tree-shaking": "webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js",
+    "test:lang": "rm -rf build/tests/lang && webpack --config=cfg/webpack/test.lang.js && node ./build/tests/lang/index.min.js",
     "test:lint": "eslint --print-config src/www/v2/widgets/bar.vue > eslint.vue.config.log",
     "test:markdown-it": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && zsh ./src/scripts/genTest.zsh",
-    "test:lang": "rm -rf build/tests/lang && webpack --config=cfg/webpack/test.lang.js && node ./build/tests/lang/index.min.js",
-    "test:babel-tree-shaking": "webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js",
-    "devgen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
-    "nodemon": "nodemon --exec \"concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'\"",
-    "devbuildgen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run devgen",
-    "devV1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run devbuildgen' 'npm run devV1Tpl' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
-    "devV1Tpl": "rm -rf build/v1/dev && webpack --silent --config=cfg/webpack/site.v1.tpl.dev.js && npm run devgen",
-    "devV2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run devbuildgen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
+    "nodemon": "nodemon --exec 'npm run dev-gen'",
+    "dev-gen": "concurrently 'zsh ./src/scripts/genV1.zsh' 'zsh ./src/scripts/genV2.zsh'",
+    "dev-build-gen": "rm -rf build/gen/dev && webpack --silent --config=cfg/webpack/gen.dev.js && npm run dev-gen",
+    "dev-v1": "concurrently 'serve -C -l 5555 build/v1/posts' 'npm run dev-build-gen' 'npm run dev-v1-tpl' 'webpack-dev-server --config=cfg/webpack/site.v1.dev.js'",
+    "dev-v1-tpl": "rm -rf build/v1/dev && webpack --silent --config=cfg/webpack/site.v1.tpl.dev.js && npm run dev-gen",
+    "dev-v2": "concurrently 'serve -C -l 3333 build/v2/posts' 'npm run dev-build-gen' 'webpack-dev-server --config=cfg/webpack/site.v2.dev.js'",
     "bundle": "zsh ./src/scripts/prePublish.zsh && webpack -p --devtool=false --config=cfg/webpack/gen.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v1.tpl.prod.js && webpack -p --devtool=false --config=cfg/webpack/site.v2.prod.js && concurrently 'webpack -p --devtool=false --config=cfg/webpack/site.v1.prod.js' 'zsh ./src/scripts/pubV1.zsh' 'zsh ./src/scripts/pubV2.zsh'"
   },
   "husky": {
@@ -37,12 +37,8 @@
     }
   },
   "lint-staged": {
-    "*.{.js,.jsx,.ts,.tsx}": [
-      "lint-es",
-      "git add"
-    ],
-    "*.{.vue}": [
-      "lint-vue",
+    "*.{.js,.jsx,.ts,.tsx,.vue}": [
+      "lint",
       "git add"
     ]
   },

@@ -4,6 +4,7 @@ title: Top 6 ways to improve the SPA performance
 date: 2020-09-23
 tags:
   - Web
+  - Javascript
   - SPA 性能优化
 ---
 

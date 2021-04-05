@@ -4,7 +4,6 @@ import path from 'path';
 
 import Sheets from '@tpl/styles';
 import fs from 'fs-extra';
-import Moment from 'moment';
 
 import { outDir } from './file';
 import { minify } from './minify';
@@ -120,7 +119,7 @@ export function titleTagHTML ( fileName: string ): string {
 
 // dateTag
 export function dateTagHTML ( date: string, raw = false ): string {
-  return `<code> ~-~> ${raw ? date : Moment( date ).format( 'YYYY-MM-DD' )}</code>`;
+  return `<code> ~-~> ${raw ? date : date.slice( 0, 10 )}</code>`;
 }
 
 // hm baidu

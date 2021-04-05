@@ -3,9 +3,9 @@ style: bountiful
 title: 〔转〕法财侣地
 date: 2021-01-11
 tags:
-  - 修道
   - 修炼学
   - 法财侣地
+  - 修道之路
 ---
 
 > 转自<https://baijiahao.baidu.com/s?id=1606868293164442048>

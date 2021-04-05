@@ -4,8 +4,10 @@ title: 小小计时器
 date: 2020-11-26
 tags:
   - Web
-  - Typescript
+  - 灵感乍现
   - Timeout
+  - Javascript
+  - Typescript
   - Vuejs
 ---
 

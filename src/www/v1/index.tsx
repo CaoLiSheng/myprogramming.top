@@ -14,8 +14,8 @@ import {
   Home,
   Overlay,
   Post,
-  Tags,
   Search,
+  Tags,
 } from '@rWidgets/index';
 import { __dirs__ } from '@www/utils/dir';
 import React, { Component, ErrorInfo } from 'react';

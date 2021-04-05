@@ -2,9 +2,8 @@ import path from 'path';
 
 import { DB } from '@common/db';
 import fs from 'fs-extra';
-import jsYAML from 'js-yaml';
 
-import { converter } from './converter';
+import { converter, jsYAML, yamlSchema } from './converter';
 import {
   extractPostName,
   inDir,
@@ -61,7 +60,7 @@ posts.forEach( ( fileName: string ) => {
   let metadata: unknown;
 
   try {
-    metadata = jsYAML.safeLoad( rawMetadata );
+    metadata = jsYAML.safeLoad( rawMetadata, { schema: yamlSchema } );
   } catch ( error ) {
     console.log( error );
   }
@@ -100,7 +99,7 @@ posts.forEach( ( fileName: string ) => {
         .replace( '{{hm_baidu}}', hmBaidu() )
         .replace( '{{stylesheet}}', fetchCSS( style ) )
         .replace( '{{title_tag}}', titleTagHTML( fileName ) )
-        .replace( '{{date_tag}}', dateTagHTML( date, !rowMeta ) )
+        .replace( '{{date_tag}}', dateTagHTML( date, !rowMeta || rowMeta.top ) )
         .replace(
           '{{article_body}}',
           `${body}${emailLinkHTML( fileName, noReceiveEmails, style, title )}`,

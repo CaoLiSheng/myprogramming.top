@@ -1,8 +1,11 @@
 ---
 no-receive-emails: true
 style: bountiful
-title: 灵感
-date: 2045-11-06
+title: 修道之路：灵感源泉
+date: 2121-12-12 10:00:00.000
+tags:
+  - 修道之路
+  - 灵感源泉
 ---
 
 > 按时间顺序倒排

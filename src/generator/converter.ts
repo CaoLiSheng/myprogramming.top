@@ -1,6 +1,7 @@
 import gridTableRulePlugin from '@mditgridtables/index';
 import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
+import YAML from 'js-yaml';
 
 declare let __resources_dir__: string;
 
@@ -74,3 +75,7 @@ md.renderer.rules.table_close = function tableClose ( tokens, idx, options, env,
 };
 
 export const converter = md;
+
+export const jsYAML = YAML;
+
+export const yamlSchema = YAML.Schema.create( YAML.CORE_SCHEMA, [] );
