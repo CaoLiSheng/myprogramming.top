@@ -13,7 +13,7 @@ tags:
 
 ### 如何快速成长为技术大牛？阿里资深技术专家的总结亮了
 
-![快速成长大纲](correct-values/grow-up-quickly.png)
+![快速成长大纲](coders-values/grow-up-quickly.png)
 
 #### 感想
 
@@ -21,7 +21,7 @@ tags:
 
 ### 毕业 3 年，为何技术能力相差越来越大？
 
-![技术能力大纲](correct-values/tech-ability.png)
+![技术能力大纲](coders-values/tech-ability.png)
 
 #### 感想
 
@@ -29,7 +29,7 @@ tags:
 
 ### 程序员吃的是青春饭？本质上取决于……
 
-![35 岁之前大纲](correct-values/before-35-years-old.png)
+![35 岁之前大纲](coders-values/before-35-years-old.png)
 
 #### 感想
 
@@ -37,7 +37,7 @@ tags:
 
 ### 技术变化那么快，程序员如何做到不被淘汰？
 
-![不被淘汰大纲](correct-values/not-eliminated.png)
+![不被淘汰大纲](coders-values/not-eliminated.png)
 
 #### 感想
 
@@ -45,7 +45,7 @@ tags:
 
 ### 加班越久故障越多，如何跳出程序员的恶性循环？
 
-![研发数据大纲](correct-values/dev-data.png)
+![研发数据大纲](coders-values/dev-data.png)
 
 #### 感想（摘抄）
 
@@ -57,7 +57,7 @@ tags:
 
 ### 如何在阿里技术面试中脱颖而出？
 
-![面试大纲](correct-values/interview.png)
+![面试大纲](coders-values/interview.png)
 
 #### 感想
 
@@ -65,7 +65,7 @@ tags:
 
 ### 使用开源项目的正确姿势，血和泪的总结
 
-![拥抱开源大纲](correct-values/embrace-open-source.png)
+![拥抱开源大纲](coders-values/embrace-open-source.png)
 
 #### 感想
 
@@ -75,7 +75,7 @@ tags:
 
 ### 前端工程师的未来在哪里？
 
-![未来前端大纲](correct-values/future-frontend.png)
+![未来前端大纲](coders-values/future-frontend.png)
 
 #### 感想
 
@@ -89,13 +89,13 @@ tags:
 
 ### 前端 Leader 如何做好团队规划？阿里内部培训总结公开
 
-![技术规划大纲](correct-values/tl-plans.png)
+![技术规划大纲](coders-values/tl-plans.png)
 
 #### 感想
 
 TL 还是一种有意思的职业呢。
 
-![团队行为曲线](correct-values/team-behaviour-curve.png)
+![团队行为曲线](coders-values/team-behaviour-curve.png)
 
 从团队特征中寻找规划的边界：
 | 特征           | 要                         | 不要                           |
@@ -110,7 +110,7 @@ TL 还是一种有意思的职业呢。
 
 ### 一位优秀前端的自我修养
 
-![职业素养大纲](correct-values/professionalism.png)
+![职业素养大纲](coders-values/professionalism.png)
 
 #### 感想
 
@@ -118,7 +118,7 @@ TL 还是一种有意思的职业呢。
 
 ### 如何成为一名顶尖的阿里架构师？
 
-![架构师大纲](correct-values/architect.png)
+![架构师大纲](coders-values/architect.png)
 
 #### 感想
 
