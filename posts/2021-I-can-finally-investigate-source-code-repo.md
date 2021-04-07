@@ -42,65 +42,82 @@ tags:
 
 ```bash
 #!/bin/zsh
+# Usage: git first [branch]
 
-# Usage: git first [-b branch]
-
-while getopts "b:" flag; do
-  case "${flag}" in
-    b) branch="${OPTARG}" ;;
-  esac
-done
-
-git log --reverse --pretty=%H ${branch-$(git symbolic-ref refs/remotes/origin/HEAD)} | head -1 | xargs git checkout
+git log --reverse --pretty=%H ${1-$(git symbolic-ref refs/remotes/origin/HEAD)} | head -1 | xargs git checkout
 ```
 
 ```bash
 #!/bin/zsh
+# Usage: git last [branch]
 
-# Usage: git last [-b branch]
-
-while getopts "b:" flag; do
-  case "${flag}" in
-    b) branch="${OPTARG}" ;;
-  esac
-done
-
-git log --pretty=%H ${branch-$(git symbolic-ref refs/remotes/origin/HEAD)} | head -1 | xargs git checkout
+git log --pretty=%H ${1-$(git symbolic-ref refs/remotes/origin/HEAD)} | head -1 | xargs git checkout
 ```
 
 ```bash
 #!/bin/zsh
+# Usage: git next [number]
 
-# Usage: git next [-s]
-
-while getopts "s" flag; do
-  case "${flag}" in
-    s) s="true" ;;
-  esac
-done
-
-[[ ${s} = "true" ]] && option="$(git symbolic-ref refs/remotes/origin/HEAD)" || option="--all"
-
-git log --pretty=%H ${option} | grep -B1 $(git rev-parse HEAD) | head -1 | xargs git checkout
-```
-
-```bash
-#!/bin/zsh
-
-# Usage: git prev [-n number] [-s]
-
-while getopts "n:s" flag; do
-  case "${flag}" in
-    n) n="${OPTARG}" ;;
-    s) s="true" ;;
-  esac
-done
-
-if [[ ${s} = "true" ]] then
-  git log --reverse --pretty="%H %S %s" $(git symbolic-ref refs/remotes/origin/HEAD) | grep -B ${n="1"} $(git rev-parse HEAD) | head -1 | xargs git checkout
+if [ -z "$1" ]; then
+  number=1
 else
-  git checkout HEAD~${n="1"}
+  number=$1
 fi
+
+awkGroup="
+  BEGIN { FS=OFS=\":sep:\" } {
+    if ( arr[\$1] == \"\" ) {
+      idx[\$1]=counter++
+    }
+    arr[\$1]=\$2
+  } END {
+    for (i in idx) print idx[i],i,arr[i]
+  }"
+awkExtract="BEGIN { FS=\":sep:\" } END { print \$3 }"
+branch="$(git symbolic-ref refs/remotes/origin/HEAD)"
+head="$(git rev-parse HEAD)"
+pretty="%s:sep:%H"
+
+git log --reverse --pretty="${pretty}" ${branch} | \
+  grep -A"$((number*10))" ${head} | \
+  awk ${awkGroup} | \
+  sort -n | \
+  sed -n "$((number+1)),$((number+1))p" | \
+  awk ${awkExtract} | \
+  xargs git checkout
+```
+
+```bash
+#!/bin/zsh
+# Usage: git prev [number]
+
+if [ -z "$1" ]; then
+  number=1
+else
+  number=$1
+fi
+
+awkGroup="
+  BEGIN { FS=OFS=\":sep:\" } {
+    if ( arr[\$1] == \"\" ) {
+      idx[\$1]=counter++
+      arr[\$1]=\$2
+    }
+  } END {
+    for (i in idx) print idx[i],i,arr[i]
+  }"
+awkExtract="BEGIN { FS=\":sep:\" } END { print \$3 }"
+branch="$(git symbolic-ref refs/remotes/origin/HEAD)"
+head="$(git rev-parse HEAD)"
+pretty="%s:sep:%H"
+
+git log --pretty="${pretty}" ${branch} | \
+  grep -A"$((number*10))" ${head} | \
+  awk ${awkGroup} | \
+  sort -n | \
+  sed -n "$((number+1)),$((number+1))p" | \
+  awk ${awkExtract} | \
+  xargs git checkout
 ```
 
 ```bash
