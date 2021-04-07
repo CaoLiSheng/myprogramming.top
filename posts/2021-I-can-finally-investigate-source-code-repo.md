@@ -64,26 +64,26 @@ else
   number=$1
 fi
 
-awkGroup="
+awkProg="
   BEGIN { FS=OFS=\":sep:\" } {
     if ( arr[\$1] == \"\" ) {
       idx[\$1]=counter++
     }
     arr[\$1]=\$2
   } END {
-    for (i in idx) print idx[i],i,arr[i]
+    for (i in idx) {
+      if ( idx[i] == ${number} ) {
+        print arr[i]
+      }
+    }
   }"
-awkExtract="BEGIN { FS=\":sep:\" } END { print \$3 }"
 branch="$(git symbolic-ref refs/remotes/origin/HEAD)"
 head="$(git rev-parse HEAD)"
 pretty="%s:sep:%H"
 
 git log --reverse --pretty="${pretty}" ${branch} | \
   grep -A"$((number*10))" ${head} | \
-  awk ${awkGroup} | \
-  sort -n | \
-  sed -n "$((number+1)),$((number+1))p" | \
-  awk ${awkExtract} | \
+  awk ${awkProg} | \
   xargs git checkout
 ```
 
@@ -97,26 +97,26 @@ else
   number=$1
 fi
 
-awkGroup="
+awkProg="
   BEGIN { FS=OFS=\":sep:\" } {
     if ( arr[\$1] == \"\" ) {
       idx[\$1]=counter++
       arr[\$1]=\$2
     }
   } END {
-    for (i in idx) print idx[i],i,arr[i]
+    for (i in idx) {
+      if ( idx[i] == ${number} ) {
+        print arr[i]
+      }
+    }
   }"
-awkExtract="BEGIN { FS=\":sep:\" } END { print \$3 }"
 branch="$(git symbolic-ref refs/remotes/origin/HEAD)"
 head="$(git rev-parse HEAD)"
 pretty="%s:sep:%H"
 
 git log --pretty="${pretty}" ${branch} | \
   grep -A"$((number*10))" ${head} | \
-  awk ${awkGroup} | \
-  sort -n | \
-  sed -n "$((number+1)),$((number+1))p" | \
-  awk ${awkExtract} | \
+  awk ${awkProg} | \
   xargs git checkout
 ```
 
