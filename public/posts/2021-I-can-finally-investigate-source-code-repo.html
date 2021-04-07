@@ -16,18 +16,16 @@ else
 fi
 
 awkProg=&quot;
-  BEGIN { FS=OFS=\&quot;:sep:\&quot; } {
-    if ( arr[\$1] == \&quot;\&quot; ) {
-      idx[\$1]=counter++
-    }
-    arr[\$1]=\$2
-  } END {
-    for (i in idx) {
-      if ( idx[i] == ${number} ) {
-        print arr[i]
+  BEGIN { FS=\&quot;:sep:\&quot; } {
+    if ( last != \$1 ) {
+      last=\$1
+      if ( $((number+1)) == counter++ ) {
+        res=hash
+        next
       }
     }
-  }&quot;
+    hash=\$2
+  } END { print res }&quot;
 branch=&quot;$(git symbolic-ref refs/remotes/origin/HEAD)&quot;
 head=&quot;$(git rev-parse HEAD)&quot;
 pretty=&quot;%s:sep:%H&quot;
@@ -46,18 +44,15 @@ else
 fi
 
 awkProg=&quot;
-  BEGIN { FS=OFS=\&quot;:sep:\&quot; } {
-    if ( arr[\$1] == \&quot;\&quot; ) {
-      idx[\$1]=counter++
-      arr[\$1]=\$2
-    }
-  } END {
-    for (i in idx) {
-      if ( idx[i] == ${number} ) {
-        print arr[i]
+  BEGIN { FS=\&quot;:sep:\&quot; } {
+    if ( last != \$1 ) {
+      last=\$1
+      if ( ${number} == counter++ ) {
+        res=\$2
+        next
       }
     }
-  }&quot;
+  } END { print res }&quot;
 branch=&quot;$(git symbolic-ref refs/remotes/origin/HEAD)&quot;
 head=&quot;$(git rev-parse HEAD)&quot;
 pretty=&quot;%s:sep:%H&quot;
@@ -67,7 +62,6 @@ git log --pretty=&quot;${pretty}&quot; ${branch} | \
   awk ${awkProg} | \
   xargs git checkout
 </code></pre><pre><code class="language-bash">#!/bin/zsh
-
 # Usage: git df
 
 git difftool HEAD^ HEAD
