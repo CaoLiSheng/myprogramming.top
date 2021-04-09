@@ -17,37 +17,37 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class TagClouds extends Vue.extend( {
+export default class TagClouds extends Vue.extend ( {
   props: { 
     allTags: {
-      type: Array,
+      type   : Array,
       default: () => [],
     },
     extendable: {
-      type: Array,
+      type   : Array,
       default: () => [],
     },
     selected: {
-      type: Array,
+      type   : Array,
       default: () => [],
     },
     height: {
-      type: String,
+      type   : String,
       default: '',
     },
   },
 } ) {
   isSelected ( tag: string ): boolean {
-    return this.selected.includes( tag );
+    return this.selected.includes ( tag );
   }
 
   isOut ( tag: string ): boolean {
     if ( this.extendable.length === 0 ) return false;
-    return !this.extendable.includes( tag );
+    return !this.extendable.includes ( tag );
   }
 
   click ( tag: string ): void {
-    clickOnTag( tag, this.$router );
+    clickOnTag ( tag, this.$router );
   }
 }
 </script>

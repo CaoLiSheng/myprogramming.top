@@ -32,7 +32,7 @@ import { clickOnTag } from "../router";
 
 declare let __portal_to_v1__: string;
 
-const __HomePageIndicators = new Set( [
+const __HomePageIndicators = new Set ( [
   "/blog/v2/",
   "/blog/v2/index",
   "/blog/v2/index.html",
@@ -41,42 +41,42 @@ const __HomePageIndicators = new Set( [
   "/index.html",
 ] );
 
-@Component( { components: { TagIcon, GateIcon } } )
-export default class StatusComponent extends Vue.extend( {
+@Component ( { components: { TagIcon, GateIcon } } )
+export default class StatusComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
-  iconStyle = computeIconStyle( iconSizeCfg1 as SizeCfg );
+  iconStyle = computeIconStyle ( iconSizeCfg1 as SizeCfg );
 
   db = db.state;
 
-  isMobile = isMobileSize().result;
+  isMobile = isMobileSize ().result;
 
   sideRoot: HTMLElement | null = null;
 
   barRoot: HTMLElement | null = null;
 
   mounted (): void {
-    void initOnce();
+    void initOnce ();
 
     if ( !this.isMobile ) return;
 
-    this.sideRoot = document.querySelector( "#side" );
-    this.barRoot = document.querySelector( "#bar" );
+    this.sideRoot = document.querySelector ( "#side" );
+    this.barRoot = document.querySelector ( "#bar" );
 
-    setTimeout( () => {
-      ui.setVisible( true );
-      setTimeout( ui.closeMenu.bind( ui ), 1000 );
+    setTimeout ( () => {
+      ui.setVisible ( true );
+      setTimeout ( ui.closeMenu.bind ( ui ), 1000 );
     }, 500 );
   }
 
   get tags (): string[] {
     if ( !this.db.refresh ) return [];
 
-    const parsed = decodeURIComponent( window.location.pathname ).split( "/" );
+    const parsed = decodeURIComponent ( window.location.pathname ).split ( "/" );
     const post = parsed[parsed.length - 1];
     if ( !post ) return [];
 
-    return db.data.metas[post]?.tags.map( ( t: string ) => `${ t }`.trim() );;
+    return db.data.metas[post]?.tags.map ( ( t: string ) => `${ t }`.trim () );;
   }
 
   get selectedTags (): string[] {
@@ -84,29 +84,29 @@ export default class StatusComponent extends Vue.extend( {
       return [];
     }
 
-    return this.query.split( "," ).map( ( t: string ) => t.trim() );
+    return this.query.split ( "," ).map ( ( t: string ) => t.trim () );
   }
 
   click ( tag: string ): void {
     if ( this.isMobile ) {
-      this.openMenu();
+      this.openMenu ();
     }
-    clickOnTag( tag, this.$router );
+    clickOnTag ( tag, this.$router );
   }
 
   openMenu (): void {
     if ( !ui.state.menuOpened ) {
-      ui.openMenu( this.sideRoot, this.barRoot );
+      ui.openMenu ( this.sideRoot, this.barRoot );
     }
   }
 
   goToV1 (): void {
-    if ( __HomePageIndicators.has( window.location.pathname ) ) {
+    if ( __HomePageIndicators.has ( window.location.pathname ) ) {
       window.location.href = __portal_to_v1__;
       return;
     }
 
-    const post = window.location.pathname.match( /^.*\/(.*)(\.html)?$/ )?.[1];
+    const post = window.location.pathname.match ( /^.*\/(.*)(\.html)?$/ )?.[1];
     if ( !post ) {
       window.location.href = __portal_to_v1__;
       return;

@@ -24,27 +24,27 @@ import {
 } from './template';
 
 // DB
-const dbData = new DB();
+const dbData = new DB ();
 
 declare let __production__: boolean;
 
 // Clean & Make Out Dir
-fs.mkdirSync( outDir, { recursive: true } );
-console.log( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
+fs.mkdirSync ( outDir, { recursive: true } );
+console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
 
 // Read Source Dir
-const sources = fs.readdirSync( inDir );
-console.log( 'Sources:', sources );
+const sources = fs.readdirSync ( inDir );
+console.log ( 'Sources:', sources );
 
 // Copy Template's Assets
-copyTemplateAssets();
+copyTemplateAssets ();
 
 // Generate HTML
-const posts = sources.filter( ( file: string ) => isPost( file ) );
-console.log( 'Posts:', posts );
+const posts = sources.filter ( ( file: string ) => isPost ( file ) );
+console.log ( 'Posts:', posts );
 
-posts.forEach( ( fileName: string ) => {
-  const fileContent = fs.readFileSync( path.join( inDir, fileName ), {
+posts.forEach ( ( fileName: string ) => {
+  const fileContent = fs.readFileSync ( path.join ( inDir, fileName ), {
     encoding: 'UTF-8',
   } );
 
@@ -52,17 +52,17 @@ posts.forEach( ( fileName: string ) => {
    * moved deprecated code to ./_deprecated.ts
    * where implements metadata parsing
    */
-  const matches = fileContent.match( /^[\S\s]*?---\n([\S\s]*?)---\n([\S\s]*)$/ );
-  if ( !matches ) throw new Error( `文章[ ${fileName} ]头部信息解析出现错误！` );
-  const [ rawMetadata, mdContent ] = matches.slice( 1 );
-  const body = converter.render( mdContent );
+  const matches = fileContent.match ( /^[\S\s]*?---\n([\S\s]*?)---\n([\S\s]*)$/ );
+  if ( !matches ) throw new Error ( `文章[ ${ fileName } ]头部信息解析出现错误！` );
+  const [ rawMetadata, mdContent ] = matches.slice ( 1 );
+  const body = converter.render ( mdContent );
 
   let metadata: unknown;
 
   try {
-    metadata = jsYAML.safeLoad( rawMetadata, { schema: yamlSchema } );
+    metadata = jsYAML.safeLoad ( rawMetadata, { schema: yamlSchema } );
   } catch ( error ) {
-    console.log( error );
+    console.log ( error );
   }
 
   const {
@@ -76,41 +76,41 @@ posts.forEach( ( fileName: string ) => {
   };
   
   const tags: string[] = [];
-  if ( titleTag( fileName ) ) tags.push( titleTag( fileName ) );
-  if ( tagsMd ) tags.push( ...tagsMd );
+  if ( titleTag ( fileName ) ) tags.push ( titleTag ( fileName ) );
+  if ( tagsMd ) tags.push ( ...tagsMd );
 
-  console.log(
+  console.log (
     'parsing-------------start\n',
-    [ rawMetadata, noReceiveEmails, style, title, date, tags, body ].join( '\n\n' ),
+    [ rawMetadata, noReceiveEmails, style, title, date, tags, body ].join ( '\n\n' ),
     '\nend---------------parsing',
   );
 
-  const name = extractPostName( fileName );
-  const rowMeta = dbData.add( {
+  const name = extractPostName ( fileName );
+  const rowMeta = dbData.add ( {
     name, title, date, tags,
-  } ).persist();
-  fs.writeFileSync(
-    path.join( outDir, `${name}.html` ),
-    htmlMinify(
+  } ).persist ();
+  fs.writeFileSync (
+    path.join ( outDir, `${ name }.html` ),
+    htmlMinify (
       tplContent
-        .replace( '{{title}}', `${title} | 又心真人的博客` )
-        .replace( '{{article_title}}', title )
-        .replace( '{{javascript}}', tplScriptPath() )
-        .replace( '{{hm_baidu}}', hmBaidu() )
-        .replace( '{{stylesheet}}', fetchCSS( style ) )
-        .replace( '{{title_tag}}', titleTagHTML( fileName ) )
-        .replace( '{{date_tag}}', dateTagHTML( date, !rowMeta || rowMeta.top ) )
-        .replace(
+        .replace ( '{{title}}', `${ title } | 又心真人的博客` )
+        .replace ( '{{article_title}}', title )
+        .replace ( '{{javascript}}', tplScriptPath () )
+        .replace ( '{{hm_baidu}}', hmBaidu () )
+        .replace ( '{{stylesheet}}', fetchCSS ( style ) )
+        .replace ( '{{title_tag}}', titleTagHTML ( fileName ) )
+        .replace ( '{{date_tag}}', dateTagHTML ( date, !rowMeta || rowMeta.top ) )
+        .replace (
           '{{article_body}}',
-          `${body}${emailLinkHTML( fileName, noReceiveEmails, style, title )}`,
+          `${ body }${ emailLinkHTML ( fileName, noReceiveEmails, style, title ) }`,
         ),
     ),
     { encoding: 'UTF-8', flag: 'w' },
   );
 } );
-console.log( 'All HTMLs Generated' );
+console.log ( 'All HTMLs Generated' );
 
-const dbPath = path.join( outDir, 'db.json' );
-fs.createFileSync( dbPath );
-fs.writeFileSync( dbPath, dbData.toString() );
-console.log( 'DB File Writen' );
+const dbPath = path.join ( outDir, 'db.json' );
+fs.createFileSync ( dbPath );
+fs.writeFileSync ( dbPath, dbData.toString () );
+console.log ( 'DB File Writen' );

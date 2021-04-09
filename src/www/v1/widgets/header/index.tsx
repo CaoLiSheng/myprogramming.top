@@ -28,17 +28,17 @@ interface HeaderStates {
 
 export class Header extends Component<RouteComponentProps<never>, HeaderStates> {
 
-  private toggleElem: RefObject<HTMLButtonElement> = createRef<HTMLButtonElement>();
+  private toggleElem: RefObject<HTMLButtonElement> = createRef<HTMLButtonElement> ();
 
   constructor ( props: RouteComponentProps<never> ) {
-    super( props );
+    super ( props );
 
     this.state = { menuExpanded: false };
   }
 
   componentDidMount (): void {
-    window.top.addEventListener( 'message', this.receiveMessage, false );
-    document.body.addEventListener( 'click', this.toClose );
+    window.top.addEventListener ( 'message', this.receiveMessage, false );
+    document.body.addEventListener ( 'click', this.toClose );
   }
 
   shouldComponentUpdate (
@@ -52,27 +52,27 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   }
 
   componentWillUnmount (): void {
-    window.top.removeEventListener( 'message', this.receiveMessage );
-    document.body.removeEventListener( 'click', this.toClose );
+    window.top.removeEventListener ( 'message', this.receiveMessage );
+    document.body.removeEventListener ( 'click', this.toClose );
   }
 
   private toClose = ( event: MouseEvent ) => {
-    const clickedIn = clickIn(
+    const clickedIn = clickIn (
       event.target as HTMLElement,
       this.toggleElem.current,
     );
     if ( !clickedIn ) {
-      this.setState( { menuExpanded: false } );
+      this.setState ( { menuExpanded: false } );
     }
   };
 
   private receiveMessage = ( event: MessageEvent ) => {
     if ( event.data === 'iframe.detail clicked' ) {
-      this.setState( { menuExpanded: false } );
+      this.setState ( { menuExpanded: false } );
     }
   };
 
-  private onExpand = () => this.setState( ( { menuExpanded } ) => ( {
+  private onExpand = () => this.setState ( ( { menuExpanded } ) => ( {
     menuExpanded: !menuExpanded,
   } ) );
 
@@ -80,8 +80,8 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     return (
       <Link
         to={ to || ctx }
-        className={ classNames( {
-          ctx: this.props.match.path.startsWith( ctx ),
+        className={ classNames ( {
+          ctx: this.props.match.path.startsWith ( ctx ),
         } ) }
       >
         { name }
@@ -92,7 +92,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   renderMobileLink ( link: ReactElement ): ReactElement {
     return (
       <li
-        className={ classNames( 'slot', {
+        className={ classNames ( 'slot', {
           show: this.state.menuExpanded,
         } ) }
       >
@@ -102,13 +102,13 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   }
 
   render (): ReactElement {
-    const homeLink = this.renderLink( '/home', '首页' );
-    const canlendarLink = this.renderLink(
+    const homeLink = this.renderLink ( '/home', '首页' );
+    const canlendarLink = this.renderLink (
       '/canlendar/:year/:month/:date',
       '日历',
       '/canlendar/*/*/*',
     );
-    const tagsLink = this.renderLink( '/tags/:tags', '标签', '/tags/*' );
+    const tagsLink = this.renderLink ( '/tags/:tags', '标签', '/tags/*' );
 
     return (
       <div className="title-bar">
@@ -158,9 +158,9 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
                   <MenuIcon closing={ this.state.menuExpanded } />
                 </button>
               </li>
-              { this.renderMobileLink( homeLink ) }
-              { this.renderMobileLink( canlendarLink ) }
-              { this.renderMobileLink( tagsLink ) }
+              { this.renderMobileLink ( homeLink ) }
+              { this.renderMobileLink ( canlendarLink ) }
+              { this.renderMobileLink ( tagsLink ) }
             </ul>
           </div>
         </nav>

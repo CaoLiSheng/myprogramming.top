@@ -11,8 +11,8 @@ export default function gridTableRulePlugin (
     md: MarkdownIt,
     options: unknown ): void
 {
-    md.block.ruler.before(
+    md.block.ruler.before (
         "table",
         "gridtable",
-        gridTableRule( md ) );
+        gridTableRule ( md ) );
 }

@@ -8,7 +8,7 @@ import Moment from 'moment';
 import React, { Component, ReactElement } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
-@injectDBCtx()
+@injectDBCtx ()
 export default class extends Component<
 RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
 > {
@@ -18,7 +18,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
     const postName = this.props.match.params.name;
     if ( !postName || !db.metas[ postName ] || db.metas[ postName ].top ) return null;
 
-    const date = Moment( db.metas[ postName ].date, 'YYYY-MM-DD' );
+    const date = Moment ( db.metas[ postName ].date, 'YYYY-MM-DD' );
     const { tags } = db.metas[ postName ];
     return (
       <>
@@ -26,13 +26,13 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
           <Popup
             position="bottom-right"
             Trigger={ (
-              <Link className="icon" to={ `/tags/${ tags.join( ',' ) }` }>
+              <Link className="icon" to={ `/tags/${ tags.join ( ',' ) }` }>
                 <TagsIcon />
               </Link>
             ) }
             Popper={ (
               <ol className="tags">
-                {tags.map( ( tag: string ) => (
+                {tags.map ( ( tag: string ) => (
                   <li key={ tag }>
                     #
                     {tag }
@@ -45,16 +45,16 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
         ) }
         <div className="inline">
           {/* <span></span> */ }
-          <Link to={ `/canlendar/${ date.year() }/*/*` }>{ date.year() }</Link>
+          <Link to={ `/canlendar/${ date.year () }/*/*` }>{ date.year () }</Link>
           <span>年</span>
-          <Link to={ `/canlendar/${ date.year() }/${ date.month() + 1 }/*` }>
-            { date.month() + 1 }
+          <Link to={ `/canlendar/${ date.year () }/${ date.month () + 1 }/*` }>
+            { date.month () + 1 }
           </Link>
           <span>月</span>
           <Link
-            to={ `/canlendar/${ date.year() }/${ date.month() + 1 }/${ date.date() }` }
+            to={ `/canlendar/${ date.year () }/${ date.month () + 1 }/${ date.date () }` }
           >
-            { date.date() }
+            { date.date () }
           </Link>
           <span>日</span>
         </div>
@@ -63,6 +63,6 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
   };
 
   render (): ReactElement | null {
-    return this.renderCurCategory( this.props.db );
+    return this.renderCurCategory ( this.props.db );
   }
 }

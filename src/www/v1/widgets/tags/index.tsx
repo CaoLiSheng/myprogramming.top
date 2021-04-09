@@ -19,23 +19,23 @@ type TagsProps = RouteComponentProps<{ tags: string; page?: string }> & {
   page: I_PAGE_CTX;
 }
 
-@injectDBCtx()
-@injectPageCtx()
+@injectDBCtx ()
+@injectPageCtx ()
 export class Tags extends Component<
 TagsProps,
 { queryedTags: string[] }
 > {
 
-  private inputRef = createRef<HTMLInputElement>();
+  private inputRef = createRef<HTMLInputElement> ();
 
   constructor ( props: TagsProps ) {
-    super( props );
+    super ( props );
 
     this.state = { queryedTags: [] };
   }
 
   componentDidMount (): void {
-    this.update();
+    this.update ();
   }
 
   componentDidUpdate (
@@ -49,56 +49,56 @@ TagsProps,
       && prevProps.db.db.tagCategories === this.props.db.db.tagCategories
     ) return;
 
-    this.update();
+    this.update ();
   }
 
   update = (): void => {
     const pagerKey: string = PATH_PAGER_MAP[ this.props.match.path ];
-    if ( !pagerKey ) throw new Error( '粗错啦，无效的分页关键字！' );
+    if ( !pagerKey ) throw new Error ( '粗错啦，无效的分页关键字！' );
 
     if ( this.props.match.params.tags === '*' ) {
-      this.setState( {
-        queryedTags: Object.keys( this.props.db.db.tagCategories ),
+      this.setState ( {
+        queryedTags: Object.keys ( this.props.db.db.tagCategories ),
       } );
 
-      this.props.page.update(
+      this.props.page.update (
         pagerKey,
         this.props.db.db.sortedPosts,
-        this.props.match.params.page?.toInt(),
+        this.props.match.params.page?.toInt (),
       );
 
       return;
     }
 
     const selectedTags = this.props.match.params.tags
-      .split( ',' )
-      .map( ( t: string ) => t.split( '，' ) )
-      .reduce( distinctReduce, [] );
-    const queryedTags = Object.keys(
+      .split ( ',' )
+      .map ( ( t: string ) => t.split ( '，' ) )
+      .reduce ( distinctReduce, [] );
+    const queryedTags = Object.keys (
       this.props.db.db.tagCategories,
-    ).filter( ( tag: string ) => selectedTags.some( ( sTag: string ) => tag.includes( sTag ) ) );
+    ).filter ( ( tag: string ) => selectedTags.some ( ( sTag: string ) => tag.includes ( sTag ) ) );
 
-    this.setState( { queryedTags } );
+    this.setState ( { queryedTags } );
 
     const selectedPosts = selectedTags
-      .map( ( fTag: string ) => this.props.db.db.tagCategories[ fTag ] || [] )
-      .reduce( distinctReduce, [] );
+      .map ( ( fTag: string ) => this.props.db.db.tagCategories[ fTag ] || [] )
+      .reduce ( distinctReduce, [] );
 
-    this.props.page.update(
+    this.props.page.update (
       pagerKey,
-      dateSortDesc( selectedPosts, this.props.db.db.metas ),
-      this.props.match.params.page?.toInt(),
+      dateSortDesc ( selectedPosts, this.props.db.db.metas ),
+      this.props.match.params.page?.toInt (),
     );
   };
 
-  onSearch = (): void => this.props.history.push(
+  onSearch = (): void => this.props.history.push (
     `/tags/${ this.inputRef.current?.value
     || this.inputRef.current?.placeholder
     || '*' }`,
   );
 
   onSearchKeyDown = ( event: React.KeyboardEvent<HTMLInputElement> ): void => {
-    if ( event.key === 'Enter' ) this.onSearch();
+    if ( event.key === 'Enter' ) this.onSearch ();
   };
 
   render (): ReactElement {
@@ -115,7 +115,7 @@ TagsProps,
             <button type="button" onClick={ this.onSearch }>搜索</button>
           </div>
           <div className="search-results">
-            { this.state.queryedTags.map( ( tag: string ) => (
+            { this.state.queryedTags.map ( ( tag: string ) => (
               <Link key={ tag } to={ `/tags/${ tag }` }>
                 {tag }
               </Link>

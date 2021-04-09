@@ -63,7 +63,7 @@ const ThemeKey = "THEME";
 const ThemeDefault = "Light";
 const Theme2 = "Dark";
 
-@Component( {
+@Component ( {
   components: {
     HomeIcon,
     ThemeIcon,
@@ -75,7 +75,7 @@ const Theme2 = "Dark";
   },
 } )
 export default class BarComponent extends Vue {
-  iconStyle = computeIconStyle( iconSizeCfg1 as SizeCfg );
+  iconStyle = computeIconStyle ( iconSizeCfg1 as SizeCfg );
 
   inDevPopupVisibility = false;
 
@@ -86,14 +86,14 @@ export default class BarComponent extends Vue {
   ui = ui.state;
 
   async mounted (): Promise<void> {
-    const curTheme = await localforage.getItem<string>( ThemeKey );
-    document.body.setAttribute( ThemeAttr, curTheme || ThemeDefault );
+    const curTheme = await localforage.getItem<string> ( ThemeKey );
+    document.body.setAttribute ( ThemeAttr, curTheme || ThemeDefault );
   }
 
   showPopup ( ev: MouseEvent ): void {
     let offset: HTMLElementOffset = EmptyOffset;
     if ( ev.target instanceof HTMLElement ) {
-      offset = getOffset( ev.target );
+      offset = getOffset ( ev.target );
     }
     this.$data.popupBottom = window.innerHeight - offset.top + 10;
     this.$data.popupLeft = offset.left + offset.width / 2;
@@ -106,15 +106,15 @@ export default class BarComponent extends Vue {
 
   changeTheme (): void {
     const theme =
-      document.body.getAttribute( ThemeAttr ) === ThemeDefault
+      document.body.getAttribute ( ThemeAttr ) === ThemeDefault
         ? Theme2
         : ThemeDefault;
-    document.body.setAttribute( ThemeAttr, theme );
-    void localforage.setItem( ThemeKey, theme );
+    document.body.setAttribute ( ThemeAttr, theme );
+    void localforage.setItem ( ThemeKey, theme );
   }
 
   changeReaderLevel (): void {
-    ui.toggleReaderLevel();
+    ui.toggleReaderLevel ();
   }
 }
 </script>

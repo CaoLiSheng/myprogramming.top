@@ -11,7 +11,7 @@ import { __dirs__ } from '@www/utils/dir';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 
-@injectPageCtx()
+@injectPageCtx ()
 class InnerSnapList extends Component<
 RouteComponentProps & { page?: I_PAGE_CTX }
 > {
@@ -20,7 +20,7 @@ RouteComponentProps & { page?: I_PAGE_CTX }
       <Link to={ `/post/${ name }` }>
         <iframe
           src={ `${ __dirs__.__posts_root__
-            }${ name }.html?var=${ Date.now() }#snapshot` }
+            }${ name }.html?var=${ Date.now () }#snapshot` }
           sandbox="allow-same-origin allow-scripts allow-top-navigation allow-downloads"
           seamless
           scrolling="no"
@@ -44,11 +44,11 @@ RouteComponentProps & { page?: I_PAGE_CTX }
     return (
       <ul className="snap-list">
         {( pager.data || [] )
-          .slice( pager.cur * PAGE_SIZE, ( pager.cur + 1 ) * PAGE_SIZE )
-          .map( ( name: string ) => this.renderPostSnap( name ) ) }
+          .slice ( pager.cur * PAGE_SIZE, ( pager.cur + 1 ) * PAGE_SIZE )
+          .map ( ( name: string ) => this.renderPostSnap ( name ) ) }
       </ul>
     );
   }
 }
 
-export const SnapList = withRouter( InnerSnapList );
+export const SnapList = withRouter ( InnerSnapList );

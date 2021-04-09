@@ -13,8 +13,8 @@ import router from './router';
 
 // Vue.use(PortalVue);
 
-new Vue( {
-  el: '#app',
-  render: ( h ) => h( App ),
+new Vue ( {
+  el    : '#app',
+  render: ( h ) => h ( App ),
   router,
 } );

@@ -16,19 +16,19 @@ import inSiteLink from "@vWidgets/explorers/insitelink.vue";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component( { components: { "in-site-link": inSiteLink } } )
-export default class InSiteLinks extends Vue.extend( {
+@Component ( { components: { "in-site-link": inSiteLink } } )
+export default class InSiteLinks extends Vue.extend ( {
   props: {
     refresh: {
-      type: Boolean,
+      type   : Boolean,
       default: false,
     },
     posts: {
-      type: Array,
+      type   : Array,
       default: () => [],
     },
     height: {
-      type: String,
+      type   : String,
       default: '0',
     },
   },
@@ -40,9 +40,9 @@ export default class InSiteLinks extends Vue.extend( {
 
     return this.ui.readerLevelGranted
       ? postNames
-      : postNames.filter( ( name: string ) => {
-          const meta = this.postMeta( name );
-          return !meta.tags.some(
+      : postNames.filter ( ( name: string ) => {
+          const meta = this.postMeta ( name );
+          return !meta.tags.some (
             ( tag: string ) => tag === "草稿" || tag === "隐私"
           );
         } );

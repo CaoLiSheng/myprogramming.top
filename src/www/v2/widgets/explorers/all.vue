@@ -19,14 +19,14 @@ import searchfield from "@vWidgets/explorers/searchfield.vue";
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component( {
+@Component ( {
   components: {
-    "e-header": header,
+    "e-header"     : header,
     "in-site-links": inSiteLinks,
-    "search-field": searchfield,
+    "search-field" : searchfield,
   },
 } )
-export default class AllComponent extends Vue.extend( {
+export default class AllComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
   db = db.state;
@@ -34,7 +34,7 @@ export default class AllComponent extends Vue.extend( {
   refresh = true;
 
   mounted (): void {
-    void initOnce();
+    void initOnce ();
   }
 
   get header (): string {
@@ -45,11 +45,11 @@ export default class AllComponent extends Vue.extend( {
 
   get posts (): string[] {
     if ( !this.db.refresh ) return [];
-    return db.filterByKW( this.query );
+    return db.filterByKW ( this.query );
   }
 
   get onChangeDelayed (): ( ( ...params: unknown[] ) => void ) {
-    return switcher(
+    return switcher (
       () => {
         this.refresh = false;
       },
@@ -59,7 +59,7 @@ export default class AllComponent extends Vue.extend( {
         const curR = this.$router.currentRoute;
         if ( curR.name === "AllComponent" && curR.params["query"] === query )
           return;
-        void this.$router.replace( { name: "AllComponent", params: { query: query as string } } );
+        void this.$router.replace ( { name: "AllComponent", params: { query: query as string } } );
       },
       800
     );
@@ -68,11 +68,11 @@ export default class AllComponent extends Vue.extend( {
   onInput ( ev: InputEvent ): void {
     const input = ev.target as HTMLInputElement;
     const query = input.value || "*";
-    this.onChangeDelayed( query );
+    this.onChangeDelayed ( query );
   }
 
   onClear (): void {
-    this.onChangeDelayed( "*" );
+    this.onChangeDelayed ( "*" );
   }
 }
 </script>

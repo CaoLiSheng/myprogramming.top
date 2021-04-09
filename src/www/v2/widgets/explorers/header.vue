@@ -7,7 +7,7 @@
 
 import Vue from "vue";
 
-export default Vue.extend( {
+export default Vue.extend ( {
   props: { text: { type: String, default: '' } },
 } );
 </script>

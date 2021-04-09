@@ -22,35 +22,35 @@ interface OverlayStates {
 
 export class Overlay extends Component<OverlayProps, OverlayStates> {
 
-  private bindReceiveMessage = this.receiveMessage.bind( this );
+  private bindReceiveMessage = this.receiveMessage.bind ( this );
 
-  private bindToggleOverlay = this.toggleOverlay.bind( this );
+  private bindToggleOverlay = this.toggleOverlay.bind ( this );
 
-  private bindHotKeys = bindDoubleSpaceKey.bind( this, this.bindToggleOverlay );
+  private bindHotKeys = bindDoubleSpaceKey.bind ( this, this.bindToggleOverlay );
 
   constructor ( props: OverlayProps ) {
-    super( props );
+    super ( props );
 
     this.state = { opening: false };
   }
 
   componentDidMount (): void {
-    window.addEventListener( 'message', this.bindReceiveMessage, false );
-    window.addEventListener( 'keypress', this.bindHotKeys, false );
+    window.addEventListener ( 'message', this.bindReceiveMessage, false );
+    window.addEventListener ( 'keypress', this.bindHotKeys, false );
   }
 
   componentWillUnmount (): void {
-    window.removeEventListener( 'message', this.bindReceiveMessage );
-    window.removeEventListener( 'keypress', this.bindHotKeys );
+    window.removeEventListener ( 'message', this.bindReceiveMessage );
+    window.removeEventListener ( 'keypress', this.bindHotKeys );
   }
 
   private toggleOverlay () {
-    this.setState( ( { opening } ) => ( { opening: !opening } ) );
+    this.setState ( ( { opening } ) => ( { opening: !opening } ) );
   }
 
   private receiveMessage ( ev: MessageEvent ) {
     if ( ev.data === 'iframe.detail double.space' ) {
-      this.toggleOverlay();
+      this.toggleOverlay ();
     }
   }
 
@@ -61,18 +61,18 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
     return (
       <div className="overlay-wrapper">
         <div
-          className={ classNames( 'overlay-mask', { opening } ) }
+          className={ classNames ( 'overlay-mask', { opening } ) }
           onClick={ this.bindToggleOverlay }
         />
         <div
           style={ { ...positionStyleObj, transformOrigin: contentShrinkPos } }
-          className={ classNames( 'overlay-content', { opening } ) }
+          className={ classNames ( 'overlay-content', { opening } ) }
         >
           <Content />
         </div>
         <div
           style={ { ...positionStyleObj } }
-          className={ classNames( 'overlay-icon', { opening } ) }
+          className={ classNames ( 'overlay-icon', { opening } ) }
           onClick={ this.bindToggleOverlay }
         >
           <Icon />

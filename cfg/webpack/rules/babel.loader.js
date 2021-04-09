@@ -8,14 +8,14 @@ module.exports = function factory ( configs = {} ) {
     : '@babel/preset-typescript';
 
   return {
-    test: /\.(j|t)s(x)?$/,
+    test   : /\.(j|t)s(x)?$/,
     exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
+    use    : {
+      loader : 'babel-loader',
       options: {
         cacheDirectory: true,
-        babelrc: false,
-        presets: [
+        babelrc       : false,
+        presets       : [
           [ '@babel/preset-env', { modules: false, targets: { browsers: 'last 2 versions' } } ],
           babelPrestTs,
           ...extPresets,

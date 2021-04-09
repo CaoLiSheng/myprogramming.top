@@ -15,14 +15,14 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class SearchField extends Vue.extend( {
+export default class SearchField extends Vue.extend ( {
   props: {
     onInput: {
-      type: Function,
+      type   : Function,
       default: undefined,
     },
     onClear: {
-      type: Function,
+      type   : Function,
       default: undefined,
     }
   },
@@ -30,7 +30,7 @@ export default class SearchField extends Vue.extend( {
   clear (): void {
     const input = this.$refs.query as HTMLInputElement;
     input.value = "";
-    this.onClear();
+    this.onClear ();
   }
 }
 </script>

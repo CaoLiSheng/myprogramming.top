@@ -14,14 +14,14 @@ export default function getColumnWidths (
     number[]
 {
     // try to parse as a row separator line
-    let columnMatch = line.slice( 1 )
-        .match( /[:-]-+[:-]\+/g );
+    let columnMatch = line.slice ( 1 )
+        .match ( /[:-]-+[:-]\+/g );
 
     if ( columnMatch == null )
     {
         // try to parse as a header separator line
-        columnMatch = line.slice( 1 )
-            .match( /[:=]=+[:=]\+/g );
+        columnMatch = line.slice ( 1 )
+            .match ( /[:=]=+[:=]\+/g );
     }
 
     if ( columnMatch == null )
@@ -29,5 +29,5 @@ export default function getColumnWidths (
         return [];
     }
 
-    return columnMatch.map( s => s.length );
+    return columnMatch.map ( s => s.length );
 }

@@ -4,10 +4,10 @@ import '@sprites/ring';
 import extendCodes from '@www/utils/code';
 import extendFigure from '@www/utils/figure';
 import extendHistory from '@www/utils/history';
-import extendMDVW from '@www/utils/mdvw100';
-import extendLinks from '@www/utils/links';
-import extendTables from '@www/utils/table';
 import bindHotKeys, { bindDoubleSpaceKey } from '@www/utils/hotkeys';
+import extendLinks from '@www/utils/links';
+import extendMDVW from '@www/utils/mdvw100';
+import extendTables from '@www/utils/table';
 
 declare let __origin__: string;
 declare let __site_root__: string;
@@ -18,61 +18,61 @@ function checkIfNakedStatus () {
     window.location.href = __site_root__;
   }
 }
-checkIfNakedStatus();
+checkIfNakedStatus ();
 
 // support snaplist mode
 function checkIfSanpshotMode () {
   if ( window.location.hash !== '#snapshot' ) {
-    document.body.classList.remove( 'snapshot' );
+    document.body.classList.remove ( 'snapshot' );
   }
 }
-checkIfSanpshotMode();
+checkIfSanpshotMode ();
 
 // support closing categories on mobile site
 function postClickedMessage () {
-  window.top.postMessage( 'iframe.detail clicked', __origin__ );
+  window.top.postMessage ( 'iframe.detail clicked', __origin__ );
 }
-document.body.addEventListener( 'click', postClickedMessage );
+document.body.addEventListener ( 'click', postClickedMessage );
 
 // 防盗链
-const token = Date.now();
+const token = Date.now ();
 function checkIfLightUpValid ( e: MessageEvent ) {
-  if ( e.data === `show-time ${token}` ) {
+  if ( e.data === `show-time ${ token }` ) {
     document
-      .querySelector( 'article.markdown-body.hidden' )
-      ?.classList.remove( 'hidden' );
+      .querySelector ( 'article.markdown-body.hidden' )
+      ?.classList.remove ( 'hidden' );
   }
 }
-window.addEventListener( 'message', checkIfLightUpValid );
-window.top.postMessage( `is-it-time-to-show ${token}`, __origin__ );
+window.addEventListener ( 'message', checkIfLightUpValid );
+window.top.postMessage ( `is-it-time-to-show ${ token }`, __origin__ );
 
 // support links
-extendLinks();
+extendLinks ();
 
 // support table on mobile
-extendTables();
+extendTables ();
 
 // support code prettifed
-extendCodes();
+extendCodes ();
 
 // support figure init scroll postition
-extendFigure();
+extendFigure ();
 
 // support restore reading histories
-void extendHistory();
+void extendHistory ();
 
 // support --mdvw style property
-extendMDVW( document.querySelector( '#main>.markdown-body' ) as HTMLElement );
+extendMDVW ( document.querySelector ( '#main>.markdown-body' ) as HTMLElement );
 
 // bind hot keys
-bindHotKeys();
+bindHotKeys ();
 
-const bindDoubleSpaceKeyWithPostMessage = bindDoubleSpaceKey.bind( null, () => {
-  window.top.postMessage( 'iframe.detail double.space', __origin__ );
+const bindDoubleSpaceKeyWithPostMessage = bindDoubleSpaceKey.bind ( null, () => {
+  window.top.postMessage ( 'iframe.detail double.space', __origin__ );
 } );
 
-window.addEventListener( 'keypress', bindDoubleSpaceKeyWithPostMessage );
+window.addEventListener ( 'keypress', bindDoubleSpaceKeyWithPostMessage );
 
-window.addEventListener( 'beforeunload', () => {
-  window.removeEventListener( 'keypress', bindDoubleSpaceKeyWithPostMessage );
+window.addEventListener ( 'beforeunload', () => {
+  window.removeEventListener ( 'keypress', bindDoubleSpaceKeyWithPostMessage );
 } );

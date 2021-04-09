@@ -18,7 +18,7 @@ interface PositionStyle {
   transform?: string;
 }
 
-const popupsContainer: HTMLDivElement = document.querySelector(
+const popupsContainer: HTMLDivElement = document.querySelector (
   '#popups-container',
 ) as HTMLDivElement;
 
@@ -87,9 +87,9 @@ const posCenter = ( modes: string[], offset: HTMLElementOffset, style: PositionS
 
 const posImpl = ( modes: string[], offset: HTMLElementOffset ) => {
   let style = {};
-  style = posMain( modes[ 0 ], offset, style );
-  style = posCross( modes[ 1 ], offset, style );
-  style = posCenter( modes, offset, style );
+  style = posMain ( modes[ 0 ], offset, style );
+  style = posCross ( modes[ 1 ], offset, style );
+  style = posCenter ( modes, offset, style );
   return style;
 };
 
@@ -108,9 +108,9 @@ type pos =
   | 'left-bottom';
 
 const position = ( pos: pos, offset: HTMLElementOffset ) => {
-  const modes = pos.split( '-' );
+  const modes = pos.split ( '-' );
   modes[ 1 ] = modes[ 1 ] || 'center';
-  return posImpl( modes, offset );
+  return posImpl ( modes, offset );
 };
 
 interface PopupProps {
@@ -127,33 +127,33 @@ export class Popup extends Component<PopupProps, PopupStates> {
 
   private el: HTMLDivElement;
 
-  private triggerRef = createRef<HTMLElement>();
+  private triggerRef = createRef<HTMLElement> ();
 
   constructor ( props: PopupProps ) {
-    super( props );
+    super ( props );
 
     this.state = { open: false };
-    this.el = document.createElement( 'div' );
+    this.el = document.createElement ( 'div' );
   }
 
   componentDidMount (): void {
-    popupsContainer.append( this.el );
+    popupsContainer.append ( this.el );
   }
 
   componentWillUnmount (): void {
-    this.el.remove();
+    this.el.remove ();
   }
 
   private renderPopper () {
     const { Popper } = this.props;
     const { open } = this.state;
 
-    return createPortal(
+    return createPortal (
       <div
-        className={ classNames( 'popup', { open } ) }
-        style={ position(
+        className={ classNames ( 'popup', { open } ) }
+        style={ position (
           this.props.position,
-          getOffset( this.triggerRef.current ),
+          getOffset ( this.triggerRef.current ),
         ) }
       >
         { Popper }
@@ -167,12 +167,12 @@ export class Popup extends Component<PopupProps, PopupStates> {
 
     return (
       <>
-        {cloneElement( Trigger, {
-          ref: this.triggerRef,
-          onMouseEnter: () => this.setState( { open: true } ),
-          onMouseLeave: () => this.setState( { open: false } ),
+        {cloneElement ( Trigger, {
+          ref         : this.triggerRef,
+          onMouseEnter: () => this.setState ( { open: true } ),
+          onMouseLeave: () => this.setState ( { open: false } ),
         } ) }
-        {this.renderPopper() }
+        {this.renderPopper () }
       </>
     );
   }

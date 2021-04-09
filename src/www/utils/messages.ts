@@ -6,28 +6,28 @@ function flyWindow (
 }
 
 function showTime ( ev: MessageEvent ) {
-  flyWindow( ev.source )?.postMessage( `show-time ${ ( ev.data as string ).split( ' ' )[1] }`, '*' );
+  flyWindow ( ev.source )?.postMessage ( `show-time ${ ( ev.data as string ).split ( ' ' )[1] }`, '*' );
 }
 
 function openInNewTab ( ev: MessageEvent ) {
-  const [ , url ] = ( ev.data as string ).split( ' ' );
-  window.open( url, '_blank' );
+  const [ , url ] = ( ev.data as string ).split ( ' ' );
+  window.open ( url, '_blank' );
 }
 
 const handlers: { [key: string]: ( ev: MessageEvent ) => void } = {
-  'is-it-time-to-show': showTime,
+  'is-it-time-to-show'    : showTime,
   'please-open-in-new-tab': openInNewTab,
 };
 
 const handleMessage = ( ev: MessageEvent ) => {
   if ( typeof ev.data === 'string' ) {
-    const [ key ] = ev.data.split( ' ' );
-    if ( handlers[key] ) handlers[key]( ev );
+    const [ key ] = ev.data.split ( ' ' );
+    if ( handlers[key] ) handlers[key] ( ev );
   }
 };
 
-window.addEventListener( 'message', handleMessage, false );
+window.addEventListener ( 'message', handleMessage, false );
 
-window.addEventListener( 'beforeunload', () => {
-  window.removeEventListener( 'message', handleMessage );
+window.addEventListener ( 'beforeunload', () => {
+  window.removeEventListener ( 'message', handleMessage );
 } );

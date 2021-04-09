@@ -10,10 +10,10 @@ interface IconStyle {
 }
 
 export default function calc ( cfg: SizeCfg ): IconStyle {
-  const isMobile = isMobileSize().result;
+  const isMobile = isMobileSize ().result;
 
   return {
-    width: `${ isMobile ? cfg[1] : cfg[0] }${ __UNIT__ }`,
+    width        : `${ isMobile ? cfg[1] : cfg[0] }${ __UNIT__ }`,
     '--icon-size': `${ isMobile ? cfg[3] : cfg[2] }${ __UNIT__ }`,
   };
 }

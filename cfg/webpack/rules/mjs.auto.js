@@ -1,5 +1,5 @@
 module.exports = {
-  test: /\.mjs$/,
+  test   : /\.mjs$/,
   include: /node_modules/,
-  type: 'javascript/auto',
+  type   : 'javascript/auto',
 };

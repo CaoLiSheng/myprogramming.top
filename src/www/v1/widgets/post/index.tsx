@@ -8,6 +8,6 @@ export const Post = ( props: RouteComponentProps<{ name: string }> ): ReactEleme
   <iframe
     className="detail"
     sandbox="allow-same-origin allow-scripts allow-top-navigation allow-downloads"
-    src={ `${ __dirs__.__posts_root__ }${ props.match.params.name }.html?var=${ Date.now() }` }
+    src={ `${ __dirs__.__posts_root__ }${ props.match.params.name }.html?var=${ Date.now () }` }
   />
 );

@@ -1,9 +1,9 @@
 module.exports = {
-  test: /\.pug$/,
+  test : /\.pug$/,
   oneOf: [
     {
       resourceQuery: /lang=pug/,
-      use: [ 'pug-plain-loader' ],
+      use          : [ 'pug-plain-loader' ],
     },
   ],
 };

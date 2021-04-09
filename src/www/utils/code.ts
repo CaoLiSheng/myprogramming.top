@@ -9,40 +9,40 @@ const cssFileName = 'prettify.css';
 const jsFileName = 'prettify.js';
 
 function injectPrettyCSS (): void {
-  const link = document.createElement( 'link' );
-  link.setAttribute( 'rel', 'stylesheet' );
-  link.setAttribute( 'type', 'text/css' );
-  link.setAttribute(
+  const link = document.createElement ( 'link' );
+  link.setAttribute ( 'rel', 'stylesheet' );
+  link.setAttribute ( 'type', 'text/css' );
+  link.setAttribute (
     'href',
-    `${__resources_dir__}${codePrettyDir}${cssFileName}`,
+    `${ __resources_dir__ }${ codePrettyDir }${ cssFileName }`,
   );
-  document.head.append( link );
+  document.head.append ( link );
 }
 
 function injectPrettyScript (): HTMLScriptElement {
-  const script = document.createElement( 'script' );
-  script.setAttribute( 'type', 'text/javascript' );
-  script.setAttribute(
+  const script = document.createElement ( 'script' );
+  script.setAttribute ( 'type', 'text/javascript' );
+  script.setAttribute (
     'src',
-    `${__resources_dir__}${codePrettyDir}${jsFileName}`,
+    `${ __resources_dir__ }${ codePrettyDir }${ jsFileName }`,
   );
-  document.head.append( script );
+  document.head.append ( script );
 
   return script;
 }
 
 export default function init (): void {
-  const preElems = document.querySelectorAll( '.markdown-body pre' );
+  const preElems = document.querySelectorAll ( '.markdown-body pre' );
   if ( preElems.length === 0 ) return;
 
-  injectPrettyCSS();
-  injectPrettyScript().addEventListener(
+  injectPrettyCSS ();
+  injectPrettyScript ().addEventListener (
     'load',
     () => {
-      preElems.forEach( ( preElem: Element ) => {
-        preElem.classList.add( 'prettyprint' );
+      preElems.forEach ( ( preElem: Element ) => {
+        preElem.classList.add ( 'prettyprint' );
       } );
-      window['PR'].prettyPrint();
+      window['PR'].prettyPrint ();
     },
     false,
   );

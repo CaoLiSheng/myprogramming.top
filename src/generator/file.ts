@@ -8,41 +8,41 @@ import argv from './yargs';
 
 declare let __production__: boolean;
 
-export const inDir = path.join( process.cwd(), argv.inDir || 'posts' );
+export const inDir = path.join ( process.cwd (), argv.inDir || 'posts' );
 
-export const outDir = path.join( process.cwd(), argv.outDir );
+export const outDir = path.join ( process.cwd (), argv.outDir );
 
 function isDir ( file: string ): boolean {
-  return fs.statSync( path.join( inDir, file ) ).isDirectory();
+  return fs.statSync ( path.join ( inDir, file ) ).isDirectory ();
 }
 
 function isFile ( file: string ): boolean {
-  return fs.statSync( path.join( inDir, file ) ).isFile();
+  return fs.statSync ( path.join ( inDir, file ) ).isFile ();
 }
 
 function isMarkdown ( file: string ): boolean {
-  return file.endsWith( '.md' );
+  return file.endsWith ( '.md' );
 }
 
 function notDraft ( file: string ): boolean {
-  return !__production__ || !file.startsWith( 'draft-' );
+  return !__production__ || !file.startsWith ( 'draft-' );
 }
 
 function notPrivate ( file: string ): boolean {
-  return !__production__ || !file.startsWith( 'private-' );
+  return !__production__ || !file.startsWith ( 'private-' );
 }
 
 export function isAsset ( file: string ): boolean {
-  return file.filter( notPrivate, isDir );
+  return file.filter ( notPrivate, isDir );
 }
 
 export function isPost ( file: string ): boolean {
-  return file.filter( notPrivate, notDraft, isMarkdown, isFile );
+  return file.filter ( notPrivate, notDraft, isMarkdown, isFile );
 }
 
 export const extractPostName = ( () => {
   const end = '.md'.length;
   return function slice ( fileName: string ): string {
-    return fileName.slice( 0, Math.max( 0, fileName.length - end ) );
+    return fileName.slice ( 0, Math.max ( 0, fileName.length - end ) );
   };
-} )();
+} ) ();

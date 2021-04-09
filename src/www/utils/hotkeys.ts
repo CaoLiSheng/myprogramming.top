@@ -3,7 +3,7 @@ import { scrollToCoords } from './scroll';
 interface Coords { parent: Element | null, y: number }
 
 function newCoords ( direction: boolean ): Coords {
-  const parent = document.querySelector( '#main' );
+  const parent = document.querySelector ( '#main' );
   const current = parent?.scrollTop || 0;
   const height = ( parent as HTMLElement | null )?.offsetHeight || 0;
   const y = current + ( direction ? 0.36 : -0.36 ) * height;
@@ -16,13 +16,13 @@ function hotkeys ( evt: KeyboardEvent ): void {
   switch ( evt.key ) {
     case 'Left': // IE/Edge specific value
     case 'ArrowLeft':
-      coords = newCoords( false );
-      scrollToCoords( coords.parent, coords.y );
+      coords = newCoords ( false );
+      scrollToCoords ( coords.parent, coords.y );
       break;
     case 'Right': // IE/Edge specific value
     case 'ArrowRight':
-      coords = newCoords( true );
-      scrollToCoords( coords.parent, coords.y );
+      coords = newCoords ( true );
+      scrollToCoords ( coords.parent, coords.y );
       break;
     default:
       break;
@@ -30,10 +30,10 @@ function hotkeys ( evt: KeyboardEvent ): void {
 };
 
 export default function init (): void {
-  window.addEventListener( 'keydown', hotkeys );
+  window.addEventListener ( 'keydown', hotkeys );
 
-  window.addEventListener( 'beforeunload', () => {
-    window.removeEventListener( 'keydown', hotkeys );
+  window.addEventListener ( 'beforeunload', () => {
+    window.removeEventListener ( 'keydown', hotkeys );
   } );
 }
 
@@ -45,12 +45,12 @@ export const bindDoubleSpaceKey = ( callback: () => void, ev: KeyboardEvent ): v
     return;
   }
 
-  ev.preventDefault();
+  ev.preventDefault ();
 
-  const now = performance.now();
+  const now = performance.now ();
   if ( now - lastSpaceKeyHit < 300 ) {
     lastSpaceKeyHit = 0;
-    callback();
+    callback ();
     return;
   }
 

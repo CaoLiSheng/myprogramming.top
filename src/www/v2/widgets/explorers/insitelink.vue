@@ -12,18 +12,18 @@ import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class InsiteLink extends Vue.extend( {
+export default class InsiteLink extends Vue.extend ( {
   props: {
     name: {
-      type: String,
+      type   : String,
       default: '',
     },
     data: {
-      type: Object,
+      type   : Object,
       default: () => ( {} ),
     },
     delay: {
-      type: Number,
+      type   : Number,
       default: 0,
     }
   },
@@ -33,14 +33,14 @@ export default class InsiteLink extends Vue.extend( {
   running = true;
 
   get date (): string {
-    return ( this.data.top ? this.data.date : this.data.date.slice( 0, 10 ) ) as string;
+    return ( this.data.top ? this.data.date : this.data.date.slice ( 0, 10 ) ) as string;
   }
 
   mounted (): void {
-    setTimeout( () => {
+    setTimeout ( () => {
       this.init = false;
     }, this.delay );
-    setTimeout( () => {
+    setTimeout ( () => {
       this.running = false;
     }, this.delay + 300 );
   }

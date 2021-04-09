@@ -3,31 +3,31 @@ import '@common/shims-string';
 import ClickWAV from './click.wav';
 
 const playAudio = ( name: string ) => {
-  if ( !name.uniqueCheck( 'ClickWAV' ) ) return;
+  if ( !name.uniqueCheck ( 'ClickWAV' ) ) return;
 
-  let player = document.querySelector( '#click-wav' );
+  let player = document.querySelector ( '#click-wav' );
   if ( !player ) {
-    player = document.createElement( 'audio' );
+    player = document.createElement ( 'audio' );
     player.id = 'click-wav';
-    document.body.append( player );
+    document.body.append ( player );
   }
 
   if ( player instanceof HTMLAudioElement ) {
-    player.setAttribute( 'src', ClickWAV );
-    void player.play();
+    player.setAttribute ( 'src', ClickWAV );
+    void player.play ();
   }
 };
 
 // const mouseupListender = playAudio.bind(null, 'mouseup');
-const mousedownListender = playAudio.bind( null, 'mousedown' );
-const touchstartListender = playAudio.bind( null, 'touchstart' );
+const mousedownListender = playAudio.bind ( null, 'mousedown' );
+const touchstartListender = playAudio.bind ( null, 'touchstart' );
 
 // document.body.addEventListener('mouseup', mouseupListender);
-document.body.addEventListener( 'mousedown', mousedownListender );
-document.body.addEventListener( 'touchstart', touchstartListender );
+document.body.addEventListener ( 'mousedown', mousedownListender );
+document.body.addEventListener ( 'touchstart', touchstartListender );
 
-window.addEventListener( 'beforeunload', () => {
+window.addEventListener ( 'beforeunload', () => {
   // document.body.removeEventListener('mouseup', mouseupListender);
-  document.body.removeEventListener( 'mousedown', mousedownListender );
-  document.body.removeEventListener( 'touchstart', touchstartListender );
+  document.body.removeEventListener ( 'mousedown', mousedownListender );
+  document.body.removeEventListener ( 'touchstart', touchstartListender );
 } );

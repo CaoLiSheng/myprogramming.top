@@ -18,15 +18,15 @@ export default function gridTableRule ( md: MarkdownIt ): RuleBlock {
     endLine: number,
     silent: boolean
   ): boolean {
-    if ( getCharCodeAtStartOfLine( state, startLine ) !== 0x2b ) {
+    if ( getCharCodeAtStartOfLine ( state, startLine ) !== 0x2b ) {
       // line does not start with a '+'
       return false;
     }
 
-    const parseResult = parseTable( state, startLine, endLine );
+    const parseResult = parseTable ( state, startLine, endLine );
 
     if ( !parseResult.Success ) {
-      console.log( '>>>>>>>>>>>>>>mdit-gridtables-parse-failed<<<<<<<<<<<<<' );
+      console.log ( '>>>>>>>>>>>>>>mdit-gridtables-parse-failed<<<<<<<<<<<<<' );
       return false;
     }
 
@@ -34,7 +34,7 @@ export default function gridTableRule ( md: MarkdownIt ): RuleBlock {
       return true;
     }
 
-    emitTable( md, state, parseResult );
+    emitTable ( md, state, parseResult );
 
     state.line = parseResult.CurrentLine;
 

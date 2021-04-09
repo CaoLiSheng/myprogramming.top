@@ -9,35 +9,35 @@ interface Argv {
 }
 
 const { argv } = yargs
-  .option( 'tplPath', {
+  .option ( 'tplPath', {
     description: 'HTML模板路径',
-    type: 'string',
+    type       : 'string',
   } )
-  .option( 'cssPath', {
+  .option ( 'cssPath', {
     description: 'CSS模板路径',
-    type: 'string',
+    type       : 'string',
   } )
-  .option( 'tplDir', {
+  .option ( 'tplDir', {
     description: '模板脚本目录',
-    type: 'string',
+    type       : 'string',
   } )
-  .option( 'outDir', {
+  .option ( 'outDir', {
     description: '输出目录',
-    type: 'string',
+    type       : 'string',
   } )
-  .option( 'inDir', {
+  .option ( 'inDir', {
     description: '输入目录',
-    type: 'string',
+    type       : 'string',
   } )
-  .help()
-  .alias( 'help', 'h' );
+  .help ()
+  .alias ( 'help', 'h' );
 
-console.log( 'argv', argv );
+console.log ( 'argv', argv );
 
-if ( !argv.tplPath ) throw new Error( 'Lack of [HTML模板路径]' );
-if ( !argv.cssPath ) throw new Error( 'Lack of [CSS模板路径]' );
-if ( !argv.tplDir ) throw new Error( 'Lack of [模板脚本目录]' );
-if ( !argv.outDir ) throw new Error( 'Lack of [输出目录]' );
+if ( !argv.tplPath ) throw new Error ( 'Lack of [HTML模板路径]' );
+if ( !argv.cssPath ) throw new Error ( 'Lack of [CSS模板路径]' );
+if ( !argv.tplDir ) throw new Error ( 'Lack of [模板脚本目录]' );
+if ( !argv.outDir ) throw new Error ( 'Lack of [输出目录]' );
 // if (!argv.inDir) throw new Error('Lack of [输入目录]');
 
 export default argv as Argv;

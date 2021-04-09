@@ -5,7 +5,7 @@
 
 import TableRow from '../markdown-it/TableRow';
 
-const __InlineChars = new Set( [ '`', '_', '*' ] );
+const __InlineChars = new Set ( [ '`', '_', '*' ] );
 
 /**
  * getCells parses the lines found for a certain row, and transforms these to
@@ -25,21 +25,21 @@ export default function getCells (
     const { lines } = row;
     let cell = [];
 
-    for ( const [ j, line ] of lines.entries() ) {
+    for ( const [ j, line ] of lines.entries () ) {
       const columnOffsets = row.columnOffsets[j];
 
       // const s = trimEnd(
       //   lines[j].substring(columnOffsets[i] + 1, columnOffsets[i + 1] - 1)
       // );
       let s = line
-        .slice( columnOffsets[i] + 1, columnOffsets[i + 1] - 1 )
-        .trim();
+        .slice ( columnOffsets[i] + 1, columnOffsets[i + 1] - 1 )
+        .trim ();
 
-      if ( __InlineChars.has( s.charAt( 0 ) ) ) {
-        s = ` ${  s}`;
+      if ( __InlineChars.has ( s.charAt ( 0 ) ) ) {
+        s = ` ${  s }`;
       }
 
-      if ( __InlineChars.has( s.charAt( s.length - 1 ) ) ) {
+      if ( __InlineChars.has ( s.charAt ( s.length - 1 ) ) ) {
         s += ' ';
       }
 
@@ -48,7 +48,7 @@ export default function getCells (
         continue;
       }
 
-      cell.push( s );
+      cell.push ( s );
     }
 
     // remove trailing empty lines
@@ -60,10 +60,10 @@ export default function getCells (
     }
 
     if ( j < cell.length - 1 ) {
-      cell = cell.slice( 0, j + 1 );
+      cell = cell.slice ( 0, j + 1 );
     }
 
-    cells.push( cell );
+    cells.push ( cell );
   }
 
   return cells;

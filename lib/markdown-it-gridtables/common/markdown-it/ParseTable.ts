@@ -17,16 +17,16 @@ export default function parseTable (
   startLine: number,
   endLine: number
 ): ParseTableResult {
-  const result = new ParseTableResult();
+  const result = new ParseTableResult ();
 
-  let rowLine = getLine( state, startLine );
+  let rowLine = getLine ( state, startLine );
 
-  if ( rowLine.charAt( 0 ) !== '+' ) {
+  if ( rowLine.charAt ( 0 ) !== '+' ) {
     // line does not start with a '+'
     return result;
   }
 
-  result.ColumnCount = getColumnCount( rowLine );
+  result.ColumnCount = getColumnCount ( rowLine );
 
   if ( result.ColumnCount === 0 ) {
     // no columns found
@@ -34,50 +34,50 @@ export default function parseTable (
   }
 
   // initialize column alignments
-  result.ColumnAlignments = Array.from(
-    ( [] as ColumnAlignments[] ).fill.call( { length: result.ColumnCount }, ColumnAlignments.None )
+  result.ColumnAlignments = Array.from (
+    ( [] as ColumnAlignments[] ).fill.call ( { length: result.ColumnCount }, ColumnAlignments.None )
   );
 
-  if ( rowLine.includes( ':' ) ) {
+  if ( rowLine.includes ( ':' ) ) {
     // column alignment specifiers present in first row line
     result.HeaderLess = true;
 
     // set column alignments
-    result.ColumnAlignments = getColumnAlignments( rowLine, result.ColumnCount );
+    result.ColumnAlignments = getColumnAlignments ( rowLine, result.ColumnCount );
 
     // remove alignment specifiers for further matching
-    rowLine = rowLine.replace( /:/g, '-' );
+    rowLine = rowLine.replace ( /:/g, '-' );
   }
 
   // create header line matcher
-  const headerLineMatcher = new RegExp(
+  const headerLineMatcher = new RegExp (
     `^\\+${ 
-      Array.from(
-        ( [] as string[] ).fill.call( { length: result.ColumnCount }, '[=:][=]*?[=:]\\+' )
-      ).join( '' ) 
+      Array.from (
+        ( [] as string[] ).fill.call ( { length: result.ColumnCount }, '[=:][=]*?[=:]\\+' )
+      ).join ( '' ) 
       }$`
   );
 
   // create cell line matcher
-  const cellLineMatcher = new RegExp(
+  const cellLineMatcher = new RegExp (
     `^\\|${ 
-      Array.from(
-        ( [] as string[] ).fill.call( { length: result.ColumnCount }, '[^|]+?\\|' )
-      ).join( '' ) 
+      Array.from (
+        ( [] as string[] ).fill.call ( { length: result.ColumnCount }, '[^|]+?\\|' )
+      ).join ( '' ) 
       }$`
   );
 
   // save first separator line offset
-  result.SeparatorLineOffsets.push( startLine );
+  result.SeparatorLineOffsets.push ( startLine );
 
   // continue to scan until a complete table is found, or an invalid line is encountered
   let currentRow: TableRow = { lines: [], columnOffsets: [] };
   let currentLine = startLine + 1;
 
   for ( ; currentLine <= endLine; currentLine += 1 ) {
-    const line = getLine( state, currentLine );
+    const line = getLine ( state, currentLine );
 
-    if ( line.charCodeAt( 0 ) === 0x2b ) {
+    if ( line.charCodeAt ( 0 ) === 0x2b ) {
       // '+'
       // separator line
       if ( currentRow.lines.length === 0 ) {
@@ -86,16 +86,16 @@ export default function parseTable (
       }
 
       // save separator line offset
-      result.SeparatorLineOffsets.push( currentLine );
+      result.SeparatorLineOffsets.push ( currentLine );
 
       if ( line === rowLine ) {
         // new regular row
-        result.TableRows.push( currentRow );
+        result.TableRows.push ( currentRow );
 
         if ( result.HeaderLines.lines.length === 0 ) {
           result.HeaderLess = true;
         }
-      } else if ( !result.HeaderLess && headerLineMatcher.test( line ) ) {
+      } else if ( !result.HeaderLess && headerLineMatcher.test ( line ) ) {
         // found header line
         if (
           result.HeaderLines.lines.length > 0 ||
@@ -108,9 +108,9 @@ export default function parseTable (
         // header row
         result.HeaderLines = currentRow;
 
-        if ( line.includes( ':' ) ) {
+        if ( line.includes ( ':' ) ) {
           // set column alignments
-          result.ColumnAlignments = getColumnAlignments(
+          result.ColumnAlignments = getColumnAlignments (
             line,
             result.ColumnCount
           );
@@ -122,12 +122,12 @@ export default function parseTable (
 
       // reset current row
       currentRow = { lines: [], columnOffsets: [] };
-    } else if ( line.charCodeAt( 0 ) === 0x7c ) {
+    } else if ( line.charCodeAt ( 0 ) === 0x7c ) {
       // '|'
       // cell line
-      if ( !cellLineMatcher.test( line ) ) {
+      if ( !cellLineMatcher.test ( line ) ) {
         // cell line does not match -> invalid table
-        console.log(
+        console.log (
           '>>>>>>>>>>>>>>cell line does not match -> invalid table<<<<<<<<<<<<<',
           line,
           cellLineMatcher.source
@@ -136,19 +136,19 @@ export default function parseTable (
       }
 
       // add the line to the current row
-      currentRow.lines.push( line );
+      currentRow.lines.push ( line );
 
       // get position of '|'
       const offsets = [ 0 ];
       let offset = 0;
       for ( ;; ) {
-        offset = line.indexOf( '|', offset + 1 );
+        offset = line.indexOf ( '|', offset + 1 );
         if ( offset === -1 ) {
           break;
         }
-        offsets.push( offset );
+        offsets.push ( offset );
       }
-      currentRow.columnOffsets.push( offsets );
+      currentRow.columnOffsets.push ( offsets );
     } else {
       // not a separator or cell line, check if we have a complete table
       if (

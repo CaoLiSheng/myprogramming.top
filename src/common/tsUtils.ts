@@ -8,7 +8,7 @@ export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
 
 export const distinctReduce = ( p: string[], v: string[] ): string[] => [
   ...p,
-  ...v.filter( ( np: string ) => p.every( ( pp: string ) => np !== pp ) ),
+  ...v.filter ( ( np: string ) => p.every ( ( pp: string ) => np !== pp ) ),
 ];
 
 export const intersectingReduce = (
@@ -17,7 +17,7 @@ export const intersectingReduce = (
   idx: number,
 ): string[] => ( idx === 0
   ? v
-  : [ ...p.filter( ( np: string ) => v.includes( np ) ) ] );
+  : [ ...p.filter ( ( np: string ) => v.includes ( np ) ) ] );
 
 interface Sortable {
   s: string;
@@ -31,16 +31,16 @@ export const dateSortDesc = (
   src: string[],
   metas: { [key: string]: PublicMeta },
 ): string[] => src
-  .map( ( s: string ) => {
-    const top = !dateReg.test( metas[s].date );
+  .map ( ( s: string ) => {
+    const top = !dateReg.test ( metas[s].date );
     return {
       s,
       top,
-      date: top ? null : Moment( metas[s].date ),
+      date: top ? null : Moment ( metas[s].date ),
     };
   } )
-  .sort( ( a: Sortable, b: Sortable ) => ( ( a.top || ( !b.top && a.date?.isBefore( b.date ) ) ) ? 1 : -1 ) )
-  .map( ( obj: Sortable ) => obj.s );
+  .sort ( ( a: Sortable, b: Sortable ) => ( ( a.top || ( !b.top && a.date?.isBefore ( b.date ) ) ) ? 1 : -1 ) )
+  .map ( ( obj: Sortable ) => obj.s );
 
 export function switcher (
   jobAtOnce: ( ...params: unknown[] ) => void,
@@ -51,17 +51,17 @@ export function switcher (
   let _need_once = true;
 
   return ( ...params: unknown[] ) => {
-    if ( _timer !== null ) clearTimeout( _timer );
+    if ( _timer !== null ) clearTimeout ( _timer );
 
     if ( _need_once ) {
       _need_once = false;
-      jobAtOnce( ...params );
+      jobAtOnce ( ...params );
     }
 
-    _timer = setTimeout( () => {
+    _timer = setTimeout ( () => {
       _timer = null;
       _need_once = true;
-      jobLater( ...params );
+      jobLater ( ...params );
     }, delay );
   };
 }

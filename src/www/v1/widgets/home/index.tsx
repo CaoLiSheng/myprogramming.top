@@ -11,8 +11,8 @@ import { SnapList } from '@rWidgets/snapList';
 import React, { Component, ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-@injectDBCtx()
-@injectPageCtx()
+@injectDBCtx ()
+@injectPageCtx ()
 export class Home extends Component<
 RouteComponentProps<{ page?: string }> & {
   db: I_DB_CTX;
@@ -20,7 +20,7 @@ RouteComponentProps<{ page?: string }> & {
 }
 > {
   componentDidMount (): void {
-    this.update();
+    this.update ();
   }
 
   componentDidUpdate (
@@ -34,17 +34,17 @@ RouteComponentProps<{ page?: string }> & {
       && prevProps.db.db.sortedPosts === this.props.db.db.sortedPosts
     ) return;
 
-    this.update();
+    this.update ();
   }
 
   update = (): void => {
     const pagerKey: string = PATH_PAGER_MAP[ this.props.match.path ];
-    if ( !pagerKey ) throw new Error( '粗错啦，无效的分页关键字！' );
+    if ( !pagerKey ) throw new Error ( '粗错啦，无效的分页关键字！' );
 
-    this.props.page.update(
+    this.props.page.update (
       pagerKey,
       this.props.db.db.sortedPosts,
-      this.props.match.params.page?.toInt(),
+      this.props.match.params.page?.toInt (),
     );
   };
 

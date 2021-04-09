@@ -18,12 +18,12 @@ const EmptyDbState: dbState = {
 
 export const db = {
   state: EmptyDbState,
-  data: EmptySchema,
+  data : EmptySchema,
   update ( data: Schema ): void {
-    Object.keys( data ).forEach( ( key: string ) => {
+    Object.keys ( data ).forEach ( ( key: string ) => {
       this.data[key] = data[key];
     } );
-    this.state.allTags = Object.keys( data.tagCategories );
+    this.state.allTags = Object.keys ( data.tagCategories );
     this.state.refresh = true;
   },
   filterByKW ( kw: string ): string[] {
@@ -31,13 +31,13 @@ export const db = {
       return this.data.sortedPosts;
     }
 
-    return ( this.data.sortedPosts || [] ).filter( ( name: string ) => {
+    return ( this.data.sortedPosts || [] ).filter ( ( name: string ) => {
       const meta = this.data.metas[name];
-      if ( name.includes( kw ) ) return true;
-      if ( meta.date.includes( kw ) ) return true;
-      if ( meta.title.includes( kw ) ) return true;
+      if ( name.includes ( kw ) ) return true;
+      if ( meta.date.includes ( kw ) ) return true;
+      if ( meta.title.includes ( kw ) ) return true;
       if (
-        meta.tags.some( ( t: string ) => `${ t }`.trim().includes( kw ) )
+        meta.tags.some ( ( t: string ) => `${ t }`.trim ().includes ( kw ) )
       ) {
         return true;
       }
@@ -46,17 +46,17 @@ export const db = {
   },
   filterByTags ( tags: string[] ): { extendable: string[], posts: string[] } {
     const unSorted = tags
-      .map( ( t: string ) => this.data.tagCategories[t] )
-      .reduce( intersectingReduce, [] );
+      .map ( ( t: string ) => this.data.tagCategories[t] )
+      .reduce ( intersectingReduce, [] );
 
     const extendable = [
-      ...unSorted.map( ( p: string ) => this.data.metas[p].tags ),
+      ...unSorted.map ( ( p: string ) => this.data.metas[p].tags ),
       tags,
-    ].reduce( distinctReduce, [] );
+    ].reduce ( distinctReduce, [] );
 
     return {
       extendable,
-      posts: dateSortDesc( unSorted, this.data.metas ),
+      posts: dateSortDesc ( unSorted, this.data.metas ),
     };
   },
 };
@@ -66,7 +66,7 @@ export const initOnce = async (): Promise<void> => {
   if ( __INITIALIZATION_STARTED ) return;
   __INITIALIZATION_STARTED = true;
 
-  const resp = await fetch( `db.json?var=${Date.now()}` );
-  const data: Schema = await resp.json();
-  db.update( data );
+  const resp = await fetch ( `db.json?var=${ Date.now () }` );
+  const data: Schema = await resp.json ();
+  db.update ( data );
 };

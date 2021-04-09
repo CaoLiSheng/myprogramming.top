@@ -14,5 +14,5 @@ export default function getLine (
 
     const end = state.eMarks[line];
 
-    return state.src.slice( start, end );
+    return state.src.slice ( start, end );
 }

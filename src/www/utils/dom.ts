@@ -5,7 +5,7 @@ export function clickIn (
   if ( wrappers.length === 0 ) return false;
 
   while ( target ) {
-    if ( wrappers.includes( target ) ) return true;
+    if ( wrappers.includes ( target ) ) return true;
     target = target?.parentElement;
   }
   return false;

@@ -25,5 +25,5 @@ export default function getCharCodeAtStartOfLine (
         return -1;
     }
 
-    return state.src.charCodeAt( pos );
+    return state.src.charCodeAt ( pos );
 }

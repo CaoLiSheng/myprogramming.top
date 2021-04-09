@@ -14,11 +14,11 @@ function initSprite ( player: HTMLCanvasElement ) {
 }
 
 function posSprite ( player: HTMLCanvasElement, event: Event ) {
-  console.log( event instanceof MouseEvent );
+  console.log ( event instanceof MouseEvent );
   if ( event instanceof MouseEvent ) {
-    player.style.left = `${event.clientX - 15}px`;
-    player.style.top = `${event.clientY - 15}px`;
-    console.log(
+    player.style.left = `${ event.clientX - 15 }px`;
+    player.style.top = `${ event.clientY - 15 }px`;
+    console.log (
       player.style.left,
       player.style.top,
       event.clientX,
@@ -28,29 +28,29 @@ function posSprite ( player: HTMLCanvasElement, event: Event ) {
 }
 
 const playHearts = ( name: string, event: Event ) => {
-  if ( !name.uniqueCheck( 'CLICK-HEARTS' ) ) return;
+  if ( !name.uniqueCheck ( 'CLICK-HEARTS' ) ) return;
 
-  let player = document.querySelector( `#${ SpriteId }` );
+  let player = document.querySelector ( `#${ SpriteId }` );
   if ( !player ) {
-    player = document.createElement( 'canvas' );
-    initSprite( player as HTMLCanvasElement );
-    posSprite( player as HTMLCanvasElement, event );
-    document.body.append( player );
+    player = document.createElement ( 'canvas' );
+    initSprite ( player as HTMLCanvasElement );
+    posSprite ( player as HTMLCanvasElement, event );
+    document.body.append ( player );
   } else {
-    posSprite( player as HTMLCanvasElement, event );
+    posSprite ( player as HTMLCanvasElement, event );
   }
 };
 
 // const mouseupListender = playHearts.bind(null, 'mouseup');
-const mousedownListender = playHearts.bind( null, 'mousedown' );
-const touchstartListender = playHearts.bind( null, 'touchstart' );
+const mousedownListender = playHearts.bind ( null, 'mousedown' );
+const touchstartListender = playHearts.bind ( null, 'touchstart' );
 
 // document.body.addEventListener('mouseup', mouseupListender);
-document.body.addEventListener( 'mousedown', mousedownListender );
-document.body.addEventListener( 'touchstart', touchstartListender );
+document.body.addEventListener ( 'mousedown', mousedownListender );
+document.body.addEventListener ( 'touchstart', touchstartListender );
 
-window.addEventListener( 'beforeunload', () => {
+window.addEventListener ( 'beforeunload', () => {
   // document.body.removeEventListener('mouseup', mouseupListender);
-  document.body.removeEventListener( 'mousedown', mousedownListender );
-  document.body.removeEventListener( 'touchstart', touchstartListender );
+  document.body.removeEventListener ( 'mousedown', mousedownListender );
+  document.body.removeEventListener ( 'touchstart', touchstartListender );
 } );

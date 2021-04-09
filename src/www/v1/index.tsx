@@ -35,11 +35,11 @@ interface AppStates {
   hasError: boolean;
 }
 
-@withDBCtxProvider()
-@withPageCtxProvider()
+@withDBCtxProvider ()
+@withPageCtxProvider ()
 class App extends Component<AppProps, AppStates> {
   constructor ( props: AppProps ) {
-    super( props );
+    super ( props );
 
     this.state = { hasError: false };
   }
@@ -49,13 +49,13 @@ class App extends Component<AppProps, AppStates> {
   }
 
   async componentDidMount () {
-    const resp = await fetch( __dirs__.__posts_db__, {
+    const resp = await fetch ( __dirs__.__posts_db__, {
       method: 'GET',
-      mode: 'cors',
+      mode  : 'cors',
     } );
-    const db: Schema = await resp.json();
+    const db: Schema = await resp.json ();
 
-    this.props.db?.load( db );
+    this.props.db?.load ( db );
     // this.props.page?.update('homepage', db.sortedPosts);
   }
 
@@ -64,7 +64,7 @@ class App extends Component<AppProps, AppStates> {
   }
 
   componentDidCatch ( error: Error, errorInfo: ErrorInfo ) {
-    console.log( error, errorInfo.componentStack );
+    console.log ( error, errorInfo.componentStack );
   }
 
   render () {
@@ -115,7 +115,7 @@ class App extends Component<AppProps, AppStates> {
   }
 }
 
-void import( 'react-dom' ).then( ( { render } ) => render( <App />, document.querySelector( '#app' ) ) );
+void import ( 'react-dom' ).then ( ( { render } ) => render ( <App />, document.querySelector ( '#app' ) ) );
 
 // (async () => {
 //   const { render } = await import('react-dom');

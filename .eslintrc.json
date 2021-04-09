@@ -53,6 +53,22 @@
     "object-curly-spacing": ["error", "always"],
     "array-bracket-spacing": ["error", "always"],
     "space-before-function-paren": ["error", "always"],
+    "template-curly-spacing": ["error", "always"],
+    "func-call-spacing": ["error", "always"],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "block-spacing": "error",
+    "key-spacing": [
+      "error",
+      {
+        "align": "colon"
+      }
+    ],
     "react/no-unused-state": "off",
     "react/jsx-props-no-spreading": "off",
     "react/destructuring-assignment": "off",
