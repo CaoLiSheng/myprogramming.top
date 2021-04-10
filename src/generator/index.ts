@@ -26,8 +26,6 @@ import {
 // DB
 const dbData = new DB ();
 
-declare let __production__: boolean;
-
 // Clean & Make Out Dir
 fs.mkdirSync ( outDir, { recursive: true } );
 console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );

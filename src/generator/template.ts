@@ -11,7 +11,6 @@ import argv from './yargs';
 
 declare let __production__: boolean;
 declare let __resources_dir__: string;
-// console.log('---------->', __resources_dir__);
 
 // Locate Template Script Path
 export function tplScriptPath (): string {

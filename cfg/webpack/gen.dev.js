@@ -13,7 +13,7 @@ module.exports = merge ( base, {
   plugins: [
     new webpack.DefinePlugin ( {
       __production__   : false,
-      __resources_dir__: JSON.stringify ( './' ),
+      __resources_dir__: JSON.stringify ( 'http://127.0.0.1:60000/' ),
     } ),
   ],
 } );
