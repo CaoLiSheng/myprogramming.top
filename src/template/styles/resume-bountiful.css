@@ -111,8 +111,9 @@ body[theme="Dark"] .markdown-body {
 .markdown-body pre.prettyprint > code {
   margin: 0;
   padding: 0;
-  white-space: pre;
   border: none;
+  display: block;
+  white-space: pre;
 }
 
 .markdown-body pre.prettyprint code,

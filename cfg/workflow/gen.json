@@ -1,0 +1,5 @@
+{
+  "clean": "g",
+  "dist": "gen.dev",
+  "gen": "devV1 devV2"
+}

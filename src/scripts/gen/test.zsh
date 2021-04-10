@@ -1,8 +1,6 @@
 #!/bin/zsh
 
-rm -rf build/tests/markdown-it && \
-  mkdir -p build/tests/markdown-it && \
-  node build/gen/dev/generator.min.js \
+node build/gen/dev/generator.min.js \
     --tplPath='src/template/v1/index.html' \
     --cssPath='src/template/v1/index.css' \
     --tplDir='build/gen/dev' \

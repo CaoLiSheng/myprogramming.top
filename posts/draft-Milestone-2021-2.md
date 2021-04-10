@@ -39,6 +39,8 @@ tags:
 
 ## eslint
 
+## package.json
+
 ## outline
 
 ## universal search results

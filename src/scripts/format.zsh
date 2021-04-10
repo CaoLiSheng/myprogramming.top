@@ -9,7 +9,7 @@ echo "💆 Sorting imports..."
 import-sort --write '**/*.{js,jsx,ts,tsx,vue}'
 
 echo "💆 Fixing JS/TS/VUE..."
-npm run lint-es -- --fix >/dev/null 2>&1 || true
+npm run lint:es -- --fix >/dev/null 2>&1 || true
 
 echo "💆 Prettier..."
 prettier --write '**/*.{scss,css,json,yaml,yml}'
