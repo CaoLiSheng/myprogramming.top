@@ -13,7 +13,7 @@ tags:
 
 > 
 
-## 统一模板
+## 精简发布目录
 
 - md-2-article.markdown-body
 - .markdown-body(.antique/.bountiful/.github)
@@ -37,17 +37,21 @@ tags:
     - ……
   - posts-sources
 
-## eslint
+## 其它改进
 
-## package.json
+### folders
 
-## outline
+### outline
 
-## universal search results
+### universal search results
 
-## folders
+---
 
-## hotkeys
+### hotkeys
+
+### eslint
+
+### package.json
 
 ## 同系列文章
 
