@@ -27,15 +27,15 @@ tags:
   - click-effects
   - hotkeys
   - md-extends
+  - site-templates ( run in site-sandbox )
   - ……
 - blogger
   - configerations
     - plugins
-    - site-templates ( run in site-sandbox )
     - md-path
     - public-path
     - ……
-  - templates-sources
+  - posts-sources
 
 ## eslint
 
