@@ -1,5 +1,12 @@
-/build
-/dist
-/node_modules
-/posts
-/public
+node_modules/**
+public/**
+build/**
+posts/**
+dist/**
+.*/**
+*.log
+
+package-lock.json
+yarn.lock
+
+.DS_Store

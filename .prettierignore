@@ -1,11 +1,12 @@
-node_modules
-public
-build
-dist
+node_modules/**
+public/**
+build/**
+posts/**
+dist/**
+.*/**
+*.log
 
 package-lock.json
-yarn-error.log
 yarn.lock
-log*.txt
 
 .DS_Store

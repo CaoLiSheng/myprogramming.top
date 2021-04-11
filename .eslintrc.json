@@ -30,7 +30,9 @@
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
     "project": "./tsconfig.json",
-    "extraFileExtensions": [".vue"],
+    "extraFileExtensions": [
+      ".vue"
+    ],
     "ecmaFeatures": {
       "jsx": true
     }
@@ -49,12 +51,30 @@
     "no-restricted-syntax": "off",
     "no-underscore-dangle": "off",
     "no-prototype-builtins": "off",
-    "space-in-parens": ["error", "always"],
-    "object-curly-spacing": ["error", "always"],
-    "array-bracket-spacing": ["error", "always"],
-    "space-before-function-paren": ["error", "always"],
-    "template-curly-spacing": ["error", "always"],
-    "func-call-spacing": ["error", "always"],
+    "space-in-parens": [
+      "error",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "always"
+    ],
+    "space-before-function-paren": [
+      "error",
+      "always"
+    ],
+    "template-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "func-call-spacing": [
+      "error",
+      "always"
+    ],
     "keyword-spacing": [
       "error",
       {
@@ -75,7 +95,10 @@
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": [".tsx", ".jsx"]
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
       }
     ],
     "import/no-extraneous-dependencies": "off",
