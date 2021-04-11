@@ -14,22 +14,22 @@
   "license": "ISC",
   "author": "CaoLS",
   "scripts": {
-    "dev": "zsh ./src/scripts/devServer.zsh",
+    "dev": "func() { webpack-dev-server --silent --config=cfg/webpack/$1.js; }; func",
     "http": "serve -C -l",
     "new": "zsh ./src/scripts/newPost.zsh",
-    "zsh": "zsh ./src/scripts/entry.zsh",
-    "bundle": "yarn zsh -c bundle",
-    "dev:gen": "yarn zsh -c gen",
+    "build": "zsh ./src/scripts/build.zsh",
+    "bundle": "yarn build -c bundle",
+    "dev:gen": "yarn build -c gen",
     "dev:misc": "run-p nodemon 'http 60000 public/resources'",
-    "dev:v1-tpl": "yarn zsh -c dev-v1",
-    "dev:v1": "run-p 'zsh -c dev-v1' 'dev site.v1.dev' 'http 5555 build/v1/posts'",
-    "dev:v2": "run-p 'zsh -c dev-v2' 'dev site.v2.dev' 'http 3333 build/v2/posts'",
+    "dev:v1-tpl": "yarn build -c dev-v1",
+    "dev:v1": "run-p 'build -c dev-v1' 'dev site.v1.dev' 'http 5555 build/v1/posts'",
+    "dev:v2": "run-p 'build -c dev-v2' 'dev site.v2.dev' 'http 3333 build/v2/posts'",
     "nodemon": "nodemon --exec 'zsh ./src/scripts/gen.zsh devV1 devV2'",
     "format": "zsh ./src/scripts/format.zsh",
     "lint": "run-p lint:es lint:ts",
     "lint:es": "eslint --ext .js,.jsx,.ts,.tsx,.vue --format=pretty ./",
     "lint:ts": "tsc --noEmit",
-    "test:markdown-it": "yarn zsh -c markdown-it"
+    "test:markdown-it": "yarn build -c markdown-it"
   },
   "husky": {
     "hooks": {
