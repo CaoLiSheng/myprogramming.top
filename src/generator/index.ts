@@ -32,7 +32,6 @@ console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
 
 // Read Source Dir
 const sources = fs.readdirSync ( inDir );
-console.log ( 'Sources:', sources );
 
 // Copy Template's Assets
 copyTemplateAssets ();
@@ -42,6 +41,9 @@ const posts = sources.filter ( ( file: string ) => isPost ( file ) );
 console.log ( 'Posts:', posts );
 
 posts.forEach ( ( fileName: string ) => {
+  console.log ( '\n\n', fileName, ':\n' );
+  
+
   const fileContent = fs.readFileSync ( path.join ( inDir, fileName ), {
     encoding: 'UTF-8',
   } );
@@ -78,9 +80,9 @@ posts.forEach ( ( fileName: string ) => {
   if ( tagsMd ) tags.push ( ...tagsMd );
 
   console.log (
-    'parsing-------------start\n',
+    'metadata:\n',
     [ rawMetadata, noReceiveEmails, style, title, date, tags, body ].join ( '\n\n' ),
-    '\nend---------------parsing',
+    '\n',
   );
 
   const name = extractPostName ( fileName );
