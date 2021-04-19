@@ -196,7 +196,7 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: "PT Sans";
-  src: url({{reources_dir}}fonts/PT_Sans-Web-Regular.ttf) format("truetype");
+  src: url({{resource_dir}}fonts/PT_Sans-Web-Regular.ttf) format("truetype");
 }
 
 @import url("//fonts.googleapis.com/css?family=PT+Sans+Narrow:400, 700");

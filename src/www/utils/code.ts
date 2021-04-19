@@ -2,7 +2,7 @@
  * 查阅语言支持情况：https://github.com/googlearchive/code-prettify
  */
 
-declare let __resources_dir__: string;
+declare let __resource_dir__: string;
 
 const codePrettyDir = 'pretty-code-resources/';
 const cssFileName = 'prettify.css';
@@ -14,7 +14,7 @@ function injectPrettyCSS (): void {
   link.setAttribute ( 'type', 'text/css' );
   link.setAttribute (
     'href',
-    `${ __resources_dir__ }${ codePrettyDir }${ cssFileName }`,
+    `${ __resource_dir__ }${ codePrettyDir }${ cssFileName }`,
   );
   document.head.append ( link );
 }
@@ -24,7 +24,7 @@ function injectPrettyScript (): HTMLScriptElement {
   script.setAttribute ( 'type', 'text/javascript' );
   script.setAttribute (
     'src',
-    `${ __resources_dir__ }${ codePrettyDir }${ jsFileName }`,
+    `${ __resource_dir__ }${ codePrettyDir }${ jsFileName }`,
   );
   document.head.append ( script );
 

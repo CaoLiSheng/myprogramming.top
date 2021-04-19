@@ -59,7 +59,7 @@ const defaultRender: Renderer.RenderRule = function(
   const title = token.attrs?.[bIndex]?.[1] || defualtName;
   const caption = token.content || defualtName;
   return `<figure>
-    <img alt="${caption}" src="${__resources_dir__}${src}" title="${title}" />
+    <img alt="${caption}" src="${__resource_dir__}${src}" title="${title}" />
     <figcaption>${caption}</figcaption>
   </figure>`;
 };
@@ -75,7 +75,7 @@ md.renderer.rules.image = function(tokens, idx, options, env, self) {
   let matches;
   if (title && (matches = title.match(titleRE))) {
     const [flag, title, width, height, scorllX, scrollY] = matches.slice(1);
-    const paddedSrc = `${__resources_dir__}${src}`;
+    const paddedSrc = `${__resource_dir__}${src}`;
     const caption = token.content || defualtName;
     const imgTitle = title || defualtName;
 

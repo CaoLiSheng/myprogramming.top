@@ -38,7 +38,7 @@
 // ===================================
 // import showdown from 'showdown';
 
-// declare var __resources_dir__: string;
+// declare var __resource_dir__: string;
 
 // const ext_figure_caption_size = {
 //   type: 'lang',
@@ -53,7 +53,7 @@
 //   ): string {
 //     return `<figure><div class="image" style=" height: ${$5 || 'auto'};">
 //         <img alt="${$1}" width="${$4 || 'auto'}" height="auto"
-//         src="${__resources_dir__}${$2}" title="${$3}" />
+//         src="${__resource_dir__}${$2}" title="${$3}" />
 //       </div><figcaption>${$3}</figcaption></figure>`;
 //   },
 // };
@@ -74,7 +74,7 @@
 // return `<figure><div class="image" style=" height: ${$5 || 'auto'};"
 // data-scroll-x="${$6 || 0}" data-scroll-y="${$7 || 0}">
 //     <img alt="${$1}" width="${$4 || 'auto'}" height="auto"
-//     src="${__resources_dir__}${$2}" title="${$3}" />
+//     src="${__resource_dir__}${$2}" title="${$3}" />
 //   </div><figcaption>${$3}</figcaption></figure>`;
 //   },
 // };
@@ -83,7 +83,7 @@
 //   type: 'lang',
 //   regex: /!\[(.*?)\]\((\S+?) ['"]:(.*?)['"]\)/g,
 //   replace: function(): string {
-//     return `<figure><img alt="$1" src="${__resources_dir__}$2" title="$3" /><figcaption>$3</figcaption></figure>`;
+//     return `<figure><img alt="$1" src="${__resource_dir__}$2" title="$3" /><figcaption>$3</figcaption></figure>`;
 //   },
 // };
 
@@ -97,7 +97,7 @@
 //     $3: string,
 //     $4: string
 //   ): string {
-//     return `<img alt="${$1}" src="${__resources_dir__}${$2}" title="${$1}" width="${$3 ||
+//     return `<img alt="${$1}" src="${__resource_dir__}${$2}" title="${$1}" width="${$3 ||
 //       'auto'}" height="${$4 || 'auto'}" />`;
 //   },
 // };
@@ -117,7 +117,7 @@
 //     return `<figure><div class="image" style=" height: ${$4 || 'auto'};"
 //       data-scroll-x="${$5 || 0}" data-scroll-y="${$6 || 0}">
 //         <img alt="${$1}" width="${$3 || 'auto'}" height="auto"
-//         src="${__resources_dir__}${$2}" title="${$1}" />
+//         src="${__resource_dir__}${$2}" title="${$1}" />
 //       </div><figcaption>${$1}</figcaption></figure>`;
 //   },
 // };
@@ -134,7 +134,7 @@
 //   ): string {
 //     return `<figure><div class="image" style=" height: ${$4 || 'auto'};">
 //         <img alt="${$1}" width="${$3 || 'auto'}" height="auto"
-//         src="${__resources_dir__}${$2}" title="${$1}" />
+//         src="${__resource_dir__}${$2}" title="${$1}" />
 //       </div><figcaption>${$1}</figcaption></figure>`;
 //   },
 // };
@@ -142,19 +142,19 @@
 // const ext_img = {
 //   type: 'lang',
 //   regex: /!!\[(.*?)\]\((\S+?)\)/g,
-//   replace: `<img alt="$1" src="${__resources_dir__}$2" title="$1" />`,
+//   replace: `<img alt="$1" src="${__resource_dir__}$2" title="$1" />`,
 // };
 
 // const ext_figure = {
 //   type: 'lang',
 //   regex: /!\[(.*?)\]\((\S+?)\)/g,
-//   replace: `<figure><img alt="$1" src="${__resources_dir__}$2" title="$1" /><figcaption>$1</figcaption></figure>`,
+//   replace: `<figure><img alt="$1" src="${__resource_dir__}$2" title="$1" /><figcaption>$1</figcaption></figure>`,
 // };
 
 // const ext_download_link = {
 //   type: 'lang',
 //   regex: /\[(.*?)\]\((\S+?) ['"](.*?)['"]\)/g,
-//   replace: `<a href="${__resources_dir__}$2" download="$3">点击下载「$1」</a>`,
+//   replace: `<a href="${__resource_dir__}$2" download="$3">点击下载「$1」</a>`,
 // };
 
 // export const converter = new showdown.Converter({

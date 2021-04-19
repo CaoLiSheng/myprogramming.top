@@ -10,7 +10,7 @@ module.exports = merge ( base, {
   },
   plugins: [
     new webpack.DefinePlugin ( {
-      __resources_dir__: JSON.stringify ( '../resources/' ),
+      __resource_dir__: JSON.stringify ( '../resources/' ),
       __origin__       : JSON.stringify ( 'https://yx1991.gitee.io' ),
       __site_root__    : JSON.stringify ( 'https://yx1991.gitee.io/blog' ),
     } ),

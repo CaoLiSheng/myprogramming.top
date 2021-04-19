@@ -10,7 +10,7 @@ import { minify } from './minify';
 import argv from './yargs';
 
 declare let __production__: boolean;
-declare let __resources_dir__: string;
+declare let __resource_dir__: string;
 
 // Locate Template Script Path
 export function tplScriptPath (): string {
@@ -80,7 +80,7 @@ function fetchCSSImpl ( base: string ): string {
       .replace ( '/* body_padding_pc */', Sheets[base].padding.pc )
       .replace ( '/* body_padding_mobile */', Sheets[base].padding.mobile )
       .replace ( /\/\* common\/(.*?) \*\//g, ( _: string, partial: string ) => fetchCSSCache ( partial, fetchCommonCSS ) )
-      .replace ( /{{reources_dir}}/g, __resources_dir__ )
+      .replace ( /{{resource_dir}}/g, __resource_dir__ )
   );
 
   const fileName = cssContent.md5 ( base, 'css', 10 );

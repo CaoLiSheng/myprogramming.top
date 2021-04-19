@@ -13,7 +13,7 @@ module.exports = merge ( base, {
   plugins: [
     new webpack.DefinePlugin ( {
       __production__   : true,
-      __resources_dir__: JSON.stringify ( '../resources/' ),
+      __resource_dir__: JSON.stringify ( '../resources/' ),
     } ),
   ],
 } );

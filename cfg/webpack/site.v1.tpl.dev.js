@@ -10,7 +10,7 @@ module.exports = merge ( base, {
   },
   plugins: [
     new webpack.DefinePlugin ( {
-      __resources_dir__: JSON.stringify ( './' ),
+      __resource_dir__: JSON.stringify ( './' ),
       __origin__       : JSON.stringify ( 'http://dev.myprogramming.top:3000' ),
       __site_root__    : JSON.stringify ( 'http://dev.myprogramming.top:3000' ),
     } ),

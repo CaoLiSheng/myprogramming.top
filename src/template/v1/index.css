@@ -32,7 +32,7 @@ body.snapshot {
 }
 
 body:not(.snapshot) {
-  background-image: url({{reources_dir}}images/bg.jpg);
+  background-image: url({{resource_dir}}images/bg.jpg);
   background-position: top center;
   background-size: 100vw 100vh;
   background-repeat: repeat-y;

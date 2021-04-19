@@ -29,6 +29,7 @@
     "util:build": "zsh ./src/scripts/build.zsh",
     "util:dev-server": "func() { webpack-dev-server --silent --config=cfg/webpack/$1.js; }; func",
     "util:format": "zsh ./src/scripts/format.zsh",
+    "util:katex": "zsh ./src/scripts/katex.zsh",
     "util:http": "serve -C -l",
     "util:new": "zsh ./src/scripts/newPost.zsh"
   },
@@ -71,6 +72,7 @@
     "@types/fs-extra": "^9.0.1",
     "@types/html2canvas": "^0.0.35",
     "@types/js-yaml": "^3.12.5",
+    "@types/katex": "^0.11.0",
     "@types/markdown-it": "^12.0.1",
     "@types/md5": "^2.2.0",
     "@types/node": "^12.12.0",
@@ -105,6 +107,7 @@
     "import-sort-parser-babel-vue": "^1.0.6",
     "import-sort-style-module": "^6.0.0",
     "js-yaml": "^3.14.0",
+    "katex": "^0.13.2",
     "markdown-it": "^12.0.4",
     "markdown-it-named-headings": "^1.1.0",
     "md5": "^2.3.0",

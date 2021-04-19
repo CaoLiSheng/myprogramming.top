@@ -21,6 +21,8 @@
 
 /* common/date-tag.css */
 
+/* common/katex.min.css */
+
 /* common/comments.css */
 .markdown-body div.comments a[href^="mailto:"] {
   background-color: var(--a-backgrounnd-article-color);

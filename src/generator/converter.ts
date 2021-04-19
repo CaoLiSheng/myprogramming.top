@@ -1,11 +1,13 @@
-import gridTableRulePlugin from '@mditgridtables/index';
+import gridTableRulePlugin from '@lib/markdown-it-gridtables'
+import kalexRulePlugin from '@lib/markdown-it-katex';
 import YAML from 'js-yaml';
 import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
 
-declare let __resources_dir__: string;
+declare let __resource_dir__: string;
 
 const md = MarkdownIt ( { html: true } )
+  .use ( kalexRulePlugin, { "throwOnError": true, "errorColor": " #cc0000" } )
   .use ( require ( 'markdown-it-named-headings' ) )
   .use ( gridTableRulePlugin );
 
@@ -28,7 +30,7 @@ const defaultRender: Renderer.RenderRule = function defaultRender (
   const title = token.attrs?.[bIndex]?.[1] || defualtName;
   const caption = token.content || defualtName;
   return `<figure>
-  <img alt="${ caption }" src="${ __resources_dir__ }${ src }" title="${ title }" />
+  <img alt="${ caption }" src="${ __resource_dir__ }${ src }" title="${ title }" />
   <figcaption>${ caption }</figcaption>
   </figure>`;
 };
@@ -44,7 +46,7 @@ md.renderer.rules.image = function imageRule ( tokens, idx, options, env, self )
   const matches = title?.match ( titleRE );
   if ( title && matches ) {
     const [ flag, imageTitle, width, height, scorllX, scrollY ] = matches.slice ( 1 );
-    const paddedSrc = `${ __resources_dir__ }${ src }`;
+    const paddedSrc = `${ __resource_dir__ }${ src }`;
     const caption = token.content || defualtName;
     const imgTitle = imageTitle || defualtName;
 

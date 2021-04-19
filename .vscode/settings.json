@@ -1,6 +1,6 @@
 {
   "path-intellisense.mappings": {
-    "@mditgridtables": "lib/markdown-it-gridtables",
+    "@lib": "lib",
     "@tpl": "src/template",
     "@common": "src/common",
     "@images": "src/images",
@@ -11,5 +11,7 @@
     "@vStores": "src/www/v2/stores",
     "@vWidgets": "src/www/v2/widgets"
   },
-  "markdown.styles": ["cfg/thomasf-solarizedcsslight.css"]
+  "markdown.styles": [
+    "cfg/thomasf-solarizedcsslight.css"
+  ]
 }
