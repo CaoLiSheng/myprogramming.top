@@ -81,14 +81,14 @@ body[theme="Dark"] .markdown-body {
 
 .markdown-body code,
 .markdown-body kbd,
-.markdown-body pre.prettyprint,
+.markdown-body pre.prettyprinted,
 .markdown-body samp {
   font-size: 14px;
   line-height: 1.5em;
 }
 
 .markdown-body code,
-.markdown-body pre.prettyprint {
+.markdown-body pre.prettyprinted {
   word-wrap: break-word;
   background-color: var(--pre-background-article-color);
   border: 1px solid #ccc;
@@ -100,26 +100,12 @@ body[theme="Dark"] .markdown-body {
   padding-right: 8px;
 }
 
-.markdown-body pre.prettyprint {
+.markdown-body pre.prettyprinted {
   white-space: pre;
   white-space: pre-wrap;
   padding: 8px 10px;
   overflow: auto;
   margin: 26px 0;
-}
-
-.markdown-body pre.prettyprint > code {
-  margin: 0;
-  padding: 0;
-  border: none;
-  display: block;
-  white-space: pre;
-}
-
-.markdown-body pre.prettyprint code,
-.markdown-body pre.prettyprint tt {
-  background-color: transparent;
-  border: none;
 }
 
 .markdown-body q {

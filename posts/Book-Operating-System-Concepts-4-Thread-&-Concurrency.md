@@ -70,6 +70,58 @@ However, support for threads may be provided either at the user level, for `user
 
 Consider the effect of this design on concurrency. Whereas the many-to-one model allows the developer to create as many user threads as she wishes, it does not result in parallelism, because the kernel can schedule only one kernel thread at a time. The one-to-one model allows greater concurrency, but the developer has to be careful not to create too many threads within an application. (In fact, on some systems, she still may be limited in the number of threads she can create.) The many-to-many model suffers from neither of these shortcomings: developers can create as many user threads as necessary, and the corresponding kernel threads can run in parallel on a multiprocessor. Also, when a thread performs a blocking system call, the kernel can schedule another thread for execution.
 
+## Asynchronous Threading vs. Synchronous Threading
+
+- `asynchronous threading` &ndash; With asynchronous threading, once the parent creates a child thread, the parent resumes its execution, so that the parent and child execute concurrently and independently of one another. Because the threads are independent, there is typically little data sharing between them. Asynchronous threading is the strategy used in `the multithreaded server` and is also commonly used for `designing responsive user interfaces`.
+- `synchronous threading` &ndash; Synchronous threading occurs when the parent thread creates one or more children and then must wait for all of its children to terminate before it resumes. Here, the threads created by the parent perform work concurrently, but the parent cannot continue until this work has been completed. Once each thread has finished its work, it terminates and joins with its parent. Only after all of the children have joined can the parent resume execution. Typically, synchronous threading involves `significant data sharing among threads`. For example, the parent thread may combine the results calculated by its various children.
+
+> ## Pthreads
+> `Pthreads` refers to the POSIX standard (IEEE 1003.1c) defining an API for thread creation and synchronization.
+> This is a ***specification*** for the thread behavior, **not** an ***implementation***.
+> Operating-system designers may implement the specification in any way they wish.
+> Numerous systems implement the Pthreads specification; most are UNIX-type systems, including Linux and macOS.
+> Although Windows doesn't support Pthreads natively, some thrid-party implementations for Windows are available.
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+
+#include <stdlib.h>
+
+int sum; /* this data is shared by the thread(s) */
+void *runner(void *param); /* threads call this function */
+
+int main(int argc, char *argv[])
+{
+  pthread_t tid; /* the thread identifier */
+  pthread_attr_t attr; /* set of thread attributes */
+
+  /* set the default attributes of the thread */
+  pthread_attr_init(&attr);
+  /* create the thread */
+  pthread_create(&tid, &attr, runner, argv[1]);
+  /* wait for the thread to exit */
+  pthread_join(tid, NULL);
+
+  printf("sum = %d\n", sum);
+}
+
+/* The thread will execute in this function */
+void *runner(void *param)
+{
+  int i, upper = atoi(param);
+  sum = 0;
+
+  for (i = 1; i <= upper; i++)
+  {
+    sum += i;
+  }
+
+  pthread_exit(0);
+}
+```
+
+
 ## Another COPY of Summary in the Book
 
 ## 笔记目录

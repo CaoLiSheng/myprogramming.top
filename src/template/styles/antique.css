@@ -18,8 +18,8 @@ body[theme="Light"] .markdown-body {
   --a-foregrounnd-article-color: #00857a;
   --a-backgrounnd-article-color: #45462f;
   --blockquote-foreground-article-color: #6a737d;
-  --pre-background-article-color: #f2ede8;
-  --code-background-article-color: #f2ede8;
+  --pre-background-article-color: #c3bbb3;
+  --code-background-article-color: #c3bbb3;
 }
 
 body[theme="Dark"] .markdown-body {
@@ -252,16 +252,16 @@ body[theme="Dark"] .markdown-body {
   box-shadow: -1px 0 0 white, -2px 0 0 #837e70;
 }
 .markdown-body code {
-  /* background: var(--code-background-article-color); */
+  background: var(--code-background-article-color);
   display: inline-block;
   font-size: 0.9em;
   padding: 0 0.5em;
   line-height: 1.5em;
-  border-radius: 0.5em;
-  border: solid 1px #a7a099;
+  /* border-radius: 0.5em; */
+  /* border: solid 1px #a7a099; */
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 #a7a099;
 }
-.markdown-body pre.prettyprint {
+.markdown-body pre.prettyprinted {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -271,13 +271,8 @@ body[theme="Dark"] .markdown-body {
   overflow: auto;
   margin-bottom: 14px;
 }
-.markdown-body pre.prettyprint code {
+.markdown-body pre.prettyprinted code {
   font-size: 1em;
-  margin: 0;
-  padding: 0;
-  border: none;
-  white-space: pre;
-  background: none;
 }
 .markdown-body hr {
   border-color: #f2ede8;

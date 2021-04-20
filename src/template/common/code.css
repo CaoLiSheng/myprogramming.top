@@ -14,10 +14,24 @@
   font-family: "Cascadia Code PL", "等距更纱黑体", monospace;
 }
 
-.markdown-body pre code[class^="language-"] {
+.markdown-body pre.prettyprinted > code {
+  background: none;
+  border: none;
+  display: inline-block;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  min-width: 100%;
+  overflow: visible;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+}
+
+.markdown-body pre.prettyprinted > code[class^="language-"] {
   font-family: "Cascadia Code PL", "等距更纱黑体", monospace !important;
 }
 
-.markdown-body pre code.language-markdown {
+.markdown-body pre.prettyprinted > code.language-markdown {
   font-family: "等距更纱黑体", "Cascadia Code PL", monospace !important;
 }
