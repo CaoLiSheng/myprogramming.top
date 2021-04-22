@@ -75,12 +75,13 @@ Consider the effect of this design on concurrency. Whereas the many-to-one model
 - `asynchronous threading` &ndash; With asynchronous threading, once the parent creates a child thread, the parent resumes its execution, so that the parent and child execute concurrently and independently of one another. Because the threads are independent, there is typically little data sharing between them. Asynchronous threading is the strategy used in `the multithreaded server` and is also commonly used for `designing responsive user interfaces`.
 - `synchronous threading` &ndash; Synchronous threading occurs when the parent thread creates one or more children and then must wait for all of its children to terminate before it resumes. Here, the threads created by the parent perform work concurrently, but the parent cannot continue until this work has been completed. Once each thread has finished its work, it terminates and joins with its parent. Only after all of the children have joined can the parent resume execution. Typically, synchronous threading involves `significant data sharing among threads`. For example, the parent thread may combine the results calculated by its various children.
 
-> ## Pthreads
-> `Pthreads` refers to the POSIX standard (IEEE 1003.1c) defining an API for thread creation and synchronization.
+> ## POSIX Pthreads
+> `Pthreads` refers to the `POSIX standard` (IEEE 1003.1c) defining an API for thread creation and synchronization.
 > This is a ***specification*** for the thread behavior, **not** an ***implementation***.
 > Operating-system designers may implement the specification in any way they wish.
 > Numerous systems implement the Pthreads specification; most are UNIX-type systems, including Linux and macOS.
 > Although Windows doesn't support Pthreads natively, some thrid-party implementations for Windows are available.
+> This library may be provided as either a user-level or kernel-level library.
 
 ```c
 #include <pthread.h>
@@ -121,6 +122,168 @@ void *runner(void *param)
 }
 ```
 
+> This example program creates only a single thread. The example program below joins on ten threads using the Pthread code.
+
+```c
+#define NUM_THREADS 10
+
+/* an array of threads to be joined upon */
+pthread_t workers[NUM_THREADS];
+
+for (int i = 0; i < NUM_THREADS; i++)
+{
+  pthread_join(workers[i], NULL);
+}
+```
+
+> ## Windows Threads
+> The technique for creating threads using the Windows thread library is similar to the Pthreads technique in several ways.
+> This library is a kernel-level library on Windows systems.
+
+```c
+#include <windows.h>
+#include <stdio.h>
+
+DWORD Sum; /* data is shared by the thread(s) */
+
+/* The thread will execute in this function */
+DWORD WINAPI Summation(LPVOID Param)
+{
+  DWORD Upper = *(DWORD*)Param;
+  for (DWORD i = 1; i <= Upper; i++)
+  {
+    Sum += i;
+  }
+  return 0;
+}
+
+int main(int argc, char *argv[])
+{
+  DWORD ThreadId;
+  HANDLE ThreadHandle;
+  int Param;
+
+  Param = atoi(argv[1]);
+  /* create the thread */
+  ThreadHandle = CreateHandle(
+    NULL, /* default security attributes */
+    0, /* default stack size */
+    Summation, /* thread function */
+    &Param, /* parameter to thread function */
+    0, /* default creation flags */
+    &ThreadId); /* returns the thread identifier */
+
+  /* now wait for the thread to finish */
+  WaitForSingleObject(ThreadHandle, INFINITE);
+
+  /* close the thread handle */
+  CloseHandle(ThreadHandle);
+
+  printf("sum = %d\n", Sum);
+}
+```
+
+> The Pthread program has the parent thread wait for the summation thread using the `pthread_join()` statement.
+> The equivalent of this in the Windows API is the `WaitForSingleObject()` function,
+> which causes the creating thread to block until the summation thread has exited.
+> In situations that requires waiting for multiple threads to complete,
+> the `WaitForMultipleObjects()` funtion is used.
+
+```c
+WaitForMultipleOjbects(
+  N, /* the number of objects to wait for */
+  THandles, /* a pointer to the array of objects */
+  TRUE, /* a flag indicating whether all objects have been signaled */
+  INFINITE); /* a timeout duration (or INFINITE) */
+```
+
+> ## Java Threads
+> All Java programs comprise at least a single thread of control &ndash; 
+> even a simple Java program consisting of only a `main()` method runs as a single thread in the JVM.
+> Java threads are available on any system that provides a JVM including Windows, Linux, and macOS.
+> The Java thread API is available for Android applications as well.
+>
+> There are two techniques for explicitly creating threads in a Java program.
+> One approach is to create a new class that is derived from the Thread class and to override its `run()` method.
+> An alternative &ndash; and more commonly used &ndash; technique is to define a class that implements the `Runnable` interface.
+> This interface defines a single abstract method with the signature `public void run()`.
+> The code in the `run()` method of a class that implements `Runnable` is what executes in a separate thread.
+> An example is shown below:
+
+```java
+class Task implements Runnable {
+  public void run() {
+    System.out.println("I'm a thread.");
+  }
+}
+
+/* thread creation somewhere */
+Thread worker = new Thread(new Task());
+
+/* Lambda expressions in Java */
+Runnable task = () -> {
+    System.out.println("I'm a thread.");
+};
+Thread worker = new Thread(task);
+
+/* allocates memory and initializes a new thread in the JVM */
+/* implicitly calls the run() method, making the thread eligible to be run by the JVM */
+worker.start();
+
+/* wait for the thread to finish */
+try {
+  worker.join();
+} catch (InterruptedException e) { }
+```
+
+> ### Java Executor Framework
+> Java has supported thread creation using the approach above far since its origins.
+> However, beginning with Version 1.5 and its API,
+> Java introduced several new concurrency features that provide developers with much greater control over thread creation and communication.
+> These tools are available in the `java.util.concurrent` package.
+
+```java
+public interface Executor {
+  void execute(Runnable command);
+}
+
+Executor service = new Executor...;
+service.execute(new Task());
+```
+
+```java
+import java.util.concurrent.*;
+
+class Summation implements Callable<Integer> {
+  private int upper;
+
+  public Summation(int upper) {
+    this.upper = upper;
+  }
+
+  /* The thread will execute in this method */
+  public Integer call() {
+    int sum = 0;
+    for (int i = 1; i <= upper; i++) {
+      sum += i;
+    }
+    return new Integer(sum);
+  }
+}
+
+public class Driver {
+  public static void main(String[] args) {
+    int upper = Integer.parseInt(args[0]);
+
+    ExecutorService pool = Executors.newSingleThreadExecutor();
+    Future<Integer> result = pool.submit(new Summation(upper));
+
+    try {
+      System.out.println("sum = " + result.get());
+    } catch (InterruptedException | ExecutionException e) { }
+  }
+}
+```
 
 ## Another COPY of Summary in the Book
 
