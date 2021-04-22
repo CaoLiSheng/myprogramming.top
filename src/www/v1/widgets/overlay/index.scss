@@ -4,7 +4,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-
   pointer-events: none;
 
   & > * {
@@ -17,8 +16,8 @@
     pointer-events: none;
 
     &.opening {
-      pointer-events: all;
       background-color: rgba(0, 0, 0, 0.5);
+      pointer-events: all;
     }
   }
 
@@ -26,17 +25,16 @@
     position: absolute;
     width: 36vw;
     height: 50vh;
-    font-size: 0.2rem;
     padding: 0.2rem;
     overflow: auto;
-    background-image: url(~@images/bg-tags.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 0.1rem;
-
     transform: scale(0);
     transition: transform 300ms;
+    border-radius: 0.1rem;
+    background-image: url(~@images/bg-tags.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 0.2rem;
 
     &.opening {
       transform: scale(1);
@@ -67,7 +65,7 @@
 
   @keyframes blink {
     0% {
-      fill: #eeddff;
+      fill: #edf;
     }
 
     50% {
@@ -75,17 +73,17 @@
     }
 
     100% {
-      fill: #eeddff;
+      fill: #edf;
     }
   }
 
   .overlay-icon {
+    display: flex;
     position: absolute;
+    align-items: center;
+    justify-content: space-evenly;
     width: 1rem;
     height: 0.3rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
 
     &:not(.opening) {
       transform-origin: 50% 50% 0;
@@ -98,6 +96,7 @@
 
     &:hover {
       animation: none;
+
       .icon-color {
         animation: blink 1s ease-in-out 0s infinite normal none;
       }

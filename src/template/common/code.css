@@ -15,17 +15,17 @@
 }
 
 .markdown-body pre.prettyprinted > code {
-  background: none;
-  border: none;
   display: inline-block;
-  line-height: inherit;
-  margin: 0;
-  max-width: auto;
   min-width: 100%;
-  overflow: visible;
+  max-width: auto;
+  margin: 0;
   padding: 0;
-  white-space: pre;
+  overflow: visible;
+  border: none;
+  background: none;
+  line-height: inherit;
   word-break: normal;
+  white-space: pre;
 }
 
 .markdown-body pre.prettyprinted > code[class^="language-"] {

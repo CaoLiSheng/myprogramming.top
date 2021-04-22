@@ -22,8 +22,8 @@ html {
  */
 
 h1 {
-  font-size: 2em;
   margin: 0.67em 0;
+  font-size: 2em;
 }
 
 /* Grouping content
@@ -60,9 +60,9 @@ ul ul {
 
 hr {
   box-sizing: content-box; /* 1 */
-  color: inherit; /* 2 */
   height: 0; /* 1 */
   overflow: visible; /* 3 */
+  color: inherit; /* 2 */
 }
 
 /**
@@ -238,10 +238,10 @@ input {
  */
 
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
   display: table; /* 1 */
+  box-sizing: border-box; /* 1 */
   max-width: 100%; /* 1 */
+  color: inherit; /* 2 */
   white-space: normal; /* 1 */
 }
 
@@ -308,8 +308,8 @@ textarea {
  */
 
 ::-webkit-input-placeholder {
-  color: inherit;
   opacity: 0.54;
+  color: inherit;
 }
 
 /**
@@ -335,8 +335,8 @@ textarea {
  */
 
 ::-moz-focus-inner {
-  border-style: none;
   padding: 0;
+  border-style: none;
 }
 
 /**
@@ -371,21 +371,21 @@ details {
  */
 
 dialog {
-  background-color: white;
-  border: solid;
-  color: black;
   display: block;
-  height: -moz-fit-content;
-  height: -webkit-fit-content;
-  height: fit-content;
-  left: 0;
-  margin: auto;
-  padding: 1em;
   position: absolute;
   right: 0;
+  left: 0;
   width: -moz-fit-content;
   width: -webkit-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 1em;
+  border: solid;
+  background-color: white;
+  color: black;
 }
 
 dialog:not([open]) {

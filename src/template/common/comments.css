@@ -3,17 +3,17 @@
 }
 
 .markdown-body div.comments h6.tip {
-  opacity: 0;
-  cursor: default;
-  text-align: center;
-  pointer-events: none;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   max-width: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  opacity: 0;
+  text-align: center;
+  cursor: default;
+  pointer-events: none;
 }
 
 .markdown-body div.comments:hover h6.tip {
@@ -21,20 +21,20 @@
 }
 
 .markdown-body div.comments a[href^="mailto:"] {
-  text-decoration: none;
-  padding: 15px 100px;
-  text-align: center;
   display: block;
-  font-weight: bolder;
-  color: black;
-  background-color: white;
-  text-shadow: 0 0 2px rgb(0, 139, 139);
+  padding: 15px 100px;
   transition: background-color 300ms, color 1s;
+  background-color: white;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 2px rgb(0, 139, 139);
 }
 
 .markdown-body div.comments a[href^="mailto:"]:hover {
-  color: rgb(116, 130, 145);
   background-color: rgb(230, 224, 224);
+  color: rgb(116, 130, 145);
 }
 
 @media only screen and (max-width: 1080px) {

@@ -1,14 +1,14 @@
 .markdown-body figure {
+  margin: 20px 0;
   font-size: 0;
   line-height: 1;
-  margin: 20px 0;
 }
 
 .markdown-body figure .image {
-  overflow: auto;
-  line-height: 1;
-  font-size: 0;
   width: 100%;
+  overflow: auto;
+  font-size: 0;
+  line-height: 1;
 }
 
 .markdown-body figure .image img {

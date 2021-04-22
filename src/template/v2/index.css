@@ -7,6 +7,7 @@
   */
 
 /* 以下：统一风格 */
+
 /* common/normalize.css */
 
 /* base_stylesheet */
@@ -25,17 +26,18 @@
 
 /* common/comments.css */
 .markdown-body div.comments a[href^="mailto:"] {
-  background-color: var(--a-backgrounnd-article-color);
-  background: linear-gradient(
+  transition: background-color 300ms, background-position 100ms, color 1s;
+  background:
+ linear-gradient(
     to bottom,
     whitesmoke,
     whitesmoke 50%,
     var(--a-backgrounnd-article-color)
   );
+  background-color: var(--a-backgrounnd-article-color);
   background-position: 0 100%;
   background-size: 100% 200%;
   color: var(--a-foregrounnd-article-color);
-  transition: background-color 300ms, background-position 100ms, color 1s;
 }
 
 .markdown-body div.comments a[href^="mailto:"]:hover {
@@ -43,19 +45,21 @@
   background-position: 0 0;
   color: var(--a-hover-foregrounnd-article-color);
 }
+
 /* 以上：统一风格 */
 
 /* 以下：.markdown-body 统一设置 */
 .markdown-body {
   box-sizing: border-box;
   width: calc(100% - 10pt);
-  max-width: 1100px;
   min-width: 200px;
-  border-radius: 6px;
-  border: solid 1px gray;
-  box-shadow: 0 0 5px 0 gray;
+  max-width: 1100px;
   margin: 0.3rem auto;
+  border: solid 1px gray;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 0 gray;
   font-weight: normal;
+
   /* body_padding_pc */
 }
 
@@ -64,17 +68,19 @@
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     margin: 0.15rem auto;
+
     /* body_padding_mobile */
   }
 }
 
 @media print {
   .markdown-body {
+    width: 100%;
+    max-width: unset;
     margin: 0;
     border: none;
     box-shadow: none;
-    max-width: unset;
-    width: 100%;
   }
 }
+
 /* 以上：.markdown-body 统一设置 */

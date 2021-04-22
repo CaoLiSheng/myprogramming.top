@@ -1,9 +1,9 @@
 .markdown-body table code {
   display: block;
-  float: left;
-  white-space: nowrap;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  float: left;
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 1080px) {
@@ -23,24 +23,24 @@
   .markdown-body td,
   .markdown-body th {
     display: block;
-    overflow: hidden;
     position: relative;
-    text-align: left !important;
     padding: 10px 8px 8px calc(5em + 8px) !important;
+    overflow: hidden;
+    text-align: left !important;
   }
 
   .markdown-body td:not([data-th]) {
     padding-left: 8px !important;
   }
 
-  .markdown-body td[data-th]:before {
+  .markdown-body td[data-th]::before {
     content: attr(data-th);
-    text-align: left;
-    height: 100%;
-    width: 5em;
     display: block;
     position: absolute;
     left: 8px;
+    width: 5em;
+    height: 100%;
+    text-align: left;
   }
 
   .markdown-body td:first-child {

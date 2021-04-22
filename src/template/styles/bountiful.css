@@ -64,6 +64,7 @@ body[theme="Dark"] .markdown-body {
 .markdown-body a:focus {
   outline: thin dotted;
 }
+
 .markdown-body a:active,
 .markdown-body a:hover {
   outline: 0;
@@ -94,23 +95,23 @@ body[theme="Dark"] .markdown-body {
 
 .markdown-body code,
 .markdown-body pre.prettyprinted {
-  word-wrap: break-word;
-  background-color: var(--pre-background-article-color);
   border: 1px solid #ccc;
   border-radius: 3px;
+  background-color: var(--pre-background-article-color);
+  word-wrap: break-word;
 }
 
 .markdown-body code {
-  padding-left: 8px;
   padding-right: 8px;
+  padding-left: 8px;
 }
 
 .markdown-body pre.prettyprinted {
-  white-space: pre;
-  white-space: pre-wrap;
+  margin: 26px 0;
   padding: 8px 10px;
   overflow: auto;
-  margin: 26px 0;
+  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .markdown-body q {
@@ -119,9 +120,9 @@ body[theme="Dark"] .markdown-body {
 
 .markdown-body sub,
 .markdown-body sup {
+  position: relative;
   font-size: 75%;
   line-height: 0;
-  position: relative;
   vertical-align: baseline;
 }
 
@@ -138,8 +139,8 @@ body[theme="Dark"] .markdown-body {
 }
 
 .markdown-body table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 
 .markdown-body img {
@@ -148,6 +149,7 @@ body[theme="Dark"] .markdown-body {
 }
 
 /******************** General Typography ********************/
+
 /* body {
   font-size: 75%;
   line-height: 1.5; // 12/18
@@ -165,34 +167,34 @@ body[theme="Dark"] .markdown-body {
 }
 
 .markdown-body h1 {
-  font-size: 2.5em;
   top: 10px;
+  font-size: 2.5em;
 }
 
 .markdown-body h2 {
-  font-size: 2em;
   top: 8px;
+  font-size: 2em;
 }
 
 .markdown-body h3 {
-  font-size: 1.5em;
   top: 6px;
+  font-size: 1.5em;
 }
 
 .markdown-body h4 {
-  font-size: 1.2em;
   top: 4px;
+  font-size: 1.2em;
 }
 
 .markdown-body h5 {
+  top: 4px;
   color: #777;
   font-size: 1em;
-  top: 4px;
 }
 
 .markdown-body h6 {
-  font-size: 0.8em;
   top: 4px;
+  font-size: 0.8em;
 }
 
 .markdown-body h1:first-child,
@@ -257,12 +259,16 @@ body[theme="Dark"] .markdown-body {
 
 /* Theme-specific styles */
 .markdown-body {
-  color: var(--main-foreground-article-color);
   background: var(--main-background-article-color);
-  font-family: "PT Sans", "等距更纱黑体", sans-serif, Apple Color Emoji,
+  color: var(--main-foreground-article-color);
+  font-family:
+ "PT Sans",
+ "等距更纱黑体",
+ sans-serif,
+ Apple Color Emoji,
     Segoe UI Emoji;
-  -webkit-font-smoothing: antialiased;
   font-size: 18px;
+  -webkit-font-smoothing: antialiased;
   line-height: 1.6em;
 }
 
@@ -272,17 +278,21 @@ body[theme="Dark"] .markdown-body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-family: "PT Sans", "等距更纱黑体", serif, Apple Color Emoji,
+  font-family:
+ "PT Sans",
+ "等距更纱黑体",
+ serif,
+ Apple Color Emoji,
     Segoe UI Emoji;
   line-height: 1.5em;
 }
 
 .markdown-body blockquote {
+  margin-top: 25px;
   border: 1px dotted #ccc;
   border-right: none;
   border-left: none;
   color: var(--blockquote-foreground-article-color);
-  margin-top: 25px;
 }
 
 .markdown-body blockquote p {
@@ -292,8 +302,8 @@ body[theme="Dark"] .markdown-body {
 
 .markdown-body ul,
 .markdown-body ol {
-  color: var(--list-foreground-article-color);
   list-style-position: inside;
+  color: var(--list-foreground-article-color);
 }
 
 .markdown-body ol {
@@ -314,9 +324,10 @@ body[theme="Dark"] .markdown-body {
 }
 
 .markdown-body hr {
-  border: 0;
   height: 1px;
-  background-image: -webkit-linear-gradient(
+  border: 0;
+  background-image:
+ -webkit-linear-gradient(
     left,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 0.7),
@@ -325,39 +336,46 @@ body[theme="Dark"] .markdown-body {
 }
 
 .markdown-body table {
+  width: 100%;
+  margin-top: 18px;
   border-collapse: collapse;
   border-top: solid 3px var(--table-border-top-article-color);
-  margin-top: 18px;
-  width: 100%;
 }
+
 .markdown-body table th,
 .markdown-body table td {
   padding: 10px 18px 8px 0;
 }
+
 .markdown-body table thead th,
 .markdown-body table thead td {
   padding-top: 7px;
 }
+
 .markdown-body table tfoot th,
 .markdown-body table tfoot td {
   padding-bottom: 8px;
 }
+
 .markdown-body table th:first-child,
 .markdown-body table td:first-child {
   padding-left: 0;
 }
+
 .markdown-body table th:last-child,
 .markdown-body table td:last-child {
   padding-right: 0;
 }
+
 .markdown-body table tbody tr:nth-child(odd) th,
 .markdown-body table tbody tr:nth-child(odd) td {
   background: var(--odd-tr-background-article-color);
 }
+
 .markdown-body table caption {
-  color: rgba(0, 0, 0, 0.7);
   top: 5px;
   margin-bottom: 18px;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* .inverted {
@@ -395,10 +413,10 @@ body[theme="Dark"] .markdown-body {
   }
 
   .markdown-body {
+    position: relative;
     padding: 0;
     background: white;
     font-size: 12.75px;
-    position: relative;
     text-indent: 0;
   }
 
