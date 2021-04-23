@@ -35,3 +35,8 @@
 .markdown-body pre.prettyprinted > code.language-markdown {
   font-family: "等距更纱黑体", "Cascadia Code PL", monospace !important;
 }
+
+.markdown-body .katex {
+  pointer-events: none;
+  user-select: none;
+}

@@ -12,7 +12,7 @@ for rendering output.
 
 import * as MarkdownIt from 'markdown-it';
 import Token from 'markdown-it/lib/token';
-import { renderToString } from 'katex';
+import { KatexOptions, renderToString } from 'katex';
 import StateBlock from 'markdown-it/lib/rules_block/state_block';
 import StateInline from 'markdown-it/lib/rules_inline/state_inline';
 
@@ -156,7 +156,7 @@ function math_block ( state: StateBlock, start: number, end: number, silent: boo
     return true;
 }
 
-export default function katexPlugin ( md: MarkdownIt, options: { throwOnError?: boolean, errorColor?: string, displayMode?: boolean } = {} ): void {
+export default function katexPlugin ( md: MarkdownIt, options: KatexOptions = {} ): void {
     // set KaTeX as the renderer for markdown-it-simplemath
     const katexInline = function katex_inline ( latex: string ): string {
         options.displayMode = false;

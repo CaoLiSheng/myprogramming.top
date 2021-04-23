@@ -7,7 +7,7 @@ import Renderer from 'markdown-it/lib/renderer';
 declare let __resource_dir__: string;
 
 const md = MarkdownIt ( { html: true } )
-  .use ( kalexRulePlugin, { "throwOnError": true, "errorColor": " #cc0000" } )
+  .use ( kalexRulePlugin, { "throwOnError": true, "errorColor": " #cc0000", "strict": ( errorCode: string ) => errorCode === 'unicodeTextInMathMode' ? 'ignore' : 'warn' } )
   .use ( require ( 'markdown-it-named-headings' ) )
   .use ( gridTableRulePlugin );
 

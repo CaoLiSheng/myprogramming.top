@@ -158,37 +158,51 @@ tags:
   - 「未完待续」
 - `生死之争` &ndash; **蛊惑者**虽玩得起，吾也相信最开始他是小孩子玩心大；可玩得起的人，怎么非要用此术玩人至死，特么的生性顽劣吗；并不奢望真相大白，可各个一副不共戴天的样子，硬是演变成了生死之争
   - 「未完待续」
-- `未完待续` &ndash; **蛊惑者**更有城府了，他们养的**母鸡**成了主力军；进可毫无遮掩的谩骂，时而如泼妇，时而装贵妇；退可轻易的混淆视听，若毫无遮掩的是本性，那混淆视听起来便是戏精附体。不好对付ēā！对方阵容：
-  - `三蛊`
-    - `蛊孽` &ndash; 自诩高人、伪·得道仙人、伪·软件专家、伪·企业家·绿奴（可称：伪·在人世，却常教导其蛊家邪祟“事在人为”）
-    - `蛊邪` &ndash; 执念太深、污剧导演、狗血编剧、绿奴演员（可称：蛊戏邪才）
-    - `蛊畜` &ndash; 不成气候、轮蹲执念、自负执念、蛮搅执念（可称：执念$3$连）
-  - `七鸡`
-    - `蛊邪之鸡` &ndash; 笑面淫娃、迷之自信
-    - `蛊孽之鸡` &ndash; 粗鄙老妪
-    - `蛊畜之鸡` &ndash; 冷面泼妇、脆弱一批
-    - `第九邪畜之鸡` &ndash; 老谋深算、老奸巨猾、迷之自信
-    - `蛊邪小鸡` &ndash; 知恩不报
-    - `第一邪畜小鸡` &ndash; 晦语伤人、奔放诱惑
-    - `无主之鸡` &ndash; 自命不凡
-  - `九邪畜`
-    - `第一邪畜` &ndash; 死不承认
-    - `第二邪畜` &ndash; 目中无人
-    - `第三邪畜` &ndash; 蚊蚊隆隆、窸窸窣窣、唧唧哝哝、咋咋呼呼（可称：$AABB$）
-    - `第四邪畜` &ndash; 自作聪明
-    - `第五邪畜` &ndash; 脑袋削尖
-    - `第六邪畜` &ndash; 忘恩负义
-    - `第七邪畜` &ndash; 花天酒地
-    - `第八邪畜` &ndash; 邪教狂徒
-    - `第九邪畜` &ndash; 后门担当、唏嘘担当、懵逼担当、咋乎担当、怂逼担当（可称：担当$N$连）
-  - 另外，还有不少 `小喽啰` 、 `临时工` …… 这些魑魅魍魉可合称：鼠辈；小的小的二皮脸，老的老的不要脸。 我方阵容：
-  - `心境` &ndash; 有我无敌
-  - `身法` &ndash; 古井无波
-  - `秘术`
-    - `启明星君下凡`
-    - `结合微机技术的无限循环音波护身术·之·辟邪真言大合集`
-    - `在次世代科学理论体系下的火眼金睛`
-      - `蓝色的狐假虎威` &ndash; 假设吾正在水中前行，有一只螃蟹横着蹿出来挑衅，顿时吾觉得水流竟开始有些乱，原来是恰巧开始涨潮了（嗯，也可能是落潮） &ndash; 蓝色海洋中的螃蟹借了月亮的威势，可通俗易懂？
-    - `人间道·同理心·换位思考` &ndash; 对上 `蛮搅执念` 才知，这些家伙貌似不知“己所不欲，勿施于人”，真真没有换位思考的能力一般，或者说缺乏人类的基本情商·同理心；然，怎么可能，“蛊家”多傻逼，但也是一群上进的傻逼，一直都是利用这一点在胡搅蛮缠
-    - `人间道·羞耻心·自尊自爱` &ndash; “蛊家”多傻逼，男的男的胡搅蛮缠，女的女的不知羞耻；不会换位思考是装的，不自尊自爱却是真的，**这一点**是一大亮点，比任何感知秘术都好用
-  - `猪队友` &ndash; [「尴尬」](post:Crazy-Voice-gāngà)
+- `未完待续` &ndash; **蛊惑者**更有城府了，他们养的**母鸡**成了主力军；进可毫无遮掩的谩骂，时而如泼妇，时而装贵妇；退可轻易的混淆视听，若毫无遮掩的是本性，那混淆视听起来便是戏精附体。不好对付ēā！
+
+## 双方阵容
+
+###### 对方阵容
+
+<div class="qiming">
+<style>
+.markdown-body .qiming + ul .katex { background-color: indianred; border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em; }
+</style>
+</div>
+
+- $\textcolor{seagreen}{三蛊\wr}$
+  - $\textcolor{seagreen}{\overgroup{蛊孽}}$ &ndash; 自诩高人、伪·得道仙人、伪·软件专家、伪·企业家·绿奴（可称：$\textcolor{darkred}{\overlinesegment{伪·在人世}}$，却常教导其蛊家邪祟“事在人为”）
+  - $\textcolor{seagreen}{\overgroup{蛊邪}}$ &ndash; 执念太深、污剧导演、狗血编剧、绿奴演员（可称：$\textcolor{darkred}{\overlinesegment{蛊戏邪才}}$）
+  - $\textcolor{seagreen}{\overgroup{蛊畜}}$ &ndash; 不成气候、轮蹲执念、自负执念、蛮搅执念（可称：$\textcolor{darkred}{\overlinesegment{执念3连}}$）
+- $\textcolor{darkred}{\between七鸡\between}$
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(蛊邪之鸡}$ &ndash; 笑面淫娃、迷之自信
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(蛊孽之鸡}$ &ndash; 粗鄙老妪
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(蛊畜之鸡}$ &ndash; 冷面泼妇、脆弱一批
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(第九邪畜之鸡}$ &ndash; 老谋深算、老奸巨猾、迷之自信
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(蛊邪小鸡}$ &ndash; 知恩不报
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(第一邪畜小鸡}$ &ndash; 晦语伤人、奔放诱惑
+  - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(无主之鸡}$ &ndash; 自命不凡
+- $\textcolor{darkseagreen}{\xcancel{九邪畜}}$
+  - $\textcolor{darkseagreen}{\sout{第一邪畜}}$ &ndash; 死不承认
+  - $\textcolor{darkseagreen}{\sout{第二邪畜}}$ &ndash; 目中无人
+  - $\textcolor{darkseagreen}{\sout{第三邪畜}}$ &ndash; 蚊蚊隆隆、窸窸窣窣、唧唧哝哝、咋咋呼呼（可称：$\textcolor{darkred}{\overlinesegment{AABB}}$）
+  - $\textcolor{darkseagreen}{\sout{第四邪畜}}$ &ndash; 自作聪明
+  - $\textcolor{darkseagreen}{\sout{第五邪畜}}$ &ndash; 脑袋削尖
+  - $\textcolor{darkseagreen}{\sout{第六邪畜}}$ &ndash; 忘恩负义
+  - $\textcolor{darkseagreen}{\sout{第七邪畜}}$ &ndash; 花天酒地
+  - $\textcolor{darkseagreen}{\sout{第八邪畜}}$ &ndash; 邪教狂徒
+  - $\textcolor{darkseagreen}{\sout{第九邪畜}}$ &ndash; 后门担当、唏嘘担当、懵逼担当、咋乎担当、怂逼担当（可称：$\textcolor{darkred}{\overlinesegment{担当N连}}$）
+- 另外，还有不少 $\textcolor{darkseagreen}{\xcancel{小喽啰}}$ 、 $\textcolor{darkseagreen}{\xcancel{临时工}}$ …… 这些魑魅魍魉可合称：鼠辈；小的小的二皮脸，老的老的不要脸。 
+  
+### 我方阵容
+
+- `心境` &ndash; 有我无敌
+- `身法` &ndash; 古井无波
+- `秘术`
+  - `邀启明星君下凡`
+  - `结合微机技术的无限循环音波护身术·之·辟邪真言大合集`
+  - `在次世代科学理论体系下的火眼金睛`
+    - `蓝色的狐假虎威` &ndash; 假设吾正在水中前行，有一只螃蟹横着蹿出来挑衅，顿时吾觉得水流竟开始有些乱，原来是恰巧开始涨潮了（嗯，也可能是落潮） &ndash; 蓝色海洋中的螃蟹借了月亮的威势，可通俗易懂？
+  - `人间道·同理心·换位思考` &ndash; 对上 `蛮搅执念` 才知，这些家伙貌似不知“己所不欲，勿施于人”，真真没有换位思考的能力一般，或者说缺乏人类的基本情商·同理心；然，怎么可能，“蛊家”多傻逼，但也是一群上进的傻逼，一直都是利用这一点在胡搅蛮缠
+  - `人间道·羞耻心·自尊自爱` &ndash; “蛊家”多傻逼，男的男的胡搅蛮缠，女的女的不知羞耻；不会换位思考是装的，不自尊自爱却是真的，**这一点**是一大亮点，比任何感知秘术都好用
+- `猪队友` &ndash; [「尴尬」](post:Crazy-Voice-gāngà)
