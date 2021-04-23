@@ -75,6 +75,8 @@ Consider the effect of this design on concurrency. Whereas the many-to-one model
 - `asynchronous threading` &ndash; With asynchronous threading, once the parent creates a child thread, the parent resumes its execution, so that the parent and child execute concurrently and independently of one another. Because the threads are independent, there is typically little data sharing between them. Asynchronous threading is the strategy used in `the multithreaded server` and is also commonly used for `designing responsive user interfaces`.
 - `synchronous threading` &ndash; Synchronous threading occurs when the parent thread creates one or more children and then must wait for all of its children to terminate before it resumes. Here, the threads created by the parent perform work concurrently, but the parent cannot continue until this work has been completed. Once each thread has finished its work, it terminates and joins with its parent. Only after all of the children have joined can the parent resume execution. Typically, synchronous threading involves `significant data sharing among threads`. For example, the parent thread may combine the results calculated by its various children.
 
+## Thread Libraries
+
 > ## POSIX Pthreads
 > `Pthreads` refers to the `POSIX standard` (IEEE 1003.1c) defining an API for thread creation and synchronization.
 > This is a ***specification*** for the thread behavior, **not** an ***implementation***.
@@ -283,6 +285,37 @@ public class Driver {
     } catch (InterruptedException | ExecutionException e) { }
   }
 }
+```
+
+## Implicit Threading
+
+With the continued growth of multicore processing, applications containing hundreds &ndash; or even thousands &ndash; of threads are looming on the horizon. Designing such applications is not a trivial undertaking: programmers must address additional challenges which relate to program correctness &ndash; `Synchronization` and `Deadlocks`.
+
+One way to address these challenges and better support the design of concurrent and parallel applications is to transfer the creation and management of threading from application developers to `compilers` and `run-time libraries`. This strategy, termed **implicit threading**, is an increasingly popular trend. Implicit threading generally require application developers to identify ***tasks*** &ndash; not threads &ndash; that can run in parallel. A task is usually writen as a function, which the run-time libraries then maps to a seperate thread, typically using the **many-to-many model**. The advantage of this approach is that developers only need to identify parallel tasks, and the libraries determine the specific details of thread creation and management.
+
+> ## Thread Pools
+> Thread pools offer these benefits:
+> 1. Servicing a request with an existing thread is often faster than waiting to create a thread.
+> 2. A thread pool limits the number of threads that exist at any one point. This is particularly important on systems that cannot support a large number of concurrent threads.
+> 3. Separating the task to be performed from the mechanics of creating the task allows us to use different strategies for running the task. For example, the task could be scheduled to execute after a time delay or to execute periodically.
+>
+> The number of threads in the pool can be set heuristically based on factors such as the number of CPUs in the system, the amount of physical memory, and the expected number of concurrent client requests. More sophisticated thread-pool architectures can dynamically adjust the number of threads in the pool according to usage patterns. For instance, Apple's Grand Central Dispatch is one such architecture.
+
+```c
+DWORD WINAPI PoolFunction(PVOID Param)
+{
+  /* this function runs as a seperate thread. */
+}
+
+QueueUserWorkItem(
+  &PoolFunction, /* a pointer to the function that is to run as a seperate thread */
+  NULL, /* the parameter passed to Function */
+  0); /* flags indicating how the thread pool is to create and manage execution of the thread */
+
+/**
+ * Other members in the Windows thread pool API include utilities that invoke functions
+ * at periodic intervals or when an asynchronous I/O request completes.
+ */
 ```
 
 ## Another COPY of Summary in the Book
