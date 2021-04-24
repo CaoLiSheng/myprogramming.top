@@ -172,7 +172,7 @@ tags:
 
 - $\textcolor{seagreen}{三蛊\wr}$
   - $\textcolor{seagreen}{\overgroup{蛊孽}}$ &ndash; 自诩高人、伪·得道仙人、伪·软件专家、伪·企业家·绿奴（可称：$\textcolor{darkred}{\overlinesegment{伪·在人世}}$，却常教导其蛊家邪祟“事在人为”）
-  - $\textcolor{seagreen}{\overgroup{蛊邪}}$ &ndash; 执念太深、污剧导演、狗血编剧、绿奴演员（可称：$\textcolor{darkred}{\overlinesegment{蛊戏邪才}}$）
+  - $\textcolor{seagreen}{\overgroup{蛊邪}}$ &ndash; 执念太深、污剧导演、狗血编剧、绿奴演员（可称：$\textcolor{darkred}{\overlinesegment{蛊戏邪才}}$，狂妄自大像一头畜生，小时候是个处女杀手，长大后恶趣味还更广）
   - $\textcolor{seagreen}{\overgroup{蛊畜}}$ &ndash; 不成气候、轮蹲执念、自负执念、蛮搅执念（可称：$\textcolor{darkred}{\overlinesegment{执念3连}}$）
 - $\textcolor{darkred}{\between九鸡\between}$
   - $\textcolor{darkred}{( \big( \Big( \bigg( \Bigg(蛊邪之鸡}$ &ndash; 笑面淫娃、迷之自信

@@ -243,4 +243,25 @@ public class App {
     // ……
   }
 }
-</code></pre><blockquote><h2 id="open-mp">OpenMP</h2></blockquote><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><h2 id="bi-ji-mu-lu">笔记目录</h2><ol><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》4」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script type="application/javascript" src="template.5028980877.js"></script></body></html>
+</code></pre><blockquote><h2 id="open-mp">OpenMP</h2><p>OpenMP is a set of compiler directives as well as an API for programs written in C,C++,or FORTRAN that provides support for parallel programming in shared-memory environments. OpenMP is available on several open-source and commercial compilers for Linux, Windows, and macOS systems. OpenMP identifies <strong>parallel regions</strong> as blocks of code that may run in parallel. Application developers insert compiler directives into their code at parallel regions, and these directives instruct the OpenMP runtime library to execute the region in parallel.</p></blockquote><pre><code class="language-c">#include &lt;omp.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[])
+{
+  /* sequential code */
+
+  #pragma omp parallel
+  {
+    printf(&quot;I am a parallel region.&quot;);
+  }
+
+  /* sequential code */
+
+  return 0;
+}
+</code></pre><blockquote><p>OpenMP creates as many threads as there are processing cores in the system. Thus, for a dual-core system, two threads are created; for a quad-core system, four are created; and so forth. All the threads then simultaneously execute the parallel region. As each thread exits the parallel region, it is terminated.</p></blockquote><pre><code class="language-c">#pragma omp parallel for
+for (i = 0; i &lt; N; i++)
+{
+  c[i] = a[i] + b[i];
+}
+</code></pre><blockquote><p>OpenMP divides the work contained in the for loop among the threads it has created. It also allow developers to set the number of threads manually and to identify whether data are shared between threads or are private to a thread.</p></blockquote><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><h2 id="bi-ji-mu-lu">笔记目录</h2><ol><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》4」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script type="application/javascript" src="template.5028980877.js"></script></body></html>

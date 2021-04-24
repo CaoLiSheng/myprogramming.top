@@ -427,6 +427,43 @@ public class App {
 ```
 
 > ## OpenMP
+> OpenMP is a set of compiler directives as well as an API for programs written in C,C++,or FORTRAN that provides support for parallel programming in shared-memory environments. OpenMP is available on several open-source and commercial compilers for Linux, Windows, and macOS systems. OpenMP identifies **parallel regions** as blocks of code that may run in parallel. Application developers insert compiler directives into their code at parallel regions, and these directives instruct the OpenMP runtime library to execute the region in parallel.
+
+```c
+#include <omp.h>
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+  /* sequential code */
+
+  #pragma omp parallel
+  {
+    printf("I am a parallel region.");
+  }
+
+  /* sequential code */
+
+  return 0;
+}
+```
+
+> OpenMP creates as many threads as there are processing cores in the system.
+> Thus, for a dual-core system, two threads are created;
+> for a quad-core system, four are created; and so forth.
+> All the threads then simultaneously execute the parallel region.
+> As each thread exits the parallel region, it is terminated.
+
+```c
+#pragma omp parallel for
+for (i = 0; i < N; i++)
+{
+  c[i] = a[i] + b[i];
+}
+```
+
+> OpenMP divides the work contained in the for loop among the threads it has created.
+> It also allow developers to set the number of threads manually and to identify whether data are shared between threads or are private to a thread.
 
 ## Another COPY of Summary in the Book
 
