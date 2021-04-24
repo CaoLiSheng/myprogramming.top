@@ -318,6 +318,116 @@ QueueUserWorkItem(
  */
 ```
 
+> ### Java Thread Pools
+> The `java.util.concurrent` package includes an API for several varieties of thread-pool architectures.
+> 1. **Single thread executor** &ndash; `Executors.newSingleThreadExecutor()` &ndash; creates a pool of size 1.
+> 2. **Fixed thread executor** &ndash; `Executors.newFixedThreadPool(int size)` &ndash; creates a thread pool with a specified number of threads.
+> 3. **Cached thread executor** &ndash; `Executors.newCachedThreadPool()` &ndash; creates an unbounded thread pool, reusing threads in many instances.
+
+```java
+import java.util.concurrent.*;
+
+public class ThreadPoolExample {
+  public static void main(String[] args) {
+    int numTasks = Integer.parseInt(args[0].trim());
+
+    /* Create the thread pool */
+    ExecutorService pool = Executors.newCachedThreadPool();
+
+    /* Run each task using a thread in the pool */
+    for (int i = 0; i < numTasks; i++) {
+      pool.execute(new Task());
+    }
+
+    /* Shutdown the pool once all threads have completed */
+    /* The pool rejects additional tasks once the shutdown() method is invoked */
+    pool.shutdown();
+  }
+}
+```
+
+> ## Fork Join
+> The fork-join synchronous model is often characterized as explict thread creation, but it is also and excellent candidate for implicit threading.
+> In the latter situation, threads are not constructed directly during the fork stage; rather, parallel tasks are designated.
+> A library manages the number of threads that are created and is also responsible for assigning tasks to threads.
+>
+> ### Fork Join in Java
+> Java introduced a fork-join library in Version 1.7 of the API that is designed to be used with recursive divide-and-conquer algorithms such as QuickSort and Mergesort. The general recursive algorithm behind Java's fork-join model is shown below:
+
+```python
+Task(problem)
+  if problem is small enough
+    solve the problem directly
+  else
+    subtask1 = fork(new Task(subset of problem))
+    subtask2 = fork(new Task(subset of problem))
+
+    result1 = join(subtask1)
+    result2 = join(subtask2)
+
+    return combined results
+```
+
+> In Version 1.7 of the API Java introduced a new thread pool &ndash; the `ForkJoinPool` &ndash; that can be assigned tasks that inherit the abstract base class `ForkJoinTask`. The Java fork-join strategy is orgenized around the abstract base class `ForkJoinTask`, and the `RecursiveTask` and `RecursiveAction` class extend this class. The fundamental difference between these two classes is that `RecursiveTask` returns a result, and `RecursiveAction` does not return a result.
+> 
+> What is interesting in Java's fork-join model is the management of tasks wherein the library constructs a pool of worker threads and balances the load of tasks among the available workers. In some situations, there are thousands of tasks, yet only a handful of threads performing the work (for example, a separate thread for each CPU). Additionally, each thread in a `ForkJoinPool` maintains a queue of tasks that it has forked, and if a thread's queue is empty, it can steal a task from another thread's queue using a *work stealing* algorithm, thus balancing the workload of tasks among all threads.
+
+```java
+import java.util.concurrent.*;
+
+class SumTask extends RecursiveTask<Integer> {
+  static final int THRESHOLD = 1000;
+
+  private int begin;
+  private int end;
+  private int[] array;
+
+  public SumTask(int begin, int end, int[] array) {
+    this.begin = begin;
+    this.end = end;
+    this.array = array;
+  }
+
+  protected Integer compute() {
+    if (end - begin < THRESHOLD) {
+      int sum = 0;
+      for (int i = begin; i <= end; i++) {
+        sum += array[i];
+      }
+      
+      return sum;
+    } else {
+      int mid = (begin + end) / 2;
+
+      SumTask leftTask = new SumTask(begin, mid, array);
+      SumTask rightTask = new SumTask(mid + 1, end, array);
+
+      leftTask.fork();
+      rightTask.fork();
+
+      return rightTask.join() + leftTask.join();
+    }
+  }
+}
+
+public class App {
+  static final int SIZE = 9999999;
+
+  public static void main(String[] args) {
+    ForkJoinPool pool = new ForkJoinPool();
+    // array contains the integers to be summed
+    int[] array = new int[SIZE];
+    // ……
+
+    SumTask task = new SumTask(0, SIZE - 1, array);
+    int sum = pool.invoke(task);
+    // ……
+  }
+}
+```
+
+> ## OpenMP
+
 ## Another COPY of Summary in the Book
 
 ## 笔记目录

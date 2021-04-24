@@ -162,4 +162,85 @@ QueueUserWorkItem(
  * Other members in the Windows thread pool API include utilities that invoke functions
  * at periodic intervals or when an asynchronous I/O request completes.
  */
-</code></pre><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><h2 id="bi-ji-mu-lu">笔记目录</h2><ol><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》4」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script>var temp = document.getElementById('article'); window.ARTICLE = temp.innerHTML; document.body.removeChild(temp);</script><div id="app"></div><script src="./app~31ecd969.8a3eb5b9145754f51261.js"></script><script src="./app~d2305125.8a3eb5b9145754f51261.js"></script></body></html>
+</code></pre><blockquote><h3 id="java-thread-pools">Java Thread Pools</h3><p>The <code>java.util.concurrent</code> package includes an API for several varieties of thread-pool architectures.</p><ol><li><strong>Single thread executor</strong> – <code>Executors.newSingleThreadExecutor()</code> – creates a pool of size 1.</li><li><strong>Fixed thread executor</strong> – <code>Executors.newFixedThreadPool(int size)</code> – creates a thread pool with a specified number of threads.</li><li><strong>Cached thread executor</strong> – <code>Executors.newCachedThreadPool()</code> – creates an unbounded thread pool, reusing threads in many instances.</li></ol></blockquote><pre><code class="language-java">import java.util.concurrent.*;
+
+public class ThreadPoolExample {
+  public static void main(String[] args) {
+    int numTasks = Integer.parseInt(args[0].trim());
+
+    /* Create the thread pool */
+    ExecutorService pool = Executors.newCachedThreadPool();
+
+    /* Run each task using a thread in the pool */
+    for (int i = 0; i &lt; numTasks; i++) {
+      pool.execute(new Task());
+    }
+
+    /* Shutdown the pool once all threads have completed */
+    /* The pool rejects additional tasks once the shutdown() method is invoked */
+    pool.shutdown();
+  }
+}
+</code></pre><blockquote><h2 id="fork-join">Fork Join</h2><p>The fork-join synchronous model is often characterized as explict thread creation, but it is also and excellent candidate for implicit threading. In the latter situation, threads are not constructed directly during the fork stage; rather, parallel tasks are designated. A library manages the number of threads that are created and is also responsible for assigning tasks to threads.</p><h3 id="fork-join-in-java">Fork Join in Java</h3><p>Java introduced a fork-join library in Version 1.7 of the API that is designed to be used with recursive divide-and-conquer algorithms such as QuickSort and Mergesort. The general recursive algorithm behind Java's fork-join model is shown below:</p></blockquote><pre><code class="language-python">Task(problem)
+  if problem is small enough
+    solve the problem directly
+  else
+    subtask1 = fork(new Task(subset of problem))
+    subtask2 = fork(new Task(subset of problem))
+
+    result1 = join(subtask1)
+    result2 = join(subtask2)
+
+    return combined results
+</code></pre><blockquote><p>In Version 1.7 of the API Java introduced a new thread pool – the <code>ForkJoinPool</code> – that can be assigned tasks that inherit the abstract base class <code>ForkJoinTask</code>. The Java fork-join strategy is orgenized around the abstract base class <code>ForkJoinTask</code>, and the <code>RecursiveTask</code> and <code>RecursiveAction</code> class extend this class. The fundamental difference between these two classes is that <code>RecursiveTask</code> returns a result, and <code>RecursiveAction</code> does not return a result.</p><p>What is interesting in Java's fork-join model is the management of tasks wherein the library constructs a pool of worker threads and balances the load of tasks among the available workers. In some situations, there are thousands of tasks, yet only a handful of threads performing the work (for example, a separate thread for each CPU). Additionally, each thread in a <code>ForkJoinPool</code> maintains a queue of tasks that it has forked, and if a thread's queue is empty, it can steal a task from another thread's queue using a <em>work stealing</em> algorithm, thus balancing the workload of tasks among all threads.</p></blockquote><pre><code class="language-java">import java.util.concurrent.*;
+
+class SumTask extends RecursiveTask&lt;Integer&gt; {
+  static final int THRESHOLD = 1000;
+
+  private int begin;
+  private int end;
+  private int[] array;
+
+  public SumTask(int begin, int end, int[] array) {
+    this.begin = begin;
+    this.end = end;
+    this.array = array;
+  }
+
+  protected Integer compute() {
+    if (end - begin &lt; THRESHOLD) {
+      int sum = 0;
+      for (int i = begin; i &lt;= end; i++) {
+        sum += array[i];
+      }
+      
+      return sum;
+    } else {
+      int mid = (begin + end) / 2;
+
+      SumTask leftTask = new SumTask(begin, mid, array);
+      SumTask rightTask = new SumTask(mid + 1, end, array);
+
+      leftTask.fork();
+      rightTask.fork();
+
+      return rightTask.join() + leftTask.join();
+    }
+  }
+}
+
+public class App {
+  static final int SIZE = 9999999;
+
+  public static void main(String[] args) {
+    ForkJoinPool pool = new ForkJoinPool();
+    // array contains the integers to be summed
+    int[] array = new int[SIZE];
+    // ……
+
+    SumTask task = new SumTask(0, SIZE - 1, array);
+    int sum = pool.invoke(task);
+    // ……
+  }
+}
+</code></pre><blockquote><h2 id="open-mp">OpenMP</h2></blockquote><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><h2 id="bi-ji-mu-lu">笔记目录</h2><ol><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》4」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article></div><script>var temp = document.getElementById('article'); window.ARTICLE = temp.innerHTML; document.body.removeChild(temp);</script><div id="app"></div><script src="./app~31ecd969.8a3eb5b9145754f51261.js"></script><script src="./app~d2305125.8a3eb5b9145754f51261.js"></script></body></html>
