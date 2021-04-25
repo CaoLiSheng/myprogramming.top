@@ -33,7 +33,7 @@ A program becomes a process when an executable file is loaded into memory.
 
 ![diagram of process state](Operating-System-Concepts-3-Processes/diagram-of-process-state.png '=666px-')
 
-## PCB (`process control block` / `task control block`)
+## PCB (*process control block* / *task control block*)
 
 - ***Process state***. The state may be new, ready, running, waiting, halted, and so on.
 - ***Program counter***. The counter indicates the address of the next instruction to be executed for this process.

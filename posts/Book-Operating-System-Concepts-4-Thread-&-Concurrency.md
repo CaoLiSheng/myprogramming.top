@@ -427,7 +427,7 @@ public class App {
 ```
 
 > ## OpenMP
-> OpenMP is a set of compiler directives as well as an API for programs written in C,C++,or FORTRAN that provides support for parallel programming in shared-memory environments. OpenMP is available on several open-source and commercial compilers for Linux, Windows, and macOS systems. OpenMP identifies **parallel regions** as blocks of code that may run in parallel. Application developers insert compiler directives into their code at parallel regions, and these directives instruct the OpenMP runtime library to execute the region in parallel.
+> OpenMP is a set of compiler directives as well as an API for programs written in C,C++,or FORTRAN that provides support for parallel programming in shared-memory environments. OpenMP is available on several open-source and commercial compilers for Linux, Windows, and macOS systems. OpenMP identifies **parallel regions** as blocks of code that may run in parallel. Application developers insert compiler directives into their code at parallel regions, and these directives instruct the OpenMP run-time library to execute the region in parallel.
 
 ```c
 #include <omp.h>
@@ -464,6 +464,62 @@ for (i = 0; i < N; i++)
 
 > OpenMP divides the work contained in the for loop among the threads it has created.
 > It also allow developers to set the number of threads manually and to identify whether data are shared between threads or are private to a thread.
+
+> ## Grand Central Dispatch
+> Grand Central Dispatch (GCD) is a technology developed by Apple for its macOS and iOS operating systems.
+> It is a combination of a run-time library, an API, and language extensions that allow developers to identify sections of code (tasks) to run in parallel.
+> Like OpenMP, GCD manages most of the details of threading.
+> 
+> GCD schedules tasks for run-time execution by placing them on a **dispatch queue**.
+> When it removes a task from a queue, it assigns the task to an available thread from a pool of threads that it manages.
+> GCD identifies two types of dispatch queues: ***serial*** and ***concurrent***.
+
+- `serial` &ndash; Tasks placed on a serial queue are removed in FIFO order. Once a task has been removed from the queue, it must complete execution before another task is removed. Each process has its own serial queue (known as its **main queue**), and developers can create additional serial queues that are local to a particular process. (This is why serial queues are sole known as ***private dispatch queues***.) Serial queues are useful for ensuring the sequential execution of several tasks.
+- `concurrent` &ndash; Tasks placed on a concurrent queue are also removed in FIFO order, but several tasks may be removed at a time, thus allowing multiple tasks to execute in parallel. There are several system-wide concurrent queues (also known as ***global dispatch queues***), which are divided into four primary quality-of-service classes:
+  - `QOS_CLASS_USER_INTERACTIVE` &ndash; The **user-interactive** class represents tasks that interact with the user, such as the user interface and event handling, to ensure a responsive user interface. Completing a task belonging to this class should require only a small amount of work.
+  - `QOS_CLASS_USER_INITIATED` &ndash; The **user-initiated** class is similar to the user-interactive class in that tasks are associated with a responsive user interface; however, user-initiated tasks may require longer processing times. Opening a file or a URL is a user-initiated task, for example. Tasks belonging to this class must be completed for the user to continue interacting with the system, but they do not need to be serviced as quickly as tasks in the user-interactive queue.
+  - `QOS_CLASS_UTILITY` &ndash; The **utility** class represents tasks that reuire a longer time to complete but do not demand immediate results. This class includes work such as importing data.
+  - `QOS_CLASS_BACKGROUND` &ndash; Tasks belonging to the **background** class are not visible to the user and are not time sensitive. Examples include indexing a mailbox system and preforming backups.
+
+> Internally, GCD's thread pool is composed of POSIX threads.
+> GCD actively manages the pool, allowing the number of threads to grow and shrink according to application demand and system capacity.
+> GCD is implemented by the libdispatch library, which Apple has released under the Apache Commons license.
+> It has since been ported to the FreeBSD operating system.
+
+> ## Intel Thread Building Blocks
+> Intel threading building blocks (TBB) is a template library that supports designing parallel applications in C++.
+> As this is a library, it requires no special compiler or language support.
+> Developers specify tasks that can run in parallel, and the TBB task scheduler maps these tasks onto underlying threads.
+> Furthermore, the task scheduler provides load balancing and is cache aware, meaning that it will give precedence to tasks that likely have their data stored in cache memory and thus will execute more quickly.
+> TBB provides a rich set of features, including templates for parallel loop structures, atomic operations, and mutual exlusion locking.
+> In addition, it provides concurrent data structures, inlcuding a hash map, queue, and vetor, which can serve as equivalent thread-safe versions of the C++ standard template library data structures.
+> Intel TBB has both commercial and open-source versions that run on Windows, Linux, and macOS.
+
+```c++
+#include <array>
+
+using namespace std;
+
+int main()
+{
+  array<double, 10> v {0.5,1.0,1.5,,2.0};
+  parallel_for (size_t(0), v.size(), [=](size_t i) {apply(v[i]);} );
+}
+```
+
+> The TBB library will divide the loop iterations into seperate "chunks" and create a number of tasks that operate on those chunks. (The parallel_for function allows developers to manually specify the size of the chunks if they wish to.)
+
+## Threading Issues
+
+### The `fork()` and `exec()` System Calls
+
+The semantics of the `fork()` and `exec()` system calls change in a multithreaded program. If a thread invokes the `exec()` system call, the program specified in the parameter to `exec()` will replace the entire process &ndash; including all threads.
+
+Some UNIX systems have chosen to have two versions of `fork()`, one that duplicates all threads and another that duplicates only the thread that invoked the `fork()` system call. Which of the two version of `fork()` to use depends on the application. If `exec()` is called immediately after forking, then duplicating all threads is unnecessary, as the program specified in the parameters to `exec()` will replace the process. In this instance, duplicating only the calling thread is appropriate. If, however, the separate process does not call `exec()` after forking, the separate process should duplicate all threads.
+
+### Signal Handling
+
+
 
 ## Another COPY of Summary in the Book
 

@@ -187,7 +187,7 @@ For example, the timer construct is a mechanism for ensuring CPU protection, but
 
 ## Operating-System Structures
 
-### Monolithic Structure (`tightly coupled`)
+### Monolithic Structure (*tightly coupled*)
 
 The simplest structure for organizing an operating system is no structure at all.
 That is, place all of the functionality of the kernel into a single, static binary fille that runs in a single address space.
@@ -204,7 +204,7 @@ Monolithic kernels do have a distinct performance advantage, however:
 there is very little overhead in the system-call interface, and communication within the kernel is fast.
 Therefore, despite the drawbacks of monolithic kernels, their speed and efficiency explains why we still see evidence of this structure in the UNIX, Linux, and Windows operating systems.
 
-### Layered Approach (`loosely coupled`)
+### Layered Approach (*loosely coupled*)
 
 ![A layered operating system](Operating-System-Concepts-2-Operating-System-Structures/A-layered-operating-system.png '=400px-')
 

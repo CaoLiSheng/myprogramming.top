@@ -26,7 +26,7 @@ tags:
 实时系统需要系统对外部事件在规定时间内做出响应，这很像图形学程序中一帧内如果没有完成渲染就会掉帧。
 而很多实时系统运行的设备都要完成人命关天的任务，所以压力山大啊。
 
-## 1.4 Keeping in mind the various definitions of ***operating system***, consider whether the operating system should include applications such as web browsers and mail programs. Argue both that it should and that is should not, and support your answers.
+## 1.4 Keeping in mind the various definitions of *operating system*, consider whether the operating system should include applications such as web browsers and mail programs. Argue both that it should and that is should not, and support your answers.
 
 - 应当包含：
   - 内嵌于操作系统的软件有更快的运行速度，换句话说运行在内核态，性能好

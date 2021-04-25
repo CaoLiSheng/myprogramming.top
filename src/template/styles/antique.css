@@ -1,5 +1,4 @@
 .markdown-body {
-  --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
   --kbd-border-article-color: #d1d5da;
@@ -57,20 +56,8 @@ body[theme="Dark"] .markdown-body {
 @font-face {
   font-family: COOL;
   src:
- url({{resource_dir}}fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    url({{resource_dir}}fonts/ZCOOLQingKeHuangYou-Regular.ttf)
     format("truetype");
-}
-
-.markdown-body h2 kbd,
-.markdown-body h2 code,
-.markdown-body h2 ~ * kbd,
-.markdown-body h2 ~ * code {
-  font-family:
- PatrickHand,
- "等距更纱黑体",
- monospace,
- Apple Color Emoji,
-    Segoe UI Emoji !important;
 }
 
 .markdown-body {
