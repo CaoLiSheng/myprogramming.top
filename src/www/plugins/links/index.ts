@@ -1,4 +1,4 @@
-import { scrollToCoords, scroolToElement } from '@www/utils/scroll';
+import { scrollToCoords, scroolToElement } from '@utils/dom';
 
 declare let __origin__: string;
 declare let __site_root__: string;

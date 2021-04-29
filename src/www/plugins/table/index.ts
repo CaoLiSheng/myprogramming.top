@@ -6,12 +6,14 @@ function collectThData ( thData: string[], elem: Element, i: number ): void {
     thData[i] = elem.textContent ? ( elem.textContent  ) : '';
   }
 }
+
 function bindThData ( thData: string[], tRow: Element ): void {
   const { children } = tRow;
   for ( let i = 1; i < children.length; i += 1 ) {
     children[i].setAttribute ( 'data-th', thData[i] );
   }
 }
+
 function extendTable ( table: Element ): void {
   const thData: string[] = Array.from ( ( table as HTMLTableElement ).rows[0].cells ).map ( () => '说明：' );
   table

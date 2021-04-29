@@ -1,6 +1,6 @@
 import '@common/shims-string';
 
-import { insertStyleSheetRule } from '../utils/stylesheet';
+import { insertStyleSheetRule } from '@utils/dom';
 
 const SpriteId = 'click-ring';
 const SpriteSize = 2560;
