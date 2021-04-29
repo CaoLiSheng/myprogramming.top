@@ -1,7 +1,6 @@
 const webpack = require ( 'webpack' );
 
 module.exports = {
-  mode  : 'production',
   output: {
     publicPath   : './',
     filename     : '[name].[hash].js',

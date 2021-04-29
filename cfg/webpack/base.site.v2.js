@@ -3,9 +3,9 @@ const { merge } = require ( 'webpack-merge' );
 const VueLoaderPlugin = require ( 'vue-loader/lib/plugin' );
 const HtmlWebpackPlugin = require ( 'html-webpack-plugin' );
 
-const base = require ( './base.site' );
+const site = require ( './base.site' );
 
-module.exports = merge ( base, {
+module.exports = merge ( site, {
   entry: {
     app: 'src/www/v2/app',
   },
@@ -15,19 +15,15 @@ module.exports = merge ( base, {
       require ( './rules/pug.loader' ),
       require ( './rules/vue.loader' ),
       require ( './rules/stylus.loader' ),
-      // {
-      //   test: /\.js$/,
-      //   loader: 'babel-loader',
-      // },
     ],
   },
   plugins: [
     new VueLoaderPlugin (),
     new HtmlWebpackPlugin ( {
-      template: path.join ( process.cwd (), 'src/template/v2/index.html' ),
+      template: path.join ( process.cwd (), 'src/www/v2/index.html' ),
       favicon : path.join ( process.cwd (), 'src/images/favicon.ico' ),
       filename: './index.html',
-      title   : '又心真人的博客',
+      title   : 'v2 | 又心真人的博客',
       chunks  : [ 'app' ],
       cache   : false,
     } ),

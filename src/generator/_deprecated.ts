@@ -201,3 +201,16 @@
 //       fs.writeFileSync(file, data, options),
 //   };
 // }
+
+
+// Copy Template Assets
+// export function copyTemplateAssets (): void {
+//     const assets = fs.readdirSync ( argv.tplDir );
+//     console.log ( 'template assets dir:', assets );
+  
+//     assets.forEach ( ( asset: string ) => {
+//       if ( asset === 'generator.min.js' ) return;
+  
+//       fs.copyFileSync ( path.join ( argv.tplDir, asset ), path.join ( outDir, asset ) );
+//     } );
+//   }

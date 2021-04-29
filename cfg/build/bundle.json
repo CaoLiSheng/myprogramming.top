@@ -1,5 +1,5 @@
 {
-  "clean": "0",
-  "dist": "gen.prod site.v1.tpl.prod site.v1.prod site.v2.prod",
-  "gen": "prodV1 prodV2"
+  "clean": "b",
+  "dist": "gen.prod site.v1.prod site.v2.prod",
+  "gen": "prod"
 }

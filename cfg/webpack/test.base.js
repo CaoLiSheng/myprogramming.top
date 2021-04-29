@@ -2,9 +2,9 @@ const path = require ( 'path' );
 const nodeExternals = require ( 'webpack-node-externals' );
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './base.babel' );
+const proj = require ( './base.proj' );
 
-module.exports = merge ( base, {
+module.exports = merge ( proj, {
   mode  : 'development',
   target: 'node',
   output: {

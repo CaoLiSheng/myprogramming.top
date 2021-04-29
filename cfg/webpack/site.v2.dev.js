@@ -2,15 +2,12 @@ const path = require ( 'path' );
 
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './base.site.v2' );
 const dev = require ( './base.site.dev' );
+const v2 = require ( './base.site.v2' );
 
-module.exports = merge ( base, dev, {
+module.exports = merge ( dev, v2, {
   devServer: {
-    writeToDisk: true,
-  },
-  output: {
-    path: path.join ( process.cwd (), 'build/v2/dev' ),
+    port: 3333,
   },
   plugins: [],
 } );

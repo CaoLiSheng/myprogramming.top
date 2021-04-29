@@ -2,12 +2,12 @@ const path = require ( 'path' );
 
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './base.site.v2' );
-const dev = require ( './base.site.prod' );
+const prod = require ( './base.site.prod' );
+const v2 = require ( './base.site.v2' );
 
-module.exports = merge ( base, dev, {
+module.exports = merge ( prod, v2, {
   output: {
-    path: path.join ( process.cwd (), 'build/v2/prod' ),
+    path: path.join ( process.cwd (), 'public', 'v2' ),
   },
   plugins: [],
 } );

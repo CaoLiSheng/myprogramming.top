@@ -1,5 +1,0 @@
-{
-  "clean": "1",
-  "dist": "gen.dev site.v1.tpl.dev",
-  "gen": "devV1"
-}

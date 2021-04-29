@@ -2,9 +2,9 @@ const path = require ( 'path' );
 const { merge } = require ( 'webpack-merge' );
 const HtmlWebpackPlugin = require ( 'html-webpack-plugin' );
 
-const base = require ( './base.site' );
+const site = require ( './base.site' );
 
-module.exports = merge ( base, {
+module.exports = merge ( site, {
   entry: {
     app: 'src/www/v1/app',
   },
@@ -16,7 +16,7 @@ module.exports = merge ( base, {
       template: path.join ( process.cwd (), 'src/www/v1/index.html' ),
       favicon : path.join ( process.cwd (), 'src/images/favicon.ico' ),
       filename: './index.html',
-      title   : '又心真人的博客',
+      title   : 'v1 | 又心真人的博客',
       chunks  : [ 'app' ],
       cache   : false,
     } ),

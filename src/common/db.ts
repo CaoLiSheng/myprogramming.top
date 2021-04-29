@@ -15,6 +15,7 @@ export interface PublicMeta {
   date: string;
   title: string;
   tags: string[];
+  style: string;
 }
 
 export interface Schema {
@@ -40,6 +41,7 @@ export interface Row {
   title: string;
   date: string;
   tags: string[];
+  style: string;
 }
 
 function nonRecordable ( name: string ): boolean {
@@ -67,7 +69,7 @@ export class DB {
   }
 
   private addRow ( {
-    name, title, date, tags,
+    name, title, date, tags, style
   }: Row ): PublicMeta {
     if ( this.postMetas[name] ) throw new Error ( `POST重复了 ${ name }` );
 
@@ -77,7 +79,7 @@ export class DB {
     this.postMetas[name] = { date: Moment ( top ? '2121-12-12 11:11:11.111' : date ) };
 
     // Write public meta & infos
-    this.schema.metas[name] = { date, title, tags, top };
+    this.schema.metas[name] = { date, title, tags, top, style };
 
     this.pushToSortedPosts ( name );
     this.pushToDateCategories ( name );

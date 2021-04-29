@@ -12,16 +12,17 @@ import {
 } from './file';
 import { htmlMinify } from './minify';
 import {
-  copyTemplateAssets,
   dateTagHTML,
   emailLinkHTML,
-  fetchCSS,
-  hmBaidu,
   titleTag,
   titleTagHTML,
   tplContent,
-  tplScriptPath,
 } from './template';
+
+/**
+ * moved deprecated code to ./_deprecated.ts
+ * where copies template files
+ */
 
 // DB
 const dbData = new DB ();
@@ -33,9 +34,6 @@ console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
 // Read Source Dir
 const sources = fs.readdirSync ( inDir );
 
-// Copy Template's Assets
-copyTemplateAssets ();
-
 // Generate HTML
 const posts = sources.filter ( ( file: string ) => isPost ( file ) );
 console.log ( 'Posts:', posts );
@@ -43,7 +41,6 @@ console.log ( 'Posts:', posts );
 posts.forEach ( ( fileName: string ) => {
   console.log ( '\n\n', fileName, ':\n' );
   
-
   const fileContent = fs.readFileSync ( path.join ( inDir, fileName ), {
     encoding: 'UTF-8',
   } );
@@ -87,17 +84,17 @@ posts.forEach ( ( fileName: string ) => {
 
   const name = extractPostName ( fileName );
   const rowMeta = dbData.add ( {
-    name, title, date, tags,
+    name, title, date, tags, style,
   } ).persist ();
   fs.writeFileSync (
     path.join ( outDir, `${ name }.html` ),
     htmlMinify (
       tplContent
-        .replace ( '{{title}}', `${ title } | 又心真人的博客` )
+        // .replace ( '{{title}}', `${ title } | 又心真人的博客` )
+        // .replace ( '{{stylesheet}}', fetchCSS ( style ) )
+        // .replace ( '{{javascript}}', tplScriptPath () )
+        // .replace ( '{{hm_baidu}}', hmBaidu () )
         .replace ( '{{article_title}}', title )
-        .replace ( '{{javascript}}', tplScriptPath () )
-        .replace ( '{{hm_baidu}}', hmBaidu () )
-        .replace ( '{{stylesheet}}', fetchCSS ( style ) )
         .replace ( '{{title_tag}}', titleTagHTML ( fileName ) )
         .replace ( '{{date_tag}}', dateTagHTML ( date, !rowMeta || rowMeta.top ) )
         .replace (

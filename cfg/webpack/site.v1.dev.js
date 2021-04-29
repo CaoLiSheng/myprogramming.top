@@ -1,9 +1,9 @@
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './base.site.v1' );
 const dev = require ( './base.site.dev' );
+const v1 = require ( './base.site.v1' );
 
-module.exports = merge ( base, dev, {
+module.exports = merge ( dev, v1, {
   devServer: {
     port: 3000,
   },

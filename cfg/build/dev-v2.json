@@ -1,5 +1,0 @@
-{
-  "clean": "t",
-  "dist": "gen.dev",
-  "gen": "devV2"
-}

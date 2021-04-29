@@ -28,12 +28,12 @@
 .markdown-body div.comments a[href^="mailto:"] {
   transition: background-color 300ms, background-position 100ms, color 1s;
   background:
- linear-gradient(
-    to bottom,
-    whitesmoke,
-    whitesmoke 50%,
-    var(--a-backgrounnd-article-color)
-  );
+    linear-gradient(
+      to bottom,
+      whitesmoke,
+      whitesmoke 50%,
+      var(--a-backgrounnd-article-color)
+    );
   background-color: var(--a-backgrounnd-article-color);
   background-position: 0 100%;
   background-size: 100% 200%;

@@ -3,10 +3,6 @@
   "delay": "3000",
   "watch": [
     "posts",
-    "build/v1/dev",
-    "build/v2/dev",
-    "public/resources",
-    "src/template/**/*.css",
-    "src/template/**/*.html"
+    "src/template/**/*.css"
   ]
 }

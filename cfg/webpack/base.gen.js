@@ -3,15 +3,15 @@ const webpack = require ( 'webpack' );
 const nodeExternals = require ( 'webpack-node-externals' );
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './base.babel' );
+const proj = require ( './base.proj' );
 
-module.exports = merge ( base, {
+module.exports = merge ( proj, {
   target: 'node',
-  entry : {
-    generator: 'src/generator/index',
-  },
   output: {
-    filename: '[name].min.js',
+    publicPath: '/',
+  },
+  entry: {
+    generator: 'src/generator/index',
   },
   externals: [
     nodeExternals ( { modulesDir: path.join ( process.cwd (), 'node_modules' ) } ),
@@ -22,5 +22,4 @@ module.exports = merge ( base, {
   module: {
     rules: [ require ( './rules/mjs.auto' ), require ( './rules/babel.loader' ) () ],
   },
-  plugins: [ new webpack.DefinePlugin ( {} ) ],
 } );

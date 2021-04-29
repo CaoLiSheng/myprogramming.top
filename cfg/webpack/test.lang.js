@@ -2,9 +2,9 @@ const path = require ( 'path' );
 // const webpack = require('webpack');
 const { merge } = require ( 'webpack-merge' );
 
-const base = require ( './test.base' );
+const test = require ( './test.base' );
 
-module.exports = merge ( base, {
+module.exports = merge ( test, {
   entry: {
     index: 'src/tests/lang',
   },

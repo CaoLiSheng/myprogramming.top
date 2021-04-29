@@ -2,100 +2,88 @@ import '@common/shims-string';
 
 import path from 'path';
 
-import Sheets from '@tpl/styles';
+// import Sheets from '@tpl/styles';
 import fs from 'fs-extra';
 
-import { outDir } from './file';
-import { minify } from './minify';
+// import { outDir } from './file';
+// import { minify } from './minify';
 import argv from './yargs';
 
 declare let __production__: boolean;
-declare let __resource_dir__: string;
+// declare let __resource_dir__: string;
 
 // Locate Template Script Path
-export function tplScriptPath (): string {
-  return (
-    fs
-      .readdirSync ( argv.tplDir )
-      .find (
-        ( asset: string ) => asset.startsWith ( 'template.' ) && asset.endsWith ( '.js' ),
-      ) || 'template.min.js'
-  );
-}
-
-// Copy Template Assets
-export function copyTemplateAssets (): void {
-  const assets = fs.readdirSync ( argv.tplDir );
-  console.log ( 'template assets dir:', assets );
-
-  assets.forEach ( ( asset: string ) => {
-    if ( asset === 'generator.min.js' ) return;
-
-    fs.copyFileSync ( path.join ( argv.tplDir, asset ), path.join ( outDir, asset ) );
-  } );
-}
+// export function tplScriptPath (): string {
+//   return (
+//     fs
+//       .readdirSync ( argv.tplDir )
+//       .find (
+//         ( asset: string ) => asset.startsWith ( 'template.' ) && asset.endsWith ( '.js' ),
+//       ) || 'template.min.js'
+//   );
+// }
 
 // CSS Assets Maps
-const tplCSSPath = path.join ( process.cwd (), argv.cssPath );
-const tplCSSContent = fs.readFileSync ( tplCSSPath, { encoding: 'UTF-8' } );
+// const tplCSSPath = path.join ( process.cwd (), argv.cssPath );
+// const tplCSSContent = fs.readFileSync ( tplCSSPath, { encoding: 'UTF-8' } );
 
-const CSSMaps: {
-  [key: string]: string;
-} = {};
+// const CSSMaps: {
+//   [key: string]: string;
+// } = {};
 
-function fetchCSSCache (
-  name: string,
-  callback: ( name: string ) => string,
-): string {
-  if ( CSSMaps[name] ) return CSSMaps[name];
-  const res: string = callback ( name );
-  CSSMaps[name] = res;
-  return res;
-}
+// function fetchCSSCache (
+//   name: string,
+//   callback: ( name: string ) => string,
+// ): string {
+//   if ( CSSMaps[name] ) return CSSMaps[name];
+//   const res: string = callback ( name );
+//   CSSMaps[name] = res;
+//   return res;
+// }
 
-function fetchCommonCSS ( partial: string ): string {
-  const partialCSSPath = path.join (
-    process.cwd (),
-    `src/template/common/${ partial }`,
-  );
+// function fetchCommonCSS ( partial: string ): string {
+//   const partialCSSPath = path.join (
+//     process.cwd (),
+//     `src/template/common/${ partial }`,
+//   );
 
-  return fs.readFileSync ( partialCSSPath, {
-    encoding: 'UTF-8',
-  } );
-}
+//   return fs.readFileSync ( partialCSSPath, {
+//     encoding: 'UTF-8',
+//   } );
+// }
 
-function fetchCSSImpl ( base: string ): string {
-  const baseCSSPath = path.join (
-    process.cwd (),
-    `src/template/styles/${ base }.css`,
-  );
+// function fetchCSSImpl ( base: string ): string {
+//   const baseCSSPath = path.join (
+//     process.cwd (),
+//     `src/template/styles/${ base }.css`,
+//   );
 
-  const baseCSSContent = fs.readFileSync ( baseCSSPath, {
-    encoding: 'UTF-8',
-  } );
+//   const baseCSSContent = fs.readFileSync ( baseCSSPath, {
+//     encoding: 'UTF-8',
+//   } );
 
-  const cssContent = minify (
-    tplCSSContent
-      .replace ( '/* base_stylesheet */', baseCSSContent )
-      .replace ( '/* body_padding_pc */', Sheets[base].padding.pc )
-      .replace ( '/* body_padding_mobile */', Sheets[base].padding.mobile )
-      .replace ( /\/\* common\/(.*?) \*\//g, ( _: string, partial: string ) => fetchCSSCache ( partial, fetchCommonCSS ) )
-      .replace ( /{{resource_dir}}/g, __resource_dir__ )
-  );
+//   const cssContent = minify (
+//     tplCSSContent
+//       .replace ( '/* base_stylesheet */', baseCSSContent )
+//       .replace ( '/* body_padding_pc */', Sheets[base].padding.pc )
+//       .replace ( '/* body_padding_mobile */', Sheets[base].padding.mobile )
+//       .replace ( /\/\* common\/(.*?) \*\//g, ( _: string, partial: string ) => fetchCSSCache ( partial, fetchCommonCSS ) )
+//       .replace ( /{{resource_dir}}/g, __resource_dir__ )
+//   );
 
-  const fileName = cssContent.md5 ( base, 'css', 10 );
+//   const fileName = cssContent.md5 ( base, 'css', 10 );
 
-  fs.writeFileSync ( path.join ( outDir, fileName ), cssContent, {
-    encoding: 'UTF-8',
-    flag    : 'w',
-  } );
+//   fs.writeFileSync ( path.join ( outDir, fileName ), cssContent, {
+//     encoding: 'UTF-8',
+//     flag    : 'w',
+//   } );
 
-  return fileName;
-}
+//   return fileName;
+// }
 
-export function fetchCSS ( base: string ): string {
-  return fetchCSSCache ( base, fetchCSSImpl );
-}
+// export function fetchCSS ( base: string ): string {
+//   return fetchCSSCache ( base, fetchCSSImpl );
+// }
 
 // Load Template
 const tplPath = path.join ( process.cwd (), argv.tplPath );
