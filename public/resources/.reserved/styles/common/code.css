@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Cascadia Code PL";
-  src: url({{resource_dir}}fonts/CascadiaCodePL.woff2) format("woff2");
+  src: url(../../fonts/CascadiaCodePL.woff2) format("woff2");
 }
 
 @font-face {
   font-family: "等距更纱黑体";
-  src: url({{resource_dir}}fonts/sarasa-mono-sc-regular.ttf) format("truetype");
+  src: url(../../fonts/sarasa-mono-sc-regular.ttf) format("truetype");
 }
 
 .markdown-body kbd,

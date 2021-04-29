@@ -1,6 +1,10 @@
 const commons = [ 'normalize', 'reset', 'blockquote', 'code', 'comments', 'date-tag', 'figure', 'table' ];
 
-export const mdConf: { [key: string]: string[] } = {
+export interface MdConf {
+  [key: string]: string[]
+}
+
+export const mdConf: MdConf = {
   // 整体风格像一本书，或者一张羊皮卷
   antique           : [ ...commons, 'katex.min' ],
   // 中文多

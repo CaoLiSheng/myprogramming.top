@@ -6,8 +6,8 @@ files=("KaTeX_AMS-Regular" "KaTeX_Caligraphic-Bold" "KaTeX_Caligraphic-Regular" 
 
 for ext in "${exts[@]}"; do
     for file in "${files[@]}"; do
-        if [ ! -e "public/resources/fonts/${file}${ext}" ]; then
-            curl "${baseUrl}${file}${ext}" -o "public/resources/fonts/${file}${ext}"
+        if [ ! -e "public/resources/.reserved/fonts/${file}${ext}" ]; then
+            curl "${baseUrl}${file}${ext}" -o "public/resources/.reserved/fonts/${file}${ext}"
         fi
     done
 done
