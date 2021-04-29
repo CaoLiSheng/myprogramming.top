@@ -1,3 +1,4 @@
+import { mdConf, MdConf } from '@md/index';
 import Moment from 'moment';
 
 declare let __production__: boolean;
@@ -14,18 +15,20 @@ export interface PublicMeta {
   top: boolean;
   date: string;
   title: string;
-  tags: string[];
   style: string;
+  tags: string[];
 }
 
 export interface Schema {
+  conf: MdConf;
   metas: { [key: string]: PublicMeta };
-  sortedPosts: string[];
   dateCategories: RNK;
+  sortedPosts: string[];
   tagCategories: { [key: string]: string[] };
 }
 
 export const EmptySchema: Schema = {
+  conf          : mdConf,
   metas         : {},
   sortedPosts   : [],
   dateCategories: {},

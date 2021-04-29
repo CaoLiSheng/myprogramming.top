@@ -4,7 +4,7 @@
 
 declare let __resource_dir__: string;
 
-const codePrettyDir = 'pretty-code-resources/';
+const codePrettyDir = '.reserved/pretty-code/';
 const cssFileName = 'prettify.css';
 const jsFileName = 'prettify.js';
 
