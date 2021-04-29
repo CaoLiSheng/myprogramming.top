@@ -1,6 +1,6 @@
 declare let __posts_root__: string;
 
-class Dirs {
+class Conf {
   public __posts_root__: string = __posts_root__;
 
   public get __posts_db__ (): string {
@@ -8,4 +8,4 @@ class Dirs {
   }
 }
 
-export const __dirs__ = new Dirs ();
+export const __conf__ = new Conf ();

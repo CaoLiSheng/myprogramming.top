@@ -14,7 +14,7 @@ module.exports = merge ( site, {
   plugins: [
     new HtmlWebpackPlugin ( {
       template: path.join ( process.cwd (), 'src/www/v1/index.html' ),
-      favicon : path.join ( process.cwd (), 'src/images/favicon.ico' ),
+      favicon : path.join ( process.cwd (), 'placeholder/favicon.ico' ),
       filename: './index.html',
       title   : 'v1 | 又心真人的博客',
       chunks  : [ 'app' ],

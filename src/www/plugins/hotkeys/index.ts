@@ -1,4 +1,4 @@
-import { scrollToCoords } from './scroll';
+import { scrollToCoords } from '../../utils/scroll';
 
 interface Coords { parent: Element | null, y: number }
 

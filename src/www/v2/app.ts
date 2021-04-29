@@ -1,7 +1,7 @@
 // import '@audios/click';
 import '@tpl/v2/index';
 import '@sprites/ring';
-import '@www/utils/print';
+import '@www/plugins/print';
 import '@www/utils/vh100';
 import '@www/utils/rem';
 

@@ -1,13 +1,13 @@
 // import '@audios/click';
 import '@sprites/ring';
 
-import extendCodes from '@www/utils/code';
-import extendFigure from '@www/utils/figure';
-import extendHistory from '@www/utils/history';
-import bindHotKeys, { bindDoubleSpaceKey } from '@www/utils/hotkeys';
-import extendLinks from '@www/utils/links';
-import extendMDVW from '@www/utils/mdvw100';
-import extendTables from '@www/utils/table';
+import extendCodes from '@www/plugins/code';
+import extendFigure from '@www/plugins/figure';
+import extendHistory from '@www/plugins/history';
+import bindHotKeys, { bindDoubleSpaceKey } from '@www/plugins/hotkeys';
+import extendLinks from '@www/plugins/links';
+import extendMDVW from '@www/plugins/mdvw100';
+import extendTables from '@www/plugins/table';
 
 declare let __origin__: string;
 declare let __site_root__: string;

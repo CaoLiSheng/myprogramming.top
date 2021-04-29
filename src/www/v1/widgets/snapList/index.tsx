@@ -7,7 +7,7 @@ import {
   PATH_PAGER_MAP,
   injectPageCtx,
 } from '@rCtxs/index';
-import { __dirs__ } from '@www/utils/dir';
+import { __dirs__ } from '@www/utils/conf';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 

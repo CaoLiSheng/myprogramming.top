@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { bindDoubleSpaceKey } from '@www/utils/hotkeys';
+import { bindDoubleSpaceKey } from '@www/plugins/hotkeys';
 import classNames from 'classnames';
 import React, { Component, ElementType, ReactElement } from 'react';
 

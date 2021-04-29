@@ -17,7 +17,7 @@ import {
   Search,
   Tags,
 } from '@rWidgets/index';
-import { __dirs__ } from '@www/utils/dir';
+import { __conf__ } from '@utils/conf';
 import React, { Component, ErrorInfo } from 'react';
 import {
   HashRouter,
@@ -49,7 +49,7 @@ class App extends Component<AppProps, AppStates> {
   }
 
   async componentDidMount () {
-    const resp = await fetch ( __dirs__.__posts_db__, {
+    const resp = await fetch ( __conf__.__posts_db__, {
       method: 'GET',
       mode  : 'cors',
     } );

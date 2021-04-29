@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { __dirs__ } from '@www/utils/dir';
+import { __dirs__ } from '@www/utils/conf';
 import React, { ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 

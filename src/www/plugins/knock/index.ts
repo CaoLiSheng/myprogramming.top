@@ -1,9 +1,9 @@
 import '@common/shims-string';
 
-import ClickWAV from './click.wav';
+import KnockWAV from './index.wav';
 
 const playAudio = ( name: string ) => {
-  if ( !name.uniqueCheck ( 'ClickWAV' ) ) return;
+  if ( !name.uniqueCheck ( 'KnockWAV' ) ) return;
 
   let player = document.querySelector ( '#click-wav' );
   if ( !player ) {
@@ -13,7 +13,7 @@ const playAudio = ( name: string ) => {
   }
 
   if ( player instanceof HTMLAudioElement ) {
-    player.setAttribute ( 'src', ClickWAV );
+    player.setAttribute ( 'src', KnockWAV );
     void player.play ();
   }
 };

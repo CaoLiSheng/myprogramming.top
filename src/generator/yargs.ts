@@ -26,6 +26,7 @@ console.log ( 'argv', argv );
 
 if ( !argv.tplPath ) throw new Error ( 'Lack of [HTML模板路径]' );
 if ( !argv.outDir ) throw new Error ( 'Lack of [输出目录]' );
-if ( !argv.inDir ) throw new Error ( 'Lack of [输入目录]' );
+// in dir has a default value "./posts"
+// if ( !argv.inDir ) throw new Error ( 'Lack of [输入目录]' );
 
 export default argv as Argv;
