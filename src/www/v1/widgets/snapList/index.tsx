@@ -7,7 +7,7 @@ import {
   PATH_PAGER_MAP,
   injectPageCtx,
 } from '@rCtxs/index';
-import { __dirs__ } from '@www/utils/conf';
+import { __conf__ } from '@utils/conf';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ RouteComponentProps & { page?: I_PAGE_CTX }
     <li key={ name }>
       <Link to={ `/post/${ name }` }>
         <iframe
-          src={ `${ __dirs__.__posts_root__
+          src={ `${ __conf__.__posts_root__
             }${ name }.html?var=${ Date.now () }#snapshot` }
           sandbox="allow-same-origin allow-scripts allow-top-navigation allow-downloads"
           seamless

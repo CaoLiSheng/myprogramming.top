@@ -1,6 +1,5 @@
-import '@audios/click';
-import '@www/utils/messages';
-import '@www/utils/rem';
+import '@utils/design';
+import '@plugins/knock';
 
 void import ( './index' );
 // import './index';

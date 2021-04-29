@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { bindDoubleSpaceKey } from '@www/plugins/hotkeys';
+import { Binder } from '@v1/utils/KeyBinder';
 import classNames from 'classnames';
 import React, { Component, ElementType, ReactElement } from 'react';
 
@@ -26,7 +26,7 @@ export class Overlay extends Component<OverlayProps, OverlayStates> {
 
   private bindToggleOverlay = this.toggleOverlay.bind ( this );
 
-  private bindHotKeys = bindDoubleSpaceKey.bind ( this, this.bindToggleOverlay );
+  private bindHotKeys = Binder.bindDoubleSpaceKey.bind ( Binder, this.bindToggleOverlay );
 
   constructor ( props: OverlayProps ) {
     super ( props );

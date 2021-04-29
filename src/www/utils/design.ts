@@ -19,14 +19,12 @@ function setDelay (): void {
   timer = setTimeout ( setFontSize, 150 );
 }
 
-window.addEventListener ( 'pageshow', ( evt ) => evt.persisted && setDelay () );
-window.addEventListener ( 'resize', setDelay );
-setFontSize ();
-
-const setVh = () => {
+function setVh (): void {
   const vh = ( window.innerHeight * 0.01 ).toFixed ( 1 );
   document.documentElement.style.setProperty ( '--vh', `${ vh }px` );
 };
 
 window.addEventListener ( 'load', setVh );
-window.addEventListener ( 'resize', setVh );
+window.addEventListener ( 'resize', () => { setVh (); setDelay (); } );
+window.addEventListener ( 'pageshow', ( evt ) => evt.persisted && setDelay () );
+setFontSize ();

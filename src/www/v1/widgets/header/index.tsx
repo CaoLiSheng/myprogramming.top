@@ -1,7 +1,7 @@
 import './index.scss';
 
 import { GateIcon, MenuIcon } from '@images/index';
-import { clickIn } from '@www/utils/dom';
+import { clickIn } from '@utils/dom';
 import classNames from 'classnames';
 import React, {
   Component,

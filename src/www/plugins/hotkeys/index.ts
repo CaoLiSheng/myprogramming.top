@@ -36,23 +36,3 @@ export default function init (): void {
     window.removeEventListener ( 'keydown', hotkeys );
   } );
 }
-
-let lastSpaceKeyHit = 0;
-
-export const bindDoubleSpaceKey = ( callback: () => void, ev: KeyboardEvent ): void => {
-  if ( ev.key !== ' ' ) {
-    lastSpaceKeyHit = 0;
-    return;
-  }
-
-  ev.preventDefault ();
-
-  const now = performance.now ();
-  if ( now - lastSpaceKeyHit < 300 ) {
-    lastSpaceKeyHit = 0;
-    callback ();
-    return;
-  }
-
-  lastSpaceKeyHit = now;
-};

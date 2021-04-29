@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { HTMLElementOffset, getOffset } from '@www/utils/offset';
+import { HTMLElementOffset, getOffset } from '@utils/dom';
 import classNames from 'classnames';
 import React, {
   Component,
