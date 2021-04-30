@@ -95,6 +95,7 @@ posts.forEach ( ( fileName: string ) => {
         // .replace ( '{{javascript}}', tplScriptPath () )
         // .replace ( '{{hm_baidu}}', hmBaidu () )
         .replace ( '{{article_title}}', title )
+        .replace ( '{{style_class}}', style )
         .replace ( '{{title_tag}}', titleTagHTML ( fileName ) )
         .replace ( '{{date_tag}}', dateTagHTML ( date, !rowMeta || rowMeta.top ) )
         .replace (

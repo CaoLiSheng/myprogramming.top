@@ -25,6 +25,7 @@ RouteComponentProps<{ name: string }> & { db?: I_DB_CTX }
         {tags.length > 0 && (
           <Popup
             position="bottom-right"
+            actions={[ "hover" ]}
             Trigger={ (
               <Link className="icon" to={ `/tags/${ tags.join ( ',' ) }` }>
                 <TagsIcon />

@@ -12,10 +12,9 @@ import {
   Canlendar,
   Header,
   Home,
-  Overlay,
   Post,
-  Search,
   Tags,
+  USearch,
 } from '@rWidgets/index';
 import { __conf__ } from '@utils/conf';
 import React, { Component, ErrorInfo } from 'react';
@@ -103,10 +102,8 @@ class App extends Component<AppProps, AppStates> {
             ] }
             component={ Header }
           />
-          <Overlay
+          <USearch
             Icon={ CmdAndSpaceIcon }
-            Content={ Search }
-            contentShrinkPos="100% 100% 0"
             positionStyleObj={ { right: '0.1rem', bottom: '0.1rem' } }
           />
         </HashRouter>

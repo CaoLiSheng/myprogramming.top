@@ -1,7 +1,6 @@
 import './index.scss';
 
 import { HTMLElementOffset, getOffset } from '@utils/dom';
-import classNames from 'classnames';
 import React, {
   Component,
   ReactElement,
@@ -9,6 +8,7 @@ import React, {
   createRef,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { __conf__ } from '@utils/conf';
 
 interface PositionStyle {
   top?: number;
@@ -18,14 +18,10 @@ interface PositionStyle {
   transform?: string;
 }
 
-const popupsContainer: HTMLDivElement = document.querySelector (
-  '#popups-container',
-) as HTMLDivElement;
-
 const posMain = ( main: string, offset: HTMLElementOffset, style: PositionStyle = {} ) => {
   switch ( main ) {
     case 'top':
-      style.bottom = offset.top;
+      style.bottom = window.innerHeight - offset.top;
       break;
     case 'right':
       style.left = offset.left + offset.width;
@@ -85,7 +81,7 @@ const posCenter = ( modes: string[], offset: HTMLElementOffset, style: PositionS
   return style;
 };
 
-const posImpl = ( modes: string[], offset: HTMLElementOffset ) => {
+const posImpl = ( modes: string[], offset: HTMLElementOffset ): PositionStyle => {
   let style = {};
   style = posMain ( modes[ 0 ], offset, style );
   style = posCross ( modes[ 1 ], offset, style );
@@ -93,7 +89,7 @@ const posImpl = ( modes: string[], offset: HTMLElementOffset ) => {
   return style;
 };
 
-type pos =
+type Pos =
   | 'bottom'
   | 'right'
   | 'top'
@@ -107,14 +103,25 @@ type pos =
   | 'left-top'
   | 'left-bottom';
 
-const position = ( pos: pos, offset: HTMLElementOffset ) => {
+const position = ( pos: Pos, offset: HTMLElementOffset ) => {
   const modes = pos.split ( '-' );
   modes[ 1 ] = modes[ 1 ] || 'center';
   return posImpl ( modes, offset );
 };
 
+type SupportedAction =
+  | 'hover'
+  | 'click';
+
+interface Actions {
+  [key: string]: () => void;
+}
+
+type ActionConf = Map<SupportedAction, Actions>;
+
 interface PopupProps {
-  position: pos;
+  position: Pos;
+  actions: SupportedAction[];
   Trigger: ReactElement;
   Popper: ReactElement;
 }
@@ -129,50 +136,95 @@ export class Popup extends Component<PopupProps, PopupStates> {
 
   private triggerRef = createRef<HTMLElement> ();
 
+  private actionConf: ActionConf = new Map ();
+
   constructor ( props: PopupProps ) {
     super ( props );
 
     this.state = { open: false };
+    
     this.el = document.createElement ( 'div' );
+    this.el.classList.add ( 'popup' );
+
+    this.actionConf.set ( 'hover', {
+      onMouseEnter: () => this.setState ( { open: true } ),
+      onMouseLeave: () => this.setState ( { open: false } ),
+    } );
+    this.actionConf.set ( 'click', {
+      onClick: () => this.setState ( ( { open } ) => ( { open: !open } ) ),
+    } );
   }
 
   componentDidMount (): void {
-    popupsContainer.append ( this.el );
+    __conf__.__popups_container__.append ( this.el );
   }
 
   componentWillUnmount (): void {
     this.el.remove ();
   }
 
-  private renderPopper () {
-    const { Popper } = this.props;
+  private renderPopper ( activeActions: Actions ) {
+    const { Popper, actions } = this.props;
+
+    if ( actions.includes ( 'click' ) ) {
+      return (
+        <>
+          <div
+            {...activeActions}
+            className="popup-mask"
+          />
+          {Popper}
+        </>
+      );
+    } 
+    
+    return Popper;
+  }
+
+  private renderPortal ( activeActions: Actions ) {
     const { open } = this.state;
 
-    return createPortal (
-      <div
-        className={ classNames ( 'popup', { open } ) }
-        style={ position (
-          this.props.position,
-          getOffset ( this.triggerRef.current ),
-        ) }
-      >
-        { Popper }
-      </div>,
-      this.el,
-    );
+    if ( open ) {
+      this.el.classList.add ( 'open' );
+
+      const posStyles = position (
+        this.props.position,
+        getOffset ( this.triggerRef.current ),
+      );
+  
+      for ( const [ prop, value ] of Object.entries ( posStyles ) ) {
+        this.el.style.setProperty (
+          prop,
+          typeof value === 'number' ? `${ value }px` : value
+        );
+      }
+    } else {
+      this.el.classList.remove ( 'open' );
+    }
+
+    return createPortal ( this.renderPopper ( activeActions ), this.el );
   }
 
   render (): ReactElement {
-    const { Trigger } = this.props;
+    const { Trigger, actions } = this.props;
+
+    const activeActions: Actions = {};
+    for ( const action of actions ) {
+      const evtConf = this.actionConf.get ( action );
+      if ( evtConf ) {
+        for ( const [ evtName, evtHandler ] of Object.entries ( evtConf ) ) {
+          activeActions[evtName] = evtHandler;
+        }
+      }
+    }
 
     return (
       <>
         {cloneElement ( Trigger, {
-          ref         : this.triggerRef,
-          onMouseEnter: () => this.setState ( { open: true } ),
-          onMouseLeave: () => this.setState ( { open: false } ),
+          ...activeActions,
+          ref: this.triggerRef,
         } ) }
-        {this.renderPopper () }
+        {this.renderPortal ( activeActions ) }
       </>
     );
   }

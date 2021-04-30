@@ -9,10 +9,24 @@
   .popup {
     display: none;
     position: fixed;
+    z-index: 9000;
     pointer-events: all;
-  }
 
-  .popup.open {
-    display: block;
+    &.open {
+      display: block;
+      z-index: 9001;
+    }
+
+    .popup-mask {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      transform: scale3d(65535, 65535, 1);
+      background-color: rgba(0, 0, 0, 0.5);
+
+      & ~ * {
+        opacity: 0.999;
+      }
+    }
   }
 }
