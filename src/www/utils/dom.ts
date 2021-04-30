@@ -62,6 +62,17 @@ export function insertStyleSheetRule ( ruleText: string ): void {
   );
 }
 
+export function insertStyleSheetLinks ( ...hrefs: string[] ): void {
+  for ( const href of hrefs ) {
+    if ( document.querySelector ( `head>link[href="${ href }"]` ) ) continue;
+
+    const link = document.createElement ( 'link' );
+    link.setAttribute ( "rel", "stylesheet" );
+    link.setAttribute ( "href", href );
+    document.head.append ( link );
+  }
+}
+
 export function scrollToCoords (
   parent: Element | null,
   y: number,

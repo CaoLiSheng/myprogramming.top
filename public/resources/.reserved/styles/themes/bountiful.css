@@ -1,4 +1,4 @@
-.markdown-body {
+.markdown-body.bountiful {
   --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
@@ -10,7 +10,7 @@
   --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
 }
 
-body[theme="Light"] .markdown-body {
+body[theme="Light"] .markdown-body.bountiful {
   --main-foreground-article-color: rgba(0, 0, 0, 0.9);
   --main-background-article-color: rgba(250, 248, 245, 0.7);
   --a-foregrounnd-article-color: #07c;
@@ -24,7 +24,7 @@ body[theme="Light"] .markdown-body {
   --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
 }
 
-body[theme="Dark"] .markdown-body {
+body[theme="Dark"] .markdown-body.bountiful {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
   --a-foregrounnd-article-color: rgb(33, 68, 111);
@@ -37,7 +37,7 @@ body[theme="Dark"] .markdown-body {
 }
 
 @media print {
-  body[theme="Dark"] .markdown-body {
+  body[theme="Dark"] .markdown-body.bountiful {
     --main-foreground-article-color: rgba(0, 0, 0, 0.9);
     --main-background-article-color: rgba(250, 248, 245, 0.7);
     --a-foregrounnd-article-color: #07c;
@@ -54,59 +54,59 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: "PT Sans";
-  src: url({{resource_dir}}fonts/PT_Sans-Web-Regular.ttf) format("truetype");
+  src: url(../../fonts/PT_Sans-Web-Regular.ttf) format("truetype");
 }
 
-.markdown-body p {
+.markdown-body.bountiful p {
   margin: 1em 0;
 }
 
-.markdown-body a:focus {
+.markdown-body.bountiful a:focus {
   outline: thin dotted;
 }
 
-.markdown-body a:active,
-.markdown-body a:hover {
+.markdown-body.bountiful a:active,
+.markdown-body.bountiful a:hover {
   outline: 0;
 }
 
-.markdown-body abbr[title] {
+.markdown-body.bountiful abbr[title] {
   border-bottom: 1px dotted;
 }
 
-.markdown-body b,
-.markdown-body strong {
+.markdown-body.bountiful b,
+.markdown-body.bountiful strong {
   font-weight: inherit;
   font-weight: bolder;
   font-weight: 600;
 }
 
-.markdown-body dfn {
+.markdown-body.bountiful dfn {
   font-style: italic;
 }
 
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre.prettyprinted,
-.markdown-body samp {
+.markdown-body.bountiful code,
+.markdown-body.bountiful kbd,
+.markdown-body.bountiful pre.prettyprinted,
+.markdown-body.bountiful samp {
   font-size: 0.91em;
   line-height: 1.5em;
 }
 
-.markdown-body code,
-.markdown-body pre.prettyprinted {
+.markdown-body.bountiful code,
+.markdown-body.bountiful pre.prettyprinted {
   border: 1px solid #ccc;
   border-radius: 3px;
   background-color: var(--pre-background-article-color);
   word-wrap: break-word;
 }
 
-.markdown-body code {
+.markdown-body.bountiful code {
   padding-right: 8px;
   padding-left: 8px;
 }
 
-.markdown-body pre.prettyprinted {
+.markdown-body.bountiful pre.prettyprinted {
   margin: 26px 0;
   padding: 8px 10px;
   overflow: auto;
@@ -114,36 +114,36 @@ body[theme="Dark"] .markdown-body {
   white-space: pre-wrap;
 }
 
-.markdown-body q {
+.markdown-body.bountiful q {
   quotes: "\201C""\201D""\2018""\2019";
 }
 
-.markdown-body sub,
-.markdown-body sup {
+.markdown-body.bountiful sub,
+.markdown-body.bountiful sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
 }
 
-.markdown-body sup {
+.markdown-body.bountiful sup {
   top: -0.5em;
 }
 
-.markdown-body sub {
+.markdown-body.bountiful sub {
   bottom: -0.25em;
 }
 
-.markdown-body figure {
+.markdown-body.bountiful figure {
   margin: 0;
 }
 
-.markdown-body table {
+.markdown-body.bountiful table {
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-.markdown-body img {
+.markdown-body.bountiful img {
   max-width: 100%;
   height: auto;
 }
@@ -156,138 +156,138 @@ body[theme="Dark"] .markdown-body {
   margin: 0;
 } */
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.bountiful h1,
+.markdown-body.bountiful h2,
+.markdown-body.bountiful h3,
+.markdown-body.bountiful h4,
+.markdown-body.bountiful h5,
+.markdown-body.bountiful h6 {
   margin-top: 1.5em;
   margin-bottom: 18px;
 }
 
-.markdown-body h1 {
+.markdown-body.bountiful h1 {
   top: 10px;
   font-size: 2.5em;
 }
 
-.markdown-body h2 {
+.markdown-body.bountiful h2 {
   top: 8px;
   font-size: 2em;
 }
 
-.markdown-body h3 {
+.markdown-body.bountiful h3 {
   top: 6px;
   font-size: 1.5em;
 }
 
-.markdown-body h4 {
+.markdown-body.bountiful h4 {
   top: 4px;
   font-size: 1.2em;
 }
 
-.markdown-body h5 {
+.markdown-body.bountiful h5 {
   top: 4px;
   color: #777;
   font-size: 1em;
 }
 
-.markdown-body h6 {
+.markdown-body.bountiful h6 {
   top: 4px;
   font-size: 0.8em;
 }
 
-.markdown-body h1:first-child,
-.markdown-body h2:first-child,
-.markdown-body h3:first-child,
-.markdown-body h4:first-child {
+.markdown-body.bountiful h1:first-child,
+.markdown-body.bountiful h2:first-child,
+.markdown-body.bountiful h3:first-child,
+.markdown-body.bountiful h4:first-child {
   margin-top: 0;
 }
 
-.markdown-body dt {
+.markdown-body.bountiful dt {
   font-weight: 600;
 }
 
-.markdown-body dd {
+.markdown-body.bountiful dd {
   font-style: italic;
 }
 
-.markdown-body small {
+.markdown-body.bountiful small {
   font-size: 80%;
 }
 
-.markdown-body abbr,
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body samp,
-.markdown-body small,
-.markdown-body var {
+.markdown-body.bountiful abbr,
+.markdown-body.bountiful code,
+.markdown-body.bountiful kbd,
+.markdown-body.bountiful samp,
+.markdown-body.bountiful small,
+.markdown-body.bountiful var {
   line-height: 1.2em;
 }
 
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body dl,
-.markdown-body dialog {
+.markdown-body.bountiful ul,
+.markdown-body.bountiful ol,
+.markdown-body.bountiful dl,
+.markdown-body.bountiful dialog {
   margin-top: 18px;
   margin-bottom: 18px;
 }
 
-.markdown-body li ul,
-.markdown-body li ol,
-.markdown-body ul ul,
-.markdown-body ol ol {
+.markdown-body.bountiful li ul,
+.markdown-body.bountiful li ol,
+.markdown-body.bountiful ul ul,
+.markdown-body.bountiful ol ol {
   top: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.markdown-body li h1,
-.markdown-body li h2,
-.markdown-body li h3,
-.markdown-body li h4,
-.markdown-body li h5,
-.markdown-body li h6,
-.markdown-body li p {
+.markdown-body.bountiful li h1,
+.markdown-body.bountiful li h2,
+.markdown-body.bountiful li h3,
+.markdown-body.bountiful li h4,
+.markdown-body.bountiful li h5,
+.markdown-body.bountiful li h6,
+.markdown-body.bountiful li p {
   top: 0;
 }
 
-.markdown-body hr {
+.markdown-body.bountiful hr {
   height: 4px;
   margin: 18px 0 14px 0;
 }
 
 /* Theme-specific styles */
-.markdown-body {
+.markdown-body.bountiful {
   background: var(--main-background-article-color);
   color: var(--main-foreground-article-color);
   font-family:
- "PT Sans",
- "等距更纱黑体",
- sans-serif,
- Apple Color Emoji,
+    "PT Sans",
+    "等距更纱黑体",
+    sans-serif,
+    Apple Color Emoji,
     Segoe UI Emoji;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6em;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.bountiful h1,
+.markdown-body.bountiful h2,
+.markdown-body.bountiful h3,
+.markdown-body.bountiful h4,
+.markdown-body.bountiful h5,
+.markdown-body.bountiful h6 {
   font-family:
- "PT Sans",
- "等距更纱黑体",
- serif,
- Apple Color Emoji,
+    "PT Sans",
+    "等距更纱黑体",
+    serif,
+    Apple Color Emoji,
     Segoe UI Emoji;
   line-height: 1.5em;
 }
 
-.markdown-body blockquote {
+.markdown-body.bountiful blockquote {
   margin-top: 25px;
   border: 1px dotted #ccc;
   border-right: none;
@@ -295,84 +295,84 @@ body[theme="Dark"] .markdown-body {
   color: var(--blockquote-foreground-article-color);
 }
 
-.markdown-body blockquote p {
+.markdown-body.bountiful blockquote p {
   margin: 20px 0 25px;
   padding: 0 15px;
 }
 
-.markdown-body ul,
-.markdown-body ol {
+.markdown-body.bountiful ul,
+.markdown-body.bountiful ol {
   list-style-position: inside;
   color: var(--list-foreground-article-color);
 }
 
-.markdown-body ol {
+.markdown-body.bountiful ol {
   list-style-type: decimal;
 }
 
-.markdown-body a {
+.markdown-body.bountiful a {
   color: var(--a-foregrounnd-article-color);
   text-decoration: none;
 }
 
-.markdown-body a:visited {
+.markdown-body.bountiful a:visited {
   color: #4a6b82;
 }
 
-.markdown-body a:hover {
+.markdown-body.bountiful a:hover {
   text-decoration: underline;
 }
 
-.markdown-body hr {
+.markdown-body.bountiful hr {
   height: 1px;
   border: 0;
   background-image:
- -webkit-linear-gradient(
-    left,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0)
-  );
+    -webkit-linear-gradient(
+      left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0)
+    );
 }
 
-.markdown-body table {
+.markdown-body.bountiful table {
   width: 100%;
   margin-top: 18px;
   border-collapse: collapse;
   border-top: solid 3px var(--table-border-top-article-color);
 }
 
-.markdown-body table th,
-.markdown-body table td {
+.markdown-body.bountiful table th,
+.markdown-body.bountiful table td {
   padding: 10px 18px 8px 0;
 }
 
-.markdown-body table thead th,
-.markdown-body table thead td {
+.markdown-body.bountiful table thead th,
+.markdown-body.bountiful table thead td {
   padding-top: 7px;
 }
 
-.markdown-body table tfoot th,
-.markdown-body table tfoot td {
+.markdown-body.bountiful table tfoot th,
+.markdown-body.bountiful table tfoot td {
   padding-bottom: 8px;
 }
 
-.markdown-body table th:first-child,
-.markdown-body table td:first-child {
+.markdown-body.bountiful table th:first-child,
+.markdown-body.bountiful table td:first-child {
   padding-left: 0;
 }
 
-.markdown-body table th:last-child,
-.markdown-body table td:last-child {
+.markdown-body.bountiful table th:last-child,
+.markdown-body.bountiful table td:last-child {
   padding-right: 0;
 }
 
-.markdown-body table tbody tr:nth-child(odd) th,
-.markdown-body table tbody tr:nth-child(odd) td {
+.markdown-body.bountiful table tbody tr:nth-child(odd) th,
+.markdown-body.bountiful table tbody tr:nth-child(odd) td {
   background: var(--odd-tr-background-article-color);
 }
 
-.markdown-body table caption {
+.markdown-body.bountiful table caption {
   top: 5px;
   margin-bottom: 18px;
   color: rgba(0, 0, 0, 0.7);
@@ -412,7 +412,7 @@ body[theme="Dark"] .markdown-body {
     background: white;
   }
 
-  .markdown-body {
+  .markdown-body.bountiful {
     position: relative;
     padding: 0;
     background: white;
@@ -420,20 +420,20 @@ body[theme="Dark"] .markdown-body {
     text-indent: 0;
   }
 
-  .markdown-body a {
+  .markdown-body.bountiful a {
     text-decoration: underline;
   }
 
-  .markdown-body img,
-  .markdown-body pre,
-  .markdown-body blockquote,
-  .markdown-body table,
-  .markdown-body figure,
-  .markdown-body p {
+  .markdown-body.bountiful img,
+  .markdown-body.bountiful pre,
+  .markdown-body.bountiful blockquote,
+  .markdown-body.bountiful table,
+  .markdown-body.bountiful figure,
+  .markdown-body.bountiful p {
     page-break-inside: avoid;
   }
 
-  .markdown-body hr {
+  .markdown-body.bountiful hr {
     background-color: rgba(0, 0, 0, 0.7);
   }
 }

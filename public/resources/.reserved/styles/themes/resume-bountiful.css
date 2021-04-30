@@ -1,4 +1,4 @@
-.markdown-body {
+.markdown-body.resume-bountiful {
   --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
@@ -10,7 +10,7 @@
   --even-tr-background-article-color: rgba(124, 119, 112, 0.06);
 }
 
-body[theme="Light"] .markdown-body {
+body[theme="Light"] .markdown-body.resume-bountiful {
   --main-foreground-article-color: rgba(0, 0, 0, 0.9);
   --main-background-article-color: rgba(250, 248, 245, 0.7);
   --a-foregrounnd-article-color: #07c;
@@ -24,7 +24,7 @@ body[theme="Light"] .markdown-body {
   --odd-tr-background-article-color: rgba(0, 0, 0, 0.035);
 }
 
-body[theme="Dark"] .markdown-body {
+body[theme="Dark"] .markdown-body.resume-bountiful {
   --main-foreground-article-color: rgba(255, 255, 255, 0.7);
   --main-background-article-color: rgba(34, 34, 34, 0.7);
   --a-foregrounnd-article-color: rgb(33, 68, 111);
@@ -37,7 +37,7 @@ body[theme="Dark"] .markdown-body {
 }
 
 @media print {
-  body[theme="Dark"] .markdown-body {
+  body[theme="Dark"] .markdown-body.resume-bountiful {
     --main-foreground-article-color: rgba(0, 0, 0, 0.9);
     --main-background-article-color: rgba(250, 248, 245, 0.7);
     --a-foregrounnd-article-color: #07c;
@@ -52,56 +52,56 @@ body[theme="Dark"] .markdown-body {
   }
 }
 
-.markdown-body p {
+.markdown-body.resume-bountiful p {
   margin: 1em 0;
 }
 
-.markdown-body a:focus {
+.markdown-body.resume-bountiful a:focus {
   outline: thin dotted;
 }
 
-.markdown-body a:active,
-.markdown-body a:hover {
+.markdown-body.resume-bountiful a:active,
+.markdown-body.resume-bountiful a:hover {
   outline: 0;
 }
 
-.markdown-body abbr[title] {
+.markdown-body.resume-bountiful abbr[title] {
   border-bottom: 1px dotted;
 }
 
-.markdown-body b,
-.markdown-body strong {
+.markdown-body.resume-bountiful b,
+.markdown-body.resume-bountiful strong {
   font-weight: inherit;
   font-weight: bolder;
   font-weight: 600;
 }
 
-.markdown-body dfn {
+.markdown-body.resume-bountiful dfn {
   font-style: italic;
 }
 
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre.prettyprinted,
-.markdown-body samp {
+.markdown-body.resume-bountiful code,
+.markdown-body.resume-bountiful kbd,
+.markdown-body.resume-bountiful pre.prettyprinted,
+.markdown-body.resume-bountiful samp {
   font-size: 14px;
   line-height: 1.5em;
 }
 
-.markdown-body code,
-.markdown-body pre.prettyprinted {
+.markdown-body.resume-bountiful code,
+.markdown-body.resume-bountiful pre.prettyprinted {
   border: 1px solid #ccc;
   border-radius: 3px;
   background-color: var(--pre-background-article-color);
   word-wrap: break-word;
 }
 
-.markdown-body code {
+.markdown-body.resume-bountiful code {
   padding-right: 8px;
   padding-left: 8px;
 }
 
-.markdown-body pre.prettyprinted {
+.markdown-body.resume-bountiful pre.prettyprinted {
   margin: 26px 0;
   padding: 8px 10px;
   overflow: auto;
@@ -109,36 +109,36 @@ body[theme="Dark"] .markdown-body {
   white-space: pre-wrap;
 }
 
-.markdown-body q {
+.markdown-body.resume-bountiful q {
   quotes: "\201C""\201D""\2018""\2019";
 }
 
-.markdown-body sub,
-.markdown-body sup {
+.markdown-body.resume-bountiful sub,
+.markdown-body.resume-bountiful sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
 }
 
-.markdown-body sup {
+.markdown-body.resume-bountiful sup {
   top: -0.5em;
 }
 
-.markdown-body sub {
+.markdown-body.resume-bountiful sub {
   bottom: -0.25em;
 }
 
-.markdown-body figure {
+.markdown-body.resume-bountiful figure {
   margin: 0;
 }
 
-.markdown-body table {
+.markdown-body.resume-bountiful table {
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-.markdown-body img {
+.markdown-body.resume-bountiful img {
   max-width: 100%;
   height: auto;
 }
@@ -151,103 +151,103 @@ body[theme="Dark"] .markdown-body {
   margin: 0;
 } */
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.resume-bountiful h1,
+.markdown-body.resume-bountiful h2,
+.markdown-body.resume-bountiful h3,
+.markdown-body.resume-bountiful h4,
+.markdown-body.resume-bountiful h5,
+.markdown-body.resume-bountiful h6 {
   margin-top: 1.5em;
   margin-bottom: 18px;
 }
 
-.markdown-body h1 {
+.markdown-body.resume-bountiful h1 {
   top: 10px;
   font-size: 2.5em;
 }
 
-.markdown-body h2 {
+.markdown-body.resume-bountiful h2 {
   top: 8px;
   font-size: 2em;
 }
 
-.markdown-body h3 {
+.markdown-body.resume-bountiful h3 {
   top: 6px;
   font-size: 1.5em;
 }
 
-.markdown-body h4 {
+.markdown-body.resume-bountiful h4 {
   top: 4px;
   font-size: 1.2em;
 }
 
-.markdown-body h5 {
+.markdown-body.resume-bountiful h5 {
   top: 4px;
   color: #777;
   font-size: 1em;
 }
 
-.markdown-body h6 {
+.markdown-body.resume-bountiful h6 {
   top: 4px;
   font-size: 12px;
 }
 
-.markdown-body h1:first-child,
-.markdown-body h2:first-child,
-.markdown-body h3:first-child,
-.markdown-body h4:first-child {
+.markdown-body.resume-bountiful h1:first-child,
+.markdown-body.resume-bountiful h2:first-child,
+.markdown-body.resume-bountiful h3:first-child,
+.markdown-body.resume-bountiful h4:first-child {
   margin-top: 0;
 }
 
-.markdown-body dt {
+.markdown-body.resume-bountiful dt {
   font-weight: 600;
 }
 
-.markdown-body dd {
+.markdown-body.resume-bountiful dd {
   font-style: italic;
 }
 
-.markdown-body small {
+.markdown-body.resume-bountiful small {
   font-size: 80%;
 }
 
-.markdown-body abbr,
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body samp,
-.markdown-body small,
-.markdown-body var {
+.markdown-body.resume-bountiful abbr,
+.markdown-body.resume-bountiful code,
+.markdown-body.resume-bountiful kbd,
+.markdown-body.resume-bountiful samp,
+.markdown-body.resume-bountiful small,
+.markdown-body.resume-bountiful var {
   line-height: 1.2em;
 }
 
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body dl,
-.markdown-body dialog {
+.markdown-body.resume-bountiful ul,
+.markdown-body.resume-bountiful ol,
+.markdown-body.resume-bountiful dl,
+.markdown-body.resume-bountiful dialog {
   margin-top: 18px;
   margin-bottom: 18px;
 }
 
-.markdown-body li ul,
-.markdown-body li ol,
-.markdown-body ul ul,
-.markdown-body ol ol {
+.markdown-body.resume-bountiful li ul,
+.markdown-body.resume-bountiful li ol,
+.markdown-body.resume-bountiful ul ul,
+.markdown-body.resume-bountiful ol ol {
   top: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.markdown-body li h1,
-.markdown-body li h2,
-.markdown-body li h3,
-.markdown-body li h4,
-.markdown-body li h5,
-.markdown-body li h6,
-.markdown-body li p {
+.markdown-body.resume-bountiful li h1,
+.markdown-body.resume-bountiful li h2,
+.markdown-body.resume-bountiful li h3,
+.markdown-body.resume-bountiful li h4,
+.markdown-body.resume-bountiful li h5,
+.markdown-body.resume-bountiful li h6,
+.markdown-body.resume-bountiful li p {
   top: 0;
 }
 
-.markdown-body hr {
+.markdown-body.resume-bountiful hr {
   height: 4px;
   margin: 18px 0 14px 0;
 }
@@ -256,17 +256,17 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: PatrickHand;
-  src: url({{resource_dir}}fonts/PatrickHand-Regular.ttf) format("truetype");
+  src: url(../../fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "ZCOOL QingKe HuangYou";
   src:
- url({{resource_dir}}fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    url(../../fonts/ZCOOLQingKeHuangYou-Regular.ttf)
     format("truetype");
 }
 
-.markdown-body {
+.markdown-body.resume-bountiful {
   background: var(--main-background-article-color);
   color: var(--main-foreground-article-color);
   font-family: PatrickHand, "ZCOOL QingKe HuangYou", cursive, sans-serif;
@@ -275,16 +275,16 @@ body[theme="Dark"] .markdown-body {
   line-height: 1.6em;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.resume-bountiful h1,
+.markdown-body.resume-bountiful h2,
+.markdown-body.resume-bountiful h3,
+.markdown-body.resume-bountiful h4,
+.markdown-body.resume-bountiful h5,
+.markdown-body.resume-bountiful h6 {
   line-height: 1.5em;
 }
 
-.markdown-body blockquote {
+.markdown-body.resume-bountiful blockquote {
   margin-top: 25px;
   border: 1px dotted #ccc;
   border-right: none;
@@ -292,84 +292,84 @@ body[theme="Dark"] .markdown-body {
   color: var(--blockquote-foreground-article-color);
 }
 
-.markdown-body blockquote p {
+.markdown-body.resume-bountiful blockquote p {
   margin: 20px 0 25px;
   padding: 0 15px;
 }
 
-.markdown-body ul,
-.markdown-body ol {
+.markdown-body.resume-bountiful ul,
+.markdown-body.resume-bountiful ol {
   list-style-position: inside;
   color: var(--list-foreground-article-color);
 }
 
-.markdown-body ol {
+.markdown-body.resume-bountiful ol {
   list-style-type: decimal;
 }
 
-.markdown-body a {
+.markdown-body.resume-bountiful a {
   color: var(--a-foregrounnd-article-color);
   text-decoration: none;
 }
 
-.markdown-body a:visited {
+.markdown-body.resume-bountiful a:visited {
   color: #4a6b82;
 }
 
-.markdown-body a:hover {
+.markdown-body.resume-bountiful a:hover {
   text-decoration: underline;
 }
 
-.markdown-body hr {
+.markdown-body.resume-bountiful hr {
   height: 1px;
   border: 0;
   background-image:
- -webkit-linear-gradient(
-    left,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0)
-  );
+    -webkit-linear-gradient(
+      left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0)
+    );
 }
 
-.markdown-body table {
+.markdown-body.resume-bountiful table {
   width: 100%;
   margin-top: 18px;
   border-collapse: collapse;
   border-top: solid 3px var(--table-border-top-article-color);
 }
 
-.markdown-body table th,
-.markdown-body table td {
+.markdown-body.resume-bountiful table th,
+.markdown-body.resume-bountiful table td {
   padding: 10px 18px 8px 0;
 }
 
-.markdown-body table thead th,
-.markdown-body table thead td {
+.markdown-body.resume-bountiful table thead th,
+.markdown-body.resume-bountiful table thead td {
   padding-top: 7px;
 }
 
-.markdown-body table tfoot th,
-.markdown-body table tfoot td {
+.markdown-body.resume-bountiful table tfoot th,
+.markdown-body.resume-bountiful table tfoot td {
   padding-bottom: 8px;
 }
 
-.markdown-body table th:first-child,
-.markdown-body table td:first-child {
+.markdown-body.resume-bountiful table th:first-child,
+.markdown-body.resume-bountiful table td:first-child {
   padding-left: 0;
 }
 
-.markdown-body table th:last-child,
-.markdown-body table td:last-child {
+.markdown-body.resume-bountiful table th:last-child,
+.markdown-body.resume-bountiful table td:last-child {
   padding-right: 0;
 }
 
-.markdown-body table tbody tr:nth-child(odd) th,
-.markdown-body table tbody tr:nth-child(odd) td {
+.markdown-body.resume-bountiful table tbody tr:nth-child(odd) th,
+.markdown-body.resume-bountiful table tbody tr:nth-child(odd) td {
   background: var(--odd-tr-background-article-color);
 }
 
-.markdown-body table caption {
+.markdown-body.resume-bountiful table caption {
   top: 5px;
   margin-bottom: 18px;
   color: rgba(0, 0, 0, 0.7);
@@ -409,27 +409,27 @@ body[theme="Dark"] .markdown-body {
     background: white;
   }
 
-  .markdown-body {
+  .markdown-body.resume-bountiful {
     position: relative;
     background: white;
     font-size: 12.75px;
     text-indent: 0;
   }
 
-  .markdown-body a {
+  .markdown-body.resume-bountiful a {
     text-decoration: underline;
   }
 
-  .markdown-body img,
-  .markdown-body pre,
-  .markdown-body blockquote,
-  /* .markdown-body table, */
-  .markdown-body figure,
-  .markdown-body p {
+  .markdown-body.resume-bountiful img,
+  .markdown-body.resume-bountiful pre,
+  .markdown-body.resume-bountiful blockquote,
+  /* .markdown-body.resume-bountiful table, */
+  .markdown-body.resume-bountiful figure,
+  .markdown-body.resume-bountiful p {
     page-break-inside: avoid;
   }
 
-  .markdown-body hr {
+  .markdown-body.resume-bountiful hr {
     background-color: rgba(0, 0, 0, 0.7);
   }
 }

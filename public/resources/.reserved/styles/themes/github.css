@@ -1,4 +1,4 @@
-.markdown-body {
+.markdown-body.github {
   --odd-tr-background-article-color: transparent;
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
@@ -8,7 +8,7 @@
   --a-foregrounnd-article-color: #0366d6;
 }
 
-body[theme="Light"] .markdown-body {
+body[theme="Light"] .markdown-body.github {
   --main-foreground-article-color: #24292e;
   --main-background-article-color: rgba(255, 255, 255, 0.7);
   --blockquote-foreground-article-color: #6a737d;
@@ -18,7 +18,7 @@ body[theme="Light"] .markdown-body {
   --a-backgrounnd-article-color: #f3e98f;
 }
 
-body[theme="Dark"] .markdown-body {
+body[theme="Dark"] .markdown-body.github {
   --main-foreground-article-color: white;
   --main-background-article-color: rgba(50, 50, 50, 0.7);
   --blockquote-foreground-article-color: white;
@@ -29,7 +29,7 @@ body[theme="Dark"] .markdown-body {
 }
 
 @media print {
-  body[theme="Dark"] .markdown-body {
+  body[theme="Dark"] .markdown-body.github {
     --main-foreground-article-color: #24292e;
     --main-background-article-color: rgba(255, 255, 255, 0.7);
     --blockquote-foreground-article-color: #6a737d;
@@ -40,7 +40,7 @@ body[theme="Dark"] .markdown-body {
   }
 }
 
-.markdown-body {
+.markdown-body.github {
   background: var(--main-background-article-color);
   color: var(--main-foreground-article-color);
   font-family: "等距更纱黑体", sans-serif, Apple Color Emoji, Segoe UI Emoji;
@@ -49,124 +49,124 @@ body[theme="Dark"] .markdown-body {
   word-wrap: break-word;
 }
 
-.markdown-body::after,
-.markdown-body::before {
+.markdown-body.github::after,
+.markdown-body.github::before {
   content: "";
   display: table;
 }
 
-.markdown-body::after {
+.markdown-body.github::after {
   clear: both;
 }
 
-.markdown-body > :first-child {
+.markdown-body.github > :first-child {
   margin-top: 0 !important;
 }
 
-.markdown-body > :last-child {
+.markdown-body.github > :last-child {
   margin-bottom: 0 !important;
 }
 
-.markdown-body * {
+.markdown-body.github * {
   box-sizing: border-box;
 }
 
-.markdown-body details {
+.markdown-body.github details {
   display: block;
 }
 
-.markdown-body summary {
+.markdown-body.github summary {
   display: list-item;
 }
 
-.markdown-body a {
+.markdown-body.github a {
   background-color: initial;
   color: var(--a-foregrounnd-article-color);
   text-decoration: none;
 }
 
-.markdown-body a:active,
-.markdown-body a:hover {
+.markdown-body.github a:active,
+.markdown-body.github a:hover {
   outline-width: 0;
 }
 
-.markdown-body a:hover {
+.markdown-body.github a:hover {
   text-decoration: underline;
 }
 
-.markdown-body a:not([href]) {
+.markdown-body.github a:not([href]) {
   color: inherit;
   text-decoration: none;
 }
 
-.markdown-body strong {
+.markdown-body.github strong {
   font-weight: inherit;
   font-weight: bolder;
   font-weight: 600;
 }
 
-.markdown-body details summary {
+.markdown-body.github details summary {
   cursor: pointer;
 }
 
-.markdown-body blockquote {
+.markdown-body.github blockquote {
   margin: 0;
   padding: 0 1em;
   border-left: 0.25em solid #dfe2e5;
   color: var(--blockquote-foreground-article-color);
 }
 
-.markdown-body blockquote > :first-child {
+.markdown-body.github blockquote > :first-child {
   margin-top: 0;
 }
 
-.markdown-body blockquote > :last-child {
+.markdown-body.github blockquote > :last-child {
   margin-bottom: 0;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.github h1,
+.markdown-body.github h2,
+.markdown-body.github h3,
+.markdown-body.github h4,
+.markdown-body.github h5,
+.markdown-body.github h6 {
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
 }
 
-.markdown-body h1,
-.markdown-body h2 {
+.markdown-body.github h1,
+.markdown-body.github h2 {
   padding-bottom: 0.3em;
   border-bottom: 1px solid #eaecef;
 }
 
-.markdown-body h1 {
+.markdown-body.github h1 {
   font-size: 2em;
 }
 
-.markdown-body h2 {
+.markdown-body.github h2 {
   font-size: 1.5em;
 }
 
-.markdown-body h3 {
+.markdown-body.github h3 {
   font-size: 1.25em;
 }
 
-.markdown-body h4 {
+.markdown-body.github h4 {
   font-size: 1em;
 }
 
-.markdown-body h5 {
+.markdown-body.github h5 {
   font-size: 0.875em;
 }
 
-.markdown-body h6 {
+.markdown-body.github h6 {
   font-size: 0.75em;
 }
 
-.markdown-body hr {
+.markdown-body.github hr {
   height: 0.25em;
   margin: 24px 0;
   padding: 0;
@@ -174,56 +174,56 @@ body[theme="Dark"] .markdown-body {
   background-color: #e1e4e8;
 }
 
-.markdown-body blockquote,
-.markdown-body details,
-.markdown-body dl,
-.markdown-body ol,
-.markdown-body p,
-.markdown-body pre.prettyprinted,
-.markdown-body table,
-.markdown-body ul {
+.markdown-body.github blockquote,
+.markdown-body.github details,
+.markdown-body.github dl,
+.markdown-body.github ol,
+.markdown-body.github p,
+.markdown-body.github pre.prettyprinted,
+.markdown-body.github table,
+.markdown-body.github ul {
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-.markdown-body ol,
-.markdown-body ul {
+.markdown-body.github ol,
+.markdown-body.github ul {
   padding-left: 2em;
 }
 
-.markdown-body ol ol,
-.markdown-body ul ol {
+.markdown-body.github ol ol,
+.markdown-body.github ul ol {
   list-style-type: lower-roman;
 }
 
-.markdown-body ol ol ol,
-.markdown-body ol ul ol,
-.markdown-body ul ol ol,
-.markdown-body ul ul ol {
+.markdown-body.github ol ol ol,
+.markdown-body.github ol ul ol,
+.markdown-body.github ul ol ol,
+.markdown-body.github ul ul ol {
   list-style-type: lower-alpha;
 }
 
-.markdown-body li {
+.markdown-body.github li {
   word-wrap: break-all;
 }
 
-.markdown-body li > p {
+.markdown-body.github li > p {
   margin-top: 16px;
 }
 
-.markdown-body li + li {
+.markdown-body.github li + li {
   margin-top: 0.25em;
 }
 
-.markdown-body dl {
+.markdown-body.github dl {
   padding: 0;
 }
 
-.markdown-body dd {
+.markdown-body.github dd {
   margin-left: 0;
 }
 
-.markdown-body dl dt {
+.markdown-body.github dl dt {
   margin-top: 16px;
   padding: 0;
   font-size: 1em;
@@ -231,11 +231,11 @@ body[theme="Dark"] .markdown-body {
   font-weight: 600;
 }
 
-.markdown-body dl dd {
+.markdown-body.github dl dd {
   padding: 0 16px;
 }
 
-.markdown-body table {
+.markdown-body.github table {
   display: block;
   width: 100%;
   overflow: auto;
@@ -243,47 +243,47 @@ body[theme="Dark"] .markdown-body {
   border-collapse: collapse;
 }
 
-.markdown-body table th {
+.markdown-body.github table th {
   font-weight: 600;
 }
 
-.markdown-body table td,
-.markdown-body table th {
+.markdown-body.github table td,
+.markdown-body.github table th {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
 }
 
-.markdown-body table tr {
+.markdown-body.github table tr {
   border-top: 1px solid #c6cbd1;
   background-color: var(--odd-tr-background-article-color);
 }
 
-.markdown-body table tr:nth-child(2n) {
+.markdown-body.github table tr:nth-child(2n) {
   background-color: var(--even-tr-background-article-color);
 }
 
-.markdown-body img {
+.markdown-body.github img {
   box-sizing: initial;
   max-width: 100%;
   border-style: none;
   background-color: #fff;
 }
 
-.markdown-body img[align="right"] {
+.markdown-body.github img[align="right"] {
   padding-left: 20px;
 }
 
-.markdown-body img[align="left"] {
+.markdown-body.github img[align="left"] {
   padding-right: 20px;
 }
 
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre.prettyprinted {
+.markdown-body.github code,
+.markdown-body.github kbd,
+.markdown-body.github pre.prettyprinted {
   font-size: 0.6875em;
 }
 
-.markdown-body kbd {
+.markdown-body.github kbd {
   display: inline-block;
   padding: 3px 5px;
   border: 1px solid var(--kbd-border-article-color);
@@ -295,7 +295,7 @@ body[theme="Dark"] .markdown-body {
   vertical-align: middle;
 }
 
-.markdown-body code {
+.markdown-body.github code {
   margin: 0;
   padding: 0.2em 0.4em;
   border-radius: 3px;
@@ -303,11 +303,11 @@ body[theme="Dark"] .markdown-body {
   font-size: 85%;
 }
 
-.markdown-body pre.prettyprinted > code {
+.markdown-body.github pre.prettyprinted > code {
   font-size: 100%;
 }
 
-.markdown-body pre.prettyprinted {
+.markdown-body.github pre.prettyprinted {
   padding: 16px;
   overflow: auto;
   border-radius: 3px;

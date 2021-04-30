@@ -1,4 +1,4 @@
-.markdown-body {
+.markdown-body.antique {
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
   --kbd-border-article-color: #d1d5da;
@@ -11,7 +11,7 @@
   --strong-foreground-article-color: #605b4b;
 }
 
-body[theme="Light"] .markdown-body {
+body[theme="Light"] .markdown-body.antique {
   --main-foreground-article-color: #45462f;
   --main-background-article-color: rgba(240, 223, 221, 0.7);
   --a-foregrounnd-article-color: #00857a;
@@ -21,7 +21,7 @@ body[theme="Light"] .markdown-body {
   --code-background-article-color: #c3bbb3;
 }
 
-body[theme="Dark"] .markdown-body {
+body[theme="Dark"] .markdown-body.antique {
   --main-foreground-article-color: #f0ede3;
   --main-background-article-color: rgba(57, 54, 47, 0.7);
   --a-foregrounnd-article-color: white;
@@ -32,7 +32,7 @@ body[theme="Dark"] .markdown-body {
 }
 
 @media print {
-  body[theme="Dark"] .markdown-body {
+  body[theme="Dark"] .markdown-body.antique {
     --main-foreground-article-color: #45462f;
     --main-background-article-color: rgba(240, 223, 221, 0.7);
     --a-foregrounnd-article-color: #00857a;
@@ -45,22 +45,22 @@ body[theme="Dark"] .markdown-body {
 
 @font-face {
   font-family: Pacifico;
-  src: url({{resource_dir}}fonts/Pacifico-Regular.ttf) format("truetype");
+  src: url(../../fonts/Pacifico-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: PatrickHand;
-  src: url({{resource_dir}}fonts/PatrickHand-Regular.ttf) format("truetype");
+  src: url(../../fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
 @font-face {
   font-family: COOL;
   src:
-    url({{resource_dir}}fonts/ZCOOLQingKeHuangYou-Regular.ttf)
+    url(../../fonts/ZCOOLQingKeHuangYou-Regular.ttf)
     format("truetype");
 }
 
-.markdown-body {
+.markdown-body.antique {
   margin: 0;
   background: var(--main-background-article-color);
   color: var(--main-foreground-article-color);
@@ -70,132 +70,132 @@ body[theme="Dark"] .markdown-body {
   text-indent: 0;
 }
 
-.markdown-body p {
+.markdown-body.antique p {
   margin: 1.3125em 0;
   font-size: 1.1429em;
   line-height: 1.6125em;
 }
 
-.markdown-body ul {
+.markdown-body.antique ul {
   list-style: square;
 }
 
-.markdown-body ol {
+.markdown-body.antique ol {
   list-style: decimal;
 }
 
-.markdown-body ul,
-.markdown-body ol {
+.markdown-body.antique ul,
+.markdown-body.antique ol {
   padding-left: 0;
   list-style-position: inside;
 }
 
-.markdown-body ul li,
-.markdown-body ol li {
+.markdown-body.antique ul li,
+.markdown-body.antique ol li {
   font-size: 110%;
   line-height: 1.525em;
 }
 
-.markdown-body ul li li,
-.markdown-body ol li li {
+.markdown-body.antique ul li li,
+.markdown-body.antique ol li li {
   font-size: 100%;
 }
 
-.markdown-body ul li p,
-.markdown-body ol li p {
+.markdown-body.antique ul li p,
+.markdown-body.antique ol li p {
   margin-left: 1em;
   font-size: 100%;
 }
 
-.markdown-body ul ul,
-.markdown-body ul ol,
-.markdown-body ol ul,
-.markdown-body ol ol {
+.markdown-body.antique ul ul,
+.markdown-body.antique ul ol,
+.markdown-body.antique ol ul,
+.markdown-body.antique ol ol {
   margin-bottom: 0.4em;
   padding-left: 30px;
 }
 
-.markdown-body ul ul,
-.markdown-body ol ul {
+.markdown-body.antique ul ul,
+.markdown-body.antique ol ul {
   list-style: circle;
 }
 
-.markdown-body strong {
+.markdown-body.antique strong {
   font-weight: inherit;
   font-weight: bolder;
   font-weight: 600;
 }
 
-.markdown-body em {
+.markdown-body.antique em {
   font-style: italic;
 }
 
-.markdown-body h1 {
+.markdown-body.antique h1 {
   margin: 0.6563em 0;
   font-size: 2.8em;
   line-height: 1.6563em;
 }
 
-.markdown-body h2 {
+.markdown-body.antique h2 {
   margin: 0.875em 0;
   font-size: 1.7143em;
   line-height: 0.875em;
 }
 
-.markdown-body h3 {
+.markdown-body.antique h3 {
   margin: 1em 0;
   font-size: 1.5em;
   line-height: 1em;
 }
 
-.markdown-body h4 {
+.markdown-body.antique h4 {
   margin: 1.1667em 0;
   font-size: 1.2857em;
   line-height: 1.1667em;
 }
 
-.markdown-body h5 {
+.markdown-body.antique h5 {
   margin: 1.3125em 0;
   font-size: 1.1429em;
   line-height: 1.3125em;
 }
 
-.markdown-body h6 {
+.markdown-body.antique h6 {
   margin: 1.5em 0;
   font-size: 1em;
   line-height: 1.5em;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.markdown-body.antique h1,
+.markdown-body.antique h2,
+.markdown-body.antique h3,
+.markdown-body.antique h4,
+.markdown-body.antique h5,
+.markdown-body.antique h6 {
   font-weight: bold;
 }
 
-.markdown-body h1 a,
-.markdown-body h2 a,
-.markdown-body h3 a,
-.markdown-body h4 a,
-.markdown-body h5 a,
-.markdown-body h6 a {
+.markdown-body.antique h1 a,
+.markdown-body.antique h2 a,
+.markdown-body.antique h3 a,
+.markdown-body.antique h4 a,
+.markdown-body.antique h5 a,
+.markdown-body.antique h6 a {
   border-bottom: dotted 1px #a7a099;
   color: #514d3f;
 }
 
-.markdown-body h1 a:hover,
-.markdown-body h2 a:hover,
-.markdown-body h3 a:hover,
-.markdown-body h4 a:hover,
-.markdown-body h5 a:hover,
-.markdown-body h6 a:hover {
+.markdown-body.antique h1 a:hover,
+.markdown-body.antique h2 a:hover,
+.markdown-body.antique h3 a:hover,
+.markdown-body.antique h4 a:hover,
+.markdown-body.antique h5 a:hover,
+.markdown-body.antique h6 a:hover {
   color: #13120f;
 }
 
-.markdown-body h1,
-.markdown-body h2 {
+.markdown-body.antique h1,
+.markdown-body.antique h2 {
   padding-top: 0.25em;
   padding-bottom: 0.4em;
   font-family: PatrickHand, COOL, sans-serif, Apple Color Emoji, Segoe UI Emoji;
@@ -203,18 +203,18 @@ body[theme="Dark"] .markdown-body {
   text-shadow: 1px 0 0 #a7a099, 0 1px 0 white;
 }
 
-.markdown-body h1 {
+.markdown-body.antique h1 {
   text-align: center;
 }
 
-/* .markdown-body h1:before {
+/* .markdown-body.antique h1:before {
   content: '\21B7';
   position: relative;
   left: -0.5em;
   color: #837e70;
   text-shadow: 1px 0px 0px #a7a099, 0 1px 0 white;
 } */
-.markdown-body h1::after {
+.markdown-body.antique h1::after {
   content: "\21B5";
   position: relative;
   top: -0.3em;
@@ -223,21 +223,21 @@ body[theme="Dark"] .markdown-body {
   text-shadow: 1px 0 0 #a7a099, 0 1px 0 white;
 }
 
-.markdown-body h2 {
+.markdown-body.antique h2 {
   margin-top: 1em;
   padding-bottom: 0;
   box-shadow: 0 -1px 0 white, 0 -2px 0 #837e70;
 }
 
-.markdown-body,
-.markdown-body p,
-.markdown-body td,
-.markdown-body div {
+.markdown-body.antique,
+.markdown-body.antique p,
+.markdown-body.antique td,
+.markdown-body.antique div {
   -webkit-font-smoothing: antialiased;
   word-wrap: break-word;
 }
 
-.markdown-body a {
+.markdown-body.antique a {
   -webkit-transition: color 0.1s ease-in-out;
   -moz-transition: color 0.1s ease-in-out;
   -o-transition: color 0.1s ease-in-out;
@@ -247,37 +247,37 @@ body[theme="Dark"] .markdown-body {
   text-decoration: none;
 }
 
-.markdown-body a:hover {
+.markdown-body.antique a:hover {
   color: var(--a-hover-foregrounnd-article-color);
 }
 
-.markdown-body strong {
+.markdown-body.antique strong {
   color: var(--strong-foreground-article-color);
 }
 
-.markdown-body img {
+.markdown-body.antique img {
   max-width: 100%;
 
   /* height: auto; */
   border: solid 2px rgba(56, 40, 18, 0.25);
 }
 
-.markdown-body dt {
+.markdown-body.antique dt {
   font-weight: bold;
 }
 
-.markdown-body dd {
+.markdown-body.antique dd {
   margin-bottom: 1em;
   text-indent: 1em;
 }
 
-.markdown-body blockquote {
+.markdown-body.antique blockquote {
   margin: 14px 30px;
   padding: 0 10px;
   box-shadow: -1px 0 0 white, -2px 0 0 #837e70;
 }
 
-.markdown-body code {
+.markdown-body.antique code {
   display: inline-block;
   padding: 0 0.5em;
   background: var(--code-background-article-color);
@@ -290,7 +290,7 @@ body[theme="Dark"] .markdown-body {
   text-shadow: 1px 0 0 #a7a099, 0 1px 0 #a7a099;
 }
 
-.markdown-body pre.prettyprinted {
+.markdown-body.antique pre.prettyprinted {
   margin-bottom: 14px;
   padding: 6px;
   overflow: auto;
@@ -301,11 +301,11 @@ body[theme="Dark"] .markdown-body {
   white-space: pre-wrap;
 }
 
-.markdown-body pre.prettyprinted code {
+.markdown-body.antique pre.prettyprinted code {
   font-size: 1em;
 }
 
-.markdown-body hr {
+.markdown-body.antique hr {
   height: 2px;
   border-color: #f2ede8;
   background-color: #a7a099;
@@ -326,7 +326,7 @@ body[theme="Dark"] .markdown-body {
     page-break-inside: avoid;
   }
 
-  .markdown-body {
+  .markdown-body.antique {
     position: relative;
     padding: 0;
     background: transparent;
@@ -336,133 +336,133 @@ body[theme="Dark"] .markdown-body {
 }
 
 @media screen {
-  .markdown-body ::selection {
+  .markdown-body.antique ::selection {
     background: rgba(157, 193, 200, 0.5);
   }
 
-  .markdown-body h1::selection,
-  .markdown-body h2::selection,
-  .markdown-body h3::selection,
-  .markdown-body h4::selection,
-  .markdown-body h5::selection,
-  .markdown-body h6::selection {
+  .markdown-body.antique h1::selection,
+  .markdown-body.antique h2::selection,
+  .markdown-body.antique h3::selection,
+  .markdown-body.antique h4::selection,
+  .markdown-body.antique h5::selection,
+  .markdown-body.antique h6::selection {
     background-color: rgba(133, 201, 232, 0.3);
   }
 
-  .markdown-body code::selection {
+  .markdown-body.antique code::selection {
     background-color: rgba(0, 0, 0, 0.7);
     color: #eee;
   }
 
-  .markdown-body code span::selection {
+  .markdown-body.antique code span::selection {
     background-color: rgba(0, 0, 0, 0.7) !important;
     color: #eee !important;
   }
 
-  .markdown-body a::selection {
+  .markdown-body.antique a::selection {
     background-color: rgba(255, 230, 102, 0.2);
   }
 
-  .markdown-body td::selection,
-  .markdown-body th::selection,
-  .markdown-body caption::selection {
+  .markdown-body.antique td::selection,
+  .markdown-body.antique th::selection,
+  .markdown-body.antique caption::selection {
     background-color: rgba(180, 237, 95, 0.5);
   }
 
-  /* .inverted .markdown-body a::selection {
+  /* .inverted .markdown-body.antique a::selection {
     background-color: rgba(255, 230, 102, 0.6);
   }
-  .inverted .markdown-body p,
-  .inverted .markdown-body td,
-  .inverted .markdown-body li,
-  .inverted .markdown-body h1,
-  .inverted .markdown-body h2,
-  .inverted .markdown-body h3,
-  .inverted .markdown-body h4,
-  .inverted .markdown-body h5,
-  .inverted .markdown-body h6,
-  .inverted .markdown-body pre,
-  .inverted .markdown-body code,
-  .inverted .markdown-body th,
-  .inverted .markdown-body hr,
-  .inverted .markdown-body strong,
-  .inverted .markdown-body em,
-  .inverted .markdown-body .math,
-  .inverted .markdown-body dd,
-  .inverted .markdown-body dt {
+  .inverted .markdown-body.antique p,
+  .inverted .markdown-body.antique td,
+  .inverted .markdown-body.antique li,
+  .inverted .markdown-body.antique h1,
+  .inverted .markdown-body.antique h2,
+  .inverted .markdown-body.antique h3,
+  .inverted .markdown-body.antique h4,
+  .inverted .markdown-body.antique h5,
+  .inverted .markdown-body.antique h6,
+  .inverted .markdown-body.antique pre,
+  .inverted .markdown-body.antique code,
+  .inverted .markdown-body.antique th,
+  .inverted .markdown-body.antique hr,
+  .inverted .markdown-body.antique strong,
+  .inverted .markdown-body.antique em,
+  .inverted .markdown-body.antique .math,
+  .inverted .markdown-body.antique dd,
+  .inverted .markdown-body.antique dt {
     color: #f0ede3;
     border-color: #423d2f;
     background: #39362f;
   }
-  .inverted .markdown-body hr {
+  .inverted .markdown-body.antique hr {
     border-color: rgba(52, 52, 52, 0.3);
   }
-  .inverted .markdown-body a {
+  .inverted .markdown-body.antique a {
     text-decoration: underline;
     border-bottom: none;
   } */
 }
 
-.markdown-body li > p:first-child {
+.markdown-body.antique li > p:first-child {
   margin: 0;
 }
 
-.markdown-body li p {
+.markdown-body.antique li p {
   margin: 0.5em 0;
 }
 
-.markdown-body caption,
-.markdown-body col,
-.markdown-body colgroup,
-.markdown-body table,
-.markdown-body tbody,
-.markdown-body td,
-.markdown-body tfoot,
-.markdown-body th,
-.markdown-body thead,
-.markdown-body tr {
+.markdown-body.antique caption,
+.markdown-body.antique col,
+.markdown-body.antique colgroup,
+.markdown-body.antique table,
+.markdown-body.antique tbody,
+.markdown-body.antique td,
+.markdown-body.antique tfoot,
+.markdown-body.antique th,
+.markdown-body.antique thead,
+.markdown-body.antique tr {
   border-spacing: 0;
 }
 
-.markdown-body caption {
+.markdown-body.antique caption {
   display: table-caption;
   font-weight: bold;
 }
 
-.markdown-body col {
+.markdown-body.antique col {
   display: table-column;
 }
 
-.markdown-body colgroup {
+.markdown-body.antique colgroup {
   display: table-column-group;
 }
 
-.markdown-body tbody {
+.markdown-body.antique tbody {
   display: table-row-group;
 }
 
-.markdown-body tfoot {
+.markdown-body.antique tfoot {
   display: table-footer-group;
 }
 
-.markdown-body thead {
+.markdown-body.antique thead {
   display: table-header-group;
 }
 
-.markdown-body td,
-.markdown-body th {
+.markdown-body.antique td,
+.markdown-body.antique th {
   display: table-cell;
 }
 
-.markdown-body th {
+.markdown-body.antique th {
   font-weight: bold;
 }
 
-.markdown-body tr {
+.markdown-body.antique tr {
   display: table-row;
 }
 
-.markdown-body table {
+.markdown-body.antique table {
   display: table;
   margin: 0 0 24px 0;
 
@@ -476,42 +476,42 @@ body[theme="Dark"] .markdown-body {
   border: 1px solid rgba(124, 119, 112, 0.5);
 }
 
-.markdown-body table th,
-.markdown-body table td {
+.markdown-body.antique table th,
+.markdown-body.antique table td {
   padding: 0.8em 1em;
   font-size: 1.1em;
   line-height: 23px;
 }
 
-.markdown-body table tbody {
+.markdown-body.antique table tbody {
   background-color: var(--tbody-background-article-color);
 }
 
-.markdown-body table thead,
-.markdown-body table tfoot {
+.markdown-body.antique table thead,
+.markdown-body.antique table tfoot {
   background-color: var(--table-background-article-color);
 }
 
-.markdown-body table tr:nth-child(odd) {
+.markdown-body.antique table tr:nth-child(odd) {
   background-color: var(--odd-tr-background-article-color);
 }
 
-.markdown-body table tr:nth-child(even),
-.markdown-body table td:nth-child(even) {
+.markdown-body.antique table tr:nth-child(even),
+.markdown-body.antique table td:nth-child(even) {
   background-color: var(--even-tr-background-article-color);
 }
 
-.markdown-body table thead,
-.markdown-body table tfoot {
+.markdown-body.antique table thead,
+.markdown-body.antique table tfoot {
   border: 1px solid rgba(124, 119, 112, 0.5);
   border-bottom: 1px solid rgba(124, 119, 112, 0.2);
 }
 
-.markdown-body table thead tr th:last-child {
+.markdown-body.antique table thead tr th:last-child {
   border-right: 1px solid rgba(124, 119, 112, 0.5);
 }
 
-.markdown-body figure {
+.markdown-body.antique figure {
   display: inline-block;
   position: relative;
   width: 100%;
@@ -519,11 +519,11 @@ body[theme="Dark"] .markdown-body {
   text-align: center;
 }
 
-.markdown-body figure:hover {
+.markdown-body.antique figure:hover {
   cursor: pointer;
 }
 
-.markdown-body figcaption {
+.markdown-body.antique figcaption {
   position: absolute;
   bottom: -2em;
   left: 0;
@@ -533,8 +533,8 @@ body[theme="Dark"] .markdown-body {
   text-align: center;
 }
 
-.markdown-body sup,
-.markdown-body sub {
+.markdown-body.antique sup,
+.markdown-body.antique sub {
   position: relative;
   height: 0;
   font-size: 1.4ex;
@@ -542,7 +542,7 @@ body[theme="Dark"] .markdown-body {
   vertical-align: super;
 }
 
-.markdown-body sub {
+.markdown-body.antique sub {
   top: -1px;
   vertical-align: sub;
 }
