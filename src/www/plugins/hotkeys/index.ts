@@ -1,9 +1,9 @@
 import { scrollToCoords } from '@utils/dom';
 
-interface Coords { parent: Element | null, y: number }
+interface Coords { parent: Element | null | undefined, y: number }
 
 function newCoords ( direction: boolean ): Coords {
-  const parent = document.querySelector ( '#main' );
+  const parent = document.querySelector ( '.markdown-body' )?.parentElement;
   const current = parent?.scrollTop || 0;
   const height = ( parent as HTMLElement | null )?.offsetHeight || 0;
   const y = current + ( direction ? 0.36 : -0.36 ) * height;
@@ -29,10 +29,7 @@ function hotkeys ( evt: KeyboardEvent ): void {
   }
 };
 
-export default function init (): void {
-  window.addEventListener ( 'keydown', hotkeys );
-
-  window.addEventListener ( 'beforeunload', () => {
-    window.removeEventListener ( 'keydown', hotkeys );
-  } );
-}
+window.addEventListener ( 'keydown', hotkeys );
+window.addEventListener ( 'beforeunload', () => {
+  window.removeEventListener ( 'keydown', hotkeys );
+} );

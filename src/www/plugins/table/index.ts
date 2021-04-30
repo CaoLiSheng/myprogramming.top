@@ -22,6 +22,6 @@ function extendTable ( table: Element ): void {
   table.querySelectorAll ( 'tbody > tr' ).forEach ( bindThData.bind ( null, thData ) );
 }
 
-export default function init (): void {
+export function initTablePlugin (): void {
   document.querySelectorAll ( '.markdown-body table' ).forEach ( extendTable );
 }

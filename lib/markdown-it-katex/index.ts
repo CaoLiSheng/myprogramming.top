@@ -9,12 +9,11 @@ for rendering output.
 
 /* jslint node: true */
 
-
-import * as MarkdownIt from 'markdown-it';
-import Token from 'markdown-it/lib/token';
 import { KatexOptions, renderToString } from 'katex';
+import * as MarkdownIt from 'markdown-it';
 import StateBlock from 'markdown-it/lib/rules_block/state_block';
 import StateInline from 'markdown-it/lib/rules_inline/state_inline';
+import Token from 'markdown-it/lib/token';
 
 // Test if potential opening or closing delimieter
 // Assumes that there is a "$" at state.src[pos]

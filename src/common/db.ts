@@ -1,4 +1,4 @@
-import { mdConf, MdConf } from '@md/index';
+import { MdConf, mdConf } from '@md/index';
 import Moment from 'moment';
 
 declare let __production__: boolean;

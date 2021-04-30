@@ -1,6 +1,6 @@
 import '@common/shims-string';
 
-import { insertStyleSheetRule } from '@utils/dom';
+import { injectStyleSheetRules } from '@utils/dom';
 
 const SpriteId = 'click-ring';
 const SpriteSize = 2560;
@@ -19,7 +19,7 @@ function initSprite ( player: HTMLCanvasElement ) {
   player.style.position = 'fixed';
 
   // Animation
-  insertStyleSheetRule ( `
+  injectStyleSheetRules ( `
     @keyframes AnimationSpriteRing {
         0% {
             opacity: 0;
@@ -43,30 +43,31 @@ function initSprite ( player: HTMLCanvasElement ) {
 }
 
 function posSprite ( player: HTMLCanvasElement, event: Event ) {
-  player.style.visibility = 'none';
-  player.style.animation = 'none';
-
   if ( event instanceof MouseEvent ) {
     player.style.left = `${ event.clientX - SpriteSize / 2 }px`;
     player.style.top = `${ event.clientY - SpriteSize / 2 }px`;
   }
 
+  player.style.animation = `${ SpriteAniDuration } ease-in 0s 1 normal both running AnimationSpriteRing`;
+  player.style.visibility = 'visible';
+
   setTimeout ( () => {
-    player.style.visibility = 'visible';
-    player.style.animation = `${ SpriteAniDuration } ease-in 0s 1 normal both running AnimationSpriteRing`;
-  }, 0 );
+    player.style.visibility = 'hidden';
+    player.style.animation = 'none';
+  }, Number.parseInt ( SpriteAniDuration, 10 ) );
 }
 
 const playHearts = ( name: string, event: Event ) => {
   if ( !name.uniqueCheck ( 'CLICK-RING' ) ) return;
 
   let player = document.querySelector ( `#${ SpriteId }` );
-  if ( !player ) {
+  
+  if ( player ) {
+    posSprite ( player as HTMLCanvasElement, event );
+  } else {
     player = document.createElement ( 'canvas' );
     initSprite ( player as HTMLCanvasElement );
-    posSprite ( player as HTMLCanvasElement, event );
     document.body.append ( player );
-  } else {
     posSprite ( player as HTMLCanvasElement, event );
   }
 };

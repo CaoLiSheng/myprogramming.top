@@ -1,3 +1,7 @@
+.markdown-body {
+  padding: 0.1rem 0.382rem;
+}
+
 .detail {
   display: block;
   width: 100vw;
@@ -10,7 +14,6 @@
   background-size: 100vw 100vh;
 
   .markdown-body {
-    padding: 0.1rem 0.382rem;
     border: solid 1px gray;
     border-radius: 6px;
     box-shadow: 0 0 5px 0 gray;
@@ -20,9 +23,9 @@
 @media (max-width: 750px) {
   .detail {
     height: calc(100vh - 0.8rem);
+  }
 
-    .markdown-body {
-      padding: 0 0.382rem;
-    }
+  .markdown-body {
+    padding: 0 0.382rem;
   }
 }

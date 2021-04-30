@@ -62,7 +62,7 @@ function extendFigure ( figureWrapper: Element ): void {
   void coordImage ( figureWrapper, img, attr1, attr2 );  
 }
 
-export default function init (): void {
+export function initFigurePlugin (): void {
   document
     .querySelectorAll ( '.markdown-body figure>.image' )
     .forEach ( extendFigure );

@@ -45,7 +45,7 @@ const __HomePageIndicators = new Set ( [
 export default class StatusComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
-  iconStyle = computeIconStyle ( iconSizeCfg1 as SizeCfg );
+  iconStyle = computeIconStyle ( iconSizeCfg1 );
 
   db = db.state;
 

@@ -1,9 +1,8 @@
 {
-    "extends": [
-        "stylelint-config-standard",
-        "stylelint-plugin-stylus/standard",
-        "stylelint-config-property-sort-order-smacss"
-    ],
-    "rules": {
-    }
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-plugin-stylus/standard",
+    "stylelint-config-property-sort-order-smacss"
+  ],
+  "rules": {}
 }

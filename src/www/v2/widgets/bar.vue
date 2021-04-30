@@ -75,7 +75,7 @@ const Theme2 = "Dark";
   },
 } )
 export default class BarComponent extends Vue {
-  iconStyle = computeIconStyle ( iconSizeCfg1 as SizeCfg );
+  iconStyle = computeIconStyle ( iconSizeCfg1 );
 
   inDevPopupVisibility = false;
 

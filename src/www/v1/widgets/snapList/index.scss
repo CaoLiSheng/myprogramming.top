@@ -46,12 +46,12 @@ ul.snap-list {
         left: 0;
         animation: none;
         background-image:
- linear-gradient(
-          transparent,
-          transparent 68%,
-          rgba(#fff, 0) 68%,
-          #efefef 100%
-        );
+          linear-gradient(
+            transparent,
+            transparent 68%,
+            rgba(#fff, 0) 68%,
+            #efefef 100%
+          );
       }
 
       @keyframes tweaking {

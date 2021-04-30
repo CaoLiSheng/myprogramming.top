@@ -40,3 +40,9 @@
   pointer-events: none;
   user-select: none;
 }
+
+@media print {
+  .markdown-body pre.prettyprinted > code {
+    white-space: pre-wrap;
+  }
+}

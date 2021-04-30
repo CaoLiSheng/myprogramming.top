@@ -1,8 +1,5 @@
 {
   "ext": "*",
   "delay": "3000",
-  "watch": [
-    "posts",
-    "src/template/**/*.css"
-  ]
+  "watch": ["posts", "src/template/**/*.css"]
 }

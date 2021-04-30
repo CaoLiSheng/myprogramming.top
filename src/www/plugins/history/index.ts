@@ -1,13 +1,21 @@
 import localforage from 'localforage';
 
-export default async function init (): Promise<void> {
-  const parent = document.querySelector ( '#main' );
+interface HistoryPluginConf { historyKey: string }
+
+let lastHandler: () => void;
+
+export async function initHistoryPlugin ( conf: HistoryPluginConf ): Promise<void> {
+  const parent = document.querySelector ( '.markdown-body' )?.parentElement;
   if ( !parent ) return;
 
-  const scrollTopHistory = await localforage.getItem<number> ( window.location.pathname );
+  const key = conf.historyKey;
+
+  const scrollTopHistory = await localforage.getItem<number> ( key );
   parent.scrollTo ( 0, scrollTopHistory || 0 );
 
-  parent.addEventListener ( 'scroll', () => {
-    void localforage.setItem ( window.location.pathname, parent.scrollTop );
-  } );
+  parent.removeEventListener ( 'scroll', lastHandler );
+
+  lastHandler = () => void localforage.setItem ( key, parent.scrollTop );
+
+  parent.addEventListener ( 'scroll', lastHandler );
 }

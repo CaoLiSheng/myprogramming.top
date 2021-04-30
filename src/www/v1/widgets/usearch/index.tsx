@@ -1,7 +1,7 @@
 import './index.scss';
 
-import { Binder } from '@v1/utils/KeyBinder';
 import { Popup } from '@rWidgets/index';
+import { Binder } from '@v1/utils/KeyBinder';
 import React, { Component, ElementType, ReactElement } from 'react';
 
 interface USearchProps {

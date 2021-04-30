@@ -1,5 +1,6 @@
 import './index.scss';
 
+import { __conf__ } from '@utils/conf';
 import { HTMLElementOffset, getOffset } from '@utils/dom';
 import React, {
   Component,
@@ -8,7 +9,6 @@ import React, {
   createRef,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { __conf__ } from '@utils/conf';
 
 interface PositionStyle {
   top?: number;

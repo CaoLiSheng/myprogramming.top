@@ -46,35 +46,55 @@ export function getOffset (
   return offset;
 }
 
-export function insertStyleSheetRule ( ruleText: string ): void {
-  const sheets = document.styleSheets;
+export function injectStyleSheetRules ( ...ruleTexts: string[] ): void {
+  let style: HTMLStyleElement | null = document.querySelector ( '#custom-rules' );
 
-  if ( sheets.length === 0 ) {
-    const style = document.createElement ( 'style' );
+  if ( !style ) {
+    style = document.createElement ( 'style' );
+    style.setAttribute ( 'id', 'custom-rules' );
     style.append ( document.createTextNode ( '' ) );
     document.head.append ( style );
   }
 
-  const sheet = sheets[sheets.length - 1];
-  sheet.insertRule (
-    ruleText,
-    sheet.rules ? sheet.rules.length : sheet.cssRules.length,
-  );
-}
-
-export function insertStyleSheetLinks ( ...hrefs: string[] ): void {
-  for ( const href of hrefs ) {
-    if ( document.querySelector ( `head>link[href="${ href }"]` ) ) continue;
-
-    const link = document.createElement ( 'link' );
-    link.setAttribute ( "rel", "stylesheet" );
-    link.setAttribute ( "href", href );
-    document.head.append ( link );
+  const { sheet } = style;
+  for ( const ruleText of ruleTexts ) {
+    sheet?.insertRule (
+      ruleText,
+      sheet.rules ? sheet.rules.length : sheet.cssRules.length,
+    );
   }
 }
 
+export function injectStyleSheetLinks ( ...hrefs: string[] ): Promise<void[]> {
+  return Promise.all (
+    hrefs
+      .filter ( ( href: string ) => !document.querySelector ( `head>link[href="${ href }"]` ) )
+      .map ( ( href: string ) => new Promise<void> ( ( resolve ) => {
+        const link = document.createElement ( 'link' );
+        link.addEventListener ( 'load', () => resolve () );
+        link.setAttribute ( "rel", "stylesheet" );
+        link.setAttribute ( "href", href );
+        document.head.append ( link );
+      } ) )
+  );
+}
+
+export function injectJavaScripts ( ...srcs: string[] ): Promise<void[]> {
+  return Promise.all (
+    srcs
+      .filter ( ( src: string ) => !document.querySelector ( `head>script[src="${ src }"]` ) )
+      .map ( ( src: string ) => new Promise<void> ( ( resolve ) => {
+        const script = document.createElement ( 'script' );
+        script.addEventListener ( 'load', () => resolve () );
+        script.setAttribute ( 'type', 'text/javascript' );
+        script.setAttribute ( "src", src );
+        document.head.append ( script );
+      } ) )
+  );
+}
+
 export function scrollToCoords (
-  parent: Element | null,
+  parent: Element | null | undefined,
   y: number,
   x = 0,
 ): void {
@@ -107,9 +127,13 @@ export function scrollToCoords (
 }
 
 export function scroolToElement (
-  parent: Element | null,
-  ele: Element | null,
+  parent: Element | null | undefined,
+  ele: Element | null | undefined,
 ): void {
-  if ( !parent || !ele ) return;
-  scrollToCoords ( parent, getOffset ( ele, parent ).top );
+  if ( !parent || !ele || !ele.parentElement ) return;
+
+  const padOuter = window.getComputedStyle ( parent ).getPropertyValue ( 'padding-top' );
+  const padInner = window.getComputedStyle ( ele.parentElement ).getPropertyValue ( 'padding-top' );
+  
+  scrollToCoords ( parent, getOffset ( ele, parent ).top - Number.parseFloat ( padOuter ) - Number.parseFloat ( padInner ) );
 }

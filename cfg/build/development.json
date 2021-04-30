@@ -1,5 +1,5 @@
 {
-    "clean": "d",
-    "dist": "gen.dev",
-    "gen": "dev"
+  "clean": "d",
+  "dist": "gen.dev",
+  "gen": "dev"
 }
