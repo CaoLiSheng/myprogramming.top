@@ -15,6 +15,7 @@
   "author": "CaoLS",
   "scripts": {
     "start": "run-p dev:gen dev:misc 'util:dev-server site.v1.dev' 'util:dev-server site.v2.dev'",
+    "bundle:tmp": "yarn util:build -c bundle-tmp",
     "bundle": "yarn util:build -c bundle",
     "dev:gen": "yarn util:build -c development",
     "dev:misc": "run-p dev:nodemon 'util:http 60000 public/resources' 'util:http 59999 build/posts'",
