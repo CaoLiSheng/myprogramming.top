@@ -7,10 +7,12 @@ module.exports = {
     host            : '0.0.0.0',
     quiet           : true,
     disableHostCheck: true,
+    hot             : true,
   },
   output: {
     path         : path.join ( process.cwd (), 'dist' ),
     publicPath   : '/',
+    clean        : true,
     filename     : '[name].js',
     chunkFilename: '[name].js',
   },

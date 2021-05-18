@@ -1,4 +1,4 @@
-import { clickIn } from '@www/utils/dom';
+import { clickIn } from '@utils/dom';
 import localforage from 'localforage';
 
 declare let __production__: string;
