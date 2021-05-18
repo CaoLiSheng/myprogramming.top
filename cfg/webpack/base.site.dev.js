@@ -12,7 +12,6 @@ module.exports = {
   output: {
     path         : path.join ( process.cwd (), 'dist' ),
     publicPath   : '/',
-    clean        : true,
     filename     : '[name].js',
     chunkFilename: '[name].js',
   },

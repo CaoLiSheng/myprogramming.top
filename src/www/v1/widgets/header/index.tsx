@@ -1,6 +1,7 @@
 import './index.scss';
 
-import { GateIcon, MenuIcon } from '@images/index';
+// import { GateIcon, MenuIcon } from '@images/index';
+import { MenuIcon } from '@images/index';
 import { clickIn } from '@utils/dom';
 import classNames from 'classnames';
 import React, {
@@ -17,10 +18,10 @@ import {
 } from 'react-router-dom';
 
 import Category from './category';
-import GoToV2 from './goToV2';
+// import GoToV2 from './goToV2';
 import Pager from './pager';
 
-declare let __portal_to_v2__: string;
+// declare let __portal_to_v2__: string;
 
 interface HeaderStates {
   menuExpanded: boolean;
@@ -113,7 +114,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     return (
       <div className="title-bar">
         <nav>
-          <Switch>
+          {/* <Switch>
             <Route path="/post/:name" component={ GoToV2 } />
             <Route
               path="*"
@@ -127,7 +128,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
                 </a>
               ) }
             />
-          </Switch>
+          </Switch> */}
           <Switch>
             <Route path="/post/:name" component={ Category } />
             <Route
