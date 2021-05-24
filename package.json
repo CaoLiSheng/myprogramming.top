@@ -15,7 +15,6 @@
   "author": "CaoLS",
   "scripts": {
     "start": "run-p dev:gen dev:misc 'util:dev-server site.v1.dev' 'util:dev-server site.v2.dev'",
-    "bundle:tmp": "yarn util:build -c bundle-tmp",
     "bundle": "yarn util:build -c bundle",
     "dev:gen": "yarn util:build -c development",
     "dev:misc": "run-p dev:nodemon 'util:http 60000 public/resources' 'util:http 59999 build/posts'",
@@ -33,7 +32,7 @@
     "util:format": "zsh ./src/scripts/format.zsh",
     "util:build": "zsh ./src/scripts/build.zsh",
     "util:new": "zsh ./src/scripts/newPost.zsh",
-    "util:http": "serve -C -l"
+    "util:http": "func() { if [ -z $(lsof -t -i:$1) ]; then serve -C -l $1 $2; fi; }; func"
   },
   "husky": {
     "hooks": {

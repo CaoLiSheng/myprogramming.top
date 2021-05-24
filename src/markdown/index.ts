@@ -22,7 +22,7 @@ export const mdConf: MdConf = {
   'resume-bountiful': [ ...commons ],
 };
 
-export async function fetchPost ( name: string, conf: MdConf, metas: { [key: string]: PublicMeta } ): Promise<boolean> {
+export async function prefetchStyles ( name: string, conf: MdConf, metas: { [key: string]: PublicMeta } ): Promise<boolean> {
   const baseStyle = metas[name]?.style;
   if ( !baseStyle ) return false;
 

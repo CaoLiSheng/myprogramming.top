@@ -1,15 +1,16 @@
 <template lang="pug">
-.link
-  a(:class="{ init, running }", @click="$event.preventDefault(); goToHref()")
-    span.title {{ data.title }}
-    span.date {{ date }}
-    span.tags {{ data.tags.join(',') }}
+  .link
+    a(:class="{ init, running }", @click="$event.preventDefault(); goToHref()")
+      span.title {{ data.title }}
+      span.date {{ date }}
+      span.tags {{ data.tags.join(',') }}
 </template>
 
 <script lang="ts">
 
 import Vue from "vue";
 import Component from "vue-class-component";
+import { clickOnLink } from "@v2/router";
 
 @Component
 export default class InsiteLink extends Vue.extend ( {
@@ -29,7 +30,6 @@ export default class InsiteLink extends Vue.extend ( {
   },
 } ) {
   init = true;
-  
   running = true;
 
   get date (): string {
@@ -46,7 +46,7 @@ export default class InsiteLink extends Vue.extend ( {
   }
 
   goToHref (): void {
-    window.location.href = `${ this.$props.name as string }${ window.location.hash }`;
+    clickOnLink ( this.$props.name, this.$router );
   }
 }
 </script>

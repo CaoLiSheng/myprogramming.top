@@ -6,12 +6,12 @@ import '@plugins/print';
 import '@plugins/history';
 
 import Vue from 'vue';
-// import PortalVue from 'portal-vue';
+import PortalVue from 'portal-vue';
 
 import App from './app.vue';
 import router from './router';
 
-// Vue.use ( PortalVue );
+Vue.use ( PortalVue );
 
 new Vue ( {
   el    : '#app',

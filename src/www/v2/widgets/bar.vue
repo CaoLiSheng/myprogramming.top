@@ -38,7 +38,7 @@
   )
     DraftsShowIcon(v-if="ui.readerLevelGranted")
     DraftsHideIcon(v-if="!ui.readerLevelGranted")
-  portal(name="in-dev-portal")
+  portal(to="in-dev-portal")
     .in-dev-popup(
       v-show="inDevPopupVisibility",
       :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
@@ -93,7 +93,6 @@ export default class BarComponent extends Vue {
   }
 
   showPopup ( ev: MouseEvent ): void {
-    // debugger;
     let offset: HTMLElementOffset = EmptyOffset;
     if ( ev.target instanceof HTMLElement ) {
       offset = getOffset ( ev.target );
@@ -164,4 +163,6 @@ export default class BarComponent extends Vue {
     bottom: -2.5em;
     left: 2.5em;
     transform: translateX(-50%);
+  .content
+    font-size: 0.15rem;
 </style>

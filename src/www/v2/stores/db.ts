@@ -5,6 +5,7 @@ import {
   distinctReduce,
   intersectingReduce,
 } from '@common/index';
+import { __conf__ } from '@utils/conf';
 
 interface dbState {
   refresh: boolean;
@@ -66,7 +67,10 @@ export const initOnce = async (): Promise<void> => {
   if ( __INITIALIZATION_STARTED ) return;
   __INITIALIZATION_STARTED = true;
 
-  const resp = await fetch ( `db.json?var=${ Date.now () }` );
+  const resp = await fetch ( __conf__.__posts_db__, {
+    method: 'GET',
+    mode  : 'cors',
+  } );
   const data: Schema = await resp.json ();
   db.update ( data );
 };

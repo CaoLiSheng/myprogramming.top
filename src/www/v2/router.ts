@@ -13,22 +13,17 @@ const TagsComponent = () => import ( /* webpackChunkName: 'TagsComponent' */ '@v
 
 const routes = [
   {
-    path    : '/',
-    redirect: { name: 'IndexComponent', params: { post: '=' } },
+    path    : '',
+    redirect: {
+      name  : 'ListComponent',
+      params: { query: '*', post: '=' },
+    },
   },
   {
     path     : '/:post/',
     name     : 'IndexComponent',
     component: IndexComponent,
-    // props    : true,
     children : [
-      {
-        path    : '',
-        redirect: {
-          name  : 'ListComponent',
-          params: { query: '*', post: '=' },
-        },
-      },
       {
         path      : 'list/:query',
         name      : 'ListComponent',
@@ -61,7 +56,7 @@ export default new Router ( {
 
 export function clickOnTag ( tag: string, router: Router ): void {
   const curR = router.currentRoute;
-  const { query } = curR.params;
+  const { query, post } = curR.params;
 
   let newQuery = tag;
   if ( query !== '*' && curR.name === 'TagsComponent' ) {
@@ -76,6 +71,17 @@ export function clickOnTag ( tag: string, router: Router ): void {
 
   void router.replace ( {
     name  : 'TagsComponent',
-    params: { query: newQuery, post: router.currentRoute.params.post },
+    params: { query: newQuery, post },
+  } );
+}
+
+export function clickOnLink ( name: string, router: Router ): void {
+  const { name: curRName, params: { query, post } } = router.currentRoute;
+  
+  if ( !curRName || post === name ) return;
+
+  void router.replace ( {
+    name  : curRName,
+    params: { query, post: name }
   } );
 }

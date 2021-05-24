@@ -1,12 +1,12 @@
 <template lang="pug">
-.r
-  e-header(:text="header")
-  search-field(:onClear="onClear", :onInput="onInput")
-  in-site-links(
-    height="calc(100% - 0.5rem - 0.8rem)",
-    :refresh="refresh",
-    :posts="posts"
-  )
+  .r
+    e-header(:text="header")
+    search-field(:onClear="onClear", :onInput="onInput")
+    in-site-links(
+      height="calc(100% - 0.5rem - 0.8rem)",
+      :refresh="refresh",
+      :posts="posts"
+    )
 </template>
 
 <script lang="ts">
@@ -30,7 +30,6 @@ export default class ListComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
   db = db.state;
-
   refresh = true;
 
   mounted (): void {

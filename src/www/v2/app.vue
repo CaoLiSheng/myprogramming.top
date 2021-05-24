@@ -1,7 +1,7 @@
 <template lang="pug">
 .r
   router-view
-  //- portal-target(name="in-dev-portal")
+  portal-target(name="in-dev-portal")
 </template>
 
 <script lang="ts">

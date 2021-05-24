@@ -10,7 +10,7 @@ import { I_DB_CTX, injectDBCtx } from '@rCtxs/index';
 import { __conf__ } from '@utils/conf';
 import React, { Component, ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { fetchPost } from '@md/index';
+import { prefetchStyles } from '@md/index';
 
 declare let __portal_to_v1__: string;
 
@@ -21,6 +21,15 @@ interface PostProps extends RouteComponentProps<{ name: string }> {
 @injectDBCtx ()
 export class Post extends Component<PostProps, { articleBody: string }> {
 
+  static restartPlugins ( name: string ): void {
+    initCodePlugin ();
+    initLinkPlugin ( { postLinkEmitter: ( info: string ) => `${ __portal_to_v1__ }#/post/${ info }` } );
+    initTablePlugin ();
+    initDesignPlugin ();
+    initFigurePlugin ();
+    void initHistoryPlugin ( { historyKey: name } );
+  }
+
   constructor ( props: PostProps ) {
     super ( props );
 
@@ -30,32 +39,25 @@ export class Post extends Component<PostProps, { articleBody: string }> {
   componentDidMount (): void {
     const { match: { params: { name } }, db: { db: { conf, metas } } } = this.props;
 
-    void fetchPost ( name, conf, metas ).then ( this.onPostFetched.bind ( this, name ) );
+    void prefetchStyles ( name, conf, metas ).then ( this.fetchPost.bind ( this, name ) );
   }
 
   componentDidUpdate ( prevProps: PostProps ): void {
     const { match: { params: { name } }, db: { db: { conf, metas } } } = this.props;
 
     if ( name !== prevProps.match.params.name || conf !== prevProps.db.db.conf || metas !== prevProps.db.db.metas ) {
-      void fetchPost ( name, conf, metas ).then ( this.onPostFetched.bind ( this, name ) );
+      void prefetchStyles ( name, conf, metas ).then ( this.fetchPost.bind ( this, name ) );
     }
   }
 
-  private async onPostFetched ( name: string, sucess: boolean ) {
-    if ( !sucess ) return;
+  private async fetchPost ( name: string, success: boolean ) {
+    if ( !success ) return;
 
     this.setState ( {
       articleBody: await ( await fetch (
         `${ __conf__.__posts_root__ }${ name }.html?var=${ Date.now () }`
       ) ).text () },
-      () => {
-        initCodePlugin ();
-        initLinkPlugin ( { postLinkEmitter: ( info: string ) => `${ __portal_to_v1__ }#/post/${ info }` } );
-        initTablePlugin ();
-        initDesignPlugin ();
-        initFigurePlugin ();
-        void initHistoryPlugin ( { historyKey: name } );
-      }
+      Post.restartPlugins.bind ( null, name )
     );
   }
 
