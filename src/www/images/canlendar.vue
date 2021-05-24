@@ -1,8 +1,8 @@
 <template>
   <svg class="icon" viewBox="0 0 1024 1024" width="256" height="256">
     <path
+      class="outline"
       d="M740.571429 274.285714c0 5.028571-4.114286 9.142857-9.142858 9.142857h-64c-5.028571 0-9.142857-4.114286-9.142857-9.142857v-54.857143H365.714286v54.857143c0 5.028571-4.114286 9.142857-9.142857 9.142857h-64c-5.028571 0-9.142857-4.114286-9.142858-9.142857v-54.857143H137.142857v155.428572h749.714286V219.428571H740.571429v54.857143z"
-      fill="#D9D9D9"
     ></path>
     <path
       class="outline"
@@ -12,10 +12,5 @@
 </template>
 
 <style lang="stylus" scoped>
-.explorer path
-  fill: var(--btn-base-theme-color)
-.explorer:hover path.outline
-  fill: var(--btn-hover-theme-color)
-.explorer:active path.outline
-  fill: var(--btn-active-theme-color)
+@import './styl/bar.styl';
 </style>

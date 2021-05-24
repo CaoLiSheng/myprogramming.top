@@ -1,11 +1,17 @@
 <template lang="pug">
 .r.bar
-  .home.icon-wrapper(title="首页", :style="iconStyle", @click="goToHomePage")
+  .home.icon-wrapper(
+    title="首页",
+    :style="iconStyle",
+    @click="$event.preventDefault()",
+    @mouseleave="inDevPopupVisibility = false",
+    @mouseover="showPopup"
+  )
     HomeIcon
   router-link.explorer.icon-wrapper(
     title="浏览全部",
     :style="iconStyle",
-    :to="{ name: 'AllComponent', params: { query: '*' } }"
+    :to="{ name: 'ListComponent', params: { query: '*' } }"
   )
     AllIcon
   router-link.explorer.icon-wrapper(
@@ -14,6 +20,14 @@
     :to="{ name: 'TagsComponent', params: { query: '*' } }"
   )
     TagsIcon
+  .in-dev.icon-wrapper(
+    title="按日历浏览",
+    :style="iconStyle",
+    @click="$event.preventDefault()",
+    @mouseleave="inDevPopupVisibility = false",
+    @mouseover="showPopup"
+  )
+    CanlendarIcon
   .fn-btn.icon-wrapper(title="切换主题", :style="iconStyle", @click="changeTheme")
     ThemeIcon
   .fn-btn.icon-wrapper(
@@ -24,22 +38,12 @@
   )
     DraftsShowIcon(v-if="ui.readerLevelGranted")
     DraftsHideIcon(v-if="!ui.readerLevelGranted")
-  //- router-link.explorer(
-  //-   title="按日历浏览",
-  //-   :to="{ name: 'CanlendarComponent', params: { year: '*', month: '*', day: '*', page: 1 } }"
-  //- )
-  //-   .hoverable.icon-wrapper(
-  //-     @mouseover="showPopup",
-  //-     @mouseleave="inDevPopupVisibility = false",
-  //-     @click="$event.preventDefault()"
-  //-   )
-  //-     CanlendarIcon
-  //- portal(to="in-dev-portal")
-  //-   .in-dev-popup(
-  //-     v-show="inDevPopupVisibility",
-  //-     :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
-  //-   )
-  //-     .content 开发中...
+  portal(name="in-dev-portal")
+    .in-dev-popup(
+      v-show="inDevPopupVisibility",
+      :style="{ bottom: popupBottom + 'px', left: popupLeft + 'px' }"
+    )
+      .content 开发中...
 </template>
 
 <script lang="ts">
@@ -52,8 +56,8 @@ import HomeIcon from "@images/home.vue";
 import TagsIcon from "@images/tags.vue";
 import ThemeIcon from "@images/theme.vue";
 import { ui } from "@vStores/index";
-import { EmptyOffset, HTMLElementOffset, getOffset } from "@www/utils/offset";
-import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
+import { EmptyOffset, HTMLElementOffset, getOffset } from "@utils/dom";
+import computeIconStyle, { iconSizeCfg1 } from "@v2/utils/sizeCfg";
 import localforage from "localforage";
 import Vue from "vue";
 import Component from "vue-class-component";
@@ -78,9 +82,7 @@ export default class BarComponent extends Vue {
   iconStyle = computeIconStyle ( iconSizeCfg1 );
 
   inDevPopupVisibility = false;
-
   popupBottom = 0;
-
   popupLeft = 0;
 
   ui = ui.state;
@@ -91,17 +93,14 @@ export default class BarComponent extends Vue {
   }
 
   showPopup ( ev: MouseEvent ): void {
+    // debugger;
     let offset: HTMLElementOffset = EmptyOffset;
     if ( ev.target instanceof HTMLElement ) {
       offset = getOffset ( ev.target );
     }
-    this.$data.popupBottom = window.innerHeight - offset.top + 10;
-    this.$data.popupLeft = offset.left + offset.width / 2;
-    this.$data.inDevPopupVisibility = true;
-  }
-
-  goToHomePage (): void {
-    window.location.href = `index.html${ window.location.hash }`;
+    this.popupBottom = window.innerHeight - offset.top + 10;
+    this.popupLeft = offset.left + offset.width / 2;
+    this.inDevPopupVisibility = true;
   }
 
   changeTheme (): void {
@@ -121,7 +120,7 @@ export default class BarComponent extends Vue {
 
 <style lang="stylus" scoped>
 .bar
-  .home, .explorer
+  .home, .in-dev, .explorer
     float: left;
   .fn-btn
     float: right;
@@ -144,7 +143,8 @@ export default class BarComponent extends Vue {
   pointer-events: none;
   font-size: 0.18rem;
   position: fixed;
-  transform: translateX(-50%);
+  transform-origin: 50% 100% 0;
+  transform: translateX(-50%) rotateZ(30deg);
   background: var(--btn-background-theme-color);
   color: var(--btn-foreground-theme-color);
   width: 5em;

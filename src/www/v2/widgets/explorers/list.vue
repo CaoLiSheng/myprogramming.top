@@ -26,7 +26,7 @@ import Component from "vue-class-component";
     "search-field" : searchfield,
   },
 } )
-export default class AllComponent extends Vue.extend ( {
+export default class ListComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
   db = db.state;
@@ -57,9 +57,9 @@ export default class AllComponent extends Vue.extend ( {
         this.refresh = true;
 
         const curR = this.$router.currentRoute;
-        if ( curR.name === "AllComponent" && curR.params["query"] === query )
+        if ( curR.name === "ListComponent" && curR.params["query"] === query )
           return;
-        void this.$router.replace ( { name: "AllComponent", params: { query: query as string } } );
+        void this.$router.replace ( { name: "ListComponent", params: { query: query as string } } );
       },
       800
     );

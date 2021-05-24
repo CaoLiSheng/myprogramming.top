@@ -1,31 +1,43 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const IndexComponent = () => import ( /* webpackChunkName: 'IndexComponent' */ '@vWidgets/index.vue' );
-
-const AllComponent = () => import ( /* webpackChunkName: 'AllComponent' */ '@vWidgets/explorers/all.vue' );
-
-const TagsComponent = () => import ( /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue' );
+const PostComponent = () => import ( /* webpackChunkName: 'PostComponent' */ '@vWidgets/post.vue' );
 
 const StatusComponent = () => import ( /* webpackChunkName: 'StatusComponent' */ '@vWidgets/status.vue' );
 
+const IndexComponent = () => import ( /* webpackChunkName: 'IndexComponent' */ '@vWidgets/index.vue' );
+
+const ListComponent = () => import ( /* webpackChunkName: 'ListComponent' */ '@vWidgets/explorers/list.vue' );
+
+const TagsComponent = () => import ( /* webpackChunkName: 'TagsComponent' */ '@vWidgets/explorers/tags.vue' );
+
 const routes = [
   {
-    path     : '/',
+    path    : '/',
+    redirect: { name: 'IndexComponent', params: { post: '=' } },
+  },
+  {
+    path     : '/:post/',
+    name     : 'IndexComponent',
     component: IndexComponent,
+    // props    : true,
     children : [
       {
         path    : '',
-        redirect: { name: 'AllComponent', params: { query: '*' } },
+        redirect: {
+          name  : 'ListComponent',
+          params: { query: '*', post: '=' },
+        },
       },
       {
-        path      : 'all/:query',
-        name      : 'AllComponent',
+        path      : 'list/:query',
+        name      : 'ListComponent',
         components: {
-          default: AllComponent,
+          default: ListComponent,
           status : StatusComponent,
+          post   : PostComponent,
         },
-        props: { default: true, status: false },
+        props: { default: true, status: false, post: true },
       },
       {
         path      : 'tags/:query',
@@ -33,8 +45,9 @@ const routes = [
         components: {
           default: TagsComponent,
           status : StatusComponent,
+          post   : PostComponent,
         },
-        props: { default: true, status: true },
+        props: { default: true, status: true, post: true },
       },
     ],
   },
@@ -63,6 +76,6 @@ export function clickOnTag ( tag: string, router: Router ): void {
 
   void router.replace ( {
     name  : 'TagsComponent',
-    params: { query: newQuery },
+    params: { query: newQuery, post: router.currentRoute.params.post },
   } );
 }

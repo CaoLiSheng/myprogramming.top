@@ -1,17 +1,17 @@
-// import '@audios/click';
-import '@tpl/v2/index';
-import '@sprites/ring';
-import '@www/plugins/print';
-import '@www/utils/vh100';
-import '@www/utils/rem';
+import '@utils/design';
+import '@plugins/sprites/ring';
+import '@plugins/knock';
+import '@plugins/hotkeys';
+import '@plugins/print';
+import '@plugins/history';
 
 import Vue from 'vue';
-
 // import PortalVue from 'portal-vue';
+
 import App from './app.vue';
 import router from './router';
 
-// Vue.use(PortalVue);
+// Vue.use ( PortalVue );
 
 new Vue ( {
   el    : '#app',

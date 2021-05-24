@@ -23,13 +23,14 @@
 import GateIcon from "@images/gate.vue";
 import TagIcon from "@images/tag-small.vue";
 import { db, initOnce, ui } from "@vStores/index";
-import { isMobileSize } from "@www/utils/rem";
-import computeIconStyle, { SizeCfg, iconSizeCfg1 } from "@www/v2/utils/sizeCfg";
+import { isMobileSize } from "@utils/design";
+import computeIconStyle, { iconSizeCfg1 } from "@v2/utils/sizeCfg";
 import Vue from "vue";
 import Component from "vue-class-component";
 
 import { clickOnTag } from "../router";
 
+// 十万阿难儿，苦海无涯诶，回头是岸诶～～～仁字辈除外！
 declare let __portal_to_v1__: string;
 
 const __HomePageIndicators = new Set ( [

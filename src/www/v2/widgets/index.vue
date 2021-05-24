@@ -1,7 +1,7 @@
 <template lang="pug">
 .r
   .row-wrapper
-    #main(v-once, v-html="article")
+    router-view(name="post")
     #side(:class="{ hidden: !ui.menuOpened, visible: ui.menuVisible }")
       router-view
   .row-wrapper
@@ -14,35 +14,17 @@
 <script lang="ts">
 
 import { ui } from "@vStores/index";
-import extendCodes from "@www/utils/code";
-import extendFigures from "@www/utils/figure";
-import extendHistory from "@www/utils/history";
-import extendLinks from "@www/utils/links";
-import extendMDVW from "@www/utils/mdvw100";
-import extendTables from "@www/utils/table";
 import Vue from "vue";
 import Component from "vue-class-component";
-
-declare let ARTICLE: string;
 
 const BarComponent = () =>
   import ( /* webpackChunkName: 'BarComponent' */ "@vWidgets/bar.vue" );
 
 @Component ( { components: { Bar: BarComponent } } )
 export default class IndexComponent extends Vue {
-  article = ARTICLE;
-
   ui = ui.state;
-
-  mounted (): void {
-    extendMDVW ( document.querySelector ( "#main>.markdown-body" ) as HTMLElement );
-    extendCodes ();
-    extendLinks ();
-    extendTables ();
-    extendFigures ();
-    void extendHistory ();
-  }
 }
+
 </script>
 
 <style lang="stylus" scoped>
@@ -90,10 +72,4 @@ export default class IndexComponent extends Vue {
     flex: 1;
     height: 100%;
     background: var(--theme-color);
-  #main
-    overflow: auto;
-    position: relative;
-    -webkit-user-select: text;
-    user-select: text;
-    background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
 </style>

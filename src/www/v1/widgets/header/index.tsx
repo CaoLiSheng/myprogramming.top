@@ -1,7 +1,7 @@
 import './index.scss';
 
-// import { GateIcon, MenuIcon } from '@images/index';
-import { MenuIcon } from '@images/index';
+import { FuZhouIcon, MenuIcon } from '@images/index';
+// import { MenuIcon } from '@images/index';
 import { clickIn } from '@utils/dom';
 import classNames from 'classnames';
 import React, {
@@ -18,10 +18,10 @@ import {
 } from 'react-router-dom';
 
 import Category from './category';
-// import GoToV2 from './goToV2';
+import GoToV2 from './goToV2';
 import Pager from './pager';
 
-// declare let __portal_to_v2__: string;
+declare let __portal_to_v1__: string;
 
 interface HeaderStates {
   menuExpanded: boolean;
@@ -114,21 +114,21 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
     return (
       <div className="title-bar">
         <nav>
-          {/* <Switch>
+          <Switch>
             <Route path="/post/:name" component={ GoToV2 } />
             <Route
               path="*"
               component={ () => (
                 <a
-                  className="icon pc"
+                  className="flag icon pc"
                   title="去新版网站"
-                  href={ __portal_to_v2__ }
+                  href={ __portal_to_v1__ }
                 >
-                  <GateIcon />
+                  <FuZhouIcon />
                 </a>
               ) }
             />
-          </Switch> */}
+          </Switch>
           <Switch>
             <Route path="/post/:name" component={ Category } />
             <Route

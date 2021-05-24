@@ -1,4 +1,4 @@
-import { isMobileSize } from '@www/utils/rem';
+import { isMobileSize } from '@utils/design';
 
 const __UNIT__ = 'rem';
 
@@ -18,4 +18,4 @@ export default function calc ( cfg: SizeCfg ): IconStyle {
   };
 }
 
-export const iconSizeCfg1 = [ 0.5, 1, 0.25, 0.5 ];
+export const iconSizeCfg1: SizeCfg = [ 0.5, 1, 0.25, 0.5 ];

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 
-import { clickOnTag } from "@www/v2/router";
+import { clickOnTag } from "@v2/router";
 import Vue from "vue";
 import Component from "vue-class-component";
 
