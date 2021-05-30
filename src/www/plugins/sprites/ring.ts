@@ -17,6 +17,7 @@ function initSprite ( player: HTMLCanvasElement ) {
     + 'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgb(205, 205, 255) 60%, rgb(30, 30, 255) 61%, rgba(0, 0, 255, 0.8) 75%, rgba(255, 255, 255, 0) 100%)';
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
+  player.style.zIndex = '9999';
 
   // Animation
   injectStyleSheetRules ( `
@@ -27,7 +28,7 @@ function initSprite ( player: HTMLCanvasElement ) {
         }
 
         30% {
-            opacity: 1;
+            opacity: 0.999;
         }
 
         90% {

@@ -1,8 +1,7 @@
 import './index.scss';
 
 import { Popup } from '@rWidgets/index';
-import { Binder } from '@v1/utils/KeyBinder';
-import React, { Component, ElementType, ReactElement } from 'react';
+import React, { ElementType, ReactElement } from 'react';
 
 interface USearchProps {
   Icon: ElementType;
@@ -14,31 +13,10 @@ interface USearchProps {
   };
 }
 
-export class USearch extends Component<USearchProps> {
-
-  private bindToggle = this.toggle.bind ( this );
-
-  private bindHotKeys = Binder.bindDoubleSpaceKey.bind ( Binder, this.bindToggle );
-
-  componentDidMount (): void {
-    window.addEventListener ( 'keypress', this.bindHotKeys, false );
-  }
-
-  componentWillUnmount (): void {
-    window.removeEventListener ( 'keypress', this.bindHotKeys );
-  }
-
-  private toggle (): void {
-    
-  }
-
-  render (): ReactElement {
-    const { Icon, positionStyleObj } = this.props;
-
-    return (
+export const USearch = ( { Icon, positionStyleObj }: USearchProps ): ReactElement => (
       <Popup
         position="top-right"
-        actions={[ "click" ]}
+        actions={[ "click", { keypress: "double-space", global: true } ]}
         Trigger={ (
           <div
             className="usearch-icon"
@@ -54,5 +32,3 @@ export class USearch extends Component<USearchProps> {
         ) }
       />   
     );
-  }
-}

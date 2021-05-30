@@ -48,8 +48,7 @@ export interface Row {
 }
 
 function nonRecordable ( name: string ): boolean {
-  if ( name === 'index' ) return true;
-  if ( __production__ && name.startsWith ( 'hidden-' ) ) return true;
+  if ( __production__ && name.startsWith ( '=' ) ) return true;
   return false;
 }
 
@@ -76,7 +75,7 @@ export class DB {
   }: Row ): PublicMeta {
     if ( this.postMetas[name] ) throw new Error ( `POST重复了 ${ name }` );
 
-    const top = name.startsWith ( 'hidden-' );
+    const top = name.startsWith ( '=' );
 
     // Parse private Metadata
     this.postMetas[name] = { date: Moment ( top ? '2121-12-12 11:11:11.111' : date ) };

@@ -1,6 +1,7 @@
 import './index.scss';
 
 import { __conf__ } from '@utils/conf';
+import { Binder } from '@v1/utils/KeyBinder';
 import { HTMLElementOffset, getOffset } from '@utils/dom';
 import React, {
   Component,
@@ -109,15 +110,29 @@ const position = ( pos: Pos, offset: HTMLElementOffset ) => {
   return posImpl ( modes, offset );
 };
 
-type SupportedAction =
-  | 'hover'
-  | 'click';
+type ActionKey = 'hover' | 'click';
+type ActionCfg = { keypress: string, global?: boolean };
 
-interface Actions {
-  [key: string]: () => void;
+type SupportedAction =
+  | ActionKey
+  | ActionCfg;
+
+const extractKey = ( action: SupportedAction ) => {
+  if ( typeof action === 'string' ) {
+    return action;
+  }
+  const keys = Object.keys ( action );
+  return keys.length > 0 ? keys[0] : '';
 }
 
-type ActionConf = Map<SupportedAction, Actions>;
+type KeyBinderConf = Map<string, ( ( evt: KeyboardEvent ) => void )>;
+
+interface Actions {
+  [key: string]: ( evt: Event ) => void;
+}
+
+type ActionsCfg = Actions | ( ( cfg: ActionCfg ) => Actions );
+type ActionConf = Map<string, ActionsCfg>;
 
 interface PopupProps {
   position: Pos;
@@ -128,6 +143,8 @@ interface PopupProps {
 
 interface PopupStates {
   open: boolean;
+  activeActions: Actions;
+  globalActions: Actions;
 }
 
 export class Popup extends Component<PopupProps, PopupStates> {
@@ -138,13 +155,21 @@ export class Popup extends Component<PopupProps, PopupStates> {
 
   private actionConf: ActionConf = new Map ();
 
+  private keyBinderConf: KeyBinderConf = new Map ();
+
   constructor ( props: PopupProps ) {
     super ( props );
 
-    this.state = { open: false };
+    this.state = { open: false, activeActions: {}, globalActions: {} };
     
     this.el = document.createElement ( 'div' );
     this.el.classList.add ( 'popup' );
+
+    this.keyBinderConf.set ( 'double-space',
+      Binder.bindDoubleSpaceKey.bind ( Binder,
+        () => this.setState ( ( { open } ) => ( { open: !open } ) )
+      )
+    );
 
     this.actionConf.set ( 'hover', {
       onMouseEnter: () => this.setState ( { open: true } ),
@@ -153,14 +178,52 @@ export class Popup extends Component<PopupProps, PopupStates> {
     this.actionConf.set ( 'click', {
       onClick: () => this.setState ( ( { open } ) => ( { open: !open } ) ),
     } );
+    this.actionConf.set ( 'keypress', ( cfg: ActionCfg ) => ( {
+      keypress: ( evt: Event ) => {
+        const binder = this.keyBinderConf.get ( cfg.keypress );
+        if ( binder ) {
+          binder ( evt as KeyboardEvent );
+        }
+      },
+    } ) );
   }
 
   componentDidMount (): void {
     __conf__.__popups_container__.append ( this.el );
+
+    const { actions } = this.props;
+
+    const activeActions: Actions = {};
+    const globalActions: Actions = {};
+    for ( const action of actions ) {
+      let evtConf = this.actionConf.get ( extractKey ( action ) );
+      if ( typeof evtConf === 'function' ) {
+        evtConf = evtConf ( action as ActionCfg );
+      }
+
+      if ( evtConf ) {
+        const targetActions: Actions = typeof action === 'object' && action.global ? globalActions : activeActions;
+
+        for ( const [ evtName, evtHandler ] of Object.entries ( evtConf ) ) {
+          targetActions[evtName] = evtHandler;
+        }
+      }
+    }
+
+    this.setState ( { activeActions, globalActions }, () => {
+      for ( const [ evtName, evtHandler ] of Object.entries ( globalActions ) ) {
+        window.addEventListener ( evtName,  evtHandler, false );
+      }
+    } );
   }
 
   componentWillUnmount (): void {
     this.el.remove ();
+
+    const { globalActions } = this.state;
+    for ( const [ evtName, evtHandler ] of Object.entries ( globalActions ) ) {
+      window.removeEventListener ( evtName,  evtHandler );
+    }
   }
 
   private renderPopper ( activeActions: Actions ) {
@@ -206,17 +269,8 @@ export class Popup extends Component<PopupProps, PopupStates> {
   }
 
   render (): ReactElement {
-    const { Trigger, actions } = this.props;
-
-    const activeActions: Actions = {};
-    for ( const action of actions ) {
-      const evtConf = this.actionConf.get ( action );
-      if ( evtConf ) {
-        for ( const [ evtName, evtHandler ] of Object.entries ( evtConf ) ) {
-          activeActions[evtName] = evtHandler;
-        }
-      }
-    }
+    const { Trigger } = this.props;
+    const { activeActions } = this.state;
 
     return (
       <>

@@ -2,6 +2,7 @@ class KeyBinder {
     private lastSpaceKeyHit = 0;
 
     public bindDoubleSpaceKey ( callback: () => void, ev: KeyboardEvent ): void {
+
         if ( ev.key !== ' ' ) {
             this.lastSpaceKeyHit = 0;
             return;

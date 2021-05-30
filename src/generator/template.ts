@@ -91,9 +91,9 @@ export const tplContent = fs.readFileSync ( tplPath, { encoding: 'UTF-8' } );
 
 // titleTag
 export function titleTag ( fileName: string ): string {
-  if ( fileName.startsWith ( 'index.' ) ) return '首页';
-  if ( fileName.startsWith ( 'private-' ) ) return '隐私';
+  if ( fileName.startsWith ( '=' ) ) return '⌖';
   if ( fileName.startsWith ( 'draft-' ) ) return '草稿';
+  if ( fileName.startsWith ( 'private-' ) ) return '隐私';
   return '';
 }
 

@@ -27,12 +27,12 @@
     "lint:ts": "tsc --noEmit",
     "test:markdown-it": "yarn util:build -c markdown-it",
     "usage:webpack-dev-server": "webpack-dev-server -h",
+    "util:http": "func() { if [ -z $(lsof -t -i:$1) ]; then serve -C -l $1 $2; fi; }; func",
     "util:dev-server": "func() { webpack-dev-server --config=cfg/webpack/$1.js; }; func",
     "util:katexFonts": "zsh ./src/scripts/katexFonts.zsh",
     "util:format": "zsh ./src/scripts/format.zsh",
     "util:build": "zsh ./src/scripts/build.zsh",
-    "util:new": "zsh ./src/scripts/newPost.zsh",
-    "util:http": "func() { if [ -z $(lsof -t -i:$1) ]; then serve -C -l $1 $2; fi; }; func"
+    "util:new": "zsh ./src/scripts/newPost.zsh"
   },
   "husky": {
     "hooks": {

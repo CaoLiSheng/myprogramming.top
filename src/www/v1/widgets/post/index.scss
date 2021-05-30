@@ -8,10 +8,6 @@
   height: calc(100vh - 0.5rem);
   padding: 0.382rem 1rem;
   overflow: auto;
-  background-image: url(~@images/bg-page.jpg);
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-size: 100vw 100vh;
 
   .markdown-body {
     border: solid 1px gray;
