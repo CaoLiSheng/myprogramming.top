@@ -6,7 +6,7 @@ const v1 = require ( './base.site.v1' );
 
 module.exports = merge ( prod, v1, {
   output: {
-    path: path.join ( process.cwd (), 'public', 'v1' ),
+    path: path.join ( process.cwd (), 'docs', 'v1' ),
   },
   module: {
     rules: [ require ( './rules/babel.loader' ) ( { react: true } ) ],

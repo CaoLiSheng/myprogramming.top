@@ -7,7 +7,7 @@ const v2 = require ( './base.site.v2' );
 
 module.exports = merge ( prod, v2, {
   output: {
-    path: path.join ( process.cwd (), 'public', 'v2' ),
+    path: path.join ( process.cwd (), 'docs', 'v2' ),
   },
   plugins: [],
 } );
