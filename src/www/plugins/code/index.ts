@@ -6,7 +6,7 @@ import { injectJavaScripts, injectStyleSheetLinks } from "@utils/dom";
 
 declare let __resource_dir__: string;
 
-const codePrettyDir = `${ __resource_dir__ }.reserved/pretty-code/`;
+const codePrettyDir = `${ __resource_dir__ }reserved/pretty-code/`;
 const cssFileName = 'prettify.css';
 const jsFileName = 'prettify.js';
 

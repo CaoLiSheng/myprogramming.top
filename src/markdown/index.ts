@@ -29,9 +29,9 @@ export async function prefetchStyles ( name: string, conf: MdConf, metas: { [key
   const requiredStyles = [ ...conf[baseStyle] ];
   await injectStyleSheetLinks (
     ...requiredStyles.map (
-       ( common: string ) => `${ __resource_dir__ }.reserved/styles/common/${ common }.css`
+       ( common: string ) => `${ __resource_dir__ }reserved/styles/common/${ common }.css`
     ),
-    `${ __resource_dir__ }.reserved/styles/themes/${ baseStyle }.css`
+    `${ __resource_dir__ }reserved/styles/themes/${ baseStyle }.css`
   );
   return true;
 }
