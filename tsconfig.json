@@ -17,9 +17,12 @@
       "@vWidgets/*": ["src/www/v2/widgets/*"]
     },
     "outDir": "dist",
-    "module": "esnext",
-    "target": "es2015",
-    "lib": ["es6", "dom"],
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "typeRoots": ["node_modules/@types"],
     "sourceMap": true,
     "allowJs": true,
@@ -36,6 +39,12 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   },
   "exclude": ["node_modules", "placeholder", "public", "build", "posts", "dist"]
 }

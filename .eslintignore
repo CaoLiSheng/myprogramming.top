@@ -1,8 +1,8 @@
 node_modules/**
-public/**
 build/**
 posts/**
 dist/**
+docs/**
 .*/**
 *.log
 
