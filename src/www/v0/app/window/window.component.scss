@@ -1,0 +1,34 @@
+.window[role="window"] {
+  position: fixed;
+  z-index: 999999;
+  border: solid 1px black;
+  font-size: 0;
+
+  .title {
+    border-bottom: solid 1px black;
+    background-color: white;
+    font-size: 16px;
+    line-height: 2em;
+    user-select: none;
+
+    &:hover {
+      background-color: wheat;
+    }
+  }
+
+  iframe {
+    width: 1440px;
+    height: 800px;
+    border: none;
+  }
+
+  .mask {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.01;
+    background-color: black;
+  }
+}

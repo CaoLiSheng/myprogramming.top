@@ -1,0 +1,5 @@
+<div class="window" role="window" [style.top.px]="y" [style.left.px]="x">
+    <div class="title" (mousedown)="onDragStart($event)">{{ title }}</div>
+    <iframe src="https://www.myprogramming.top/v2/"></iframe>
+    <div class="mask" [style.display]="maskStyle"></div>
+</div>
