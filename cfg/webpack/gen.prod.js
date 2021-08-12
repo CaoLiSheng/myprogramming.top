@@ -11,9 +11,6 @@ module.exports = merge ( prod, gen, {
     filename: '[name].min.js',
   },
   plugins: [
-    new webpack.DefinePlugin ( {
-      __production__  : JSON.stringify ( true ),
-      __resource_dir__: JSON.stringify ( '../resources/' ),
-    } ),
+    require ( './vars/gen.prod' ),
   ],
 } );

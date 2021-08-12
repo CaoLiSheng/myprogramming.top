@@ -11,9 +11,6 @@ module.exports = merge ( dev, gen, {
     filename: '[name].js',
   },
   plugins: [
-    new webpack.DefinePlugin ( {
-      __production__  : JSON.stringify ( false ),
-      __resource_dir__: JSON.stringify ( 'http://127.0.0.1:60000/' ),
-    } ),
+    require ( './vars/gen.dev' ),
   ],
 } );

@@ -11,4 +11,5 @@ module.exports = merge ( prod, v1, {
   module: {
     rules: [ require ( './rules/babel.loader' ) ( { react: true } ) ],
   },
+  plugins: [],
 } );

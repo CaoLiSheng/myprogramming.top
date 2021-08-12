@@ -38,7 +38,6 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   }
 
   componentDidMount (): void {
-    window.top.addEventListener ( 'message', this.receiveMessage, false );
     document.body.addEventListener ( 'click', this.toClose );
   }
 
@@ -53,7 +52,6 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
   }
 
   componentWillUnmount (): void {
-    window.top.removeEventListener ( 'message', this.receiveMessage );
     document.body.removeEventListener ( 'click', this.toClose );
   }
 
@@ -63,12 +61,6 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
       this.toggleElem.current,
     );
     if ( !clickedIn ) {
-      this.setState ( { menuExpanded: false } );
-    }
-  };
-
-  private receiveMessage = ( event: MessageEvent ) => {
-    if ( event.data === 'iframe.detail clicked' ) {
       this.setState ( { menuExpanded: false } );
     }
   };
