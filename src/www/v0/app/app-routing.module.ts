@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { WindowComponent } from './window/window.component';
+import { WinManagerComponent } from './winmanager/winmanager.component';
 
 const routes: Routes = [
-  { path: '', component: WindowComponent },
+  { path: '', component: WinManagerComponent },
 ];
 
 @NgModule ( {

@@ -1,5 +1,8 @@
 <div class="window" role="window" [style.top.px]="y" [style.left.px]="x">
-    <div class="title" (mousedown)="onDragStart($event)">{{ title }}</div>
-    <iframe src="https://www.myprogramming.top/v2/"></iframe>
+    <div class="title" (mousedown)="onDragStart($event)">
+        <span>{{ title }}</span>
+        <button>Close</button>
+    </div>
+    <iframe [src]="src"></iframe>
     <div class="mask" [style.display]="maskStyle"></div>
 </div>

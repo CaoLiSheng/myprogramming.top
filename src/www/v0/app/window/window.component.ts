@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component ( {
   selector   : 'app-window',
@@ -16,7 +17,9 @@ export class WindowComponent implements OnInit, OnDestroy {
 
   dragStartY = 0;
   
-  title = '';
+  @Input () title = '';
+
+  @Input () src: SafeResourceUrl | null = null;
 
   x = 100;
 
@@ -28,11 +31,9 @@ export class WindowComponent implements OnInit, OnDestroy {
 
   onDragEndEventHandler : ( () => void ) | null = null;
 
-  // constructor () { }
+  // constructor ( ) { }
 
   ngOnInit (): void {
-    this.title = 'window works!';
-
     this.onDragEventHandler = this.onDrag.bind ( this );
     document.addEventListener ( 'mousemove', this.onDragEventHandler, false );
 
