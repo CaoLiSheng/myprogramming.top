@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WinmanagerComponent } from './winmanager.component';
+import { WinManagerComponent } from './winmanager.component';
 
-describe ( 'WinmanagerComponent', () => {
-  let component: WinmanagerComponent;
-  let fixture: ComponentFixture<WinmanagerComponent>;
+describe ( 'WinManagerComponent', () => {
+  let component: WinManagerComponent;
+  let fixture: ComponentFixture<WinManagerComponent>;
 
   beforeEach ( async () => {
     await TestBed.configureTestingModule ( {
-      declarations: [ WinmanagerComponent ]
+      declarations: [ WinManagerComponent ]
     } )
     .compileComponents ();
   } );
 
   beforeEach ( () => {
-    fixture = TestBed.createComponent ( WinmanagerComponent );
+    fixture = TestBed.createComponent ( WinManagerComponent );
     component = fixture.componentInstance;
     fixture.detectChanges ();
   } );

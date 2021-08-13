@@ -1,5 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
+
+import { WindowDatum } from '../../interfaces/window.datum';
 
 @Component ( {
   selector   : 'app-window',
@@ -7,6 +9,19 @@ import { SafeResourceUrl } from '@angular/platform-browser';
   styleUrls  : [ './window.component.scss' ]
 } )
 export class WindowComponent implements OnInit, OnDestroy {
+  
+  @Output () close = new EventEmitter<void> ();
+
+  @Output () focus = new EventEmitter<void> ();
+  
+  @Input () datum?: WindowDatum;
+
+  @Input () zIndex?: number;
+
+  src?: SafeResourceUrl;
+
+  title?: string;
+
   dragging = false;
 
   dragClientX = 0;
@@ -16,10 +31,6 @@ export class WindowComponent implements OnInit, OnDestroy {
   dragStartX = 0;
 
   dragStartY = 0;
-  
-  @Input () title = '';
-
-  @Input () src: SafeResourceUrl | null = null;
 
   x = 100;
 
@@ -34,6 +45,10 @@ export class WindowComponent implements OnInit, OnDestroy {
   // constructor ( ) { }
 
   ngOnInit (): void {
+    this.src = this.datum?.src;
+    this.title = this.datum?.title;
+    // this.zIndex = this.datum?.front ? 1 : 0;
+
     this.onDragEventHandler = this.onDrag.bind ( this );
     document.addEventListener ( 'mousemove', this.onDragEventHandler, false );
 
@@ -53,6 +68,14 @@ export class WindowComponent implements OnInit, OnDestroy {
     }
   }
 
+  // ngOnChanges ( changes: SimpleChanges ): void {
+  //   // if ( changes.datum.previousValue?.front !== changes.datum.currentValue?.front ) {
+  //     console.log ( 'on changes', changes.zIndex );
+    
+  //     this.zIndex = changes.datum.currentValue?.front ? 1 : 0;
+  //   // }
+  // }
+
   onDragStart ( e: MouseEvent ): void {
     this.dragging = true;
     this.maskStyle = 'block';
@@ -60,6 +83,7 @@ export class WindowComponent implements OnInit, OnDestroy {
     this.dragStartY = this.y;
     this.dragClientX = e.clientX;
     this.dragClientY = e.clientY;
+    this.focus.emit ();
     // console.log ( 'on drag start', this.dragStartX, this.dragStartY, this.dragClientX, this.dragClientY );
   }
 

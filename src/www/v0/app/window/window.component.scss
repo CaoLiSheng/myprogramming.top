@@ -25,7 +25,8 @@
     }
 
     button {
-      flex: 0;
+      flex-grow: 0;
+      flex-shrink: 0;
       margin-right: 16px;
     }
   }

@@ -1,1 +1,1 @@
-<app-window *ngFor="let window of windows" [src]="window.src" [title]="window.title"></app-window>
+<app-window *ngFor="let window of windows" [datum]="window" [zIndex]="window.zIndex" (close)="onClose(window)" (focus)="onFocus(window)"></app-window>
