@@ -15,8 +15,9 @@ export class WinManagerComponent implements OnInit {
   constructor ( private sanitizer: DomSanitizer ) { }
 
   ngOnInit (): void {
-    this.onOpen ( 'https://www.myprogramming.top/v1/', 'myprogramming.top|v1' );
-    this.onOpen ( 'https://www.myprogramming.top/v2/', 'myprogramming.top|v2' );
+    this.windows = [];
+    // this.onOpen ( 'https://www.myprogramming.top/v1/', 'myprogramming.top|v1' );
+    // this.onOpen ( 'https://www.myprogramming.top/v2/', 'myprogramming.top|v2' );
   }
 
   onOpen ( src: string, title: string ): void {
