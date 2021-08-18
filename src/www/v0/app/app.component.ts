@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls  : [ './app.component.scss' ]
 } )
 export class AppComponent {
-  title = 'app';
+  showApps = false;
+
+  user = 'app';
+
+  apps = [ 
+    { src: 'https://www.myprogramming.top/v1', title: 'Blog | v1' },
+    { src: 'https://www.myprogramming.top/v2', title: 'Blog | v2' },
+  ];
+
+  log ( app: { title: string } ): void {
+    this.user = app.title;
+  }
 }
