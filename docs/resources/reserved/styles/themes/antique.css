@@ -285,7 +285,6 @@ body[theme="Dark"] .markdown-body.antique {
 
 .markdown-body.antique code {
   display: inline-block;
-  padding: 0 0.5em;
   color: rgb(15, 124, 226);
   font-family: inherit;
   font-weight: 900;

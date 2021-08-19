@@ -23,7 +23,7 @@ module.exports = merge ( site, {
       template: path.join ( process.cwd (), 'src/www/v2/index.html' ),
       favicon : path.join ( process.cwd (), 'placeholder/favicon.ico' ),
       filename: './index.html',
-      title   : 'v2 | 又心真人的博客',
+      title   : 'v2 | 博客 of 焱升',
       chunks  : [ 'app' ],
       cache   : false,
     } ),

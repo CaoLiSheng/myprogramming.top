@@ -4,6 +4,7 @@
 
 .markdown-body h6.date-tag code {
   position: relative;
+  padding: 0 0.5em;
   border: solid 1px #a7a099;
   border-radius: 3px;
   background: var(--code-background-article-color);
