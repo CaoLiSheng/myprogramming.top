@@ -4,7 +4,13 @@
 
 .markdown-body h6.date-tag code {
   position: relative;
+  border: solid 1px #a7a099;
+  border-radius: 3px;
+  background: var(--code-background-article-color);
+  font-family: "Cascadia Code PL", "等距更纱黑体", monospace;
   font-size: 13px;
+  font-weight: normal;
+  text-shadow: none;
   cursor: default;
 }
 
@@ -16,14 +22,13 @@
   left: 0;
   height: 0.3em;
   transition: height 100ms ease-in-out;
-  opacity: 1;
-  background-color: blueviolet;
+  border-radius: 3px;
+  background-color: rgba(61, 43, 226, 0.671);
   pointer-events: none;
 }
 
 .markdown-body h6.date-tag code:hover::after {
   height: 100%;
-  opacity: 0.6;
 }
 
 @media print {

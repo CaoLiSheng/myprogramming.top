@@ -14,7 +14,7 @@ tags:
 
 ## Motivation vs. Benefits
 
-- `Motivation` &ndash; 简单三个字：被逼的。单线程是扛不住业务需求。
+- `Motivation` &ndash; Many applications can take advantage of multiple threads, including basic sorting, trees, and graph algorithms. In addition, programmers who must solve contemporary CPU-intensive problems in data mining, graphics, and artificial intelligence can leverage the power of modern multicore systems by designing solutions that run in parallel.
 - `Benefits`
   - `Responsiveness.` &ndash; Multithreading an interactive application may allow a program to continue running even if part of it is blocked or is performing a lengthy (time-consuming) operation, thereby increasing responsiveness to the user.
   - `Resource sharing.` &ndash; Processes can share resources only through techniques such as shared memory and message passing. Such techniques must be explicilty arranged by the programmer. However, threads share the memory and the resources of the process to which they belong by default. The benefits of sharing code and data is that it allows an application to have several different threads of activity within the same address space.
