@@ -287,8 +287,9 @@ body[theme="Dark"] .markdown-body.antique {
   display: inline-block;
   color: rgb(15, 124, 226);
   font-family: inherit;
+  font-size: 0.9em;
   font-weight: 900;
-  text-shadow: 1px 0 0 #2d62f5, 0 1px 0 #2d62f5, 1px 1px 0 #2d62f5;
+  text-shadow: 1px 0 1px #2d62f5, 0 1px 1px #2d62f5, 1px 1px 1px #2d62f5;
 }
 
 .markdown-body.antique pre.prettyprinted {
