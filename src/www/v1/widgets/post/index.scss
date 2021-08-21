@@ -5,14 +5,21 @@
 .detail {
   display: block;
   width: 100vw;
-  height: calc(100vh - 0.5rem);
+  // height: calc(100vh - 0.5rem);
   padding: 0.382rem 1rem;
-  overflow: auto;
+  // overflow: auto;
 
   .markdown-body {
     border: solid 1px gray;
     border-radius: 6px;
     box-shadow: 0 0 5px 0 gray;
+    -webkit-user-select: text;
+    user-select: text;
+
+    * {
+      -webkit-user-select: inherit;
+      user-select: inherit;
+    }
   }
 }
 
