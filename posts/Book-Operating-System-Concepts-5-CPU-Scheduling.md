@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Operating System Concepts》5
-date: 2021-04-28
+date: 2021-08-21
 tags:
   - 读书
   - 笔记
@@ -106,7 +106,11 @@ The value of $t_n$ contains our most recent information, while $\tau_n$ stores t
 
 The SJF algorithm can be either preemptive or nonpreemptive. The choice arises when a new process arrives at the ready queue while a previous process is still executing. The next CPU burst of the newly arrived process may be shorter then what is left of the currently executing process. A preemptive SJF algorithm will preempt the current executing process, whereas a nonpreemptive SJF algorithm will allow the current running process to finish it CPU burst. Preemptive SJF scheduling is sometimes called `shortest-remaining-time-first` scheduling.
 
-##
+## Round-Robin Scheduling
+
+The `round-robin (RR)` scheduling algorithm is similar to FCFS scheduling, but preemption is added to enable the system to switch between processes. A small unit of time, called a `time quantum` or `time slice`, is defined. A time quantum is generally from 10 to 100 milliseconds in length. The ready queue is treated as a circular queue. The CPU scheduler goes around the read queue, allocating the CPU to each process for a time interval of up to 1 time quantum.
+
+The average waiting time under the RR policy is often long. The performance of the RR algorithm depends heavily on the size of the time quantum. At one extreme, if the time quantum is extremely large, the RR policy is the same as the FCFS policy. In contrast, if the time quantum is extremely small (say, 1 millisecond), the RR approach can result in a large number of context switches. Thus, we want the time quantum to be large with respect to the context switch time, and it should not be too large. A rule of thumb is that 80 percent of the CPU bursts should be shorter than the time quantum.
 
 ## Another COPY of Summary in the Book
 
