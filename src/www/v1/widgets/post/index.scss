@@ -5,9 +5,9 @@
 .detail {
   display: block;
   width: 100vw;
-  // height: calc(100vh - 0.5rem);
+  height: calc(100vh - 0.5rem);
   padding: 0.382rem 1rem;
-  // overflow: auto;
+  overflow: auto;
 
   .markdown-body {
     border: solid 1px gray;

@@ -41,7 +41,7 @@
 .katex { font: normal 1.21em KaTeX_Main, Times New Roman, serif; line-height: 1.2; text-indent: 0; text-rendering: auto }
 .katex * { -ms-high-contrast-adjust: none !important; border-color: currentColor }
 .katex .katex-version::after { content: "0.13.2" }
-.katex .katex-mathml {position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); border: 0 }
+.katex .katex-mathml { display: none; position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); border: 0 }
 .katex .katex-html > .newline { display: block }
 .katex .base { position: relative; width: -webkit-min-content; width: -moz-min-content; width: min-content; white-space: nowrap }
 

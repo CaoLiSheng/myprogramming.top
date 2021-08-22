@@ -112,6 +112,16 @@ The `round-robin (RR)` scheduling algorithm is similar to FCFS scheduling, but p
 
 The average waiting time under the RR policy is often long. The performance of the RR algorithm depends heavily on the size of the time quantum. At one extreme, if the time quantum is extremely large, the RR policy is the same as the FCFS policy. In contrast, if the time quantum is extremely small (say, 1 millisecond), the RR approach can result in a large number of context switches. Thus, we want the time quantum to be large with respect to the context switch time, and it should not be too large. A rule of thumb is that 80 percent of the CPU bursts should be shorter than the time quantum.
 
+## Priority Scheduling
+
+The SJF algorithm is a special case of the general `priority-scheduling` algorithm. A priority is associated with each process, and the CPU is allocated to the process with the highest priority. Equal-priority processes are scheduled in FCFS order. An SJF algorithm is simply a priority alogrithm where the priority is the inverse of the (predicted) next CPU burst.
+
+Priority can be defined either internally or externally. Internally defined priorities use some measurable quantity or quantities to compute the priority of a process. For example, time limits, memory requirements, the number of open files, and the ratio of average I/O burst to average CPU burst have been used in computing priorities. External priorities are set by criteria outside the operating system, such as the importance of the process, the type and amount of funds being paid for computer use, the department sponsoring the work, and other, often political, factors.
+
+Priority scheduling can be either preemptive or nonpreemptive. When a process arrives at the ready queue, its priority is compared with the priority of the currently running process. A preemptive priority scheduling algorithm will preempt the CPU if the priority of the newly arrived process is higher than the priority of the currently running process. A nonpreemptive priority scheduling algorithm will simply put the new process at the head of the ready queue.
+
+A major problem with priority scheduling algorithms is `indefinite blocking`, or `starvation`. A process that is ready to run but waiting for the CPU can be considered blocked. A priority scheduling algorithm can leave some low-priority processes waiting indefinitely. A solution to the problem of indefinite blockage of low-priority processes is `aging`. Another option is to combine round-robin and priority scheduling in such a way that the system executes the highest-priority process and runs processes with the same priority using round-robin scheduling.
+
 ## Another COPY of Summary in the Book
 
 ## 笔记目录
