@@ -8,9 +8,9 @@
 
 <script lang="ts">
 
+import { clickOnLink } from "@v2/router";
 import Vue from "vue";
 import Component from "vue-class-component";
-import { clickOnLink } from "@v2/router";
 
 @Component
 export default class InsiteLink extends Vue.extend ( {
@@ -30,6 +30,7 @@ export default class InsiteLink extends Vue.extend ( {
   },
 } ) {
   init = true;
+
   running = true;
 
   get date (): string {

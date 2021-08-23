@@ -1,8 +1,8 @@
 import './index.scss';
 
 import { __conf__ } from '@utils/conf';
-import { Binder } from '@v1/utils/KeyBinder';
 import { HTMLElementOffset, getOffset } from '@utils/dom';
+import { Binder } from '@v1/utils/KeyBinder';
 import React, {
   Component,
   ReactElement,

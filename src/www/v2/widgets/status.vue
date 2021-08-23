@@ -22,9 +22,9 @@
 
 import GateIcon from "@images/gate.vue";
 import TagIcon from "@images/tag-small.vue";
-import { db, initOnce, ui } from "@vStores/index";
 import { isMobileSize } from "@utils/design";
 import computeIconStyle, { iconSizeCfg1 } from "@v2/utils/sizeCfg";
+import { db, initOnce, ui } from "@vStores/index";
 import Vue from "vue";
 import Component from "vue-class-component";
 
@@ -73,7 +73,7 @@ export default class StatusComponent extends Vue.extend ( {
   get tags (): string[] {
     if ( !this.db.refresh ) return [];
 
-    const post = this.$route.params.post;
+    const { post } = this.$route.params;
     if ( !post || post === '=' ) return [];
 
     return db.data.metas[post]?.tags.map ( ( t: string ) => `${ t }`.trim () );;

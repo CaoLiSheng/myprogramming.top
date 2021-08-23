@@ -53,6 +53,7 @@ export default class TagsComponent extends Vue.extend ( {
   },
 } ) {
   db = db.state;
+
   refresh = true;
 
   tagClouds: { extendable: string[]; selected: string[] } = {

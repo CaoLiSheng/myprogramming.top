@@ -30,6 +30,7 @@ export default class ListComponent extends Vue.extend ( {
   props: { query: { type: String, default: '' } },
 } ) {
   db = db.state;
+
   refresh = true;
 
   mounted (): void {

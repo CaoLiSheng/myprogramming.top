@@ -26,13 +26,8 @@
             "polyfills": "src/www/v0/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/www/v0/favicon.ico",
-              "src/www/v0/assets"
-            ],
-            "styles": [
-              "src/www/v0/styles.scss"
-            ],
+            "assets": ["src/www/v0/favicon.ico", "src/www/v0/assets"],
+            "styles": ["src/www/v0/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -94,13 +89,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/www/v0/favicon.ico",
-              "src/www/v0/assets"
-            ],
-            "styles": [
-              "src/www/v0/styles.scss"
-            ],
+            "assets": ["src/www/v0/favicon.ico", "src/www/v0/assets"],
+            "styles": ["src/www/v0/styles.scss"],
             "scripts": []
           }
         }

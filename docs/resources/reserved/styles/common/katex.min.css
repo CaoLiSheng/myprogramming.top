@@ -79,23 +79,23 @@
 .katex .mathitsf,
 .katex .textitsf { font-family: KaTeX_SansSerif; font-style: italic }
 .katex .mainrm { font-family: KaTeX_Main; font-style: normal }
-.katex .vlist-t {display: inline-table; table-layout: fixed; border-collapse: collapse }
+.katex .vlist-t { display: inline-table; table-layout: fixed; border-collapse: collapse }
 .katex .vlist-r { display: table-row }
 .katex .vlist { display: table-cell; position: relative; vertical-align: bottom }
 .katex .vlist > span { display: block; position: relative; height: 0 }
 .katex .vlist > span > span { display: inline-block }
-.katex .vlist > span > .pstrut {width: 0; overflow: hidden }
+.katex .vlist > span > .pstrut { width: 0; overflow: hidden }
 .katex .vlist-t2 { margin-right: -2px }
 .katex .vlist-s { display: table-cell; width: 2px; min-width: 2px; font-size: 1px; vertical-align: bottom }
-.katex .vbox {display: -webkit-inline-box; display: inline-flex; flex-direction: column; align-items: baseline; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-box-align: baseline }
+.katex .vbox { display: -webkit-inline-box; display: inline-flex; flex-direction: column; align-items: baseline; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-box-align: baseline }
 .katex .hbox { width: 100% }
 
 .katex .hbox,
 .katex .thinbox { -webkit-box-orient: horizontal; -webkit-box-direction: normal; display: -webkit-inline-box; display: inline-flex; flex-direction: row }
-.katex .thinbox {width: 0; max-width: 0 }
+.katex .thinbox { width: 0; max-width: 0 }
 .katex .msupsub { text-align: left }
 .katex .mfrac > span > span { text-align: center }
-.katex .mfrac .frac-line {display: inline-block; width: 100%; border-bottom-style: solid }
+.katex .mfrac .frac-line { display: inline-block; width: 100%; border-bottom-style: solid }
 
 .katex .hdashline,
 .katex .hline,
@@ -120,14 +120,14 @@
 
 .katex .clap > .inner,
 .katex .rlap > .inner { left: 0 }
-.katex .clap > .inner > span {margin-right: 50%; margin-left: -50% }
-.katex .rule {display: inline-block; position: relative; border: 0 solid }
+.katex .clap > .inner > span { margin-right: 50%; margin-left: -50% }
+.katex .rule { display: inline-block; position: relative; border: 0 solid }
 
 .katex .hline,
 .katex .overline .overline-line,
-.katex .underline .underline-line {display: inline-block; width: 100%; border-bottom-style: solid }
-.katex .hdashline {display: inline-block; width: 100%; border-bottom-style: dashed }
-.katex .sqrt > .root {margin-right: -0.55555556em; margin-left: 0.27777778em }
+.katex .underline .underline-line { display: inline-block; width: 100%; border-bottom-style: solid }
+.katex .hdashline { display: inline-block; width: 100%; border-bottom-style: dashed }
+.katex .sqrt > .root { margin-right: -0.55555556em; margin-left: 0.27777778em }
 
 .katex .fontsize-ensurer.reset-size1.size1,
 .katex .sizing.reset-size1.size1 { font-size: 1em }
@@ -515,19 +515,19 @@
 .katex .mtable .col-align-l > .vlist-t { text-align: left }
 .katex .mtable .col-align-r > .vlist-t { text-align: right }
 .katex .svg-align { text-align: left }
-.katex svg {display: block; position: absolute; width: 100%; height: inherit; stroke-width: 1; stroke-linecap: butt; stroke-dasharray: none; stroke-dashoffset: 0; stroke: currentColor; fill: currentColor; fill-rule: nonzero; fill-opacity: 1; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1 }
+.katex svg { display: block; position: absolute; width: 100%; height: inherit; stroke-width: 1; stroke-linecap: butt; stroke-dasharray: none; stroke-dashoffset: 0; stroke: currentColor; fill: currentColor; fill-rule: nonzero; fill-opacity: 1; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1 }
 .katex svg path { stroke: none }
-.katex img {min-width: 0; max-width: none; min-height: 0; max-height: none; border-style: none }
+.katex img { min-width: 0; max-width: none; min-height: 0; max-height: none; border-style: none }
 .katex .stretchy { display: block; position: relative; width: 100%; overflow: hidden }
 
 .katex .stretchy::after,
 .katex .stretchy::before { content: "" }
-.katex .hide-tail {position: relative; width: 100%; overflow: hidden }
-.katex .halfarrow-left {position: absolute; left: 0; width: 50.2%; overflow: hidden }
-.katex .halfarrow-right {position: absolute; right: 0; width: 50.2%; overflow: hidden }
-.katex .brace-left {position: absolute; left: 0; width: 25.1%; overflow: hidden }
-.katex .brace-center {position: absolute; left: 25%; width: 50%; overflow: hidden }
-.katex .brace-right {position: absolute; right: 0; width: 25.1%; overflow: hidden }
+.katex .hide-tail { position: relative; width: 100%; overflow: hidden }
+.katex .halfarrow-left { position: absolute; left: 0; width: 50.2%; overflow: hidden }
+.katex .halfarrow-right { position: absolute; right: 0; width: 50.2%; overflow: hidden }
+.katex .brace-left { position: absolute; left: 0; width: 25.1%; overflow: hidden }
+.katex .brace-center { position: absolute; left: 25%; width: 50%; overflow: hidden }
+.katex .brace-right { position: absolute; right: 0; width: 25.1%; overflow: hidden }
 .katex .x-arrow-pad { padding: 0 0.5em }
 .katex .cd-arrow-pad { padding: 0 0.55556em 0 0.27778em }
 
@@ -537,11 +537,11 @@
 .katex .boxpad { padding: 0 0.3em }
 
 .katex .fbox,
-.katex .fcolorbox {box-sizing: border-box; border: 0.04em solid }
+.katex .fcolorbox { box-sizing: border-box; border: 0.04em solid }
 .katex .cancel-pad { padding: 0 0.2em }
-.katex .cancel-lap {margin-right: -0.2em; margin-left: -0.2em }
-.katex .sout {border-bottom-width: 0.08em; border-bottom-style: solid }
-.katex .angl {box-sizing: border-content; margin-right: 0.03889em; border-top: 0.049em solid; border-right: 0.049em solid }
+.katex .cancel-lap { margin-right: -0.2em; margin-left: -0.2em }
+.katex .sout { border-bottom-width: 0.08em; border-bottom-style: solid }
+.katex .angl { box-sizing: border-content; margin-right: 0.03889em; border-top: 0.049em solid; border-right: 0.049em solid }
 .katex .anglpad { padding: 0 0.03889em }
 .katex .eqn-num::before { content: "(" counter(katexEqnNo) ")"; counter-increment: katexEqnNo }
 .katex .mml-eqn-num::before { content: "(" counter(mmlEqnNo) ")"; counter-increment: mmlEqnNo }
@@ -553,6 +553,6 @@
 .katex-display > .katex { display: block; text-align: center; white-space: nowrap }
 .katex-display > .katex > .katex-html { display: block; position: relative }
 .katex-display > .katex > .katex-html > .tag { position: absolute; right: 0 }
-.katex-display.leqno > .katex > .katex-html > .tag {right: auto; left: 0 }
+.katex-display.leqno > .katex > .katex-html > .tag { right: auto; left: 0 }
 .katex-display.fleqn > .katex { padding-left: 2em; text-align: left }
 body { counter-reset: katexEqnNo mmlEqnNo }

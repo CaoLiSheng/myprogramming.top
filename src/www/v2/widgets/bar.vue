@@ -55,9 +55,9 @@ import DraftsShowIcon from "@images/drafts-show.vue";
 import HomeIcon from "@images/home.vue";
 import TagsIcon from "@images/tags.vue";
 import ThemeIcon from "@images/theme.vue";
-import { ui } from "@vStores/index";
 import { EmptyOffset, HTMLElementOffset, getOffset } from "@utils/dom";
 import computeIconStyle, { iconSizeCfg1 } from "@v2/utils/sizeCfg";
+import { ui } from "@vStores/index";
 import localforage from "localforage";
 import Vue from "vue";
 import Component from "vue-class-component";
@@ -82,7 +82,9 @@ export default class BarComponent extends Vue {
   iconStyle = computeIconStyle ( iconSizeCfg1 );
 
   inDevPopupVisibility = false;
+
   popupBottom = 0;
+
   popupLeft = 0;
 
   ui = ui.state;

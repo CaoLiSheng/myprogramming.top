@@ -5,46 +5,23 @@
 <script lang="ts">
 
 import { switcher } from "@common/index";
-import { db, initOnce } from "@vStores/index";
+import { prefetchStyles } from '@md/index';
 import { initCodePlugin } from '@plugins/code';
 import { initDesignPlugin } from '@plugins/design';
 import { initFigurePlugin } from '@plugins/figure';
 import { initHistoryPlugin } from '@plugins/history';
 import { initLinkPlugin } from '@plugins/link';
 import { initTablePlugin } from '@plugins/table';
+import { __conf__ } from '@utils/conf';
+import { db, initOnce } from "@vStores/index";
 import Vue from "vue";
 import Component from "vue-class-component";
-import { __conf__ } from '@utils/conf';
-import { prefetchStyles } from '@md/index';
 
 declare let __portal_to_v2__: string;
 
 @Component
 export default class PostComponent extends Vue.extend ( {
-  props  : { post: { type: String, default: '=' } },
-  methods: {
-    restartPlugins (name: string) {
-      initCodePlugin ();
-      initLinkPlugin ( { postLinkEmitter: ( info: string ) => `${ __portal_to_v2__ }#/post/${ info }` } );
-      initTablePlugin ();
-      initDesignPlugin ();
-      initFigurePlugin ();
-      void initHistoryPlugin ( { historyKey: name } );
-    },
-    async fetchPost () {
-      if (!this.$data.db.refresh) return;
-
-      const name = this.$router.currentRoute.params.post;
-      const success = await prefetchStyles ( name, db.data.conf, db.data.metas )
-
-      if (!success) return;
-
-      const resp: Response = await fetch ( `${ __conf__.__posts_root__ }${ name }.html?var=${ Date.now () }` )
-      this.$data.articleBody = await resp.text();
-      
-      setTimeout ( this.restartPlugins.bind(this, name), 0);
-    }
-  },
+  props   : { post: { type: String, default: '=' } },
   computed: {
     onKeyChanged () {
       return switcher (
@@ -64,9 +41,34 @@ export default class PostComponent extends Vue.extend ( {
       this.fetchPost ();
     },
   },
+  methods: {
+    restartPlugins ( name: string ) {
+      initCodePlugin ();
+      initLinkPlugin ( { postLinkEmitter: ( info: string ) => `${ __portal_to_v2__ }#/post/${ info }` } );
+      initTablePlugin ();
+      initDesignPlugin ();
+      initFigurePlugin ();
+      void initHistoryPlugin ( { historyKey: name } );
+    },
+    async fetchPost () {
+      if ( !this.$data.db.refresh ) return;
+
+      const name = this.$router.currentRoute.params.post;
+      const success = await prefetchStyles ( name, db.data.conf, db.data.metas )
+
+      if ( !success ) return;
+
+      const resp: Response = await fetch ( `${ __conf__.__posts_root__ }${ name }.html?var=${ Date.now () }` )
+      this.$data.articleBody = await resp.text ();
+      
+      setTimeout ( this.restartPlugins.bind ( this, name ), 0 );
+    }
+  },
 } ) {
   db = db.state;
+
   refresh = true;
+
   articleBody = '';
 
   mounted (): void {

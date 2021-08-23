@@ -1,5 +1,6 @@
 import './index.scss';
 
+import { prefetchStyles } from '@md/index';
 import { initCodePlugin } from '@plugins/code';
 import { initDesignPlugin } from '@plugins/design';
 import { initFigurePlugin } from '@plugins/figure';
@@ -10,7 +11,6 @@ import { I_DB_CTX, injectDBCtx } from '@rCtxs/index';
 import { __conf__ } from '@utils/conf';
 import React, { Component, ReactElement } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { prefetchStyles } from '@md/index';
 
 declare let __portal_to_v1__: string;
 

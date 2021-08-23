@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Operating System Concepts》5
-date: 2021-08-21
+date: 2021-08-24
 tags:
   - 读书
   - 笔记
@@ -121,6 +121,18 @@ Priority can be defined either internally or externally. Internally defined prio
 Priority scheduling can be either preemptive or nonpreemptive. When a process arrives at the ready queue, its priority is compared with the priority of the currently running process. A preemptive priority scheduling algorithm will preempt the CPU if the priority of the newly arrived process is higher than the priority of the currently running process. A nonpreemptive priority scheduling algorithm will simply put the new process at the head of the ready queue.
 
 A major problem with priority scheduling algorithms is `indefinite blocking`, or `starvation`. A process that is ready to run but waiting for the CPU can be considered blocked. A priority scheduling algorithm can leave some low-priority processes waiting indefinitely. A solution to the problem of indefinite blockage of low-priority processes is `aging`. Another option is to combine round-robin and priority scheduling in such a way that the system executes the highest-priority process and runs processes with the same priority using round-robin scheduling.
+
+## Multilevel Queue Scheduling
+
+With both priority and round-bobin scheduling, all processes may be placed in a single queue, and the scheduler then selects the process with the highest priority to run. Depending on how the queues are managed, an O(n) search may be necessary to determine the highest-priority process. In practice, it is often easier to have separate queue for each distinct priority, and priority scheduling simply schedules the process in the highest-priority queue. This approach —— known as `multilevel queue` —— also works well when priority scheduling is combined with round-robin: if there are multiple processes in the highest-priority queue, they are executed in round-robin order. In the most generalized form of this approach, a priority is assigned statically to each process, and a process remains in the same queue for the duration of its runtime.
+
+A multilevel queue scheduling algorithm can also be used to partition processes into several separate queue based on the process type. For example, a common division is made between `foreground` (interactive) processes and `background` (batch) processes. These two types of processes have different response-time requirements and so may have different scheduling needs. In addition, foreground process may have priority (externally defined) over background processes, and each queue might have its own scheduling algorithm. The foreground queue might be scheduled by an RR algorithm, for example, while the background queue is scheduled by an FCFS algorithm.
+
+In addition, there must be scheduling among the queues, which is commonly implemented as fixed-priority preemptive scheduling. For example, the real-time queue may have absolute priority over the interactive queue.
+
+Another prossibility is to time-slice among the queues. Here, each queue get a certain portion of the CPU time, which it can then schedule among its various processes. For instance, in the foreground-background queue example, the foreground queue can be given 80 percent of the CPU time for RR scheduling among its processes, while the background queue receives 20 percent of the CPU to give to its processes on an FCFS basis.
+
+## Multilevel Feedback Queue Scheduling
 
 ## Another COPY of Summary in the Book
 
