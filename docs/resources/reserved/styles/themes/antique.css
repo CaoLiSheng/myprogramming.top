@@ -72,11 +72,7 @@ body[theme="Dark"] .markdown-body.antique {
   color: var(--main-foreground-article-color);
   font-family:
     Pistara,
-    "Long Cang",
     system-ui,
-    "PingFang SC",
-    "Microsoft YaHei",
-    Helvetica,
     sans-serif,
     "Apple Color Emoji",
     "Segoe UI Emoji";
@@ -210,16 +206,14 @@ body[theme="Dark"] .markdown-body.antique {
 }
 
 .markdown-body.antique h1,
-.markdown-body.antique h2 {
+.markdown-body.antique h2,
+.markdown-body.antique h3 {
   padding-top: 0.25em;
   padding-bottom: 0.4em;
   font-family:
     PatrickHand,
     "Long Cang",
     system-ui,
-    "PingFang SC",
-    "Microsoft YaHei",
-    Helvetica,
     sans-serif,
     "Apple Color Emoji",
     "Segoe UI Emoji";
