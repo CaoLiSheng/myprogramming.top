@@ -3,10 +3,10 @@ import '@common/shims-string';
 import { injectStyleSheetRules } from '@utils/dom';
 
 const SpriteId = 'click-ring';
-const SpriteSize = 2560;
-const SpriteStartScale = 2;
+const SpriteSize = 128;
+const SpriteStartScale = 1.5;
 const SpriteEndScale = 0.01;
-const SpriteAniDuration = '800ms';
+const SpriteAniDuration = '200ms';
 
 function initSprite ( player: HTMLCanvasElement ) {
   player.id = SpriteId;
@@ -14,7 +14,7 @@ function initSprite ( player: HTMLCanvasElement ) {
   player.height = SpriteSize;
   player.style.borderRadius = '50%';
   player.style.background = `radial-gradient(circle ${ SpriteSize / 2 }px at 50% 50%, `
-    + 'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, rgb(205, 205, 255) 60%, rgb(30, 30, 255) 61%, rgba(0, 0, 255, 0.8) 75%, rgba(255, 255, 255, 0) 100%)';
+    + 'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 90%, rgb(205, 205, 255) 92%, rgb(30, 30, 255) 93%, rgba(0, 0, 255, 0.8) 95%, rgba(255, 255, 255, 0) 100%)';
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
   player.style.zIndex = '9999';
@@ -76,16 +76,16 @@ const playHearts = ( name: string, event: Event ) => {
 // const mouseupListender = playHearts.bind(null, 'mouseup');
 // const mousedownListender = playHearts.bind(null, 'mousedown');
 // const touchstartListender = playHearts.bind(null, 'touchstart');
-const dblclickListender = playHearts.bind ( null, 'dblclick' );
+const mousedownListender = playHearts.bind ( null, 'mousedown' );
 
 // document.body.addEventListener('mouseup', mouseupListender);
 // document.body.addEventListener('mousedown', mousedownListender);
 // document.body.addEventListener('touchstart', touchstartListender);
-document.body.addEventListener ( 'dblclick', dblclickListender );
+document.body.addEventListener ( 'mousedown', mousedownListender );
 
 window.addEventListener ( 'beforeunload', () => {
   // document.body.removeEventListener('mouseup', mouseupListender);
   // document.body.removeEventListener('mousedown', mousedownListender);
   // document.body.removeEventListener('touchstart', touchstartListender);
-  document.body.removeEventListener ( 'dblclick', dblclickListender );
+  document.body.removeEventListener ( 'mousedown', mousedownListender );
 } );
