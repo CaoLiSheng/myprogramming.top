@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Long+Cang&display=swap");
+
 .markdown-body.antique {
   --kbd-foreground-article-color: #444d56;
   --kbd-background-article-color: #fafbfc;
@@ -63,8 +65,6 @@ body[theme="Dark"] .markdown-body.antique {
   font-family: PatrickHand;
   src: url(../../fonts/PatrickHand-Regular.ttf) format("truetype");
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Long+Cang&display=swap");
 
 /* @font-face {
   font-family: COOL;
