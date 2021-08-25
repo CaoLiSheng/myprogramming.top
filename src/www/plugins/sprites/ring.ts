@@ -4,9 +4,9 @@ import { injectStyleSheetRules } from '@utils/dom';
 
 const SpriteId = 'click-ring';
 const SpriteSize = 128;
-const SpriteStartScale = 1.5;
-const SpriteEndScale = 0.01;
-const SpriteAniDuration = '200ms';
+const SpriteStartScale = 0.01;
+const SpriteEndScale = 1.0001;
+const SpriteAniDuration = '270ms';
 
 function initSprite ( player: HTMLCanvasElement ) {
   player.id = SpriteId;
@@ -14,7 +14,7 @@ function initSprite ( player: HTMLCanvasElement ) {
   player.height = SpriteSize;
   player.style.borderRadius = '50%';
   player.style.background = `radial-gradient(circle ${ SpriteSize / 2 }px at 50% 50%, `
-    + 'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 90%, rgb(205, 205, 255) 92%, rgb(30, 30, 255) 93%, rgba(0, 0, 255, 0.8) 95%, rgba(255, 255, 255, 0) 100%)';
+    + 'rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 95%, rgb(36, 126, 219, 0.8) 95%, rgb(36, 126, 219, 0.8) 100%)';
   player.style.pointerEvents = 'none';
   player.style.position = 'fixed';
   player.style.zIndex = '9999';
@@ -23,7 +23,7 @@ function initSprite ( player: HTMLCanvasElement ) {
   injectStyleSheetRules ( `
     @keyframes AnimationSpriteRing {
         0% {
-            opacity: 0;
+            opacity: 1;
             transform: scale3d(${ SpriteStartScale }, ${ SpriteStartScale }, 1);
         }
 

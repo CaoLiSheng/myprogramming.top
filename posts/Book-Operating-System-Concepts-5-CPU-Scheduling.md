@@ -134,6 +134,93 @@ Another prossibility is to time-slice among the queues. Here, each queue get a c
 
 ## Multilevel Feedback Queue Scheduling
 
+Normally, when the multilevel queue scheduling algorithm is used, processes are permanently assigned to a queue when they enter the system. This setup has the advantage of low scheduling overhead, but it is inflexible. The `multilevel feedback queue` scheduling algorithm, in contrast, allows a process to move between queues. The idea is to separate processes according to the characteristics of their CPU bursts. If a process uses too much CPU time, it will be moved to a lower-priority queue. In addition, a process that waits too long in a lower-priority queue may be moved to a higher-priority queue. This form of aging prevent starvation.
+
+In general, a multilevel feedback queue scheduler is defined by the following parameters:
+
+- The number of queues
+- The scheduling algorithm for each queue
+- The method used to determine when to upgrade a process to a higher-priority queue 
+- The method used to determine when to demote a process to a lower-priority queue 
+- The method used to determine which queue a process will enter when that process needs service
+
+The definition of a multilevel feedback queue scheduler makes it the most general CPU-scheduling algorithm. It can be configured to match a specific system under design. Unfortunately, it is also the most complex algorithm, since defining the best scheduler requires some means by which to select values for all the parameters.
+
+## Contention Scope
+
+One distinction between user-level and kernel-level threads lies in how they are scheduled. On systems implementing the many-to-one and many-to-many models, the thread library schedules user-level threads to run on an available LWP. This scheme is known as `process-contention scope` (`PCS`), since competition for the CPU takes place among threads belonging to the same process. To decide which kernel-level thread to schedule onto a CPU, the kernel uses `system-contention scope` (`SCS`). Competition for the CPU with SCS scheduling takes place among all threads in the system. Systems using the one-to-one model, such as Windows and Linux schedule threads using only SCS.
+
+## Pthread Scheduling
+
+On systems implementing the many-to-many model, the `PTHREAD_SCOPE_PROCESS` policy schedules user-level threads onto available LWPs. The number of LWPs is maintained by the thread library, perhaps using scheduler activations. The `PTHREAD_SCOPE_SYSTEM` scheduling policy will create and bind an LWP for each user-level thread on many-to-many systems, effectively mapping threads using the one-to-one policy.
+
+The Pthread IPC (Interprocess Communication) provides two functions for setting —— and getting —— the contention scope policy:
+
+```c
+pthread_attr_setscope(pthread_attr_t *attr, int scope)
+pthread_attr_getscope(pthread_attr_t *attr, int *scope)
+```
+
+In codes below, we illustrate a Pthread scheduling API. The program first determines the existing contention scope and sets it to `PTHREAD_SCOPE_SYSTEM`. It then creates five separate threads that will run using the SCS scheduling policy. Note that on some systems, only certain contention scope values are allowed. For example, Linux and macOS systems allow only `PTHREAD_SCOPE_SYSTEM`.
+
+```c
+#include <pthread.h>
+#include <stdio.h>
+#define NUM_THREADS 5
+
+int main(int argc, char *argv[])
+{
+  int i, scope;
+  pthread_t tid[NUM_THREADS];
+  pthread_attr_t attr;
+
+  /* get the default attributes */
+  pthread_attr_init(&attr);
+
+  /* first inquire on the current scope */
+  if (pthread_attr_getscope(&attr, &scope) != 0)
+    fprintf(stderr, "Unable to get scheduling scope\n");
+  else {
+    if (scope == PTHREAD_SCOPE_PROCESS)
+      printf("PTHREAD_SCOPE_PROCESS");
+    else if (scope == PTHREAD_SCOPE_SYSTEM)
+      printf("PTHREAD_SCOPE_SYSTEM");
+    else
+      fprintf(stderr, "Illegal scope value\n");
+  }
+
+  /* set the scheduling algorithm to PCS or SCS */
+  pthread_attr_setscope(&attr, PTHREAD_SCOPE_SYSTEM);
+
+  /* create the threads */
+  for (i = 0; i < NUM_THREADS; i++)
+    pthread_create(&tid[i], &attr, runner, NULL);
+
+  /* now join on each thread */
+  for (i = 0; i < NUM_THREADS; i++)
+    pthread_join(tid[i], NULL);
+}
+
+/* Each thread will begin control in this function */
+void *runner(void *param)
+{
+  /* do some work ... */
+  
+  pthread_exit(0);
+}
+```
+
+## Approaches to Multiple-Processor Scheduling
+
+One approach to CPU scheduling in a multiprocessor system has all scheduling decisions, I/O processing, and other system activities handled by a single processor —— the master server. The other processors execute only user code. This `asymmetric multiprocessing` is simple because only one core accesses the system data structures, reducing the need for data sharing. The downfall of this approach is the master server becomes a potential bottleneck where overall system performance may be reduced.
+
+The standard approach for supporting multiprocessors is `symmetric multiprocessing` (`SMP`), where each processor is self-scheduling. Scheduling proceeds by having the scheduler for each processos examine the ready queue and select a thread to run. Note that this provides two possible strategies for organizing the threads eligible to be scheduled:
+
+1. All threads may be in a common ready queue.
+2. Each processor may have its own private queue of threads.
+
+If we select the first option, we have a possible race condition on the shared ready queue and therefore must ensure that two separate processors do not choose to schedule the same thread and that threads are not lost from the queue. We could use some form of locking to protect the common ready queue from this race condition. Locking would be highly contended, however, as all accesses to the queue would require lock ownership, and acccessing the shared queue would likely be a performance bottleneck. The second option permits each processor to schedule threads from its private run queue and therefore does not suffer from the possible performance problems associated with a shared run queue. Thus, it is the most common approach on systems supporting SMP. Additionally, having private, perprocessor run queues in fact may lead to more efficient use of cache memory. There are issues with per-processor run queues —— most notably, workloads of varying sizes. However, balancing algorithms can be used to equalize workloads among all processors.
+
 ## Another COPY of Summary in the Book
 
 ## 笔记目录

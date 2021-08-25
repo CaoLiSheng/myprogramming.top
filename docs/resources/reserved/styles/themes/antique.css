@@ -43,16 +43,21 @@ body[theme="Dark"] .markdown-body.antique {
   }
 }
 
-@font-face {
+/* @font-face {
   font-family: Pistara;
   font-weight: 900;
   src: url(../../fonts/Pistara.otf) format("opentype");
-}
+} */
 
 /* @font-face {
   font-family: Pacifico;
   src: url(../../fonts/Pacifico-Regular.ttf) format("truetype");
 } */
+
+@font-face {
+  font-family: Celery;
+  src: url(../../fonts/celery.ttf) format("truetype");
+}
 
 @font-face {
   font-family: PatrickHand;
@@ -71,8 +76,8 @@ body[theme="Dark"] .markdown-body.antique {
   background: var(--main-background-article-color);
   color: var(--main-foreground-article-color);
   font-family:
-    Pistara,
-    system-ui,
+    Celery,
+    STFangsong,
     sans-serif,
     "Apple Color Emoji",
     "Segoe UI Emoji";
@@ -213,7 +218,6 @@ body[theme="Dark"] .markdown-body.antique {
   font-family:
     PatrickHand,
     "Long Cang",
-    system-ui,
     sans-serif,
     "Apple Color Emoji",
     "Segoe UI Emoji";
@@ -301,7 +305,7 @@ body[theme="Dark"] .markdown-body.antique {
   font-family: inherit;
   font-size: 0.9em;
   font-weight: 900;
-  text-shadow: 1px 0 1px #2d62f5, 0 1px 1px #2d62f5, 1px 1px 1px #2d62f5;
+  text-shadow: 1px 1px 1px #2d62f5;
 }
 
 .markdown-body.antique pre.prettyprinted {
