@@ -64,6 +64,8 @@ body[theme="Dark"] .markdown-body.antique {
   src: url(../../fonts/PatrickHand-Regular.ttf) format("truetype");
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Long+Cang&display=swap");
+
 /* @font-face {
   font-family: COOL;
   src:
