@@ -12,12 +12,12 @@ export const inDir = path.join ( process.cwd (), argv.inDir || 'posts' );
 
 export const outDir = path.join ( process.cwd (), argv.outDir );
 
-function isDir ( file: string ): boolean {
-  return fs.statSync ( path.join ( inDir, file ) ).isDirectory ();
+export function isDir ( file: string, dir: string = inDir ): boolean {
+  return fs.statSync ( path.join ( dir, file ) ).isDirectory ();
 }
 
-function isFile ( file: string ): boolean {
-  return fs.statSync ( path.join ( inDir, file ) ).isFile ();
+function isFile ( dir: string, file: string ): boolean {
+  return fs.statSync ( path.join ( dir, file ) ).isFile ();
 }
 
 function isMarkdown ( file: string ): boolean {
@@ -32,12 +32,12 @@ function notPrivate ( file: string ): boolean {
   return !__production__ || !file.startsWith ( 'private-' );
 }
 
-export function isAsset ( file: string ): boolean {
-  return file.filter ( notPrivate, isDir );
-}
+// export function isAsset ( file: string ): boolean {
+//   return file.filter ( notPrivate, isDir );
+// }
 
-export function isPost ( file: string ): boolean {
-  return file.filter ( notPrivate, notDraft, isMarkdown, isFile );
+export function isPost ( file: string, dir: string = inDir ): boolean {
+  return file.filter ( notPrivate, notDraft, isMarkdown, isFile.bind ( null, dir ) );
 }
 
 export const extractPostName = ( () => {

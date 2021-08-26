@@ -20,7 +20,7 @@ RouteComponentProps & { page?: I_PAGE_CTX }
       <Link to={ `/post/${ name }` }>
         <iframe
           src={ `${ __conf__.__posts_root__
-            }${ name }.html?var=${ Date.now () }#snapshot` }
+            }${ name.replace ( /:/g, '/' ) }.html?var=${ Date.now () }#snapshot` }
           sandbox="allow-same-origin allow-scripts allow-top-navigation allow-downloads"
           seamless
           scrolling="no"

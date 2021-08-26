@@ -7,6 +7,7 @@ import { converter, jsYAML, yamlSchema } from './converter';
 import {
   extractPostName,
   inDir,
+  isDir,
   isPost,
   outDir,
 } from './file';
@@ -28,20 +29,40 @@ import {
 const dbData = new DB ();
 
 // Clean & Make Out Dir
-fs.mkdirSync ( outDir, { recursive: true } );
-console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
+// fs.mkdirSync ( outDir, { recursive: true } );
+// console.log ( 'inDir', inDir, '\noutDir', outDir, '\nready...' );
 
 // Read Source Dir
-const sources = fs.readdirSync ( inDir );
+forEachDir ( inDir, outDir );
+console.log ( 'All HTMLs Generated' );
+
+// Write to 'db.json'
+const dbPath = path.join ( outDir, 'db.json' );
+fs.createFileSync ( dbPath );
+fs.writeFileSync ( dbPath, dbData.toString () );
+console.log ( 'DB File Writen' );
+
+// Scan dir
+function forEachDir ( dir: string, out: string ) {
+  const sources = fs.readdirSync ( dir );
+  sources.forEach ( ( file: string ) => {
+    if ( file === 'tests' ) {
+      return;
+    }
+
+    if ( isDir ( file, dir ) ) {
+      forEachDir ( path.join ( dir, file ), path.join ( out, file ) );
+    } else if ( isPost ( file, dir ) ) {
+      generateHTML ( file, dir, out );
+    }
+  } );
+}
 
 // Generate HTML
-const posts = sources.filter ( ( file: string ) => isPost ( file ) );
-console.log ( 'Posts:', posts );
-
-posts.forEach ( ( fileName: string ) => {
+function generateHTML ( fileName: string, dir: string, out: string ) {
   console.log ( '\n\n', fileName, ':\n' );
   
-  const fileContent = fs.readFileSync ( path.join ( inDir, fileName ), {
+  const fileContent = fs.readFileSync ( path.join ( dir, fileName ), {
     encoding: 'UTF-8',
   } );
 
@@ -82,12 +103,18 @@ posts.forEach ( ( fileName: string ) => {
     '\n',
   );
 
-  const name = extractPostName ( fileName );
+  const name =  extractPostName ( fileName );
+  let keyName = path.join ( dir.slice ( inDir.length ), name );
+  if ( keyName.startsWith ( '/' ) ) {
+    keyName = keyName.slice ( 1 );
+  }
   const rowMeta = dbData.add ( {
-    name, title, date, tags, style,
+    name: keyName.replace ( /\//g, ':' ), title, date, tags, style,
   } ).persist ();
+
+  fs.mkdirSync ( out, { recursive: true } );
   fs.writeFileSync (
-    path.join ( outDir, `${ name }.html` ),
+    path.join ( out, `${ name }.html` ),
     htmlMinify (
       tplContent
         // .replace ( '{{title}}', `${ title } | 又心真人的博客` )
@@ -105,10 +132,4 @@ posts.forEach ( ( fileName: string ) => {
     ),
     { encoding: 'UTF-8', flag: 'w' },
   );
-} );
-console.log ( 'All HTMLs Generated' );
-
-const dbPath = path.join ( outDir, 'db.json' );
-fs.createFileSync ( dbPath );
-fs.writeFileSync ( dbPath, dbData.toString () );
-console.log ( 'DB File Writen' );
+}
