@@ -109,7 +109,7 @@ function generateHTML ( fileName: string, dir: string, out: string ) {
     keyName = keyName.slice ( 1 );
   }
   const rowMeta = dbData.add ( {
-    name: keyName.replace ( /\//g, ':' ), title, date, tags, style,
+    name: keyName.replace ( /\//g, '<:>' ), title, date, tags, style,
   } ).persist ();
 
   fs.mkdirSync ( out, { recursive: true } );

@@ -55,7 +55,7 @@ export class Post extends Component<PostProps, { articleBody: string }> {
 
     this.setState ( {
       articleBody: await ( await fetch (
-        `${ __conf__.__posts_root__ }${ name.replace ( /:/g, '/' ) }.html?var=${ Date.now () }`
+        `${ __conf__.__posts_root__ }${ name.replace ( /<:>/g, '/' ) }.html?var=${ Date.now () }`
       ) ).text () },
       Post.restartPlugins.bind ( null, name )
     );
