@@ -58,7 +58,7 @@ export default class PostComponent extends Vue.extend ( {
 
       if ( !success ) return;
 
-      const resp: Response = await fetch ( `${ __conf__.__posts_root__ }${ name }.html?var=${ Date.now () }` )
+      const resp: Response = await fetch ( `${ __conf__.__posts_root__ }${ name.replace ( /<->/g, '/' ) }.html?var=${ Date.now () }` )
       this.$data.articleBody = await resp.text ();
       
       setTimeout ( this.restartPlugins.bind ( this, name ), 0 );
