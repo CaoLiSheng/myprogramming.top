@@ -1,7 +1,7 @@
 ---
 style: antique
 title: 读书笔记之《Operating System Concepts》5
-date: 2021-08-24
+date: 2021-08-30
 tags:
   - 读书
   - 笔记
@@ -231,9 +231,157 @@ In general, there are two ways to multithread a processing core: `coarse-grained
 
 There are several strategies to adopt in scheduling that specifies how each core decides which hardware thread to run. One approach is to use a simple round-robin algorithm to schedule a hardware thread to the processing core. This is the approach adopted by the UltraSPARC T3, another approach is used by the Intel Itanium. Assigned to each hardware thread is a dynamic `urgency` value ranging from 0 to 7, with 0 representing to lowest urgency and 7 the highest. The Itanium identifies five different events that may trigger a thread switch. When one of these events occurs, the thread-switching logic compares the urgency of the two threads and selects the thread with the hgitest urgency value to execute on the process core.
 
+## Load Balancing
 
+`Load balancing` attempts to keep the workload evenly distributed across all processors in an SMP system. There are two general approaches to load balancing: push migration and pull migration. With `push migration`, a specific task periodically checks the load on each processor and —— if it finds an imbalance —— evenly distributes the load by moving (or pushing) threads from overload to idle or less-busy processors. `Pull migration` occurs when an idle processor pulls a waiting task from a busy processor. Push and pull migration need not be mutually exclusive and are, in fact, often implemented in parallel on load-balancing systems.
+
+## Processor Affinity
+
+Interestingly, load balancing often counteracts the benifits of processor affinity. That is, the benifit of keeping a thread running on the same processor is that the thread can take advantage of its data being in that processor's cache memory. Balancing loads of moving a thread from one processor to another removes this benifit. Similarly, migrating a thread between processors may incur a penalty on NUMA systems, where a thread may be moved to a processor that requires longer memory access times. In other words, there is a natural tension between load balancing and minimizing memory access times.
+
+## Heterogeneous Multiprocessing
+
+Although mobile systems now include multicore architectures, some systems are now designed using cores that run the same instruction set, yet vary in terms of their clock speed and power management, including the ability to adjust the power consumption of a core to the point of idling the core. Such systems are known as `heterogeneous multiprocessing` (`HMP`).
+
+## Real-Time CPU Scheduling
+
+`Soft real-time systems` provide no guarantee as to when a critical real-time process will be scheduled. They guarantee only that the process will be given perference over noncritical processes. `Hard real-time systems` have stricter requirements. A task must be serviced by its deadline; service after the deadline has expired is the same as no service at all.
+
+## Minimizing Latency
+
+Two types of latency affect the performance of real-time systems:
+
+1. Interrupt latency
+2. Dispatch latency
+
+`Interrupt latency` refers to the period of time from the arrival of an interrupt at the CPU to the start of the routine that services the interrupt. One important factor contributing to interrupt latency is the amount of time interrupts may be disabled while kernel data structures are being updated.
+
+The amount of time required for the scheduling dispatcher to stop one process and start another is known as `dispatch latency`. The `conflic phase` of dispatch latency has two components:
+
+1. Preemption of any process running in the kernel
+2. Release by low-priority processes of resources needed by a high-priority process
+
+Following the conflic phase, the dispatch phase schedules the high-priority process onto an available CPU.
+
+## Priority-Based Scheduling
+
+As a result, the scheduler for a real-time operating system must support a priority-based algorithm with preemption. In hard real-time systems, the processes are considered `periodic`. What is unusual about this form of scheduling is that a process may have to announce its deadline requirements to the scheduler. Then, using a technique known as an `admission-control` algorithm, the scheduler does one of two things. It either admits the process, guaranteeing that the proceess will complete on time, or rejects the request as impossible if it cannot guarantee that the task will be serviced by its deadline.
+
+## Rate-Monotonic Scheduling
+
+The `rate-monotonic` scheduling algorithm schedules periodic tasks using a static priority policy with preemption. Upon entering the system, each periodic task is assigned a priority inversely based on its period. The shorter the period, the higher the priority. The rationale bebind this policy is to assign a higher priority to tasks that require the CPU more often. Futhermore, rate-monotonic scheduling assumes that the processing time of a periodic process is the same for each CPU burst.
+
+Rate-monotonic scheduling is considered optimal in that if a set of processes cannot be scheduled by this algorithm, it cannot be scheduled by any other algorithm that assigns static priorities. Despite being optimal, then, rate-monotonic scheduling has a limitation: CPU utilization is bounded, and it is not always possible to maximize CPU resources fully. The worst-case CPU utilization for scheduling $N$ processes is
+
+$$
+N(2^{1/N}-1).
+$$
+
+With one process in the system, CPU utilization is 100 percent, but it falls to approximately 69 percent as the number of processes approaches infinity. With two processes, CPU utilization is bounded at about 83 percent.
+
+## Earliest-Deadline-First Scheduling
+
+`Earliest-deadline-first` (`EDF`) scheduling assigns prioities dynamically according to deadline. The earlier the deadline, the higher the priority. Under the EDF policy, when a process becomes runnable, it must announce its deadline requirements to the system. Priorities may have to be adjusted to reflect the deadline of the newly runnable process. Not how this differs from real-monotonic scheduling, where priorities are fixed.
+
+Unlike the rate-monotonic algorithm, EDF scheduling does not require that processes be periodic, nor must a process require a constant amount of CPU time per burst. The only requirement is that a process announce its deadline to the scheduler when it becomes runnable. The appeal of EDF scheduling is that it is theoretically optimal —— theoretically, it can schedule processes so that each process can meet its deadline requirements and CPU utilization will be 100 percent. In practice, however, it is impossible to achieve this level of CPU utilization due to the cost of context switching between processes and interrupt handling.
+
+## Proportional Share Scheduling
+
+`Proportional share` schedulers operate by allocating T shares among all applications. An application can receive N shares of time, thus ensuring that the application will have N/T of the total processor time. Proportional share schedulers must work in conjunction with an admission-control policy to guarantee that an application receives its allocated share of time. An admission-control policy will admit a client requesting a particular number of shares only if sufficient shares are available.
+
+## POSIX Real-Time Scheduling
+
+The POSIX standard also provides extensions for real-time computing —— POSIX.1b. POSIX defines two scheduling classes for real-time threads:
+
+- SCHED_FIFO
+- SCHED_RR
+- SCHED_OTHER (system specific)
+
+The POSIX API specifies the following two functions for getting and setting the scheduling policy:
+
+```c
+pthread_attr_getschedpolicy(pthread_attr_t *attr, int *policy)
+pthread_attr_setschedpolicy(pthread_attr_t *attr, int policy)
+```
+
+## Example: Linux Scheduling
+
+With Version 2.5 of the kernel, the scheduler was overhauled. During development of the 2.6 kernel, the scheduler was again revised; and in release 2.6.23 of the kernel, the `Completely Fair Scheduler` (`CFS`) became the default Linux scheduling algorithm. Standard Linux kernels implement two scheduling classes: (1) a default scheduling class using the CFS scheduling algorithm and (2) a real-time scheduling class.
+
+Rather than using strict rules that associate a relative priority value with the length of a time quantum, the CFS scheduler assigns a proportion of CPU processing time to each task. This proportion is calculated based on the `nice value` assigned to each task. Nice values range from -20 to +19, where a numerically lower nice value indicates a higher relative priority. Tasks with lower nice values receive a higher proportion of CPU processing time than tasks with higher nice values. The default nice value is 0. CFS doesn't use discrete values of time slices and instead identifies a `targeted latency`, which is an interval of time during which every runnable task should run at least once. Proportions of CPU time are allocated from the value of targeted latency. In addition to have default and minimum values, targeted latency can increase if the number of active tasks in the system grows beyond a certain threshold.
+
+The CFS scheduler doesn't directly assign priorities. Rather, it records how long each task has run by maintaining the `virtual run time` of each task using the per-task variable `vruntime`. The virtual run time is associated with a decay factor based on the priority of a task: lower-priority tasks have higher rates of decay than higher-priority tasks. The Linux CFS scheduler provides an efficient algorighm for selecting with task to run next. Rather than using a standard queue data structure, each runnable task is placed in a red-black tree —— a balanced binary search tree whose key is based on the value of `vruntime`. For efficiency reasons, the Linux scheduler caches this value in the variable `rb_leftmost`, and thus determining which task to run next requires only retrieving the cached value.
+
+Linux also implements real-time scheduling using the POSIX standard. Any task scheduled using either the SCHED_FIFO or the SCHED_RR real-time policy runs at a higher priority than normal (non-real-time) tasks. Linux uses two separate priority ranges, one for real-time tasks and a second for normal tasks. Real-time tasks are assigned static priorities within the range of 0 to 99, and normal tasks are assigned priorities from 100 to 139.
+
+The CFS scheduler also supports load balancing, using a sophisticated technique that equalizes the load among processing cores yet is also NUMA-aware and minimizes the migration of threads. Linux identifies a hierarchical system of scheduling domains. A `scheduling domain` is a set of CPU cores that can be balanced against one another. The general strategy behind CFS is to balance loads within domains, bigining at the lowest level of the hierarchy.
+
+## Example: Windows Scheduling
+
+Windows schedules threads using a priority-based, preemptive scheduling algorithm. The Windows scheduler ensures that the highest-priority thread will always run. The portion of the Windows kernel that handles scheduling is called the `dispatcher`. A thread selected to run by the dispatcher will run until it is preempted by a higher-priority thread, until it terminates, until its time quantum ends, or until it calls a blocking system call, such as for I/O.
+
+The dispatcher uses a 32-level priority scheme to determine the order of thread execution. Priorities are divided into two classes. The `variable class` contains threads having priorities from 1 to 15, and the `real-time class` contains threads with priorities ranging from 16 to 31. There is also a thread running at priority 0 that is used for memory management.
+
++---------------+-----------+------+--------------+--------+--------------+---------------+
+|               | real-time | high | above normal | normal | below normal | idle priority |
++:==============+:=========:+:====:+:============:+:======:+:============:+:=============:+
+| time-critical | 31        | 15   | 15           | 15     | 15           | 15            |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| highest       | 26        | 15   | 12           | 10     | 8            | 6             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| above normal  | 25        | 14   | 11           | 9      | 7            | 5             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| normal        | 24        | 13   | 10           | 8      | 6            | 4             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| below normal  | 23        | 12   | 9            | 7      | 5            | 3             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| lowest        | 22        | 11   | 8            | 6      | 4            | 2             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+| idle          | 16        | 1    | 1            | 1      | 1            | 1             |
++---------------+-----------+------+--------------+--------+--------------+---------------+
+
+## Example: Solaris Scheduling
+
+Solaris uses priority-based thread scheduling. Each thread belongs to one of six classes:
+
+1. Time sharing (TS)
+2. Interactive (IA)
+3. Real time (RT)
+4. System (SYS)
+5. Fair share (FSS)
+6. Fixed priority (FP)
+
+Within each class there are different priorities and different scheduling algorithms. Each scheduling class includes a set of priorities. However, the scheduler converts the class-specific priorities into global priorities and selects the thread with the highest global priority to run. If there are multiple threads with the same priority, the scheduler uses a round-robin queue. Figure below illustrates how the six scheduling classes reate to one another and how they map to global priorities. Notice that the kernel maintains ten threads for servicing interrupts. These threads do no belong to any scheduling class and execute at the highest priority (160-169). As mentioned, Solaris has traditionally used the many-to-many model but switched to the one-to-one model beginning with Solaris 9.
+
+![Solaris scheduling](Operating-System-Concepts-5-CPU-Scheduling/Solaris-Scheduling.png '=365px-')
+
+## Deterministic Modeling
+
+One major class evaluation methods is `analytic evaluation`. Analytic evaluation uses the given algorithm and the system workload to produce a formula or number to evaluate the performance of the algorithm for that workload. `Deterministic modeling` is one type of analytic evaluation. This method takes a particular predetermined workload and defines the performance of each algorithm for that workload.
+
+Deterministic modeling is simple and fast. It gives us exact numbers, allowing us to compare the algorithms. However, it requires exact number for input, and its answers apply only to those cases. The main uses of deterministic modeling are in describing scheduling algorithms and providing examples. In cases where we are running the same program over and over again and can measure the program's processing requirements exactly, we may be able to use deterministic modeling to select a scheduling algorithm. Furthermore, over a set of examples, deterministic modeling may indicate trends that can then be analyzed and proved separately.
+
+## Queueing Models
+
+On many systems, the processes that are run vary from day to day, so there is no static set of processes (or times) to use for deterministic modeling. What can be determined, however, is the distribution of CPU and I/O bursts. These distributions can be measured and then approximated or simply estimated. The result is a mathmatical formula describing the probability of a particular CPU burst. From the CPU-burst distributions and the arrival-time distributions, it is possible to compute the average throughput, utilization, waiting time, and so on for most algorithms.
+
+The computer system is described as a network of servers. Each server has a queue of waiting processes. The CPU is a server with its ready queue, as is the I/O system with its device queues. Knowing arrival rates and service rates, we can compute utilization, average queue length, average waiting time, and so on. This area of study is called `queueing-network analysis`.
+
+Queueing analysis can be useful in comparing scheduling algorithms, but it also has limitations. At the moment, the classes of algorithms and distributions that can be handled are fairly limited. The mathmatics of complicated algorithms and distributions can be difficult to work with. Thus, arrival and service distributions are often defined in mathmatically tractable —— but unrealistic —— ways. It is also generally necessary to make a number of independent assumptions, which may not be accurate. As a result of these difficulties, queueing models are often only approximations of real systems, and the accuracy of the computed results may be questionable.
+
+## Simulations
+
+To get a more accurate evaluation of scheduling algorithms, we can use simulations. Running simulations involves programming a model of the computer system. Software data structures represent the major components of the system. The simulator has a variable representing a clock. As this variable's value is increased, the simulator modifies the system state to reflect the activities of the devices, the processes, and the scheduler. As the simulation executes, statistics that indicate algorithm performance are gathered and printed.
+
+The data to drive the simulation can be generated in several ways. The most common method uses a random-number generator that is programmed to generate data according to probability distributions. Another method is using `trace files`. Simulations can be expensive, often requiring many hours of computer time.
+
+## Implementation
+
+Even a simulation is of limited accuracy. The only completely accurate way to evaluate a scheduling algorithm is to code it up, put it in the operating system, and see how it works. This approach puts the actual alogrithm in the real system for evaluation under real operating conditions. `Regression testing` confirms that the changes haven't made anything worse, and haven't caused new bugs or caused old bugs to be recreated.
 
 ## Another COPY of Summary in the Book
+
+- 
 
 ## 笔记目录
 

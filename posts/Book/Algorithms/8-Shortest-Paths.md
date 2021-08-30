@@ -79,7 +79,7 @@ dist(v) = min({dist(u) + w(u->v)|u->v in DAG})
 
 `BASE CASE`：dist(s) = 0。
 
-根据[第三章](post:Book-Algorithms-3-Dynamic-Programming)和[第六章](post:Book-Algorithms-6-Depth-First-Search)的知识，节点 v 要么是节点 s 无法抵达的，要么`s~>v`中各节点顺序同 DAG 的拓扑排序。
+根据[第三章](post:Book<->Algorithms<->3-Dynamic-Programming)和[第六章](post:Book<->Algorithms<->6-Depth-First-Search)的知识，节点 v 要么是节点 s 无法抵达的，要么`s~>v`中各节点顺序同 DAG 的拓扑排序。
 
 ```python
 def DagSSSP(s):
@@ -246,16 +246,16 @@ def Moore(s):
 
 ## 同一本书的文章集
 
-0. [Preface-&-Introduction](post:Book-Algorithms-0-Preface-&-Introduction)
-1. [Recursion](post:Book-Algorithms-1-Recursion)
-1. [Backtracking](post:Book-Algorithms-2-Backtracking)
-1. [Dynamic Programming](post:Book-Algorithms-3-Dynamic-Programming)
-1. [Greedy Algorithms](post:Book-Algorithms-4-Greedy-Algorithms)
-1. [Basic Graph Algorithms](post:Book-Algorithms-5-Basic-Graph-Algorithms)
-1. [Depth-First Search](post:Book-Algorithms-6-Depth-First-Search)
-1. [Minimum Spanning Trees](post:Book-Algorithms-7-Minimum-Spanning-Trees)
+0. [Preface-&-Introduction](post:Book<->Algorithms<->0-Preface-&-Introduction)
+1. [Recursion](post:Book<->Algorithms<->1-Recursion)
+1. [Backtracking](post:Book<->Algorithms<->2-Backtracking)
+1. [Dynamic Programming](post:Book<->Algorithms<->3-Dynamic-Programming)
+1. [Greedy Algorithms](post:Book<->Algorithms<->4-Greedy-Algorithms)
+1. [Basic Graph Algorithms](post:Book<->Algorithms<->5-Basic-Graph-Algorithms)
+1. [Depth-First Search](post:Book<->Algorithms<->6-Depth-First-Search)
+1. [Minimum Spanning Trees](post:Book<->Algorithms<->7-Minimum-Spanning-Trees)
 1. [回到开头](scroll-to-the-very-top)
-1. [All-Pairs Shortest Paths](post:Book-Algorithms-9-All-Pairs-Shortest-Paths)
-1. [Maximum Flows & Minimum Cuts](post:Book-Algorithms-10-Maximum-Flows-&-Minimum-Cuts)
-1. [Applications of Flows and Cuts](post:Book-Algorithms-11-Applications-of-Flows-and-Cuts)
-1. [NP-Hardness](post:Book-Algorithms-12-NP-Hardness)
+1. [All-Pairs Shortest Paths](post:Book<->Algorithms<->9-All-Pairs-Shortest-Paths)
+1. [Maximum Flows & Minimum Cuts](post:Book<->Algorithms<->10-Maximum-Flows-&-Minimum-Cuts)
+1. [Applications of Flows and Cuts](post:Book<->Algorithms<->11-Applications-of-Flows-and-Cuts)
+1. [NP-Hardness](post:Book<->Algorithms<->12-NP-Hardness)
