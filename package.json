@@ -14,11 +14,6 @@
   "license": "ISC",
   "author": "CaoLS",
   "scripts": {
-    "ng": "ng",
-    "ng:serve": "ng serve",
-    "ng:build": "ng build --base-href '/v0/' && rm -rf docs/v0 && mv dist/app docs/v0",
-    "ng:watch": "ng build --watch --configuration development",
-    "ng:test": "ng test",
     "start": "run-p dev:gen dev:misc 'util:dev-server site.v1.dev' 'util:dev-server site.v2.dev'",
     "bundle": "yarn util:build -c bundle",
     "dev:gen:all": "yarn util:build -c development",
@@ -52,14 +47,6 @@
     ]
   },
   "dependencies": {
-    "@angular/animations": "~12.2.0",
-    "@angular/common": "~12.2.0",
-    "@angular/compiler": "~12.2.0",
-    "@angular/core": "~12.2.0",
-    "@angular/forms": "~12.2.0",
-    "@angular/platform-browser": "~12.2.0",
-    "@angular/platform-browser-dynamic": "~12.2.0",
-    "@angular/router": "~12.2.0",
     "@csstools/normalize.css": "^11.0.1",
     "classnames": "^2.2.6",
     "localforage": "^1.9.0",
@@ -76,9 +63,6 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.0",
-    "@angular/cli": "~12.2.0",
-    "@angular/compiler-cli": "~12.2.0",
     "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
@@ -136,6 +120,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "katex": "^0.13.2",
+    "lerna": "^4.0.0",
     "markdown-it": "^12.0.4",
     "markdown-it-named-headings": "^1.1.0",
     "md5": "^2.3.0",
