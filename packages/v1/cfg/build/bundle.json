@@ -1,0 +1,5 @@
+{
+  "clean": "b",
+  "dist": "gen.prod site.v1.prod site.v2.prod",
+  "gen": "prod"
+}

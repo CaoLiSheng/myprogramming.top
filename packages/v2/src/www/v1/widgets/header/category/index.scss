@@ -1,0 +1,42 @@
+.title-bar nav {
+  div.inline {
+    padding: 0 0.1rem;
+
+    a,
+    span {
+      display: inline;
+      padding: 0.05rem;
+    }
+
+    a {
+      color: rgb(255, 219, 152);
+    }
+
+    span {
+      color: whitesmoke;
+    }
+  }
+}
+
+ol.tags {
+  margin: 0.1rem 0.1rem 0.1rem;
+  padding: 0.05rem 0.15rem;
+  list-style-position: inside;
+  background-color: whitesmoke;
+  background-image: url(~@images/bg-tags.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  li {
+    color: rgb(255, 255, 255);
+    font-size: 0.16rem;
+    line-height: 0.3rem;
+    text-shadow:
+      0 -0.01rem 0.01rem #333,
+      0.01rem 0 0.01rem #333,
+      0 0.01rem 0.01rem #333,
+      -0.01rem 0 0.01rem #333,
+      0 0 0.05rem black;
+  }
+}

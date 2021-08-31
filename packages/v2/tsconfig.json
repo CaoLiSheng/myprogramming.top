@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@lib/*": ["lib/*"],
+      "@tests/*": ["src/tests/*"],
+      "@md/*": ["src/markdown/*"],
+      "@common/*": ["src/common/*"],
+      "@utils/*": ["src/www/utils/*"],
+      "@images/*": ["src/www/images/*"],
+      "@plugins/*": ["src/www/plugins/*"],
+      "@v1/*": ["src/www/v1/*"],
+      "@rCtxs/*": ["src/www/v1/ctxs/*"],
+      "@rWidgets/*": ["src/www/v1/widgets/*"],
+      "@v2/*": ["src/www/v2/*"],
+      "@vStores/*": ["src/www/v2/stores/*"],
+      "@vWidgets/*": ["src/www/v2/widgets/*"]
+    },
+    "outDir": "dist",
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2018", "dom"],
+    "typeRoots": ["node_modules/@types"],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "exclude": ["node_modules", "placeholder", "public", "build", "posts", "dist"]
+}
