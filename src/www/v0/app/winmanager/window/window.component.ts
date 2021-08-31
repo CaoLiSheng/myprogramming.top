@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
-import { WindowDatum } from '../../interfaces/window.datum';
+import { WindowDatum } from '../../../interfaces/window.datum';
 
 @Component ( {
   selector   : 'app-window',

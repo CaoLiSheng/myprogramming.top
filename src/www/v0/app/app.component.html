@@ -63,16 +63,6 @@
   </a>
 </div>
 
-<div *ngIf="showApps" class="app-list" (click)="showApps = false">
-  <ul class="card-container">
-    <li *ngFor="let app of apps" class="card card-tiny" (click)="log(app)">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>{{ app.title }}</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </li>
-  </ul>
-</div>
-
 <div class="content" role="main">
 
   <!-- Highlight Card -->
@@ -246,4 +236,14 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<app-winmanager></app-winmanager>
 
+<div *ngIf="showApps" class="app-list" (click)="showApps = false">
+  <ul class="card-container">
+    <li *ngFor="let app of apps" class="card card-tiny" (click)="open(app.title, app.src)">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>{{ app.title }}</span>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </li>
+  </ul>
+</div>
