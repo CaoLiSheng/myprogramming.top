@@ -18,10 +18,11 @@
   },
   "scripts": {
     "ng": "ng",
-    "ng:serve": "ng serve",
-    "ng:build": "ng build --base-href '/v0/' && rm -rf ../../docs/v0 && mv ../../dist/app ../../docs/v0",
+    "ng:test": "ng test",
     "ng:watch": "ng build --watch --configuration development",
-    "ng:test": "ng test"
+    "start": "ng serve",
+    "bundle": "ng build --base-href '/v0/' && yarn util:dist ../../dist/app ../../docs/v0",
+    "util:dist": "func() { rm -rf $2 && mv $1 $2; }; func"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
@@ -32,6 +33,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "commons": "^0.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -23,7 +23,7 @@ export const mdConf: MdConf = {
 };
 
 export async function prefetchStyles ( name: string, conf: MdConf, metas: { [key: string]: PublicMeta } ): Promise<boolean> {
-  const baseStyle = metas[name]?.style;
+  const baseStyle: string = metas[name]?.style;
   if ( !baseStyle ) return false;
 
   const requiredStyles = [ ...conf[baseStyle] ];

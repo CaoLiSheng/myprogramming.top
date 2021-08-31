@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 node packages/00/build/gen/prod/generator.min.js \
-    --tplPath='packages/00/src/markdown/index.html' \
+    --tplPath='packages/commons/src/markdown/index.html' \
     --outDir='docs/posts' \
     --inDir='posts' \
     > gen.prod.log && \

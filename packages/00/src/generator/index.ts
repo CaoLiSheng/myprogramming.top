@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { DB } from '@common/db';
+import { DB } from 'commons/src/db';
 import fs from 'fs-extra';
 
 import { converter, jsYAML, yamlSchema } from './converter';

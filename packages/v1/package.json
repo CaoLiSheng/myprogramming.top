@@ -20,10 +20,13 @@
     "url": "git+https://github.com/CaoLiSheng/myprogramming.top.git"
   },
   "scripts": {
-    "start": "webpack-dev-server --config=cfg/webpack/site.v1.dev.js"
+    "start": "webpack-dev-server --config=cfg/webpack/site.v1.dev.js",
+    "bundle": "webpack --config=cfg/webpack/site.v1.prod.js && yarn util:dist ../../dist/app ../../docs/v1",
+    "util:dist": "func() { rm -rf $2 && mv $1 $2; }; func"
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "commons": "^0.0.0",
     "localforage": "^1.9.0",
     "moment": "^2.27.0",
     "react": "^16.13.1",
