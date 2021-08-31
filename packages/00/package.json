@@ -20,7 +20,8 @@
     "url": "git+https://github.com/CaoLiSheng/myprogramming.top.git"
   },
   "scripts": {
-    "start": "rm -rf build/gen/dev && webpack --config=cfg/webpack/gen.dev.js"
+    "start": "rm -rf build/gen/dev && webpack --config=cfg/webpack/gen.dev.js",
+    "bundle": "rm -rf build/gen/prod && webpack --config=cfg/webpack/gen.prod.js"
   },
   "dependencies": {
     "fs-extra": "^9.0.1",

@@ -15,7 +15,8 @@
   "author": "CaoLS",
   "scripts": {
     "start": "run-p dev:gen dev:misc 'util:dev-server site.v1.dev' 'util:dev-server site.v2.dev'",
-    "bundle": "yarn util:build -c bundle",
+    "bundle": "zsh ./src/scripts/gen.prod.zsh",
+    "generate": "zsh ./src/scripts/gen.dev.zsh",
     "dev:misc": "run-p 'util:http 60000 docs/resources' 'util:http 59999 build/posts'",
     "dev:nodemon": "nodemon --exec 'zsh ./src/scripts/build/gen.zsh dev'",
     "dev:v1": "run-p dev:gen:all dev:misc 'util:dev-server site.v1.dev'",
@@ -31,8 +32,7 @@
     "util:katexFonts": "zsh ./src/scripts/katexFonts.zsh",
     "util:format": "zsh ./src/scripts/format.zsh",
     "util:build": "zsh ./src/scripts/build.zsh",
-    "util:new": "zsh ./src/scripts/newPost.zsh",
-    "gen:dev": "zsh ./src/scripts/gen.dev.zsh"
+    "util:new": "zsh ./src/scripts/newPost.zsh"
   },
   "husky": {
     "hooks": {

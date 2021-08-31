@@ -1,0 +1,118 @@
+<article class="markdown-body antique"><h1>读书笔记之《HTML and CSS Design and Build Websites》</h1><h6 class="date-tag"><code> ~-~> 2020-09-10</code></h6><h2 id="jie-gou-pian">结构篇</h2><h3 id="wen-ben">文本</h3><p>不熟悉的控制文本的标签，有些是语义性质的，有些是样式性质的。</p><ul><li>sup, sub</li><li>strong, em</li><li>blockquote</li><li>abbr, cite, dfn</li><li>address</li><li>ins, del, s</li></ul><h3 id="lie-biao">列表</h3><p>一直没用过的 <code>&lt;dl&gt;,&lt;dt&gt;,&lt;dd&gt;</code></p><h3 id="lian-jie">链接</h3><ul><li>相对路径和绝对路径</li><li>受到 <code>mailto:</code> 的启发，在这个博客里使用 <code>post:</code> 做站内文章间跳转</li></ul><pre><code class="language-typescript">const originalHref = anchor.getAttribute('href');
+if (originalHref?.startsWith('post:')) {
+  anchor.setAttribute(
+    'href',
+    `${__site_root__}/#/${originalHref.replace(':', '/')}`
+  );
+  anchor.setAttribute('target', '_top');
+}
+</code></pre><h3 id="tu-pian">图片</h3><p>在选择图片时，相机拍出的实景往往是色彩丰富的，这类图片最好采用 JPEG 格式存储。</p><p>为了给图片加上标题，并采用规范的 <code>HTML5</code> 标签 <code>figure</code> ，还写了两个 <code>showdown</code> 插件。</p><pre><code class="language-typescript">{
+  type: 'lang',
+  regex: /!\[(.*?)\]\(:?(.*?) '(.*?)'\)/g,
+  replace:
+    '&lt;figure&gt;&lt;img alt=&quot;$1&quot; src=&quot;$2&quot; title=&quot;$3&quot; /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
+},
+{
+  type: 'lang',
+  regex: /!\[(.*?)\]\(:?(.*?) '(.*?)' =(.*?)x(.*?)\)/g,
+  replace:
+    '&lt;figure&gt;&lt;img alt=&quot;$1&quot; src=&quot;$2&quot; title=&quot;$3&quot; width=&quot;$4&quot; height=&quot;$5&quot; /&gt;&lt;figcaption&gt;$3&lt;/figcaption&gt;&lt;/figure&gt;',
+}
+</code></pre><h3 id="biao-ge">表格</h3><p><code>tbody</code> 和 <code>tfoot</code> 也只是为了给表格加样式时方便。</p><h3 id="biao-dan">表单</h3><p>表单的目的仅仅是收集用户数据，表单校验的 APIs 需要熟悉一下。</p><pre><code class="language-css">#datetime:invalid {
+  border: solid 1px red;
+}
+
+#datetime:valid {
+  border: solid 1px blue;
+}
+</code></pre><pre><code class="language-typescript">var theForm = document.forms['the-form'];
+if (theForm) {
+  var datetime = document.getElementById('datetime');
+  datetime.addEventListener('invalid', (e) =&gt; {
+    // 自定义错误提示文字
+    datetime.setCustomValidity('至少写一个字吧');
+  });
+  datetime.addEventListener('input', (e) =&gt; {
+    datetime.setCustomValidity(
+      datetime.validity.valueMissing ? '至少写一个字吧' : ''
+    );
+    theForm.reportValidity();
+  });
+  theForm.checkValidity();
+
+  theForm.addEventListener('submit', (e) =&gt; {
+    e.preventDefault();
+
+    // 手动触发校验
+    theForm.checkValidity();
+
+    var data = new FormData(theForm);
+    data.delete('x');
+    data.delete('y');
+    data.forEach((v, k) =&gt; {
+      if (v instanceof File &amp;&amp; v.size &lt;= 0) return;
+      if (v === '') return;
+      console.log(k, v);
+    });
+  });
+}
+</code></pre><p><code>label</code> 是为了给有障碍的人士准备的，有两种写法：</p><ul><li>包裹住控件</li><li>for=&quot;控件 id&quot;</li></ul><p><code>label</code> 还可以让点击在自己上的事件作用于与它关联的控件。</p><h3 id="qi-ta-biao-qian">其它标签</h3><p><code>div</code> 和 <code>span</code> 竟然是哥俩， <code>span</code> 在 <code>inline</code> 元素中的地位就如同 <code>div</code> 在 <code>block</code> 元素中的地位。</p><h3 id="flash-video-audio">Flash Video Audio</h3><p><code>HTML5</code> 中的 <code>video</code> 和 <code>audio</code> 标签，都可以指定多个不同文件类型的路径，并且在非常旧的浏览器上显示标签间的内容， <code>flash 播放器</code> 就可以放在这里（毕竟播放器大部分都是用户点击才开始播放的，所以不用担心正常播放视频时那个有可能被初始化的 <code>flash 播放器</code> ）。</p><h2 id="css-pian">CSS 篇</h2><h3 id="gui-ze-he-xuan-ze-qi">规则和选择器</h3><ul><li>盒子 <ul><li>宽、高、边框、背景、位置、阴影</li></ul></li><li>文字 <ul><li>字体、字号、颜色、粗细、大小写、阴影</li></ul></li><li>特殊元素 <ul><li>列表、表单、表格</li></ul></li></ul><p><code>CSS</code> 中的 <code>C</code> 非常重要：1）!important；2）选择器更详细；3）同样详细的话后面出现的。这里详细的定义指该选择器选中的元素越少越详细（数一数、比一比）。</p><p><code>CSS 文件</code> 最好与 <code>HTML 文件</code> 分离开，不论是书写时还是线上时。首先，书写时分离可以改一处影响整个网站；另外，线上分离的好处是第二次加载同一个 <code>CSS 文件</code> 时可以有效利用缓存机制。同样的道理应用于 <code>JS 文件</code> 。为此，我改进了我的 <code>markdown -&gt; html</code> 的逻辑。之前，所有收集到的 <code>css 文件</code> 不管有没有用到都先拷贝到发布文件夹， <code>html 文件</code> 中包含一条引用和 <code>&lt;style&gt;...&lt;/style&gt;</code> 两部分。改进后，利用懒加载的方式，动态拼接用到的 <code>css</code> ，并且对线上版做文件最小化处理。</p><pre><code class="language-typescript">const CSSMaps: {
+  [key: string]: string;
+} = {};
+
+function fetchCSS(base: string): string {
+  if (CSSMaps[base]) return CSSMaps[base];
+
+  const baseCSSPath = path.join(
+    process.cwd(),
+    'src',
+    'template',
+    'style-source',
+    `${base}.css`
+  );
+
+  const baseCSSContent = cssMinify(
+    fs.readFileSync(baseCSSPath, {
+      encoding: 'UTF-8',
+    })
+  );
+
+  const cssContent = cssMinify(
+    tplCSSContent
+      .replace('/* base_stylesheet */', baseCSSContent)
+      .replace('/* body_padding_pc */', Sheets[base].padding.pc)
+      .replace('/* body_padding_mobile */', Sheets[base].padding.mobile)
+  );
+
+  CSSMaps[base] = `${base}.${md5(cssContent).substring(0, 20)}.css`;
+
+  const outFilePath = path.join(outDir, CSSMaps[base]);
+  if (fs.existsSync(outFilePath)) fs.removeSync(outFilePath);
+  fs.createFileSync(outFilePath);
+  fs.writeFileSync(outFilePath, cssContent);
+
+  return CSSMaps[base];
+}
+
+function cssMinify(css: string): string {
+  if (__production__) {
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\n\s*?(\S)/g, ' $1')
+      .trim();
+  }
+  return css;
+}
+</code></pre><h3 id="yan-se">颜色</h3><p><code>HSL</code> 分别指色相、饱和度和亮度。色相指色相环上的颜色，饱和度决定其鲜艳程度，而调节一整张照片的亮度可以帮助突出照片的主体。</p><p>常用的文字与背景的对比度搭配：</p><ul><li>darkgray text / white bg</li><li>off-white text / black bg</li></ul><h3 id="wen-zi">文字</h3><p>文字类型：</p><ul><li>serif，字母末端有额外细节</li><li>sans-serif，字母末端无额外细节</li><li>monospace，等宽字</li><li>cursive，连笔字</li><li>fantasy，多用于标题，不适合大段的文字</li></ul><p><code>googlefont</code> 是个好东西，可以使用用户电脑上没有的字体渲染网页，就是网站现在使用的字体所使用的服务。但是，服务里的字体数量还是有限的，有一种在特定情况下可以绕过这层限制的方法：首先需要的文字数量要少，然后制作成 <code>图片</code>。</p><div class="table"><table><thead><tr><th style="text-align:right">属性名</th><th style="text-align:left">作用</th></tr></thead><tbody><tr><td style="text-align:right">font-weight</td><td style="text-align:left">粗体</td></tr><tr><td style="text-align:right">font-style</td><td style="text-align:left">斜体</td></tr><tr><td style="text-align:right">text-transform</td><td style="text-align:left">大小写</td></tr><tr><td style="text-align:right">text-decoration</td><td style="text-align:left">下划线</td></tr></tbody></table></div><p>表格中的这几个属性，对我来说，十分容易记混淆。</p><div class="table"><table><thead><tr><th style="text-align:right">名称</th><th style="text-align:left">定义</th></tr></thead><tbody><tr><td style="text-align:right">pseudo-element</td><td style="text-align:left">像是多出来一个元素</td></tr><tr><td style="text-align:right">pseudo-class</td><td style="text-align:left">像是在 classlist 上多出一个 class</td></tr></tbody></table></div><p>伪类优先级顺序：<code>:link</code>，<code>:visited</code>，<code>:hover</code>，<code>:focus</code>，<code>:active</code>；后者优先级更高。</p><p>为 <code>搜索引擎</code> 的优化：利用 <code>text-indent: -9999px;background: url(logo.png);</code> 这样的技术，达到既显示华丽的图片、又提供爬虫可识别的文字内容。</p><h3 id="he-zi">盒子</h3><p>著名的 <code>margin坍缩</code>，如果要防止这一行为影响界面，就在外面再套一层盒子吧。</p><p>椭圆形、不规则形边框：在本站的 <code>标签搜索页</code> 有使用。</p><p>为 <code>搜索引擎</code> 的优化：利用 <code>display: none;</code> 达到搜索引擎可见而用户不可见的效果；<strong><em>本站的防盗链机制也利用了这个技术</em></strong>。</p><h3 id="list-table-form">List Table Form</h3><div class="table"><table><thead><tr><th style="text-align:right">border-collapse's value</th><th style="text-align:left">effect</th></tr></thead><tbody><tr><td style="text-align:right">collapse</td><td style="text-align:left">border-spacing and empty-cells will be ignored</td></tr><tr><td style="text-align:right">seperate</td><td style="text-align:left">border-spacing and empty-cells will be obeyed</td></tr></tbody></table></div><h3 id="bu-ju">布局</h3><p>虽然现在 <code>float</code> 属性比较少见，但是有个使用 <code>float</code> 带来的问题还是挺有意思的，即：对于一个 <code>containing box</code> 来说，内部元素都是浮动的，其高度就会为 0。解决的办法是 <code>overflow: auto;width:xxx;</code>。</p><h3 id="tu-xiang">图像</h3><h3 id="html-5-bu-ju">HTML5 布局</h3><p>下面这段代码太赞了，我记得我最初学习的时候，不仅要兼容 IE9 之前浏览器，还要兼容到 IE6。</p><pre><code class="language-html">&lt;!--[if lt IE 9]&gt;
+  &lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+</code></pre><pre><code class="language-css">header,
+section,
+footer,
+aside,
+nav,
+article,
+figure {
+  display: block;
+}
+</code></pre><h2 id="liu-cheng-she-ji-zui-jia-shi-jian">流程、设计、最佳实践</h2><ol><li>Who：调研目标用户群体，获取各个纬度的信息（面试官以及志同道合的朋友）</li><li>Why：调研用户使用本站的动机或者所要满足的特定需求（我给我的博客有两个定位：辅助我面试以及收集并传播一些东西）</li><li>What：调研用户通过本站所能达到的目的（认可我的能力，然后给一份高薪；朋友间交流心得）</li><li>What：调研网站需要提供哪些信息以让用户达到目的（自建站以来我的提升经历，当然也是基于我之前的人生经历）</li><li>How OFTEN：更新频率（而言，取决于我的学习效率）</li><li>Site Map：这里我用思维导图表达一下。<figure><img alt="Site Map 1" src="../resources/HTML-and-CSS-Design-and-Build-Websites/site-map-1.png" title="又心真人的博客" /><figcaption>Site Map 1</figcaption></figure><a href="HTML-and-CSS-Design-and-Build-Websites/site-map-1.xmind" title="site-map-1.xmind">XMind 创作文件</a></li><li>Wireframe：确定功能性需求</li><li>Visual Design：首要目的是为了沟通，主要工具是视觉树结构，主要做以下三件事情</li><li>确定内容</li><li>排列优先级</li><li>组织架构</li><li>（Bonus）导航栏设计指南</li><li>简单</li><li>明了</li><li>有选择性</li><li>最好指示出当前页所在的位置</li><li>按钮大小要易于交互</li><li>如果有多级导航栏，要保持一致性</li></ol><h3 id="sou-suo-guan-jian-zi">搜索关键字</h3><p>由于搜索引擎排名算法捉摸不定，而这本书写作的时间又有些久远。书中关于影响网页排名的重要性的排序仅供参考：</p><ol><li>标题</li><li>地址（URL）</li><li>网页内大标题</li><li>网页内文本</li><li>网页内链接</li><li>网页内图片</li><li>meta 标签</li></ol><h3 id="liu-liang-fen-xi">流量分析</h3><ul><li>V：每跳转来一次（30 分钟内多次仅算一次）</li><li>UV：比 V 的 30 分钟时间更长</li><li>PV：所有用户所有页面的访问量</li><li>Pages Per Visit：平均用户每次访问网站浏览过的页面数</li><li>Average Time On Site：平均用户每次访问网站所停留的时间</li><li>Landing Pages：用户访问网站时的第一个页面</li><li>Top Exit Pages：用户离开最多的页面</li></ul><h3 id="wang-zhan-tuo-guan">网站托管</h3><p>这个话题似乎有点老了，毕竟这本书写作的时间也有些久远了。我以前一直对计算带宽懵懵懂懂，这下明白了：<em><strong>就是拆分成一个乘法运算，一边是同时访问用户数、另一边是一个带括号的加法运算，各个项就是文件在网络上传输的大小</strong></em>（有些是压缩过的，有些可能没有压缩；而压缩本身会提高对 CPU 性能要求）。</p><h2 id="hou-ji">后记</h2><ol><li>说点关于代码注释的吧，上学那会儿真不知道什么该写、什么不该写。有时候差一点就把语法写上去了。这本书里的注释是比较好的范例。</li><li>另外，虽然这本书是本入门书，但是我如果不是做了几年前端开发的话，肯定是不会把书读薄的。觉得自己不够勤奋、智商不够，接下来的计划中遇到科研级别的问题要如何是好呢。</li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《HTML and CSS Design and Build Websites》」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article>
