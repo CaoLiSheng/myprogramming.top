@@ -2,19 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@tests/*": ["src/tests/*"],
-      "@md/*": ["src/markdown/*"],
-      "@common/*": ["src/common/*"],
-      "@utils/*": ["src/www/utils/*"],
-      "@images/*": ["src/www/images/*"],
-      "@plugins/*": ["src/www/plugins/*"],
-      "@v1/*": ["src/www/v1/*"],
-      "@rCtxs/*": ["src/www/v1/ctxs/*"],
-      "@rWidgets/*": ["src/www/v1/widgets/*"],
-      "@v2/*": ["src/www/v2/*"],
-      "@vStores/*": ["src/www/v2/stores/*"],
-      "@vWidgets/*": ["src/www/v2/widgets/*"]
+      "@v2/*": ["src/*"],
+      "@vStores/*": ["src/stores/*"],
+      "@vWidgets/*": ["src/widgets/*"]
     },
     "outDir": "dist",
     "target": "es2017",

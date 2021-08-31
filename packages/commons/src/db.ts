@@ -1,5 +1,5 @@
-import { MdConf, mdConf } from '@md/index';
 import Moment from 'moment';
+import { MdConf, mdConf } from './markdown/conf';
 
 declare let __production__: boolean;
 

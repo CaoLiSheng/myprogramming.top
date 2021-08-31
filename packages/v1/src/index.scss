@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Long+Cang&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body {
+  height: 100vh;
+  background-image: url(~commons/src/www/images/bg-page.jpg);
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100vw 100vh;
+  font-family:
+    "Long Cang",
+    system-ui,
+    "PingFang SC",
+    "Microsoft YaHei",
+    Helvetica,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  font-weight: 300;
+}
+
+#main {
+  padding-top: 0.5rem;
+
+  &.blurred {
+    filter: blur(3px);
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  h1.failure {
+    margin-top: calc(50vh - 0.5em);
+    text-align: center;
+  }
+}
+
+@media (max-width: 750px) {
+  #main {
+    padding-top: 0.8rem;
+  }
+}

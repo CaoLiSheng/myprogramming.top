@@ -2,10 +2,6 @@ import Moment from 'moment';
 
 import { PublicMeta } from './db';
 
-export type HOCDecrator<InjectProps> = <Props extends InjectProps>(
-  Component: React.ComponentType<Props>
-) => void;
-
 export const distinctReduce = ( p: string[], v: string[] ): string[] => [
   ...p,
   ...v.filter ( ( np: string ) => p.every ( ( pp: string ) => np !== pp ) ),
