@@ -16,7 +16,7 @@
   "scripts": {
     "ng": "ng",
     "ng:serve": "ng serve",
-    "ng:build": "ng build --base-href '/v0/' && mv dist/app docs/v0",
+    "ng:build": "ng build --base-href '/v0/' && rm -rf docs/v0 && mv dist/app docs/v0",
     "ng:watch": "ng build --watch --configuration development",
     "ng:test": "ng test",
     "start": "run-p dev:gen dev:misc 'util:dev-server site.v1.dev' 'util:dev-server site.v2.dev'",
