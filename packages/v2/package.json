@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config=cfg/webpack/site.v2.dev.js",
-    "bundle": "webpack --config=cfg/webpack/site.v2.prod.js && yarn util:dist ../../dist/app ../../docs/v2",
+    "bundle": "webpack --config=cfg/webpack/site.v2.prod.js && yarn util:dist dist/app ../../docs/v2",
     "util:dist": "func() { rm -rf $2 && mv $1 $2; }; func"
   },
   "dependencies": {

@@ -21,7 +21,7 @@
     "ng:test": "ng test",
     "ng:watch": "ng build --watch --configuration development",
     "start": "ng serve",
-    "bundle": "ng build --base-href '/v0/' && yarn util:dist ../../dist/app ../../docs/v0",
+    "bundle": "ng build --base-href '/v0/' && yarn util:dist dist/app ../../docs/v0",
     "util:dist": "func() { rm -rf $2 && mv $1 $2; }; func"
   },
   "dependencies": {
