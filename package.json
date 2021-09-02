@@ -15,8 +15,6 @@
   "author": "CaoLS",
   "scripts": {
     "start": "run-p dev:nodemon dev:misc",
-    "bundle": "zsh ./src/scripts/gen.prod.zsh",
-    "generate": "zsh ./src/scripts/gen.dev.zsh",
     "dev:nodemon": "nodemon --exec 'zsh ./src/scripts/gen.dev.zsh'",
     "dev:misc": "run-p 'util:http 60000 docs/resources' 'util:http 59999 build/posts'",
     "lint": "run-p lint:style lint:es lint:ts",
@@ -42,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "commons": "^0.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",

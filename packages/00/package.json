@@ -20,8 +20,8 @@
     "url": "git+https://github.com/CaoLiSheng/myprogramming.top.git"
   },
   "scripts": {
-    "start": "webpack --config=cfg/webpack/gen.dev.js",
-    "bundle": "webpack --config=cfg/webpack/gen.prod.js"
+    "start": "webpack --config=cfg/webpack/gen.dev.js && zsh src/scripts/gen.dev.zsh",
+    "bundle": "webpack --config=cfg/webpack/gen.prod.js && zsh src/scripts/gen.prod.zsh"
   },
   "dependencies": {
     "commons": "^0.0.0",
