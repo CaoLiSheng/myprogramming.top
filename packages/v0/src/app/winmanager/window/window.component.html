@@ -1,18 +1,22 @@
-<div class="window" role="window" [style.top.px]="y" [style.left.px]="x" [style.zIndex]="zIndex">
+<div class="window" role="window" [style.top.px]="y" [style.left.px]="x" [style.width.px]="w" [style.height.px]="h" [style.zIndex]="zIndex">
     <div class="title" (mousedown)="onDragStart($event)">
         <span>{{ title }}</span>
-        <button (click)="close.emit()">关闭</button>
+        <button class="min-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="sep">&nbsp;</button>
+        <button class="max-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="sep">&nbsp;</button>
+        <button class="close-handler" (click)="close.emit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
-    <iframe [src]="src"></iframe>
+    <iframe [src]="src" [style.height.px]="h - 32"></iframe>
     <div class="mask" [style.display]="maskStyle"></div>
     <div class="resize-handlers">
-        <div class="top"></div>
-        <div class="right"></div>
-        <div class="bottom"></div>
-        <div class="left"></div>
-        <div class="top-left"></div>
-        <div class="top-right"></div>
-        <div class="bottom-left"></div>
-        <div class="bottom-right"></div>
+        <div class="top" (mousedown)="onTopResizeStart($event)"></div>
+        <div class="right" (mousedown)="onRightResizeStart($event)"></div>
+        <div class="bottom" (mousedown)="onBottomResizeStart($event)"></div>
+        <div class="left" (mousedown)="onLeftResizeStart($event)"></div>
+        <div class="top-left" (mousedown)="onTopLeftResizeStart($event)"></div>
+        <div class="top-right" (mousedown)="onTopRightResizeStart($event)"></div>
+        <div class="bottom-left" (mousedown)="onBottomLeftResizeStart($event)"></div>
+        <div class="bottom-right" (mousedown)="onBottomRightResizeStart($event)"></div>
     </div>
 </div>

@@ -28,13 +28,49 @@
     button {
       flex-grow: 0;
       flex-shrink: 0;
+      background-color: #abe0d8;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b1ecee;
+    }
+
+    button:active {
+      background-color: #5debf0;
+    }
+
+    .close-handler {
       margin-right: 16px;
+      background-image: url("~src/assets/close.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .max-handler {
+      background-image: url("~src/assets/max.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .min-handler {
+      background-image: url("~src/assets/min.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .sep {
+      background-image: url("~src/assets/sep.png");
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 
   iframe {
-    width: 1440px;
-    height: 800px;
+    width: 100%;
     border: none;
   }
 
