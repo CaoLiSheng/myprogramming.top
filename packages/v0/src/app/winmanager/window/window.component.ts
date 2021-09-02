@@ -68,14 +68,6 @@ export class WindowComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ngOnChanges ( changes: SimpleChanges ): void {
-  //   // if ( changes.datum.previousValue?.front !== changes.datum.currentValue?.front ) {
-  //     console.log ( 'on changes', changes.zIndex );
-    
-  //     this.zIndex = changes.datum.currentValue?.front ? 1 : 0;
-  //   // }
-  // }
-
   onDragStart ( e: MouseEvent ): void {
     this.dragging = true;
     this.maskStyle = 'block';

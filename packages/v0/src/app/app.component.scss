@@ -127,6 +127,7 @@
   border-right-color: rgb(194, 194, 194);
   border-bottom-color: rgb(150, 150, 150);
   border-left-color: rgb(194, 194, 194);
+  background-color: rgb(194, 175, 175);
 }
 
 .app-list .card-container .card {
@@ -311,11 +312,8 @@
   width: 100vw;
   height: 100vh;
   background-color: #739899;
-
-  img {
-    user-select: none;
-    -webkit-user-drag: none;
-  }
+  user-select: none;
+  -webkit-user-drag: none;
 
   .topbar {
     display: flex;

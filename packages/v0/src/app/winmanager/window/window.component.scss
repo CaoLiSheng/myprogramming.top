@@ -47,4 +47,90 @@
     opacity: 0.01;
     background-color: black;
   }
+
+  .resize-handlers {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+
+    * {
+      position: absolute;
+      opacity: 0.01;
+      background-color: blue;
+      pointer-events: all;
+    }
+
+    .top,
+    .bottom {
+      right: 0;
+      left: 0;
+      height: 5px;
+      cursor: ns-resize;
+    }
+
+    .left,
+    .right {
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      cursor: ew-resize;
+    }
+
+    .top-left,
+    .bottom-right {
+      cursor: nwse-resize;
+    }
+
+    .top-right,
+    .bottom-left {
+      cursor: nesw-resize;
+    }
+
+    .top-left,
+    .bottom-right,
+    .top-right,
+    .bottom-left {
+      width: 5px;
+      height: 5px;
+    }
+
+    .top {
+      top: 0;
+    }
+
+    .right {
+      right: 0;
+    }
+
+    .bottom {
+      bottom: 0;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .top-right {
+      top: 0;
+      right: 0;
+    }
+
+    .bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottom-right {
+      right: 0;
+      bottom: 0;
+    }
+  }
 }
