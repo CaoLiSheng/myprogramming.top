@@ -1,1 +1,1 @@
-<app-window *ngFor="let window of windows" [datum]="window" [zIndex]="window.zIndex" (close)="onClose(window)" (focus)="onFocus(window)"></app-window>
+<app-window *ngFor="let winKey of winKeys" [winKey]="winKey"></app-window>

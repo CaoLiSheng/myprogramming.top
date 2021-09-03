@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { SafeResourceUrl } from '@angular/platform-browser';
 
 import { WindowDatum } from '../../../interfaces/window.datum';
+import { WinManagerService } from '../winmanager.service';
 
 @Component ( {
   selector   : 'app-window',
@@ -10,17 +11,9 @@ import { WindowDatum } from '../../../interfaces/window.datum';
 } )
 export class WindowComponent implements OnInit, OnDestroy {
   
-  @Output () close = new EventEmitter<void> ();
+  @Input () winKey?: string;
 
-  @Output () focus = new EventEmitter<void> ();
-  
-  @Input () datum?: WindowDatum;
-
-  @Input () zIndex?: number;
-
-  src?: SafeResourceUrl;
-
-  title?: string;
+  win?: WindowDatum;
 
   /**
    * -1: 没有事件
@@ -48,26 +41,18 @@ export class WindowComponent implements OnInit, OnDestroy {
 
   dragStartH = 0;
 
-  x = 100;
-
-  y = 50;
-
-  w = 1366;
-
-  h = 800;
-
   maskStyle = 'none';
 
   onDragEventHandler: ( ( e: MouseEvent ) => void ) | null = null;
 
   onDragEndEventHandler : ( () => void ) | null = null;
 
-  // constructor ( ) { }
+  constructor ( private service: WinManagerService ) { }
 
   ngOnInit (): void {
-    this.src = this.datum?.src;
-    this.title = this.datum?.title;
-    // this.zIndex = this.datum?.front ? 1 : 0;
+    if ( this.winKey ) {
+      this.win = this.service.getWindow ( this.winKey );
+    }
 
     this.onDragEventHandler = this.onDrag.bind ( this );
     document.addEventListener ( 'mousemove', this.onDragEventHandler, false );
@@ -88,27 +73,38 @@ export class WindowComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClose (): void {
+    if ( this.winKey ) {
+      this.service.delete ( this.winKey );
+    }
+  }
+
   onDragStart ( e: MouseEvent ): void {
+    if ( !this.win || !this.winKey ) return;
+
     this.handlerState = 1;
     this.maskStyle = 'block';
-    this.dragStartX = this.x;
-    this.dragStartY = this.y;
+    this.dragStartX = this.win.x;
+    this.dragStartY = this.win.y;
     this.dragClientX = e.clientX;
     this.dragClientY = e.clientY;
-    this.focus.emit ();
+    this.service.focus ( this.winKey );
     // console.log ( 'on drag start', this.dragStartX, this.dragStartY, this.dragClientX, this.dragClientY );
   }
 
   initResize ( state: number, e: MouseEvent ):void {
+    if ( !this.win || !this.winKey ) return;
+
     this.handlerState = state;
     this.maskStyle = 'block';
-    this.dragStartX = this.x;
-    this.dragStartY = this.y;
-    this.dragStartW = this.w;
-    this.dragStartH = this.h;
+    this.dragStartX = this.win.x;
+    this.dragStartY = this.win.y;
+    this.dragStartW = this.win.w;
+    this.dragStartH = this.win.h;
     this.dragClientX = e.clientX;
     this.dragClientY = e.clientY;
-    this.focus.emit ();
+    this.service.focus ( this.winKey );
+    // console.log ( 'on resize start', this.dragStartX, this.dragStartY, this.dragStartW, this.dragStartH, this.dragClientX, this.dragClientY );
   }
 
   onTopResizeStart ( e: MouseEvent ): void {
@@ -146,88 +142,90 @@ export class WindowComponent implements OnInit, OnDestroy {
   onDragEnd (): void {
     this.handlerState = -1;
     this.maskStyle = 'none';
-    console.log ( 'on drag end' );
+    // console.log ( 'on drag end' );
   }
 
   onDrag ( e: MouseEvent ): void {
+    if ( !this.win ) return;
+
     switch ( this.handlerState ) {
       case 1:
-        this.x = e.clientX - this.dragClientX + this.dragStartX;
-        this.y = e.clientY - this.dragClientY + this.dragStartY;
+        this.win.x = e.clientX - this.dragClientX + this.dragStartX;
+        this.win.y = e.clientY - this.dragClientY + this.dragStartY;
 
-        // this.x = Math.max ( 0, this.x );
-        // this.y = Math.max ( 0, this.y );
+        // this.win.x = Math.max ( 0, this.win.x );
+        // this.win.y = Math.max ( 0, this.win.y );
 
-        // this.x = Math.min ( window.innerWidth, this.x );
-        // this.y = Math.min ( window.innerHeight, this.y );
-        // console.log ( 'on drag', this.x, this.y );
+        // this.win.x = Math.min ( window.innerWidth, this.win.x );
+        // this.win.y = Math.min ( window.innerHeight, this.win.y );
+        // console.log ( 'on drag', this.win.x, this.win.y );
         break;
       case 2:
-        this.h = this.dragClientY - e.clientY + this.dragStartH;
+        this.win.h = this.dragClientY - e.clientY + this.dragStartH;
 
-        this.h = Math.max ( 50, this.h );
+        this.win.h = Math.max ( 50, this.win.h );
 
-        this.y = this.dragStartH - this.h + this.dragStartY;
+        this.win.y = this.dragStartH - this.win.h + this.dragStartY;
 
-        // console.log ( 'on drag', this.y, this.h );
+        // console.log ( 'on drag', this.win.y, this.win.h );
         break;
       case 3:
-        this.h = e.clientY - this.dragClientY + this.dragStartH;
+        this.win.h = e.clientY - this.dragClientY + this.dragStartH;
 
-        this.h = Math.max ( 50, this.h );
+        this.win.h = Math.max ( 50, this.win.h );
 
-        // console.log ( 'on drag', this.h );
+        // console.log ( 'on drag', this.win.h );
         break;
       case 4:
-        this.w = this.dragClientX - e.clientX + this.dragStartW;
+        this.win.w = this.dragClientX - e.clientX + this.dragStartW;
 
-        this.w = Math.max ( 750, this.w );
+        this.win.w = Math.max ( 750, this.win.w );
 
-        this.x = this.dragStartW - this.w + this.dragStartX;
+        this.win.x = this.dragStartW - this.win.w + this.dragStartX;
 
-        // console.log ( 'on drag', this.x, this.w );
+        // console.log ( 'on drag', this.win.x, this.win.w );
         break;
       case 5:
-        this.w = e.clientX - this.dragClientX + this.dragStartW;
+        this.win.w = e.clientX - this.dragClientX + this.dragStartW;
 
-        this.w = Math.max ( 750, this.w );
+        this.win.w = Math.max ( 750, this.win.w );
 
-        // console.log ( 'on drag', this.w );
+        // console.log ( 'on drag', this.win.w );
         break;
       case 6:
-        this.w = this.dragClientX - e.clientX + this.dragStartW;
-        this.h = this.dragClientY - e.clientY + this.dragStartH;
+        this.win.w = this.dragClientX - e.clientX + this.dragStartW;
+        this.win.h = this.dragClientY - e.clientY + this.dragStartH;
 
-        this.w = Math.max ( 750, this.w );
-        this.h = Math.max ( 50, this.h );
+        this.win.w = Math.max ( 750, this.win.w );
+        this.win.h = Math.max ( 50, this.win.h );
 
-        this.x = this.dragStartW - this.w + this.dragStartX;
-        this.y = this.dragStartH - this.h + this.dragStartY;
+        this.win.x = this.dragStartW - this.win.w + this.dragStartX;
+        this.win.y = this.dragStartH - this.win.h + this.dragStartY;
         break;
       case 7:
-        this.w = e.clientX - this.dragClientX + this.dragStartW;
-        this.h = this.dragClientY - e.clientY + this.dragStartH;
+        this.win.w = e.clientX - this.dragClientX + this.dragStartW;
+        this.win.h = this.dragClientY - e.clientY + this.dragStartH;
 
-        this.w = Math.max ( 750, this.w );
-        this.h = Math.max ( 50, this.h );
+        this.win.w = Math.max ( 750, this.win.w );
+        this.win.h = Math.max ( 50, this.win.h );
 
-        this.y = this.dragStartH - this.h + this.dragStartY;
+        this.win.y = this.dragStartH - this.win.h + this.dragStartY;
         break;
       case 8:
-        this.w = this.dragClientX - e.clientX + this.dragStartW;
-        this.h = e.clientY - this.dragClientY + this.dragStartH;
+        this.win.w = this.dragClientX - e.clientX + this.dragStartW;
+        this.win.h = e.clientY - this.dragClientY + this.dragStartH;
 
-        this.w = Math.max ( 750, this.w );
-        this.h = Math.max ( 50, this.h );
+        this.win.w = Math.max ( 750, this.win.w );
+        this.win.h = Math.max ( 50, this.win.h );
 
-        this.x = this.dragStartW - this.w + this.dragStartX;
+        this.win.x = this.dragStartW - this.win.w + this.dragStartX;
         break;
       case 9:
-        this.w = e.clientX - this.dragClientX + this.dragStartW;
-        this.h = e.clientY - this.dragClientY + this.dragStartH;
+        this.win.w = e.clientX - this.dragClientX + this.dragStartW;
+        this.win.h = e.clientY - this.dragClientY + this.dragStartH;
 
-        this.w = Math.max ( 750, this.w );
-        this.h = Math.max ( 50, this.h );
+        this.win.w = Math.max ( 750, this.win.w );
+        this.win.h = Math.max ( 50, this.win.h );
         break;
       default:
         break;

@@ -1,50 +1,65 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { uid } from '../../3rdlib/uid';
 import { WindowDatum } from '../../interfaces/window.datum';
 
 @Injectable ( { providedIn: 'root' } )
 export class WinManagerService {
 
-    windows: WindowDatum[] = [];
+    private winKeys: string[] = [];
+
+    private windows: Map<string, WindowDatum> = new Map<string, WindowDatum> ();
 
     constructor ( private sanitizer: DomSanitizer ) {}
 
-    getData (): WindowDatum[] {
-        return this.windows;
+    getWinKeys (): string[] {
+         return this.winKeys;
+    }
+
+    getWindow ( key: string ): WindowDatum | undefined {
+        return this.windows.get ( key );
     }
     
     add ( src: string, title: string ): void {
-        const zIndex = this.windows.length;
-        this.windows.push ( {
+        const zIndex = this.windows.size;
+        const key = uid ();
+        this.winKeys.push ( key );
+        this.windows.set ( key, {
             src: this.sanitizer.bypassSecurityTrustResourceUrl ( `${ src }?app=${ Date.now () }` ),
             title,
             zIndex,
+            x  : 100,
+            y  : 50,
+            w  : 1366,
+            h  : 800,
         } );
     }
 
-    delete ( datum: WindowDatum ): void {
-        const idx = this.windows.indexOf ( datum );
-        if ( idx !== -1 ) {
-            this.windows.splice ( idx, 1 );
-            for ( const win of this.windows ) {
-                if ( win.zIndex > idx ) {
+    delete ( key: string ): void {
+        const delWin = this.windows.get ( key );
+        if ( delWin ) {
+            this.windows.delete ( key );
+            this.winKeys.splice ( this.winKeys.indexOf ( key ), 1 );
+        
+            for ( const win of this.windows.values () ) {
+                if ( win.zIndex > delWin.zIndex ) {
                     win.zIndex -= 1;
                 }
             }
         }
     }
 
-    focus ( datum: WindowDatum ): void {
-        const idx = this.windows.indexOf ( datum );
-        if ( idx !== -1 ) {
-            for ( const win of this.windows ) {
-                if ( win.zIndex > idx ) {
+    focus ( key: string ): void {
+        const focusWin = this.windows.get ( key );
+        if ( focusWin ) {
+            for ( const win of this.windows.values () ) {
+                if ( win.zIndex > focusWin.zIndex ) {
                     win.zIndex -= 1;
                 }
             }
+            focusWin.zIndex = this.windows.size - 1;
         }
-        datum.zIndex = this.windows.length - 1;
     }
 
 }

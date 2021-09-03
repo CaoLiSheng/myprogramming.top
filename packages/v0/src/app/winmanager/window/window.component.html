@@ -1,13 +1,13 @@
-<div class="window" role="window" [style.top.px]="y" [style.left.px]="x" [style.width.px]="w" [style.height.px]="h" [style.zIndex]="zIndex">
+<div class="window" role="window" [style.top.px]="win?.y" [style.left.px]="win?.x" [style.width.px]="win?.w" [style.height.px]="win?.h" [style.zIndex]="win?.zIndex">
     <div class="title" (mousedown)="onDragStart($event)">
-        <span>{{ title }}</span>
+        <span>{{ win?.title }}</span>
         <button class="min-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <button class="sep">&nbsp;</button>
         <button class="max-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <button class="sep">&nbsp;</button>
-        <button class="close-handler" (click)="close.emit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="close-handler" (click)="onClose()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
-    <iframe [src]="src" [style.height.px]="h - 32"></iframe>
+    <iframe [src]="win?.src" [style.height.px]="(win?.h || 0) - 34"></iframe>
     <div class="mask" [style.display]="maskStyle"></div>
     <div class="resize-handlers">
         <div class="top" (mousedown)="onTopResizeStart($event)"></div>

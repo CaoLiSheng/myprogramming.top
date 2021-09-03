@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { WindowDatum } from '../../interfaces/window.datum';
 import { WinManagerService } from './winmanager.service';
 
 @Component ( {
@@ -10,16 +9,8 @@ import { WinManagerService } from './winmanager.service';
 } )
 export class WinManagerComponent {
 
-  windows: WindowDatum[] = this.service.getData ();
+  winKeys: string[] = this.service.getWinKeys ();
 
   constructor ( private service: WinManagerService ) { }
-
-  onClose ( datum: WindowDatum ): void {
-    this.service.delete ( datum );
-  }
-
-  onFocus ( datum: WindowDatum ): void {
-    this.service.focus ( datum );
-  }
 
 }
