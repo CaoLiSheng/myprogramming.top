@@ -21,12 +21,13 @@ export class WinManagerService {
         return this.windows.get ( key );
     }
     
-    add ( src: string, title: string ): void {
+    add ( src: string, title: string, iconUrl: string ): void {
         const zIndex = this.windows.size;
         const key = uid ();
         this.winKeys.push ( key );
         this.windows.set ( key, {
             src: this.sanitizer.bypassSecurityTrustResourceUrl ( `${ src }?app=${ Date.now () }` ),
+            iconUrl,
             title,
             zIndex,
             x  : 100,

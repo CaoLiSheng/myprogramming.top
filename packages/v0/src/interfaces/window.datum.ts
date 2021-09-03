@@ -2,6 +2,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 
 export interface WindowDatum {
   src: SafeResourceUrl;
+  iconUrl: string;
   title: string;
   zIndex: number;
   x: number;

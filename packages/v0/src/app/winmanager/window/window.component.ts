@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { WindowDatum } from '../../../interfaces/window.datum';
 import { WinManagerService } from '../winmanager.service';
