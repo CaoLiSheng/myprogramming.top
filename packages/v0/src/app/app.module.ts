@@ -3,13 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WinManagerComponent } from './winmanager/winmanager.component';
+import { WindowsComponent } from './winmanager/windows/windows.component';
 import { WindowComponent } from './winmanager/window/window.component';
 
 @NgModule ( {
   declarations: [
     AppComponent,
-    WinManagerComponent,
+    WindowsComponent,
     WindowComponent,
   ],
   imports: [

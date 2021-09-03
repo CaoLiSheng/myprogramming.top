@@ -179,7 +179,7 @@ export class WindowComponent implements OnInit, OnDestroy {
       case 4:
         this.win.w = this.dragClientX - e.clientX + this.dragStartW;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
 
         this.win.x = this.dragStartW - this.win.w + this.dragStartX;
 
@@ -188,7 +188,7 @@ export class WindowComponent implements OnInit, OnDestroy {
       case 5:
         this.win.w = e.clientX - this.dragClientX + this.dragStartW;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
 
         // console.log ( 'on drag', this.win.w );
         break;
@@ -196,7 +196,7 @@ export class WindowComponent implements OnInit, OnDestroy {
         this.win.w = this.dragClientX - e.clientX + this.dragStartW;
         this.win.h = this.dragClientY - e.clientY + this.dragStartH;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
         this.win.h = Math.max ( 50, this.win.h );
 
         this.win.x = this.dragStartW - this.win.w + this.dragStartX;
@@ -206,7 +206,7 @@ export class WindowComponent implements OnInit, OnDestroy {
         this.win.w = e.clientX - this.dragClientX + this.dragStartW;
         this.win.h = this.dragClientY - e.clientY + this.dragStartH;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
         this.win.h = Math.max ( 50, this.win.h );
 
         this.win.y = this.dragStartH - this.win.h + this.dragStartY;
@@ -215,7 +215,7 @@ export class WindowComponent implements OnInit, OnDestroy {
         this.win.w = this.dragClientX - e.clientX + this.dragStartW;
         this.win.h = e.clientY - this.dragClientY + this.dragStartH;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
         this.win.h = Math.max ( 50, this.win.h );
 
         this.win.x = this.dragStartW - this.win.w + this.dragStartX;
@@ -224,7 +224,7 @@ export class WindowComponent implements OnInit, OnDestroy {
         this.win.w = e.clientX - this.dragClientX + this.dragStartW;
         this.win.h = e.clientY - this.dragClientY + this.dragStartH;
 
-        this.win.w = Math.max ( 750, this.win.w );
+        this.win.w = Math.max ( 500, this.win.w );
         this.win.h = Math.max ( 50, this.win.h );
         break;
       default:
