@@ -1,0 +1,5 @@
+<div [class]="classNames" (click)="close.emit()">
+    <div class="modal-content" role="panel" [style.top.px]="panel?.y" [style.left.px]="panel?.x" [style.width.px]="panel?.w" [style.height.px]="panel?.h">
+        <ng-content></ng-content>
+    </div>
+</div>

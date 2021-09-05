@@ -9,7 +9,7 @@ export class WinManagerService {
 
     private winKeys: string[] = [];
 
-    private windows: Map<string, WindowDatum> = new Map<string, WindowDatum> ();
+    private windows: Map<string, WindowDatum> = new Map ();
 
     constructor ( private sanitizer: DomSanitizer ) {}
 

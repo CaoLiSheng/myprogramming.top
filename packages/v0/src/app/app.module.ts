@@ -7,6 +7,7 @@ import { WindowsComponent } from './winmanager/windows/windows.component';
 import { WindowComponent } from './winmanager/window/window.component';
 import { TaskbarComponent } from './winmanager/taskbar/taskbar.component';
 import { IconComponent } from './winmanager/icon/icon.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule ( {
   declarations: [
@@ -15,6 +16,7 @@ import { IconComponent } from './winmanager/icon/icon.component';
     WindowComponent,
     TaskbarComponent,
     IconComponent,
+    PanelComponent,
   ],
   imports: [
     BrowserModule,

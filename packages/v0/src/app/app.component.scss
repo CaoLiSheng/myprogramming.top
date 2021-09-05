@@ -7,78 +7,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//   margin: 8px 0;
-// }
-
-// p {
-//   margin: 0;
-// }
-
-// .spacer {
-//   flex: 1;
-// }
-
-// .toolbar {
-//   display: flex;
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   left: 0;
-//   align-items: center;
-//   height: 60px;
-//   background-color: #1976d2;
-//   color: white;
-//   font-weight: 600;
-// }
-
-// .toolbar img {
-//   margin: 0 16px;
-// }
-
-// .toolbar #twitter-logo {
-//   height: 40px;
-//   margin: 0 8px;
-// }
-
-// .toolbar #youtube-logo {
-//   height: 40px;
-//   margin: 0 16px;
-// }
-
-// .toolbar #angular-logo:hover,
-// .toolbar #twitter-logo:hover,
-// .toolbar #youtube-logo:hover {
-//   opacity: 0.8;
-// }
-
-// .content {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   max-width: 960px;
-//   margin: 82px auto 32px;
-//   padding: 0 16px;
-// }
-
-// svg.material-icons {
-//   width: auto;
-//   height: 24px;
-// }
-
-// svg.material-icons:not(:last-child) {
-//   margin-right: 8px;
-// }
-
-// .card svg.material-icons path {
-//   fill: #888;
-// }
-
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -103,43 +31,12 @@
   line-height: 24px;
 }
 
-.app-list {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.app-list .card-container {
-  position: fixed;
-  top: 28px;
-  left: 0;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  border-top-width: 6px;
-  border-right-width: 10px;
-  border-bottom-width: 6px;
-  border-left-width: 10px;
-  border-style: solid;
-  border-top-color: rgb(150, 150, 150);
-  border-right-color: rgb(194, 194, 194);
-  border-bottom-color: rgb(150, 150, 150);
-  border-left-color: rgb(194, 194, 194);
-  background-color: rgb(194, 175, 175);
-}
-
-.app-list .card-container .card {
-  margin: 0;
-}
-
 .card-container .card:not(:last-child) {
   margin-right: 0;
 }
 
 .card.card-tiny {
+  width: 180px;
   height: 30px;
   padding: 7px 16px;
   border-radius: 0;
@@ -167,144 +64,6 @@
   fill: rgb(105, 103, 103);
 }
 
-// .card.highlight-card {
-//   position: relative;
-//   width: auto;
-//   min-width: 30%;
-//   border: none;
-//   background-color: #1976d2;
-//   color: white;
-//   font-weight: 600;
-// }
-
-// .card.card.highlight-card span {
-//   margin-left: 60px;
-// }
-
-// svg#rocket {
-//   position: absolute;
-//   top: -24px;
-//   left: -10px;
-//   width: 80px;
-// }
-
-// svg#rocket-smoke {
-//   position: absolute;
-//   z-index: -10;
-//   top: 10px;
-//   right: 180px;
-//   height: calc(100vh - 95px);
-// }
-
-// a,
-// a:visited,
-// a:hover {
-//   color: #1976d2;
-//   text-decoration: none;
-// }
-
-// a:hover {
-//   color: #125699;
-// }
-
-// .terminal {
-//   position: relative;
-//   width: 80%;
-//   max-width: 600px;
-//   border-radius: 6px;
-//   padding-top: 45px;
-//   margin-top: 8px;
-//   overflow: hidden;
-//   background-color: rgb(15, 15, 16);
-// }
-
-// .terminal::before {
-//   content: "\2022 \2022 \2022";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   height: 4px;
-//   background: rgb(58, 58, 58);
-//   color: #c2c3c4;
-//   width: 100%;
-//   font-size: 2rem;
-//   line-height: 0;
-//   padding: 14px 0;
-//   text-indent: 4px;
-// }
-
-// .terminal pre {
-//   font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-//   color: white;
-//   padding: 0 1rem 1rem;
-//   margin: 0;
-// }
-
-// .circle-link {
-//   height: 40px;
-//   width: 40px;
-//   border-radius: 40px;
-//   margin: 8px;
-//   background-color: white;
-//   border: 1px solid #eeeeee;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   cursor: pointer;
-//   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-//   transition: 1s ease-out;
-// }
-
-// .circle-link:hover {
-//   transform: translateY(-0.25rem);
-//   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-// }
-
-// footer {
-//   margin-top: 8px;
-//   display: flex;
-//   align-items: center;
-//   line-height: 20px;
-// }
-
-// footer a {
-//   display: flex;
-//   align-items: center;
-// }
-
-// .github-star-badge {
-//   color: #24292e;
-//   display: flex;
-//   align-items: center;
-//   font-size: 12px;
-//   padding: 3px 10px;
-//   border: 1px solid rgba(27,31,35,.2);
-//   border-radius: 3px;
-//   background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-//   margin-left: 4px;
-//   font-weight: 600;
-// }
-
-// .github-star-badge:hover {
-//   background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-//   border-color: rgba(27,31,35,.35);
-//   background-position: -.5em;
-// }
-
-// .github-star-badge .material-icons {
-//   height: 16px;
-//   width: 16px;
-//   margin-right: 4px;
-// }
-
-// svg#clouds {
-//   position: fixed;
-//   z-index: -10;
-//   bottom: -160px;
-//   left: -230px;
-//   width: 1920px;
-// }
-
 /* 焱升桌面设计 */
 .desktop {
   display: flex;
@@ -313,10 +72,10 @@
   width: 100vw;
   height: 100vh;
   background-color: #739899;
-  background-image: url("~src/assets/bg.jpg");
+  background-image: url("~src/assets/desktop.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
+  background-size: cover;
   user-select: none;
   -webkit-user-drag: none;
 
@@ -326,13 +85,17 @@
     top: 0;
     right: 0;
     left: 0;
-    justify-content: start;
+    justify-content: center;
     height: 2em;
     background-color: azure;
+    background-image: url("~src/assets/underglass.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     line-height: 2em;
 
     button {
-      background-color: #abe0d8;
+      background-color: transparent;
     }
 
     button:hover {
@@ -344,17 +107,20 @@
     }
 
     .apps {
-      padding: 0 1em 0 2.5em;
+      width: 9em;
+      padding-left: 2.5em;
       background-image: url("~src/assets/logo.png");
       background-repeat: no-repeat;
+      background-position: 1em;
       background-size: contain;
     }
 
-    .sep {
-      width: 6px;
-      background-image: url("~src/assets/sep.png");
+    .glass {
+      width: 3em;
+      background-image: url("~src/assets/glass.png");
       background-repeat: no-repeat;
-      background-size: cover;
+      background-position: center;
+      background-size: contain;
     }
   }
 }
