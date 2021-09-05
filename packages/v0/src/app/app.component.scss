@@ -29,6 +29,7 @@
   border-radius: 4px;
   background-color: #fafafa;
   line-height: 24px;
+  user-select: none;
 }
 
 .card-container .card:not(:last-child) {
