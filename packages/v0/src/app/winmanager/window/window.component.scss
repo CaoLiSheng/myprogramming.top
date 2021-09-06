@@ -5,6 +5,10 @@
   background-color: white;
   font-size: 0;
 
+  &.hidden {
+    display: none;
+  }
+
   .title {
     display: flex;
     flex-direction: row;

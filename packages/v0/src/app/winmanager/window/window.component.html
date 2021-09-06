@@ -1,9 +1,9 @@
-<div class="window" role="window" [style.top.px]="win?.y" [style.left.px]="win?.x" [style.width.px]="win?.w" [style.height.px]="win?.h" [style.zIndex]="win?.zIndex">
+<div class="window" role="window" [class.hidden]="win?.zoom === 0" [style.top.px]="win?.y" [style.left.px]="win?.x" [style.width.px]="win?.w" [style.height.px]="win?.h" [style.zIndex]="win?.zIndex">
     <div class="title" (mousedown)="onDragStart($event)">
         <span>{{ win?.title }}</span>
-        <button class="min-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="min-handler" (click)="onMinimize()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <button class="sep">&nbsp;</button>
-        <button class="max-handler">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button class="max-handler" (click)="onMaximize()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
         <button class="sep">&nbsp;</button>
         <button class="close-handler" (click)="onClose()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>

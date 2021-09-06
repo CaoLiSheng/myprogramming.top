@@ -22,4 +22,10 @@ export class IconComponent implements OnInit {
     }
   }
 
+  onMinimize (): void {
+    if ( this.winKey ) {
+      this.service.minimize ( this.winKey );
+    }
+  }
+
 }

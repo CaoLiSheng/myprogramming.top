@@ -9,4 +9,11 @@ export interface WindowDatum {
   y: number;
   w: number;
   h: number;
+  prevWin?: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  },
+  zoom: number;
 }

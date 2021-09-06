@@ -231,4 +231,16 @@ export class WindowComponent implements OnInit, OnDestroy {
     }
   }
 
+  onMaximize (): void {
+    if ( this.winKey ) {
+      this.service.maximize ( this.winKey );
+    }
+  }
+
+  onMinimize (): void {
+    if ( this.winKey ) {
+      this.service.minimize ( this.winKey );
+    }
+  }
+
 }
