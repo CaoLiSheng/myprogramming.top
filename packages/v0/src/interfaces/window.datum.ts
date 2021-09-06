@@ -16,4 +16,5 @@ export interface WindowDatum {
     h: number;
   },
   zoom: number;
+  forceMask?: boolean;
 }

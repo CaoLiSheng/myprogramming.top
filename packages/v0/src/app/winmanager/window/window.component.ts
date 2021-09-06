@@ -242,5 +242,11 @@ export class WindowComponent implements OnInit, OnDestroy {
       this.service.minimize ( this.winKey );
     }
   }
+  
+  onFocus (): void {
+    if ( this.winKey ) {
+      this.service.focus ( this.winKey );
+    }
+  }
 
 }

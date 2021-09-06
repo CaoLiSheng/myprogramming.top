@@ -86,6 +86,10 @@
     left: 0;
     opacity: 0.01;
     background-color: black;
+
+    &.force {
+      display: block !important;
+    }
   }
 
   .resize-handlers {

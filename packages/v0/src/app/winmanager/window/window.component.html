@@ -8,7 +8,7 @@
         <button class="close-handler" (click)="onClose()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
     <iframe [src]="win?.src" [style.height.px]="(win?.h || 0) - 34"></iframe>
-    <div class="mask" [style.display]="maskStyle"></div>
+    <div class="mask" [class.force]="win?.forceMask" [style.display]="maskStyle" (mousedown)="onFocus()"></div>
     <div class="resize-handlers">
         <div class="top" (mousedown)="onTopResizeStart($event)"></div>
         <div class="right" (mousedown)="onRightResizeStart($event)"></div>

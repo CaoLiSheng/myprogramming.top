@@ -36,6 +36,7 @@ export class WinManagerService {
             h   : 800,
             zoom: 1,
         } );
+        this.focus ( key );
     }
 
     delete ( key: string ): void {
@@ -56,12 +57,15 @@ export class WinManagerService {
         const focusWin = this.windows.get ( key );
         if ( focusWin ) {
             for ( const win of this.windows.values () ) {
+                win.forceMask = true;
                 if ( win.zIndex > focusWin.zIndex ) {
                     win.zIndex -= 1;
                 }
             }
             focusWin.zIndex = this.windows.size - 1;
+            focusWin.forceMask = false;
         }
+        // console.log ( Array.from ( this.windows.values () ).map ( win => [ win.title, win.forceMask, win.zIndex ] ) );
     }
 
     maximize ( key: string ): void {
