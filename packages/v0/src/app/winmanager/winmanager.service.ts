@@ -57,15 +57,15 @@ export class WinManagerService {
         const focusWin = this.windows.get ( key );
         if ( focusWin ) {
             for ( const win of this.windows.values () ) {
-                win.forceMask = true;
+                win.focused = false;
                 if ( win.zIndex > focusWin.zIndex ) {
                     win.zIndex -= 1;
                 }
             }
             focusWin.zIndex = this.windows.size - 1;
-            focusWin.forceMask = false;
+            focusWin.focused = true;
         }
-        // console.log ( Array.from ( this.windows.values () ).map ( win => [ win.title, win.forceMask, win.zIndex ] ) );
+        // console.log ( Array.from ( this.windows.values () ).map ( win => [ win.title, win.focused, win.zIndex ] ) );
     }
 
     maximize ( key: string ): void {
@@ -96,7 +96,29 @@ export class WinManagerService {
         const minWin = this.windows.get ( key );
         if ( minWin ) {
             minWin.zoom = 1 - minWin.zoom;
-        }
+            if ( minWin.zoom === 1 ) {
+                this.focus ( key );
+            } else {
+                let focusZIndex = this.windows.size - 1;
+                focusZIndex = minWin.zIndex === focusZIndex ? focusZIndex - 1 : focusZIndex;
+                for ( const winKey of this.winKeys ) {
+                    const win = this.windows.get ( winKey );
+                    if ( win?.zIndex === focusZIndex ) {
+                        this.focus ( winKey );
+                        break;
+                    }
+                }
+            }
+        } 
+    }
+
+    glassResize ( x: number, y: number, w: number, h: number ): void {
+        Array.from ( this.windows.values () ).filter ( win => win.focused ).forEach ( win => {
+            win.x = x;
+            win.y = y;
+            win.w = w;
+            win.h = h;
+        } );
     }
 
 }

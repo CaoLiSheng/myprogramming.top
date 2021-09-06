@@ -240,13 +240,13 @@
   <div class="topbar">
     <button class="apps" (click)="showAppsPanel($event)">所有应用</button>
     <app-taskbar></app-taskbar>
-    <button class="glass"></button>
+    <button class="glass" (click)="showGlassPanel($event)"></button>
   </div>
 </div>
 
 <app-windows></app-windows>
 
-<app-panel *ngIf="showApps" panelKey="app-list" (close)="showApps = false;">
+<app-panel *ngIf="showPanels[0]" panelKey="app-list" (close)="showPanels[0] = false;">
   <div class="card-container">
     <a *ngFor="let app of apps" class="card card-tiny" (click)="openApp(app.title)">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
@@ -254,4 +254,34 @@
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
   </div>
+</app-panel>
+
+<app-panel *ngIf="showPanels[1]" panelKey="app-glass" (close)="showPanels[1] = false;">
+  <ul class="glass-container">
+    <li class="group">
+      <ul>
+        <li class="glass" (click)="glassResize(1)">上半</li>
+        <li class="glass" (click)="glassResize(2)">下半</li>
+        <li class="glass" (click)="glassResize(3)">左半</li>
+        <li class="glass" (click)="glassResize(4)">右半</li>
+      </ul>
+    </li>
+    <li class="group">
+      <ul>
+        <li class="glass" (click)="glassResize(5)">左上</li>
+        <li class="glass" (click)="glassResize(6)">右上</li>
+        <li class="glass" (click)="glassResize(7)">左下</li>
+        <li class="glass" (click)="glassResize(8)">右下</li>
+      </ul>
+    </li>
+    <li class="group">
+      <ul>
+        <li class="glass" (click)="glassResize(11)">左1/3</li>
+        <li class="glass" (click)="glassResize(12)">左2/3</li>
+        <li class="glass" (click)="glassResize(13)">中1/3</li>
+        <li class="glass" (click)="glassResize(14)">右2/3</li>
+        <li class="glass" (click)="glassResize(15)">右1/3</li>
+      </ul>
+    </li>
+  </ul>
 </app-panel>

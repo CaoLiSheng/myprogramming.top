@@ -65,6 +65,41 @@
   fill: rgb(105, 103, 103);
 }
 
+/* App-Glass */
+.glass-container {
+  padding: 14px;
+}
+
+.glass-container,
+.glass-container ul {
+  list-style: none;
+}
+
+.glass-container .group {
+  padding: 2px 0;
+}
+
+.glass-container .group + .group {
+  border-top: solid 1px white;
+}
+
+.glass-container .group .glass {
+  width: 72px;
+  height: 20px;
+  border-radius: 5px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.glass-container .group .glass:hover {
+  background-color: #b1ecee;
+}
+
+.glass-container .group .glass:active {
+  background-color: #5debf0;
+}
+
 /* 焱升桌面设计 */
 .desktop {
   display: flex;
