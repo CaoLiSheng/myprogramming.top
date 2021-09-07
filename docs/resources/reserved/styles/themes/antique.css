@@ -303,11 +303,9 @@ body[theme="Dark"] .markdown-body.antique {
 
 .markdown-body.antique code {
   display: inline-block;
-  color: rgb(15, 124, 226);
-  font-family: inherit;
   font-size: 0.9em;
-  font-weight: 900;
-  text-shadow: 1px 1px 1px #2d62f5;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px #808080;
 }
 
 .markdown-body.antique pre.prettyprinted {

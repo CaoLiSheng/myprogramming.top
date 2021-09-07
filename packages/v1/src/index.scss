@@ -31,6 +31,7 @@ body {
 
 #main {
   padding-top: 0.5rem;
+  overflow: hidden;
 
   &.blurred {
     filter: blur(3px);

@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "webpack --config=cfg/webpack/gen.dev.js && zsh src/scripts/gen.dev.zsh",
+    "generate": "zsh src/scripts/gen.dev.zsh",
     "bundle": "webpack --config=cfg/webpack/gen.prod.js && zsh src/scripts/gen.prod.zsh"
   },
   "dependencies": {
