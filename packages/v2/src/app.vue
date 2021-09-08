@@ -52,7 +52,7 @@ body[theme='Dark']
     --btn-hover-theme-color: rgb(200, 220, 230);
     --btn-active-theme-color: rgb(125, 128, 132);
 body
-  font-family: '等距更纱黑体', 'PingFang SC', 'Microsoft YaHei', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-weight: 200;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-drag: none;

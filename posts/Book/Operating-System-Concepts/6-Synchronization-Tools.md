@@ -127,8 +127,193 @@ while (true) {
   key = 1;
   while (waiting[i] && key == 1)
     key = compare_and_swap(&lock, 0, 1);
+  waiting[i] = false;
+
+    /* critical section */
+
+  j = (i+1) % n;
+  while ((j != i) && !waiting[j])
+    j = (j+1) % n;
+  
+  if (j == i)
+    lock = 0;
+  else
+    waiting[j] = false;
+
+    /* remainder section */
 }
 ```
+
+## Atomic Variables
+
+```c
+void increment(atomic_int *v) {
+  int temp;
+  do {
+    temp = *v;
+  } while (temp != compare_and_swap(v, temp, temp+1));
+}
+```
+
+## Mutex Lock
+
+```c
+acquire() {
+  while (!compare_and_swap(&available, true, false))
+    ; /* busy wait */
+}
+
+release() {
+  available = true;
+}
+```
+
+## Semaphores
+
+```c
+wait(S) {
+  while (S <= 0)
+    ; // busy wait
+  S--;
+}
+
+signal(S) {
+  S++;
+}
+```
+
+```c
+typedef struct {
+  int value;
+  struct process *list;
+} semaphore;
+
+wait(semaphore *S) {
+  S->value--;
+  if (S->value < 0) {
+    add this process to S->list;
+    sleep();
+  }
+}
+
+signal(semaphore *S) {
+  S->value++;
+  if (S->value <= 0) {
+    remove a process P from S->list;
+    wakeup(P);
+  }
+}
+```
+
+## Monitor
+
+```c
+monitor monitor_name {
+  /* shared variable declarations */
+
+  function OP1 (...) {
+    ...
+  }
+
+  function OP2 (...) {
+    ...
+  }
+
+  ...
+
+  function OPn (...) {
+    ...
+  }
+
+  initializatin_code (...) {
+    ...
+  }
+}
+
+/* mutual exclusion */
+wait(mutex);
+  ...
+  body of OP
+  ...
+if (next_count > 0)
+  signal(next);
+else
+  signal(mutex);
+
+/* condition wait */
+x_count++;
+if (next_count > 0)
+  signal(next);
+else
+  signal(mutex);
+wait(x_sem);
+x_count--;
+
+/* condition signal */
+if (x_count > 0) {
+  next_count++;
+  signal(x_sem);
+  wait(next);
+  next_count--;
+}
+```
+
+```c
+monitor ResourceAllocator {
+  boolean busy;
+  condition x;
+
+  void acquire(int time) {
+    if (busy)
+      x.wait(time);
+    busy = true;
+  }
+
+  void release() {
+    busy = false;
+    x.signal();
+  }
+
+  initialization_code() {
+    busy = false;
+  }
+}
+```
+
+Now suppose that,, when the x.signal() operation is invoked by a process P, there exist a suspended process Q associated with the condition x. Clearly, if the suspended process Q is allowed to resume its execution, the signaling process P must wait. Otherwise, both P and Q would be active simultaneously within the monitor. Note, however, that conceptually both processes can continue with their execution. Two possiblilities exist:
+
+1. `Signal and wait.` P either waits until Q leaves the monitor or waits for another condition.
+2. `Signal and continue.` Q either waits until P leaves the monitor or waits for another condition.
+
+## Liveness
+
+`Liveness` refers to a set of properties that a system must satisfy to ensure that process make progress during their execution life cycle. A process waiting indefinitely under the circumstances just described is an example of a "liveness failure".
+
+## Deadlock
+
+The implementation of a semaphore with a waiting queue may result in a situation where two or more progress are waiting indefinitely for an event that can be caused only by one of the waiting processes. The event in question in the execution of a `signal()` operation. When such a state is reached, these processes are said to be `deadlocked`.
+
+## Priority Inversion
+
+A scheduling challenge arises when a higher-priority process needs to read or modify kernel data that are currently being accessed by a lower-priority process —— or a chain of lower-priority processes. Since kernel data are typically protected with a lock, the higher-priority process will have to wait for a lower-priority one to finish with the resource. The situation becomes more complicated if the lower-priority process is preempted in favor of another process with a higher priority.
+
+This liveness problem is known as `priority inversion`, and it can occor only in systems with more than two priorities. Typically, priority inversion is avoided by implementing a `priority-inheritance protocol`. According to this protocol, all processes that are accessing resources needed by a higher-priority process inherit the higher priority until they are finished with the resources in question. When they are finished, their priorities revert to their original values.
+
+## Optimistic Approach vs. Pessimistic Strategy
+
+CAS-based `lock-free` approaches are considered an optimistic approach —— you optimistically first update a variable and then use collision detection to see if another thread is updating the variable concurrently. If so, you repeatedly retry the operatoin until it is successfully updated without conflict. Mutual-exclusion locking, in contrast, is considered a pessimistic strategy; you assume another thread is concurrently updating the variable, so you pessimistically acquire the lock before making any updates.
+
+The following guidelines identify general rules concerning performance differences between CAS-based synchronization and traditional synchronization (such as mutex locks and semaphores) under varying contention loads:
+
+- `Uncontended.` Although both options are generally fast, CAS protection will be somewhat faster than traditional synchronization.
+- `Moderate contention.` CAS protection will be faster —— possibly much faster —— than traditional synchronization.
+- `High contention.` Under very highly contended loads, traditional synchronization will ultimately be faster than CAS-based synchronization.
+
+## Ongoing Research of Concurrent Programming
+
+- Designing compilers that generate more efficient code.
+- Developing languages that provide support for concurrent programming.
+- Improving the performance of existing libraries and APIs.
 
 ## Another COPY of Summary in the Book
 
