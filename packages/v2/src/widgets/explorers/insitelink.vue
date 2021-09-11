@@ -11,6 +11,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { clickOnLink } from "../../router";
+import { ui } from "../../stores/index";
 
 @Component
 export default class InsiteLink extends Vue.extend ( {
@@ -48,6 +49,7 @@ export default class InsiteLink extends Vue.extend ( {
 
   goToHref (): void {
     clickOnLink ( this.$props.name, this.$router );
+    ui.closeMenu ();
   }
 }
 </script>

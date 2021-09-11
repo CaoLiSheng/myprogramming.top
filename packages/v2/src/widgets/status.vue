@@ -119,7 +119,8 @@ export default class StatusComponent extends Vue.extend ( {
 
 <style lang="stylus" scoped>
 .status
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -86,6 +86,8 @@ export default class PostComponent extends Vue.extend ( {
   user-select: text;
   background: linear-gradient(to bottom, var(--third-theme-color), var(--theme-color) 54vh, var(--theme-color));
   padding: 0.382rem 1rem;
+  @media screen and (max-width: 750px)
+    padding: 0.382rem 0.2rem;
   .markdown-body
     padding: 0.1rem 0.382rem;
     border: solid 1px gray;
