@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { environment } from '../environments/environment';
 import { WinManagerService } from './winmanager/winmanager.service';
 import { PanelService } from './panel/panel.service';
 
@@ -8,7 +9,7 @@ import { PanelService } from './panel/panel.service';
   templateUrl: './app.component.html',
   styleUrls  : [ './app.component.scss' ]
 } )
-export class AppComponent {
+export class AppComponent implements OnInit {
   showPanels = [ false, false ];
 
   apps = [ 
@@ -20,6 +21,15 @@ export class AppComponent {
     private winManagerService: WinManagerService,
     private panelService: PanelService
   ) { }
+  
+  ngOnInit (): void {
+     if ( environment.production ) {
+       this.apps = [
+        { src: 'https://www.myprogramming.top/v1', title: 'Blog | v1', iconUrl: 'assets/logo-v1.png' },
+        { src: 'https://www.myprogramming.top/v2', title: 'Blog | v2', iconUrl: 'assets/logo-v2.png' },
+       ];
+     }
+  }
 
   hideAllExcept ( num?: number ): void {
     for ( let i=0; i<this.showPanels.length; i+=1 ) {
