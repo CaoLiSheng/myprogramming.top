@@ -12,8 +12,8 @@ export class AppComponent {
   showPanels = [ false, false ];
 
   apps = [ 
-    { src: 'https://www.myprogramming.top/v1', title: 'Blog | v1', iconUrl: 'assets/logo-v1.png' },
-    { src: 'https://www.myprogramming.top/v2', title: 'Blog | v2', iconUrl: 'assets/logo-v2.png' },
+    { src: 'http://localhost:3000', title: 'Blog | v1', iconUrl: 'assets/logo-v1.png' },
+    { src: 'http://localhost:3333', title: 'Blog | v2', iconUrl: 'assets/logo-v2.png' },
   ];
 
   constructor (
