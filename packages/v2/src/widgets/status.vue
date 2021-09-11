@@ -59,6 +59,20 @@ export default class StatusComponent extends Vue.extend ( {
   mounted (): void {
     void initOnce ();
 
+    this.mountedOnMobile ();
+
+    const resizeHandler = () => {
+      this.isMobile = isMobileSize ().result;
+      this.mountedOnMobile ();
+    }
+    window.addEventListener ( 'resize', resizeHandler );
+    window.addEventListener ( 'beforeunload', () => {
+      window.removeEventListener ( 'resize', resizeHandler );
+    } );
+  }
+
+  mountedOnMobile (): void {
+    
     if ( !this.isMobile ) return;
 
     this.sideRoot = document.querySelector ( "#side" );
