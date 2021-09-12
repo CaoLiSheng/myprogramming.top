@@ -1,0 +1,11 @@
+.placeholder {
+  margin: 0 1px;
+  padding: 4px 2px;
+  outline-offset: -2px;
+  background: #ff0;
+  line-height: 1em;
+}
+
+.placeholder::selection {
+  display: none;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "t2",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "曹力升 <caoyouxin8@gmail.com>",
+  "homepage": "https://github.com/CaoLiSheng/myprogramming.top#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://registry.npm.taobao.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaoLiSheng/myprogramming.top.git"
+  },
+  "scripts": {
+    "start": "serve -l 3002 .",
+    "dist": "./node_modules/.bin/webpack --mode development"
+  },
+  "bugs": {
+    "url": "https://github.com/CaoLiSheng/myprogramming.top/issues"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "^29.2.0",
+    "@ckeditor/ckeditor5-core": "^29.2.0",
+    "@ckeditor/ckeditor5-dev-utils": "^25.4.2",
+    "@ckeditor/ckeditor5-editor-classic": "^29.2.0",
+    "@ckeditor/ckeditor5-essentials": "^29.2.0",
+    "@ckeditor/ckeditor5-heading": "^29.2.0",
+    "@ckeditor/ckeditor5-inspector": "^2.2.2",
+    "@ckeditor/ckeditor5-list": "^29.2.0",
+    "@ckeditor/ckeditor5-paragraph": "^29.2.0",
+    "@ckeditor/ckeditor5-theme-lark": "^29.2.0",
+    "@ckeditor/ckeditor5-ui": "^29.2.0",
+    "@ckeditor/ckeditor5-utils": "^29.2.0",
+    "@ckeditor/ckeditor5-widget": "^29.2.0",
+    "css-loader": "3",
+    "postcss-loader": "3",
+    "raw-loader": "3",
+    "sass-loader": "9",
+    "style-loader": "1",
+    "webpack": "4",
+    "webpack-cli": "3"
+  }
+}

@@ -37,6 +37,7 @@
   },
   "rules": {
     "max-classes-per-file": "off",
+    "class-methods-use-this": "off",
     "consistent-return": "off",
     "global-require": "off",
     "one-var": "off",
