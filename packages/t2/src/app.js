@@ -8,12 +8,13 @@ import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 import Placeholder from './placeholder/placeholder';
+import Data from './data/dataui';
 
 
 ClassicEditor
     .create ( document.querySelector ( '#editor' ), {
-        plugins          : [ Essentials, Paragraph, Heading, List, Bold, Italic, Placeholder ],
-        toolbar          : [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList', '|', 'placeholder' ],
+        plugins          : [ Essentials, Paragraph, Heading, List, Bold, Italic, Placeholder, Data ],
+        toolbar          : [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList', '|', 'placeholder', '|', 'showData' ],
         placeholderConfig: {
             types: [ 'date', 'color', 'first name', 'surname' ]         
         },
