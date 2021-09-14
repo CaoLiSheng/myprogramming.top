@@ -132,19 +132,17 @@
     line-height: 0.8rem;
 
     nav {
-      .main {
-        .pc {
-          display: none;
-        }
+      .pc {
+        display: none;
+      }
 
-        .mobile {
-          display: block;
+      .main .mobile {
+        display: block;
 
-          .icon {
-            width: 0.8rem;
-            height: 0.8rem;
-            padding: 0.2rem;
-          }
+        .icon {
+          width: 0.8rem;
+          height: 0.8rem;
+          padding: 0.2rem;
         }
       }
     }

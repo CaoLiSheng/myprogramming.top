@@ -19,7 +19,7 @@ import {
 
 import Category from './category';
 import GoToV2 from './goToV2';
-import Pager from './pager';
+// import Pager from './pager';
 
 declare let __portal_to_v1__: string;
 
@@ -123,7 +123,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
           </Switch>
           <Switch>
             <Route path="/post/:name" component={ Category } />
-            <Route
+            {/* <Route
               exact
               path={ [
                 '/home',
@@ -134,7 +134,7 @@ export class Header extends Component<RouteComponentProps<never>, HeaderStates> 
                 '/canlendar/:year/:month/:date/p/:page',
               ] }
               component={ Pager }
-            />
+            /> */}
           </Switch>
           <div className="main">
             <div className="pc">{ homeLink }</div>

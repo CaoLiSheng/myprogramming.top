@@ -48,11 +48,13 @@
 
   .search-results {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
-    width: 100%;
-    margin-top: 0.3rem;
+    width: auto;
+    height: 2rem;
+    margin: 0 1rem;
+    overflow: auto;
     font-size: 0.24rem;
 
     a {
@@ -109,6 +111,8 @@
     }
 
     .search-results {
+      height: 2.1rem;
+      margin: 0;
       font-size: 0.3rem;
     }
   }
