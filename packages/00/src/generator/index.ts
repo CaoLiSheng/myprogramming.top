@@ -127,7 +127,8 @@ function generateHTML ( fileName: string, dir: string, out: string ) {
         .replace (
           '{{article_body}}',
           `${ body }${ emailLinkHTML ( fileName, noReceiveEmails, style, title ) }`,
-        ),
+        )
+        .replace ( /{{article_body}}/g, '$$&' ),
     ),
     { encoding: 'UTF-8', flag: 'w' },
   );

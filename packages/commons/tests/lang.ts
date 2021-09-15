@@ -200,3 +200,5 @@ class Person {
 const cory = new Person ( 100 );
 console.log ( cory.age );
 // console.log( cory._age );
+
+console.log ( 'a'.replace ( 'a', '$&$&' ) );

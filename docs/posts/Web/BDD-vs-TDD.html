@@ -41,27 +41,27 @@ public class MyStepDefinitions {
   @Steps
   HomePage hp;
  
-    @Given(&quot;^I am on the login page {{article_body}}quot;)
+    @Given(&quot;^I am on the login page $&quot;)
     public void i_am_on_the_login_page(){
         loginPage = new LoginPage();
     }
  
-    @When(&quot;^I enter \&quot;([^\&quot;]*)\&quot; username{{article_body}}quot;)
+    @When(&quot;^I enter \&quot;([^\&quot;]*)\&quot; username$&quot;)
     public void i_enter_something_username(String username) {
       loginPage.enterUserName(username);
     }
  
-    @When(&quot;^I enter \&quot;([^\&quot;]*)\&quot; password{{article_body}}quot;)
+    @When(&quot;^I enter \&quot;([^\&quot;]*)\&quot; password$&quot;)
     public void i_enter_something_password(String password) {
        loginPage.enterPassword(password);
     }
  
-    @When(&quot;^I click on the \&quot;([^\&quot;]*)\&quot; button{{article_body}}quot;)
+    @When(&quot;^I click on the \&quot;([^\&quot;]*)\&quot; button$&quot;)
     public void i_click_on_the_submit_button(String strArg1) {
       hp = loginPage.submit();        
     }
  
-    @Then(&quot;^I am able to login successfully\.{{article_body}}quot;)
+    @Then(&quot;^I am able to login successfully\.$&quot;)
     public void i_am_able_to_login_successfully() {
       Assert.assertNotNull(hp);
     }

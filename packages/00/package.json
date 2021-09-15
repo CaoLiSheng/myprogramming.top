@@ -20,9 +20,13 @@
     "url": "git+https://github.com/CaoLiSheng/myprogramming.top.git"
   },
   "scripts": {
-    "start": "webpack --config=cfg/webpack/gen.dev.js && zsh src/scripts/gen.dev.zsh",
-    "generate": "zsh src/scripts/gen.dev.zsh",
-    "bundle": "webpack --config=cfg/webpack/gen.prod.js && zsh src/scripts/gen.prod.zsh"
+    "gen:dev": "zsh src/scripts/gen.dev.zsh",
+    "gen:prod": "zsh src/scripts/gen.prod.zsh",
+    "wbp:dev": "webpack --config=cfg/webpack/gen.dev.js",
+    "wbp:prod": "webpack --config=cfg/webpack/gen.prod.js",
+    "generate": "run-p gen:dev gen:prod",
+    "bundle": "run-s wbp:dev gen:dev",
+    "start": "run-s wbp:prod gen:prod"
   },
   "dependencies": {
     "commons": "^0.0.0",
