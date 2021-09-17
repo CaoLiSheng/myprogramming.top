@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   showGlassPanel ( e: MouseEvent ): void {
     const target = e.target as HTMLElement;
 
-    const props = { x: 0, y: 0, w: 100, h: 300 };
+    const props = { x: 0, y: 0, w: 160, h: 300 };
     props.x = Math.min ( window.innerWidth - 105, target.offsetLeft + target.offsetWidth / 2 - props.w / 2 );
     props.y = 35;
 
@@ -53,6 +53,8 @@ export class AppComponent implements OnInit {
   }
 
   glassResize ( btnIdx: number ): void {
+    this.hideAllExcept ();
+    
     let x = 0;
     let y = 0;
     let w = 0;

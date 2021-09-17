@@ -67,7 +67,7 @@
 
 /* App-Glass */
 .glass-container {
-  padding: 14px;
+  padding: 10px;
 }
 
 .glass-container,
@@ -84,10 +84,11 @@
 }
 
 .glass-container .group .glass {
-  width: 72px;
+  width: 140px;
   height: 20px;
+  padding-right: 10px;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: 10px;
   background-size: contain;
   line-height: 20px;
   text-align: right;
