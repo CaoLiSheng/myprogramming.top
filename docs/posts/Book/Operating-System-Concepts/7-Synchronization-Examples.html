@@ -1,0 +1,114 @@
+<article class="markdown-body antique"><h1>读书笔记之《Operating System Concepts》7</h1><h6 class="date-tag"><code> ~-~> 2021-09-19</code></h6><blockquote><p>同步示例</p></blockquote><h2 id="the-bounded-buffer-problem">The Bounded-Buffer Problem</h2><pre><code class="language-c">int n;
+semaphore mutex = 1;
+semaphore empty = n;
+semaphore full = 0;
+/* The structure of the producer process */
+while (true) {
+  ...
+  /* produce an item in next_produced */
+  ...
+  wait(empty);
+  wait(mutex);
+  ...
+  /* add next_produced to the buffer */
+  ...
+  signal(mutex);
+  signal(full);
+}
+/* The structure of the comsumer process */
+while (true) {
+  wait(full);
+  wait(mutex);
+  ...
+  /* remove an item from buffer to next_consumed */
+  ...
+  signal(mutex);
+  signal(empty);
+  ...
+  /* consume the item in next_consumed */
+  ...
+}
+</code></pre><h2 id="the-readers-writers-problem">The Readers-Writers Problem</h2><p>The reader-writer problem has several variations, all involving priorities. The simplest one, referred to as the first reader-wirter problem, requires that no reader be kept waiting unless a writer has already obtained permission to use the shared object. In other words, no reader should wait for other readers to finish simply because a writer is waiting. The second readers-writers problem requires that, once a writer is ready, the writer perform its write as soon as possible. In other words, if a writer is waiting to access the object, no new readers may start reading.</p><pre><code class="language-c">semaphore rw_mutex = 1;
+semaphore mutex = 1;
+int read_count = 0;
+/* The structure of a writer process */
+while (true) {
+  wait(rw_mutex);
+  ...
+  /* writing is performed */
+  ...
+  signal(rw_mutex);
+}
+/* The structure of a reader process */
+while (true) {
+  wait(mutex);
+  read_count++;
+  if (read_count == 1)
+    wait(rw_mutex);
+  signal(mutex);
+  ...
+  /* reading is performed */
+  ...
+  wait(mutex);
+  read_count--;
+  if (read_count == 0)
+    signal(rw_mutex);
+  signal(mutex);
+}
+</code></pre><h2 id="the-dining-philosophers-problem">The Dining-Philosophers Problem</h2><p>Several possible remedies to the deadlock problem are the following:</p><ul><li>Allow at most four philosophers to be sitting simultaneously at the table.</li><li>Allow a philosopher to pick up her chopsticks only if both chopsticks are available (to do this, she must pick them up in a critical section).</li><li>Use an asymmetric solution —— that is, an odd-numbered philosopher picks up first her left chopstick and then her right chopstick, whereas an even-numbered philosopher picks up her right chopstick and then her left chopstick.</li></ul><h3 id="semaphore-solution">Semaphore Solution</h3><pre><code class="language-c">/* deadlock, starvation */
+semaphore chopstick[5];
+
+while (true) {
+  wait(chopstick[i]);
+  wait(chopstick[(i+1)%5]);
+  ...
+  /* eat for a while */
+  ...
+  signal(chopstick[i]);
+  signal(chopstick[(i+1)%5]);
+  ...
+  /* think for a while */
+  ...
+}
+</code></pre><h3 id="monitor-solution">Monitor Solution</h3><pre><code class="language-c">/* deadlock-free, starvation */
+monitor DiningPhilosophers {
+  enum {THINKING, HUNGRY, EATING} state[5];
+  condition self[5];
+
+  void pickup(int i) {
+    state[i] = HUNGRY;
+    test(i);
+    if (state[i] != EATING)
+      self[i].wait();
+  }
+
+  void putdown(int i) {
+    state[i] = THINKING;
+    test((i+4)%5);
+    test((i+1)%5);
+  }
+
+  voit test(int i) {
+    if ((state[(i+4)%5] != EATING) &amp;&amp; (state[i] == HUNGRY) &amp;&amp; (state[(i+1)%5] != EATING)) {
+      state[i] = EATING;
+      self[i].signal();
+    }
+  }
+
+  initialization_code() {
+    for (int i=0; i&lt;5; i++)
+      state[i] = THINKING;
+  }
+}
+
+while (true) {
+  DiningPhilosophers.pickup(i);
+  ...
+  /* eat for a while */
+  ...
+  DiningPhilosophers.putdown(i);
+  ...
+  /* think for a while */
+  ...
+}
+</code></pre><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><ul><li>Classic problems of process synchronization include the bounded-buffer, readers-writers, and dining-philosophers problems. Solutions to these problems can be developed using the tools presented in Chapter 6, including mutex locks, semaphores, monitors, and condition variables.</li><li>Windows uses dispatcher objects as well as events to implement process synchronization tools.</li><li>Linux uses a variety of approaches to protect against race conditions, including atomic variables, spinlocks, and mutex locks.</li><li>The POSIX API provides mutex locks, semaphores, and condition variables. POSIX provides two forms of semaphores: named and unnamed. Several unrelated processes can easily access the same named semaphores by simply referring to its name. Unnamed semaphores cannot be shared as easily, and require placing the semaphore in a region of shared memory.</li><li>Java has rich library and API for synchronization. Available tools include monitors (which are provided at the language level) as well as reentrant locks, semaphores, and condition variables (which are supported by the API).</li><li>Alternative approaches to solving the critical-section problem include transactional memory, OpenMP, and functional languages. Functional languages are particularly intriguing, as they offer a different programming paradigm from procedural languages. Unlike procedural languages, functional languages do not maintain state and therefore are generally immune from race conditions and critical sections.</li></ul><h2 id="bi-ji-mu-lu">笔记目录</h2><ol start="0"><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》7」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article>
