@@ -4,7 +4,7 @@
 
 <script lang="ts">
 
-import { switcher } from "commons/src/index";
+import { switcher } from "commons/src/www/utils/lang";
 import { prefetchStyles } from 'commons/src/markdown/index';
 import { initCodePlugin } from 'commons/src/www/plugins/code';
 import { initDesignPlugin } from 'commons/src/www/plugins/design';

@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { EmptySchema, Schema } from 'commons/src/index';
+import { EmptySchema, Schema } from 'commons/src/db';
 import { TagsIcon } from 'commons/src/www/images/index';
 import { I_DB_CTX, injectDBCtx } from '@rCtxs/index';
 import { Popup } from '@rWidgets/popup';

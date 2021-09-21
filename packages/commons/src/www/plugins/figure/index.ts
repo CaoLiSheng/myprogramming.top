@@ -1,4 +1,4 @@
-import { clamp } from '../../../index';
+import { clamp } from '../../utils/math';
 
 function complete ( img: HTMLImageElement ): Promise<null> {
   return new Promise ( ( resolve, reject ) => {

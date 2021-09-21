@@ -56,11 +56,14 @@ export default class StatusComponent extends Vue.extend ( {
 
   barRoot: HTMLElement | null = null;
 
+  timeout: NodeJS.Timeout | null = null;
+
   mounted (): void {
     void initOnce ();
 
     this.mountedOnMobile ();
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const resizeHandler = () => {
       this.isMobile = isMobileSize ().result;
       this.mountedOnMobile ();
@@ -72,7 +75,9 @@ export default class StatusComponent extends Vue.extend ( {
   }
 
   mountedOnMobile (): void {
-    
+    if ( this.timeout ) clearTimeout ( this.timeout );
+    this.openMenu ();
+
     if ( !this.isMobile ) return;
 
     this.sideRoot = document.querySelector ( "#side" );
@@ -80,7 +85,7 @@ export default class StatusComponent extends Vue.extend ( {
 
     setTimeout ( () => {
       ui.setVisible ( true );
-      setTimeout ( ui.closeMenu.bind ( ui ), 1000 );
+      this.timeout = setTimeout ( ui.closeMenu.bind ( ui ), 1000 );
     }, 500 );
   }
 

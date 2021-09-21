@@ -27,6 +27,10 @@ export default class InsiteLink extends Vue.extend ( {
     delay: {
       type   : Number,
       default: 0,
+    },
+    isMobile: {
+      type   : Boolean,
+      default: false,
     }
   },
 } ) {
@@ -49,7 +53,9 @@ export default class InsiteLink extends Vue.extend ( {
 
   goToHref (): void {
     clickOnLink ( this.$props.name, this.$router );
-    ui.closeMenu ();
+    if ( this.isMobile ) {
+      ui.closeMenu ();
+    }
   }
 }
 </script>

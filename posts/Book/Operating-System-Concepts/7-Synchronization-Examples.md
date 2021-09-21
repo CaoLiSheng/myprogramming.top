@@ -154,9 +154,15 @@ while (true) {
 }
 ```
 
+## Synchronization in Windows
+
+The Windows operating system is a multithreaded kernel that provides support for real-time applications and multiple processors. When the Windows kernel accesses a global resource on a single-processor system, it temporarily masks interrupts for all interrupt handlers that may also access the global resource. On a multiprocessor system, Windows protects access to global resources using spinlocks, although the kernel uses spinlocks only to protect short code segments. Futhermore, for reasons of efficiency, the kernel ensures that a thread will never be preempted while holding a spinlock.
+
+For thread synchronization outside the kernel, Windows provides `dispatcher objects`. Using a dispatcher object, threads synchronize according to several different mechanisms, including mutex locks, semaphores, events, and timers. The system protects shared data by requiring a thread to gain ownership of a mutex to access the data and to release ownership when it is finished. Semaphores behave as described in [Chapter 6](post:Book<->Operating-System-Concepts<->6-Synchronization-Tools). Events are similar
+
 ## Another COPY of Summary in the Book
 
-- Classic problems of process synchronization include the bounded-buffer, readers-writers, and dining-philosophers problems. Solutions to these problems can be developed using the tools presented in Chapter 6, including mutex locks, semaphores, monitors, and condition variables.
+- Classic problems of process synchronization include the bounded-buffer, readers-writers, and dining-philosophers problems. Solutions to these problems can be developed using the tools presented in [Chapter 6](post:Book<->Operating-System-Concepts<->6-Synchronization-Tools), including mutex locks, semaphores, monitors, and condition variables.
 - Windows uses dispatcher objects as well as events to implement process synchronization tools.
 - Linux uses a variety of approaches to protect against race conditions, including atomic variables, spinlocks, and mutex locks.
 - The POSIX API provides mutex locks, semaphores, and condition variables. POSIX provides two forms of semaphores: named and unnamed. Several unrelated processes can easily access the same named semaphores by simply referring to its name. Unnamed semaphores cannot be shared as easily, and require placing the semaphore in a region of shared memory.

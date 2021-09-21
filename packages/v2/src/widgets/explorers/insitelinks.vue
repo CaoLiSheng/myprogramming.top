@@ -5,7 +5,8 @@
     :key="name",
     :name="name",
     :delay="idx * 100",
-    :data="postMeta(name)"
+    :data="postMeta(name)",
+    :isMobile="isMobile"
   )
 </template>
 
@@ -31,6 +32,10 @@ export default class InSiteLinks extends Vue.extend ( {
       type   : String,
       default: '0',
     },
+    isMobile: {
+      type   : Boolean,
+      default: false,
+    }
   },
 } ) {
   ui = ui.state;

@@ -1,10 +1,5 @@
-import {
-  EmptySchema,
-  Schema,
-  dateSortDesc,
-  distinctReduce,
-  intersectingReduce,
-} from 'commons/src/index';
+import { EmptySchema, Schema } from 'commons/src/db';
+import { dateSortDesc, distinctReduce, intersectingReduce } from 'commons/src/www/utils/lang';
 import { __conf__ } from 'commons/src/www/utils/conf';
 
 interface dbState {

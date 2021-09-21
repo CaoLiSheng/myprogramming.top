@@ -1,6 +1,6 @@
 import './index.scss';
 
-import { Schema } from 'commons/src/index';
+import { Schema } from 'commons/src/db';
 import { CmdAndSpaceIcon } from 'commons/src/www/images/index';
 import {
   I_DB_CTX,

@@ -1,6 +1,6 @@
 import Moment from 'moment';
 
-import { PublicMeta } from './db';
+import { PublicMeta } from '../../db';
 
 export const distinctReduce = ( p: string[], v: string[] ): string[] => [
   ...p,

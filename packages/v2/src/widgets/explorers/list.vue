@@ -4,6 +4,7 @@
     search-field(:onClear="onClear", :onInput="onInput")
     in-site-links(
       height="calc(100% - 0.5rem - 0.8rem)",
+      :isMobile="isMobile"
       :refresh="refresh",
       :posts="posts"
     )
@@ -11,9 +12,10 @@
 
 <script lang="ts">
 
-import { switcher } from "commons/src/index";
+import { switcher } from "commons/src/www/utils/lang";
 import Vue from "vue";
 import Component from "vue-class-component";
+import { isMobileSize } from "commons/src/www/utils/design";
 import { db, initOnce } from "../../stores/index";
 import header from "./header.vue";
 import inSiteLinks from "./insitelinks.vue";
@@ -33,8 +35,19 @@ export default class ListComponent extends Vue.extend ( {
 
   refresh = true;
 
+  isMobile = isMobileSize ().result;
+
   mounted (): void {
     void initOnce ();
+
+    // eslint-disable-next-line unicorn/consistent-function-scoping
+    const resizeHandler = () => {
+      this.isMobile = isMobileSize ().result;
+    }
+    window.addEventListener ( 'resize', resizeHandler );
+    window.addEventListener ( 'beforeunload', () => {
+      window.removeEventListener ( 'resize', resizeHandler );
+    } );
   }
 
   get header (): string {

@@ -1,5 +1,5 @@
 import React, { Component, ComponentType, createContext } from 'react';
-import { EmptySchema, Schema } from 'commons/src/index';
+import { EmptySchema, Schema } from 'commons/src/db';
 import { HOCDecrator } from '@v1/utils/HOCDecrator';
 
 export interface I_DB_CTX {

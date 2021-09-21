@@ -16,7 +16,7 @@
 
 <script lang="ts">
 
-import { switcher } from "commons/src/index";
+import { switcher } from "commons/src/www/utils/lang";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { db, initOnce } from "../../stores/index";

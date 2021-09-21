@@ -1,6 +1,7 @@
 import './index.scss';
 
-import { RNK, dateSortDesc, distinctReduce } from 'commons/src/index';
+import { RNK } from 'commons/src/db';
+import { dateSortDesc, distinctReduce } from 'commons/src/www/utils/lang'
 import {
   I_DB_CTX,
   I_PAGE_CTX,

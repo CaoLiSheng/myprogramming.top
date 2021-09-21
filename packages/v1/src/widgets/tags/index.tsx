@@ -2,7 +2,7 @@ import 'commons/src/shims-string';
 
 import './index.scss';
 
-import { dateSortDesc, distinctReduce } from 'commons/src/index';
+import { dateSortDesc, distinctReduce } from 'commons/src/www/utils/lang';
 import {
   I_DB_CTX,
   I_PAGE_CTX,

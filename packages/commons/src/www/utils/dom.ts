@@ -1,4 +1,4 @@
-import { vary } from '../../math';
+import { vary } from './math';
 
 export function clickIn (
   target: HTMLElement | null | undefined,
