@@ -1,4 +1,4 @@
-<article class="markdown-body antique"><h1>读书笔记之《Operating System Concepts》7</h1><h6 class="date-tag"><code> ~-~> 2021-09-19</code></h6><blockquote><p>同步示例</p></blockquote><h2 id="the-bounded-buffer-problem">The Bounded-Buffer Problem</h2><pre><code class="language-c">int n;
+<article class="markdown-body antique"><h1>读书笔记之《Operating System Concepts》7</h1><h6 class="date-tag"><code> ~-~> 2021-09-22</code></h6><blockquote><p>同步示例</p></blockquote><h2 id="the-bounded-buffer-problem">The Bounded-Buffer Problem</h2><pre><code class="language-c">int n;
 semaphore mutex = 1;
 semaphore empty = n;
 semaphore full = 0;
@@ -111,4 +111,132 @@ while (true) {
   /* think for a while */
   ...
 }
-</code></pre><h2 id="synchronization-in-windows">Synchronization in Windows</h2><p>The Windows operating system is a multithreaded kernel that provides support for real-time applications and multiple processors. When the Windows kernel accesses a global resource on a single-processor system, it temporarily masks interrupts for all interrupt handlers that may also access the global resource. On a multiprocessor system, Windows protects access to global resources using spinlocks, although the kernel uses spinlocks only to protect short code segments. Futhermore, for reasons of efficiency, the kernel ensures that a thread will never be preempted while holding a spinlock.</p><p>For thread synchronization outside the kernel, Windows provides <code>dispatcher objects</code>. Using a dispatcher object, threads synchronize according to several different mechanisms, including mutex locks, semaphores, events, and timers. The system protects shared data by requiring a thread to gain ownership of a mutex to access the data and to release ownership when it is finished. Semaphores behave as described in <a href="post:Book%3C-%3EOperating-System-Concepts%3C-%3E6-Synchronization-Tools">Chapter 6</a>. Events are similar</p><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><ul><li>Classic problems of process synchronization include the bounded-buffer, readers-writers, and dining-philosophers problems. Solutions to these problems can be developed using the tools presented in <a href="post:Book%3C-%3EOperating-System-Concepts%3C-%3E6-Synchronization-Tools">Chapter 6</a>, including mutex locks, semaphores, monitors, and condition variables.</li><li>Windows uses dispatcher objects as well as events to implement process synchronization tools.</li><li>Linux uses a variety of approaches to protect against race conditions, including atomic variables, spinlocks, and mutex locks.</li><li>The POSIX API provides mutex locks, semaphores, and condition variables. POSIX provides two forms of semaphores: named and unnamed. Several unrelated processes can easily access the same named semaphores by simply referring to its name. Unnamed semaphores cannot be shared as easily, and require placing the semaphore in a region of shared memory.</li><li>Java has rich library and API for synchronization. Available tools include monitors (which are provided at the language level) as well as reentrant locks, semaphores, and condition variables (which are supported by the API).</li><li>Alternative approaches to solving the critical-section problem include transactional memory, OpenMP, and functional languages. Functional languages are particularly intriguing, as they offer a different programming paradigm from procedural languages. Unlike procedural languages, functional languages do not maintain state and therefore are generally immune from race conditions and critical sections.</li></ul><h2 id="bi-ji-mu-lu">笔记目录</h2><ol start="0"><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》7」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article>
+</code></pre><h2 id="synchronization-in-windows">Synchronization in Windows</h2><p>The Windows operating system is a multithreaded kernel that provides support for real-time applications and multiple processors. When the Windows kernel accesses a global resource on a single-processor system, it temporarily masks interrupts for all interrupt handlers that may also access the global resource. On a multiprocessor system, Windows protects access to global resources using spinlocks, although the kernel uses spinlocks only to protect short code segments. Futhermore, for reasons of efficiency, the kernel ensures that a thread will never be preempted while holding a spinlock.</p><p>For thread synchronization outside the kernel, Windows provides <code>dispatcher objects</code>. Using a dispatcher object, threads synchronize according to several different mechanisms, including mutex locks, semaphores, events, and timers. The system protects shared data by requiring a thread to gain ownership of a mutex to access the data and to release ownership when it is finished. Semaphores behave as described in <a href="post:Book%3C-%3EOperating-System-Concepts%3C-%3E6-Synchronization-Tools">Chapter 6</a>. Events are similar to condition variables; that is, they may nofity a waiting thread when a desired condition occurs. Finally, timers are used to nofity on (or more than one) thread that a specified amount of time has expired.</p><p>Dispatcher objects may be in either a signaled state or a nonsignaled state. An object in a <code>signaled state</code> is available, and a thread will not block when acquiring the object. An object in a <code>nonsignaled state</code> is not available, and a thread will block when attempting to acquire the object.</p><p>A relationship exists between the state of a dispatcher object and the state of a thread. When a thread blocks on a nonsignaled dispatcher object, its state changes from ready to waiting, and the thread is placed in a waiting queue for that object. When the state for the dispatcher object moves to signaled, the kernel checks whether any threads are waiting on the object. If so, the kernel moves one thread —— or possibly more —— from the waiting state to the ready state, where they can resume executing. The number of threads the kernel selects from the waiting queue depends on the type of dispatcher object for which each thread is waiting. The kernel will select only one thread from the waiting queue for a mutex, since a mutex object may be &quot;owned&quot; by only a single thread. For an event object, the kernel will select all threads that are waiting for the event.</p><p>A <code>critical-section object</code> is a user-mode mutex that can often be acquired and released without kernel intervention. On a multiprocessor system, a critical-section object first uses a spinlock while waiting for the other thread to release the object. If it spins too long, the acquiring thread will then allocate a kernel mutex and yield its CPU. Critical-section objects are particularly efficient because the kernel mutex is allocated only when there is contention for the object. In practice, there is very little contention, so the savings are significant.</p><h2 id="synchronization-in-linux">Synchronization in Linux</h2><p>Prior to version 2.6, Linux was a nonpreemptive kernel, meaning that a process running in kernel mode could not be preempted —— even if a higher-priority process became available to run. Now, however, the Linux kernel is fully preemptive, so a task can be preempted when it is running in the kernel.</p><p>Linux provides several different mechanisms for synchronization in the kernel. As most computer architectures provide instructions for atomic versions of simple math operations, the simplest synchronization technique within the Linux kernel is an atomic integer, which is represented using the opaque data type <code>atomic_t</code>.</p><div class="table"><table><thead><tr><th style="text-align:left">Atomic Operation</th><th style="text-align:left">Effect</th></tr></thead><tbody><tr><td style="text-align:left">atomic_set(&amp;counter, 5);</td><td style="text-align:left">counter = 5</td></tr><tr><td style="text-align:left">atomic_add(10, &amp;counter);</td><td style="text-align:left">counter = counter + 10</td></tr><tr><td style="text-align:left">atomic_sub(4, &amp;counter);</td><td style="text-align:left">counter = counter - 4</td></tr><tr><td style="text-align:left">atomic_inc(&amp;counter);</td><td style="text-align:left">counter = counter + 1</td></tr><tr><td style="text-align:left">value = atomic_read(&amp;counter);</td><td style="text-align:left">value = 12</td></tr></tbody></table></div><p>Atomic integers are particularly efficient in situations where an integer variable —— such as a counter —— needs to be updated, since atomic operations to not require the overhead of locking mechanisms. However, their use is limited to these sorts of scenarios. In situations where there are several variables contributing to a possible race condition, more sophisticated locking tools must be used.</p><p>Mutex locks are available in Linux for protecting critical sections within the kernel. Here, a task must invoke the <code>mutex_lock()</code> function prior to entering a critical section and the <code>mutex_unlock()</code> function after exiting the critical section. If the mutex lock is unavailable, a task calling <code>mutex_lock()</code> is put into a sleep state and is awakened when the lock's owner invokes <code>mutex_unlock()</code>.</p><div class="table"><table><thead><tr><th>Single Processor</th><th>Multiple Processors</th></tr></thead><tbody><tr><td>Disable kernel preemption</td><td>Acquire spin lock</td></tr><tr><td>Enable kernel preemption</td><td>Release spin lock</td></tr></tbody></table></div><p>In the Linux kernel, both spinlocks and mutex locks are <code>nonrecursive</code>, which means that if a thread has acquired one of these locks, it cannot acquire the same lock a second time without first releasing the lock. Otherwise, the second attempt at acquiring the lock will block.</p><p>Linux uses an interesting approach to disable and enable kernel preemption. It provide two simple system calls —— <code>preempt_disable()</code> and <code>preempt_enable()</code> —— for disabling and enabling kernel preemption. The kernel is not preemptiable, however, if a task running in the kernel is holding a lock. To enforce this rule, each task in the system has a <code>thread_info</code> structure containing a counter, <code>preempt_count</code>, to indicate the number of locks being held by the task. When a lock is acquired, <code>preempt_count</code> is incremented. It is decremented when a lock is released. If the value of <code>preempt_count</code> for the task currently running in the kernel is greater than 0, it is not safe to preempt the kernel, as this task currently holds a lock. If the count is 0, the kernel can safely be interrupted (assuming there are no outstanding calls to <code>preempt_disable()</code>).</p><p>Spinlocks —— along with enabling and disabling kernel preemption —— are used in the kernel only when a lock (or disabling kernel preemption) is held for a short duration. When a lock must be held for a longer period, semaphores or mutex locks are appropriate for use.</p><h2 id="posix-mutex-locks">POSIX Mutex Locks</h2><pre><code class="language-c">#include &lt;pthread.h&gt;
+pthread_mutex_t mutex;
+/* create and initializa the mutex lock */
+pthread_mutex_init(&amp;mutex, NULL);
+/* acquire the mutex lock */
+pthread_mutex_lock(&amp;mutex);
+/* critical section */
+/* release the mutex lock */
+pthread_mutex_unlock(&amp;mutex);
+</code></pre><h2 id="posix-semaphores">POSIX Semaphores</h2><pre><code class="language-c">#include &lt;semaphore.h&gt;
+/* Create the named semaphore and initialize it to 1 */
+sem_t *sem = sem_open(&quot;SEM&quot;, O_CREAT, 0666, 1);
+/* Create the unnamed semaphore and initialize it to 1 */
+sem_t sem;
+sem_init(&amp;sem, 0, 1);
+/* acquire the semaphore */
+sem_wait(sem);
+/* critical section */
+/* release the semaphore */
+sem_post(sem);
+</code></pre><h2 id="posix-condition-variables">POSIX Condition Variables</h2><pre><code class="language-c">pthread_mutex_t mutex;
+pthread_cond_t cond_var;
+
+pthread_mutex_init(&amp;mutex, NULL);
+pthread_cond_init(&amp;cond_var, NULL);
+
+pthread_mutex_lock(&amp;mutex);
+while (a != b) {
+  /* also release mutex lock */
+  pthread_cond_wait(&amp;cond_var, &amp;mutex);
+}
+pthread_mutex_unlock(&amp;mutex);
+
+pthread_mutex_lock(&amp;mutex);
+a = b;
+/* also acquire mutex lock, go to `pthread_cond_wait(&amp;cond_var, &amp;mutex);` line */
+pthread_cond_signal(&amp;cond_var);
+pthread_mutex_unlock(&amp;mutex);
+</code></pre><h2 id="java-monitors">Java Monitors</h2><pre><code class="language-java">public class BoundedBuffer&lt;E&gt; {
+  private static final int BUFFER_SIZE = 5;
+
+  private int count, in, out;
+  private E[] buffer;
+
+  public BoundedBuffer() {
+    count = 0;
+    in = 0;
+    out = 0;
+    buffer = (E[]) new Object[BUFFER_SIZE];
+  }
+
+  public synchronized void insert(E item) {
+    while (count == BUFFER_SIZE) {
+      try {
+        wait();
+      } catch (InterruptedException ie) {}
+    }
+
+    buffer[in] = item;
+    in = (in + 1) % BUFFER_SIZE;
+    count ++;
+
+    notify();
+  }
+
+  public synchronized E remove() {
+    E item;
+
+    while (count == 0) {
+      try {
+        wait();
+      } catch (InterruptedException ie) {}
+    }
+
+    item = buffer[out];
+    out = (out + 1) % BUFFER_SIZE;
+    count --;
+
+    notify();
+
+    return item;
+  }
+}
+</code></pre><h2 id="java-reentrant-locks">Java Reentrant Locks</h2><pre><code class="language-java">Lock key = new ReentrantLock();
+key.lock();
+try {
+  /* critical section */
+} finilly {
+  key.unlock();
+}
+</code></pre><h2 id="java-semaphores">Java Semaphores</h2><pre><code class="language-java">Semaphore sem = new Semaphore(1);
+
+try {
+  sem.acqurie();
+  /* critical section */
+} catch (InterruptedException ie) {
+} finally {
+  sem.release();
+}
+</code></pre><h2 id="java-condition-variables">Java Condition Variables</h2><pre><code class="language-java">Lock lock = new ReentrantLock();
+Condition[] condVars = new Condition[5];
+
+for (int i = 0; i &lt; 5; i++)
+  condVars[i] = lock.newCondition();
+
+public void doWork(int threadNumber) {
+  lock.lock();
+
+  try {
+    /* If it's not my turn, then wait until I'm signaled. */
+    if (threadNumber != turn)
+      condVars[threadNumber].await();
+
+    /* Do some work for awhile ... */
+
+    /* Now signal to the next thread. */
+    turn = (turn + 1) % 5;
+    condVars[turn].signal();
+  } catch (InterruptedException ie) {
+  } finally {
+    lock.unlock();
+  }
+}
+</code></pre><h2 id="transactional-memory">Transactional Memory</h2><p>Quite often in computer science, ideas from one area of study can be used to solve problems in other areas. The concept of <code>transactional memory</code> originated in database theory, for example, yet it provides a strategy for process synchronization. A <code>memory transaction</code> is a sequence of memory read-write operations that are atomic. If all operations in a transaction are completed, the memory transaction is committed. Otherwise, the operations must be aborted and rolled back.</p><p>The advantage of using such a mechanism rather than locks is that the transactional memory system —— not the developer —— is responsible for guaranteeing atomicity. Additionally, because no locks are involved, deadlock is not possible. Furthermore, a transactional memory system can identify which statements in atomic blocks can be executed concurrently, such as concurrent read access to a shared variable.</p><p>Transactional memory can be implemented in either software or hardware. <code>Software transactional memory (STM)</code>, as the name suggests, implements transactional memory exclusively in software —— no special hardware is needed. STM works by inserting instrumentation code inside transaction blocks. The code is inserted by a compiler and manages each transaction by examining where statements may run concurrently and where specific low-level locking is required. <code>Hardware transactional memory (HTM)</code> uses hardware cache hierarchies and cache coherency protocols to manage and resolve conflicts involving shared data residing in separate processors' caches. HTM requires no special code instrumentation and thus has less overhead than STM. However, HTM does require that existing cache hierarchies and cache coherency protocols be modified to support transactional memory.</p><h2 id="open-mp">OpenMP</h2><pre><code class="language-c">void update(int value) {
+  #pragma omp critical {
+    counter += value;
+  }
+}
+</code></pre><h2 id="functional-programming-language">Functional Programming Language</h2><p>The fundamental difference between imperative and functional languages is that functional languages do not maintain state. That is, once a variable has been defined and assigned a value, its value is immutable —— it cannot change. Because functional languages disallow mutable state, they need not be concerned with issues such as race conditions and deadlocks. Several functional languages are presently in use, and we briefly mention two of them here: Erlang and Scala.</p><h2 id="another-copy-of-summary-in-the-book">Another COPY of Summary in the Book</h2><ul><li>Classic problems of process synchronization include the bounded-buffer, readers-writers, and dining-philosophers problems. Solutions to these problems can be developed using the tools presented in <a href="post:Book%3C-%3EOperating-System-Concepts%3C-%3E6-Synchronization-Tools">Chapter 6</a>, including mutex locks, semaphores, monitors, and condition variables.</li><li>Windows uses dispatcher objects as well as events to implement process synchronization tools.</li><li>Linux uses a variety of approaches to protect against race conditions, including atomic variables, spinlocks, and mutex locks.</li><li>The POSIX API provides mutex locks, semaphores, and condition variables. POSIX provides two forms of semaphores: named and unnamed. Several unrelated processes can easily access the same named semaphores by simply referring to its name. Unnamed semaphores cannot be shared as easily, and require placing the semaphore in a region of shared memory.</li><li>Java has rich library and API for synchronization. Available tools include monitors (which are provided at the language level) as well as reentrant locks, semaphores, and condition variables (which are supported by the API).</li><li>Alternative approaches to solving the critical-section problem include transactional memory, OpenMP, and functional languages. Functional languages are particularly intriguing, as they offer a different programming paradigm from procedural languages. Unlike procedural languages, functional languages do not maintain state and therefore are generally immune from race conditions and critical sections.</li></ul><h2 id="bi-ji-mu-lu">笔记目录</h2><ol start="0"><li><a href="scroll-to-the-very-top">回到开头</a></li></ol><br /><br /><hr /><br /><div class="comments"><a href="mailto:954382491@qq.com?subject=评价「读书笔记之《Operating System Concepts》7」">来聊两句吧～</a><h6 class="tip">⚠️ 请先安装一款邮件软件（部分浏览器可能不支持，请使用设备默认浏览器打开本页面）</h6></div><br /></article>

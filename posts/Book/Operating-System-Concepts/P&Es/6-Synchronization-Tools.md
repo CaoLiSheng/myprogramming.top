@@ -47,6 +47,8 @@ do {
 
 Assume that the balance in the account is $250.00 and that the husband calls `withdraw($50)` and the wife calls `deposit($100)`. Obviously, the corret value should be $300.00. Since these two transactions will be serialized, the local value of the balance for the husband becomes $200.00, but before he can commit the transaction, the `deposit(100)` operation takes place and updates shared value of the balance to $300.00. We then switch back to the husband, and the value of the shared balance is set to $200.00 —— obviously an incorrect value.
 
+---
+
 ## 笔记目录
 
 0. [回到开头](scroll-to-the-very-top)
