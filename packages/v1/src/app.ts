@@ -5,5 +5,9 @@ import 'commons/src/www/plugins/hotkeys';
 import 'commons/src/www/plugins/print';
 import 'commons/src/www/plugins/history';
 
+declare let __resource_dir__: string;
+
+void new FontFace ( 'HanYi-QinChuanFeiYing', `url(${ __resource_dir__ }reserved/fonts/hanyi-qinchuanfeiying.ttf)` ).load ()
+
 void import ( './index' );
 // import './index';
