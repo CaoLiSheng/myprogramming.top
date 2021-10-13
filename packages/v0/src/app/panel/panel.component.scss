@@ -8,10 +8,11 @@
 
   .modal-content {
     position: absolute;
-    background-image: url("~src/assets/underglass.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    // background-image: url("~src/assets/underglass.jpg");
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
+    background-color: #ddd;
     box-shadow: 0 0 5px 1px #cbd2d1;
   }
 }
