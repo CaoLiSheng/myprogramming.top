@@ -30,7 +30,7 @@ import computeIconStyle, { iconSizeCfg1 } from "../utils/sizeCfg";
 
 import { clickOnTag } from "../router";
 
-// 十万阿难儿，苦海无涯诶，回头是岸诶～～～仁字辈除外！
+
 declare let __portal_to_v1__: string;
 
 const __HomePageIndicators = new Set ( [
