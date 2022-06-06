@@ -3,5 +3,6 @@
   },
   "markdown.styles": [
     "cfg/thomasf-solarizedcsslight.css"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }

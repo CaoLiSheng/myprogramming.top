@@ -1,0 +1,94 @@
+@import '@/scss/mixins.scss';
+
+[deta-title] {
+  position: relative;
+
+  &:after {
+    content: attr(deta-title);
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%,0);
+    color: #fff;
+    text-shadow: 0 -1px 0px black;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    background: #383838;
+    border-radius: 2px;
+    padding: 3px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    transition:all .3s;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &[deta-title-pos='left']:after {
+    left: auto;
+    bottom: auto;
+    right: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &[deta-title-pos='right']:after {
+    bottom: auto;
+    right: auto;
+    left: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &[deta-title-pos='bottom']:after {
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+  }
+
+  &[deta-title-pos='bottom-left']:after {
+    bottom: auto;
+    left: auto;
+    top: 100%;
+    right: 0;
+    transform: translate(0, 0);
+  }
+
+  &[deta-title-pos='bottom-right']:after {
+    bottom: auto;
+    right: auto;
+    top: 100%;
+    left: 0;
+    transform: translate(0, 0);
+  }
+
+  @include hoverable {
+    &:after {
+      transition-delay: 100ms;
+      visibility: visible;
+      transform: translate(-50%,-6px);
+      opacity: 1;
+    }
+
+    &[deta-title-pos='left']:after {
+      transform: translate(-6px, -50%);
+    }
+  
+    &[deta-title-pos='right']:after {
+      transform: translate(6px, -50%);
+    }
+  
+    &[deta-title-pos='bottom']:after {
+      transform: translate(-50%, 6px);
+    }
+  
+    &[deta-title-pos='bottom-left']:after {
+      transform: translate(0, 6px);
+    }
+  
+    &[deta-title-pos='bottom-right']:after {
+      transform: translate(0, 6px);
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '@/scss/variables.scss';
+
+@mixin breakpoint($min-width) {
+  @media screen and (min-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin hoverable {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin overflow($x, $y) {
+  overflow-x: $x;
+  overflow-y: $y;
+}
+
+@mixin defaultTransition {
+  transition: all .3s;
+  transition-delay: 100ms;
+}
+
+@mixin ellipsisText {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin uiText {
+  cursor: pointer;
+  user-select: none;
+
+  color: white;
+  text-shadow: 1px 1px #999;
+}
+
+@mixin linearGradientBtn($width, $height, $deg) {
+  width: $width;
+  height: $height;
+  background-image: linear-gradient($deg, white, $bgColor);
+
+  @include flex-center;
+  border: solid 1px $solidColor;
+  @include hoverable {
+    border-color: $activeColor;
+  }
+}

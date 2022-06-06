@@ -35,9 +35,6 @@
       "git add"
     ]
   },
-  "dependencies": {
-    "commons": "^0.0.0"
-  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "eslint": ">=7.0.0",
@@ -52,7 +49,6 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-unicorn": "^29.0.0",
     "eslint-plugin-vue": "^7.8.0",
-    "fibers": "^5.0.0",
     "import-sort-cli": "^6.0.0",
     "import-sort-parser-babel-vue": "^1.0.6",
     "import-sort-style-module": "^6.0.0",
